@@ -13,4 +13,29 @@
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 
+	<properties>
+		<h2.version>1.4.187</h2.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <url>jdbc:h2:mem:</url>
+                    <user>sa</user>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>${h2.version}</version>
+                    </dependency>
+                </dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
