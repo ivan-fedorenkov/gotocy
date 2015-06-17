@@ -1,4 +1,4 @@
-package org.gotocy;
+package org.gotocy.examples;
 
 import org.gotocy.controllers.HomeController;
 import org.junit.Before;

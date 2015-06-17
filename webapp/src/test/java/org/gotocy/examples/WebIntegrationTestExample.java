@@ -1,5 +1,6 @@
-package org.gotocy;
+package org.gotocy.examples;
 
+import org.gotocy.Application;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
