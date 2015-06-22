@@ -25,37 +25,28 @@ public class PropertyDaoImpl extends DaoBaseImpl<Property> implements PropertyDa
 	}
 
 	@Override
-	@Transactional
+	public <S extends Property> S save(S property) {
+		Long id = queryDslTemplate.insertWithKey(QP, (c) -> (c.populate(property)).executeWithKey(Long.class));
+		property.setId(id);
+		return property;
+	}
+
+	@Override
+	public long count() {
+		SQLQuery sqlQuery = newSqlQuery().from(QP);
+		return queryDslTemplate.count(sqlQuery);
+	}
+
+	@Override
 	public Property findOne(Long id) {
 		SQLQuery sqlQuery = newSqlQuery().from(QP).where(QP.id.eq(id));
 		return queryDslTemplate.queryForObject(sqlQuery, new QBean<>(Property.class, QP.all()));
 	}
 
 	@Override
-	@Transactional
 	public Iterable<Property> findAll() {
 		SQLQuery sqlQuery = newSqlQuery().from(QP);
 		return queryDslTemplate.query(sqlQuery, new QBean<>(Property.class, QP.all()));
-	}
-
-	@Override
-	public Iterable<Property> findAll(Sort sort) {
-		SQLQuery sqlQuery = newSqlQuery(sort).from(QP);
-		return queryDslTemplate.query(sqlQuery, new QBean<>(Property.class, QP.all()));
-	}
-
-	@Override
-	public Page<Property> findAll(Pageable pageable) {
-		SQLQuery sqlQuery = newSqlQuery(pageable).from(QP);
-		return new PageImpl<>(queryDslTemplate.query(sqlQuery, new QBean<>(Property.class, QP.all())));
-	}
-
-	@Override
-	@Transactional
-	public <S extends Property> S save(S property) {
-		Long id = queryDslTemplate.insertWithKey(QP, (c) -> (c.populate(property)).executeWithKey(Long.class));
-		property.setId(id);
-		return property;
 	}
 
 }

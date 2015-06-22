@@ -11,10 +11,6 @@ import org.gotocy.domain.Property;
 import org.gotocy.domain.QLocalizedProperty;
 import org.gotocy.domain.QProperty;
 import org.gotocy.persistance.LocalizedPropertyDao;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
@@ -60,21 +56,9 @@ public class LocalizedPropertyDaoImpl extends DaoBaseImpl<LocalizedProperty> imp
 		return queryDslTemplate.query(sqlQuery, PROPERTY_PROJECTION);
 	}
 
-	@Override
-	public Iterable<LocalizedProperty> findAll(Sort sort) {
-		SQLQuery sqlQuery = newSqlQuery(sort).from(QLP).innerJoin(QP).on(QLP.propertyId.eq(QP.id));
-		return queryDslTemplate.query(sqlQuery, PROPERTY_PROJECTION);
-	}
-
-	@Override
-	public Page<LocalizedProperty> findAll(Pageable pageable) {
-		SQLQuery sqlQuery = newSqlQuery(pageable).from(QLP).innerJoin(QP).on(QLP.propertyId.eq(QP.id));
-		return new PageImpl<>(queryDslTemplate.query(sqlQuery, PROPERTY_PROJECTION));
-	}
-
 	private static final MappingProjection<LocalizedProperty> PROPERTY_PROJECTION =
 		new MappingProjection<LocalizedProperty>(LocalizedProperty.class, QP.all(), QLP.all())
-		{
+	{
 			@Override
 			protected LocalizedProperty map(Tuple tuple) {
 				Property p = new Property();
@@ -88,7 +72,7 @@ public class LocalizedPropertyDaoImpl extends DaoBaseImpl<LocalizedProperty> imp
 
 				return lp;
 			}
-		};
+	};
 
 	private static final Mapper<LocalizedProperty> PROPERTY_MAPPER = (path, lp) -> {
 		Map<Path<?>, Object> values = BeanMapper.DEFAULT.createMap(path, lp);

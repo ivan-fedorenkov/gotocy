@@ -10,6 +10,8 @@ import java.io.File;
 import java.sql.SQLException;
 
 /**
+ * An utility tool to create querydsl metadata objects.
+ *
  * @author ifedorenkov
  */
 @EnableAutoConfiguration
@@ -21,7 +23,7 @@ public class SchemaExporter {
 
 		MetaDataExporter exporter = new MetaDataExporter();
 		exporter.setPackageName("org.gotocy.domain");
-		exporter.setTargetFolder(new File("domain/target/generated-sources"));
+		exporter.setTargetFolder(new File("domain/target/generated-sources/java"));
 		exporter.export(dataSource.getConnection().getMetaData());
 	}
 

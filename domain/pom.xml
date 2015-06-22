@@ -40,7 +40,6 @@
 			<artifactId>flyway-core</artifactId>
 		</dependency>
 
-		<!--TODO: remove this dependency -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-oracle</artifactId>
