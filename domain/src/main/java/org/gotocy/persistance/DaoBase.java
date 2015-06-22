@@ -1,6 +1,6 @@
 package org.gotocy.persistance;
 
-import java.util.List;
+import com.mysema.query.SearchResults;
 
 /**
  * @author ifedorenkov
@@ -10,6 +10,6 @@ public interface DaoBase<T> {
 	T save(T entity);
 
 	T findOne(Long id);
-	List<T> findAll();
+	SearchResults<T> findAll();
 
 }

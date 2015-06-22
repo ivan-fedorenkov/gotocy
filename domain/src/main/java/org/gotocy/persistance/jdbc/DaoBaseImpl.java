@@ -2,7 +2,8 @@ package org.gotocy.persistance.jdbc;
 
 import org.gotocy.domain.BaseEntity;
 import org.gotocy.persistance.DaoBase;
-import org.springframework.data.jdbc.query.QueryDslJdbcTemplate;
+import org.gotocy.persistance.jdbc.querydsl.QueryDslJdbcTemplate;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -12,12 +13,10 @@ import javax.sql.DataSource;
  */
 public abstract class DaoBaseImpl<T extends BaseEntity> implements DaoBase<T> {
 
-	protected final JdbcTemplate jdbcTemplate;
 	protected final QueryDslJdbcTemplate queryDslTemplate;
 
-	public DaoBaseImpl(DataSource dataSource) {
-		jdbcTemplate = new JdbcTemplate(dataSource);
-		queryDslTemplate = new QueryDslJdbcTemplate(jdbcTemplate);
+	public DaoBaseImpl(DataSourceProperties dsp, DataSource dataSource) {
+		queryDslTemplate = new QueryDslJdbcTemplate(dsp, new JdbcTemplate(dataSource));
 	}
 
 }

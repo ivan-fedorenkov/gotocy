@@ -4,6 +4,7 @@ import org.gotocy.persistance.LocalizedPropertyDao;
 import org.gotocy.persistance.jdbc.LocalizedPropertyDaoImpl;
 import org.gotocy.persistance.PropertyDao;
 import org.gotocy.persistance.jdbc.PropertyDaoImpl;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,13 +17,13 @@ import javax.sql.DataSource;
 public class Config {
 
 	@Bean
-	public PropertyDao propertyDao(DataSource dataSource) {
-		return new PropertyDaoImpl(dataSource);
+	public PropertyDao propertyDao(DataSourceProperties dsp, DataSource dataSource) {
+		return new PropertyDaoImpl(dsp, dataSource);
 	}
 
 	@Bean
-	public LocalizedPropertyDao localizedPropertyDao(DataSource dataSource) {
-		return new LocalizedPropertyDaoImpl(dataSource);
+	public LocalizedPropertyDao localizedPropertyDao(DataSourceProperties dsp, DataSource dataSource) {
+		return new LocalizedPropertyDaoImpl(dsp, dataSource);
 	}
 
 }

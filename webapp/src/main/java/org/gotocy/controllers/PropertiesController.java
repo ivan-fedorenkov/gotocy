@@ -1,5 +1,6 @@
 package org.gotocy.controllers;
 
+import com.mysema.query.SearchResults;
 import org.gotocy.domain.LocalizedProperty;
 import org.gotocy.domain.Property;
 import org.gotocy.persistance.LocalizedPropertyDao;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -46,7 +46,7 @@ public class PropertiesController {
 	}
 
 	@RequestMapping("/properties")
-	public List<LocalizedProperty> list() {
+	public SearchResults<LocalizedProperty> list() {
 		return localizedPropertyDao.findAll();
 	}
 

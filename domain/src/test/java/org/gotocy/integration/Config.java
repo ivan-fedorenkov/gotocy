@@ -7,6 +7,6 @@ import org.springframework.context.annotation.Import;
  * @author ifedorenkov
  */
 @EnableAutoConfiguration
-//@Import(org.gotocy.Config.class)
+@Import(org.gotocy.Config.class)
 public class Config {
 }

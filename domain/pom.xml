@@ -40,7 +40,7 @@
 			<artifactId>flyway-core</artifactId>
 		</dependency>
 
-		<!--TODO: in the latest spring release querydsl support were moved to the spring-jdbc module-->
+		<!--TODO: remove this dependency -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-oracle</artifactId>

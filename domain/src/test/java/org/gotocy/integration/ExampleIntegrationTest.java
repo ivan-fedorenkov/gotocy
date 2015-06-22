@@ -18,9 +18,9 @@ import java.util.List;
 /**
  * @author ifedorenkov
  */
-/*@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Config.class)
-@IntegrationTest*/
+@IntegrationTest
 public class ExampleIntegrationTest {
 
 	@Autowired
@@ -29,7 +29,7 @@ public class ExampleIntegrationTest {
 	@Autowired
 	private LocalizedPropertyDao localizedPropertyDao;
 
-//	@Test
+	@Test
 	@Transactional
 	public void test() {
 		Property p = new Property();
@@ -44,7 +44,7 @@ public class ExampleIntegrationTest {
 		lp = localizedPropertyDao.save(lp);
 
 		Property foundProperty = propertyDao.findOne(p.getId());
-		List<Property> foundAllProperties = propertyDao.findAll();
+		List<Property> foundAllProperties = propertyDao.findAll().getResults();
 
 		LocalizedProperty foundLocalizedProperty = localizedPropertyDao.findOne(lp.getId());
 
