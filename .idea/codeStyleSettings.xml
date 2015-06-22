@@ -9,7 +9,7 @@
         <codeStyleSettings language="JAVA">
           <option name="INDENT_CASE_FROM_SWITCH" value="false" />
           <indentOptions>
-            <option name="CONTINUATION_INDENT_SIZE" value="4" />
+            <option name="CONTINUATION_INDENT_SIZE" value="0" />
             <option name="USE_TAB_CHARACTER" value="true" />
           </indentOptions>
         </codeStyleSettings>

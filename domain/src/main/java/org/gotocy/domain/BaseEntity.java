@@ -1,8 +1,5 @@
 package org.gotocy.domain;
 
-import javax.persistence.*;
-import java.io.Serializable;
-
 /**
  * @author ifedorenkov
  */

@@ -1,6 +1,5 @@
 package org.gotocy.domain;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 

@@ -11,6 +11,8 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<flyway.version>3.2.1</flyway.version>
+		<querydsl.version>3.6.4</querydsl.version>
+		<spring-data-oracle.version>1.1.0.RELEASE</spring-data-oracle.version>
 	</properties>
 
 	<parent>
