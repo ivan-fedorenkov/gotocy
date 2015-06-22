@@ -1,15 +1,9 @@
 package org.gotocy.persistance;
 
-import com.mysema.query.SearchResults;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  * @author ifedorenkov
  */
-public interface DaoBase<T> {
-
-	T save(T entity);
-
-	T findOne(Long id);
-	SearchResults<T> findAll();
-
+public interface DaoBase<T> extends PagingAndSortingRepository<T, Long> {
 }

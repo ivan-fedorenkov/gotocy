@@ -1,6 +1,5 @@
 package org.gotocy.controllers;
 
-import com.mysema.query.SearchResults;
 import org.gotocy.domain.LocalizedProperty;
 import org.gotocy.domain.Property;
 import org.gotocy.persistance.LocalizedPropertyDao;
@@ -46,13 +45,13 @@ public class PropertiesController {
 	}
 
 	@RequestMapping("/properties")
-	public SearchResults<LocalizedProperty> list() {
+	public Iterable<LocalizedProperty> list() {
 		return localizedPropertyDao.findAll();
 	}
 
 	@RequestMapping("/property/{id}")
-	public LocalizedProperty get(@PathVariable("id") Long id) {
-		return localizedPropertyDao.findOne(id);
+	public LocalizedProperty get(@PathVariable("id") LocalizedProperty localizedProperty) {
+		return localizedProperty;
 	}
 
 }

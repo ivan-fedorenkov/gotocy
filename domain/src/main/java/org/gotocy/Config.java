@@ -17,13 +17,13 @@ import javax.sql.DataSource;
 public class Config {
 
 	@Bean
-	public PropertyDao propertyDao(DataSourceProperties dsp, DataSource dataSource) {
-		return new PropertyDaoImpl(dsp, dataSource);
+	public PropertyDao propertyDao(DataSource dataSource) {
+		return new PropertyDaoImpl(dataSource);
 	}
 
 	@Bean
-	public LocalizedPropertyDao localizedPropertyDao(DataSourceProperties dsp, DataSource dataSource) {
-		return new LocalizedPropertyDaoImpl(dsp, dataSource);
+	public LocalizedPropertyDao localizedPropertyDao(DataSource dataSource) {
+		return new LocalizedPropertyDaoImpl(dataSource);
 	}
 
 }

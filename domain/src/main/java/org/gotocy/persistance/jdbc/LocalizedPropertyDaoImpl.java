@@ -1,6 +1,5 @@
 package org.gotocy.persistance.jdbc;
 
-import com.mysema.query.SearchResults;
 import com.mysema.query.Tuple;
 import com.mysema.query.sql.SQLQuery;
 import com.mysema.query.sql.dml.BeanMapper;
@@ -12,10 +11,14 @@ import org.gotocy.domain.Property;
 import org.gotocy.domain.QLocalizedProperty;
 import org.gotocy.domain.QProperty;
 import org.gotocy.persistance.LocalizedPropertyDao;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,15 +29,14 @@ public class LocalizedPropertyDaoImpl extends DaoBaseImpl<LocalizedProperty> imp
 	private static final QProperty QP = QProperty.property;
 	private static final QLocalizedProperty QLP = QLocalizedProperty.localizedProperty;
 
-	public LocalizedPropertyDaoImpl(DataSourceProperties dsp, DataSource dataSource) {
-		super(dsp, dataSource);
+	public LocalizedPropertyDaoImpl(DataSource dataSource) {
+		super(dataSource, LocalizedProperty.class, QLP);
 	}
 
 	@Override
 	@Transactional
-	public LocalizedProperty save(LocalizedProperty property) {
-		Long id = queryDslTemplate.insert(QLP, (c) ->
-		c.populate(property, PROPERTY_MAPPER).executeWithKey(Long.class));
+	public <S extends LocalizedProperty> S save(S property) {
+		Long id = queryDslTemplate.insert(QLP, (c) -> c.populate(property, PROPERTY_MAPPER).executeWithKey(Long.class));
 		property.setId(id);
 		return property;
 	}
@@ -42,7 +44,7 @@ public class LocalizedPropertyDaoImpl extends DaoBaseImpl<LocalizedProperty> imp
 	@Override
 	@Transactional
 	public LocalizedProperty findOne(Long id) {
-		SQLQuery sqlQuery = queryDslTemplate.newSqlQuery()
+		SQLQuery sqlQuery = newSqlQuery()
 			.from(QLP)
 			.innerJoin(QP).on(QLP.id.eq(QP.id))
 			.where(QLP.propertyId.eq(QP.id));
@@ -53,12 +55,21 @@ public class LocalizedPropertyDaoImpl extends DaoBaseImpl<LocalizedProperty> imp
 
 	@Override
 	@Transactional
-	public SearchResults<LocalizedProperty> findAll() {
-		SQLQuery sqlQuery = queryDslTemplate.newSqlQuery()
-			.from(QLP)
-			.innerJoin(QP).on(QLP.propertyId.eq(QP.id));
+	public List<LocalizedProperty> findAll() {
+		SQLQuery sqlQuery = newSqlQuery().from(QLP).innerJoin(QP).on(QLP.propertyId.eq(QP.id));
+		return queryDslTemplate.query(sqlQuery, PROPERTY_PROJECTION);
+	}
 
-		return queryDslTemplate.queryResults(sqlQuery, PROPERTY_PROJECTION);
+	@Override
+	public Iterable<LocalizedProperty> findAll(Sort sort) {
+		SQLQuery sqlQuery = newSqlQuery(sort).from(QLP).innerJoin(QP).on(QLP.propertyId.eq(QP.id));
+		return queryDslTemplate.query(sqlQuery, PROPERTY_PROJECTION);
+	}
+
+	@Override
+	public Page<LocalizedProperty> findAll(Pageable pageable) {
+		SQLQuery sqlQuery = newSqlQuery(pageable).from(QLP).innerJoin(QP).on(QLP.propertyId.eq(QP.id));
+		return new PageImpl<>(queryDslTemplate.query(sqlQuery, PROPERTY_PROJECTION));
 	}
 
 	private static final MappingProjection<LocalizedProperty> PROPERTY_PROJECTION =
