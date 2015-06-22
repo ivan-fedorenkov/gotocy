@@ -1,4 +1,9 @@
-target/
+target/classes
+target/maven-archiver
+target/maven-status
+target/test-classes
+*.jar
+*.jar.original
 *.class
 log.roo
 .idea/libraries
