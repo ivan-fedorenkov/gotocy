@@ -1,21 +1,11 @@
 package org.gotocy.domain;
 
+import javax.persistence.Entity;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * @author ifedorenkov
  */
-public class Property extends BaseEntity {
-
-	private Set<LocalizedProperty> properties = new HashSet<>();
-
-	public Set<LocalizedProperty> getProperties() {
-		return properties;
-	}
-
-	public void setProperties(Set<LocalizedProperty> properties) {
-		this.properties = properties;
-	}
-
-}
+@Entity
+public class Property extends BaseEntity {}

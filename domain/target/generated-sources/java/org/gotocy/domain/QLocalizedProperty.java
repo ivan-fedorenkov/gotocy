@@ -7,60 +7,54 @@ import com.mysema.query.types.path.*;
 import com.mysema.query.types.PathMetadata;
 import javax.annotation.Generated;
 import com.mysema.query.types.Path;
-
-import com.mysema.query.sql.ColumnMetadata;
-import java.sql.Types;
-
-
+import com.mysema.query.types.path.PathInits;
 
 
 /**
- * QLocalizedProperty is a Querydsl query type for QLocalizedProperty
+ * QLocalizedProperty is a Querydsl query type for LocalizedProperty
  */
-@Generated("com.mysema.query.sql.codegen.MetaDataSerializer")
-public class QLocalizedProperty extends com.mysema.query.sql.RelationalPathBase<QLocalizedProperty> {
+@Generated("com.mysema.query.codegen.EntitySerializer")
+public class QLocalizedProperty extends EntityPathBase<LocalizedProperty> {
 
-    private static final long serialVersionUID = 1079581886;
+    private static final long serialVersionUID = -829172783L;
 
-    public static final QLocalizedProperty localizedProperty = new QLocalizedProperty("LOCALIZED_PROPERTY");
+    private static final PathInits INITS = PathInits.DIRECT2;
 
-    public final NumberPath<Long> id = createNumber("id", Long.class);
+    public static final QLocalizedProperty localizedProperty = new QLocalizedProperty("localizedProperty");
+
+    public final QBaseEntity _super = new QBaseEntity(this);
+
+    //inherited
+    public final NumberPath<Long> id = _super.id;
 
     public final StringPath locale = createString("locale");
 
-    public final NumberPath<Long> propertyId = createNumber("propertyId", Long.class);
+    public final QProperty property;
 
     public final StringPath title = createString("title");
 
-    public final com.mysema.query.sql.PrimaryKey<QLocalizedProperty> constraintD = createPrimaryKey(id);
-
-    public final com.mysema.query.sql.ForeignKey<QProperty> localizedPropertyPropertyIdFk = createForeignKey(propertyId, "ID");
+    //inherited
+    public final NumberPath<Integer> version = _super.version;
 
     public QLocalizedProperty(String variable) {
-        super(QLocalizedProperty.class, forVariable(variable), "PUBLIC", "LOCALIZED_PROPERTY");
-        addMetadata();
+        this(LocalizedProperty.class, forVariable(variable), INITS);
     }
 
-    public QLocalizedProperty(String variable, String schema, String table) {
-        super(QLocalizedProperty.class, forVariable(variable), schema, table);
-        addMetadata();
-    }
-
-    public QLocalizedProperty(Path<? extends QLocalizedProperty> path) {
-        super(path.getType(), path.getMetadata(), "PUBLIC", "LOCALIZED_PROPERTY");
-        addMetadata();
+    public QLocalizedProperty(Path<? extends LocalizedProperty> path) {
+        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
     public QLocalizedProperty(PathMetadata<?> metadata) {
-        super(QLocalizedProperty.class, metadata, "PUBLIC", "LOCALIZED_PROPERTY");
-        addMetadata();
+        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public void addMetadata() {
-        addMetadata(id, ColumnMetadata.named("ID").withIndex(1).ofType(Types.BIGINT).withSize(19).notNull());
-        addMetadata(locale, ColumnMetadata.named("LOCALE").withIndex(3).ofType(Types.VARCHAR).withSize(8).notNull());
-        addMetadata(propertyId, ColumnMetadata.named("PROPERTY_ID").withIndex(4).ofType(Types.BIGINT).withSize(19).notNull());
-        addMetadata(title, ColumnMetadata.named("TITLE").withIndex(2).ofType(Types.VARCHAR).withSize(256).notNull());
+    public QLocalizedProperty(PathMetadata<?> metadata, PathInits inits) {
+        this(LocalizedProperty.class, metadata, inits);
+    }
+
+    public QLocalizedProperty(Class<? extends LocalizedProperty> type, PathMetadata<?> metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.property = inits.isInitialized("property") ? new QProperty(forProperty("property")) : null;
     }
 
 }

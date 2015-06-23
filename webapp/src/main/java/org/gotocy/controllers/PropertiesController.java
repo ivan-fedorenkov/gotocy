@@ -2,8 +2,8 @@ package org.gotocy.controllers;
 
 import org.gotocy.domain.LocalizedProperty;
 import org.gotocy.domain.Property;
-import org.gotocy.persistance.LocalizedPropertyDao;
-import org.gotocy.persistance.PropertyDao;
+import org.gotocy.repository.LocalizedPropertyRepository;
+import org.gotocy.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +19,10 @@ import java.util.Locale;
 public class PropertiesController {
 
 	@Autowired
-	private PropertyDao propertyDao;
+	private PropertyRepository propertyRepository;
 
 	@Autowired
-	private LocalizedPropertyDao localizedPropertyDao;
+	private LocalizedPropertyRepository localizedPropertyRepository;
 
 
 	@RequestMapping("/properties/add")
@@ -30,23 +30,23 @@ public class PropertiesController {
 		Property p;
 		if (id == null) {
 			p = new Property();
-			propertyDao.save(p);
+			propertyRepository.save(p);
 		} else {
-			p = propertyDao.findOne(id);
+			p = propertyRepository.findOne(id);
 		}
 
 		LocalizedProperty lp = new LocalizedProperty();
 		lp.setTitle("LP#" + p.getId());
 		lp.setLocale(locale.getLanguage());
 		lp.setProperty(p);
-		localizedPropertyDao.save(lp);
+		localizedPropertyRepository.save(lp);
 
 		return lp;
 	}
 
 	@RequestMapping("/properties")
 	public Iterable<LocalizedProperty> list() {
-		return localizedPropertyDao.findAll();
+		return localizedPropertyRepository.findAll();
 	}
 
 	@RequestMapping("/property/{id}")

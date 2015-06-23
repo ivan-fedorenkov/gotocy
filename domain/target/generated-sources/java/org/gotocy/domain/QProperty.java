@@ -8,50 +8,35 @@ import com.mysema.query.types.PathMetadata;
 import javax.annotation.Generated;
 import com.mysema.query.types.Path;
 
-import com.mysema.query.sql.ColumnMetadata;
-import java.sql.Types;
-
-
-
 
 /**
- * QProperty is a Querydsl query type for QProperty
+ * QProperty is a Querydsl query type for Property
  */
-@Generated("com.mysema.query.sql.codegen.MetaDataSerializer")
-public class QProperty extends com.mysema.query.sql.RelationalPathBase<QProperty> {
+@Generated("com.mysema.query.codegen.EntitySerializer")
+public class QProperty extends EntityPathBase<Property> {
 
-    private static final long serialVersionUID = -1086149689;
+    private static final long serialVersionUID = -1060035756L;
 
-    public static final QProperty property = new QProperty("PROPERTY");
+    public static final QProperty property = new QProperty("property");
 
-    public final NumberPath<Long> id = createNumber("id", Long.class);
+    public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final com.mysema.query.sql.PrimaryKey<QProperty> constraintF = createPrimaryKey(id);
+    //inherited
+    public final NumberPath<Long> id = _super.id;
 
-    public final com.mysema.query.sql.ForeignKey<QLocalizedProperty> _localizedPropertyPropertyIdFk = createInvForeignKey(id, "PROPERTY_ID");
+    //inherited
+    public final NumberPath<Integer> version = _super.version;
 
     public QProperty(String variable) {
-        super(QProperty.class, forVariable(variable), "PUBLIC", "PROPERTY");
-        addMetadata();
+        super(Property.class, forVariable(variable));
     }
 
-    public QProperty(String variable, String schema, String table) {
-        super(QProperty.class, forVariable(variable), schema, table);
-        addMetadata();
-    }
-
-    public QProperty(Path<? extends QProperty> path) {
-        super(path.getType(), path.getMetadata(), "PUBLIC", "PROPERTY");
-        addMetadata();
+    public QProperty(Path<? extends Property> path) {
+        super(path.getType(), path.getMetadata());
     }
 
     public QProperty(PathMetadata<?> metadata) {
-        super(QProperty.class, metadata, "PUBLIC", "PROPERTY");
-        addMetadata();
-    }
-
-    public void addMetadata() {
-        addMetadata(id, ColumnMetadata.named("ID").withIndex(1).ofType(Types.BIGINT).withSize(19).notNull());
+        super(Property.class, metadata);
     }
 
 }
