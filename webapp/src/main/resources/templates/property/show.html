@@ -15,7 +15,7 @@
     <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" href="assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" th:href="@{/assets/css/style.css}" href="assets/css/style.css" type="text/css">
 
-    <title>Zoner | Property Detail</title>
+    <title th:text="#{org.gotocy.templates.title(#{org.gotocy.templates.property.show.title})}" >GoToCy | Property Detail</title>
 
 </head>
 
@@ -27,8 +27,8 @@
         <div class="secondary-navigation">
             <div class="container">
                 <div class="contact">
-                    <figure><strong>Phone:</strong>+1 810-991-3842</figure>
-                    <figure><strong>Email:</strong>zoner@example.com</figure>
+                    <figure><strong th:text="#{org.gotocy.dictionary.phone}">Phone:</strong>+1 810-991-3842</figure>
+                    <figure><strong th:text="#{org.gotocy.dictionary.email}">Email:</strong>zoner@example.com</figure>
                 </div>
                 <div class="user-area">
                     <div class="actions">
@@ -48,7 +48,7 @@
             <header class="navbar" id="top" role="banner">
                 <div class="navbar-header">
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only" th:text="#{org.gotocy.dictionary.toggle-navigation}">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -59,7 +59,9 @@
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li class="active has-child"><a th:href="@{/#}" href="#">Homepage</a>
+                        <li><a th:href="@{/#}" th:text="#{org.gotocy.dictionary.home-page}" href="#">Homepage</a></li>
+                        <!--
+                        <li class="active has-child"><a th:href="@{/#}" th:text="#{org.gotocy.dictionary.home-page}" href="#">Homepage</a>
                             <ul class="child-navigation">
                                 <li><a th:href="@{/index-google-map-fullscreen.html}" href="index-google-map-fullscreen.html">Google Map Full Screen</a></li>
                                 <li><a th:href="@{/index-google-map-fixed-height.html}" href="index-google-map-fixed-height.html">Google Map Fixed Height</a></li>
@@ -127,11 +129,11 @@
                                 <li><a th:href="@{/blog-detail.html}" href="blog-detail.html">Blog Post Detail</a></li>
                             </ul>
                         </li>
-                        <li><a th:href="@{/contact.html}" href="contact.html">Contact</a></li>
+                        <li><a th:href="@{/contact.html}" href="contact.html">Contact</a></li> -->
                     </ul>
                 </nav><!-- /.navbar collapse-->
                 <div class="add-your-property">
-                    <a th:href="@{/submit.html}" href="submit.html" class="btn btn-default"><i class="fa fa-plus"></i><span class="text">Add Your Property</span></a>
+                    <a th:href="@{/submit.html}" href="submit.html" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="#{org.gotocy.dictionary.add-your-property}">Add Your Property</span></a>
                 </div>
             </header><!-- /.navbar -->
         </div><!-- /.container -->
@@ -142,8 +144,8 @@
         <!-- Breadcrumb -->
         <div class="container">
             <ol class="breadcrumb">
-                <li><a th:href="@{/#}" href="#">Home</a></li>
-                <li class="active">Property Detail</li>
+                <li><a th:href="@{/#}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
+                <li class="active" th:text="#{org.gotocy.dictionary.property-detail}">Property Detail</li>
             </ol>
         </div>
         <!-- end Breadcrumb -->
@@ -186,7 +188,7 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
                                 <section id="quick-summary" class="clearfix">
-                                    <header><h2>Quick Summary</h2></header>
+                                    <header><h2 th:text="#{org.gotocy.dictionary.quick-summary}">Quick Summary</h2></header>
                                     <dl>
                                         <dt>Location</dt>
                                             <dd>Chicago, IL 60610</dd>
@@ -211,7 +213,7 @@
                             </div><!-- /.col-md-4 -->
                             <div class="col-md-8 col-sm-12">
                                 <section id="description">
-                                    <header><h2>Property Description</h2></header>
+                                    <header><h2 th:text="#{org.gotocy.dictionary.property-description}">Property Description</h2></header>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
                                         bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt.
