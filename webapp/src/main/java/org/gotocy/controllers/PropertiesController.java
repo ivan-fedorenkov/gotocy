@@ -40,6 +40,7 @@ public class PropertiesController {
 		Property p;
 		if (id == null) {
 			p = new Property();
+			p.setPrice(100);
 			propertyRepository.save(p);
 		} else {
 			p = propertyRepository.findOne(id);

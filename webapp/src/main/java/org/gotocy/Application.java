@@ -16,18 +16,6 @@ import javax.servlet.Filter;
 @SpringBootApplication
 public class Application {
 
-	@Bean
-	public LocaleResolver localeResolver() {
-		SessionLocaleResolver resolver = new SessionLocaleResolver();
-		resolver.setDefaultLocale(LocaleFilter.DEFAULT_LOCALE);
-		return resolver;
-	}
-
-	@Bean
-	public Filter localeFilter() {
-		return new LocaleFilter();
-	}
-
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(Application.class, args);
 	}

@@ -124,7 +124,7 @@
                                         <dt>Location</dt>
                                             <dd>Chicago, IL 60610</dd>
                                         <dt>Price</dt>
-                                            <dd><span class="tag price">$78,000</span></dd>
+                                            <dd><span class="tag price" th:text="${helper.price(localizedProperty.property.price)}">$78,000</span></dd>
                                         <dt>Property Type:</dt>
                                             <dd>House</dd>
                                         <dt>Status:</dt>
@@ -137,8 +137,6 @@
                                             <dd>2</dd>
                                         <dt>Garages:</dt>
                                             <dd>2</dd>
-                                        <!-- <dt>Rating:</dt>
-                                            <dd><div class="rating rating-overall" data-score="4"></div></dd> -->
                                     </dl>
                                 </section><!-- /#quick-summary -->
                             </div><!-- /.col-md-4 -->
