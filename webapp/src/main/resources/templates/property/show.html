@@ -94,10 +94,10 @@
                                 <a th:href="@{/#}" href="#" class="bookmark" data-bookmark-state="empty"><span class="title-add">Add to bookmark</span><span class="title-added">Added</span></a>
                             </span>
                         </header>
-                        <section id="property-360-gallery" style="width:640px;height:480px;">
+                        <section id="property-360-gallery">
                             This content requires HTML5/CSS3, WebGL, or Adobe Flash Player Version 9 or higher.
                         </section>
-                        <div class="row">
+                        <div class="row" style="margin-top:1em">
                             <div class="col-md-4 col-sm-12">
                                 <section id="quick-summary" class="clearfix">
                                     <header><h2 th:text="#{org.gotocy.dictionary.quick-summary}">Quick Summary</h2></header>
@@ -448,48 +448,27 @@
 <script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/custom-map.js'" src="/parent/webapp/public/assets/js/custom-map.js"></script>
 <script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/custom.js'" src="/parent/webapp/public/assets/js/custom.js"></script>
 
-<script type="text/javascript" th:src="@{/assets/pano2vr/pano2vr_player.js}" src="/parent/webapp/public/assets/pano2vr/pano2vr_player.js"></script>
 <script type="text/javascript" th:src="@{/assets/pano2vr/swfobject.js}" src="/parent/webapp/public/assets/pano2vr/swfobject.js"></script>
 <script type="text/javascript">
+<!--
 
-    function hideUrlBar() {
-    }
-
-</script>
-
-<script type="text/javascript">
-    // check for CSS3 3D transformations and WebGL
-    if (ggHasHtml5Css3D() || ggHasWebGL()) {
-    // use HTML5 panorama
-
-        // create the panorama player with the container
-        pano=new pano2vrPlayer("property-360-gallery");
-        pano.readConfigUrl("/assets/pano2vr/pano_out.xml");
-        // hide the URL bar on the iPhone
-        setTimeout(function() { hideUrlBar(); }, 10);
-    } else 
-    if (swfobject.hasFlashPlayerVersion("10.0.0")) {
-        var flashvars = {};
-        var params = {};
-        // enable javascript interface
-        flashvars.externalinterface="1";
-        params.quality = "high";
-        params.bgcolor = "#ffffff";
-        params.allowscriptaccess = "sameDomain";
-        params.allowfullscreen = "true";
-        var attributes = {};
-        attributes.id = "pano";
-        attributes.name = "pano";
-        attributes.align = "middle";
-        flashvars.panoxml="/assets/pano2vr/pano_out.xml";
-        params.base=".";
-        swfobject.embedSWF(
-            "pano2vr_player.swf", "property-360-gallery", 
-            "1024", "768",
-            "9.0.0", "", 
-            flashvars, params, attributes);
-        
-    }
+    var flashvars = {};
+    var params = {};
+    params.quality = "high";
+    params.bgcolor = "#ffffff";
+    params.allowscriptaccess = "sameDomain";
+    params.allowfullscreen = "true";
+    params.base=".";
+    var attributes = {};
+    attributes.id = "pano";
+    attributes.name = "pano";
+    attributes.align = "middle";
+    swfobject.embedSWF(
+        "/assets/pano2vr/pano_out.swf", "property-360-gallery", 
+        "800", "450",
+        "9.0.0", "expressInstall.swf", 
+        flashvars, params, attributes);
+//-->
 </script>
 
 <!--[if gt IE 8]>
