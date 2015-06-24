@@ -11,7 +11,7 @@ $.ajaxSetup({
 function createHomepageGoogleMap(_latitude,_longitude){
     setMapHeight();
     if( document.getElementById('map') != null ){
-        $.getScript("assets/js/locations.js", function(){
+        $.getScript("https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/locations.js", function(){
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
                 scrollwheel: false,
@@ -35,14 +35,14 @@ function createHomepageGoogleMap(_latitude,_longitude){
                     boxClass: "infobox-wrapper",
                     enableEventPropagation: true,
                     closeBoxMargin: "0px 0px -8px 0px",
-                    closeBoxURL: "assets/img/close-btn.png",
+                    closeBoxURL: "https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/close-btn.png",
                     infoBoxClearance: new google.maps.Size(1, 1)
                 };
                 var marker = new MarkerWithLabel({
                     title: locations[i][0],
                     position: new google.maps.LatLng(locations[i][3], locations[i][4]),
                     map: map,
-                    icon: 'assets/img/marker.png',
+                    icon: 'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/marker.png',
                     labelContent: pictureLabel,
                     labelAnchor: new google.maps.Point(50, 0),
                     labelClass: "marker-style"
@@ -74,7 +74,7 @@ function createHomepageGoogleMap(_latitude,_longitude){
             }
             var clusterStyles = [
                 {
-                    url: 'assets/img/cluster.png',
+                    url: 'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/cluster.png',
                     height: 37,
                     width: 37
                 }
@@ -135,7 +135,7 @@ function success(position) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function initMap(propertyId) {
-    $.getScript("assets/js/locations.js", function(){
+    $.getScript("https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/locations.js", function(){
         var subtractPosition = 0;
         var mapWrapper = $('#property-detail-map.float');
 
@@ -175,7 +175,7 @@ function initMap(propertyId) {
         var marker = new MarkerWithLabel({
             position: markerPosition,
             map: map,
-            icon: 'assets/img/marker.png',
+            icon: 'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/marker.png',
             labelContent: pictureLabel,
             labelAnchor: new google.maps.Point(50, 0),
             labelClass: "marker-style"
@@ -202,7 +202,7 @@ function contactUsMap(){
     var marker = new MarkerWithLabel({
         position: mapCenter,
         map: map,
-        icon: 'assets/img/marker.png',
+        icon: 'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/marker.png',
         //labelContent: pictureLabel,
         labelAnchor: new google.maps.Point(50, 0),
         labelClass: "marker-style"
@@ -216,7 +216,7 @@ function contactUsMap(){
 function createHomepageOSM(_latitude,_longitude){
     setMapHeight();
     if( document.getElementById('map') != null ){
-        $.getScript("assets/js/locations.js", function(){
+        $.getScript("https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/locations.js", function(){
             var map = L.map('map', {
                 center: [_latitude,_longitude],
                 zoom: 14,
