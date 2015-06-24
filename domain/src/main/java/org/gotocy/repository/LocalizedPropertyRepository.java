@@ -7,4 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author ifedorenkov
  */
 public interface LocalizedPropertyRepository extends JpaRepository<LocalizedProperty, Long> {
+
+	LocalizedProperty findByPropertyIdAndLocale(Long propertyId, String locale);
+
 }
