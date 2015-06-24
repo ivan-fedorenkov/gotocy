@@ -94,10 +94,29 @@
                                 <a th:href="@{/#}" href="#" class="bookmark" data-bookmark-state="empty"><span class="title-add">Add to bookmark</span><span class="title-added">Added</span></a>
                             </span>
                         </header>
-                        <section id="property-360-gallery">
-                            This content requires HTML5/CSS3, WebGL, or Adobe Flash Player Version 9 or higher.
+                        <section id="property-gallery">
+                            <div class="owl-carousel property-carousel">
+                                <div class="property-slide">
+                                    <a th:href="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-detail-01.jpg'" href="/parent/webapp/public/assets/img/properties/property-detail-01.jpg" class="image-popup">
+                                        <div class="overlay"><h3>Front View</h3></div>
+                                        <img alt="" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-detail-01.jpg'" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
+                                    </a>
+                                </div><!-- /.property-slide -->
+                                <div class="property-slide">
+                                    <a th:href="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-detail-02.jpg'" href="/parent/webapp/public/assets/img/properties/property-detail-02.jpg" class="image-popup">
+                                        <div class="overlay"><h3>Bedroom</h3></div>
+                                        <img alt="" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-detail-02.jpg'" src="/parent/webapp/public/assets/img/properties/property-detail-02.jpg">
+                                    </a>
+                                </div><!-- /.property-slide -->
+                                <div class="property-slide">
+                                    <a th:href="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-detail-03.jpg'" href="/parent/webapp/public/assets/img/properties/property-detail-03.jpg" class="image-popup">
+                                        <div class="overlay"><h3>Bathroom</h3></div>
+                                        <img alt="" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-detail-03.jpg'" src="/parent/webapp/public/assets/img/properties/property-detail-03.jpg">
+                                    </a>
+                                </div><!-- /.property-slide -->
+                            </div><!-- /.property-carousel -->
                         </section>
-                        <div class="row" style="margin-top:1em">
+                        <div class="row">
                             <div class="col-md-4 col-sm-12">
                                 <section id="quick-summary" class="clearfix">
                                     <header><h2 th:text="#{org.gotocy.dictionary.quick-summary}">Quick Summary</h2></header>
@@ -147,6 +166,12 @@
                                         <li>Concrete Flooring</li>
                                     </ul>
                                 </section><!-- /#property-features -->
+                                <section id="360-pano">
+                                    <header><h2>360 Pano</h2></header>
+                                    <blockquote data-mode="click2play" class="ricoh-theta-spherical-image" >
+                                        Erai-Yacchax2!! in Tokushima - <a href="https://theta360.com/spheres/samples/5bdc3b3e-3a15-11e4-bf19-52540092ec69-1" target="_blank">Spherical Image - RICOH THETA</a>
+                                    </blockquote>
+                                </section>
                                 <section id="floor-plans">
                                     <div class="floor-plans">
                                         <header><h2>Floor Plans</h2></header>
@@ -448,29 +473,6 @@
 <script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/custom-map.js'" src="/parent/webapp/public/assets/js/custom-map.js"></script>
 <script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/custom.js'" src="/parent/webapp/public/assets/js/custom.js"></script>
 
-<script type="text/javascript" th:src="@{/assets/pano2vr/swfobject.js}" src="/parent/webapp/public/assets/pano2vr/swfobject.js"></script>
-<script type="text/javascript">
-<!--
-
-    var flashvars = {};
-    var params = {};
-    params.quality = "high";
-    params.bgcolor = "#ffffff";
-    params.allowscriptaccess = "sameDomain";
-    params.allowfullscreen = "true";
-    params.base=".";
-    var attributes = {};
-    attributes.id = "pano";
-    attributes.name = "pano";
-    attributes.align = "middle";
-    swfobject.embedSWF(
-        "/assets/pano2vr/pano_out.swf", "property-360-gallery", 
-        "800", "450",
-        "9.0.0", "expressInstall.swf", 
-        flashvars, params, attributes);
-//-->
-</script>
-
 <!--[if gt IE 8]>
 <script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/ie.js'" src="/parent/webapp/public/assets/js/ie.js"></script>
 <![endif]-->
@@ -481,6 +483,8 @@
         initializeOwl(false);
     });
 </script>
+
+<script async src="https://theta360.com/widgets.js" charset="utf-8"></script>
 
 </body>
 </html>
