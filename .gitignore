@@ -1,11 +1,4 @@
-webapp/target/
-target/classes/
-target/maven-archiver/
-target/maven-status/
-target/test-classes/
-*.jar
-*.jar.original
-*.class
-log.roo
+target
+webapp/target
+domain/target
 .idea/libraries
-.idea/workspace.xml
