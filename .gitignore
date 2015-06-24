@@ -1,4 +1,4 @@
-webapp/target
+webapp/target/
 target/classes/
 target/maven-archiver/
 target/maven-status/
@@ -8,3 +8,4 @@ target/test-classes/
 *.class
 log.roo
 .idea/libraries
+.idea/workspace.xml
