@@ -2,3 +2,4 @@ target
 webapp/target
 domain/target
 .idea/libraries
+.idea/workspace.xml
