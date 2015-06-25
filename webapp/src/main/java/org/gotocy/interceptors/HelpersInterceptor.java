@@ -22,7 +22,8 @@ public class HelpersInterceptor implements HandlerInterceptor {
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		modelAndView.addObject("helper", HELPER);
+		if (modelAndView != null)
+			modelAndView.addObject("helper", HELPER);
 	}
 
 	@Override

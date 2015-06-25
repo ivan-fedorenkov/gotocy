@@ -1,8 +1,6 @@
 package org.gotocy.controllers;
 
-import org.gotocy.domain.LocalizedProperty;
-import org.gotocy.domain.LocalizedPropertySpecification;
-import org.gotocy.domain.Property;
+import org.gotocy.domain.*;
 import org.gotocy.repository.LocalizedPropertyRepository;
 import org.gotocy.repository.LocalizedPropertySpecificationRepository;
 import org.gotocy.repository.PropertyRepository;
@@ -36,11 +34,18 @@ public class PropertiesController {
 
 	@RequestMapping("/properties/add")
 	@ResponseBody
-	public LocalizedProperty addProperty(@RequestParam(required = false) Long id, Locale locale) {
+	public LocalizedProperty addProperty(@RequestParam(required = false) Long id,
+		@RequestParam(required = false, defaultValue = "LARNACA") Location location,
+		@RequestParam(required = false, defaultValue = "DETACHED_HOUSE") PropertyType propertyType,
+		@RequestParam(required = false, defaultValue = "100") Integer price,
+		Locale locale)
+	{
 		Property p;
 		if (id == null) {
 			p = new Property();
-			p.setPrice(100);
+			p.setPrice(price);
+			p.setLocation(location);
+			p.setPropertyType(propertyType);
 			propertyRepository.save(p);
 		} else {
 			p = propertyRepository.findOne(id);

@@ -2,6 +2,8 @@ CREATE TABLE property(
     id BIGINT NOT NULL AUTO_INCREMENT,
     version INTEGER NOT NULL,
 
+    location VARCHAR(8) NOT NULL,
+    property_type VARCHAR(16) NOT NULL,
     price INTEGER NOT NULL,
 
     PRIMARY KEY (id)
