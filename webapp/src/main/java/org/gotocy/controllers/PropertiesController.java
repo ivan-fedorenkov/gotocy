@@ -36,7 +36,8 @@ public class PropertiesController {
 	@ResponseBody
 	public LocalizedProperty addProperty(@RequestParam(required = false) Long id,
 		@RequestParam(required = false, defaultValue = "LARNACA") Location location,
-		@RequestParam(required = false, defaultValue = "DETACHED_HOUSE") PropertyType propertyType,
+		@RequestParam(required = false, defaultValue = "34.7071301") Double latitude,
+		@RequestParam(required = false, defaultValue = "33.022617399999945") Double longitude,
 		@RequestParam(required = false, defaultValue = "100") Integer price,
 		Locale locale)
 	{
@@ -45,7 +46,10 @@ public class PropertiesController {
 			p = new Property();
 			p.setPrice(price);
 			p.setLocation(location);
-			p.setPropertyType(propertyType);
+			p.setLatitude(latitude);
+			p.setLongitude(longitude);
+			p.setPropertyType(PropertyType.DETACHED_HOUSE);
+			p.setPropertyStatus(PropertyStatus.LONG_TERM);
 			propertyRepository.save(p);
 		} else {
 			p = propertyRepository.findOne(id);

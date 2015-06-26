@@ -19,7 +19,10 @@
           <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
         </XML>
         <codeStyleSettings language="JAVA">
+          <option name="METHOD_BRACE_STYLE" value="5" />
           <option name="INDENT_CASE_FROM_SWITCH" value="false" />
+          <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
+          <option name="METHOD_PARAMETERS_WRAP" value="1" />
           <indentOptions>
             <option name="CONTINUATION_INDENT_SIZE" value="4" />
             <option name="USE_TAB_CHARACTER" value="true" />

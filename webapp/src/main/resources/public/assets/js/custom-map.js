@@ -134,52 +134,50 @@ function success(position) {
 // Google Map - Property Detail
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function initMap(propertyId) {
-    $.getScript("https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/locations.js", function(){
-        var subtractPosition = 0;
-        var mapWrapper = $('#property-detail-map.float');
+function initMap(latitude, longitude, markerPictureSrc) {
+    var subtractPosition = 0;
+    var mapWrapper = $('#property-detail-map.float');
 
-        if (document.documentElement.clientWidth > 1200) {
-            subtractPosition = 0.013;
-        }
-        if (document.documentElement.clientWidth < 1199) {
-            subtractPosition = 0.006;
-        }
-        if (document.documentElement.clientWidth < 979) {
-            subtractPosition = 0.001;
-        }
-        if (document.documentElement.clientWidth < 767) {
-            subtractPosition = 0;
-        }
+    if (document.documentElement.clientWidth > 1200) {
+        subtractPosition = 0.013;
+    }
+    if (document.documentElement.clientWidth < 1199) {
+        subtractPosition = 0.006;
+    }
+    if (document.documentElement.clientWidth < 979) {
+        subtractPosition = 0.001;
+    }
+    if (document.documentElement.clientWidth < 767) {
+        subtractPosition = 0;
+    }
 
-        var mapCenter = new google.maps.LatLng(locations[propertyId][3],locations[propertyId][4]);
+    var mapCenter = new google.maps.LatLng(latitude, longitude);
 
-        if ( $("#property-detail-map").hasClass("float") ) {
-            mapCenter = new google.maps.LatLng(locations[propertyId][3],locations[propertyId][4] - subtractPosition);
-            mapWrapper.css('width', mapWrapper.width() + mapWrapper.offset().left )
-        }
+    if ( $("#property-detail-map").hasClass("float") ) {
+        mapCenter = new google.maps.LatLng(latitude, longitude - subtractPosition);
+        mapWrapper.css('width', mapWrapper.width() + mapWrapper.offset().left )
+    }
 
-        var mapOptions = {
-            zoom: 15,
-            center: mapCenter,
-            disableDefaultUI: false,
-            scrollwheel: false,
-            styles: mapStyles
-        };
-        var mapElement = document.getElementById('property-detail-map');
-        var map = new google.maps.Map(mapElement, mapOptions);
+    var mapOptions = {
+        zoom: 15,
+        center: mapCenter,
+        disableDefaultUI: false,
+        scrollwheel: false,
+        styles: mapStyles
+    };
+    var mapElement = document.getElementById('property-detail-map');
+    var map = new google.maps.Map(mapElement, mapOptions);
 
-        var pictureLabel = document.createElement("img");
-        pictureLabel.src = locations[propertyId][7];
-        var markerPosition = new google.maps.LatLng(locations[propertyId][3],locations[propertyId][4]);
-        var marker = new MarkerWithLabel({
-            position: markerPosition,
-            map: map,
-            icon: 'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/marker.png',
-            labelContent: pictureLabel,
-            labelAnchor: new google.maps.Point(50, 0),
-            labelClass: "marker-style"
-        });
+    var pictureLabel = document.createElement("img");
+    pictureLabel.src = markerPictureSrc;
+    var markerPosition = new google.maps.LatLng(latitude, longitude);
+    var marker = new MarkerWithLabel({
+        position: markerPosition,
+        map: map,
+        icon: 'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/marker.png',
+        labelContent: pictureLabel,
+        labelAnchor: new google.maps.Point(50, 0),
+        labelClass: "marker-style"
     });
 }
 

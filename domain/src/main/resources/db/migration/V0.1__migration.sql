@@ -3,7 +3,10 @@ CREATE TABLE property(
     version INTEGER NOT NULL,
 
     location VARCHAR(8) NOT NULL,
+    latitude DOUBLE NOT NULL,
+    longitude DOUBLE NOT NULL,
     property_type VARCHAR(16) NOT NULL,
+    property_status VARCHAR(16) NOT NULL,
     price INTEGER NOT NULL,
 
     PRIMARY KEY (id)

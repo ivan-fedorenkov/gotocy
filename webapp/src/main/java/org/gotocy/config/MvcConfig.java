@@ -1,10 +1,11 @@
 package org.gotocy.config;
 
+import org.gotocy.domain.Location;
+import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.PropertyType;
 import org.gotocy.filters.LocaleFilter;
-import org.gotocy.format.LocationFormatter;
-import org.gotocy.format.PropertyTypeFormatter;
+import org.gotocy.format.EnumsFormatter;
 import org.gotocy.interceptors.HelpersInterceptor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.annotation.Bean;
@@ -44,8 +45,9 @@ public class MvcConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addFormatter(new LocationFormatter(messageSource));
-		registry.addFormatter(new PropertyTypeFormatter(messageSource));
+		registry.addFormatter(new EnumsFormatter<>(Location.class, messageSource));
+		registry.addFormatter(new EnumsFormatter<>(PropertyType.class, messageSource));
+		registry.addFormatter(new EnumsFormatter<>(PropertyStatus.class, messageSource));
 	}
 
 	@Override
