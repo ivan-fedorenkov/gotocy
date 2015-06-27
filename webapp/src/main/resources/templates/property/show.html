@@ -5,9 +5,8 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- TODO: make url helper that create a property url based on property and specified locale -->
-    <link rel="alternate" hreflang="en" th:href="@{/property/{propertyId}(propertyId=${localizedProperty.property.id})}" href="#" />
-    <link rel="alternate" hreflang="ru" th:href="@{/ru/property/{propertyId}(propertyId=${localizedProperty.property.id})}" href="#" />
+    <link rel="alternate" hreflang="en" th:href="@{${helper.path(localizedProperty, 'en')}}" href="#" />
+    <link rel="alternate" hreflang="ru" th:href="@{${helper.path(localizedProperty, 'ru')}}" href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <!-- TODO: load fonts from the amazon S3 - need to setup CORS -->
@@ -31,8 +30,8 @@
         <div class="secondary-navigation">
             <div class="container">
                 <div class="contact">
-                    <figure><strong th:text="#{org.gotocy.dictionary.phone}">Phone:</strong>+1 810-991-3842</figure>
-                    <figure><strong th:text="#{org.gotocy.dictionary.email}">Email:</strong>zoner@example.com</figure>
+                    <figure><strong th:text="|#{org.gotocy.dictionary.phone}:|">Phone:</strong>+1 810-991-3842</figure>
+                    <figure><strong th:text="|#{org.gotocy.dictionary.email}:|">Email:</strong>zoner@example.com</figure>
                 </div>
                 <div class="user-area">
                     <div class="actions">
@@ -41,8 +40,8 @@
                         <a th:href="@{/sign-in.html}" href="sign-in.html">Sign In</a>
                     </div>
                     <div class="language-bar">
-                        <a th:href="@{/property/{propertyId}(propertyId=${localizedProperty.property.id})}" href="#" th:class="${#locale.language eq 'en'}? 'active'" class="active"><img th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/flags/gb.png'" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
-                        <a th:href="@{/ru/property/{propertyId}(propertyId=${localizedProperty.property.id})}" href="#" th:class="${#locale.language eq 'ru'}? 'active'"><img th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/flags/ru.png'" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+                        <a th:href="@{${helper.path(localizedProperty, 'en')}}" href="#" th:class="${#locale.language == 'en'}? 'active'" class="active"><img th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/flags/gb.png'" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
+                        <a th:href="@{${helper.path(localizedProperty, 'ru')}}" href="#" th:class="${#locale.language == 'ru'}? 'active'"><img th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/flags/ru.png'" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>
                 </div>
             </div>
