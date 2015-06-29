@@ -20,7 +20,7 @@ public class HelperTest {
 	}
 
 	@Test
-	public void url() {
+	public void entityPathTest() {
 		Property p = new Property();
 		p.setId(1L);
 		LocalizedProperty lp = new LocalizedProperty();
@@ -53,5 +53,11 @@ public class HelperTest {
 
 	}
 
+	@Test
+	public void stringPathTest() {
+		// Adds a language prefix to the given path
+		Assert.assertEquals("/some-path", Helper.path("/some-path", "en"));
+		Assert.assertEquals("/ru/some-path", Helper.path("/some-path", "ru"));
+	}
 
 }

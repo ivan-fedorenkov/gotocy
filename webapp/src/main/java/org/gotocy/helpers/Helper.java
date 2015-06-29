@@ -76,6 +76,13 @@ public class Helper {
 		return "";
 	}
 
+	/**
+	 * Returns localized version of the given path.
+	 */
+	public static String path(String path, String language) {
+		return getPrefixForLanguage(language) + path;
+	}
+
 	private static String getPrefixForLanguage(String language) {
 		return Objects.equals(language, "ru") ? "/ru" : "";
 	}
