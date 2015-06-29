@@ -8,8 +8,6 @@ import org.gotocy.domain.Asset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.NotNull;
-
 /**
  * Assets provider that utilizes Amazon S3 as a backend storage.
  * TODO: handle the Amazon exceptions

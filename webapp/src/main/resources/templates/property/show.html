@@ -94,7 +94,7 @@
                         <section id="property-gallery">
                             <div class="owl-carousel property-carousel" th:remove="all-but-first">
                                 <div class="property-slide" th:each="asset : ${localizedProperty.property.assets}" th:object="${asset}">
-                                    <a th:href="${helper.imageUrl(#object}" href="/parent/webapp/public/assets/img/properties/property-detail-01.jpg" class="image-popup">
+                                    <a th:href="${helper.url(#object}" href="/parent/webapp/public/assets/img/properties/property-detail-01.jpg" class="image-popup">
                                         <img alt="" th:src="${helper.imageUrl(#object, T(org.gotocy.beans.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
                                     </a>
                                 </div><!-- /.property-slide -->
