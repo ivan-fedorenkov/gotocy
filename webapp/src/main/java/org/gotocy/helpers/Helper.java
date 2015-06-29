@@ -1,8 +1,7 @@
 package org.gotocy.helpers;
 
-import com.amazonaws.services.s3.AmazonS3Client;
 import org.gotocy.beans.AssetsProvider;
-import org.gotocy.beans.S3Configuration;
+import org.gotocy.beans.ImageSize;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.BaseEntity;
 import org.gotocy.domain.LocalizedProperty;
@@ -31,7 +30,15 @@ public class Helper {
 	 * Generates url for a given asset, using the configured {@link AssetsProvider} instance.
 	 */
 	public String url(Asset asset) {
-		return assetsProvider.getUrl(asset).toString();
+		return assetsProvider.getUrl(asset);
+	}
+
+	/**
+	 * Generate url for a given image asset, using the configured {@link AssetsProvider} instance and the given image
+	 * size.
+	 */
+	public String imageUrl(Asset asset, ImageSize size) {
+		return assetsProvider.getImageUrl(asset, size);
 	}
 
 	/**

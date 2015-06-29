@@ -33,4 +33,14 @@ public class Asset extends BaseEntity {
 		this.assetType = assetType;
 	}
 
+	/**
+	 * Returns a detached copy of the asset (without id and version properties).
+	 */
+	public Asset copyDetached() {
+		Asset asset = new Asset();
+		asset.setAssetKey(assetKey);
+		asset.setAssetType(assetType);
+		return asset;
+	}
+
 }

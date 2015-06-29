@@ -2,8 +2,6 @@ package org.gotocy.beans;
 
 import org.gotocy.domain.Asset;
 
-import java.net.URL;
-
 /**
  * An adapter interface to deal with various backend asset providers.
  *
@@ -14,6 +12,11 @@ public interface AssetsProvider {
 	/**
 	 * Returns an asset url.
 	 */
-	URL getUrl(Asset asset);
+	String getUrl(Asset asset);
+
+	/**
+	 * Returns an image {@link Asset} url for specified {@link ImageSize}.
+	 */
+	String getImageUrl(Asset asset, ImageSize size);
 
 }
