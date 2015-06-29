@@ -1,8 +1,8 @@
 package org.gotocy.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * TODO: validation / integration test on validation
@@ -26,6 +26,9 @@ public class Property extends BaseEntity {
 	private PropertyStatus propertyStatus;
 	
 	private Integer price;
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Asset> assets = new HashSet<>();
 
 	public Location getLocation() {
 		return location;
@@ -75,4 +78,11 @@ public class Property extends BaseEntity {
 		this.price = price;
 	}
 
+	public Set<Asset> getAssets() {
+		return assets;
+	}
+
+	public void setAssets(Set<Asset> assets) {
+		this.assets = assets;
+	}
 }

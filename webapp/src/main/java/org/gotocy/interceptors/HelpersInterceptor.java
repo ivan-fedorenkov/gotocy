@@ -1,5 +1,7 @@
 package org.gotocy.interceptors;
 
+import com.amazonaws.services.s3.AmazonS3Client;
+import org.gotocy.beans.S3Configuration;
 import org.gotocy.helpers.Helper;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,7 +15,11 @@ import javax.servlet.http.HttpServletResponse;
  * @author ifedorenkov
  */
 public class HelpersInterceptor implements HandlerInterceptor {
-	private static final Helper HELPER = new Helper();
+	private final Helper helper;
+
+	public HelpersInterceptor(AmazonS3Client s3client, S3Configuration s3config) {
+		helper = new Helper(s3client, s3config);
+	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -23,7 +29,7 @@ public class HelpersInterceptor implements HandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		if (modelAndView != null)
-			modelAndView.addObject("helper", HELPER);
+			modelAndView.addObject("helper", helper);
 	}
 
 	@Override
