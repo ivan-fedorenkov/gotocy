@@ -7,6 +7,7 @@ import java.util.Locale;
 
 /**
  * An example controller that allows a user to change the locale (language).
+ * TODO: remove
  *
  * @author ifedorenkov
  */

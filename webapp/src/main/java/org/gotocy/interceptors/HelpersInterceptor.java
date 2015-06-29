@@ -1,6 +1,7 @@
 package org.gotocy.interceptors;
 
 import com.amazonaws.services.s3.AmazonS3Client;
+import org.gotocy.beans.AssetsProvider;
 import org.gotocy.beans.S3Configuration;
 import org.gotocy.helpers.Helper;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 public class HelpersInterceptor implements HandlerInterceptor {
 	private final Helper helper;
 
-	public HelpersInterceptor(AmazonS3Client s3client, S3Configuration s3config) {
-		helper = new Helper(s3client, s3config);
+	public HelpersInterceptor(AssetsProvider assetsProvider) {
+		helper = new Helper(assetsProvider);
 	}
 
 	@Override
