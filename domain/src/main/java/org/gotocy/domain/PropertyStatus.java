@@ -10,7 +10,6 @@ import org.springframework.context.MessageSourceResolvable;
 public enum PropertyStatus implements MessageSourceResolvable {
 	LONG_TERM;
 
-
 	@Override
 	public String[] getCodes() {
 		return new String[] {"org.gotocy.domain.PropertyStatus." + name()};

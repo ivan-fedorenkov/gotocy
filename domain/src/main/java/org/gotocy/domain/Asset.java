@@ -1,36 +1,27 @@
 package org.gotocy.domain;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.Inheritance;
 
 /**
- * Asset could be an image,a pano xml file, etc.
+ * An abstract asset which could be an image,a pano xml file, etc.
  *
  * @author ifedorenkov
  */
 @Entity
-public class Asset extends BaseEntity {
+@Inheritance
+@DiscriminatorColumn(name = "asset_type")
+public abstract class Asset extends BaseEntity {
 
-	private String assetKey;
+	private String key;
 
-	@Enumerated(EnumType.STRING)
-	private AssetType assetType;
-
-	public String getAssetKey() {
-		return assetKey;
+	public String getKey() {
+		return key;
 	}
 
-	public void setAssetKey(String assetKey) {
-		this.assetKey = assetKey;
-	}
-
-	public AssetType getAssetType() {
-		return assetType;
-	}
-
-	public void setAssetType(AssetType assetType) {
-		this.assetType = assetType;
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 }

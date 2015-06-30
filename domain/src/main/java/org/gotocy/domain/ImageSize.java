@@ -1,4 +1,4 @@
-package org.gotocy.beans;
+package org.gotocy.domain;
 
 /**
  * The available image asset sizes.
@@ -15,10 +15,6 @@ public enum ImageSize {
 
 	ImageSize(String command) {
 		resizeImageMagickCommand = command;
-	}
-
-	public String getResizeImageMagickCommand() {
-		return resizeImageMagickCommand;
 	}
 
 }

@@ -5,13 +5,14 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
 import org.gotocy.domain.Asset;
+import org.gotocy.domain.Image;
+import org.gotocy.domain.ImageSize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
  * Assets provider that utilizes Amazon S3 as a backend storage.
  * TODO: handle the Amazon exceptions
- * TODO: unit tests
  *
  * @author ifedorenkov
  */
@@ -28,24 +29,24 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 
 	@Override
 	public String getUrl(Asset asset) {
-		return generatePresignedUrl(asset.getAssetKey(), HttpMethod.GET);
+		return generatePresignedUrl(asset.getKey(), HttpMethod.GET);
 	}
 
 	@Override
-	public String getImageUrl(Asset asset, ImageSize size) {
-		String assetKey;
+	public String getImageUrl(Image image, ImageSize size) {
+		String key;
 		switch (size) {
 		case THUMBNAIL:
-			if (exists(assetKey = getAssetKeyForSize(asset, ImageSize.THUMBNAIL)))
-				return generatePresignedUrl(assetKey, HttpMethod.GET);
+			if (exists(key = image.getKeyForSize(ImageSize.THUMBNAIL)))
+				return generatePresignedUrl(key, HttpMethod.GET);
 		case SMALL:
-			if (exists(assetKey = getAssetKeyForSize(asset, ImageSize.SMALL)))
-				return generatePresignedUrl(assetKey, HttpMethod.GET);
+			if (exists(key = image.getKeyForSize(ImageSize.SMALL)))
+				return generatePresignedUrl(key, HttpMethod.GET);
 		case MEDIUM:
-			if (exists(assetKey = getAssetKeyForSize(asset, ImageSize.MEDIUM)))
-				return generatePresignedUrl(assetKey, HttpMethod.GET);
+			if (exists(key = image.getKeyForSize(ImageSize.MEDIUM)))
+				return generatePresignedUrl(key, HttpMethod.GET);
 		default: // Fall back to default - original
-			return getUrl(asset);
+			return getUrl(image);
 		}
 	}
 
@@ -62,13 +63,5 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 			return false;
 		}
 	}
-
-	private static String getAssetKeyForSize(Asset asset, ImageSize imageSize) {
-		String assetKey = asset.getAssetKey();
-		int nextToLastSlash = assetKey.lastIndexOf('/') + 1;
-		return assetKey.substring(0, nextToLastSlash) + imageSize.name() + '_' + assetKey.substring(nextToLastSlash);
-
-	}
-
 
 }

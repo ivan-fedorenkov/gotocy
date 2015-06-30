@@ -1,11 +1,8 @@
 package org.gotocy.helpers;
 
 import org.gotocy.beans.AssetsProvider;
-import org.gotocy.beans.ImageSize;
-import org.gotocy.domain.Asset;
-import org.gotocy.domain.BaseEntity;
-import org.gotocy.domain.LocalizedProperty;
-import org.gotocy.domain.Property;
+import org.gotocy.domain.ImageSize;
+import org.gotocy.domain.*;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.thymeleaf.util.NumberPointType;
 import org.thymeleaf.util.NumberUtils;
@@ -37,8 +34,8 @@ public class Helper {
 	 * Generate url for a given image asset, using the configured {@link AssetsProvider} instance and the given image
 	 * size.
 	 */
-	public String imageUrl(Asset asset, ImageSize size) {
-		return assetsProvider.getImageUrl(asset, size);
+	public String imageUrl(Image image, ImageSize size) {
+		return assetsProvider.getImageUrl(image, size);
 	}
 
 	/**

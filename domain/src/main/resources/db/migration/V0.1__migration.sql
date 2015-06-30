@@ -2,7 +2,7 @@ CREATE TABLE asset(
     id BIGINT NOT NULL AUTO_INCREMENT,
     version INTEGER NOT NULL,
 
-    asset_key VARCHAR(256),
+    key VARCHAR(256),
     asset_type VARCHAR(16),
 
     PRIMARY KEY (id)
@@ -26,13 +26,13 @@ CREATE TABLE property(
 );
 
 
-CREATE TABLE property_assets(
+CREATE TABLE property_images(
     property_id BIGINT NOT NULL,
-    assets_id BIGINT NOT NULL,
+    images_id BIGINT NOT NULL,
 
-    CONSTRAINT fk_property_assets_property_id FOREIGN KEY (property_id) REFERENCES property (id),
-    CONSTRAINT fk_property_assets_assets_id FOREIGN KEY (assets_id) REFERENCES asset (id),
-    PRIMARY KEY (property_id, assets_id)
+    CONSTRAINT fk_property_images_property_id FOREIGN KEY (property_id) REFERENCES property (id),
+    CONSTRAINT fk_property_images_images_id FOREIGN KEY (images_id) REFERENCES asset (id),
+    PRIMARY KEY (property_id, images_id)
 );
 
 CREATE TABLE localized_property(

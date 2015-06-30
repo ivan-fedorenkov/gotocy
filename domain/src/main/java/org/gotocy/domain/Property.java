@@ -6,7 +6,6 @@ import java.util.Set;
 
 /**
  * TODO: validation / integration test on validation
- * TODO: validate that thumbnail is an image asset
  *
  * @author ifedorenkov
  */
@@ -28,11 +27,11 @@ public class Property extends BaseEntity {
 	
 	private Integer price;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // TODO: decide if cascading is applicable here
-	private Set<Asset> assets = new HashSet<>();
+	@OneToMany(cascade = CascadeType.PERSIST) // TODO: decide if cascading is applicable here
+	private Set<Image> images = new HashSet<>();
 
-	@OneToOne(optional = false, cascade = CascadeType.ALL, orphanRemoval = true) // TODO: decide if cascading is applicable here
-	private Asset thumbnail;
+	@OneToOne(optional = false, cascade = CascadeType.PERSIST) // TODO: decide if cascading is applicable here
+	private Image thumbnail;
 
 	public Location getLocation() {
 		return location;
@@ -82,19 +81,19 @@ public class Property extends BaseEntity {
 		this.price = price;
 	}
 
-	public Set<Asset> getAssets() {
-		return assets;
+	public Set<Image> getImages() {
+		return images;
 	}
 
-	public void setAssets(Set<Asset> assets) {
-		this.assets = assets;
+	public void setImages(Set<Image> images) {
+		this.images = images;
 	}
 
-	public Asset getThumbnail() {
+	public Image getThumbnail() {
 		return thumbnail;
 	}
 
-	public void setThumbnail(Asset thumbnail) {
+	public void setThumbnail(Image thumbnail) {
 		this.thumbnail = thumbnail;
 	}
 }

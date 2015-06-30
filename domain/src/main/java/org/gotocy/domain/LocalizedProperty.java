@@ -85,17 +85,4 @@ public class LocalizedProperty extends BaseEntity {
 		specifications.forEach(s -> s.setLocalizedProperty(this));
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof LocalizedProperty)) return false;
-		LocalizedProperty that = (LocalizedProperty) o;
-		return Objects.equals(getId(), that.getId());
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(getId());
-	}
-
 }

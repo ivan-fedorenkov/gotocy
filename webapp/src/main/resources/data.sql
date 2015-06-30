@@ -1,8 +1,8 @@
-insert into asset (id, version, asset_key, asset_type) values
-  (1, 0, 'property/1/34634941.jpg', 'PROPERTY_IMAGE'),
-  (2, 0, 'property/1/35066473.jpg', 'PROPERTY_IMAGE'),
-  (3, 0, 'property/1/36526520.jpg', 'PROPERTY_IMAGE'),
-  (4, 0, 'property/1/36526526.jpg', 'PROPERTY_IMAGE');
+insert into asset (id, version, key, asset_type) values
+  (1, 0, 'property/1/34634941.jpg', 'IMAGE'),
+  (2, 0, 'property/1/35066473.jpg', 'IMAGE'),
+  (3, 0, 'property/1/36526520.jpg', 'IMAGE'),
+  (4, 0, 'property/1/36526526.jpg', 'IMAGE');
 
 insert into property (id, version, location, latitude, longitude, property_type, property_status, price, thumbnail_id)
   values (1, 0, 'LARNACA', '34.83584332950877', '33.60195279121399', 'DETACHED_HOUSE', 'LONG_TERM', 123456, 1);
@@ -23,7 +23,7 @@ insert into localized_property_specification (id, version, specification, locali
     (7, 0, 'Сад', 2),
     (8, 0, 'Кондиционер', 2);
 
-insert into property_assets (property_id, assets_id) values
+insert into property_images (property_id, images_id) values
   (1, 1),
   (1, 2),
   (1, 3),
