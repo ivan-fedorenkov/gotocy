@@ -19,9 +19,9 @@ CREATE TABLE property(
     property_status VARCHAR(16) NOT NULL,
     price INTEGER NOT NULL,
 
-    thumbnail_id BIGINT NOT NULL,
+    representative_image_id BIGINT NOT NULL,
 
-    CONSTRAINT fk_property_thumbnail_id FOREIGN KEY (thumbnail_id) REFERENCES asset (id),
+    CONSTRAINT fk_property_representative_image_id FOREIGN KEY (representative_image_id) REFERENCES asset (id),
     PRIMARY KEY (id)
 );
 

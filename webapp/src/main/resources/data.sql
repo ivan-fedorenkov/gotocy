@@ -4,7 +4,7 @@ insert into asset (id, version, key, asset_type) values
   (3, 0, 'property/1/36526520.jpg', 'IMAGE'),
   (4, 0, 'property/1/36526526.jpg', 'IMAGE');
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, thumbnail_id)
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, representative_image_id)
   values (1, 0, 'LARNACA', '34.83584332950877', '33.60195279121399', 'DETACHED_HOUSE', 'LONG_TERM', 123456, 1);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)

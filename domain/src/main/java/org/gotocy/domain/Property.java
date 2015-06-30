@@ -1,8 +1,9 @@
 package org.gotocy.domain;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 /**
  * TODO: validation / integration test on validation
@@ -27,11 +28,8 @@ public class Property extends BaseEntity {
 	
 	private Integer price;
 
-	@OneToMany(cascade = CascadeType.PERSIST) // TODO: decide if cascading is applicable here
-	private Set<Image> images = new HashSet<>();
-
-	@OneToOne(optional = false, cascade = CascadeType.PERSIST) // TODO: decide if cascading is applicable here
-	private Image thumbnail;
+	@Embedded
+	private ImageSet imageSet;
 
 	public Location getLocation() {
 		return location;
@@ -81,19 +79,11 @@ public class Property extends BaseEntity {
 		this.price = price;
 	}
 
-	public Set<Image> getImages() {
-		return images;
+	public ImageSet getImageSet() {
+		return imageSet;
 	}
 
-	public void setImages(Set<Image> images) {
-		this.images = images;
-	}
-
-	public Image getThumbnail() {
-		return thumbnail;
-	}
-
-	public void setThumbnail(Image thumbnail) {
-		this.thumbnail = thumbnail;
+	public void setImageSet(ImageSet imageSet) {
+		this.imageSet = imageSet;
 	}
 }
