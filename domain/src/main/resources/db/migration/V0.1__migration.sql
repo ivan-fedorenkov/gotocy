@@ -1,3 +1,13 @@
+CREATE TABLE asset(
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    version INTEGER NOT NULL,
+
+    asset_key VARCHAR(256),
+    asset_type VARCHAR(16),
+
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE property(
     id BIGINT NOT NULL AUTO_INCREMENT,
     version INTEGER NOT NULL,
@@ -9,7 +19,20 @@ CREATE TABLE property(
     property_status VARCHAR(16) NOT NULL,
     price INTEGER NOT NULL,
 
+    thumbnail_id BIGINT NOT NULL,
+
+    CONSTRAINT fk_property_thumbnail_id FOREIGN KEY (thumbnail_id) REFERENCES asset (id),
     PRIMARY KEY (id)
+);
+
+
+CREATE TABLE property_assets(
+    property_id BIGINT NOT NULL,
+    assets_id BIGINT NOT NULL,
+
+    CONSTRAINT fk_property_assets_property_id FOREIGN KEY (property_id) REFERENCES property (id),
+    CONSTRAINT fk_property_assets_assets_id FOREIGN KEY (assets_id) REFERENCES asset (id),
+    PRIMARY KEY (property_id, assets_id)
 );
 
 CREATE TABLE localized_property(
@@ -37,23 +60,4 @@ CREATE TABLE localized_property_specification(
 
     CONSTRAINT fk_localized_property_specifications_localized_property_id FOREIGN KEY (localized_property_id) REFERENCES localized_property (id),
     PRIMARY KEY (id)
-);
-
-CREATE TABLE asset(
-    id BIGINT NOT NULL AUTO_INCREMENT,
-    version INTEGER NOT NULL,
-
-    asset_key VARCHAR(256),
-    asset_type VARCHAR(16),
-
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE property_assets(
-    property_id BIGINT NOT NULL,
-    assets_id BIGINT NOT NULL,
-
-    CONSTRAINT fk_property_assets_property_id FOREIGN KEY (property_id) REFERENCES property (id),
-    CONSTRAINT fk_property_assets_assets_id FOREIGN KEY (assets_id) REFERENCES asset (id),
-    PRIMARY KEY (property_id, assets_id)
 );
