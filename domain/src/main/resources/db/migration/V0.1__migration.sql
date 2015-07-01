@@ -45,7 +45,7 @@ CREATE TABLE localized_property(
     locale VARCHAR(8) NOT NULL,
     title VARCHAR(256) NOT NULL,
     address VARCHAR(1024) NOT NULL,
-    description VARCHAR(2048) NOT NULL,
+    description CLOB NOT NULL,
 
 
     property_id BIGINT NOT NULL,

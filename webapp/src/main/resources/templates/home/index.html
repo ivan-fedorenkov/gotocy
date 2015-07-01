@@ -175,8 +175,8 @@
                     <!-- TODO: add all properties link -->
                     <!-- <a href="properties-listing.html" class="link-arrow">All Properties</a> -->
                 </header>
-                <div class="row" th:remove="all-but-first" th:each="lp : ${recentLocalizedProperties}">
-                    <div class="col-md-3 col-sm-6">
+                <div class="row" th:remove="all-but-first">
+                    <div class="col-md-3 col-sm-6" th:each="lp : ${recentLocalizedProperties}">
                         <div class="property">
                             <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">

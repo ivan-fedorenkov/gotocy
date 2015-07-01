@@ -71,7 +71,7 @@ public class Helper {
 	 * TODO: unit test
 	 */
 	public String price(Property property) {
-		return messageSource.getMessage(priceKey(property), new Object[] {price(property.getPrice())},
+		return messageSource.getMessage(priceKey(property), new Object[]{price(property.getPrice())},
 			LocaleContextHolder.getLocale());
 	}
 
@@ -108,6 +108,39 @@ public class Helper {
 	 */
 	public static String path(String path, String language) {
 		return getPrefixForLanguage(language) + path;
+	}
+
+	/**
+	 * Encloses all the text subparts separated by the new line character into the p tags.
+	 */
+	public static String newLinesToParagraphs(String text) {
+		// No text - no paragraphs
+		if (text == null || text.isEmpty())
+			return text;
+
+		// Remove all the extra new lines at the beginning
+		int n = 0;
+		for (; n < text.length(); n++) {
+			if (text.charAt(n) == '\n')
+				continue;
+			break;
+		}
+		text = n > 0 ? text.substring(n) : text;
+
+		// Remove all the extra new lines at the end
+		n = text.length() - 1;
+		for (; n > 0; n--) {
+			if (text.charAt(n) == '\n')
+				continue;
+			break;
+		}
+		text = n != text.length() - 1 ? text.substring(0, n + 1) : text;
+
+		// No text - no paragraphs
+		if (text.isEmpty())
+			return text;
+
+		return "<p>" + text.replaceAll("[\\n\\r]+", "</p><p>") + "</p>";
 	}
 
 	private static String getPrefixForLanguage(String language) {

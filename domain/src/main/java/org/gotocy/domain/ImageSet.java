@@ -4,7 +4,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,7 +25,7 @@ public class ImageSet {
 	private Image representativeImage;
 
 	@OneToMany(cascade = CascadeType.PERSIST)
-	private Set<Image> images = new HashSet<>();
+	private List<Image> images = new ArrayList<>();
 
 	public Image getRepresentativeImage() {
 		return representativeImage;
@@ -33,11 +35,11 @@ public class ImageSet {
 		this.representativeImage = representativeImage;
 	}
 
-	public Set<Image> getImages() {
+	public List<Image> getImages() {
 		return images;
 	}
 
-	public void setImages(Set<Image> images) {
+	public void setImages(List<Image> images) {
 		this.images = images;
 	}
 }

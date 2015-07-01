@@ -2,10 +2,7 @@ package org.gotocy.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,6 +27,7 @@ public class LocalizedProperty extends BaseEntity {
 
 	private String address;
 
+	@Lob
 	private String description;
 
 	@JsonManagedReference

@@ -1,6 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}" lang="en-US">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}" th:object="${localizedProperty}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" th:href="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/css/owl.carousel.css'" href="/parent/webapp/public/assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" th:href="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/css/style.css'" href="/parent/webapp/public/assets/css/style.css" type="text/css">
 
-    <title th:text="#{org.gotocy.templates.title(${localizedProperty.title})}">Property Detail | GoToCy</title>
+    <title th:text="#{org.gotocy.templates.title(*{title})}">Property Detail | GoToCy</title>
 
 </head>
 
@@ -88,12 +88,12 @@
                 <div class="col-md-9 col-sm-9">
                     <section id="property-detail">
                         <header class="property-title">
-                            <h1 th:text="${localizedProperty.title}">987 Cantebury Drive</h1>
-                            <figure th:text="${localizedProperty.address}">Golden Valley, MN 55427</figure>
+                            <h1 th:text="*{title}">987 Cantebury Drive</h1>
+                            <figure th:text="*{address}">Golden Valley, MN 55427</figure>
                         </header>
                         <section id="property-gallery">
                             <div class="owl-carousel property-carousel" th:remove="all-but-first">
-                                <div class="property-slide" th:each="image : ${localizedProperty.property.imageSet.images}" th:object="${image}">
+                                <div class="property-slide" th:each="image : *{property.imageSet.images}" th:object="${image}">
                                     <a th:href="${helper.url(#object)}" href="/parent/webapp/public/assets/img/properties/property-detail-01.jpg" class="image-popup">
                                         <img alt="" th:src="${helper.imageUrl(#object, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
                                     </a>
@@ -114,28 +114,28 @@
                             <div class="col-md-4 col-sm-12">
                                 <section id="quick-summary" class="clearfix">
                                     <header><h2 th:text="#{org.gotocy.dictionary.quick-summary}">Quick Summary</h2></header>
-                                    <dl th:with="isRental = ${localizedProperty.property.propertyStatus != T(org.gotocy.domain.PropertyStatus).SALE}">
+                                    <dl th:with="isRental = *{property.propertyStatus != T(org.gotocy.domain.PropertyStatus).SALE}">
                                         <dt th:text="|#{org.gotocy.dictionary.location}:|">Location:</dt>
-                                            <dd th:text="${{localizedProperty.property.location}}">Chicago, IL 60610</dd>
+                                            <dd th:text="*{{property.location}}">Chicago, IL 60610</dd>
                                         <dt th:text="|#{org.gotocy.dictionary.price}:|">Price:</dt>
-                                            <dd><span class="tag price" th:text="${helper.price(localizedProperty.property)}">$ 78,000</span></dd>
+                                            <dd><span class="tag price" th:text="${helper.price(#object.property)}">$ 78,000</span></dd>
                                         <dt th:text="|#{org.gotocy.dictionary.property-type}:|">Property Type:</dt>
-                                            <dd th:text="${{localizedProperty.property.propertyType}}">House</dd>
+                                            <dd th:text="*{{property.propertyType}}">House</dd>
                                         <dt th:text="|#{org.gotocy.dictionary.rental}:|" th:if="${isRental}">Rental:</dt>
-                                            <dd th:text="${{localizedProperty.property.propertyStatus}}" th:if="${isRental}">Long Term</dd>
+                                            <dd th:text="*{{property.propertyStatus}}" th:if="${isRental}">Long Term</dd>
                                         <dt th:text="|#{org.gotocy.dictionary.area}:|">Area:</dt>
-                                            <dd th:utext="|${localizedProperty.property.area} m<sup>2</sup>|">3 m<sup>2</sup></dd>
+                                            <dd th:utext="|*{property.area} m<sup>2</sup>|">3 m<sup>2</sup></dd>
                                         <dt th:text="|#{org.gotocy.dictionary.beds}:|">Beds:</dt>
-                                            <dd th:text="${localizedProperty.property.beds}">3</dd>
+                                            <dd th:text="*{property.beds}">3</dd>
                                         <dt th:text="|#{org.gotocy.dictionary.baths}:|">Baths:</dt>
-                                            <dd th:text="${localizedProperty.property.baths}">1</dd>
+                                            <dd th:text="*{property.baths}">1</dd>
                                     </dl>
                                 </section><!-- /#quick-summary -->
                             </div><!-- /.col-md-4 -->
                             <div class="col-md-8 col-sm-12">
                                 <section id="description">
                                     <header><h2 th:text="#{org.gotocy.dictionary.property-description}">Property Description</h2></header>
-                                    <p th:text="${localizedProperty.description}">
+                                    <p th:utext="${helper.newLinesToParagraphs(#object.description)}">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
                                         bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt.
                                         Duis euismod placerat rhoncus. Phasellus mollis imperdiet placerat. Sed ac
@@ -146,7 +146,7 @@
                                 <section id="property-features">
                                     <header><h2 th:text="#{org.gotocy.dictionary.property-specifications}">Property Specifications</h2></header>
                                     <ul class="list-unstyled property-features-list" th:remove="all-but-first">
-                                        <li th:each="s : ${localizedProperty.specifications}" th:text="${s.specification}">Sauna</li>
+                                        <li th:each="s : *{specifications}" th:text="${s.specification}">Sauna</li>
                                         <li>Fireplace or fire pit</li>
                                         <li>Outdoor Kitchen</li>
                                         <li>Tennis Courts</li>
@@ -461,8 +461,8 @@
 <![endif]-->
 <script type="text/javascript" th:inline="javascript">
 /*<![CDATA[*/
-    var latitude = /*[[${localizedProperty.property.latitude}]]*/ '34.7071301';
-    var longitude = /*[[${localizedProperty.property.longitude}]]*/ '33.022617399999945';
+    var latitude = /*[[*{property.latitude}]]*/ '34.7071301';
+    var longitude = /*[[*{property.longitude}]]*/ '33.022617399999945';
     var markerPictureUrl = /*[[${'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/property-types/single-family.png'}]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
     google.maps.event.addDomListener(window, 'load', initMap(latitude, longitude, markerPictureUrl));
     $(window).load(function(){
