@@ -28,6 +28,12 @@ public class Property extends BaseEntity {
 	
 	private Integer price;
 
+	private Integer area;
+
+	private Integer beds;
+
+	private Integer baths;
+
 	@Embedded
 	private ImageSet imageSet;
 
@@ -77,6 +83,30 @@ public class Property extends BaseEntity {
 
 	public void setPrice(Integer price) {
 		this.price = price;
+	}
+
+	public Integer getArea() {
+		return area;
+	}
+
+	public void setArea(Integer area) {
+		this.area = area;
+	}
+
+	public Integer getBeds() {
+		return beds;
+	}
+
+	public void setBeds(Integer beds) {
+		this.beds = beds;
+	}
+
+	public Integer getBaths() {
+		return baths;
+	}
+
+	public void setBaths(Integer baths) {
+		this.baths = baths;
 	}
 
 	public ImageSet getImageSet() {

@@ -18,6 +18,9 @@ CREATE TABLE property(
     property_type VARCHAR(16) NOT NULL,
     property_status VARCHAR(16) NOT NULL,
     price INTEGER NOT NULL,
+    area INTEGER NOT NULL,
+    beds INTEGER NOT NULL,
+    baths INTEGER NOT NULL,
 
     representative_image_id BIGINT NOT NULL,
 

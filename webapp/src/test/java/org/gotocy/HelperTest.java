@@ -1,10 +1,15 @@
 package org.gotocy;
 
-import org.gotocy.domain.LocalizedProperty;
-import org.gotocy.domain.Property;
+import org.gotocy.beans.AssetsProvider;
+import org.gotocy.domain.*;
 import org.gotocy.helpers.Helper;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.context.i18n.LocaleContextHolder;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author ifedorenkov
@@ -58,6 +63,20 @@ public class HelperTest {
 		// Adds a language prefix to the given path
 		Assert.assertEquals("/some-path", Helper.path("/some-path", "en"));
 		Assert.assertEquals("/ru/some-path", Helper.path("/some-path", "ru"));
+	}
+
+	@Test
+	public void priceKey() {
+		Map<PropertyStatus, String> statusToPriceKey = new HashMap<>();
+		statusToPriceKey.put(PropertyStatus.SALE, "org.gotocy.domain.property.sale-price");
+		statusToPriceKey.put(PropertyStatus.SHORT_TERM, "org.gotocy.domain.property.short-term-price");
+		statusToPriceKey.put(PropertyStatus.LONG_TERM, "org.gotocy.domain.property.long-term-price");
+
+		Property p = new Property();
+		for (PropertyStatus status : PropertyStatus.values()) {
+			p.setPropertyStatus(status);
+			Assert.assertEquals(statusToPriceKey.get(status), Helper.priceKey(p));
+		}
 	}
 
 }

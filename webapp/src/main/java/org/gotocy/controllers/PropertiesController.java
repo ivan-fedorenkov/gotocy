@@ -48,7 +48,7 @@ public class PropertiesController {
 			p.setLocation(location);
 			p.setLatitude(latitude);
 			p.setLongitude(longitude);
-			p.setPropertyType(PropertyType.DETACHED_HOUSE);
+			p.setPropertyType(PropertyType.HOUSE);
 			p.setPropertyStatus(PropertyStatus.LONG_TERM);
 			propertyRepository.save(p);
 		} else {

@@ -3,11 +3,14 @@ package org.gotocy.helpers;
 import org.gotocy.beans.AssetsProvider;
 import org.gotocy.domain.ImageSize;
 import org.gotocy.domain.*;
+import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.thymeleaf.util.NumberPointType;
 import org.thymeleaf.util.NumberUtils;
 
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -17,9 +20,20 @@ import java.util.Objects;
  */
 public class Helper {
 
+	private static final Map<PropertyStatus, String> PROPERTY_STATUS_TO_PRICE_KEY = new HashMap<>();
+
+	static {
+		for (PropertyStatus status : PropertyStatus.values()) {
+			PROPERTY_STATUS_TO_PRICE_KEY.put(status, "org.gotocy.domain.property." +
+				status.name().toLowerCase().replaceAll("_", "-") + "-price");
+		}
+	}
+
+	private final MessageSource messageSource;
 	private final AssetsProvider assetsProvider;
 
-	public Helper(@NotNull AssetsProvider assetsProvider) {
+	public Helper(@NotNull MessageSource messageSource, @NotNull AssetsProvider assetsProvider) {
+		this.messageSource = messageSource;
 		this.assetsProvider = assetsProvider;
 	}
 
@@ -43,6 +57,22 @@ public class Helper {
 	 */
 	public static String price(int price) {
 		return "$ " + NumberUtils.format(price, 1, NumberPointType.COMMA, LocaleContextHolder.getLocale());
+	}
+
+	/**
+	 * Returns a resource bundle key for price of the given property.
+	 */
+	public static String priceKey(Property property) {
+		return PROPERTY_STATUS_TO_PRICE_KEY.get(property.getPropertyStatus());
+	}
+
+	/**
+	 * Returns a fully formatted price of the given property.
+	 * TODO: unit test
+	 */
+	public String price(Property property) {
+		return messageSource.getMessage(priceKey(property), new Object[] {price(property.getPrice())},
+			LocaleContextHolder.getLocale());
 	}
 
 	/**

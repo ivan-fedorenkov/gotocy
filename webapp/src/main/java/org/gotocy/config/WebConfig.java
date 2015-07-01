@@ -60,7 +60,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new HelpersInterceptor(assetsProvider));
+		registry.addInterceptor(new HelpersInterceptor(messageSource, assetsProvider));
 	}
 
 }

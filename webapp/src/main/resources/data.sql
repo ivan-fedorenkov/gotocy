@@ -4,8 +4,8 @@ insert into asset (id, version, key, asset_type) values
   (3, 0, 'property/1/36526520.jpg', 'IMAGE'),
   (4, 0, 'property/1/36526526.jpg', 'IMAGE');
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, representative_image_id)
-  values (1, 0, 'LARNACA', '34.83584332950877', '33.60195279121399', 'DETACHED_HOUSE', 'LONG_TERM', 123456, 1);
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, area, beds, baths, representative_image_id)
+  values (1, 0, 'LARNACA', '34.83584332950877', '33.60195279121399', 'HOUSE', 'SALE', 123456, 123, 3, 2, 1);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
   values (1, 0, 'en', 'Villa Regina', 'Farou Avenue, 7560 Perivolia, Cyprus', 'Villa Regina is a villa with an outdoor pool, set in Perivolia, 6 km from Mazotos Beach. You can fire up the barbecue for a tasty meal and enjoy the garden in fair weather. Free private parking is available on site. There is a seating area and a kitchen as well as a private bathroom. A flat-screen TV, as well as a CD player are featured. The nearest airport is Larnaca Airport, 5 km from the property. (http://www.villas.com/en-gb/cyprus/southern-cyprus/perivolia/villa-regina-perivolia.html)', 1);

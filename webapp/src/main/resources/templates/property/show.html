@@ -114,15 +114,21 @@
                             <div class="col-md-4 col-sm-12">
                                 <section id="quick-summary" class="clearfix">
                                     <header><h2 th:text="#{org.gotocy.dictionary.quick-summary}">Quick Summary</h2></header>
-                                    <dl>
-                                        <dt th:text="#{org.gotocy.dictionary.location}">Location</dt>
+                                    <dl th:with="isRental = ${localizedProperty.property.propertyStatus != T(org.gotocy.domain.PropertyStatus).SALE}">
+                                        <dt th:text="|#{org.gotocy.dictionary.location}:|">Location:</dt>
                                             <dd th:text="${{localizedProperty.property.location}}">Chicago, IL 60610</dd>
-                                        <dt th:text="#{org.gotocy.dictionary.price}">Price</dt>
-                                            <dd><span class="tag price" th:text="${helper.price(localizedProperty.property.price)}">$78,000</span></dd>
+                                        <dt th:text="|#{org.gotocy.dictionary.price}:|">Price:</dt>
+                                            <dd><span class="tag price" th:text="${helper.price(localizedProperty.property)}">$ 78,000</span></dd>
                                         <dt th:text="|#{org.gotocy.dictionary.property-type}:|">Property Type:</dt>
                                             <dd th:text="${{localizedProperty.property.propertyType}}">House</dd>
-                                        <dt th:text="|#{org.gotocy.dictionary.property-status}:|">Status:</dt>
-                                            <dd th:text="${{localizedProperty.property.propertyStatus}}">Sale</dd>
+                                        <dt th:text="|#{org.gotocy.dictionary.rental}:|" th:if="${isRental}">Rental:</dt>
+                                            <dd th:text="${{localizedProperty.property.propertyStatus}}" th:if="${isRental}">Long Term</dd>
+                                        <dt th:text="|#{org.gotocy.dictionary.area}:|">Area:</dt>
+                                            <dd th:utext="|${localizedProperty.property.area} m<sup>2</sup>|">3 m<sup>2</sup></dd>
+                                        <dt th:text="|#{org.gotocy.dictionary.beds}:|">Beds:</dt>
+                                            <dd th:text="${localizedProperty.property.beds}">3</dd>
+                                        <dt th:text="|#{org.gotocy.dictionary.baths}:|">Baths:</dt>
+                                            <dd th:text="${localizedProperty.property.baths}">1</dd>
                                     </dl>
                                 </section><!-- /#quick-summary -->
                             </div><!-- /.col-md-4 -->
