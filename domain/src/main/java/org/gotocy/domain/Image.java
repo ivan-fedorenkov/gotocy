@@ -12,7 +12,6 @@ public class Image extends Asset {
 
 	/**
 	 * Returns an image asset key for the given image size.
-	 * TODO: unit tests
 	 */
 	public String getKeyForSize(ImageSize imageSize) {
 		int nextToLastSlash = getKey().lastIndexOf('/') + 1;
