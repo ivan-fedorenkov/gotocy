@@ -190,20 +190,16 @@
                                     </div>
                                     <ul class="additional-info">
                                         <li>
-                                            <header>Area:</header>
-                                            <figure>240m<sup>2</sup></figure>
+                                            <header th:text="|#{org.gotocy.dictionary.area}:|">Area:</header>
+                                            <figure th:utext="|${lp.property.area} m<sup>2</sup>|">240m<sup>2</sup></figure>
                                         </li>
                                         <li>
-                                            <header>Beds:</header>
-                                            <figure>2</figure>
+                                            <header th:text="|#{org.gotocy.dictionary.beds}:|">Beds:</header>
+                                            <figure th:text="${lp.property.beds}">2</figure>
                                         </li>
                                         <li>
-                                            <header>Baths:</header>
-                                            <figure>2</figure>
-                                        </li>
-                                        <li>
-                                            <header>Garages:</header>
-                                            <figure>0</figure>
+                                            <header th:text="|#{org.gotocy.dictionary.baths}:|">Baths:</header>
+                                            <figure th:text="${lp.property.baths}">2</figure>
                                         </li>
                                     </ul>
                                 </div>
