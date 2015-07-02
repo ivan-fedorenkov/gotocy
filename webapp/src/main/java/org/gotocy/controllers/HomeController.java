@@ -1,5 +1,6 @@
 package org.gotocy.controllers;
 
+import org.gotocy.domain.PropertyStatus;
 import org.gotocy.repository.LocalizedPropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,8 @@ public class HomeController {
 	@RequestMapping("/")
 	public String home(Model model, Locale locale) {
 		// TODO: make them recent :)
-		model.addAttribute("recentLocalizedProperties",
-			localizedPropertyRepository.findPropertiesByLocale(locale.getLanguage()));
+		model.addAttribute("shortTermProperties", localizedPropertyRepository.findByPropertyPropertyStatusAndLocale(
+			PropertyStatus.SHORT_TERM, locale.getLanguage()));
 		return "home/index";
 	}
 

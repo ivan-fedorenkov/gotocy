@@ -168,15 +168,15 @@
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </section><!-- /#our-services -->
-        <section id="new-properties" class="block">
+        <section id="short-term-properties" class="block">
             <div class="container">
                 <header class="section-title">
-                    <h2 th:text="#{org.gotocy.dictionary.new-properties-for-you}">New Properties for You</h2>
+                    <h2 th:text="#{org.gotocy.dictionary.short-term-rentals-for-you}">Short Term Rentals for You</h2>
                     <!-- TODO: add all properties link -->
                     <!-- <a href="properties-listing.html" class="link-arrow">All Properties</a> -->
                 </header>
                 <div class="row" th:remove="all-but-first">
-                    <div class="col-md-3 col-sm-6" th:each="lp : ${recentLocalizedProperties}">
+                    <div class="col-md-3 col-sm-6" th:each="lp : ${shortTermProperties}">
                         <div class="property">
                             <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
@@ -310,7 +310,7 @@
                     </div><!-- /.col-md-3 -->
                 </div><!-- /.row-->
             </div><!-- /.container -->
-        </section><!-- /#new-properties -->
+        </section><!-- /#short-term-properties -->
         <aside id="advertising" class="block">
             <div class="container">
                 <a href="submit.html">
