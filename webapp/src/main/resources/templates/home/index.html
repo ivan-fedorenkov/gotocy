@@ -194,11 +194,11 @@
                                             <figure th:utext="|${lp.property.area} m<sup>2</sup>|">240m<sup>2</sup></figure>
                                         </li>
                                         <li>
-                                            <header th:text="|#{org.gotocy.dictionary.bedrooms}:|">Beds:</header>
+                                            <header th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', lp.property.bedrooms))}:|">Bedrooms:</header>
                                             <figure th:text="${lp.property.bedrooms}">2</figure>
                                         </li>
                                         <li>
-                                            <header th:text="|#{org.gotocy.dictionary.baths}:|">Baths:</header>
+                                            <header th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.baths', lp.property.baths))}:|">Baths:</header>
                                             <figure th:text="${lp.property.baths}">2</figure>
                                         </li>
                                     </ul>
@@ -224,7 +224,7 @@
                                             <figure>240m<sup>2</sup></figure>
                                         </li>
                                         <li>
-                                            <header>Beds:</header>
+                                            <header>Bedrooms:</header>
                                             <figure>3</figure>
                                         </li>
                                         <li>
@@ -258,7 +258,7 @@
                                             <figure>240m<sup>2</sup></figure>
                                         </li>
                                         <li>
-                                            <header>Beds:</header>
+                                            <header>Bedrooms:</header>
                                             <figure>3</figure>
                                         </li>
                                         <li>
@@ -292,7 +292,7 @@
                                             <figure>240m<sup>2</sup></figure>
                                         </li>
                                         <li>
-                                            <header>Beds:</header>
+                                            <header>Bedrooms:</header>
                                             <figure>3</figure>
                                         </li>
                                         <li>
