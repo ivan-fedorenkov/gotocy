@@ -173,35 +173,31 @@
                                 <hr class="thick">
                                 <section id="similar-properties">
                                     <header><h2 class="no-border">Similar Properties</h2></header>
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-6">
+                                    <div class="row" th:remove="all-but-first">
+                                        <div class="col-md-4 col-sm-6" th:each="lp : ${similarLocalizedProperties}" th:object="${lp}">
                                             <div class="property">
-                                                <a th:href="@{/property-detail.html}" href="/parent/webapp/templates/property/show.html">
+                                                <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
                                                     <div class="property-image">
-                                                        <img alt="" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-06.jpg'" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                                        <img alt="" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).SMALL)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                                     </div>
                                                     <div class="overlay">
                                                         <div class="info">
-                                                            <div class="tag price">$ 11,000</div>
-                                                            <h3>3398 Lodgeville Road</h3>
-                                                            <figure>Golden Valley, MN 55427</figure>
+                                                            <div class="tag price" th:text="${helper.price(lp.property)}">$ 11,000</div>
+                                                            <h3 th:text="*{title}">3398 Lodgeville Road</h3>
+                                                            <figure th:text="*{address}">Golden Valley, MN 55427</figure>
                                                         </div>
                                                         <ul class="additional-info">
                                                             <li>
-                                                                <header>Area:</header>
-                                                                <figure>240m<sup>2</sup></figure>
+                                                                <header th:text="|#{org.gotocy.dictionary.area}:|">Area:</header>
+                                                                <figure th:utext="|*{property.area} m<sup>2</sup>|">240m<sup>2</sup></figure>
                                                             </li>
                                                             <li>
-                                                                <header>Beds:</header>
-                                                                <figure>2</figure>
+                                                                <header th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', lp.property.bedrooms))}:|">Bedrooms:</header>
+                                                                <figure th:text="*{property.bedrooms}">2</figure>
                                                             </li>
                                                             <li>
-                                                                <header>Baths:</header>
-                                                                <figure>2</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>0</figure>
+                                                                <header th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.baths', lp.property.baths))}:|">Baths:</header>
+                                                                <figure th:text="*{property.baths}">2</figure>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -423,7 +419,7 @@
             <aside id="footer-copyright">
                 <div class="container">
                     <span>Copyright © 2013. All Rights Reserved.</span>
-                    <span class="pull-right"><a th:href="@{/#page-top}" href="#page-top" class="roll">Go to top</a></span>
+                    <span class="pull-right"><a href="#page-top" class="roll">Go to top</a></span>
                 </div>
             </aside>
         </div><!-- /.inner -->
@@ -471,7 +467,7 @@
 /*]]>*/
 </script>
 
-<script async src="https://theta360.com/widgets.js" charset="utf-8"></script>
+<!-- <script async src="https://theta360.com/widgets.js" charset="utf-8"></script> -->
 
 </body>
 </html>
