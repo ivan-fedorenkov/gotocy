@@ -125,9 +125,9 @@
                                             <dd th:text="*{{property.propertyStatus}}" th:if="${isRental}">Long Term</dd>
                                         <dt th:text="|#{org.gotocy.dictionary.area}:|">Area:</dt>
                                             <dd th:utext="|*{property.area} m<sup>2</sup>|">3 m<sup>2</sup></dd>
-                                        <dt th:text="|#{org.gotocy.dictionary.beds}:|">Beds:</dt>
-                                            <dd th:text="*{property.beds}">3</dd>
-                                        <dt th:text="|#{org.gotocy.dictionary.baths}:|">Baths:</dt>
+                                        <dt th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', #object.property.bedrooms))}:|">Bedrooms:</dt>
+                                            <dd th:text="*{property.bedrooms}">3</dd>
+                                        <dt th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.baths', #object.property.baths))}:|">Baths:</dt>
                                             <dd th:text="*{property.baths}">1</dd>
                                     </dl>
                                 </section><!-- /#quick-summary -->

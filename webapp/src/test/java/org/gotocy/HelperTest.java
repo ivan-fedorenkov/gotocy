@@ -117,4 +117,11 @@ public class HelperTest {
 		Assert.assertEquals(expectedResult, Helper.newLinesToParagraphs(initialText));
 	}
 
+	@Test
+	public void pluralize() {
+		String initialCode = "org.gotocy.some-code";
+		Assert.assertEquals(initialCode, Helper.pluralize(initialCode, 1));
+		Assert.assertEquals(initialCode + ".plural", Helper.pluralize(initialCode, 2));
+	}
+
 }

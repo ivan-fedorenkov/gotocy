@@ -18,11 +18,24 @@ insert into asset (id, version, key, asset_type) values (16, 0, 'property/1/19.j
 insert into asset (id, version, key, asset_type) values (17, 0, 'property/1/20.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (18, 0, 'property/1/21.jpg', 'IMAGE');
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, area, beds, baths, representative_image_id)
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, area, bedrooms, baths, representative_image_id)
   values (1, 0, 'GREECE', '35.318198', '24.318744', 'APARTMENT', 'SHORT_TERM', 95, 80, 1, 1, 1);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
   values (1, 0, 'en', 'Sofia', 'Chania, Crete, Nomós Chaníon', 'Kastellos village is situated in the picturesque village of Kastellos in Georgioupolis, Chania. The complex is ideal for those wishing to escape everyday routine and relax enjoying the Cretan countryside; it’s for those who want to contact the nature, the wild life and of course to meet the people and their habits.
+"Sofia Apartment" independent and fully equipped. It is built according to the traditional architecture. On the outside, beautiful stone work frames the dark green doorways and windows, further accentuated by the pastel strawberry and lemon walls. Add to this lovely tiled roofs and backdrop of the blue sky and mountains, and then you begin to understand why we were so smitten.
+Inside the restoration is if anything, even more remarkable, with beautifully tiled floors, ceilings supported by huge beams interlaced with traditional bamboo linings and pale ochre coloured walls set off by elegant concealed lighting.
+"Sofia Apartment" has two floors and a private veranda with panoramic view of the mountain and the sea. Is has a fully equipped kitchen (with kitchen appliances and utensils), bathroom with bathtub, WC with shower and one or two bedrooms with king size beds. The house combines harmoniously the traditional style with modern decorative elements, creating a warm and cosy atmosphere. For your convenience, you can find A/C, fireplace and plasma TV and can accommodate 2 to 6 persons.
+
+KASTELLOS VILLAGE is built in a privileged location. During your stay here you can make a tour around the area and enjoy nature.
+It is worth visiting the famous Kourna lake, which is only 5 km from the village. You can also visit the area of Argiroupolis, known for the running and spring waters. You will have a meal under the plane trees and visit the small church of Saint Prokopios, which is built in a cave.
+The popular beach of Georgioupolis (5 km from the complex) is a pole of attraction for the visitors of the area.
+There are many restaurants and taverns in the village, where you can enjoy the famous recipes of the traditional Cretan cuisine.
+Semi-mountainous village built on the feet of the White Mountains on an altitude of 252m. Its named derived from the site it was built (like a castle). Originally the village was situated lower on the valley in the present area of the settlement Agathes from where the inhabitants were forced to leave in 1800 due to the Ottomans. Close to the village a there was in 1835 a severe battle amongst Cretans and Ottomans that left 22 dead Ottomans and just 1 Cretan. It was the reason that the ottomans stopped raiding the area. The locals had an important contribution to the resistance against the Germans fascists during the 2sn World War.'
+  , 1);
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (3, 0, 'ru', 'Sofia', 'Chania, Crete, Nomós Chaníon', 'Kastellos village is situated in the picturesque village of Kastellos in Georgioupolis, Chania. The complex is ideal for those wishing to escape everyday routine and relax enjoying the Cretan countryside; it’s for those who want to contact the nature, the wild life and of course to meet the people and their habits.
 "Sofia Apartment" independent and fully equipped. It is built according to the traditional architecture. On the outside, beautiful stone work frames the dark green doorways and windows, further accentuated by the pastel strawberry and lemon walls. Add to this lovely tiled roofs and backdrop of the blue sky and mountains, and then you begin to understand why we were so smitten.
 Inside the restoration is if anything, even more remarkable, with beautifully tiled floors, ceilings supported by huge beams interlaced with traditional bamboo linings and pale ochre coloured walls set off by elegant concealed lighting.
 "Sofia Apartment" has two floors and a private veranda with panoramic view of the mountain and the sea. Is has a fully equipped kitchen (with kitchen appliances and utensils), bathroom with bathtub, WC with shower and one or two bedrooms with king size beds. The house combines harmoniously the traditional style with modern decorative elements, creating a warm and cosy atmosphere. For your convenience, you can find A/C, fireplace and plasma TV and can accommodate 2 to 6 persons.
@@ -89,11 +102,24 @@ insert into asset (id, version, key, asset_type) values (36, 0, 'property/2/20.j
 insert into asset (id, version, key, asset_type) values (37, 0, 'property/2/21.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (38, 0, 'property/2/22.jpg', 'IMAGE');
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, area, beds, baths, representative_image_id)
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, area, bedrooms, baths, representative_image_id)
   values (2, 0, 'GREECE', '35.31242', '24.310504', 'HOUSE', 'SHORT_TERM', 118, 130, 2, 2, 19);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
   values (2, 0, 'en', 'Anezina', 'Chania, Crete, Nomós Chaníon', 'Kastellos village is situated in the picturesque village of Kastellos in Georgioupolis, Chania. The complex is ideal for those wishing to escape everyday routine and relax enjoying the Cretan countryside; it’s for those who want to contact the nature, the wild life and of course to meet the people and their habits.
+"Anezina House" independent and fully equipped. It is built according to the traditional architecture. On the outside, beautiful stone work frames the dark green doorways and windows, further accentuated by the pastel strawberry and lemon walls. Add to this lovely tiled roofs and backdrop of the blue sky and mountains, and then you begin to understand why we were so smitten.
+Inside the restoration is if anything, even more remarkable, with beautifully tiled floors, ceilings supported by huge beams interlaced with traditional bamboo linings and pale ochre coloured walls set off by elegant concealed lighting.
+"Anezina House" has two floors and a private veranda with panoramic view of the mountain and the sea. Is has a fully equipped kitchen (with kitchen appliances and utensils), bathroom with bathtub, WC with shower and one or two bedrooms with king size beds. The house combines harmoniously the traditional style with modern decorative elements, creating a warm and cosy atmosphere. For your convenience, you can find A/C, fireplace and plasma TV and can accommodate 2 to 6 persons.
+
+KASTELLOS VILLAGE is built in a privileged location. During your stay here you can make a tour around the area and enjoy nature.
+It is worth visiting the famous Kourna lake, which is only 5 km from the village. You can also visit the area of Argiroupolis, known for the running and spring waters. You will have a meal under the plane trees and visit the small church of Saint Prokopios, which is built in a cave.
+The popular beach of Georgioupolis (5 km from the complex) is a pole of attraction for the visitors of the area.
+There are many restaurants and taverns in the village, where you can enjoy the famous recipes of the traditional Cretan cuisine.
+Semi-mountainous village built on the feet of the White Mountains on an altitude of 252m. It’s named derived from the site it was built (like a castle). Originally the village was situated lower on the valley in the present area of the settlement Agathes from where the inhabitants were forced to leave in 1800 due to the Ottomans. Close to the village a there was in 1835 a severe battle amongst Cretans and Ottomans that left 22 dead Ottomans and just 1 Cretan. It was the reason that the ottomans stopped raiding the area. The locals had an important contribution to the resistance against the Germans fascists during the 2sn World War.'
+  , 2);
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (4, 0, 'ru', 'Anezina', 'Chania, Crete, Nomós Chaníon', 'Kastellos village is situated in the picturesque village of Kastellos in Georgioupolis, Chania. The complex is ideal for those wishing to escape everyday routine and relax enjoying the Cretan countryside; it’s for those who want to contact the nature, the wild life and of course to meet the people and their habits.
 "Anezina House" independent and fully equipped. It is built according to the traditional architecture. On the outside, beautiful stone work frames the dark green doorways and windows, further accentuated by the pastel strawberry and lemon walls. Add to this lovely tiled roofs and backdrop of the blue sky and mountains, and then you begin to understand why we were so smitten.
 Inside the restoration is if anything, even more remarkable, with beautifully tiled floors, ceilings supported by huge beams interlaced with traditional bamboo linings and pale ochre coloured walls set off by elegant concealed lighting.
 "Anezina House" has two floors and a private veranda with panoramic view of the mountain and the sea. Is has a fully equipped kitchen (with kitchen appliances and utensils), bathroom with bathtub, WC with shower and one or two bedrooms with king size beds. The house combines harmoniously the traditional style with modern decorative elements, creating a warm and cosy atmosphere. For your convenience, you can find A/C, fireplace and plasma TV and can accommodate 2 to 6 persons.

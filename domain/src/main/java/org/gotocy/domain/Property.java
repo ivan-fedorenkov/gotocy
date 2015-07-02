@@ -30,7 +30,7 @@ public class Property extends BaseEntity {
 
 	private Integer area;
 
-	private Integer beds;
+	private Integer bedrooms;
 
 	private Integer baths;
 
@@ -93,12 +93,12 @@ public class Property extends BaseEntity {
 		this.area = area;
 	}
 
-	public Integer getBeds() {
-		return beds;
+	public Integer getBedrooms() {
+		return bedrooms;
 	}
 
-	public void setBeds(Integer beds) {
-		this.beds = beds;
+	public void setBedrooms(Integer bedrooms) {
+		this.bedrooms = bedrooms;
 	}
 
 	public Integer getBaths() {

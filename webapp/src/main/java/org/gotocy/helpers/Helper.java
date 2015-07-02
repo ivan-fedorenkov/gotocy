@@ -1,7 +1,6 @@
 package org.gotocy.helpers;
 
 import org.gotocy.beans.AssetsProvider;
-import org.gotocy.domain.ImageSize;
 import org.gotocy.domain.*;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -141,6 +140,16 @@ public class Helper {
 			return text;
 
 		return "<p>" + text.replaceAll("[\\n\\r]+", "</p><p>") + "</p>";
+	}
+
+	/**
+	 * Returns 'pluralized' message code by adding the '.plural' ending to the given code in case of number is greater
+	 * then one.
+	 * E.g.: 'com.example.code' would be converted to 'com.example.code.plural' in case of number is greater then one
+	 * and would stay the same in case of number is less then one.
+	 */
+	public static String pluralize(String code, int number) {
+		return number > 1 ? code + ".plural" : code;
 	}
 
 	private static String getPrefixForLanguage(String language) {
