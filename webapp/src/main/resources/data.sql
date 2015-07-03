@@ -282,7 +282,7 @@ insert into localized_property (id, version, locale, title, address, description
   values (5, 0, 'en', 'LAR 801/1', 'Oroklini', '', 5);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
-  values (105, 0, 'ru', 'LAR 801/1', 'Ороклини', '', 5);
+  values (105, 0, 'ru', 'LAR 801/1', 'Oroklini', '', 5);
 
 
 insert into property_images (property_id, images_id) values (5, 58);
@@ -304,3 +304,38 @@ insert into localized_property_specification (id, version, specification, locali
 insert into localized_property_specification (id, version, specification, localized_property_id) values (57, 0, 'Fully air-conditioning', 5);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (58, 0, 'Elevators (Lift)', 5);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (59, 0, 'Gypsum board ceilings, lighting', 5);
+
+
+-- 6 (Sale)
+
+insert into asset (id, version, key, asset_type) values (67, 0, 'property/6/DSC_3529.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (68, 0, 'property/6/DSC_3534.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (69, 0, 'property/6/DSC_3539.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (70, 0, 'property/6/DSC_3545.jpg', 'IMAGE');
+
+
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, area, bedrooms, baths, representative_image_id)
+  values (6, 0, 'LARNACA', '34.914313', '33.637733', 'APARTMENT', 'SALE', 572000, 78, 2, 1, 70);
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (6, 0, 'en', 'LAR 802', 'Athenon street', '', 6);
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (106, 0, 'ru', 'LAR 802', 'Athenon street', '', 6);
+
+
+
+insert into property_images (property_id, images_id) values (6, 67);
+insert into property_images (property_id, images_id) values (6, 68);
+insert into property_images (property_id, images_id) values (6, 69);
+insert into property_images (property_id, images_id) values (6, 70);
+
+
+insert into localized_property_specification (id, version, specification, localized_property_id) values (60, 0, 'Fully furnished, including TV', 6);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (61, 0, 'Kitchen fully electrical appliances', 6);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (62, 0, 'Automatic entrance and exit', 6);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (63, 0, 'Fully air-conditioning', 6);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (64, 0, 'Elevators (Lift)', 6);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (65, 0, 'Gypsum board  ceilings, lighting', 6);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (66, 0, 'Concierge service', 6);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (67, 0, 'Store room', 6);

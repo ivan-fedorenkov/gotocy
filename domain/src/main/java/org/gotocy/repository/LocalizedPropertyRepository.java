@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 /**
- * TODO: ololo auto-generated JPA repo ... n+1 query on each method - no comments
+ * TODO: query on each method
  * @author ifedorenkov
  */
 public interface LocalizedPropertyRepository extends JpaRepository<LocalizedProperty, Long> {

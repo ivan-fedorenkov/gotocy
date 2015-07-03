@@ -27,6 +27,8 @@ public class HomeController {
 		// TODO: make them recent :)
 		model.addAttribute("shortTermProperties", localizedPropertyRepository.findByPropertyPropertyStatusAndLocale(
 			PropertyStatus.SHORT_TERM, locale.getLanguage()));
+		model.addAttribute("saleProperties", localizedPropertyRepository.findByPropertyPropertyStatusAndLocale(
+			PropertyStatus.SALE, locale.getLanguage()));
 		return "home/index";
 	}
 

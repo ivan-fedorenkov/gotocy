@@ -168,7 +168,7 @@
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </section><!-- /#our-services -->
-        <section id="short-term-properties" class="block">
+        <section id="short-term-properties" class="block" th:unless=${#lists.isEmpty(shortTermProperties)}>
             <div class="container">
                 <header class="section-title">
                     <h2 th:text="#{org.gotocy.dictionary.short-term-rentals-for-you}">Short Term Rentals for You</h2>
@@ -323,6 +323,149 @@
                 </a>
             </div>
         </aside><!-- /#adveritsing-->
+        <section id="sale-properties" class="block" th:unless="${#lists.isEmpty(saleProperties)}">
+            <div class="container">
+                <header class="section-title">
+                    <h2 th:text="#{org.gotocy.dictionary.properties-for-you}">Properties for You</h2>
+                    <!-- TODO: add all properties link -->
+                    <!-- <a href="properties-listing.html" class="link-arrow">All Properties</a> -->
+                </header>
+                <div class="row" th:remove="all-but-first">
+                    <div class="col-md-3 col-sm-6" th:each="lp : ${saleProperties}">
+                        <div class="property">
+                            <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).SMALL)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price" th:text="${helper.price(lp.property)}">$ 11,000</div>
+                                        <h3 th:text="${lp.title}">3398 Lodgeville Road</h3>
+                                        <figure th:text="${lp.address}">Golden Valley, MN 55427</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header th:text="|#{org.gotocy.dictionary.area}:|">Area:</header>
+                                            <figure th:utext="|${lp.property.area} m<sup>2</sup>|">240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', lp.property.bedrooms))}:|">Bedrooms:</header>
+                                            <figure th:text="${lp.property.bedrooms}">2</figure>
+                                        </li>
+                                        <li>
+                                            <header th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.baths', lp.property.baths))}:|">Baths:</header>
+                                            <figure th:text="${lp.property.baths}">2</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-04.jpg'" src="/parent/webapp/public/assets/img/properties/property-04.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 38,000</div>
+                                        <h3>2186 Rinehart Road</h3>
+                                        <figure>Doral, FL 33178 </figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-07.jpg'" src="/parent/webapp/public/assets/img/properties/property-07.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 325,000</div>
+                                        <h3>3705 Brighton Circle Road</h3>
+                                        <figure>Glenwood, MN 56334</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-08.jpg'" src="/parent/webapp/public/assets/img/properties/property-08.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 16,000</div>
+                                        <h3>362 Lynn Ogden Lane</h3>
+                                        <figure>Galveston, TX 77550</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                </div><!-- /.row-->
+            </div><!-- /.container -->
+        </section><!-- /#sale-properties -->
         <section id="partners" class="block">
             <div class="container">
                 <header class="section-title"><h2>Our Partners</h2></header>
