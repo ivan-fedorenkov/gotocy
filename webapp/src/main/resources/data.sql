@@ -1,4 +1,4 @@
--- 1
+-- 1 (Short term)
 
 insert into asset (id, version, key, asset_type) values (1, 0, 'property/1/1.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (2, 0, 'property/1/2.jpg', 'IMAGE');
@@ -65,7 +65,7 @@ insert into localized_property_specification (id, version, specification, locali
 insert into localized_property_specification (id, version, specification, localized_property_id) values (8, 0, 'Garden', 1);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (9, 0, 'Parking / Garage', 1);
 
--- 2
+-- 2 (Short term)
 
 insert into asset (id, version, key, asset_type) values (19, 0, 'property/2/1.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (20, 0, 'property/2/2.jpg', 'IMAGE');
@@ -139,7 +139,7 @@ insert into localized_property_specification (id, version, specification, locali
 insert into localized_property_specification (id, version, specification, localized_property_id) values (19, 0, 'Parking / Garage', 2);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (20, 0, 'Swimming Pool', 2);
 
--- 3
+-- 3 (Short term)
 
 insert into asset (id, version, key, asset_type) values (39, 0, 'property/3/1.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (40, 0, 'property/3/2.jpg', 'IMAGE');
@@ -211,7 +211,7 @@ insert into localized_property_specification (id, version, specification, locali
 insert into localized_property_specification (id, version, specification, localized_property_id) values (38, 0, 'Internet (cable)', 3);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (39, 0, 'TV', 3);
 
--- 4
+-- 4 (Short term)
 
 insert into asset (id, version, key, asset_type) values (49, 0, 'property/4/1.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (50, 0, 'property/4/2.jpg', 'IMAGE');
@@ -261,3 +261,46 @@ insert into localized_property_specification (id, version, specification, locali
 insert into localized_property_specification (id, version, specification, localized_property_id) values (49, 0, 'Garden', 4);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (50, 0, 'Parking / Garage', 4);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (51, 0, 'Swimming Pool', 4);
+
+-- 5 (Sale)
+
+insert into asset (id, version, key, asset_type) values (58, 0, 'property/5/DSC_3562.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (59, 0, 'property/5/DSC_3761.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (60, 0, 'property/5/DSC_3775.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (61, 0, 'property/5/DSC_3778.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (62, 0, 'property/5/DSC_3781.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (63, 0, 'property/5/DSC_3785.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (64, 0, 'property/5/DSC_3789.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (65, 0, 'property/5/DSC_3791.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (66, 0, 'property/5/DSC_3796.jpg', 'IMAGE');
+
+
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, area, bedrooms, baths, representative_image_id)
+  values (5, 0, 'LARNACA', '34.972661', '33.645909', 'APARTMENT', 'SALE', 338000, 105, 3, 1, 66);
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (5, 0, 'en', 'LAR 801/1', 'Oroklini', '', 5);
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (105, 0, 'ru', 'LAR 801/1', 'Ороклини', '', 5);
+
+
+insert into property_images (property_id, images_id) values (5, 58);
+insert into property_images (property_id, images_id) values (5, 59);
+insert into property_images (property_id, images_id) values (5, 60);
+insert into property_images (property_id, images_id) values (5, 61);
+insert into property_images (property_id, images_id) values (5, 62);
+insert into property_images (property_id, images_id) values (5, 63);
+insert into property_images (property_id, images_id) values (5, 64);
+insert into property_images (property_id, images_id) values (5, 65);
+insert into property_images (property_id, images_id) values (5, 66);
+
+
+insert into localized_property_specification (id, version, specification, localized_property_id) values (52, 0, 'Communal swimming pool', 5);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (53, 0, 'Showers, toilets, wardrobe', 5);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (54, 0, 'Kitchen fully electrical appliances', 5);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (55, 0, 'Landscaped garden (designer)', 5);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (56, 0, 'Automatic entrance and exit', 5);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (57, 0, 'Fully air-conditioning', 5);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (58, 0, 'Elevators (Lift)', 5);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (59, 0, 'Gypsum board ceilings, lighting', 5);
