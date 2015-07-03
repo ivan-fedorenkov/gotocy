@@ -135,13 +135,13 @@
                             <div class="col-md-8 col-sm-12">
                                 <section id="description">
                                     <header><h2 th:text="#{org.gotocy.dictionary.property-description}">Property Description</h2></header>
-                                    <p th:utext="${helper.newLinesToParagraphs(#object.description)}">
+                                    <div th:utext="${helper.newLinesToParagraphs(#object.description)}">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
                                         bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt.
                                         Duis euismod placerat rhoncus. Phasellus mollis imperdiet placerat. Sed ac
                                         turpis nisl. Mauris at ante mauris. Aliquam posuere fermentum lorem, a aliquam
                                         mauris rutrum a. Curabitur sit amet pretium lectus, nec consequat orci.
-                                    </p>
+                                    </div>
                                 </section><!-- /#description -->
                                 <section id="property-features">
                                     <header><h2 th:text="#{org.gotocy.dictionary.property-specifications}">Property Specifications</h2></header>
