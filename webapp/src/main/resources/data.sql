@@ -19,8 +19,8 @@ insert into asset (id, version, key, asset_type) values (16, 0, 'property/1/19.j
 insert into asset (id, version, key, asset_type) values (17, 0, 'property/1/20.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (18, 0, 'property/1/21.jpg', 'IMAGE');
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, baths, air_conditioner, distance_to_sea, representative_image_id)
-  values (1, 0, 'GREECE', '35.318198', '24.318744', 'APARTMENT', 'SHORT_TERM', 95, 1, 1, true, 1200, 1);
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id)
+  values (1, 0, 'GREECE', '35.318198', '24.318744', 'APARTMENT', 'SHORT_TERM', 95, 1, 3, 1, true, 1200, 1);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
   values (1, 0, 'en', 'Sofia', 'Chania, Crete, Nomós Chaníon', 'Kastellos village is situated in the picturesque village of Kastellos in Georgioupolis, Chania. The complex is ideal for those wishing to escape everyday routine and relax enjoying the Cretan countryside; it’s for those who want to contact the nature, the wild life and of course to meet the people and their habits.
@@ -34,6 +34,9 @@ The popular beach of Georgioupolis (5 km from the complex) is a pole of attracti
 There are many restaurants and taverns in the village, where you can enjoy the famous recipes of the traditional Cretan cuisine.
 Semi-mountainous village built on the feet of the White Mountains on an altitude of 252m. Its named derived from the site it was built (like a castle). Originally the village was situated lower on the valley in the present area of the settlement Agathes from where the inhabitants were forced to leave in 1800 due to the Ottomans. Close to the village a there was in 1835 a severe battle amongst Cretans and Ottomans that left 22 dead Ottomans and just 1 Cretan. It was the reason that the ottomans stopped raiding the area. The locals had an important contribution to the resistance against the Germans fascists during the 2sn World War.'
   , 1);
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (101, 0, 'ru', 'Sofia', 'Chania, Crete, Nomós Chaníon', '', 1);
 
 insert into property_images (property_id, images_id) values (1, 1);
 insert into property_images (property_id, images_id) values (1, 2);
@@ -55,8 +58,8 @@ insert into property_images (property_id, images_id) values (1, 17);
 insert into property_images (property_id, images_id) values (1, 18);
 
 
-insert into localized_property_specification (id, version, specification, localized_property_id) values (1, 0, 'Bedroom (2 Guests - 1 double bed)', 1);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (2, 0, 'Living Room (1 Guest - 1 sofa bed / futon)', 1);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (1, 0, 'Bedroom (2 Guests - 1 double bed)', 1);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (2, 0, 'Living Room (1 Guest - 1 sofa bed / futon)', 1);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (3, 0, 'Air conditioning', 1);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (4, 0, 'Children friendly, Smoking', 1);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (5, 0, 'Board games, Internet (Wi-Fi), Radio, TV', 1);
@@ -89,8 +92,8 @@ insert into asset (id, version, key, asset_type) values (37, 0, 'property/2/21.j
 insert into asset (id, version, key, asset_type) values (38, 0, 'property/2/22.jpg', 'IMAGE');
 
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, baths, air_conditioner, distance_to_sea, representative_image_id)
-  values (2, 0, 'GREECE', '35.31242', '24.310504', 'HOUSE', 'SHORT_TERM', 118, 2, 2, true, 120, 19);
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id)
+  values (2, 0, 'GREECE', '35.31242', '24.310504', 'HOUSE', 'SHORT_TERM', 118, 2, 6, 2, true, 120, 19);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
   values (2, 0, 'en', 'Anezina', 'Chania, Crete, Nomós Chaníon', 'Kastellos village is situated in the picturesque village of Kastellos in Georgioupolis, Chania. The complex is ideal for those wishing to escape everyday routine and relax enjoying the Cretan countryside; it’s for those who want to contact the nature, the wild life and of course to meet the people and their habits.
@@ -104,6 +107,9 @@ The popular beach of Georgioupolis (5 km from the complex) is a pole of attracti
 There are many restaurants and taverns in the village, where you can enjoy the famous recipes of the traditional Cretan cuisine.
 Semi-mountainous village built on the feet of the White Mountains on an altitude of 252m. Its named derived from the site it was built (like a castle). Originally the village was situated lower on the valley in the present area of the settlement Agathes from where the inhabitants were forced to leave in 1800 due to the Ottomans. Close to the village a there was in 1835 a severe battle amongst Cretans and Ottomans that left 22 dead Ottomans and just 1 Cretan. It was the reason that the ottomans stopped raiding the area. The locals had an important contribution to the resistance against the Germans fascists during the 2sn World War.'
   , 2);
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (202, 0, 'ru', 'Anezina', 'Chania, Crete, Nomós Chaníon', '', 2);
 
 insert into property_images (property_id, images_id) values (2, 19);
 insert into property_images (property_id, images_id) values (2, 20);
@@ -127,11 +133,11 @@ insert into property_images (property_id, images_id) values (2, 37);
 insert into property_images (property_id, images_id) values (2, 38);
 
 
-insert into localized_property_specification (id, version, specification, localized_property_id) values (10, 0, 'Bedroom (2 Guests - 1 double bed)', 2);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (11, 0, 'Bedroom (2 Guests - 1 double bed)', 2);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (12, 0, 'Living Room (2 Guests - 2 sofa beds / futons)', 2);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (10, 0, 'Bedroom (2 Guests - 1 double bed)', 2);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (11, 0, 'Bedroom (2 Guests - 1 double bed)', 2);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (12, 0, 'Living Room (2 Guests - 2 sofa beds / futons)', 2);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (14, 0, 'Board games, Internet (Wi-Fi), Radio, TV, Telephone', 2);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (13, 0, 'Air conditioning', 2);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (14, 0, 'Board games, Internet (Wi-Fi), Radio, TV, Telephone', 2);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (15, 0, 'Children friendly, Smoking', 2);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (16, 0, 'Balcony', 2);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (17, 0, 'Barbecue', 2);
@@ -153,8 +159,8 @@ insert into asset (id, version, key, asset_type) values (47, 0, 'property/3/9.jp
 insert into asset (id, version, key, asset_type) values (48, 0, 'property/3/10.jpg', 'IMAGE');
 
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, baths, air_conditioner, distance_to_sea, representative_image_id)
-  values (3, 0, 'GREECE', '35.345041', '24.689299', 'HOUSE', 'SHORT_TERM', 141, 3, 2, false, 150, 45);
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id)
+  values (3, 0, 'GREECE', '35.345041', '24.689299', 'HOUSE', 'SHORT_TERM', 141, 3, 7, 2, false, 150, 45);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
   values (3, 0, 'en', 'Green Paradise Luxury Villa', 'Rethymno, Crete, Nomós Rethýmnis','Built in a quiet hamlet of the village Margarites, the Tzannakiana villa ‘Green Paradise’ is a country retreat, stone-built with a distinctive blend of modern and traditional. In an area of natural beauty, surrounded by a garden of flowers, herbs and trees. This is a luxurious villa to rent for your perfect holiday.
@@ -178,6 +184,8 @@ Your stay, here at Green Paradise Luxury Villa, is sure to be heavenly!
 Green Paradise Villa is approved by Greek Tourism Organisation with license number: 1041K91002955601'
   , 3);
 
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (303, 0, 'ru', 'Green Paradise Luxury Villa', 'Rethymno, Crete, Nomós Rethýmnis', '', 3);
 
 insert into property_images (property_id, images_id) values (3, 39);
 insert into property_images (property_id, images_id) values (3, 40);
@@ -191,10 +199,10 @@ insert into property_images (property_id, images_id) values (3, 47);
 insert into property_images (property_id, images_id) values (3, 48);
 
 
-insert into localized_property_specification (id, version, specification, localized_property_id) values (21, 0, 'Bedroom (2 Guests - 1 double bed)', 3);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (22, 0, 'Bedroom (2 Guests - 1 double bed)', 3);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (23, 0, 'Bedroom (2 Guests - 2 single beds)', 3);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (24, 0, 'Living area (1 Guest - 1 sofa bed / futon)', 3);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (21, 0, 'Bedroom (2 Guests - 1 double bed)', 3);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (22, 0, 'Bedroom (2 Guests - 1 double bed)', 3);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (23, 0, 'Bedroom (2 Guests - 2 single beds)', 3);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (24, 0, 'Living area (1 Guest - 1 sofa bed / futon)', 3);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (25, 0, 'Balcony', 3);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (26, 0, 'Barbecue', 3);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (27, 0, 'Childrens Games', 3);
@@ -224,8 +232,8 @@ insert into asset (id, version, key, asset_type) values (56, 0, 'property/4/8.jp
 insert into asset (id, version, key, asset_type) values (57, 0, 'property/4/9.jpg', 'IMAGE');
 
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, baths, air_conditioner, distance_to_sea, representative_image_id)
-  values (4, 0, 'GREECE', '36.295279', '28.155108', 'HOUSE', 'SHORT_TERM', 182, 4, 4, true, 250, 49);
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id)
+  values (4, 0, 'GREECE', '36.295279', '28.155108', 'HOUSE', 'SHORT_TERM', 182, 4, 8, 4, true, 250, 49);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
   values (4, 0, 'en', 'Villa Chrysa', 'Rhodes town, Rhodes, Dodecanese', 'Its located in St. Luke Afandou on the eastern side of the island . It is about 20 km away from the city of Rhodes and from Rhodes Airport , 3 km from Afandou beach -with panoramic view towards this beach- it is also 2 km away from Afandou Golf Course , 6 km from the tourist resort Faliraki of Rhodes with the known beach , 6 km from the tourist resort of Kolymbia Rhodes and the famous Tsampika beach .
@@ -237,6 +245,8 @@ Note that the charge of the main villa for months July and August is 50 euro ext
 Also, the charge of guest house is 50 euro.'
   , 4);
 
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (404, 0, 'ru', 'Villa Chrysa', 'Rhodes town, Rhodes, Dodecanese', '', 4);
 
 insert into property_images (property_id, images_id) values (4, 49);
 insert into property_images (property_id, images_id) values (4, 50);
@@ -249,12 +259,12 @@ insert into property_images (property_id, images_id) values (4, 56);
 insert into property_images (property_id, images_id) values (4, 57);
 
 
-insert into localized_property_specification (id, version, specification, localized_property_id) values (40, 0, 'Bedroom (2 Guests - 1 double bed)', 4);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (41, 0, 'Bedroom (2 Guests - 1 double bed)', 4);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (42, 0, 'Bedroom (1 Guest - 1 single bed)', 4);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (43, 0, 'Bedroom (3 Guests - 1 double bed, 1 single bed)', 4);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (40, 0, 'Bedroom (2 Guests - 1 double bed)', 4);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (41, 0, 'Bedroom (2 Guests - 1 double bed)', 4);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (42, 0, 'Bedroom (1 Guest - 1 single bed)', 4);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (43, 0, 'Bedroom (3 Guests - 1 double bed, 1 single bed)', 4);
+--insert into localized_property_specification (id, version, specification, localized_property_id) values (45, 0, 'Hair Dryer, Shower, Soap and Shampoo, Towels', 4);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (44, 0, 'Children friendly, Pets, Smoking', 4);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (45, 0, 'Hair Dryer, Shower, Soap and Shampoo, Towels', 4);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (46, 0, 'Air conditioning', 4);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (47, 0, 'Balcony', 4);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (48, 0, 'Barbecue', 4);
@@ -275,8 +285,8 @@ insert into asset (id, version, key, asset_type) values (65, 0, 'property/5/DSC_
 insert into asset (id, version, key, asset_type) values (66, 0, 'property/5/DSC_3796.jpg', 'IMAGE');
 
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, levels, distance_to_sea, bedrooms, baths, representative_image_id)
-  values (5, 0, 'LARNACA', '34.972661', '33.645909', 'APARTMENT', 'SALE', 338000, 105, 177, 1, 1500, 3, 1, 66);
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, distance_to_sea, bedrooms, baths, representative_image_id)
+  values (5, 0, 'LARNACA', '34.972661', '33.645909', 'APARTMENT', 'SALE', 338000, 105, 177, 1500, 3, 1, 66);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
   values (5, 0, 'en', 'LAR 801/1', 'Oroklini', '', 5);
@@ -314,8 +324,8 @@ insert into asset (id, version, key, asset_type) values (69, 0, 'property/6/DSC_
 insert into asset (id, version, key, asset_type) values (70, 0, 'property/6/DSC_3545.jpg', 'IMAGE');
 
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, levels, distance_to_sea, bedrooms, baths, ready_to_move_in, representative_image_id)
-  values (6, 0, 'LARNACA', '34.914313', '33.637733', 'APARTMENT', 'SALE', 572000, 78, 82, 1, 50, 2, 1, true, 70);
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, distance_to_sea, bedrooms, baths, ready_to_move_in, representative_image_id)
+  values (6, 0, 'LARNACA', '34.914313', '33.637733', 'APARTMENT', 'SALE', 572000, 78, 82, 50, 2, 1, true, 70);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
   values (6, 0, 'en', 'LAR 802', 'Athenon street', '', 6);

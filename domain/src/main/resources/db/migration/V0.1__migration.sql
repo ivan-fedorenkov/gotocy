@@ -24,7 +24,7 @@ CREATE TABLE property(
     -- non common properties
     covered_area INTEGER NULL,
     plot_size INTEGER NULL,
-    levels INTEGER NULL,
+    guests INTEGER NULL,
     ready_to_move_in BIT NOT NULL DEFAULT FALSE,
     air_conditioner BIT NOT NULL DEFAULT FALSE,
     distance_to_sea INTEGER NULL,

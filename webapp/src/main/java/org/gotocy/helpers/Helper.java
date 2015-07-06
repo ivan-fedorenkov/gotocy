@@ -4,11 +4,11 @@ import org.gotocy.beans.AssetsProvider;
 import org.gotocy.domain.*;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.thymeleaf.util.NumberPointType;
-import org.thymeleaf.util.NumberUtils;
+import org.springframework.format.number.NumberFormatter;
 
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -31,9 +31,15 @@ public class Helper {
 	private final MessageSource messageSource;
 	private final AssetsProvider assetsProvider;
 
+	private final NumberFormatter currencyFormatter;
+	private final NumberFormatter distanceFormatter;
+
 	public Helper(@NotNull MessageSource messageSource, @NotNull AssetsProvider assetsProvider) {
 		this.messageSource = messageSource;
 		this.assetsProvider = assetsProvider;
+
+		currencyFormatter = new NumberFormatter("#,###");
+		distanceFormatter = new NumberFormatter("###.#");
 	}
 
 	/**
@@ -52,10 +58,11 @@ public class Helper {
 	}
 
 	/**
-	 * Returns a string price representation adding the dollar symbol.
+	 * Prints a given price in a locale specific manner.
+	 * TODO: unit test
 	 */
-	public static String price(int price) {
-		return "$ " + NumberUtils.format(price, 1, NumberPointType.COMMA, LocaleContextHolder.getLocale());
+	public String price(int price) {
+		return "&euro; " + currencyFormatter.print(price, LocaleContextHolder.getLocale());
 	}
 
 	/**
@@ -154,14 +161,20 @@ public class Helper {
 
 	/**
 	 * Returns the distance in the appropriate form, which is: < 500 m - meters (m), > 500 m - kilometers (km).
+	 * TODO: unit test
 	 */
-	public static String distance(int meters) {
+	public String distance(int meters) {
+		Locale locale = LocaleContextHolder.getLocale();
+		String ending;
+		Number number;
 		if (meters < 500) {
-			return NumberUtils.format(meters, 1, NumberPointType.NONE, LocaleContextHolder.getLocale()) + " m";
+			number = meters;
+			ending = messageSource.getMessage("org.gotocy.dictionary.meters", null, locale);
 		} else {
-			return NumberUtils.format(meters / 1000d, 1, NumberPointType.NONE, 1, NumberPointType.POINT,
-				LocaleContextHolder.getLocale()) + " km";
+			number = meters / 1000d;
+			ending = messageSource.getMessage("org.gotocy.dictionary.kilometers", null, locale);
 		}
+		return distanceFormatter.print(number, locale) + " " + ending;
 	}
 
 	private static String getPrefixForLanguage(String language) {

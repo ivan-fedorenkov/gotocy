@@ -6,9 +6,11 @@
     <dt th:text="|#{org.gotocy.dictionary.rental}:|">Rental:</dt>
         <dd th:text="${{lp.property.propertyStatus}}">Short Term</dd>
     <dt th:text="|#{org.gotocy.dictionary.price}:|">Price:</dt>
-        <dd><span class="tag price" th:text="${helper.price(#object.property)}">$ 78,000</span></dd>
+        <dd><span class="tag price" th:utext="${helper.price(#object.property)}">$ 78,000</span></dd>
     <dt th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', #object.property.bedrooms))}:|">Bedrooms:</dt>
         <dd th:text="${lp.property.bedrooms}">3</dd>
+    <dt th:text="|#{org.gotocy.dictionary.guests}:|">Guests:</dt>
+        <dd th:text="${lp.property.guests}">3</dd>
     <dt th:if="${lp.property.airConditioner}" th:text="|#{org.gotocy.dictionary.air-conditioner}:|">Air Conditioner:</dt>
         <dd th:if="${lp.property.airConditioner}" th:text="#{org.gotocy.dictionary.yes}">Yes</dd>
     <dt th:text="|#{org.gotocy.dictionary.distance-to-sea}:|">Distance to Sea:</dt>

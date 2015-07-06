@@ -34,10 +34,10 @@ public class Property extends BaseEntity {
 
 	private Integer bedrooms;
 
+	private Integer guests;
+
 	// TODO: remove ?
 	private Integer baths;
-
-	private Integer levels;
 
 	private Integer distanceToSea;
 
@@ -120,20 +120,20 @@ public class Property extends BaseEntity {
 		this.bedrooms = bedrooms;
 	}
 
+	public Integer getGuests() {
+		return guests;
+	}
+
+	public void setGuests(Integer guests) {
+		this.guests = guests;
+	}
+
 	public Integer getBaths() {
 		return baths;
 	}
 
 	public void setBaths(Integer baths) {
 		this.baths = baths;
-	}
-
-	public Integer getLevels() {
-		return levels;
-	}
-
-	public void setLevels(Integer levels) {
-		this.levels = levels;
 	}
 
 	public ImageSet getImageSet() {

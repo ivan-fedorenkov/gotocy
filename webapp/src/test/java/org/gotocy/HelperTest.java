@@ -17,14 +17,6 @@ import java.util.Map;
 public class HelperTest {
 
 	@Test
-	public void price() {
-		Assert.assertEquals("$ 1", Helper.price(1));
-		Assert.assertEquals("$ 100", Helper.price(100));
-		Assert.assertEquals("$ 100,000", Helper.price(100000));
-		Assert.assertEquals("$ 100,000,000", Helper.price(100000000));
-	}
-
-	@Test
 	public void entityPathTest() {
 		Property p = new Property();
 		p.setId(1L);
@@ -122,19 +114,6 @@ public class HelperTest {
 		String initialCode = "org.gotocy.some-code";
 		Assert.assertEquals(initialCode, Helper.pluralize(initialCode, 1));
 		Assert.assertEquals(initialCode + ".plural", Helper.pluralize(initialCode, 2));
-	}
-
-	@Test
-	public void distance() {
-		Assert.assertEquals("100 m", Helper.distance(100));
-		Assert.assertEquals("499 m", Helper.distance(499));
-
-		Assert.assertEquals("0.5 km", Helper.distance(500));
-		Assert.assertEquals("1.0 km", Helper.distance(1000));
-
-		Assert.assertEquals("1.2 km", Helper.distance(1249));
-		Assert.assertEquals("1.2 km", Helper.distance(1250));
-		Assert.assertEquals("1.3 km", Helper.distance(1251));
 	}
 
 }
