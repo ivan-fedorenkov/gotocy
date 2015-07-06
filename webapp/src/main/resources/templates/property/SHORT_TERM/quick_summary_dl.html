@@ -11,8 +11,8 @@
         <dd th:text="${lp.property.bedrooms}">3</dd>
     <dt th:text="|#{org.gotocy.dictionary.guests}:|">Guests:</dt>
         <dd th:text="${lp.property.guests}">3</dd>
-    <dt th:if="${lp.property.airConditioner}" th:text="|#{org.gotocy.dictionary.air-conditioner}:|">Air Conditioner:</dt>
-        <dd th:if="${lp.property.airConditioner}" th:text="#{org.gotocy.dictionary.yes}">Yes</dd>
+    <dt th:text="|#{org.gotocy.dictionary.air-conditioner}:|">Air Conditioner:</dt>
+        <dd th:text="${lp.property.airConditioner}? #{org.gotocy.dictionary.yes} : #{org.gotocy.dictionary.no}">Yes</dd>
     <dt th:text="|#{org.gotocy.dictionary.distance-to-sea}:|">Distance to Sea:</dt>
         <dd th:text="${helper.distance(lp.property.distanceToSea)}">100 m</dd>
 </dl>
