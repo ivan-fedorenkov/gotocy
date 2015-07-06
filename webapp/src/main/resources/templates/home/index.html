@@ -190,10 +190,6 @@
                                     </div>
                                     <ul class="additional-info">
                                         <li>
-                                            <header th:text="|#{org.gotocy.dictionary.area}:|">Area:</header>
-                                            <figure th:utext="|${lp.property.area} m<sup>2</sup>|">240m<sup>2</sup></figure>
-                                        </li>
-                                        <li>
                                             <header th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', lp.property.bedrooms))}:|">Bedrooms:</header>
                                             <figure th:text="${lp.property.bedrooms}">2</figure>
                                         </li>
@@ -344,10 +340,6 @@
                                         <figure th:text="${lp.address}">Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
-                                        <li>
-                                            <header th:text="|#{org.gotocy.dictionary.area}:|">Area:</header>
-                                            <figure th:utext="|${lp.property.area} m<sup>2</sup>|">240m<sup>2</sup></figure>
-                                        </li>
                                         <li>
                                             <header th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', lp.property.bedrooms))}:|">Bedrooms:</header>
                                             <figure th:text="${lp.property.bedrooms}">2</figure>

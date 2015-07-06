@@ -1,7 +1,5 @@
 package org.gotocy.domain;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -27,20 +25,25 @@ public class Property extends BaseEntity {
 
 	@Enumerated(EnumType.STRING)
 	private PropertyStatus propertyStatus;
-	
+
 	private Integer price;
 
-	private Integer area;
+	private Integer coveredArea;
+
+	private Integer plotSize;
 
 	private Integer bedrooms;
 
 	// TODO: remove ?
 	private Integer baths;
 
+	private Integer levels;
+
 	private Integer distanceToSea;
 
-	@Type(type="yes_no")
 	private Boolean airConditioner;
+
+	private Boolean readyToMoveIn;
 
 	@Embedded
 	private ImageSet imageSet;
@@ -93,12 +96,20 @@ public class Property extends BaseEntity {
 		this.price = price;
 	}
 
-	public Integer getArea() {
-		return area;
+	public Integer getCoveredArea() {
+		return coveredArea;
 	}
 
-	public void setArea(Integer area) {
-		this.area = area;
+	public void setCoveredArea(Integer coveredArea) {
+		this.coveredArea = coveredArea;
+	}
+
+	public Integer getPlotSize() {
+		return plotSize;
+	}
+
+	public void setPlotSize(Integer plotSize) {
+		this.plotSize = plotSize;
 	}
 
 	public Integer getBedrooms() {
@@ -115,6 +126,14 @@ public class Property extends BaseEntity {
 
 	public void setBaths(Integer baths) {
 		this.baths = baths;
+	}
+
+	public Integer getLevels() {
+		return levels;
+	}
+
+	public void setLevels(Integer levels) {
+		this.levels = levels;
 	}
 
 	public ImageSet getImageSet() {
@@ -139,5 +158,13 @@ public class Property extends BaseEntity {
 
 	public void setAirConditioner(Boolean airConditioner) {
 		this.airConditioner = airConditioner;
+	}
+
+	public Boolean getReadyToMoveIn() {
+		return readyToMoveIn;
+	}
+
+	public void setReadyToMoveIn(Boolean readyToMoveIn) {
+		this.readyToMoveIn = readyToMoveIn;
 	}
 }

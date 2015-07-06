@@ -152,6 +152,18 @@ public class Helper {
 		return number > 1 ? code + ".plural" : code;
 	}
 
+	/**
+	 * Returns the distance in the appropriate form, which is: < 500 m - meters (m), > 500 m - kilometers (km).
+	 */
+	public static String distance(int meters) {
+		if (meters < 500) {
+			return NumberUtils.format(meters, 1, NumberPointType.NONE, LocaleContextHolder.getLocale()) + " m";
+		} else {
+			return NumberUtils.format(meters / 1000d, 1, NumberPointType.NONE, 1, NumberPointType.POINT,
+				LocaleContextHolder.getLocale()) + " km";
+		}
+	}
+
 	private static String getPrefixForLanguage(String language) {
 		return Objects.equals(language, "ru") ? "/ru" : "";
 	}

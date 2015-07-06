@@ -124,4 +124,17 @@ public class HelperTest {
 		Assert.assertEquals(initialCode + ".plural", Helper.pluralize(initialCode, 2));
 	}
 
+	@Test
+	public void distance() {
+		Assert.assertEquals("100 m", Helper.distance(100));
+		Assert.assertEquals("499 m", Helper.distance(499));
+
+		Assert.assertEquals("0.5 km", Helper.distance(500));
+		Assert.assertEquals("1.0 km", Helper.distance(1000));
+
+		Assert.assertEquals("1.2 km", Helper.distance(1249));
+		Assert.assertEquals("1.2 km", Helper.distance(1250));
+		Assert.assertEquals("1.3 km", Helper.distance(1251));
+	}
+
 }

@@ -188,10 +188,6 @@
                                                         </div>
                                                         <ul class="additional-info">
                                                             <li>
-                                                                <header th:text="|#{org.gotocy.dictionary.area}:|">Area:</header>
-                                                                <figure th:utext="|*{property.area} m<sup>2</sup>|">240m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
                                                                 <header th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', lp.property.bedrooms))}:|">Bedrooms:</header>
                                                                 <figure th:text="*{property.bedrooms}">2</figure>
                                                             </li>
