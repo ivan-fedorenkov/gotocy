@@ -1,0 +1,16 @@
+<dl th:fragment="quick_summary_dl(lp)" th:with="isFurnitured=${lp.property.furnitured},hasHeating=${lp.property.heatingSystem}">
+    <dt th:text="|#{org.gotocy.dictionary.location}:|">Location:</dt>
+        <dd th:text="${{lp.property.location}}">Chicago, IL 60610</dd>
+    <dt th:text="|#{org.gotocy.dictionary.property-type}:|">Property Type:</dt>
+        <dd th:text="${{lp.property.propertyType}}">House</dd>
+    <dt th:text="|#{org.gotocy.dictionary.rental}:|">Rental:</dt>
+        <dd th:text="${{lp.property.propertyStatus}}">Long Term</dd>
+    <dt th:text="|#{org.gotocy.dictionary.price}:|">Price:</dt>
+        <dd><span class="tag price" th:text="${helper.price(#object.property)}">$ 78,000</span></dd>
+    <dt th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', #object.property.bedrooms))}:|">Bedrooms:</dt>
+        <dd th:text="${lp.property.bedrooms}">3</dd>
+    <dt th:if="${isFurnitured}" th:text="|#{org.gotocy.dictionary.furnitured}:|">Furnitured:</dt>
+        <dd th:if="${isFurnitured}" th:text="#{org.gotocy.dictionarty.yes}">Yes</dd>
+    <dt th:if="${hasHeating}" th:text="|#{org.gotocy.dictionary.heating-system}:|">Heating System:</dt>
+        <dd th:if="${hasHeating}" th:text="#{org.gotocy.dictionarty.yes}">Yes</dd>
+</dl>
