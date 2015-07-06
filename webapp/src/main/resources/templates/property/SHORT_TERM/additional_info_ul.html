@@ -1,0 +1,14 @@
+<ul class="additional-info" th:fragment="additional_info(lp)">
+    <li>
+        <header th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', lp.property.bedrooms))}:|">Bedrooms:</header>
+        <figure th:text="${lp.property.bedrooms}">3</figure>
+    </li>
+    <li>
+        <header th:text="|#{org.gotocy.dictionary.guests}:|">Guests:</header>
+        <figure th:text="${lp.property.guests}">2</figure>
+    </li>
+    <li>
+        <header th:text="|#{org.gotocy.dictionary.distance-to-sea-short}:|">Dst to Sea:</header>
+        <figure th:text="${helper.distance(lp.property.distanceToSea)}">200 m</figure>
+    </li>
+</ul>
