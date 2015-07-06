@@ -21,6 +21,8 @@ CREATE TABLE property(
     area INTEGER NOT NULL,
     bedrooms INTEGER NOT NULL,
     baths INTEGER NOT NULL,
+    air_conditioner CHAR(1) NULL,
+    distance_to_sea INTEGER NULL,
 
     representative_image_id BIGINT NOT NULL,
 

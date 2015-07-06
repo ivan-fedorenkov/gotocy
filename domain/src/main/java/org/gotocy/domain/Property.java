@@ -1,5 +1,7 @@
 package org.gotocy.domain;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,7 +34,13 @@ public class Property extends BaseEntity {
 
 	private Integer bedrooms;
 
+	// TODO: remove ?
 	private Integer baths;
+
+	private Integer distanceToSea;
+
+	@Type(type="yes_no")
+	private Boolean airConditioner;
 
 	@Embedded
 	private ImageSet imageSet;
@@ -115,5 +123,21 @@ public class Property extends BaseEntity {
 
 	public void setImageSet(ImageSet imageSet) {
 		this.imageSet = imageSet;
+	}
+
+	public Integer getDistanceToSea() {
+		return distanceToSea;
+	}
+
+	public void setDistanceToSea(Integer distanceToSea) {
+		this.distanceToSea = distanceToSea;
+	}
+
+	public Boolean getAirConditioner() {
+		return airConditioner;
+	}
+
+	public void setAirConditioner(Boolean airConditioner) {
+		this.airConditioner = airConditioner;
 	}
 }
