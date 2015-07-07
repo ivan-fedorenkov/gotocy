@@ -1,9 +1,6 @@
 package org.gotocy.domain;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 /**
  * TODO: validation / integration test on validation
@@ -12,6 +9,9 @@ import javax.persistence.Enumerated;
  */
 @Entity
 public class Property extends BaseEntity {
+
+	@ManyToOne(optional = false)
+	private Owner owner;
 
 	@Enumerated(EnumType.STRING)
 	private Location location;
@@ -51,6 +51,14 @@ public class Property extends BaseEntity {
 
 	@Embedded
 	private ImageSet imageSet;
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
 
 	public Location getLocation() {
 		return location;

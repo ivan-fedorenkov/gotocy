@@ -166,8 +166,24 @@
                 <!-- sidebar -->
                 <div class="col-md-3 col-sm-3">
                     <section id="sidebar">
-                        <aside id="featured-properties" th:unless="${#lists.isEmpty(similarProperties)}">
-                            <header><h3 th:text="#{org.gotocy.similar-properties}">Similar Properties</h3></header>
+                        <aside id="property-owner">
+                            <header><h3 th:text="#{org.gotocy.dictionary.property-owner}">Property Owner</h3></header>
+                            <dl>
+                                <dt th:text="|#{org.gotocy.dictionary.name}:|">Name:</dt>
+                                <dd th:text="*{property.owner.name}">Denis</dd>
+
+                                <dt th:text="|#{org.gotocy.dictionary.email}:|">Email:</dt>
+                                <dd th:text="*{property.owner.email}">support@gotocy.eu</dd>
+
+                                <dt th:text="|#{org.gotocy.dictionary.phone}:|">Phone:</dt>
+                                <dd th:text="*{property.owner.phone}">123-45-67</dd>
+
+                                <dt th:text="|#{org.gotocy.dictionary.spoken-languages}:|">Spoken Languages:</dt>
+                                <dd th:text="*{property.owner.spokenLanguages}">English, Russian</dd>
+                            </dl>                            
+                        </aside><!-- /#property-owner -->
+                        <aside id="similar-properties" th:unless="${#lists.isEmpty(similarProperties)}">
+                            <header><h3 th:text="#{org.gotocy.dictionary.similar-properties}">Similar Properties</h3></header>
                             <div class="property small" th:each="lp : ${similarProperties}" th:with="propertyPath=${helper.path(lp)}">
                                 <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html">
                                     <div class="property-image">
@@ -180,7 +196,7 @@
                                     <div class="tag price" th:utext="${helper.price(lp.property)}">$ 72,000</div>
                                 </div>
                             </div><!-- /.property -->
-                        </aside><!-- /#featured-properties -->
+                        </aside><!-- /#similar-properties -->
                     </section><!-- /#sidebar -->
                 </div><!-- /.col-md-3 -->
                 <!-- end Sidebar -->

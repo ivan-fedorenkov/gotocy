@@ -1,3 +1,15 @@
+CREATE TABLE owner(
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    version INTEGER NOT NULL,
+
+    name VARCHAR(256) NOT NULL,
+    email VARCHAR(256) NOT NULL,
+    phone VARCHAR(256) NOT NULL,
+    spoken_languages VARCHAR(256) NOT NULL,
+
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE asset(
     id BIGINT NOT NULL AUTO_INCREMENT,
     version INTEGER NOT NULL,
@@ -32,8 +44,10 @@ CREATE TABLE property(
     distance_to_sea INTEGER NULL,
 
     representative_image_id BIGINT NOT NULL,
+    owner_id BIGINT NOT NULL,
 
     CONSTRAINT fk_property_representative_image_id FOREIGN KEY (representative_image_id) REFERENCES asset (id),
+    CONSTRAINT fk_property_owner_id FOREIGN KEY (owner_id) REFERENCES owner (id),
     PRIMARY KEY (id)
 );
 
@@ -73,3 +87,4 @@ CREATE TABLE localized_property_specification(
     CONSTRAINT fk_localized_property_specifications_localized_property_id FOREIGN KEY (localized_property_id) REFERENCES localized_property (id),
     PRIMARY KEY (id)
 );
+
