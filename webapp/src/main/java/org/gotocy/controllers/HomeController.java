@@ -25,6 +25,8 @@ public class HomeController {
 	@RequestMapping("/")
 	public String home(Model model, Locale locale) {
 		// TODO: make them recent :)
+		model.addAttribute("longTermProperties", localizedPropertyRepository.findByPropertyPropertyStatusAndLocale(
+			PropertyStatus.LONG_TERM, locale.getLanguage()));
 		model.addAttribute("shortTermProperties", localizedPropertyRepository.findByPropertyPropertyStatusAndLocale(
 			PropertyStatus.SHORT_TERM, locale.getLanguage()));
 		model.addAttribute("saleProperties", localizedPropertyRepository.findByPropertyPropertyStatusAndLocale(

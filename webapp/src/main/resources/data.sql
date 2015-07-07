@@ -422,10 +422,10 @@ insert into property (id, version, location, latitude, longitude, property_type,
 
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
-  values (8, 0, 'en', 'Traditional house for rent in Crete', 'Greece, Crete, Rethymno, Municipality of Mylopotamos', '', 8);
+  values (8, 0, 'en', 'Traditional house for rent', 'Greece, Crete, Rethymno', '', 8);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
-  values (108, 0, 'ru', 'Crete Apartment for rent', 'Greece, Crete, Rethymno, Municipality of Mylopotamos', '', 8);
+  values (108, 0, 'ru', 'Traditional house for rent', 'Greece, Crete, Rethymno', '', 8);
 
 
 insert into property_images (property_id, images_id) values (8, 77);
