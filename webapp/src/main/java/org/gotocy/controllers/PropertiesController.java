@@ -43,7 +43,7 @@ public class PropertiesController {
 		// Remove self or last (if there was no self
 		if (!similar.remove(lp))
 			similar.remove(3);
-		model.addAttribute("similarLocalizedProperties", similar);
+		model.addAttribute("similarProperties", similar);
 
 		return "property/show";
 	}

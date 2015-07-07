@@ -151,12 +151,6 @@
                                         <li>Concrete Flooring</li>
                                     </ul>
                                 </section><!-- /#property-features -->
-                                <section id="virtual-tour">
-                                    <header><h2 th:text="#{org.gotocy.dictionary.virtual-tour}">Virtual Tour</h2></header>
-                                    <blockquote data-mode="click2play" data-width="100%" class="ricoh-theta-spherical-image" >
-                                        Erai-Yacchax2!! in Tokushima - <a href="https://theta360.com/spheres/samples/5bdc3b3e-3a15-11e4-bf19-52540092ec69-1" target="_blank">Spherical Image - RICOH THETA</a>
-                                    </blockquote>
-                                </section>
                                 <section id="property-map">
                                     <header><h2 th:text="#{org.gotocy.dictionary.map}">Map</h2></header>
                                     <div class="property-detail-map-wrapper">
@@ -164,108 +158,6 @@
                                     </div>
                                 </section><!-- /#property-map -->
                             </div><!-- /.col-md-8 -->
-                            <div class="col-md-12 col-sm-12" th:unless="${#lists.isEmpty(similarLocalizedProperties)}">
-                                <hr class="thick">
-                                <section id="similar-properties">
-                                    <header><h2 class="no-border">Similar Properties</h2></header>
-                                    <div class="row" th:remove="all-but-first">
-                                        <div class="col-md-4 col-sm-6" th:each="lp : ${similarLocalizedProperties}" th:object="${lp}">
-                                            <div class="property">
-                                                <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
-                                                    <div class="property-image">
-                                                        <img alt="" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).SMALL)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price" th:utext="${helper.price(lp.property)}">$ 11,000</div>
-                                                            <h3 th:text="*{title}">3398 Lodgeville Road</h3>
-                                                            <figure th:text="*{address}">Golden Valley, MN 55427</figure>
-                                                        </div>
-                                                        <ul class="additional-info" th:include="'property/' + ${lp.property.propertyStatus.name()} + '/additional_info_ul' :: additional_info(${#object})">
-                                                            <li>
-                                                                <header>Bedrooms:</header>
-                                                                <figure>2</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>2</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-3 -->
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="property">
-                                                <a href="/parent/webapp/templates/property/show.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="/parent/webapp/public/assets/img/properties/property-04.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 38,000</div>
-                                                            <h3>2186 Rinehart Road</h3>
-                                                            <figure>Doral, FL 33178 </figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>240m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>3</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-3 -->
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="property">
-                                                <a href="/parent/webapp/templates/property/show.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="/parent/webapp/public/assets/img/properties/property-07.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 325,000</div>
-                                                            <h3>3705 Brighton Circle Road</h3>
-                                                            <figure>Glenwood, MN 56334</figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>240m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>3</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-3 -->
-                                    </div><!-- /.row-->
-                                </section><!-- /#similar-properties -->
-                            </div><!-- /.col-md-12 -->
                         </div><!-- /.row -->
                     </section><!-- /#property-detail -->
                 </div><!-- /.col-md-9 -->
@@ -274,58 +166,21 @@
                 <!-- sidebar -->
                 <div class="col-md-3 col-sm-3">
                     <section id="sidebar">
-                        <aside id="featured-properties">
-                            <header><h3>Featured Properties</h3></header>
-                            <div class="property small">
-                                <a th:href="@{/property-detail.html}" href="/parent/webapp/templates/property/show.html">
+                        <aside id="featured-properties" th:unless="${#lists.isEmpty(similarProperties)}">
+                            <header><h3 th:text="#{org.gotocy.similar-properties}">Similar Properties</h3></header>
+                            <div class="property small" th:each="lp : ${similarProperties}" th:with="propertyPath=${helper.path(lp)}">
+                                <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html">
                                     <div class="property-image">
-                                        <img alt="" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-06.jpg'" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                        <img alt="" th:src="@{${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).THUMBNAIL)}}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                     </div>
                                 </a>
                                 <div class="info">
-                                    <a th:href="@{/property-detail.html}" href="/parent/webapp/templates/property/show.html"><h4>2186 Rinehart Road</h4></a>
-                                    <figure>Doral, FL 33178 </figure>
-                                    <div class="tag price">$ 72,000</div>
-                                </div>
-                            </div><!-- /.property -->
-                            <div class="property small">
-                                <a th:href="@{/property-detail.html}" href="/parent/webapp/templates/property/show.html">
-                                    <div class="property-image">
-                                        <img alt="" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-09.jpg'" src="/parent/webapp/public/assets/img/properties/property-09.jpg">
-                                    </div>
-                                </a>
-                                <div class="info">
-                                    <a th:href="@{/property-detail.html}" href="/parent/webapp/templates/property/show.html"><h4>2479 Murphy Court</h4></a>
-                                    <figure>Minneapolis, MN 55402</figure>
-                                    <div class="tag price">$ 36,000</div>
-                                </div>
-                            </div><!-- /.property -->
-                            <div class="property small">
-                                <a th:href="@{/property-detail.html}" href="/parent/webapp/templates/property/show.html">
-                                    <div class="property-image">
-                                        <img alt="" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/properties/property-03.jpg'" src="/parent/webapp/public/assets/img/properties/property-03.jpg">
-                                    </div>
-                                </a>
-                                <div class="info">
-                                    <a th:href="@{/property-detail.html}" href="/parent/webapp/templates/property/show.html"><h4>1949 Tennessee Avenue</h4></a>
-                                    <figure>Minneapolis, MN 55402</figure>
-                                    <div class="tag price">$ 128,600</div>
+                                    <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html"><h4>2186 Rinehart Road</h4></a>
+                                    <figure th:text="${lp.address}">Doral, FL 33178 </figure>
+                                    <div class="tag price" th:utext="${helper.price(lp.property)}">$ 72,000</div>
                                 </div>
                             </div><!-- /.property -->
                         </aside><!-- /#featured-properties -->
-                        <aside id="our-guides">
-                            <header><h3>Our Guides</h3></header>
-                            <a th:href="@{/#}" href="#" class="universal-button">
-                                <figure class="fa fa-home"></figure>
-                                <span>Buying Guide</span>
-                                <span class="arrow fa fa-angle-right"></span>
-                            </a><!-- /.universal-button -->
-                            <a th:href="@{/#}" href="#" class="universal-button">
-                                <figure class="fa fa-umbrella"></figure>
-                                <span>Right Insurance for You</span>
-                                <span class="arrow fa fa-angle-right"></span>
-                            </a><!-- /.universal-button -->
-                        </aside><!-- /#our-guide -->
                     </section><!-- /#sidebar -->
                 </div><!-- /.col-md-3 -->
                 <!-- end Sidebar -->
@@ -413,8 +268,6 @@
     });
 /*]]>*/
 </script>
-
-<!-- <script async src="https://theta360.com/widgets.js" charset="utf-8"></script> -->
 
 </body>
 </html>
