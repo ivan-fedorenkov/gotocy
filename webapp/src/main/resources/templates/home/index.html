@@ -119,13 +119,13 @@
 
     <!-- Page Content -->
     <div id="page-content">
-        <!-- <section id="banner">
+         <section id="banner">
             <div class="block has-dark-background background-color-default-darker center text-banner">
                 <div class="container">
-                    <h1 class="no-bottom-margin no-border">Zoner Is Fully Loaded Real Estate Template with <a href="#" class="text-underline">Tons of Features</a>!</h1>
+                    <h1 class="no-bottom-margin no-border" th:utext="|#{org.gotocy.templates.adding-property-banner-question} <a class='text-underline' href='mailto:${gotocy.email}'>#{org.gotocy.templates.adding-property-banner-contact-us}</a>|">Do you want your property do be listed here? <a href="#" class="text-underline">Contact Us</a>!</h1>
                 </div>
             </div>
-        </section> --><!-- /#banner -->
+        </section> <!-- /#banner -->
         <section id="long-term-properties" class="block" th:unless=${#lists.isEmpty(longTermProperties)}>
             <div class="container">
                 <header class="section-title">
@@ -265,18 +265,6 @@
                 </div><!-- /.row-->
             </div><!-- /.container -->
         </section><!-- /#long-term-properties -->
-        <aside id="advertising" class="block">
-            <div class="container">
-                <a href="submit.html">
-                    <div class="banner">
-                        <div class="wrapper">
-                            <span class="title">Do you want your property to be listed here?</span>
-                            <span class="submit">Submit it now! <i class="fa fa-plus-square"></i></span>
-                        </div>
-                    </div><!-- /.banner-->
-                </a>
-            </div>
-        </aside><!-- /#adveritsing-->
         <section id="short-term-properties" class="block" th:unless=${#lists.isEmpty(shortTermProperties)}>
             <div class="container">
                 <header class="section-title">
