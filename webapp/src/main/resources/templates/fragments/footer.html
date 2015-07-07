@@ -19,8 +19,8 @@
                             <strong th:text="#{org.gotocy.templates.company-name}">Your Company</strong><br>
                             <span th:utext="#{org.gotocy.templates.company-address}">4877 Spruce Drive<br>West Newton, PA 15089</span>
                         </address>
-                        +1 (734) 123-4567<br>
-                        <a href="#">hello@example.com</a>
+                       <span th:text="${gotocy.phone}">+357 96 740485</span><br>
+                        <a href="mailto:support@gotocy.eu" th:href="'mailto:' + ${gotocy.email}" th:text="${gotocy.email}">hello@example.com</a>
                     </article>
                 </div><!-- /.col-sm-3 -->
             </div><!-- /.row -->

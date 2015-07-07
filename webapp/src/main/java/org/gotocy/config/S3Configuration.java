@@ -1,4 +1,4 @@
-package org.gotocy.beans;
+package org.gotocy.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

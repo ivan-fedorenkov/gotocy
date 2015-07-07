@@ -4,3 +4,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+
+gotocy:
+  webapp:
+    email: "support@gotocy.eu"
+    phone: "+357 96 740485"

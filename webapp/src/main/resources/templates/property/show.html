@@ -29,19 +29,14 @@
     <div class="navigation">
         <div class="secondary-navigation">
             <div class="container">
-                <div class="contact">
-                    <figure><strong th:text="|#{org.gotocy.dictionary.phone}:|">Phone:</strong>+1 810-991-3842</figure>
-                    <figure><strong th:text="|#{org.gotocy.dictionary.email}:|">Email:</strong>zoner@example.com</figure>
+                <div class="contact" th:include="fragments/contact_div :: contact">
+                    <figure><strong>Phone:</strong>+1 810-991-3842</figure>
+                    <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
                 <div class="user-area">
-                    <div class="actions">
-                        <a th:href="@{/create-agency.html}" href="create-agency.html" class="promoted">Create Agency</a>
-                        <a th:href="@{/create-account.html}" href="create-account.html" class="promoted"><strong>Register</strong></a>
-                        <a th:href="@{/sign-in.html}" href="sign-in.html">Sign In</a>
-                    </div>
-                    <div class="language-bar">
-                        <a th:href="@{${helper.path(localizedProperty, 'en')}}" href="#" th:class="${#locale.language == 'en'}? 'active'" class="active"><img th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/flags/gb.png'" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
-                        <a th:href="@{${helper.path(localizedProperty, 'ru')}}" href="#" th:class="${#locale.language == 'ru'}? 'active'"><img th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/flags/ru.png'" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${localizedProperty})">
+                        <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
+                        <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>
                 </div>
             </div>

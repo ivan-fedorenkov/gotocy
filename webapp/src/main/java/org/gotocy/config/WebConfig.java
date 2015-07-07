@@ -28,10 +28,16 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 
 	private MessageSource messageSource;
 	private AssetsProvider assetsProvider;
+	private ApplicationProperties applicationProperties;
 
 	@Autowired
 	public void setAssetsProvider(AssetsProvider assetsProvider) {
 		this.assetsProvider = assetsProvider;
+	}
+
+	@Autowired
+	public void setApplicationProperties(ApplicationProperties applicationProperties) {
+		this.applicationProperties = applicationProperties;
 	}
 
 	@Override
@@ -60,7 +66,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new HelpersInterceptor(messageSource, assetsProvider));
+		registry.addInterceptor(new HelpersInterceptor(applicationProperties, messageSource, assetsProvider));
 	}
 
 }
