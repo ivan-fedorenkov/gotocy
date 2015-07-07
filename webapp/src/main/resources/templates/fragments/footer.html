@@ -1,31 +1,5 @@
 <footer id="page-footer" th:fragment="footer">
 <div class="inner">
-    <aside id="footer-main">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-3">
-                    <article>
-                        <h3 th:text="#{org.gotocy.dictionary.about-us}">About Us</h3>
-                        <p th:utext="#{org.gotocy.templates.aboutus}">Vel fermentum ipsum. Suspendisse quis molestie odio. Interdum et malesuada fames ac ante ipsum
-                            primis in faucibus. Quisque aliquet a metus in aliquet. Praesent ut turpis posuere, commodo odio
-                            id, ornare tortor
-                        </p>
-                    </article>
-                </div><!-- /.col-sm-3 -->
-                <div class="col-md-3 col-sm-3">
-                    <article>
-                        <h3 th:text="#{org.gotocy.dictionary.contact}">Contact</h3>
-                        <address>
-                            <strong th:text="#{org.gotocy.templates.company-name}">Your Company</strong><br>
-                            <span th:utext="#{org.gotocy.templates.company-address}">4877 Spruce Drive<br>West Newton, PA 15089</span>
-                        </address>
-                       <span th:text="${gotocy.phone}">+357 96 740485</span><br>
-                        <a href="mailto:support@gotocy.eu" th:href="'mailto:' + ${gotocy.email}" th:text="${gotocy.email}">hello@example.com</a>
-                    </article>
-                </div><!-- /.col-sm-3 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </aside><!-- /#footer-main -->
     <aside id="footer-copyright">
         <div class="container">
             <span th:utext="#{org.gotocy.templates.copyright}">Copyright © 2015. All Rights Reserved.</span>
