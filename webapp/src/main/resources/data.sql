@@ -1,4 +1,4 @@
--- 1 (Short term)
+-- 1 [Short term] http://www.housetrip.com/en/rentals/63167?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=3&source_element=card&source_type=list
 
 insert into asset (id, version, key, asset_type) values (1, 0, 'property/1/1.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (2, 0, 'property/1/2.jpg', 'IMAGE');
@@ -68,7 +68,7 @@ insert into localized_property_specification (id, version, specification, locali
 insert into localized_property_specification (id, version, specification, localized_property_id) values (8, 0, 'Garden', 1);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (9, 0, 'Parking / Garage', 1);
 
--- 2 (Short term)
+-- 2 [Short term] http://www.housetrip.com/en/rentals/61781?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=31&source_element=card&source_type=list
 
 insert into asset (id, version, key, asset_type) values (19, 0, 'property/2/1.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (20, 0, 'property/2/2.jpg', 'IMAGE');
@@ -145,7 +145,7 @@ insert into localized_property_specification (id, version, specification, locali
 insert into localized_property_specification (id, version, specification, localized_property_id) values (19, 0, 'Parking / Garage', 2);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (20, 0, 'Swimming Pool', 2);
 
--- 3 (Short term)
+-- 3 [Short term] http://www.housetrip.com/en/rentals/206592?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=28&source_element=card&source_type=list
 
 insert into asset (id, version, key, asset_type) values (39, 0, 'property/3/1.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (40, 0, 'property/3/2.jpg', 'IMAGE');
@@ -219,7 +219,7 @@ insert into localized_property_specification (id, version, specification, locali
 insert into localized_property_specification (id, version, specification, localized_property_id) values (38, 0, 'Internet (cable)', 3);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (39, 0, 'TV', 3);
 
--- 4 (Short term)
+-- 4 [Short term] http://www.housetrip.com/en/rentals/296121?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=17&source_element=card&source_type=list
 
 insert into asset (id, version, key, asset_type) values (49, 0, 'property/4/1.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (50, 0, 'property/4/2.jpg', 'IMAGE');
@@ -272,7 +272,7 @@ insert into localized_property_specification (id, version, specification, locali
 insert into localized_property_specification (id, version, specification, localized_property_id) values (50, 0, 'Parking / Garage', 4);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (51, 0, 'Swimming Pool', 4);
 
--- 5 (Sale)
+-- 5 [Sale] LAR 801/1
 
 insert into asset (id, version, key, asset_type) values (58, 0, 'property/5/DSC_3562.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (59, 0, 'property/5/DSC_3761.jpg', 'IMAGE');
@@ -316,7 +316,7 @@ insert into localized_property_specification (id, version, specification, locali
 insert into localized_property_specification (id, version, specification, localized_property_id) values (59, 0, 'Gypsum board ceilings, lighting', 5);
 
 
--- 6 (Sale)
+-- 6 [Sale] LAR 802
 
 insert into asset (id, version, key, asset_type) values (67, 0, 'property/6/DSC_3529.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (68, 0, 'property/6/DSC_3534.jpg', 'IMAGE');
@@ -349,3 +349,102 @@ insert into localized_property_specification (id, version, specification, locali
 insert into localized_property_specification (id, version, specification, localized_property_id) values (65, 0, 'Gypsum board  ceilings, lighting', 6);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (66, 0, 'Concierge service', 6);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (67, 0, 'Store room', 6);
+
+
+-- 7 [Long term] http://www.greece-property.net/property/4003/
+
+insert into asset (id, version, key, asset_type) values (71, 0, 'property/7/1.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (72, 0, 'property/7/2.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (73, 0, 'property/7/3.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (74, 0, 'property/7/4.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (75, 0, 'property/7/5.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (76, 0, 'property/7/6.jpg', 'IMAGE');
+
+
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnished, representative_image_id)
+  values (7, 0, 'GREECE', '35.463105', '24.133071', 'APARTMENT', 'LONG_TERM', 350, 150, 2, true, false, 71);
+
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (7, 0, 'en', 'Crete Apartment for rent', 'Greece, Crete, Chania', 'This rental offers space and comfort, both inside and out, benefiting from a balcony that wraps around the apartment.
+
+Entering this wonderful apartment there is a hallway leading to the living-dining room as well as to the two bedrooms of 11m² each.
+
+Both bedrooms feature fitted wardrobes.
+
+This marvelous apartment also comprises a kitchen of 10m² and a bathroom with bathtub.
+
+A great advantage of this rental is its proximity to all amenities such as a big super market (100m), and a bus station (50m) with frequent schedules to Chania city as well as many other destinations.
+
+This is an ideal base for a memorable living experience...', 7);
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (107, 0, 'ru', 'Crete Apartment for rent', 'Greece, Crete, Chania', '', 7);
+
+
+insert into property_images (property_id, images_id) values (7, 71);
+insert into property_images (property_id, images_id) values (7, 72);
+insert into property_images (property_id, images_id) values (7, 73);
+insert into property_images (property_id, images_id) values (7, 74);
+insert into property_images (property_id, images_id) values (7, 75);
+insert into property_images (property_id, images_id) values (7, 76);
+
+
+insert into localized_property_specification (id, version, specification, localized_property_id) values (68, 0, 'Autonomous heating', 7);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (69, 0, 'Internet connection possible', 7);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (70, 0, 'Pet friendly', 7);
+
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1068, 0, 'Автономное отопление', 107);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1069, 0, 'Доступ в интернет', 107);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1070, 0, 'Отдых с животными разрешён', 107);
+
+-- 8 [Long term] http://www.greece-property.net/property/3964/
+
+insert into asset (id, version, key, asset_type) values (77, 0, 'property/8/1.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (78, 0, 'property/8/2.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (79, 0, 'property/8/3.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (80, 0, 'property/8/4.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (81, 0, 'property/8/5.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (82, 0, 'property/8/6.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (83, 0, 'property/8/7.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (84, 0, 'property/8/8.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (85, 0, 'property/8/9.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (86, 0, 'property/8/10.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (87, 0, 'property/8/11.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (88, 0, 'property/8/12.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (89, 0, 'property/8/13.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (90, 0, 'property/8/14.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (91, 0, 'property/8/15.jpg', 'IMAGE');
+
+
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnished, representative_image_id)
+  values (8, 0, 'GREECE', '35.368804', '24.703283', 'HOUSE', 'LONG_TERM', 450, 12000, 2, true, true, 77);
+
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (8, 0, 'en', 'Traditional house for rent in Crete', 'Greece, Crete, Rethymno, Municipality of Mylopotamos', '', 8);
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (108, 0, 'ru', 'Crete Apartment for rent', 'Greece, Crete, Rethymno, Municipality of Mylopotamos', '', 8);
+
+
+insert into property_images (property_id, images_id) values (8, 77);
+insert into property_images (property_id, images_id) values (8, 78);
+insert into property_images (property_id, images_id) values (8, 79);
+insert into property_images (property_id, images_id) values (8, 80);
+insert into property_images (property_id, images_id) values (8, 81);
+insert into property_images (property_id, images_id) values (8, 82);
+insert into property_images (property_id, images_id) values (8, 83);
+insert into property_images (property_id, images_id) values (8, 84);
+insert into property_images (property_id, images_id) values (8, 85);
+insert into property_images (property_id, images_id) values (8, 86);
+insert into property_images (property_id, images_id) values (8, 87);
+insert into property_images (property_id, images_id) values (8, 88);
+insert into property_images (property_id, images_id) values (8, 89);
+insert into property_images (property_id, images_id) values (8, 90);
+insert into property_images (property_id, images_id) values (8, 91);
+
+
+insert into localized_property_specification (id, version, specification, localized_property_id) values (71, 0, 'Garden', 8);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (72, 0, 'Fire place', 8);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (73, 0, 'Internet Connection', 8);

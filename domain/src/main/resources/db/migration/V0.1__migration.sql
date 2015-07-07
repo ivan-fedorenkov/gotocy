@@ -19,14 +19,16 @@ CREATE TABLE property(
     property_status VARCHAR(16) NOT NULL,
     price INTEGER NOT NULL,
     bedrooms INTEGER NOT NULL,
-    baths INTEGER NOT NULL,
 
     -- non common properties
     covered_area INTEGER NULL,
     plot_size INTEGER NULL,
     guests INTEGER NULL,
+    baths INTEGER NULL,
     ready_to_move_in BIT NOT NULL DEFAULT FALSE,
     air_conditioner BIT NOT NULL DEFAULT FALSE,
+    heating_system BIT NOT NULL DEFAULT FALSE,
+    furnished BIT NOT NULL DEFAULT FALSE,
     distance_to_sea INTEGER NULL,
 
     representative_image_id BIGINT NOT NULL,

@@ -45,6 +45,10 @@ public class Property extends BaseEntity {
 
 	private Boolean readyToMoveIn;
 
+	private Boolean heatingSystem;
+
+	private Boolean furnished;
+
 	@Embedded
 	private ImageSet imageSet;
 
@@ -166,5 +170,21 @@ public class Property extends BaseEntity {
 
 	public void setReadyToMoveIn(Boolean readyToMoveIn) {
 		this.readyToMoveIn = readyToMoveIn;
+	}
+
+	public Boolean getHeatingSystem() {
+		return heatingSystem;
+	}
+
+	public void setHeatingSystem(Boolean heatingSystem) {
+		this.heatingSystem = heatingSystem;
+	}
+
+	public Boolean getFurnished() {
+		return furnished;
+	}
+
+	public void setFurnished(Boolean furnished) {
+		this.furnished = furnished;
 	}
 }
