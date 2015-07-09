@@ -17,6 +17,9 @@ public class ApplicationProperties {
 	@NotEmpty
 	private String phone;
 
+	@NotEmpty
+	private String profile;
+
 	public String getEmail() {
 		return email;
 	}
@@ -31,5 +34,13 @@ public class ApplicationProperties {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 }

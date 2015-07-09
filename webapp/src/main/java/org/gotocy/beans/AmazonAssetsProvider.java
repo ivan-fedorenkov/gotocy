@@ -68,7 +68,6 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 			getObjectMetadata(config.getBucket(), assetKey);
 			return true;
 		} catch (AmazonS3Exception e) {
-			e.printStackTrace();
 			return false;
 		}
 	}
