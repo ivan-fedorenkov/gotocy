@@ -1,9 +1,12 @@
 package org.gotocy.beans;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.HttpMethod;
+import com.amazonaws.Protocol;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
+import com.amazonaws.services.s3.model.Region;
 import org.gotocy.config.S3Configuration;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
@@ -24,13 +27,17 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 
 	@Autowired
 	public AmazonAssetsProvider(S3Configuration config) {
-		super(new BasicAWSCredentials(config.getAccessKey(), config.getSecretKey()));
+		super(new BasicAWSCredentials(config.getAccessKey(), config.getSecretKey()),
+			new ClientConfiguration().withProtocol(Protocol.HTTP));
+
+		setRegion(Region.EU_Ireland.toAWSRegion());
+
 		this.config = config;
 	}
 
 	@Override
 	public String getUrl(Asset asset) {
-		return generatePresignedUrl(asset.getKey(), HttpMethod.GET);
+		return generateUrl(asset.getKey());
 	}
 
 	@Override
@@ -39,16 +46,20 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 		switch (size) {
 		case THUMBNAIL:
 			if (exists(key = image.getKeyForSize(ImageSize.THUMBNAIL)))
-				return generatePresignedUrl(key, HttpMethod.GET);
+				return generateUrl(key);
 		case SMALL:
 			if (exists(key = image.getKeyForSize(ImageSize.SMALL)))
-				return generatePresignedUrl(key, HttpMethod.GET);
+				return generateUrl(key);
 		case MEDIUM:
 			if (exists(key = image.getKeyForSize(ImageSize.MEDIUM)))
-				return generatePresignedUrl(key, HttpMethod.GET);
+				return generateUrl(key);
 		default: // Fall back to default - original
 			return getUrl(image);
 		}
+	}
+
+	private String generateUrl(String assetKey) {
+		return config.getUrl() + "/" + assetKey;
 	}
 
 	private String generatePresignedUrl(String assetKey, HttpMethod method) {
@@ -61,6 +72,7 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 			getObjectMetadata(config.getBucket(), assetKey);
 			return true;
 		} catch (AmazonS3Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}

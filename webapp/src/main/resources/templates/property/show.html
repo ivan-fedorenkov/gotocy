@@ -11,12 +11,12 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <!-- TODO: load fonts from the amazon S3 - need to setup CORS -->
     <link th:href="@{/assets/fonts/font-awesome.css}" href="/parent/webapp/public/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" th:href="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/bootstrap/css/bootstrap.css'" href="/parent/webapp/public/assets/bootstrap/css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" th:href="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/css/bootstrap-select.min.css'" href="/parent/webapp/public/assets/css/bootstrap-select.min.css" type="text/css">
-    <link rel="stylesheet" th:href="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/css/magnific-popup.css'" href="/parent/webapp/public/assets/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" th:href="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/css/jquery.slider.min.css'" href="/parent/webapp/public/assets/css/jquery.slider.min.css" type="text/css">
-    <link rel="stylesheet" th:href="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/css/owl.carousel.css'" href="/parent/webapp/public/assets/css/owl.carousel.css" type="text/css">
-    <link rel="stylesheet" th:href="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/css/style.css'" href="/parent/webapp/public/assets/css/style.css" type="text/css">
+    <link rel="stylesheet" th:href="'http://assets.gotocy.eu/static/bootstrap/css/bootstrap.css'" href="/parent/webapp/public/assets/bootstrap/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" th:href="'http://assets.gotocy.eu/static/css/bootstrap-select.min.css'" href="/parent/webapp/public/assets/css/bootstrap-select.min.css" type="text/css">
+    <link rel="stylesheet" th:href="'http://assets.gotocy.eu/static/css/magnific-popup.css'" href="/parent/webapp/public/assets/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" th:href="'http://assets.gotocy.eu/static/css/jquery.slider.min.css'" href="/parent/webapp/public/assets/css/jquery.slider.min.css" type="text/css">
+    <link rel="stylesheet" th:href="'http://assets.gotocy.eu/static/css/owl.carousel.css'" href="/parent/webapp/public/assets/css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" th:href="'http://assets.gotocy.eu/static/css/style.css'" href="/parent/webapp/public/assets/css/style.css" type="text/css">
 
     <title th:text="#{org.gotocy.templates.title(*{title})}">Property Detail | GoToCy</title>
 
@@ -51,7 +51,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand nav" id="brand">
-                        <a th:href="@{${helper.path('/', #locale.language)}}" href="/parent/webapp/templates/home/index.html"><img th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/gotocy_logo.png'" src="/parent/webapp/public/assets/img/gotocy_logo.png" alt="brand"></a>
+                        <a th:href="@{${helper.path('/', #locale.language)}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/gotocy_logo.png'" src="/parent/webapp/public/assets/img/gotocy_logo.png" alt="brand"></a>
                     </div>
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
@@ -245,39 +245,39 @@
     <!-- end Page Footer -->
 </div>
 
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/jquery-2.1.0.min.js'" src="/parent/webapp/public/assets/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery-2.1.0.min.js'" src="/parent/webapp/public/assets/js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/jquery-migrate-1.2.1.min.js'" src="/parent/webapp/public/assets/js/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/bootstrap/js/bootstrap.min.js'" src="/parent/webapp/public/assets/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/smoothscroll.js'" src="/parent/webapp/public/assets/js/smoothscroll.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/markerwithlabel_packed.js'" src="/parent/webapp/public/assets/js/markerwithlabel_packed.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/infobox.js'" src="/parent/webapp/public/assets/js/infobox.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/owl.carousel.min.js'" src="/parent/webapp/public/assets/js/owl.carousel.min.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/bootstrap-select.min.js'" src="/parent/webapp/public/assets/js/bootstrap-select.min.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/jquery.validate.min.js'" src="/parent/webapp/public/assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/jquery.placeholder.js'" src="/parent/webapp/public/assets/js/jquery.placeholder.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/icheck.min.js'" src="/parent/webapp/public/assets/js/icheck.min.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/retina-1.1.0.min.js'" src="/parent/webapp/public/assets/js/retina-1.1.0.min.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/jquery.raty.min.js'" src="/parent/webapp/public/assets/js/jquery.raty.min.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/jquery.magnific-popup.min.js'" src="/parent/webapp/public/assets/js/jquery.magnific-popup.min.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/jshashtable-2.1_src.js'" src="/parent/webapp/public/assets/js/jshashtable-2.1_src.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/jquery.numberformatter-1.2.3.js'" src="/parent/webapp/public/assets/js/jquery.numberformatter-1.2.3.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/tmpl.js'" src="/parent/webapp/public/assets/js/tmpl.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/jquery.dependClass-0.1.js'" src="/parent/webapp/public/assets/js/jquery.dependClass-0.1.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/draggable-0.1.js'" src="/parent/webapp/public/assets/js/draggable-0.1.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/jquery.slider.js'" src="/parent/webapp/public/assets/js/jquery.slider.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/jquery.fitvids.js'" src="/parent/webapp/public/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/custom-map.js'" src="/parent/webapp/public/assets/js/custom-map.js"></script>
-<script type="text/javascript" th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/custom.js'" src="/parent/webapp/public/assets/js/custom.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery-migrate-1.2.1.min.js'" src="/parent/webapp/public/assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/bootstrap/js/bootstrap.min.js'" src="/parent/webapp/public/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/smoothscroll.js'" src="/parent/webapp/public/assets/js/smoothscroll.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/markerwithlabel_packed.js'" src="/parent/webapp/public/assets/js/markerwithlabel_packed.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/infobox.js'" src="/parent/webapp/public/assets/js/infobox.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/owl.carousel.min.js'" src="/parent/webapp/public/assets/js/owl.carousel.min.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/bootstrap-select.min.js'" src="/parent/webapp/public/assets/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery.validate.min.js'" src="/parent/webapp/public/assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery.placeholder.js'" src="/parent/webapp/public/assets/js/jquery.placeholder.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/icheck.min.js'" src="/parent/webapp/public/assets/js/icheck.min.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/retina-1.1.0.min.js'" src="/parent/webapp/public/assets/js/retina-1.1.0.min.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery.raty.min.js'" src="/parent/webapp/public/assets/js/jquery.raty.min.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery.magnific-popup.min.js'" src="/parent/webapp/public/assets/js/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jshashtable-2.1_src.js'" src="/parent/webapp/public/assets/js/jshashtable-2.1_src.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery.numberformatter-1.2.3.js'" src="/parent/webapp/public/assets/js/jquery.numberformatter-1.2.3.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/tmpl.js'" src="/parent/webapp/public/assets/js/tmpl.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery.dependClass-0.1.js'" src="/parent/webapp/public/assets/js/jquery.dependClass-0.1.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/draggable-0.1.js'" src="/parent/webapp/public/assets/js/draggable-0.1.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery.slider.js'" src="/parent/webapp/public/assets/js/jquery.slider.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery.fitvids.js'" src="/parent/webapp/public/assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/custom-map.js'" src="/parent/webapp/public/assets/js/custom-map.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/custom.js'" src="/parent/webapp/public/assets/js/custom.js"></script>
 
 <!--[if gt IE 8]>
-<script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/ie.js"></script>
+<script type="text/javascript" src="http://assets.gotocy.eu/static/js/ie.js"></script>
 <![endif]-->
 <script type="text/javascript" th:inline="javascript">
 /*<![CDATA[*/
     var latitude = /*[[*{property.latitude}]]*/ '34.7071301';
     var longitude = /*[[*{property.longitude}]]*/ '33.022617399999945';
-    var markerPictureUrl = /*[[${'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/property-types/single-family.png'}]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
+    var markerPictureUrl = /*[[${'http://assets.gotocy.eu/static/img/property-types/single-family.png'}]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
     google.maps.event.addDomListener(window, 'load', initMap(latitude, longitude, markerPictureUrl));
     $(window).load(function(){
         initializeOwl(false);

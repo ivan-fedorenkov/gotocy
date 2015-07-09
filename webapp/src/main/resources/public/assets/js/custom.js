@@ -66,7 +66,7 @@ $(document).ready(function($) {
     $("#form-contact-submit").bind("click", function(event){
         $("#form-contact").validate({
             submitHandler: function() {
-                $.post("https://s3-eu-west-1.amazonaws.com/gotocy/assets/php/contact.php", $("#form-contact").serialize(),  function(response) {
+                $.post("http://assets.gotocy.eu/static/php/contact.php", $("#form-contact").serialize(),  function(response) {
                     $('#form-status').html(response);
                     $('#form-contact-submit').attr('disabled','true');
                 });
@@ -144,7 +144,7 @@ $(document).ready(function($) {
     var ratingOverall = $('.rating-overall');
     if (ratingOverall.length > 0) {
         ratingOverall.raty({
-            path: 'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img',
+            path: 'http://assets.gotocy.eu/static/img',
             readOnly: true,
             score: function() {
                 return $(this).attr('data-score');
@@ -154,7 +154,7 @@ $(document).ready(function($) {
     var ratingIndividual = $('.rating-individual');
     if (ratingIndividual.length > 0) {
         ratingIndividual.raty({
-            path: 'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img',
+            path: 'http://assets.gotocy.eu/static/img',
             readOnly: true,
             score: function() {
                 return $(this).attr('data-score');
@@ -164,7 +164,7 @@ $(document).ready(function($) {
     var ratingUser = $('.rating-user');
     if (ratingUser.length > 0) {
         $('.rating-user .inner').raty({
-            path: 'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img',
+            path: 'http://assets.gotocy.eu/static/img',
             starOff : 'big-star-off.png',
             starOn  : 'big-star-on.png',
             width: 150,
@@ -674,7 +674,7 @@ function drawFooterThumbnails(){
     var rows = 1; // how many rows to display, default = 1
     var thumbnailsPerRow = 1; // how many thumbnails per row to display, default = 1
 
-    $.getScript("https://s3-eu-west-1.amazonaws.com/gotocy/assets/js/locations.js", function(){
+    $.getScript("http://assets.gotocy.eu/static/js/locations.js", function(){
         // Create thumbnail function
         function createThumbnail() {
             for (i = 0; i < rows * thumbnailsPerRow; i++) {

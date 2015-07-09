@@ -1,4 +1,4 @@
 <div class="language-bar" th:fragment="language_bar(pathObject)">
-    <a th:href="@{${helper.path(pathObject, 'en')}}" href="#" th:class="${#locale.language == 'en'}? 'active'" class="active"><img th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/flags/gb.png'" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
-    <a th:href="@{${helper.path(pathObject, 'ru')}}" href="#" th:class="${#locale.language == 'ru'}? 'active'"><img th:src="'https://s3-eu-west-1.amazonaws.com/gotocy/assets/img/flags/ru.png'" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+    <a th:href="@{${helper.path(pathObject, 'en')}}" href="#" th:class="${#locale.language == 'en'}? 'active'" class="active"><img th:src="'http://assets.gotocy.eu/static/img/flags/gb.png'" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
+    <a th:href="@{${helper.path(pathObject, 'ru')}}" href="#" th:class="${#locale.language == 'ru'}? 'active'"><img th:src="'http://assets.gotocy.eu/static/img/flags/ru.png'" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
 </div>

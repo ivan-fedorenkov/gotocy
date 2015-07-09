@@ -6,6 +6,8 @@ spring:
       ddl-auto: validate
 
 gotocy:
+  s3:
+    url: "http://assets.gotocy.eu"
   webapp:
     email: "support@gotocy.eu"
     phone: "+357 96 740485"
