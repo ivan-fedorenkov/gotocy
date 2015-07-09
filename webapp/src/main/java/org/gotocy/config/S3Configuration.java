@@ -24,9 +24,6 @@ public class S3Configuration {
 	@NotNull
 	private String bucket;
 
-	@NotNull
-	private String url;
-
 	public String getAccessKey() {
 		return accessKey;
 	}
@@ -55,11 +52,4 @@ public class S3Configuration {
 		return new Date(System.currentTimeMillis() + EXPIRATION_TIME);
 	}
 
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
 }

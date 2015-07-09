@@ -37,7 +37,7 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 
 	@Override
 	public String getUrl(Asset asset) {
-		return generateUrl(asset.getKey());
+		return generatePresignedUrl(asset.getKey(), HttpMethod.GET);
 	}
 
 	@Override
@@ -46,20 +46,16 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 		switch (size) {
 		case THUMBNAIL:
 			if (exists(key = image.getKeyForSize(ImageSize.THUMBNAIL)))
-				return generateUrl(key);
+				return generatePresignedUrl(key, HttpMethod.GET);
 		case SMALL:
 			if (exists(key = image.getKeyForSize(ImageSize.SMALL)))
-				return generateUrl(key);
+				return generatePresignedUrl(key, HttpMethod.GET);
 		case MEDIUM:
 			if (exists(key = image.getKeyForSize(ImageSize.MEDIUM)))
-				return generateUrl(key);
+				return generatePresignedUrl(key, HttpMethod.GET);
 		default: // Fall back to default - original
 			return getUrl(image);
 		}
-	}
-
-	private String generateUrl(String assetKey) {
-		return config.getUrl() + "/" + assetKey;
 	}
 
 	private String generatePresignedUrl(String assetKey, HttpMethod method) {
