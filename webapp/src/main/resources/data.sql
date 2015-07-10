@@ -1,5 +1,7 @@
 insert into owner (id, version, name, email, phone, spoken_languages)
-  values (1, 0, 'Denis', 'support@gotocy.eu', '+357 96 740485', 'English, Russian');
+  values (1, 0, 'Denis', 'support@gotocy.eu', '+357 96 740485', 'Eng, Rus');
+insert into owner (id, version, name, email, phone, spoken_languages)
+  values (2, 0, 'Demetris', '', '+357 99483998', 'Greek, Eng, Rus');
 
 -- 1 [Short term] http://www.housetrip.com/en/rentals/63167?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=3&source_element=card&source_type=list
 
@@ -451,3 +453,54 @@ insert into property_images (property_id, images_id) values (8, 91);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (71, 0, 'Garden', 8);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (72, 0, 'Fire place', 8);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (73, 0, 'Internet Connection', 8);
+
+
+-- 9 [House] Determinis
+
+insert into asset (id, version, key, asset_type) values (92, 0, 'property/9/IMG_0019.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (93, 0, 'property/9/IMG_0020.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (94, 0, 'property/9/IMG_0021.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (95, 0, 'property/9/IMG_0022.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (96, 0, 'property/9/IMG_0023.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (97, 0, 'property/9/IMG_0024.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (98, 0, 'property/9/IMG_0025.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (99, 0, 'property/9/IMG_0026.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (100, 0, 'property/9/IMG_0027.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (101, 0, 'property/9/IMG_0028.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (102, 0, 'property/9/IMG_0029.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (103, 0, 'property/9/IMG_0030.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (104, 0, 'property/9/IMG_0031.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (105, 0, 'property/9/IMG_0032.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (106, 0, 'property/9/IMG_0033.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (107, 0, 'property/9/IMG_0034.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (108, 0, 'property/9/IMG_0035.jpg', 'IMAGE');
+
+
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, heating_system, furnished, representative_image_id, owner_id)
+  values (9, 0, 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'LONG_TERM', 1000, 4, true, true, 93, 2);
+
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (9, 0, 'en', 'Demetris Residence', '', '', 9);
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (109, 0, 'ru', 'Demetris Residence', '', '', 9);
+
+
+insert into property_images (property_id, images_id) values (9, 92);
+insert into property_images (property_id, images_id) values (9, 93);
+insert into property_images (property_id, images_id) values (9, 94);
+insert into property_images (property_id, images_id) values (9, 95);
+insert into property_images (property_id, images_id) values (9, 96);
+insert into property_images (property_id, images_id) values (9, 97);
+insert into property_images (property_id, images_id) values (9, 98);
+insert into property_images (property_id, images_id) values (9, 99);
+insert into property_images (property_id, images_id) values (9, 100);
+insert into property_images (property_id, images_id) values (9, 101);
+insert into property_images (property_id, images_id) values (9, 102);
+insert into property_images (property_id, images_id) values (9, 103);
+insert into property_images (property_id, images_id) values (9, 104);
+insert into property_images (property_id, images_id) values (9, 105);
+insert into property_images (property_id, images_id) values (9, 106);
+insert into property_images (property_id, images_id) values (9, 107);
+insert into property_images (property_id, images_id) values (9, 108);

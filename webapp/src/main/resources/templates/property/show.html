@@ -173,8 +173,8 @@
                                 <dt th:text="|#{org.gotocy.dictionary.name}:|">Name:</dt>
                                 <dd th:text="*{property.owner.name}">Denis</dd>
 
-                                <dt th:text="|#{org.gotocy.dictionary.email}:|">Email:</dt>
-                                <dd th:text="*{property.owner.email}">support@gotocy.eu</dd>
+                                <dt th:unless="${#strings.isEmpty(#object.property.owner.email)}" th:text="|#{org.gotocy.dictionary.email}:|">Email:</dt>
+                                <dd th:unless="${#strings.isEmpty(#object.property.owner.email)}" th:text="*{property.owner.email}">support@gotocy.eu</dd>
 
                                 <dt th:text="|#{org.gotocy.dictionary.phone}:|">Phone:</dt>
                                 <dd th:text="*{property.owner.phone}">123-45-67</dd>
