@@ -3,4 +3,9 @@
         <header th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', lp.property.bedrooms))}:|">Bedrooms:</header>
         <figure th:text="${lp.property.bedrooms}">3</figure>
     </li>
+
+    <li>
+        <header th:text="|#{org.gotocy.dictionary.furnishing}:|">Furnishing:</header>
+        <figure th:text="${{lp.property.furnishing}}">Full</figure>
+    </li>
 </ul>

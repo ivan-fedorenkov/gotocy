@@ -47,7 +47,8 @@ public class Property extends BaseEntity {
 
 	private Boolean heatingSystem;
 
-	private Boolean furnished;
+	@Enumerated(EnumType.STRING)
+	private Furnishing furnishing;
 
 	@Embedded
 	private ImageSet imageSet;
@@ -188,11 +189,11 @@ public class Property extends BaseEntity {
 		this.heatingSystem = heatingSystem;
 	}
 
-	public Boolean getFurnished() {
-		return furnished;
+	public Furnishing getFurnishing() {
+		return furnishing;
 	}
 
-	public void setFurnished(Boolean furnished) {
-		this.furnished = furnished;
+	public void setFurnishing(Furnishing furnishing) {
+		this.furnishing = furnishing;
 	}
 }

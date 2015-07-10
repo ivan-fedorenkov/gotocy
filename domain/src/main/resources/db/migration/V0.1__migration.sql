@@ -40,7 +40,7 @@ CREATE TABLE property(
     ready_to_move_in BIT NOT NULL DEFAULT FALSE,
     air_conditioner BIT NOT NULL DEFAULT FALSE,
     heating_system BIT NOT NULL DEFAULT FALSE,
-    furnished BIT NOT NULL DEFAULT FALSE,
+    furnishing VARCHAR(16) NULL,
     distance_to_sea INTEGER NULL,
 
     representative_image_id BIGINT NOT NULL,

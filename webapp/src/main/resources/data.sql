@@ -174,13 +174,13 @@ The villa is on the outskirts of the hamlet and so has stunning views of the Med
 
 Green Paradise Villa is only 20 km from Rethymno, 72km from Herkalion airport and 95km from Chania airport. The villa is also in the vicinity of several places of historical interest such as Arkadi (16km), ancient Eleftherna (5km) and a little bit further afield the famous archaeological site of Knossos (72km). And conveniently, the villa is just 13km (approx: 10-15 minute drive) from the beautiful, sandy beaches of Panormo. In the large village of Panormo you will find more amenities.
 
-This delightful two-storey villa is 160 sq.m, with beautifully tiled floors and high, wooden beam ceilings. It features a lovely well-kept garden and terrace with a 20 sq.m pool with sunbeds and umbrellas, barbecue facilities and parking area. It can accommodate 6 people in three elegantly furnished bedrooms, of which two have double beds and the third has two single beds. Furthermore, it is possible for more persons to be accommodated. The very comfortable living room sofa easily converts into a bed and a cot/crib for a baby/infant is available that can be used in any of the rooms. In addition all rooms feature air conditioning, satellite T.V. and internet access.
+This delightful two-storey villa is 160 sq.m, with beautifully tiled floors and high, wooden beam ceilings. It features a lovely well-kept garden and terrace with a 20 sq.m pool with sunbeds and umbrellas, barbecue facilities and parking area. It can accommodate 6 people in three elegantly furnishing bedrooms, of which two have double beds and the third has two single beds. Furthermore, it is possible for more persons to be accommodated. The very comfortable living room sofa easily converts into a bed and a cot/crib for a baby/infant is available that can be used in any of the rooms. In addition all rooms feature air conditioning, satellite T.V. and internet access.
 
-On the ground floor there is a patio of 35 sq.m with steel table and chairs, ideal for dining in the garden. The comfortable sitting room is fully furnished and has satellite T.V., CD player and internet access. The modern fully equipped kitchen has all essential appliances such as electric cooker/oven, fridge/freezer, dish-washer, microwave, kettle, coffee maker, toaster, juicer etc. and dining table and chairs. There is a large, beautifully designed 17 sq.m bathroom with jacuzzi/bathtub, double wash-hand basins and toilet. Off the bathroom, there is a separate storage room for laundry with a washing machine. Also on the ground floor is one of the double bedrooms.
+On the ground floor there is a patio of 35 sq.m with steel table and chairs, ideal for dining in the garden. The comfortable sitting room is fully furnishing and has satellite T.V., CD player and internet access. The modern fully equipped kitchen has all essential appliances such as electric cooker/oven, fridge/freezer, dish-washer, microwave, kettle, coffee maker, toaster, juicer etc. and dining table and chairs. There is a large, beautifully designed 17 sq.m bathroom with jacuzzi/bathtub, double wash-hand basins and toilet. Off the bathroom, there is a separate storage room for laundry with a washing machine. Also on the ground floor is one of the double bedrooms.
 
 On the first floor there is a 35 sq.m balcony with a comfortable, wicker suite and coffee table where you can sit back, relax and overlook the breath-taking views of the Mediterranean Sea and Cretan countryside. There is a shower-room with wash-hand basin and toilet. The other double bedroom is also on this floor along with the bedroom with the two single beds.
 
-Throughout, the interior has been furnished with stylish, modern wooden furniture and elegant fabrics, with some modern and traditional touches, all in perfect harmony. Plus, there is ample storage space in all of the rooms.
+Throughout, the interior has been furnishing with stylish, modern wooden furniture and elegant fabrics, with some modern and traditional touches, all in perfect harmony. Plus, there is ample storage space in all of the rooms.
 
 Due to the location of the village and the topography of the area, there are many beautiful hiking trails, such as E4 starting from the village of Margarites and going up to Eleftherna. Green Paradise Villa offers visitors (on request) organised excursions in the countryside (at weekends) enabling them to explore the archaeological site of ancient Eleftherna, the caves of Melidoni and Zoniana all located within walking distance.
 
@@ -346,7 +346,7 @@ insert into property_images (property_id, images_id) values (6, 69);
 insert into property_images (property_id, images_id) values (6, 70);
 
 
-insert into localized_property_specification (id, version, specification, localized_property_id) values (60, 0, 'Fully furnished, including TV', 6);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (60, 0, 'Fully furnishing, including TV', 6);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (61, 0, 'Kitchen fully electrical appliances', 6);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (62, 0, 'Automatic entrance and exit', 6);
 insert into localized_property_specification (id, version, specification, localized_property_id) values (63, 0, 'Fully air-conditioning', 6);
@@ -366,8 +366,8 @@ insert into asset (id, version, key, asset_type) values (75, 0, 'property/7/5.jp
 insert into asset (id, version, key, asset_type) values (76, 0, 'property/7/6.jpg', 'IMAGE');
 
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnished, representative_image_id, owner_id)
-  values (7, 0, 'GREECE', '35.463105', '24.133071', 'APARTMENT', 'LONG_TERM', 350, 150, 2, true, false, 71, 1);
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnishing, representative_image_id, owner_id)
+  values (7, 0, 'GREECE', '35.463105', '24.133071', 'APARTMENT', 'LONG_TERM', 350, 150, 2, true, 'NONE', 71, 1);
 
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
@@ -422,8 +422,8 @@ insert into asset (id, version, key, asset_type) values (90, 0, 'property/8/14.j
 insert into asset (id, version, key, asset_type) values (91, 0, 'property/8/15.jpg', 'IMAGE');
 
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnished, representative_image_id, owner_id)
-  values (8, 0, 'GREECE', '35.368804', '24.703283', 'HOUSE', 'LONG_TERM', 450, 12000, 2, true, true, 77, 1);
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnishing, representative_image_id, owner_id)
+  values (8, 0, 'GREECE', '35.368804', '24.703283', 'HOUSE', 'LONG_TERM', 450, 12000, 2, true, 'FULL', 77, 1);
 
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
@@ -476,8 +476,8 @@ insert into asset (id, version, key, asset_type) values (107, 0, 'property/9/IMG
 insert into asset (id, version, key, asset_type) values (108, 0, 'property/9/IMG_0035.jpg', 'IMAGE');
 
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, heating_system, furnished, representative_image_id, owner_id)
-  values (9, 0, 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'LONG_TERM', 1000, 4, true, true, 93, 2);
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, heating_system, furnishing, representative_image_id, owner_id)
+  values (9, 0, 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'LONG_TERM', 1000, 4, true, 'FULL', 93, 2);
 
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
