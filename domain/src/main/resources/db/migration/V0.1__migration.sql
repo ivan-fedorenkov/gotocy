@@ -42,6 +42,7 @@ CREATE TABLE property(
     heating_system BIT NOT NULL DEFAULT FALSE,
     furnishing VARCHAR(16) NULL,
     distance_to_sea INTEGER NULL,
+    theta_pano_url VARCHAR(512) NULL,
 
     representative_image_id BIGINT NOT NULL,
     owner_id BIGINT NOT NULL,

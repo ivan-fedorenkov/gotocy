@@ -53,6 +53,8 @@ public class Property extends BaseEntity {
 	@Embedded
 	private ImageSet imageSet;
 
+	private String thetaPanoUrl;
+
 	public Owner getOwner() {
 		return owner;
 	}
@@ -195,5 +197,13 @@ public class Property extends BaseEntity {
 
 	public void setFurnishing(Furnishing furnishing) {
 		this.furnishing = furnishing;
+	}
+
+	public String getThetaPanoUrl() {
+		return thetaPanoUrl;
+	}
+
+	public void setThetaPanoUrl(String thetaPanoUrl) {
+		this.thetaPanoUrl = thetaPanoUrl;
 	}
 }

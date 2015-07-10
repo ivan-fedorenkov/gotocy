@@ -152,6 +152,11 @@
                                         <li>Concrete Flooring</li>
                                     </ul>
                                 </section><!-- /#property-features -->
+                                <section id="virtual-tour" th:unless="${#object.property.thetaPanoUrl == null}">
+                                    <header><h2 th:text="#{org.gotocy.dictionary.virtual-tour}">Virtual Tour</h2></header>
+                                    <blockquote data-mode="click2play" data-width="100%" data-height="375" class="ricoh-theta-spherical-image">[[${localizedProperty.title}] - <a th:href="${#object.property.thetaPanoUrl}" href="#" target="_blank">Spherical Image - RICOH THETA</a></blockquote>
+
+                                </section>
                                 <section id="property-map">
                                     <header><h2 th:text="#{org.gotocy.dictionary.map}">Map</h2></header>
                                     <div class="property-detail-map-wrapper">
@@ -285,6 +290,8 @@
     });
 /*]]>*/
 </script>
+<script th:unless="${localizedProperty.property.thetaPanoUrl == null}" async src="https://theta360.com/widgets.js" charset="utf-8"></script>
+
 
 </body>
 </html>
