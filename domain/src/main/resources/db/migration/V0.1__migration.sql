@@ -42,12 +42,13 @@ CREATE TABLE property(
     heating_system BIT NOT NULL DEFAULT FALSE,
     furnishing VARCHAR(16) NULL,
     distance_to_sea INTEGER NULL,
-    theta_pano_url VARCHAR(512) NULL,
 
     representative_image_id BIGINT NOT NULL,
+    pano_xml_id BIGINT NULL,
     owner_id BIGINT NOT NULL,
 
     CONSTRAINT fk_property_representative_image_id FOREIGN KEY (representative_image_id) REFERENCES asset (id),
+    CONSTRAINT fk_property_pano_xml_id FOREIGN KEY (pano_xml_id) REFERENCES asset (id),
     CONSTRAINT fk_property_owner_id FOREIGN KEY (owner_id) REFERENCES owner (id),
     PRIMARY KEY (id)
 );

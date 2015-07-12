@@ -475,9 +475,11 @@ insert into asset (id, version, key, asset_type) values (106, 0, 'property/9/IMG
 insert into asset (id, version, key, asset_type) values (107, 0, 'property/9/IMG_0034.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (108, 0, 'property/9/IMG_0035.jpg', 'IMAGE');
 
+insert into asset (id, version, key, asset_type) values (109, 0, 'property/9/pano.xml', 'PANO_XML');
 
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, heating_system, furnishing, theta_pano_url, representative_image_id, owner_id)
-  values (9, 0, 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'LONG_TERM', 1000, 4, true, 'FULL', 'https://theta360.com/s/ebsEKHOBiG8Mn2pOzqwRcXTKC', 93, 2);
+
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id)
+  values (9, 0, 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'LONG_TERM', 1000, 4, true, 'FULL', 93, 109, 2);
 
 
 insert into localized_property (id, version, locale, title, address, description, property_id)

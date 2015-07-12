@@ -18,6 +18,17 @@
     <link rel="stylesheet" th:href="'http://assets.gotocy.eu/static/css/owl.carousel.css'" href="/parent/webapp/public/assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" th:href="'http://assets.gotocy.eu/static/css/style.css'" href="/parent/webapp/public/assets/css/style.css" type="text/css">
 
+    <style type="text/css" title="Default">
+        /* fix for scroll bars on webkit & Mac OS X Lion */ 
+        ::-webkit-scrollbar {
+            background-color: rgba(0,0,0,0.5);
+            width: 0.75em;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color:  rgba(255,255,255,0.5);
+        }
+    </style>
+
     <title th:text="#{org.gotocy.templates.title(*{title})}">Property Detail | GoToCy</title>
 
 </head>
@@ -152,6 +163,12 @@
                                         <li>Concrete Flooring</li>
                                     </ul>
                                 </section><!-- /#property-features -->
+                                <section id="virtual-tour" th:unless="*{property.panoXml == null}">
+                                    <header><h2 th:text="#{org.gotocy.dictionary.virtual-tour}">Virtual Tour</h2></header>    
+                                    <div id="virtual-tour-container" style="width:100%;height:400px;">
+                                        This content requires HTML5/CSS3, WebGL, or Adobe Flash Player Version 9 or higher.
+                                    </div>
+                                </section>
                                 <section id="property-map">
                                     <header><h2 th:text="#{org.gotocy.dictionary.map}">Map</h2></header>
                                     <div class="property-detail-map-wrapper">
@@ -270,6 +287,7 @@
 <script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery.fitvids.js'" src="/parent/webapp/public/assets/js/jquery.fitvids.js"></script>
 <script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/custom-map.js'" src="/parent/webapp/public/assets/js/custom-map.js"></script>
 <script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/custom.js'" src="/parent/webapp/public/assets/js/custom.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/pano2vr_player.js'" src="/parent/webapp/public/assets/js/pano2vr_player.js"></script>
 
 <!--[if gt IE 8]>
 <script type="text/javascript" src="http://assets.gotocy.eu/static/js/ie.js"></script>
@@ -279,6 +297,8 @@
     var latitude = /*[[*{property.latitude}]]*/ '34.7071301';
     var longitude = /*[[*{property.longitude}]]*/ '33.022617399999945';
     var markerPictureUrl = /*[[${'http://assets.gotocy.eu/static/img/property-types/single-family.png'}]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
+    var panoConfigUrl = /*[[${#object.property.panoXml != null}? @{${helper.path(#object.property)} + '/pano.xml'} : '']]*/ '';
+    initializePano(panoConfigUrl);
     google.maps.event.addDomListener(window, 'load', initMap(latitude, longitude, markerPictureUrl));
     $(window).load(function(){
         initializeOwl(false);

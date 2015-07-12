@@ -13,7 +13,7 @@ import java.util.Date;
 @ConfigurationProperties(prefix = "gotocy.s3")
 public class S3Configuration {
 
-	private static final long EXPIRATION_TIME = 1000 * 60 * 15; // 15 minutes
+	private static final long EXPIRATION_TIME = 1000 * 60 * 60; // 60 minutes
 
 	@NotNull
 	private String accessKey;

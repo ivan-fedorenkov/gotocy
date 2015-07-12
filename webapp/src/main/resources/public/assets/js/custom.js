@@ -488,6 +488,21 @@ function initializeOwl(_rtl){
     }
 }
 
+// Pano
+
+function initializePano(panoConfigUrl) {
+    function hideUrlBar() {
+    }
+
+    if (panoConfigUrl.length > 0) {
+        // create the panorama player with the container
+        pano = new pano2vrPlayer("virtual-tour-container");
+        pano.readConfigUrl(panoConfigUrl);
+        // hide the URL bar on the iPhone
+        setTimeout(function() { hideUrlBar(); }, 10);
+    }
+}
+
 // Mobile Slider
 
 function centerSlider(){

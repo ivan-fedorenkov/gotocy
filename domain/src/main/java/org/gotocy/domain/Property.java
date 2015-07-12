@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 /**
  * TODO: validation / integration test on validation
+ * TODO: cascading
  *
  * @author ifedorenkov
  */
@@ -53,7 +54,8 @@ public class Property extends BaseEntity {
 	@Embedded
 	private ImageSet imageSet;
 
-	private String thetaPanoUrl;
+	@OneToOne
+	private PanoXml panoXml;
 
 	public Owner getOwner() {
 		return owner;
@@ -199,11 +201,11 @@ public class Property extends BaseEntity {
 		this.furnishing = furnishing;
 	}
 
-	public String getThetaPanoUrl() {
-		return thetaPanoUrl;
+	public PanoXml getPanoXml() {
+		return panoXml;
 	}
 
-	public void setThetaPanoUrl(String thetaPanoUrl) {
-		this.thetaPanoUrl = thetaPanoUrl;
+	public void setPanoXml(PanoXml panoXml) {
+		this.panoXml = panoXml;
 	}
 }

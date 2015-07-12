@@ -8,7 +8,7 @@ import javax.persistence.Entity;
  */
 @Entity
 @DiscriminatorValue("image")
-public class Image extends Asset {
+public class Image extends Asset<byte[]> {
 
 	/**
 	 * Returns an image asset key for the given image size.
