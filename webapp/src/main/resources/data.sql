@@ -226,42 +226,42 @@ insert into localized_property_specification (id, version, specification, locali
 
 -- 4 [Short term] http://www.housetrip.com/en/rentals/296121?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=17&source_element=card&source_type=list
 
-insert into asset (id, version, key, asset_type) values (49, 0, 'property/4/1.jpg', 'IMAGE');
-insert into asset (id, version, key, asset_type) values (50, 0, 'property/4/2.jpg', 'IMAGE');
-insert into asset (id, version, key, asset_type) values (51, 0, 'property/4/3.jpg', 'IMAGE');
-insert into asset (id, version, key, asset_type) values (52, 0, 'property/4/4.jpg', 'IMAGE');
-insert into asset (id, version, key, asset_type) values (53, 0, 'property/4/5.jpg', 'IMAGE');
-insert into asset (id, version, key, asset_type) values (54, 0, 'property/4/6.jpg', 'IMAGE');
-insert into asset (id, version, key, asset_type) values (55, 0, 'property/4/7.jpg', 'IMAGE');
-insert into asset (id, version, key, asset_type) values (56, 0, 'property/4/8.jpg', 'IMAGE');
-insert into asset (id, version, key, asset_type) values (57, 0, 'property/4/9.jpg', 'IMAGE');
-
-
-insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
-  values (4, 0, 'GREECE', '36.295279', '28.155108', 'HOUSE', 'SHORT_TERM', 182, 4, 8, 4, true, 250, 49, 1);
-
-insert into localized_property (id, version, locale, title, address, description, property_id)
-  values (4, 0, 'en', 'Villa Chrysa', 'Rhodes town, Rhodes, Dodecanese', 'Its located in St. Luke Afandou on the eastern side of the island . It is about 20 km away from the city of Rhodes and from Rhodes Airport , 3 km from Afandou beach -with panoramic view towards this beach- it is also 2 km away from Afandou Golf Course , 6 km from the tourist resort Faliraki of Rhodes with the known beach , 6 km from the tourist resort of Kolymbia Rhodes and the famous Tsampika beach .
-Also , its location is such that it is easily accessible to other tourist resorts/sightseeings of the island such as Lindos which is 30km away , Seven Springs - 7km, Butterflies - 15k , -and Filerimos is 20km away, the above are just a portion of the accessible options close and relatively close to its location, there are many more. It was built in 2010 and it will be the first year that will be used by visitors .The town in which is located, Afandou, has population of approximately 7000 inhabitants, it is easily accessible , and it takes just 15 minutes to get to the city because of the existence of the highway. Except from golf and the known beach with length over 7 thousand km , in the area you can find Super Market, Banks , Police Station, tavernas , cafes , bars and hotel complexes .
-The house is located on a hill above the city Afandou with boundless view. It has a private driveway along with 4 other houses in the area , it was built on a plot of 13,000 sq.m. and it has ground floor. The total area of ​the 1st floor is ​150sq.m. On the ground floor there are kitchen , living room , dining room, storage room and WC, and on the first floor there are three bedrooms and two bathrooms . It also features a guest house made of stone, in the courtyard area. Its dimensions are 40sqm, and includes kitchen, bathroom, air-condition and other amenities. Overall the house, along with the guest house, has the possibility of hosting at least 8 people. Besides the swimming pool and Spa, it also has barbecue, oven (wood-fired oven), garden etc.
-It is available all year round.
-
-Note that the charge of the main villa for months July and August is 50 euro extra.
-Also, the charge of guest house is 50 euro.'
-  , 4);
-
-insert into localized_property (id, version, locale, title, address, description, property_id)
-  values (404, 0, 'ru', 'Villa Chrysa', 'Rhodes town, Rhodes, Dodecanese', '', 4);
-
-insert into property_images (property_id, images_id) values (4, 49);
-insert into property_images (property_id, images_id) values (4, 50);
-insert into property_images (property_id, images_id) values (4, 51);
-insert into property_images (property_id, images_id) values (4, 52);
-insert into property_images (property_id, images_id) values (4, 53);
-insert into property_images (property_id, images_id) values (4, 54);
-insert into property_images (property_id, images_id) values (4, 55);
-insert into property_images (property_id, images_id) values (4, 56);
-insert into property_images (property_id, images_id) values (4, 57);
+-- insert into asset (id, version, key, asset_type) values (49, 0, 'property/4/1.jpg', 'IMAGE');
+-- insert into asset (id, version, key, asset_type) values (50, 0, 'property/4/2.jpg', 'IMAGE');
+-- insert into asset (id, version, key, asset_type) values (51, 0, 'property/4/3.jpg', 'IMAGE');
+-- insert into asset (id, version, key, asset_type) values (52, 0, 'property/4/4.jpg', 'IMAGE');
+-- insert into asset (id, version, key, asset_type) values (53, 0, 'property/4/5.jpg', 'IMAGE');
+-- insert into asset (id, version, key, asset_type) values (54, 0, 'property/4/6.jpg', 'IMAGE');
+-- insert into asset (id, version, key, asset_type) values (55, 0, 'property/4/7.jpg', 'IMAGE');
+-- insert into asset (id, version, key, asset_type) values (56, 0, 'property/4/8.jpg', 'IMAGE');
+-- insert into asset (id, version, key, asset_type) values (57, 0, 'property/4/9.jpg', 'IMAGE');
+--
+--
+-- insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
+--   values (4, 0, 'GREECE', '36.295279', '28.155108', 'HOUSE', 'SHORT_TERM', 182, 4, 8, 4, true, 250, 49, 1);
+--
+-- insert into localized_property (id, version, locale, title, address, description, property_id)
+--   values (4, 0, 'en', 'Villa Chrysa', 'Rhodes town, Rhodes, Dodecanese', 'Its located in St. Luke Afandou on the eastern side of the island . It is about 20 km away from the city of Rhodes and from Rhodes Airport , 3 km from Afandou beach -with panoramic view towards this beach- it is also 2 km away from Afandou Golf Course , 6 km from the tourist resort Faliraki of Rhodes with the known beach , 6 km from the tourist resort of Kolymbia Rhodes and the famous Tsampika beach .
+-- Also , its location is such that it is easily accessible to other tourist resorts/sightseeings of the island such as Lindos which is 30km away , Seven Springs - 7km, Butterflies - 15k , -and Filerimos is 20km away, the above are just a portion of the accessible options close and relatively close to its location, there are many more. It was built in 2010 and it will be the first year that will be used by visitors .The town in which is located, Afandou, has population of approximately 7000 inhabitants, it is easily accessible , and it takes just 15 minutes to get to the city because of the existence of the highway. Except from golf and the known beach with length over 7 thousand km , in the area you can find Super Market, Banks , Police Station, tavernas , cafes , bars and hotel complexes .
+-- The house is located on a hill above the city Afandou with boundless view. It has a private driveway along with 4 other houses in the area , it was built on a plot of 13,000 sq.m. and it has ground floor. The total area of ​the 1st floor is ​150sq.m. On the ground floor there are kitchen , living room , dining room, storage room and WC, and on the first floor there are three bedrooms and two bathrooms . It also features a guest house made of stone, in the courtyard area. Its dimensions are 40sqm, and includes kitchen, bathroom, air-condition and other amenities. Overall the house, along with the guest house, has the possibility of hosting at least 8 people. Besides the swimming pool and Spa, it also has barbecue, oven (wood-fired oven), garden etc.
+-- It is available all year round.
+--
+-- Note that the charge of the main villa for months July and August is 50 euro extra.
+-- Also, the charge of guest house is 50 euro.'
+--   , 4);
+--
+-- insert into localized_property (id, version, locale, title, address, description, property_id)
+--   values (404, 0, 'ru', 'Villa Chrysa', 'Rhodes town, Rhodes, Dodecanese', '', 4);
+--
+-- insert into property_images (property_id, images_id) values (4, 49);
+-- insert into property_images (property_id, images_id) values (4, 50);
+-- insert into property_images (property_id, images_id) values (4, 51);
+-- insert into property_images (property_id, images_id) values (4, 52);
+-- insert into property_images (property_id, images_id) values (4, 53);
+-- insert into property_images (property_id, images_id) values (4, 54);
+-- insert into property_images (property_id, images_id) values (4, 55);
+-- insert into property_images (property_id, images_id) values (4, 56);
+-- insert into property_images (property_id, images_id) values (4, 57);
 
 
 --insert into localized_property_specification (id, version, specification, localized_property_id) values (40, 0, 'Bedroom (2 Guests - 1 double bed)', 4);
@@ -269,13 +269,13 @@ insert into property_images (property_id, images_id) values (4, 57);
 --insert into localized_property_specification (id, version, specification, localized_property_id) values (42, 0, 'Bedroom (1 Guest - 1 single bed)', 4);
 --insert into localized_property_specification (id, version, specification, localized_property_id) values (43, 0, 'Bedroom (3 Guests - 1 double bed, 1 single bed)', 4);
 --insert into localized_property_specification (id, version, specification, localized_property_id) values (45, 0, 'Hair Dryer, Shower, Soap and Shampoo, Towels', 4);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (44, 0, 'Children friendly, Pets, Smoking', 4);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (46, 0, 'Air conditioning', 4);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (47, 0, 'Balcony', 4);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (48, 0, 'Barbecue', 4);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (49, 0, 'Garden', 4);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (50, 0, 'Parking / Garage', 4);
-insert into localized_property_specification (id, version, specification, localized_property_id) values (51, 0, 'Swimming Pool', 4);
+-- insert into localized_property_specification (id, version, specification, localized_property_id) values (44, 0, 'Children friendly, Pets, Smoking', 4);
+-- insert into localized_property_specification (id, version, specification, localized_property_id) values (46, 0, 'Air conditioning', 4);
+-- insert into localized_property_specification (id, version, specification, localized_property_id) values (47, 0, 'Balcony', 4);
+-- insert into localized_property_specification (id, version, specification, localized_property_id) values (48, 0, 'Barbecue', 4);
+-- insert into localized_property_specification (id, version, specification, localized_property_id) values (49, 0, 'Garden', 4);
+-- insert into localized_property_specification (id, version, specification, localized_property_id) values (50, 0, 'Parking / Garage', 4);
+-- insert into localized_property_specification (id, version, specification, localized_property_id) values (51, 0, 'Swimming Pool', 4);
 
 -- 5 [Sale] LAR 801/1
 
@@ -483,10 +483,10 @@ insert into property (id, version, location, latitude, longitude, property_type,
 
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
-  values (9, 0, 'en', 'Demetris Residence', '', '', 9);
+  values (9, 0, 'en', 'Demetris Residence', '18 Agiou Amvrosiou street', '', 9);
 
 insert into localized_property (id, version, locale, title, address, description, property_id)
-  values (109, 0, 'ru', 'Demetris Residence', '', '', 9);
+  values (109, 0, 'ru', 'Demetris Residence', '18 Agiou Amvrosiou street', '', 9);
 
 
 insert into property_images (property_id, images_id) values (9, 92);
@@ -506,3 +506,78 @@ insert into property_images (property_id, images_id) values (9, 105);
 insert into property_images (property_id, images_id) values (9, 106);
 insert into property_images (property_id, images_id) values (9, 107);
 insert into property_images (property_id, images_id) values (9, 108);
+
+insert into localized_property_specification (id, version, specification, localized_property_id) values (74, 0, 'A wood fireplace', 9);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (75, 0, 'A/C in all bed rooms and kitchen', 9);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (76, 0, 'Ceiling fans with remote control', 9);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (77, 0, 'Alarm system', 9);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (78, 0, 'Garage gate with remote control', 9);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (79, 0, 'Three olive trees', 9);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (80, 0, 'One lemon tree', 9);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (81, 0, 'One mandarin tree', 9);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (82, 0, 'One walnut tree', 9);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (83, 0, 'Other plants', 9);
+
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1074, 0, 'Дровяной камин', 109);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1075, 0, 'Кондиционеры во всех комнатах', 109);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1076, 0, 'Потолочные вентиляторы', 109);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1077, 0, 'Охранная система', 109);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1078, 0, 'Гараж с дистанц. управлением', 109);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1079, 0, 'Три оливковых дерева', 109);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1080, 0, 'Лимонное дерево', 109);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1081, 0, 'Мандариновое дерево', 109);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1082, 0, 'Ореховое дерево', 109);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1083, 0, 'Другие растения', 109);
+
+
+-- 10 (Short term) - a short term offer for property #9
+
+insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
+  values (10, 0, 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'SHORT_TERM', 100, 4, 8, true, 4500, 93, 109, 2);
+
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (10, 0, 'en', 'Demetris Residence', '18 Agiou Amvrosiou street', '', 10);
+
+insert into localized_property (id, version, locale, title, address, description, property_id)
+  values (110, 0, 'ru', 'Demetris Residence', '18 Agiou Amvrosiou street', '', 10);
+
+insert into property_images (property_id, images_id) values (10, 92);
+insert into property_images (property_id, images_id) values (10, 93);
+insert into property_images (property_id, images_id) values (10, 94);
+insert into property_images (property_id, images_id) values (10, 95);
+insert into property_images (property_id, images_id) values (10, 96);
+insert into property_images (property_id, images_id) values (10, 97);
+insert into property_images (property_id, images_id) values (10, 98);
+insert into property_images (property_id, images_id) values (10, 99);
+insert into property_images (property_id, images_id) values (10, 100);
+insert into property_images (property_id, images_id) values (10, 101);
+insert into property_images (property_id, images_id) values (10, 102);
+insert into property_images (property_id, images_id) values (10, 103);
+insert into property_images (property_id, images_id) values (10, 104);
+insert into property_images (property_id, images_id) values (10, 105);
+insert into property_images (property_id, images_id) values (10, 106);
+insert into property_images (property_id, images_id) values (10, 107);
+insert into property_images (property_id, images_id) values (10, 108);
+
+insert into localized_property_specification (id, version, specification, localized_property_id) values (84, 0, 'A wood fireplace', 10);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (85, 0, 'A/C in all bed rooms and kitchen', 10);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (86, 0, 'Ceiling fans with remote control', 10);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (87, 0, 'Alarm system', 10);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (88, 0, 'Garage gate with remote control', 10);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (89, 0, 'Three olive trees', 10);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (90, 0, 'One lemon tree', 10);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (91, 0, 'One mandarin tree', 10);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (92, 0, 'One walnut tree', 10);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (93, 0, 'Other plants', 10);
+
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1084, 0, 'Дровяной камин', 110);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1085, 0, 'Кондиционеры во всех комнатах', 110);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1086, 0, 'Потолочные вентиляторы', 110);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1087, 0, 'Охранная система', 110);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1088, 0, 'Гараж с дистанц. управлением', 110);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1089, 0, 'Три оливковых дерева', 110);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1090, 0, 'Лимонное дерево', 110);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1091, 0, 'Мандариновое дерево', 110);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1092, 0, 'Ореховое дерево', 110);
+insert into localized_property_specification (id, version, specification, localized_property_id) values (1093, 0, 'Другие растения', 110);
