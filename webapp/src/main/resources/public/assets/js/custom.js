@@ -497,6 +497,9 @@ function initializePano(panoConfigUrl) {
     if (panoConfigUrl.length > 0) {
         // create the panorama player with the container
         pano = new pano2vrPlayer("virtual-tour-container");
+        // add the skin object
+        skin = new pano2vrSkin(pano, 'http://assets.gotocy.eu/static/pano2vr/');
+        // load the configuration
         pano.readConfigUrl(panoConfigUrl);
         // hide the URL bar on the iPhone
         setTimeout(function() { hideUrlBar(); }, 10);
