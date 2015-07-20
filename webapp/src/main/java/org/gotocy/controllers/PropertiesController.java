@@ -49,6 +49,11 @@ public class PropertiesController {
 		return "property/show";
 	}
 
+	@RequestMapping(value = "/property/{id}/pano", method = RequestMethod.GET)
+	public String getPano(@PathVariable("id") Property property) {
+		return "property/pano";
+	}
+
 	@RequestMapping(value = "/property/{id}/pano.xml", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	@ResponseBody
 	public String getPanoXml(@PathVariable("id") Property property) {

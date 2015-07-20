@@ -263,6 +263,22 @@ $(document).ready(function($) {
         });
     }
 
+    var panoPopup = $('#inlined-popup-link');
+    if (panoPopup.length > 0) {
+        panoPopup.magnificPopup({
+            type:'inline',
+            key:'pano',
+            midClick: true,
+            callbacks: {
+                open: function() {
+                    initializePano('/property/9/pano.xml');
+                }
+            },
+            closeBtnInside: false,
+            closeOnBgClick: true
+        });
+    }
+
 //  iCheck
 
     if ($('.checkbox').length > 0) {
