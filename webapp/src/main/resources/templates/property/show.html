@@ -100,11 +100,11 @@
                         </header>
                         <section id="property-gallery">
                             <div class="owl-carousel property-carousel">
-                                <div class="property-slide" th:each="image : *{property.imageSet.images}" th:object="${image}">
+                                <!--<div class="property-slide" th:each="image : *{property.imageSet.images}" th:object="${image}">
                                     <a th:href="${helper.url(#object)}" href="/parent/webapp/public/assets/img/properties/property-detail-01.jpg" class="image-popup">
                                         <img alt="" th:src="${helper.imageUrl(#object, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
                                     </a>
-                                </div>
+                                </div>-->
                                 <div class="property-slide" th:unless="*{property.panoXml == null}">
                                     <a href="#inlined-popup" id="inlined-popup-link">
                                         <img alt="" th:src="@{/assets/img/view-pano-small.png}" src="/parent/webapp/public/assets/img/view-pano-small.png">
@@ -113,7 +113,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-md-8 col-sm-8 col-lg-offset-3 col-md-offset-2 col-sm-offset-2">
                                                 <div class="well">
-                                                    <div id="virtual-tour-container" style="width:inherit;height:470px;">
+                                                    <div id="virtual-tour-container">
                                                         This content requires HTML5/CSS3, WebGL, or Adobe Flash Player Version 9 or higher.
                                                     </div>
                                                 </div>
@@ -299,7 +299,7 @@
     var latitude = /*[[*{property.latitude}]]*/ '34.7071301';
     var longitude = /*[[*{property.longitude}]]*/ '33.022617399999945';
     var markerPictureUrl = /*[[${'http://assets.gotocy.eu/static/img/property-types/single-family.png'}]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
-    google.maps.event.addDomListener(window, 'load', initMap(latitude, longitude, markerPictureUrl));
+    <!--google.maps.event.addDomListener(window, 'load', initMap(latitude, longitude, markerPictureUrl));-->
 
 
     $(window).load(function(){

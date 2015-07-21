@@ -511,6 +511,19 @@ function initializePano(panoConfigUrl) {
     }
 
     if (panoConfigUrl.length > 0) {
+
+        var vt = $('#virtual-tour-container');
+//        vt.css('position', 'fixed');
+//        vt.css('left', '0');
+//        vt.css('right', '0');
+//        vt.css('top', '0');
+//        vt.css('bottom', '0');
+//        vt.css('margin', 'auto');
+        vt.css('max-height', '636px');
+//        vt.css('max-width', '636px');
+        vt.css('height', $(window).height());
+        vt.css('width', 'inherit');
+
         // create the panorama player with the container
         pano = new pano2vrPlayer("virtual-tour-container");
         // add the skin object
