@@ -275,7 +275,8 @@ $(document).ready(function($) {
                 }
             },
             closeBtnInside: false,
-            closeOnBgClick: true
+            closeOnBgClick: true,
+            overflowY: 'scroll'
         });
     }
 
@@ -521,7 +522,8 @@ function initializePano(panoConfigUrl) {
 //        vt.css('margin', 'auto');
         vt.css('max-height', '636px');
 //        vt.css('max-width', '636px');
-        vt.css('height', $(window).height());
+        // left a llittle bit space for url bars, etc
+        vt.css('height', ($(window).height() - 40) + 'px');
         vt.css('width', 'inherit');
 
         // create the panorama player with the container
