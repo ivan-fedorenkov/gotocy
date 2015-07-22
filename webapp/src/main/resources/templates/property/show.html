@@ -154,26 +154,29 @@
                             <figure th:text="*{address}">Golden Valley, MN 55427</figure>
                         </header>
                         <section id="property-gallery">
-                            <div class="pg-grid">
+                            <div class="pg-grid" th:with="hasPano = *{property.panoXml != null}">
                                 <div class="pg-grid-sizer"></div>
                                 <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4">
-                                    <img alt="" th:src="${helper.imageUrl(#object.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
+                                    <img alt="" th:src="${helper.imageUrl(#object.property.imageSet.getImage(1), T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
                                 </div>
                                 <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
-                                    <img alt="" th:src="@{/assets/img/properties/property-detail-01.jpg}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
+                                    <img alt="" th:src="${helper.imageUrl(#object.property.imageSet.getImage(2), T(org.gotocy.domain.ImageSize).SMALL)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
                                 </div>
                                 <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
-                                    <img alt="" th:src="@{/assets/img/properties/property-detail-02.jpg}" src="/parent/webapp/public/assets/img/properties/property-detail-02.jpg">
+                                    <img alt="" th:src="${helper.imageUrl(#object.property.imageSet.getImage(3), T(org.gotocy.domain.ImageSize).SMALL)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
                                 </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
-                                    <div class="icon-outer-container" style="background-image: url('/assets/img/properties/property-detail-03.jpg');">
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:if="${hasPano}">
+                                    <div class="icon-outer-container" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(4), T(org.gotocy.domain.ImageSize).SMALL)}')|" style="background-image: url('/assets/img/properties/property-detail-03.jpg');">
                                         <div class="icon-inner-container">
                                             <i class="fa fa-street-view fa-3x"></i><br>Click to View Pano 360
                                         </div>
                                     </div>
                                 </div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:unless="${hasPano}">
+                                    <img alt="" th:src="${helper.imageUrl(#object.property.imageSet.getImage(4), T(org.gotocy.domain.ImageSize).SMALL)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
+                                </div>
                                 <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
-                                    <div class="icon-outer-container" style="background-image: url('/assets/img/properties/property-detail-01.jpg');">
+                                    <div class="icon-outer-container" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(5), T(org.gotocy.domain.ImageSize).SMALL)}')|" style="background-image: url('/assets/img/properties/property-detail-01.jpg');">
                                         <div class="icon-inner-container">
                                             <i class="fa fa-camera fa-3x"></i><br>Click to View Gallery
                                         </div>

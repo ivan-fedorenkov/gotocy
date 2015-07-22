@@ -42,4 +42,11 @@ public class ImageSet {
 	public void setImages(List<Image> images) {
 		this.images = images;
 	}
+
+	public Image getImage(int index) {
+		// Ensure that the index is in the images list bounds
+		if (index >= images.size())
+			index = index % images.size();
+		return images.get(index);
+	}
 }
