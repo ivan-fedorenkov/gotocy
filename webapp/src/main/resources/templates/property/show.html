@@ -84,7 +84,7 @@
 
     </style>
 
-    <title th:text="#{org.gotocy.templates.title(*{title})}">Property Detail | GoToCy</title>
+    <title th:text="#{org.gotocy.templates.title(*{property.title})}">Property Detail | GoToCy</title>
 
 </head>
 
@@ -150,8 +150,8 @@
                 <div class="col-md-9 col-sm-9">
                     <section id="property-detail">
                         <header class="property-title">
-                            <h1 th:text="*{title}">987 Cantebury Drive</h1>
-                            <figure th:text="*{address}">Golden Valley, MN 55427</figure>
+                            <h1 th:text="*{property.title}">987 Cantebury Drive</h1>
+                            <figure th:text="*{property.address}">Golden Valley, MN 55427</figure>
                         </header>
                         <section id="property-gallery">
                             <div class="pg-grid" th:with="hasPano = *{property.panoXml != null}">
@@ -272,7 +272,7 @@
                                 </a>
                                 <div class="info">
                                     <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html"><h4>2186 Rinehart Road</h4></a>
-                                    <figure th:text="${lp.address}">Doral, FL 33178 </figure>
+                                    <figure th:text="${lp.property.shortAddress}">Doral, FL 33178 </figure>
                                     <div class="tag price" th:utext="${helper.price(lp.property)}">$ 72,000</div>
                                 </div>
                             </div><!-- /.property -->

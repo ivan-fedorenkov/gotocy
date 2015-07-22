@@ -24,6 +24,9 @@ CREATE TABLE property(
     id BIGINT NOT NULL AUTO_INCREMENT,
     version INTEGER NOT NULL,
 
+    title VARCHAR(256) NOT NULL,
+    address VARCHAR(1024) NOT NULL,
+    short_address VARCHAR(256) NOT NULL,
     location VARCHAR(8) NOT NULL,
     latitude DOUBLE NOT NULL,
     longitude DOUBLE NOT NULL,
@@ -68,8 +71,6 @@ CREATE TABLE localized_property(
     version INTEGER NOT NULL,
 
     locale VARCHAR(8) NOT NULL,
-    title VARCHAR(256) NOT NULL,
-    address VARCHAR(1024) NOT NULL,
     description CLOB NOT NULL,
 
 

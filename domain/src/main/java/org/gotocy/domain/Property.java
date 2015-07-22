@@ -17,6 +17,12 @@ public class Property extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private Location location;
 
+	private String title;
+
+	private String address;
+
+	private String shortAddress;
+
 	private Double latitude;
 
 	private Double longitude;
@@ -207,5 +213,29 @@ public class Property extends BaseEntity {
 
 	public void setPanoXml(PanoXml panoXml) {
 		this.panoXml = panoXml;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getShortAddress() {
+		return shortAddress;
+	}
+
+	public void setShortAddress(String shortAddress) {
+		this.shortAddress = shortAddress;
 	}
 }

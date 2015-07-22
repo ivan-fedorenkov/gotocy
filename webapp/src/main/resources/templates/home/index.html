@@ -144,8 +144,8 @@
                                 <div class="overlay">
                                     <div class="info">
                                         <div class="tag price" th:utext="${helper.price(lp.property)}">$ 11,000</div>
-                                        <h3 th:text="${lp.title}">3398 Lodgeville Road</h3>
-                                        <figure th:text="${lp.address}">Golden Valley, MN 55427</figure>
+                                        <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
+                                        <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info" th:include="'property/' + ${lp.property.propertyStatus.name()} + '/additional_info_ul' :: additional_info(${lp})">
                                         <li>
@@ -283,8 +283,8 @@
                                 <div class="overlay">
                                     <div class="info">
                                         <div class="tag price" th:utext="${helper.price(lp.property)}">$ 11,000</div>
-                                        <h3 th:text="${lp.title}">3398 Lodgeville Road</h3>
-                                        <figure th:text="${lp.address}">Golden Valley, MN 55427</figure>
+                                        <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
+                                        <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info" th:include="'property/' + ${lp.property.propertyStatus.name()} + '/additional_info_ul' :: additional_info(${lp})">
                                         <li>
@@ -422,8 +422,8 @@
                                 <div class="overlay">
                                     <div class="info">
                                         <div class="tag price" th:utext="${helper.price(lp.property)}">$ 11,000</div>
-                                        <h3 th:text="${lp.title}">3398 Lodgeville Road</h3>
-                                        <figure th:text="${lp.address}">Golden Valley, MN 55427</figure>
+                                        <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
+                                        <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info" th:include="'property/' + ${lp.property.propertyStatus.name()} + '/additional_info_ul' :: additional_info(${lp})">
                                         <li>

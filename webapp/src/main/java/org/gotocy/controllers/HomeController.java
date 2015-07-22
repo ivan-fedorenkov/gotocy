@@ -3,6 +3,9 @@ package org.gotocy.controllers;
 import org.gotocy.domain.PropertyStatus;
 import org.gotocy.repository.LocalizedPropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,14 +26,16 @@ public class HomeController {
 	}
 
 	@RequestMapping("/")
-	public String home(Model model, Locale locale) {
+	public String home(Model model, Locale locale,
+		@PageableDefault(size = 4, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
+	{
 		// TODO: make them recent :)
 		model.addAttribute("longTermProperties", localizedPropertyRepository.findByPropertyPropertyStatusAndLocale(
-			PropertyStatus.LONG_TERM, locale.getLanguage()));
+			PropertyStatus.LONG_TERM, locale.getLanguage(), pageable));
 		model.addAttribute("shortTermProperties", localizedPropertyRepository.findByPropertyPropertyStatusAndLocale(
-			PropertyStatus.SHORT_TERM, locale.getLanguage()));
+			PropertyStatus.SHORT_TERM, locale.getLanguage(), pageable));
 		model.addAttribute("saleProperties", localizedPropertyRepository.findByPropertyPropertyStatusAndLocale(
-			PropertyStatus.SALE, locale.getLanguage()));
+			PropertyStatus.SALE, locale.getLanguage(), pageable));
 		return "home/index";
 	}
 

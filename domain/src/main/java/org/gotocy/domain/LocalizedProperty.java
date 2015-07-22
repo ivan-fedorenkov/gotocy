@@ -23,10 +23,6 @@ public class LocalizedProperty extends BaseEntity {
 
 	private String locale;
 
-	private String title;
-
-	private String address;
-
 	@Lob
 	private String description;
 
@@ -48,22 +44,6 @@ public class LocalizedProperty extends BaseEntity {
 
 	public void setLocale(String locale) {
 		this.locale = locale;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 	public String getDescription() {

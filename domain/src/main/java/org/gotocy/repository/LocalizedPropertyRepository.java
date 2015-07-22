@@ -19,7 +19,7 @@ public interface LocalizedPropertyRepository extends JpaRepository<LocalizedProp
 		"left join fetch lp.property.panoXml where lp.property.id = ?1 and lp.locale = ?2")
 	LocalizedProperty findProperty(Long propertyId, String locale);
 
-	List<LocalizedProperty> findByPropertyPropertyStatusAndLocale(PropertyStatus propertyStatus, String locale);
+	List<LocalizedProperty> findByPropertyPropertyStatusAndLocale(PropertyStatus propertyStatus, String locale, Pageable pageable);
 
 	@Query("select lp from LocalizedProperty lp join fetch lp.property join fetch lp.property.imageSet.representativeImage " +
 		"left join fetch lp.property.panoXml where lp.property.propertyStatus = ?1 and lp.property.location = ?2 and lp.locale = ?3")
