@@ -10,7 +10,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <!-- TODO: load fonts from the amazon S3 - need to setup CORS -->
-    <link th:href="@{/assets/fonts/font-awesome.css}" href="/parent/webapp/public/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/fonts/font-awesome.min.css}" href="/parent/webapp/public/assets/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" th:href="'http://assets.gotocy.eu/static/bootstrap/css/bootstrap.css'" href="/parent/webapp/public/assets/bootstrap/css/bootstrap.css" type="text/css">
     <link rel="stylesheet" th:href="'http://assets.gotocy.eu/static/css/bootstrap-select.min.css'" href="/parent/webapp/public/assets/css/bootstrap-select.min.css" type="text/css">
     <link rel="stylesheet" th:href="'http://assets.gotocy.eu/static/css/magnific-popup.css'" href="/parent/webapp/public/assets/css/magnific-popup.css" type="text/css">
@@ -27,6 +27,45 @@
         ::-webkit-scrollbar-thumb {
             background-color:  rgba(255,255,255,0.5);
         }
+
+        .pg-grid:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .pg-grid-sizer,
+        .pg-grid-item {
+            width: 25%;
+        }
+
+        .pg-grid-item {
+            height: 360px;
+            float: left;
+            border: solid 0.08em #ffffff;
+
+        }
+
+        .pg-grid-item-w-2 { width: 25%; }
+        .pg-grid-item-w-4 { width: 50%; }
+
+        .pg-grid-item-h-2 { height: 180px; }
+        .pg-grid-item-h-4 { height: 360px; }
+
+        .pg-grid-item img {
+            width: 100%;
+            height: inherit;
+        }
+
+
+        .icon-container {
+            width: 50%; margin: 0 auto; text-align: center; margin-top: 50px;color: white;
+            background-color: #1396e2;
+            opacity: 0.8;
+            padding: 20px;
+            border-radius: 50%;
+        }
+
     </style>
 
     <title th:text="#{org.gotocy.templates.title(*{title})}">Property Detail | GoToCy</title>
@@ -99,29 +138,28 @@
                             <figure th:text="*{address}">Golden Valley, MN 55427</figure>
                         </header>
                         <section id="property-gallery">
-                            <div class="owl-carousel property-carousel">
-                                <!--<div class="property-slide" th:each="image : *{property.imageSet.images}" th:object="${image}">
-                                    <a th:href="${helper.url(#object)}" href="/parent/webapp/public/assets/img/properties/property-detail-01.jpg" class="image-popup">
-                                        <img alt="" th:src="${helper.imageUrl(#object, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
-                                    </a>
-                                </div>-->
-                                <div class="property-slide" th:unless="*{property.panoXml == null}">
-                                    <a href="#inlined-popup" id="inlined-popup-link">
-                                        <img alt="" th:src="@{/assets/img/view-pano-small.png}" src="/parent/webapp/public/assets/img/view-pano-small.png">
-                                    </a>
-                                    <div id="inlined-popup" class="mfp-hide">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-8 col-sm-8 col-lg-offset-3 col-md-offset-2 col-sm-offset-2">
-                                                <div class="well">
-                                                    <div id="virtual-tour-container">
-                                                        This content requires HTML5/CSS3, WebGL, or Adobe Flash Player Version 9 or higher.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <div class="pg-grid">
+                                <div class="pg-grid-sizer"></div>
+                                <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4">
+                                    <img alt="" th:src="${helper.imageUrl(#object.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
+                                </div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
+                                    <img alt="" th:src="@{/assets/img/properties/property-detail-01.jpg}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
+                                </div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
+                                    <img alt="" th:src="@{/assets/img/properties/property-detail-02.jpg}" src="/parent/webapp/public/assets/img/properties/property-detail-02.jpg">
+                                </div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" style="background-image: url('/assets/img/properties/property-detail-02-opaque.jpg'); background-size: cover;">
+                                    <div class="icon-container">
+                                        <i class="fa fa-street-view fa-3x"></i>
                                     </div>
                                 </div>
-                            </div><!-- /.property-carousel -->
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" style="background-image: url('/assets/img/properties/property-detail-02-opaque.jpg'); background-size: cover;">
+                                    <div class="icon-container">
+                                        <i class="fa fa-camera fa-3x"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </section>
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
@@ -287,6 +325,7 @@
 <script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery.slider.js'" src="/parent/webapp/public/assets/js/jquery.slider.js"></script>
 <script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/jquery.fitvids.js'" src="/parent/webapp/public/assets/js/jquery.fitvids.js"></script>
 <script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/custom-map.js'" src="/parent/webapp/public/assets/js/custom-map.js"></script>
+<script type="text/javascript" th:src="'http://assets.gotocy.eu/static/js/masonry.pkgd.min.js'" src="/parent/webapp/public/assets/js/masonry.pkgd.min.js"></script>
 <script type="text/javascript" th:src="@{/assets/js/custom.js}" src="/parent/webapp/public/assets/js/custom.js"></script>
 <script type="text/javascript" th:src="'http://assets.gotocy.eu/static/pano2vr/pano2vr_player.js'" src="/parent/webapp/public/assets/pano2vr/pano2vr_player.js"></script>
 <script type="text/javascript" th:src="'http://assets.gotocy.eu/static/pano2vr/skin.js'" src="/parent/webapp/public/assets/pano2vr/pano2vr_player.js"></script>
@@ -301,10 +340,14 @@
     var markerPictureUrl = /*[[${'http://assets.gotocy.eu/static/img/property-types/single-family.png'}]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
     <!--google.maps.event.addDomListener(window, 'load', initMap(latitude, longitude, markerPictureUrl));-->
 
-
-    $(window).load(function(){
-        initializeOwl(false);
+    $(document).ready(function() {
+        $('#pg-grid').masonry({
+            itemSelector: '.pg-grid-item',
+            columnWidth: '.pg-grid-sizer',
+            percentPosition: true
+      });
     });
+
 /*]]>*/
 </script>
 
