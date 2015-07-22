@@ -58,12 +58,28 @@
         }
 
 
-        .icon-container {
-            width: 50%; margin: 0 auto; text-align: center; margin-top: 50px;color: white;
+        .icon-outer-container {
+            width: 100%;
+            height: inherit;
+
+            background-size: cover;
+        }
+
+        .icon-inner-container {
+            height: 120px;
+            width: 120px;
+            position: relative;
+            padding; 0;
+            margin: 0 auto;
+
             background-color: #1396e2;
-            opacity: 0.8;
-            padding: 20px;
             border-radius: 50%;
+            opacity: 0.8;
+            color: white;
+
+            text-align: center;
+
+            display: none;
         }
 
     </style>
@@ -149,14 +165,18 @@
                                 <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
                                     <img alt="" th:src="@{/assets/img/properties/property-detail-02.jpg}" src="/parent/webapp/public/assets/img/properties/property-detail-02.jpg">
                                 </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" style="background-image: url('/assets/img/properties/property-detail-02-opaque.jpg'); background-size: cover;">
-                                    <div class="icon-container">
-                                        <i class="fa fa-street-view fa-3x"></i>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
+                                    <div class="icon-outer-container" style="background-image: url('/assets/img/properties/property-detail-03.jpg');">
+                                        <div class="icon-inner-container">
+                                            <i class="fa fa-street-view fa-3x"></i><br>Click to View Pano 360
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" style="background-image: url('/assets/img/properties/property-detail-02-opaque.jpg'); background-size: cover;">
-                                    <div class="icon-container">
-                                        <i class="fa fa-camera fa-3x"></i>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
+                                    <div class="icon-outer-container" style="background-image: url('/assets/img/properties/property-detail-01.jpg');">
+                                        <div class="icon-inner-container">
+                                            <i class="fa fa-camera fa-3x"></i><br>Click to View Gallery
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -345,7 +365,11 @@
             itemSelector: '.pg-grid-item',
             columnWidth: '.pg-grid-sizer',
             percentPosition: true
-      });
+        });
+
+        $('.icon-outer-container').each(function() {
+            $(this).children().css("top", $(this).height() / 8).css("padding-top", $(this).height() / 16).css("display", "block");
+        });
     });
 
 /*]]>*/
