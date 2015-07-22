@@ -8,7 +8,7 @@ import org.springframework.context.MessageSourceResolvable;
  * @author ifedorenkov
  */
 public enum PropertyType implements MessageSourceResolvable {
-	HOUSE, APARTMENT;
+	HOUSE, APARTMENT, FLAT;
 
 
 	@Override

@@ -10,12 +10,13 @@
 dir=$1 # directory to look for images
 property_id=$2 # initial property id
 image_id=$3 # initial image id
-spec_id=$4 # initial specification id
 
 find ${dir} -name "*.jpg" -printf "%T@ %Tc %p\n" | sort -n | while read f; do
   echo "insert into asset (id, version, key, asset_type) values (${image_id}, 0, 'property/${property_id}/${f##*/}', 'IMAGE');"
   ((image_id++))
 done
+
+echo ""
 
 image_id=$3
 find ${dir} -name "*.jpg" -printf "%T@ %Tc %p\n" | sort -n | while read f; do
@@ -23,7 +24,14 @@ find ${dir} -name "*.jpg" -printf "%T@ %Tc %p\n" | sort -n | while read f; do
   ((image_id++))
 done
 
+echo ""
+
 while read line; do
-	echo "insert into localized_property_specification (id, version, specification, localized_property_id) values (${spec_id}, 0, '${line}', ${property_id});"
-	((spec_id++))
-done < "${dir}/specs.txt"
+	echo "insert into localized_property_specification (specification, localized_property_id) values ('${line}', ${property_id});"
+done < "${dir}/en_specs.txt"
+
+echo ""
+
+while read line; do
+	echo "insert into localized_property_specification (specification, localized_property_id) values ('${line}', ${property_id});"
+done < "${dir}/ru_specs.txt"
