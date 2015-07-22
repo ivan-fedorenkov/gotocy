@@ -82,7 +82,7 @@ CREATE TABLE localized_property(
 
 CREATE TABLE localized_property_specification(
     id BIGINT NOT NULL AUTO_INCREMENT,
-    version INTEGER NOT NULL,
+    version INTEGER NOT NULL DEFAULT 0,
 
     specification VARCHAR(256) NOT NULL,
     localized_property_id BIGINT NOT NULL,

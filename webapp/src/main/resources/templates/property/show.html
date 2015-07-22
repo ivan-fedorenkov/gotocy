@@ -271,7 +271,7 @@
                                     </div>
                                 </a>
                                 <div class="info">
-                                    <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html"><h4>2186 Rinehart Road</h4></a>
+                                    <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html"><h4 th:text="${lp.property.title}">2186 Rinehart Road</h4></a>
                                     <figure th:text="${lp.property.shortAddress}">Doral, FL 33178 </figure>
                                     <div class="tag price" th:utext="${helper.price(lp.property)}">$ 72,000</div>
                                 </div>
