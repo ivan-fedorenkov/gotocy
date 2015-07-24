@@ -1530,7 +1530,7 @@ insert into localized_property_specification (specification, localized_property_
 insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10019);
 insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10019);
 
-# Denis House
+-- Denis House
 
 insert into asset (id, version, key, asset_type) values (297, 0, 'property/20/IMG_0522.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (298, 0, 'property/20/IMG_0523.jpg', 'IMAGE');
