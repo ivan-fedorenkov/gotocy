@@ -137,11 +137,16 @@ if [ $convert_images = "yes" ]; then
   echo "4. Image conversion"
   echo
 
+  echo
+  echo "Auto-orient pictures..."
+  find . -name "*.jpg" -exec sh -c 'convert -auto-orient "${1}" "${1}"' _ {} \;
+  echo "OK"
+
   ls -lah
 
   echo
-    echo "Converting images to MEDIUM size..."
-    find . -name "*.jpg" -exec sh -c 'convert -resize 848x474^ -gravity center -crop 848x600+0+0 +repage "${1}" "MEDIUM_${1##*/}"' _ {} \;
+  echo "Converting images to MEDIUM size..."
+  find . -name "*.jpg" -exec sh -c 'convert -resize 848x474^ -gravity center -crop 848x600+0+0 +repage "${1}" "MEDIUM_${1##*/}"' _ {} \;
   echo "OK"
 
   read -p "Please enter the representative image name: " representative_image
