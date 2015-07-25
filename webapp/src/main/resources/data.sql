@@ -1532,7 +1532,7 @@ insert into localized_property_specification (specification, localized_property_
 
 -- Denis House
 
-insert into asset (id, version, key, asset_type) values (297, 0, 'property/20/IMG_0526.jpg.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (297, 0, 'property/20/IMG_0526.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (298, 0, 'property/20/IMG_0523.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (299, 0, 'property/20/IMG_0524.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (300, 0, 'property/20/IMG_0525.jpg', 'IMAGE');
