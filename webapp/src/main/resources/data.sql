@@ -1532,11 +1532,11 @@ insert into localized_property_specification (specification, localized_property_
 
 -- Denis House
 
-insert into asset (id, version, key, asset_type) values (297, 0, 'property/20/IMG_0522.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (297, 0, 'property/20/IMG_0526.jpg.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (298, 0, 'property/20/IMG_0523.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (299, 0, 'property/20/IMG_0524.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (300, 0, 'property/20/IMG_0525.jpg', 'IMAGE');
-insert into asset (id, version, key, asset_type) values (301, 0, 'property/20/IMG_0526.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (301, 0, 'property/20/IMG_0522.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (302, 0, 'property/20/IMG_0527.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (303, 0, 'property/20/IMG_0528.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (304, 0, 'property/20/IMG_0529.jpg', 'IMAGE');
@@ -1544,7 +1544,7 @@ insert into asset (id, version, key, asset_type) values (305, 0, 'property/20/IM
 insert into asset (id, version, key, asset_type) values (306, 0, 'property/20/IMG_0531.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (307, 0, 'property/20/IMG_0532.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (308, 0, 'property/20/IMG_0534.jpg', 'IMAGE');
-insert into asset (id, version, key, asset_type) values (309, 0, 'property/20/IMG_0534.jpg', 'PANO_XML');
+insert into asset (id, version, key, asset_type) values (309, 0, 'property/20/pano.xml', 'PANO_XML');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (20, 0, 'Dimitraki Koumantari Residence', 'LARNACA', '34.940275', '33.590204', 'Demetri Koumandari Str. No.1, 7103, Aradippou, Larnaca', 'Demetri Koumandari Str.1, Larnaca', 'HOUSE', 'LONG_TERM', 850, NULL, NULL, 4, 10, 4700, TRUE, TRUE, TRUE, 'FULL', 300, 309, 1);
 
