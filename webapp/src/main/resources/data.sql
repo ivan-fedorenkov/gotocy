@@ -904,3 +904,698 @@ insert into localized_property_specification (specification, localized_property_
 insert into localized_property_specification (specification, localized_property_id) values ('Место для загара', 10013);
 insert into localized_property_specification (specification, localized_property_id) values ('Терраса', 10013);
 insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10013);
+
+
+
+-- 14 Trisveis / Alex Residence #105
+
+insert into asset (id, version, key, asset_type) values (167, 0, 'property/14/DSC_0298.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (168, 0, 'property/14/DSC_0321.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (169, 0, 'property/14/DSC_0307.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (170, 0, 'property/14/DSC_0316.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (171, 0, 'property/14/DSC_0299.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (172, 0, 'property/14/DSC_0300.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (173, 0, 'property/14/DSC_0297.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (174, 0, 'property/14/DSC_0304.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (175, 0, 'property/14/DSC_0301.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (176, 0, 'property/14/DSC_0319.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (177, 0, 'property/14/DSC_0318.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (178, 0, 'property/14/DSC_0296.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (179, 0, 'property/14/DSC_0302.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (180, 0, 'property/14/DSC_0303.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (181, 0, 'property/14/DSC_0306.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (182, 0, 'property/14/DSC_0305.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (183, 0, 'property/14/DSC_0320.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (184, 0, 'property/14/DSC_0322.jpg', 'IMAGE');
+
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (14, 0, 'Alex Residence #105', 'LARNACA', '34.920028', '33.631734', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'FLAT', 'SHORT_TERM', 90, NULL, NULL, 2, 4, 500, TRUE, FALSE, FALSE, NULL, 169, NULL, 3);
+
+insert into localized_property (id, version, locale, description, property_id) values (14, 0, 'en', 'A brand new, never occupied, two bedroom duplex with a shared swimming pool on the roof. This beautiful flat consists two double bedrooms, fully equipped kitchen, fully furnished. Located just a few minutes from Phinikoudes (Palm trees) beach and town center. The modern design of the building gives the flat a unique/special vibe.The guests can enjoy their vacations in this quiet spot of the town center while they can enjoy the great beach, restaurants, and shops within walking distance from the duplex.A great get away for couples, families or group of friends.
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 14);
+insert into localized_property (id, version, locale, description, property_id) values (10014, 0, 'ru', 'Совершенно новые двуспальные апартаменты с общим бассейном на крыше с потрясающим видом. Апартаменты с полным набором мебели и полностью оборудованной кухней. Находится в 10 минутах от центра города и набережной Финикудес (Пальмовая аллея). Современные технологии, использованные при строительстве, позволяют наслаждаться абсолютной тишиной жизни практически в центре города. Отличное место для проживания парой, семьей или компании друзей.
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо будет покрыть разницу.', 14);
+
+insert into property_images (property_id, images_id) values (14, 167);
+insert into property_images (property_id, images_id) values (14, 168);
+insert into property_images (property_id, images_id) values (14, 169);
+insert into property_images (property_id, images_id) values (14, 170);
+insert into property_images (property_id, images_id) values (14, 171);
+insert into property_images (property_id, images_id) values (14, 172);
+insert into property_images (property_id, images_id) values (14, 173);
+insert into property_images (property_id, images_id) values (14, 174);
+insert into property_images (property_id, images_id) values (14, 175);
+insert into property_images (property_id, images_id) values (14, 176);
+insert into property_images (property_id, images_id) values (14, 177);
+insert into property_images (property_id, images_id) values (14, 178);
+insert into property_images (property_id, images_id) values (14, 179);
+insert into property_images (property_id, images_id) values (14, 180);
+insert into property_images (property_id, images_id) values (14, 181);
+insert into property_images (property_id, images_id) values (14, 182);
+insert into property_images (property_id, images_id) values (14, 183);
+insert into property_images (property_id, images_id) values (14, 184);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Iron', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Local Guides', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('TV', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Satellite TV', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Housekeeping', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Shared outdoor pool', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Mountain Views', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Solarium or roof terrace', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Balcony or terrace', 14);
+insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 14);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Стиральная машина', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Спутниковое ТВ', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Уборка дома', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Общий бассейн', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Вид на горы', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Место для загара', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Терраса', 10014);
+insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10014);
+
+
+
+-- 15 SSV Larnaca Beach Apartments Flat 105
+
+
+insert into asset (id, version, key, asset_type) values (185, 0, 'property/15/LBA flat 105 (19).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (186, 0, 'property/15/LBA flat 105 (23).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (187, 0, 'property/15/LBA flat 105 (2).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (188, 0, 'property/15/LBA flat 105 (3).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (189, 0, 'property/15/LBA flat 105 (5).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (190, 0, 'property/15/LBA flat 105 (7).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (191, 0, 'property/15/LBA flat 105 (8).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (192, 0, 'property/15/LBA flat 105 (9).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (193, 0, 'property/15/LBA flat 105 (12).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (194, 0, 'property/15/LBA flat 105 (14).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (195, 0, 'property/15/LBA flat 105 (15).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (196, 0, 'property/15/LBA flat 105 (16).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (197, 0, 'property/15/LBA flat 105 (18).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (198, 0, 'property/15/LBA flat 105 (24).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (199, 0, 'property/15/LBA flat 105 (20).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (200, 0, 'property/15/LBA flat 105 (26).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (201, 0, 'property/15/LBA flat 105 (1).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (202, 0, 'property/15/LBA flat 105 (32).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (203, 0, 'property/15/LBA flat 105 (27).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (204, 0, 'property/15/LBA flat 105 (28).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (205, 0, 'property/15/LBA flat 105 (29).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (206, 0, 'property/15/LBA flat 105 (30).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (207, 0, 'property/15/LBA flat 105 (31).jpg', 'IMAGE');
+
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (15, 0, 'Larnaca Beach Apartments #105', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 189, NULL, 3);
+
+insert into localized_property (id, version, locale, description, property_id) values (15, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
+There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
+The family bathroom has a full bath, hand basin and wc. 
+There are two bedrooms with fitted wardrobes and furnished to sleep four persons. 
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 15);
+insert into localized_property (id, version, locale, description, property_id) values (10015, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
+Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
+Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
+В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 15);
+
+insert into property_images (property_id, images_id) values (15, 185);
+insert into property_images (property_id, images_id) values (15, 186);
+insert into property_images (property_id, images_id) values (15, 187);
+insert into property_images (property_id, images_id) values (15, 188);
+insert into property_images (property_id, images_id) values (15, 189);
+insert into property_images (property_id, images_id) values (15, 190);
+insert into property_images (property_id, images_id) values (15, 191);
+insert into property_images (property_id, images_id) values (15, 192);
+insert into property_images (property_id, images_id) values (15, 193);
+insert into property_images (property_id, images_id) values (15, 194);
+insert into property_images (property_id, images_id) values (15, 195);
+insert into property_images (property_id, images_id) values (15, 196);
+insert into property_images (property_id, images_id) values (15, 197);
+insert into property_images (property_id, images_id) values (15, 198);
+insert into property_images (property_id, images_id) values (15, 199);
+insert into property_images (property_id, images_id) values (15, 200);
+insert into property_images (property_id, images_id) values (15, 201);
+insert into property_images (property_id, images_id) values (15, 202);
+insert into property_images (property_id, images_id) values (15, 203);
+insert into property_images (property_id, images_id) values (15, 204);
+insert into property_images (property_id, images_id) values (15, 205);
+insert into property_images (property_id, images_id) values (15, 206);
+insert into property_images (property_id, images_id) values (15, 207);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Iron', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('TV', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Parking', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Porch', 15);
+insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 15);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10015);
+insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10015);
+
+
+-- 16 SSV Larnaca Beach Apartments Flat 204
+
+insert into asset (id, version, key, asset_type) values (208, 0, 'property/16/LBA Flat 204 (5).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (209, 0, 'property/16/LBA Flat 204 (2).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (210, 0, 'property/16/LBA Flat 204 (4).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (211, 0, 'property/16/LBA Flat 204 (1).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (212, 0, 'property/16/LBA Flat 204 (7).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (213, 0, 'property/16/LBA Flat 204 (9).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (214, 0, 'property/16/LBA Flat 204 (10).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (215, 0, 'property/16/LBA Flat 204 (12).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (216, 0, 'property/16/LBA Flat 204 (15).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (217, 0, 'property/16/LBA Flat 204 (16).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (218, 0, 'property/16/LBA Flat 204 (18).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (219, 0, 'property/16/LBA Flat 204 (19).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (220, 0, 'property/16/LBA Flat 204 (20).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (221, 0, 'property/16/LBA Flat 204 (22).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (222, 0, 'property/16/LBA Flat 204 (28).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (223, 0, 'property/16/LBA Flat 204 (29).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (224, 0, 'property/16/LBA Flat 204 (31).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (225, 0, 'property/16/LBA Flat 204 (33).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (226, 0, 'property/16/LBA Flat 204 (34).jpg', 'IMAGE');
+
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (16, 0, 'Larnaca Beach Apartments #204', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 209, NULL, 3);
+
+insert into localized_property (id, version, locale, description, property_id) values (16, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
+There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
+The family bathroom has a full bath, hand basin and wc. 
+There are two bedrooms with fitted wardrobes and furnished to sleep four persons. 
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 16);
+insert into localized_property (id, version, locale, description, property_id) values (10016, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
+Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
+Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
+В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 16);
+
+insert into property_images (property_id, images_id) values (16, 208);
+insert into property_images (property_id, images_id) values (16, 209);
+insert into property_images (property_id, images_id) values (16, 210);
+insert into property_images (property_id, images_id) values (16, 211);
+insert into property_images (property_id, images_id) values (16, 212);
+insert into property_images (property_id, images_id) values (16, 213);
+insert into property_images (property_id, images_id) values (16, 214);
+insert into property_images (property_id, images_id) values (16, 215);
+insert into property_images (property_id, images_id) values (16, 216);
+insert into property_images (property_id, images_id) values (16, 217);
+insert into property_images (property_id, images_id) values (16, 218);
+insert into property_images (property_id, images_id) values (16, 219);
+insert into property_images (property_id, images_id) values (16, 220);
+insert into property_images (property_id, images_id) values (16, 221);
+insert into property_images (property_id, images_id) values (16, 222);
+insert into property_images (property_id, images_id) values (16, 223);
+insert into property_images (property_id, images_id) values (16, 224);
+insert into property_images (property_id, images_id) values (16, 225);
+insert into property_images (property_id, images_id) values (16, 226);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Iron', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('TV', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Parking', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Porch', 16);
+insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 16);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10016);
+insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10016);
+
+-- 17 Larnaca Beach Apartments #102
+
+insert into asset (id, version, key, asset_type) values (227, 0, 'property/17/LBA Flat 102 (2).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (228, 0, 'property/17/LBA Flat 102 (32).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (229, 0, 'property/17/LBA Flat 102 (3).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (230, 0, 'property/17/LBA Flat 102 (5).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (231, 0, 'property/17/LBA Flat 102 (6).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (232, 0, 'property/17/LBA Flat 102 (7).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (233, 0, 'property/17/LBA Flat 102 (8).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (234, 0, 'property/17/LBA Flat 102 (10).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (235, 0, 'property/17/LBA Flat 102 (11).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (236, 0, 'property/17/LBA Flat 102 (14).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (237, 0, 'property/17/LBA Flat 102 (15).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (238, 0, 'property/17/LBA Flat 102 (17).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (239, 0, 'property/17/LBA Flat 102 (20).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (240, 0, 'property/17/LBA Flat 102 (26).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (241, 0, 'property/17/LBA Flat 102 (25).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (242, 0, 'property/17/LBA Flat 102 (27).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (243, 0, 'property/17/LBA Flat 102 (28).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (244, 0, 'property/17/LBA Flat 102 (29).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (245, 0, 'property/17/LBA Flat 102 (30).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (246, 0, 'property/17/LBA Flat 102 (31).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (247, 0, 'property/17/LBA Flat 102 (1).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (248, 0, 'property/17/LBA Flat 102 (4).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (249, 0, 'property/17/LBA Flat 102 (19).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (250, 0, 'property/17/LBA Flat 102 (23).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (251, 0, 'property/17/LBA Flat 102 (22).jpg', 'IMAGE');
+
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (17, 0, 'Larnaca Beach Apartments #102', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 230, NULL, 3);
+
+insert into localized_property (id, version, locale, description, property_id) values (17, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
+There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
+The family bathroom has a full bath, hand basin and wc. 
+There are two bedrooms with fitted wardrobes and furnished to sleep four persons. 
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.
+', 17);
+insert into localized_property (id, version, locale, description, property_id) values (10017, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
+Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
+Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
+В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 17);
+
+insert into property_images (property_id, images_id) values (17, 227);
+insert into property_images (property_id, images_id) values (17, 228);
+insert into property_images (property_id, images_id) values (17, 229);
+insert into property_images (property_id, images_id) values (17, 230);
+insert into property_images (property_id, images_id) values (17, 231);
+insert into property_images (property_id, images_id) values (17, 232);
+insert into property_images (property_id, images_id) values (17, 233);
+insert into property_images (property_id, images_id) values (17, 234);
+insert into property_images (property_id, images_id) values (17, 235);
+insert into property_images (property_id, images_id) values (17, 236);
+insert into property_images (property_id, images_id) values (17, 237);
+insert into property_images (property_id, images_id) values (17, 238);
+insert into property_images (property_id, images_id) values (17, 239);
+insert into property_images (property_id, images_id) values (17, 240);
+insert into property_images (property_id, images_id) values (17, 241);
+insert into property_images (property_id, images_id) values (17, 242);
+insert into property_images (property_id, images_id) values (17, 243);
+insert into property_images (property_id, images_id) values (17, 244);
+insert into property_images (property_id, images_id) values (17, 245);
+insert into property_images (property_id, images_id) values (17, 246);
+insert into property_images (property_id, images_id) values (17, 247);
+insert into property_images (property_id, images_id) values (17, 248);
+insert into property_images (property_id, images_id) values (17, 249);
+insert into property_images (property_id, images_id) values (17, 250);
+insert into property_images (property_id, images_id) values (17, 251);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Iron', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('TV', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Parking', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Porch', 17);
+insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 17);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10017);
+insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10017);
+
+-- 18 Larnaca Beach Apartments #201
+
+insert into asset (id, version, key, asset_type) values (252, 0, 'property/18/LBA Flat 201 (7).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (253, 0, 'property/18/LBA Flat 201 (6).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (254, 0, 'property/18/LBA Flat 201 (3).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (255, 0, 'property/18/LBA Flat 201 (9).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (256, 0, 'property/18/LBA Flat 201 (10).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (257, 0, 'property/18/LBA Flat 201 (11).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (258, 0, 'property/18/LBA Flat 201 (12).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (259, 0, 'property/18/LBA Flat 201 (13).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (260, 0, 'property/18/LBA Flat 201 (14).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (261, 0, 'property/18/LBA Flat 201 (16).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (262, 0, 'property/18/LBA Flat 201 (17).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (263, 0, 'property/18/LBA Flat 201 (19).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (264, 0, 'property/18/LBA Flat 201 (21).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (265, 0, 'property/18/LBA Flat 201 (22).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (266, 0, 'property/18/LBA Flat 201 (23).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (267, 0, 'property/18/LBA Flat 201 (25).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (268, 0, 'property/18/LBA Flat 201 (26).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (269, 0, 'property/18/LBA Flat 201 (27).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (270, 0, 'property/18/LBA Flat 201 (28).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (271, 0, 'property/18/LBA Flat 201 (1).jpg', 'IMAGE');
+
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (18, 0, 'Larnaca Beach Apartments #201', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 259, NULL, 3);
+
+insert into localized_property (id, version, locale, description, property_id) values (18, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
+There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
+The family bathroom has a full bath, hand basin and wc. 
+There are two bedrooms with fitted wardrobes and furnished to sleep four persons. 
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 18);
+insert into localized_property (id, version, locale, description, property_id) values (10018, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
+Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
+Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
+В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 18);
+
+insert into property_images (property_id, images_id) values (18, 252);
+insert into property_images (property_id, images_id) values (18, 253);
+insert into property_images (property_id, images_id) values (18, 254);
+insert into property_images (property_id, images_id) values (18, 255);
+insert into property_images (property_id, images_id) values (18, 256);
+insert into property_images (property_id, images_id) values (18, 257);
+insert into property_images (property_id, images_id) values (18, 258);
+insert into property_images (property_id, images_id) values (18, 259);
+insert into property_images (property_id, images_id) values (18, 260);
+insert into property_images (property_id, images_id) values (18, 261);
+insert into property_images (property_id, images_id) values (18, 262);
+insert into property_images (property_id, images_id) values (18, 263);
+insert into property_images (property_id, images_id) values (18, 264);
+insert into property_images (property_id, images_id) values (18, 265);
+insert into property_images (property_id, images_id) values (18, 266);
+insert into property_images (property_id, images_id) values (18, 267);
+insert into property_images (property_id, images_id) values (18, 268);
+insert into property_images (property_id, images_id) values (18, 269);
+insert into property_images (property_id, images_id) values (18, 270);
+insert into property_images (property_id, images_id) values (18, 271);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Iron', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('TV', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Parking', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Porch', 18);
+insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 18);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10018);
+insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10018);
+
+-- 19 SV Larnaca Beach Apartments #202
+
+insert into asset (id, version, key, asset_type) values (272, 0, 'property/19/LBA Flat 202 (12).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (273, 0, 'property/19/LBA Flat 202 (21).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (274, 0, 'property/19/LBA Flat 202 (23).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (275, 0, 'property/19/LBA Flat 202 (24).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (276, 0, 'property/19/LBA Flat 202 (25).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (277, 0, 'property/19/LBA Flat 202 (26).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (278, 0, 'property/19/LBA Flat 202 (27).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (279, 0, 'property/19/LBA Flat 202 (1).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (280, 0, 'property/19/LBA Flat 202 (3).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (281, 0, 'property/19/LBA Flat 202 (4).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (282, 0, 'property/19/LBA Flat 202 (5).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (283, 0, 'property/19/LBA Flat 202 (6).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (284, 0, 'property/19/LBA Flat 202 (7).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (285, 0, 'property/19/LBA Flat 202 (8).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (286, 0, 'property/19/LBA Flat 202 (9).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (287, 0, 'property/19/LBA Flat 202 (10).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (288, 0, 'property/19/LBA Flat 202 (11).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (289, 0, 'property/19/LBA Flat 202.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (290, 0, 'property/19/LBA Flat 202 (13).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (291, 0, 'property/19/LBA Flat 202 (14).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (292, 0, 'property/19/LBA Flat 202 (15).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (293, 0, 'property/19/LBA Flat 202 (16).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (294, 0, 'property/19/LBA Flat 202 (17).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (295, 0, 'property/19/LBA Flat 202 (18).jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (296, 0, 'property/19/LBA Flat 202 (19).jpg', 'IMAGE');
+
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (19, 0, 'Larnaca Beach Apartments #202', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 273, NULL, 3);
+
+insert into localized_property (id, version, locale, description, property_id) values (19, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
+There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
+The family bathroom has a full bath, hand basin and wc. 
+There are two bedrooms with fitted wardrobes and furnished to sleep four persons. 
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 19);
+insert into localized_property (id, version, locale, description, property_id) values (10019, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
+Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
+Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
+В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 19);
+
+insert into property_images (property_id, images_id) values (19, 272);
+insert into property_images (property_id, images_id) values (19, 273);
+insert into property_images (property_id, images_id) values (19, 274);
+insert into property_images (property_id, images_id) values (19, 275);
+insert into property_images (property_id, images_id) values (19, 276);
+insert into property_images (property_id, images_id) values (19, 277);
+insert into property_images (property_id, images_id) values (19, 278);
+insert into property_images (property_id, images_id) values (19, 279);
+insert into property_images (property_id, images_id) values (19, 280);
+insert into property_images (property_id, images_id) values (19, 281);
+insert into property_images (property_id, images_id) values (19, 282);
+insert into property_images (property_id, images_id) values (19, 283);
+insert into property_images (property_id, images_id) values (19, 284);
+insert into property_images (property_id, images_id) values (19, 285);
+insert into property_images (property_id, images_id) values (19, 286);
+insert into property_images (property_id, images_id) values (19, 287);
+insert into property_images (property_id, images_id) values (19, 288);
+insert into property_images (property_id, images_id) values (19, 289);
+insert into property_images (property_id, images_id) values (19, 290);
+insert into property_images (property_id, images_id) values (19, 291);
+insert into property_images (property_id, images_id) values (19, 292);
+insert into property_images (property_id, images_id) values (19, 293);
+insert into property_images (property_id, images_id) values (19, 294);
+insert into property_images (property_id, images_id) values (19, 295);
+insert into property_images (property_id, images_id) values (19, 296);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Iron', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('TV', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Parking', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Porch', 19);
+insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 19);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10019);
+insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10019);
+
+-- Denis House
+
+insert into asset (id, version, key, asset_type) values (297, 0, 'property/20/IMG_0526.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (298, 0, 'property/20/IMG_0523.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (299, 0, 'property/20/IMG_0524.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (300, 0, 'property/20/IMG_0525.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (301, 0, 'property/20/IMG_0522.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (302, 0, 'property/20/IMG_0527.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (303, 0, 'property/20/IMG_0528.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (304, 0, 'property/20/IMG_0529.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (305, 0, 'property/20/IMG_0530.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (306, 0, 'property/20/IMG_0531.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (307, 0, 'property/20/IMG_0532.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (308, 0, 'property/20/IMG_0534.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (309, 0, 'property/20/pano.xml', 'PANO_XML');
+
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (20, 0, 'Dimitraki Koumantari Residence', 'LARNACA', '34.940275', '33.590204', 'Demetri Koumandari Str. No.1, 7103, Aradippou, Larnaca', 'Demetri Koumandari Str.1, Larnaca', 'HOUSE', 'LONG_TERM', 850, NULL, NULL, 4, 10, 4700, TRUE, TRUE, TRUE, 'FULL', 300, 309, 1);
+
+insert into localized_property (id, version, locale, description, property_id) values (20, 0, 'en', '', 20);
+insert into localized_property (id, version, locale, description, property_id) values (10020, 0, 'ru', '', 20);
+
+insert into property_images (property_id, images_id) values (20, 297);
+insert into property_images (property_id, images_id) values (20, 298);
+insert into property_images (property_id, images_id) values (20, 299);
+insert into property_images (property_id, images_id) values (20, 300);
+insert into property_images (property_id, images_id) values (20, 301);
+insert into property_images (property_id, images_id) values (20, 302);
+insert into property_images (property_id, images_id) values (20, 303);
+insert into property_images (property_id, images_id) values (20, 304);
+insert into property_images (property_id, images_id) values (20, 305);
+insert into property_images (property_id, images_id) values (20, 306);
+insert into property_images (property_id, images_id) values (20, 307);
+insert into property_images (property_id, images_id) values (20, 308);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Iron', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('TV', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Ceiling Fans', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Mountain view', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Parking', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Private garden', 20);
+insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 20);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Потолочные вентиляторы', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Вид на горы', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Сад', 10020);
+insert into localized_property_specification (specification, localized_property_id) values ('Беседка', 10020);
