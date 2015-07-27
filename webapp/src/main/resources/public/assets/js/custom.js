@@ -223,7 +223,6 @@ $(document).ready(function($) {
             });
         });
         if ($(window).width() > 991) {
-
             $('.masonry').hover(function() {
                     $('.masonry').each(function () {
                         $('.masonry').addClass('masonry-hide-other');
@@ -251,34 +250,6 @@ $(document).ready(function($) {
         }
     }
 
-//  Magnific Popup
-
-    var imagePopup = $('.image-popup');
-    if (imagePopup.length > 0) {
-        imagePopup.magnificPopup({
-            type:'image',
-            removalDelay: 300,
-            mainClass: 'mfp-fade',
-            overflowY: 'scroll'
-        });
-    }
-
-    var panoPopup = $('#inlined-popup-link');
-    if (panoPopup.length > 0) {
-        panoPopup.magnificPopup({
-            type:'inline',
-            key:'pano',
-            midClick: true,
-            callbacks: {
-                open: function() {
-                    initializePano('/property/9/pano.xml');
-                }
-            },
-            closeBtnInside: false,
-            closeOnBgClick: true,
-            overflowY: 'scroll'
-        });
-    }
 
 //  iCheck
 
@@ -312,9 +283,11 @@ $(document).ready(function($) {
 // On RESIZE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
 $(window).on('resize', function(){
     setNavigationPosition();
     setCarouselWidth();
+    setPgHeight();
     equalHeight('.equal-height');
     centerSlider();
 });
@@ -511,29 +484,25 @@ function initializePano(panoConfigUrl) {
     function hideUrlBar() {
     }
 
-    if (panoConfigUrl.length > 0) {
+    pano = $('#pano');
 
-        var vt = $('#virtual-tour-container');
-//        vt.css('position', 'fixed');
-//        vt.css('left', '0');
-//        vt.css('right', '0');
-//        vt.css('top', '0');
-//        vt.css('bottom', '0');
-//        vt.css('margin', 'auto');
-        vt.css('max-height', '636px');
-//        vt.css('max-width', '636px');
+    if (pano.length > 0) {
+        pano.css('max-height', '636px');
+
         // left a llittle bit space for url bars, etc
-        vt.css('height', ($(window).height() - 40) + 'px');
-        vt.css('width', 'inherit');
+        pano.css('height', ($(window).height() - 40) + 'px');
+        pano.css('width', 'inherit');
 
         // create the panorama player with the container
-        pano = new pano2vrPlayer("virtual-tour-container");
+        player = new pano2vrPlayer('pano');
         // add the skin object
-        skin = new pano2vrSkin(pano, 'http://assets.gotocy.eu/static/pano2vr/');
+        skin = new pano2vrSkin(player, 'http://assets.gotocy.eu/static/pano2vr/');
         // load the configuration
-        pano.readConfigUrl(panoConfigUrl);
+        player.readConfigUrl(panoConfigUrl);
         // hide the URL bar on the iPhone
-        setTimeout(function() { hideUrlBar(); }, 10);
+        setTimeout(function () {
+            hideUrlBar();
+        }, 10);
     }
 }
 
@@ -668,6 +637,52 @@ function centerSearchBox() {
             }
         });
     }
+}
+
+// f1 - function to calculate 'top', f2 - function to calculate 'padding-top'
+// both functions have a single argument which is the icon-outer-container
+function setIconOuterContainerStyle(f1, f2) {
+    $('.icon-outer-container').each(function() {
+        $(this).children().css("top", f1($(this))).css("padding-top", f2($(this)));
+    });
+}
+
+function setGridItemsHeight(h2, h4) {
+    $('.pg-grid-item-h-2').css('height', h2 + 'px');
+    $('.pg-grid-item-h-4').css('height', h4 + 'px');
+}
+
+// Set property gallery height
+function setPgHeight() {
+    var w = $(window).width();
+/*
+    if (w > 1200) {
+        setGridItemsHeight(180, 360);
+        setIconOuterContainerStyle(function(c) {return c.height() / 6;}, function(c) {return c.height() / 12});
+        $('.icon-inner-container').css('height', '120');
+        $('.icon-inner-container').css('width', '120');
+        $('.icon-inner-container').css('border-radius', '50%');
+        //$('.icon-inner-container .fa').css('font-size', '3em');
+
+        //$('.icon-inner-container .hint').css('display', 'inline');
+    } else if (w > 980) {
+        setGridItemsHeight(170, 340);
+        setIconOuterContainerStyle(function(c) {return c.height() / 6;}, function(c) {return c.height() / 12});
+        $('.icon-inner-container').css('height', '120');
+        $('.icon-inner-container').css('width', '120');
+        $('.icon-inner-container').css('border-radius', '50%');
+        //$('.icon-inner-container .fa').css('font-size', '3em');
+        //$('.icon-inner-container .hint').css('display', 'inline');
+    } else {
+        setGridItemsHeight(145, 290);
+        setIconOuterContainerStyle(function(c) {return 0;}, function(c) {return 45;});
+        $('.icon-inner-container').css('height', 'inherit');
+        $('.icon-inner-container').css('width', 'inherit');
+        $('.icon-inner-container').css('border-radius', '0%');
+        //$('.icon-inner-container .fa').css('font-size', '2em');
+        //$('.icon-inner-container .hint').css('display', 'none');
+    }
+    $("#pg-grid").masonry('reload');*/
 }
 
 // Set Owl Carousel width

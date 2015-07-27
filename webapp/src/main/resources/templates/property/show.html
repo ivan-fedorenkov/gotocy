@@ -1,6 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}" th:object="${localizedProperty}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}" th:object="${localizedProperty}" th:with="hasPano=${localizedProperty.property.panoXml != null}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +42,10 @@
         .pg-grid-item {
             height: 360px;
             float: left;
-            border: solid 0.08em #ffffff;
+            border: solid 1px #ffffff;
+            border-bottom: 0px;
+
+            background-size: cover;
 
         }
 
@@ -62,7 +65,7 @@
             width: 100%;
             height: inherit;
 
-            background-size: cover;
+            /*background-size: cover;*/
         }
 
         .icon-inner-container {
@@ -71,6 +74,8 @@
             position: relative;
             padding; 0;
             margin: 0 auto;
+            top: 30px;
+            padding-top: 15px;
 
             background-color: #1396e2;
             border-radius: 50%;
@@ -78,9 +83,27 @@
             color: white;
 
             text-align: center;
-
-            display: none;
+            cursor: pointer; cursor: hand;
         }
+
+        .icon-inner-container .fa {
+            font-size: 3em;
+        }
+
+        @media screen and (max-width: 991px) {
+            .icon-inner-container {
+                padding-top: 25px;
+            }
+
+            .icon-inner-container .fa {
+                font-size: 2em;
+            }
+
+            .pg-grid-item-w-4 { width: 100%; }
+            .pg-grid-item-w-2 { width: 50%; }
+            .pg-grid-item-small-hide { display: none; }
+        }
+
 
     </style>
 
@@ -154,28 +177,20 @@
                             <figure th:text="*{property.address}">Golden Valley, MN 55427</figure>
                         </header>
                         <section id="property-gallery">
-                            <div class="pg-grid" th:with="hasPano = *{property.panoXml != null}">
+                            <div class="pg-grid">
                                 <div class="pg-grid-sizer"></div>
-                                <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4">
-                                    <img alt="" th:src="${helper.imageUrl(#object.property.imageSet.getImage(1), T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
-                                </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
-                                    <img alt="" th:src="${helper.imageUrl(#object.property.imageSet.getImage(2), T(org.gotocy.domain.ImageSize).SMALL)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
-                                </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
-                                    <img alt="" th:src="${helper.imageUrl(#object.property.imageSet.getImage(3), T(org.gotocy.domain.ImageSize).SMALL)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
-                                </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:if="${hasPano}">
-                                    <div class="icon-outer-container" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(4), T(org.gotocy.domain.ImageSize).SMALL)}')|" style="background-image: url('/assets/img/properties/property-detail-03.jpg');">
-                                        <div class="icon-inner-container">
-                                            <a href="#inlined-popup" id="inlined-popup-link" style="color: inherit;">
-                                                <i class="fa fa-street-view fa-3x"></i><br>Click to View Pano 360
-                                            </a>
-                                            <div id="inlined-popup" class="mfp-hide">
+                                <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(1), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(2), T(org.gotocy.domain.ImageSize).SMALL)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(3), T(org.gotocy.domain.ImageSize).SMALL)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(4), T(org.gotocy.domain.ImageSize).SMALL)}')|" style="background-image: url('/assets/img/properties/property-detail-03.jpg');">
+                                    <div class="icon-outer-container" th:if="${hasPano}">
+                                        <div id="pano-popup-container" class="icon-inner-container">
+                                            <i class="fa fa-street-view"></i><br><span class="hint">Click to View Pano 360</span>
+                                            <div id="pano-popup" class="mfp-hide">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-8 col-sm-8 col-lg-offset-3 col-md-offset-2 col-sm-offset-2">
                                                         <div class="well">
-                                                            <div id="virtual-tour-container">
+                                                            <div id="pano">
                                                                 This content requires HTML5/CSS3, WebGL, or Adobe Flash Player Version 9 or higher.
                                                             </div>
                                                         </div>
@@ -185,13 +200,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:unless="${hasPano}">
-                                    <img alt="" th:src="${helper.imageUrl(#object.property.imageSet.getImage(4), T(org.gotocy.domain.ImageSize).SMALL)}" src="/parent/webapp/public/assets/img/properties/property-detail-01.jpg">
-                                </div>
                                 <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
                                     <div class="icon-outer-container" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(5), T(org.gotocy.domain.ImageSize).SMALL)}')|" style="background-image: url('/assets/img/properties/property-detail-01.jpg');">
-                                        <div class="icon-inner-container">
-                                            <i class="fa fa-camera fa-3x"></i><br>Click to View Gallery
+                                        <div id="gallery-popup-container" class="icon-inner-container">
+                                            <i class="fa fa-camera"></i><br><span class="hint">Click to View Gallery</span>
                                         </div>
                                     </div>
                                 </div>
@@ -374,7 +386,11 @@
     var latitude = /*[[*{property.latitude}]]*/ '34.7071301';
     var longitude = /*[[*{property.longitude}]]*/ '33.022617399999945';
     var markerPictureUrl = /*[[${'http://assets.gotocy.eu/static/img/property-types/single-family.png'}]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
+    var panoConfigUrl = /*[[${hasPano}? ${helper.path(#object.property)} + '/pano.xml' : '']]*/ '';
+    var images = /*[[${helper.imageUrls(#object.property.imageSet.images)}]]*/ '';
+
     <!--google.maps.event.addDomListener(window, 'load', initMap(latitude, longitude, markerPictureUrl));-->
+
 
     $(document).ready(function() {
         $('#pg-grid').masonry({
@@ -383,9 +399,47 @@
             percentPosition: true
         });
 
-        $('.icon-outer-container').each(function() {
-            $(this).children().css("top", $(this).height() / 6).css("padding-top", $(this).height() / 12).css("display", "block");
-        });
+        // Set the property gallery height
+//        setPgHeight();
+
+        // Eventually the icons could be displayed
+//        $('.icon-outer-container').each(function() {
+//            $(this).children().css("top", $(this).height() / 6).css("padding-top", $(this).height() / 12).css("display", "block");
+//        });
+
+        var panoPopupContainer = $('#pano-popup-container');
+        if (panoPopupContainer.length > 0) {
+            panoPopupContainer.magnificPopup({
+                items: [
+                    {
+                        src: '#pano-popup',
+                        type: 'inline'
+                    }
+                ],
+                key:'pano',
+                midClick: true,
+                callbacks: {
+                    open: function() {
+                        initializePano(panoConfigUrl);
+                    }
+                },
+                closeBtnInside: false,
+                closeOnBgClick: true,
+                overflowY: 'scroll'
+            });
+        }
+
+        var galleryPopupContainer = $('#gallery-popup-container');
+        if (galleryPopupContainer.length > 0) {
+            galleryPopupContainer.magnificPopup({
+                items: images.map(function(url) {return {src: url}}),
+                gallery: {
+                    enabled: true
+                },
+                type: 'image'
+                //overflowY: 'scroll'
+            });
+        }
     });
 
 /*]]>*/

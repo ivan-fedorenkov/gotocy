@@ -7,10 +7,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.format.number.NumberFormatter;
 
 import javax.validation.constraints.NotNull;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * A helper object for the view layer. Contains a number of utility methods, such as price formatting, etc.
@@ -44,6 +41,7 @@ public class Helper {
 
 	/**
 	 * Generates url for a given asset, using the configured {@link AssetsProvider} instance.
+	 * TODO: unit test
 	 */
 	public String url(Asset asset) {
 		return assetsProvider.getUrl(asset);
@@ -55,6 +53,18 @@ public class Helper {
 	 */
 	public String imageUrl(Image image, ImageSize size) {
 		return assetsProvider.getImageUrl(image, size);
+	}
+
+	/**
+	 * Generates a list of urls for a given images collection, using the configured {@link AssetsProvider} instance and
+	 * the given image size.
+	 *
+	 * TODO: unit test
+	 */
+	public List<String> imageUrls(Collection<Image> assets) {
+		List<String> urls = new ArrayList<>(assets.size());
+		assets.forEach(asset -> urls.add(imageUrl(asset, ImageSize.MEDIUM)));
+		return urls;
 	}
 
 	/**
