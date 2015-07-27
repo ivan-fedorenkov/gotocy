@@ -287,7 +287,6 @@ $(document).ready(function($) {
 $(window).on('resize', function(){
     setNavigationPosition();
     setCarouselWidth();
-    setPgHeight();
     equalHeight('.equal-height');
     centerSlider();
 });
@@ -637,52 +636,6 @@ function centerSearchBox() {
             }
         });
     }
-}
-
-// f1 - function to calculate 'top', f2 - function to calculate 'padding-top'
-// both functions have a single argument which is the icon-outer-container
-function setIconOuterContainerStyle(f1, f2) {
-    $('.icon-outer-container').each(function() {
-        $(this).children().css("top", f1($(this))).css("padding-top", f2($(this)));
-    });
-}
-
-function setGridItemsHeight(h2, h4) {
-    $('.pg-grid-item-h-2').css('height', h2 + 'px');
-    $('.pg-grid-item-h-4').css('height', h4 + 'px');
-}
-
-// Set property gallery height
-function setPgHeight() {
-    var w = $(window).width();
-/*
-    if (w > 1200) {
-        setGridItemsHeight(180, 360);
-        setIconOuterContainerStyle(function(c) {return c.height() / 6;}, function(c) {return c.height() / 12});
-        $('.icon-inner-container').css('height', '120');
-        $('.icon-inner-container').css('width', '120');
-        $('.icon-inner-container').css('border-radius', '50%');
-        //$('.icon-inner-container .fa').css('font-size', '3em');
-
-        //$('.icon-inner-container .hint').css('display', 'inline');
-    } else if (w > 980) {
-        setGridItemsHeight(170, 340);
-        setIconOuterContainerStyle(function(c) {return c.height() / 6;}, function(c) {return c.height() / 12});
-        $('.icon-inner-container').css('height', '120');
-        $('.icon-inner-container').css('width', '120');
-        $('.icon-inner-container').css('border-radius', '50%');
-        //$('.icon-inner-container .fa').css('font-size', '3em');
-        //$('.icon-inner-container .hint').css('display', 'inline');
-    } else {
-        setGridItemsHeight(145, 290);
-        setIconOuterContainerStyle(function(c) {return 0;}, function(c) {return 45;});
-        $('.icon-inner-container').css('height', 'inherit');
-        $('.icon-inner-container').css('width', 'inherit');
-        $('.icon-inner-container').css('border-radius', '0%');
-        //$('.icon-inner-container .fa').css('font-size', '2em');
-        //$('.icon-inner-container .hint').css('display', 'none');
-    }
-    $("#pg-grid").masonry('reload');*/
 }
 
 // Set Owl Carousel width

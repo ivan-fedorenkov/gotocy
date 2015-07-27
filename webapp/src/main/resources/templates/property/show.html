@@ -60,15 +60,7 @@
             height: inherit;
         }
 
-
-        .icon-outer-container {
-            width: 100%;
-            height: inherit;
-
-            /*background-size: cover;*/
-        }
-
-        .icon-inner-container {
+        .icon-container {
             height: 120px;
             width: 120px;
             position: relative;
@@ -86,16 +78,16 @@
             cursor: pointer; cursor: hand;
         }
 
-        .icon-inner-container .fa {
+        .icon-container .fa {
             font-size: 3em;
         }
 
         @media screen and (max-width: 991px) {
-            .icon-inner-container {
+            .icon-container {
                 padding-top: 25px;
             }
 
-            .icon-inner-container .fa {
+            .icon-container .fa {
                 font-size: 2em;
             }
 
@@ -179,20 +171,18 @@
                         <section id="property-gallery">
                             <div class="pg-grid">
                                 <div class="pg-grid-sizer"></div>
-                                <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(1), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(0), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(1), T(org.gotocy.domain.ImageSize).SMALL)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
                                 <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(2), T(org.gotocy.domain.ImageSize).SMALL)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(3), T(org.gotocy.domain.ImageSize).SMALL)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(4), T(org.gotocy.domain.ImageSize).SMALL)}')|" style="background-image: url('/assets/img/properties/property-detail-03.jpg');">
-                                    <div class="icon-outer-container" th:if="${hasPano}">
-                                        <div id="pano-popup-container" class="icon-inner-container">
-                                            <i class="fa fa-street-view"></i><br><span class="hint">Click to View Pano 360</span>
-                                            <div id="pano-popup" class="mfp-hide">
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-md-8 col-sm-8 col-lg-offset-3 col-md-offset-2 col-sm-offset-2">
-                                                        <div class="well">
-                                                            <div id="pano">
-                                                                This content requires HTML5/CSS3, WebGL, or Adobe Flash Player Version 9 or higher.
-                                                            </div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(3), T(org.gotocy.domain.ImageSize).SMALL)}')|" style="background-image: url('/assets/img/properties/property-detail-03.jpg');">
+                                    <div id="pano-popup-container" class="icon-container" th:if="${hasPano}">
+                                        <i class="fa fa-street-view"></i><br><span class="hint">Click to View Pano 360</span>
+                                        <div id="pano-popup" class="mfp-hide">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-8 col-sm-8 col-lg-offset-3 col-md-offset-2 col-sm-offset-2">
+                                                    <div class="well">
+                                                        <div id="pano">
+                                                            This content requires HTML5/CSS3, WebGL, or Adobe Flash Player Version 9 or higher.
                                                         </div>
                                                     </div>
                                                 </div>
@@ -200,11 +190,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2">
-                                    <div class="icon-outer-container" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(5), T(org.gotocy.domain.ImageSize).SMALL)}')|" style="background-image: url('/assets/img/properties/property-detail-01.jpg');">
-                                        <div id="gallery-popup-container" class="icon-inner-container">
-                                            <i class="fa fa-camera"></i><br><span class="hint">Click to View Gallery</span>
-                                        </div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(4), T(org.gotocy.domain.ImageSize).SMALL)}')|" style="background-image: url('/assets/img/properties/property-detail-01.jpg');">
+                                    <div id="gallery-popup-container" class="icon-container">
+                                        <i class="fa fa-camera"></i><br><span class="hint">Click to View Gallery</span>
                                     </div>
                                 </div>
                             </div>
@@ -389,23 +377,12 @@
     var panoConfigUrl = /*[[${hasPano}? ${helper.path(#object.property)} + '/pano.xml' : '']]*/ '';
     var images = /*[[${helper.imageUrls(#object.property.imageSet.images)}]]*/ '';
 
-    <!--google.maps.event.addDomListener(window, 'load', initMap(latitude, longitude, markerPictureUrl));-->
-
-
     $(document).ready(function() {
         $('#pg-grid').masonry({
             itemSelector: '.pg-grid-item',
             columnWidth: '.pg-grid-sizer',
             percentPosition: true
         });
-
-        // Set the property gallery height
-//        setPgHeight();
-
-        // Eventually the icons could be displayed
-//        $('.icon-outer-container').each(function() {
-//            $(this).children().css("top", $(this).height() / 6).css("padding-top", $(this).height() / 12).css("display", "block");
-//        });
 
         var panoPopupContainer = $('#pano-popup-container');
         if (panoPopupContainer.length > 0) {
@@ -441,6 +418,8 @@
             });
         }
     });
+
+    google.maps.event.addDomListener(window, 'load', initMap(latitude, longitude, markerPictureUrl));
 
 /*]]>*/
 </script>
