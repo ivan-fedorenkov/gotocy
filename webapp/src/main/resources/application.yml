@@ -5,6 +5,11 @@ spring:
     hibernate:
       ddl-auto: validate
 
+server:
+  tomcat:
+    compression: on
+    compressableMimeTypes: "application/json,application/xml,text/html,text/xml,text/plain,text/css,application/javascript"
+
 gotocy:
   webapp:
     email: "support@gotocy.eu"
