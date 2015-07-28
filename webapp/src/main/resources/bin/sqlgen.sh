@@ -2,9 +2,6 @@
 
 # Usefull commands:
 #  find . -name "*.JPG" -exec sh -c 'mv ${1} ${1%.*}.jpg' _ {} \;
-#  find . -name "*.jpg" -exec sh -c 'convert -resize 848x474^ -gravity center -crop 848x600+0+0 +repage ${1} MEDIUM_${1##*/}' _ {} \;
-#  convert -resize 100x75^ -gravity center -crop 100x75+0+0 +repage 1.jpg THUMBNAIL_1.jpg
-#  convert -resize 262x197^ -gravity center -crop 262x197+0+0 +repage 1.jpg SMALL_1.jpg
 
 dir=${1:-.} # working directory
 
@@ -139,22 +136,26 @@ if [ $convert_images = "yes" ]; then
 
   echo
   echo "Auto-orient pictures..."
-  find . -name "*.jpg" -exec sh -c 'convert -auto-orient "${1}" "${1}"' _ {} \;
+  find . -maxdepth 1 -name "*.jpg" -exec sh -c 'convert -auto-orient "${1}" "${1}"' _ {} \;
   echo "OK"
 
   ls -lah
 
   echo
   echo "Converting images to MEDIUM size..."
-  find . -name "*.jpg" -exec sh -c 'convert -resize 848x474^ -gravity center -crop 848x600+0+0 +repage "${1}" "MEDIUM_${1##*/}"' _ {} \;
+  find . -maxdepth 1 -name "*.jpg" -exec sh -c 'convert -quality 50 -resize 524x394^ -gravity center -crop 524x394+0+0 +repage "${1}" "MEDIUM/${1##*/}"' _ {} \;
+  echo "OK"
+
+
+
+  echo
+  echo "Converting representative image to BIG size..."
+  find . -maxdepth 1 -name "*.jpg" -exec sh -c 'convert -quality 50 -resize 1920x1080^ "${1}" "BIG/${1##*/}"' _ {} \;
   echo "OK"
 
   read -p "Please enter the representative image name: " representative_image
-
   echo
-  echo "Converting representative image to SMALL size..."
-  convert -resize 262x197^ -gravity center -crop 262x197+0+0 +repage "$representative_image" "SMALL_$representative_image"
-  echo "OK"
+  echo "The representative image would be $representative_image"
 
 fi
 

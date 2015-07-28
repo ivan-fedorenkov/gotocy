@@ -84,9 +84,9 @@
                             <div class="pg-grid">
                                 <div class="pg-grid-sizer"></div>
                                 <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(0), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(1), T(org.gotocy.domain.ImageSize).SMALL)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(2), T(org.gotocy.domain.ImageSize).SMALL)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(3), T(org.gotocy.domain.ImageSize).SMALL)}')|" style="background-image: url('/assets/img/properties/property-detail-03.jpg');">
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(1), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(2), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(3), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/assets/img/properties/property-detail-03.jpg');">
                                     <div id="pano-popup-container" class="icon-container" th:if="${hasPano}">
                                         <i class="fa fa-street-view"></i><br><span class="hint">Click to View Pano 360</span>
                                         <div id="pano-popup" class="mfp-hide">
@@ -102,7 +102,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(4), T(org.gotocy.domain.ImageSize).SMALL)}')|" style="background-image: url('/assets/img/properties/property-detail-01.jpg');">
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(4), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/assets/img/properties/property-detail-01.jpg');">
                                     <div id="gallery-popup-container" class="icon-container">
                                         <i class="fa fa-camera"></i><br><span class="hint">Click to View Gallery</span>
                                     </div>
@@ -192,7 +192,7 @@
                             <div class="property small" th:each="lp : ${similarProperties}" th:with="propertyPath=${helper.path(lp)}">
                                 <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html">
                                     <div class="property-image">
-                                        <img alt="" th:src="@{${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).SMALL)}}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                        <img alt="" th:src="@{${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                     </div>
                                 </a>
                                 <div class="info">

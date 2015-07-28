@@ -7,14 +7,10 @@ package org.gotocy.domain;
  */
 public enum ImageSize {
 
-	MEDIUM("-resize 848x474^ -gravity center -crop 848x474+0+0 +repage"),
-	SMALL("-resize 262x197^ -gravity center -crop 262x197+0+0 +repage"),
-	THUMBNAIL("-resize 100x75^ -gravity center -crop 100x75+0+0 +repage");
+	// -quality 70 -resize 1920x1080^
+	BIG,
 
-	private String resizeImageMagickCommand;
-
-	ImageSize(String command) {
-		resizeImageMagickCommand = command;
-	}
+	// -quality 50 -resize 524x394^ -crop 524x394+0+0 : 1.32 - looks like the ideal proportion
+	MEDIUM;
 
 }

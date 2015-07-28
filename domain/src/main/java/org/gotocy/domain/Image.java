@@ -2,6 +2,7 @@ package org.gotocy.domain;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.Objects;
 
 /**
  * @author ifedorenkov
@@ -15,7 +16,7 @@ public class Image extends Asset<byte[]> {
 	 */
 	public String getKeyForSize(ImageSize imageSize) {
 		int nextToLastSlash = getKey().lastIndexOf('/') + 1;
-		return getKey().substring(0, nextToLastSlash) + imageSize.name() + '_' + getKey().substring(nextToLastSlash);
+		return getKey().substring(0, nextToLastSlash) + imageSize.name() + '/' + getKey().substring(nextToLastSlash);
 	}
 
 }

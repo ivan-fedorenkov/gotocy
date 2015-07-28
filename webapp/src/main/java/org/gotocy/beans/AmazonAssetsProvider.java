@@ -52,20 +52,10 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 
 	@Override
 	public String getImageUrl(Image image, ImageSize size) {
-		String key;
-		switch (size) {
-		case THUMBNAIL:
-			if (exists(key = image.getKeyForSize(ImageSize.THUMBNAIL)))
-				return generatePresignedUrl(key, HttpMethod.GET);
-		case SMALL:
-			if (exists(key = image.getKeyForSize(ImageSize.SMALL)))
-				return generatePresignedUrl(key, HttpMethod.GET);
-		case MEDIUM:
-			if (exists(key = image.getKeyForSize(ImageSize.MEDIUM)))
-				return generatePresignedUrl(key, HttpMethod.GET);
-		default: // Fall back to default - original
-			return getUrl(image);
-		}
+		String key =image.getKeyForSize(size);
+		// Fall back to original if key can't be found.
+		// TODO: log error
+		return exists(key) ? generatePresignedUrl(key, HttpMethod.GET) : getUrl(image);
 	}
 
 	@Override

@@ -3,7 +3,6 @@ package org.gotocy.beans;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.ImageSize;
-import org.gotocy.domain.PanoXml;
 
 /**
  * An adapter interface to deal with various backend asset providers.

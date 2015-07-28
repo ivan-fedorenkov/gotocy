@@ -50,6 +50,7 @@ public class Helper {
 	/**
 	 * Generate url for a given image asset, using the configured {@link AssetsProvider} instance and the given image
 	 * size.
+	 * TODO: unit test
 	 */
 	public String imageUrl(Image image, ImageSize size) {
 		return assetsProvider.getImageUrl(image, size);
@@ -57,13 +58,13 @@ public class Helper {
 
 	/**
 	 * Generates a list of urls for a given images collection, using the configured {@link AssetsProvider} instance and
-	 * the given image size.
+	 * the {@link ImageSize#BIG} size.
 	 *
 	 * TODO: unit test
 	 */
 	public List<String> imageUrls(Collection<Image> assets) {
 		List<String> urls = new ArrayList<>(assets.size());
-		assets.forEach(asset -> urls.add(imageUrl(asset, ImageSize.MEDIUM)));
+		assets.forEach(asset -> urls.add(imageUrl(asset, ImageSize.BIG)));
 		return urls;
 	}
 
