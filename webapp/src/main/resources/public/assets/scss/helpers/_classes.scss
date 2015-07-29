@@ -899,7 +899,7 @@
   background-color: $color-default;
   border-radius: 50%;
   @include opacity(0.8);
-  color: white;
+  color: #fff;
 
   text-align: center;
   cursor: pointer; cursor: hand;
@@ -907,6 +907,32 @@
   .fa {
     font-size: 3em;
   }
+}
+
+.pg-ribbon-container {
+  width: 100%;
+  height: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.pg-ribbon {
+  width: 200px;
+  background: $color-default;
+  position: absolute;
+  top: 25px;
+  left: -50px;
+  text-align: center;
+  line-height: 50px;
+  letter-spacing: 1px;
+  color: #fff;
+
+  overflow: hidden;
+  z-index: 3;
+  display: block;
+
+  @include rotate(-45deg);
+  @include shadow;
 }
 
 /****
@@ -928,7 +954,15 @@
 }
 
 // Ribbon
-.ribbon { @include shadow; @include transform(translate3d(0,0,1px) rotate(45deg)); @include backface-visibility(hidden); background-color: $color-default; color: #fff; font-weight: bold; font-size: 12px; padding: 6px; position: absolute; z-index: 3; right: -30px; top: 15px; width: 120px; text-align: center; margin: auto; height: 30px; bottom: inherit; left: inherit; }
+.ribbon { @include shadow; @include rotate; @include backface-visibility(hidden); background-color: $color-default; color: #fff; font-weight: bold; font-size: 12px; padding: 6px; position: absolute; z-index: 3; right: -30px; top: 15px; width: 120px; text-align: center; margin: auto; height: 30px; bottom: inherit; left: inherit; }
+
+.ribbon-sold {
+  background: $color-red;
+}
+
+.ribbon-booked {
+  background: $color-orange;
+}
 
 /****
   S

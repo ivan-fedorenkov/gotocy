@@ -118,8 +118,9 @@
                     <!-- <a href="properties-listing.html" class="link-arrow">All Properties</a> -->
                 </header>
                 <div class="row" th:remove="all-but-first">
-                    <div class="col-md-3 col-sm-6" th:each="lp : ${longTermProperties}">
+                    <div class="col-md-3 col-sm-6" th:each="lp : ${longTermProperties}" th:with="offerStatus = ${lp.property.offerStatus}">
                         <div class="property">
+                            <figure class="ribbon" th:if="${offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
                             <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
                                     <img alt="" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
@@ -257,8 +258,9 @@
                     <!-- <a href="properties-listing.html" class="link-arrow">All Properties</a> -->
                 </header>
                 <div class="row" th:remove="all-but-first">
-                    <div class="col-md-3 col-sm-6" th:each="lp : ${shortTermProperties}">
+                    <div class="col-md-3 col-sm-6" th:each="lp : ${shortTermProperties}" th:with="offerStatus = ${lp.property.offerStatus}">
                         <div class="property">
+                            <figure class="ribbon" th:if="${offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
                             <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
                                     <img alt="" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
@@ -396,8 +398,9 @@
                     <!-- <a href="properties-listing.html" class="link-arrow">All Properties</a> -->
                 </header>
                 <div class="row" th:remove="all-but-first">
-                    <div class="col-md-3 col-sm-6" th:each="lp : ${saleProperties}">
+                    <div class="col-md-3 col-sm-6" th:each="lp : ${saleProperties}" th:with="offerStatus = ${lp.property.offerStatus}">
                         <div class="property">
+                            <figure class="ribbon" th:if="${offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
                             <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
                                     <img alt="" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">

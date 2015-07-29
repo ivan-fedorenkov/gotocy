@@ -33,6 +33,9 @@ public class Property extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private PropertyStatus propertyStatus;
 
+	@Enumerated(EnumType.STRING)
+	private OfferStatus offerStatus;
+
 	private Integer price;
 
 	private Integer coveredArea;
@@ -237,5 +240,13 @@ public class Property extends BaseEntity {
 
 	public void setShortAddress(String shortAddress) {
 		this.shortAddress = shortAddress;
+	}
+
+	public OfferStatus getOfferStatus() {
+		return offerStatus;
+	}
+
+	public void setOfferStatus(OfferStatus offerStatus) {
+		this.offerStatus = offerStatus;
 	}
 }

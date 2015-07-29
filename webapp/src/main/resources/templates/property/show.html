@@ -11,58 +11,6 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
-    <!--
-        http://www.cssportal.com/css-ribbon-generator/
-        http://codepen.io/eode9/pen/twkKm
-        http://www.inserthtml.com/2012/03/creating-css-image-ribbons/
-
-        fix color, fix transform (mixins), fix opacity
-    -->
-    <style>
-
-        .pg-ribbon-container {
-            width: 100%;
-            height: inherit;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pg-ribbon {
-            width: 200px;
-            background: #1396e2;
-            position: absolute;
-            top: 25px;
-            left: -50px;
-            text-align: center;
-            line-height: 50px;
-            letter-spacing: 1px;
-            color: white;
-            -webkit-transform: rotate(-45deg);
-            -moz-transform:    rotate(-45deg);
-            -ms-transform:     rotate(-45deg);
-            -o-transform:      rotate(-45deg);
-
-            overflow: hidden;
-            z-index: 3;
-            display: block;
-
-            box-shadow: 0 0 3px rgba(0,0,0,.3);
-        }
-
-        .pg-ribbon.LONG_TERM, .pg-ribbon.SHORT_TERM, .pg-ribbon.SALE {
-            display: none;
-        }
-
-        .pg-ribbon.LONG_TERM_RENTED, .pg-ribbon.SHORT_TERM_RENTED, .pg-ribbon.SOLD {
-            background: #e43;
-        }
-
-        .pg-ribbon.pg-ribbon-booked {
-            background: #e82;
-        }
-
-    </style>
-
     <title th:text="#{org.gotocy.templates.title(*{property.title})}">Property Detail | GoToCy</title>
 
 </head>
@@ -136,8 +84,8 @@
                             <div class="pg-grid">
                                 <div class="pg-grid-sizer"></div>
                                 <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(0), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;">
-                                    <div class="pg-ribbon-container">
-                                        <figure class="pg-ribbon" th:classappend="*{property.propertyStatus}" th:text="*{{property.propertyStatus}}">Booked</figure>
+                                    <div class="pg-ribbon-container" th:if="${#object.property.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}">
+                                        <figure class="pg-ribbon" th:classappend="${#object.property.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="*{{property.offerStatus}}">Booked</figure>
                                     </div>
                                 </div>
                                 <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(1), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>

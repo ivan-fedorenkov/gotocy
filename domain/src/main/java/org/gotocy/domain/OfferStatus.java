@@ -3,16 +3,16 @@ package org.gotocy.domain;
 import org.springframework.context.MessageSourceResolvable;
 
 /**
- * A property status, which is the type of rental. Currently all property statuses are stored as a enum.
+ * A property offer status.
  *
  * @author ifedorenkov
  */
-public enum PropertyStatus implements MessageSourceResolvable {
-	LONG_TERM, SHORT_TERM, SALE;
+public enum OfferStatus implements MessageSourceResolvable {
+	ACTIVE, BOOKED, SOLD, RENTED;
 
 	@Override
 	public String[] getCodes() {
-		return new String[] {"org.gotocy.domain.PropertyStatus." + name()};
+		return new String[] {"org.gotocy.domain.OfferStatus." + name()};
 	}
 
 	@Override
