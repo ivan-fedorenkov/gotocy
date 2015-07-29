@@ -8,7 +8,7 @@ import org.springframework.context.MessageSourceResolvable;
  * @author ifedorenkov
  */
 public enum PropertyStatus implements MessageSourceResolvable {
-	LONG_TERM, SHORT_TERM, SALE;
+	LONG_TERM, SHORT_TERM, SALE, SHORT_TERM_RENTED, LONG_TERM_RENTED, SOLD;
 
 	@Override
 	public String[] getCodes() {

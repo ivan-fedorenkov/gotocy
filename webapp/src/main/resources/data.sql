@@ -481,7 +481,7 @@ insert into asset (id, version, key, asset_type) values (109, 0, 'property/9/pan
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id)
-  values (9, 0, 'Demetris Residence', '18 Agiou Amvrosiou street Krasas area 7100 Aradippou Larnaca Cyprus', '18 Agiou Amvrosiou st, Larnaca', 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'LONG_TERM', 1000, 4, true, 'FULL', 93, 109, 2);
+  values (9, 0, 'Demetris Residence', '18 Agiou Amvrosiou street Krasas area 7100 Aradippou Larnaca Cyprus', '18 Agiou Amvrosiou st, Larnaca', 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'LONG_TERM_RENTED', 1000, 4, true, 'FULL', 93, 109, 2);
 
 
 insert into localized_property (id, version, locale, description, property_id)
@@ -1546,7 +1546,7 @@ insert into asset (id, version, key, asset_type) values (307, 0, 'property/20/IM
 insert into asset (id, version, key, asset_type) values (308, 0, 'property/20/IMG_0534.jpg', 'IMAGE');
 insert into asset (id, version, key, asset_type) values (309, 0, 'property/20/pano.xml', 'PANO_XML');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (20, 0, 'Dimitraki Koumantari Residence', 'LARNACA', '34.940275', '33.590204', 'Demetri Koumandari Str. No.1, 7103, Aradippou, Larnaca', 'Demetri Koumandari Str.1, Larnaca', 'HOUSE', 'LONG_TERM', 850, NULL, NULL, 4, 10, 4700, TRUE, TRUE, TRUE, 'FULL', 300, 309, 1);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (20, 0, 'Dimitraki Koumantari Residence', 'LARNACA', '34.940275', '33.590204', 'Demetri Koumandari Str. No.1, 7103, Aradippou, Larnaca', 'Demetri Koumandari Str.1, Larnaca', 'HOUSE', 'LONG_TERM_RENTED', 850, NULL, NULL, 4, 10, 4700, TRUE, TRUE, TRUE, 'FULL', 300, 309, 1);
 
 insert into localized_property (id, version, locale, description, property_id) values (20, 0, 'en', '', 20);
 insert into localized_property (id, version, locale, description, property_id) values (10020, 0, 'ru', '', 20);

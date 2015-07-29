@@ -8,8 +8,11 @@
     <dt th:text="|#{org.gotocy.dictionary.ready-to-move-in}:|">Ready to Move in:</dt>
         <dd th:text="${lp.property.readyToMoveIn}? #{org.gotocy.dictionary.yes} : #{org.gotocy.dictionary.no}">Yes</dd>
 
+    <dt th:text="|#{org.gotocy.dictionary.status}:|">Status:</dt>
+        <dd th:text="#{org.gotocy.dictionary.sold}">Sold</dd>
+
     <dt th:text="|#{org.gotocy.dictionary.price}:|">Price:</dt>
-        <dd><span class="tag price" th:utext="${helper.price(#object.property)}">$ 78,000</span></dd>
+        <dd><span class="tag price" th:utext="|<del>${helper.price(#object.property)}</del>|"><del>$ 78,000</del></span></dd>
 
     <dt th:text="|#{org.gotocy.dictionary.covered-area}:|">Covered Area:</dt>
         <dd th:utext="|${lp.property.coveredArea} #{org.gotocy.dictionary.meters}<sup>2</sup>|">123 m<sup>2</sup></dd>
