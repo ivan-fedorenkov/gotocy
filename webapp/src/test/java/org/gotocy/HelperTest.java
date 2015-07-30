@@ -116,4 +116,11 @@ public class HelperTest {
 		Assert.assertEquals(initialCode + ".plural", Helper.pluralize(initialCode, 2));
 	}
 
+	@Test
+	public void getPropertyTypeIcon() {
+		Assert.assertEquals("apartment", Helper.getPropertyTypeIcon(PropertyType.APARTMENT));
+		Assert.assertEquals("apartment", Helper.getPropertyTypeIcon(PropertyType.FLAT));
+		Assert.assertEquals("single-family", Helper.getPropertyTypeIcon(PropertyType.HOUSE));
+	}
+
 }

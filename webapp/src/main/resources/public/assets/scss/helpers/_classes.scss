@@ -771,7 +771,7 @@
       .tag { font-size: 12px; }
     }
   }
-  &.masonry { @include transition(.4s); background-color: #fff; font-size: 12px; width: 32.1%; float: left; margin-bottom: 15px; overflow: visible;
+  &.masonry { @include transition(.4s); background-color: #fff; font-size: 12px; width: 23.75%; float: left; margin-bottom: 15px; overflow: visible;
     .inner { /*-moz-backface-visibility: hidden;*/ @include transform3d(scale(1));  }
     &:hover {
       img { top: 0; }

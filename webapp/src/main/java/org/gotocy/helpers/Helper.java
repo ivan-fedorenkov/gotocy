@@ -188,6 +188,14 @@ public class Helper {
 		return distanceFormatter.print(number, locale) + " " + ending;
 	}
 
+	/**
+	 * Returns suitable icon for the given {@link PropertyType}.
+	 * Unit test: HelperTest#getPropertyTypeIcon.
+	 */
+	public static String getPropertyTypeIcon(PropertyType type) {
+		return type == PropertyType.HOUSE ? "single-family" : "apartment";
+	}
+
 	private static String getPrefixForLanguage(String language) {
 		return Objects.equals(language, "ru") ? "/ru" : "";
 	}

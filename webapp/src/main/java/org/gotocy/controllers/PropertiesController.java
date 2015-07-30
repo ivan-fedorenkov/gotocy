@@ -4,16 +4,17 @@ import org.gotocy.beans.AssetsProvider;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.LocalizedProperty;
 import org.gotocy.domain.Property;
+import org.gotocy.domain.PropertyStatus;
 import org.gotocy.repository.LocalizedPropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 
 import java.util.List;
@@ -29,6 +30,15 @@ public class PropertiesController {
 	private LocalizedPropertyRepository repository;
 	@Autowired
 	AssetsProvider assetsProvider;
+
+	@RequestMapping(value = "/properties", method = RequestMethod.GET)
+	public String index(Model model, @RequestParam PropertyStatus propertyStatus, Locale locale,
+		@PageableDefault(size = 40, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
+	{
+		model.addAttribute("properties", repository.findByPropertyPropertyStatusAndLocale(
+			propertyStatus, locale.getLanguage(), pageable));
+		return "property/index";
+	}
 
 	@RequestMapping(value = "/property/{id}", method = RequestMethod.GET)
 	public String get(Model model, @PathVariable Long id, Locale locale) throws NoSuchRequestHandlingMethodException {

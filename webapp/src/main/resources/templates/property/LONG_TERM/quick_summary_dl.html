@@ -1,4 +1,4 @@
-<dl th:fragment="quick_summary_dl(lp)" th:with="isFurnitured=${lp.property.furnished},hasHeating=${lp.property.heatingSystem}">
+<dl th:fragment="quick_summary(lp)" th:with="isFurnitured=${lp.property.furnished},hasHeating=${lp.property.heatingSystem}">
     <dt th:text="|#{org.gotocy.dictionary.location}:|">Location:</dt>
         <dd th:text="${{lp.property.location}}">Chicago, IL 60610</dd>
         
@@ -11,7 +11,7 @@
     <dt th:text="|#{org.gotocy.dictionary.price}:|">Price:</dt>
         <dd><span class="tag price" th:utext="${helper.price(#object.property)}">$ 78,000</span></dd>
 
-    <dt th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', #object.property.bedrooms))}:|">Bedrooms:</dt>
+    <dt th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', lp.property.bedrooms))}:|">Bedrooms:</dt>
         <dd th:text="${lp.property.bedrooms}">3</dd>
 
     <dt th:text="|#{org.gotocy.dictionary.furnishing}:|">Furnishing:</dt>
