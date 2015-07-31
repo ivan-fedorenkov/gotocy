@@ -21,6 +21,8 @@ public interface LocalizedPropertyRepository extends JpaRepository<LocalizedProp
 
 	List<LocalizedProperty> findByPropertyPropertyStatusAndLocale(PropertyStatus propertyStatus, String locale, Pageable pageable);
 
+	List<LocalizedProperty> findByLocale(String locale, Pageable pageable);
+
 	@Query("select lp from LocalizedProperty lp join fetch lp.property join fetch lp.property.imageSet.representativeImage " +
 		"left join fetch lp.property.panoXml where lp.property.propertyStatus = ?1 and lp.property.location = ?2 and lp.locale = ?3")
 	List<LocalizedProperty> findSimilar(PropertyStatus propertyStatus,

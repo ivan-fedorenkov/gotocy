@@ -16,6 +16,11 @@
       //.overlay { margin-bottom: 20px !important; }
     }
   }
+
+  .property.masonry img.extended-4 {
+    height: 290px;
+    width: 120%;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,6 +54,11 @@
     .slide { overflow: hidden;
       img { position: relative !important; height: 100% !important; width: inherit !important; }
     }
+  }
+
+  .property.masonry img.extended-3 {
+    height: 290px;
+    width: 120%;
   }
 }
 
@@ -135,6 +145,11 @@
   }
   .universal-button { font-size: 12px; padding: 15px;
     figure { font-size: 20px; width: 30px; }
+  }
+
+  .property.masonry img.extended-3 {
+    height: 260px;
+    width: 125%;
   }
 }
 

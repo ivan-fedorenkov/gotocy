@@ -32,11 +32,13 @@ public class PropertiesController {
 	AssetsProvider assetsProvider;
 
 	@RequestMapping(value = "/properties", method = RequestMethod.GET)
-	public String index(Model model, @RequestParam PropertyStatus propertyStatus, Locale locale,
+	public String index(Model model, @RequestParam(required = false) PropertyStatus propertyStatus, Locale locale,
 		@PageableDefault(size = 40, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
-		model.addAttribute("properties", repository.findByPropertyPropertyStatusAndLocale(
-			propertyStatus, locale.getLanguage(), pageable));
+		List<LocalizedProperty> properties = propertyStatus == null ?
+			repository.findByLocale(locale.getLanguage(), pageable) :
+			repository.findByPropertyPropertyStatusAndLocale(propertyStatus, locale.getLanguage(), pageable);
+		model.addAttribute("properties", properties);
 		return "property/index";
 	}
 

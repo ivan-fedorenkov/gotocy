@@ -4220,7 +4220,11 @@ body, html {
     overflow: hidden; }
     #slider .slide img {
       position: relative !important;
-      width: inherit !important; } }
+      width: inherit !important; }
+
+  .property.masonry img.extended-4 {
+    height: 290px;
+    width: 120%; } }
 @media (min-width: 992px) and (max-width: 1199px) {
   .member {
     padding-left: 110px; }
@@ -4259,7 +4263,11 @@ body, html {
     #slider .slide img {
       position: relative !important;
       height: 100% !important;
-      width: inherit !important; } }
+      width: inherit !important; }
+
+  .property.masonry img.extended-3 {
+    height: 290px;
+    width: 120%; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .agency address {
     margin-left: 10px;
@@ -4373,7 +4381,11 @@ body, html {
     padding: 15px; }
     .universal-button figure {
       font-size: 20px;
-      width: 30px; } }
+      width: 30px; }
+
+  .property.masonry img.extended-3 {
+    height: 260px;
+    width: 125%; } }
 @media screen and (max-width: 991px) {
   .icon-container {
     padding-top: 25px; }
