@@ -1,7 +1,13 @@
 #!/bin/bash
 
 # Usefull commands:
-#  find . -name "*.JPG" -exec sh -c 'mv ${1} ${1%.*}.jpg' _ {} \;
+# find . -name "*.JPG" -exec sh -c 'mv ${1} ${1%.*}.jpg' _ {} \;
+# find . -maxdepth 1 -name "*.jpg" -exec sh -c 'convert -auto-orient "${1}" "${1}"' _ {} \;
+# find . -maxdepth 1 -name "*.jpg" -exec sh -c 'convert -quality 50 -resize 524x394^ -gravity center -crop 524x394+0+0 +repage "${1}" "MEDIUM/${1##*/}"' _ {} \;
+# find . -maxdepth 1 -name "*.jpg" -exec sh -c 'convert -quality 70 -resize 1920x1080^ -gravity center "${1}" "BIG/${1##*/}"' _ {} \;
+# aws s3 cp MEDIUM/ s3://assets.gotocy.eu/property/$ID/MEDIUM/ --recursive --storage-class REDUCED_REDUNDANCY
+# aws s3 cp BIG/ s3://assets.gotocy.eu/property/$ID/BIG/ --recursive --storage-class REDUCED_REDUNDANCY
+# aws s3 cp . s3://assets.gotocy.eu/property/$ID/ --recursive --exclude "*" --include "*.jpg" --exclude "MEDIUM/*" --exclude "BIG/*" --dryrun
 
 dir=${1:-.} # working directory
 
