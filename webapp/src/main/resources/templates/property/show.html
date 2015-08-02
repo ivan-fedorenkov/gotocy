@@ -99,7 +99,7 @@
                                 <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(2), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
                                 <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(3), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg');">
                                     <div id="pano-popup-container" class="icon-container" th:if="${hasPano}">
-                                        <i class="fa fa-street-view"></i><br><span class="hint">Click to View Pano 360</span>
+                                        <i class="fa fa-street-view"></i><br><span class="hint" th:text="#{org.gotocy.templates.property.show.click-to-view-pano}">Click to View Pano 360</span>
                                         <div id="pano-popup" class="mfp-hide">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-8 col-sm-8 col-lg-offset-3 col-md-offset-2 col-sm-offset-2">
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(4), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-01.jpg');">
                                     <div id="gallery-popup-container" class="icon-container">
-                                        <i class="fa fa-camera"></i><br><span class="hint">Click to View Gallery</span>
+                                        <i class="fa fa-camera"></i><br><span class="hint" th:text="#{org.gotocy.templates.property.show.click-to-view-gallery}">Click to View Gallery</span>
                                     </div>
                                 </div>
                             </div>
