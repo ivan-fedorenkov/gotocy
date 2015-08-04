@@ -72,12 +72,18 @@ public class PropertiesController {
 		return assetsProvider.loadUnderlyingObject(property.getPanoXml()).getObject();
 	}
 
-	@RequestMapping(value ="/property/{id}/360_images/{image}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	@RequestMapping(value = "/property/{id}/360_images/{image}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	public byte[] getImage(@PathVariable String id, @PathVariable String image) {
 		Image imageKey = new Image();
 		imageKey.setKey("property/" + id + "/360_images/" + image + ".jpg");
 		return assetsProvider.loadUnderlyingObject(imageKey).getObject();
+	}
+
+	@RequestMapping(value = "/master/property/{id}/edit", method = RequestMethod.GET)
+	public String edit(Model model, @PathVariable("id") Property property) {
+		model.addAttribute("propertyForm", property);
+		return "master/property/edit";
 	}
 
 }
