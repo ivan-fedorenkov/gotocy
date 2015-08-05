@@ -5,9 +5,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * An embeddable class that represents associations between an object and its images.
@@ -27,6 +26,10 @@ public class ImageSet {
 	@OneToMany(cascade = CascadeType.PERSIST)
 	private List<Image> images = new ArrayList<>();
 
+	public String getImagesAsString() {
+		return images.stream().map(Image::getKey).collect(Collectors.joining("\n"));
+	}
+
 	public Image getRepresentativeImage() {
 		return representativeImage;
 	}
@@ -37,6 +40,10 @@ public class ImageSet {
 
 	public List<Image> getImages() {
 		return images;
+	}
+
+	public void addImage(Image image) {
+		images.add(image);
 	}
 
 	public void setImages(List<Image> images) {

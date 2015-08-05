@@ -5,6 +5,7 @@ import org.gotocy.domain.Image;
 import org.gotocy.domain.LocalizedProperty;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyStatus;
+import org.gotocy.forms.PropertyForm;
 import org.gotocy.repository.LocalizedPropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -81,8 +82,17 @@ public class PropertiesController {
 	}
 
 	@RequestMapping(value = "/master/property/{id}/edit", method = RequestMethod.GET)
-	public String edit(Model model, @PathVariable("id") Property property) {
-		model.addAttribute("propertyForm", property);
+	public String edit(Model model, @PathVariable("id") Long id) throws NoSuchRequestHandlingMethodException {
+		LocalizedProperty enLp = repository.findProperty(id, "en");
+		LocalizedProperty ruLp = repository.findProperty(id, "ru");
+
+		// TODO: replace with custom exception
+		if (enLp == null || ruLp == null)
+			throw new NoSuchRequestHandlingMethodException("get", PropertiesController.class);
+
+		PropertyForm propertyForm = new PropertyForm(enLp, ruLp);
+
+		model.addAttribute(propertyForm);
 		return "master/property/edit";
 	}
 

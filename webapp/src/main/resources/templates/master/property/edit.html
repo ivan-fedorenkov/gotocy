@@ -265,22 +265,22 @@
 
                                     <div class="form-group">
                                         <label for="descriptionEn">Description (en)</label>
-                                        <textarea class="form-control" id="descriptionEn" rows="8" name="submit-description"></textarea>
+                                        <textarea class="form-control" id="descriptionEn" rows="8" th:field="*{en.description}"></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="specificationsEn">Specifications (en)</label>
-                                        <textarea class="form-control" id="specificationsEn" rows="8" name="submit-description"></textarea>
+                                        <textarea class="form-control" id="specificationsEn" rows="8" th:field="*{en.specificationsAsString}"></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="descriptionRu">Description (ru)</label>
-                                        <textarea class="form-control" id="descriptionRu" rows="8" name="submit-description"></textarea>
+                                        <textarea class="form-control" id="descriptionRu" rows="8" th:field="*{ru.description}"></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="specificationsRu">Specifications (ru)</label>
-                                        <textarea class="form-control" id="specificationsRu" rows="8" name="submit-description"></textarea>
+                                        <textarea class="form-control" id="specificationsRu" rows="8" th:field="*{ru.specificationsAsString}"></textarea>
                                     </div>
                                 </section>
 
@@ -289,7 +289,7 @@
 
                                     <div class="form-group">
                                         <label for="images">Images Path</label>
-                                        <textarea class="form-control" id="images" rows="8" name="submit-description"></textarea>
+                                        <textarea class="form-control" id="images" rows="8" th:field="*{imageSet.imagesAsString}"></textarea>
                                     </div>
 
                                     <div class="form-group">

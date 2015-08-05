@@ -190,7 +190,7 @@ public class Helper {
 
 	/**
 	 * Returns suitable icon for the given {@link PropertyType}.
-	 * Unit test: HelperTest#getPropertyTypeIcon.
+	 * Unit test: HelperTest#getPropertyTypeIcon
 	 */
 	public static String getPropertyTypeIcon(PropertyType type) {
 		return type == PropertyType.HOUSE ? "single-family" : "apartment";

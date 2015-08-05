@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * TODO: implement add/remove specifications
@@ -29,6 +29,16 @@ public class LocalizedProperty extends BaseEntity {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "localizedProperty", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<LocalizedPropertySpecification> specifications = new ArrayList<>();
+
+	/**
+	 * Returns specifications as a string joined by the new-line symbol.
+	 * Unit test: LocalizedPropertyTest#getSpecificationsAsString
+	 */
+	public String getSpecificationsAsString() {
+		return specifications.stream()
+			.map(LocalizedPropertySpecification::getSpecification)
+			.collect(Collectors.joining("\n"));
+	}
 
 	public Property getProperty() {
 		return property;
@@ -63,4 +73,7 @@ public class LocalizedProperty extends BaseEntity {
 		specifications.forEach(s -> s.setLocalizedProperty(this));
 	}
 
+	public void addSpecification(LocalizedPropertySpecification specification) {
+		specifications.add(specification);
+	}
 }
