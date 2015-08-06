@@ -2,7 +2,7 @@ package org.gotocy.forms;
 
 import org.gotocy.domain.*;
 
-import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A property dto to be displayed in creating/editing forms.
@@ -10,6 +10,8 @@ import java.util.List;
  * @author ifedorenkov
  */
 public class PropertyForm {
+
+	private static final String STRING_JOINER = "\n";
 
 	private final LocalizedProperty enLocalizedProperty;
 	private final LocalizedProperty ruLocalizedProperty;
@@ -23,15 +25,72 @@ public class PropertyForm {
 		propertyDelegate = enLocalizedProperty.getProperty();
 	}
 
-	public LocalizedProperty getEn() {
-		return enLocalizedProperty;
+	// En localized property delegate
+
+	public void setEnDescription(String description) {
+		enLocalizedProperty.setDescription(description);
 	}
 
-	public LocalizedProperty getRu() {
-		return ruLocalizedProperty;
+	public String getEnDescription() {
+		return enLocalizedProperty.getDescription();
+	}
+
+	public void setEnSpecifications(String specifications) {
+		// TODO
+	}
+
+	/**
+	 * Return en specifications as a string.
+	 * Unit test: PropertyFormTest#getSpecifications
+	 */
+	public String getEnSpecifications() {
+		return enLocalizedProperty.getSpecifications()
+			.stream()
+			.map(LocalizedPropertySpecification::getSpecification)
+			.collect(Collectors.joining(STRING_JOINER));
+	}
+
+	// Ru localized property delegate
+
+	public void setRuDescription(String description) {
+		ruLocalizedProperty.setDescription(description);
+	}
+
+	/**
+	 * Return ru specifications as a string.
+	 * Unit test: PropertyFormTest#getSpecifications
+	 */
+	public String getRuDescription() {
+		return ruLocalizedProperty.getDescription();
+	}
+
+	public void setRuSpecifications(String specifications) {
+		// TODO
+	}
+
+	public String getRuSpecifications() {
+		return ruLocalizedProperty.getSpecifications()
+			.stream()
+			.map(LocalizedPropertySpecification::getSpecification)
+			.collect(Collectors.joining(STRING_JOINER));
 	}
 
 	// Property delegate
+
+	public void setImages() {
+		// TODO
+	}
+
+	/**
+	 * Return property delegate images as a string.
+	 * Unit test: PropertyFormTest#getImages
+	 */
+	public String getImages() {
+		return propertyDelegate.getImageSet().getImages()
+			.stream()
+			.map(Image::getKey)
+			.collect(Collectors.joining(STRING_JOINER));
+	}
 
 	public void setOfferStatus(OfferStatus offerStatus) {
 		propertyDelegate.setOfferStatus(offerStatus);
