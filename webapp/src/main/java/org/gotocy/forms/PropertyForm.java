@@ -18,6 +18,14 @@ public class PropertyForm {
 
 	private final Property propertyDelegate;
 
+	public PropertyForm() {
+		propertyDelegate = new Property();
+		enLocalizedProperty = new LocalizedProperty();
+		enLocalizedProperty.setProperty(propertyDelegate);
+		ruLocalizedProperty = new LocalizedProperty();
+		ruLocalizedProperty.setProperty(propertyDelegate);
+	}
+
 	public PropertyForm(LocalizedProperty enLocalizedProperty, LocalizedProperty ruLocalizedProperty) {
 		this.enLocalizedProperty = enLocalizedProperty;
 		this.ruLocalizedProperty = ruLocalizedProperty;
@@ -90,6 +98,10 @@ public class PropertyForm {
 			.stream()
 			.map(Image::getKey)
 			.collect(Collectors.joining(STRING_JOINER));
+	}
+
+	public Long getId() {
+		return propertyDelegate.getId();
 	}
 
 	public void setOfferStatus(OfferStatus offerStatus) {
