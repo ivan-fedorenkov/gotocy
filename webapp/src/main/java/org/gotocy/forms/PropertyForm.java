@@ -18,14 +18,6 @@ public class PropertyForm {
 
 	private final Property propertyDelegate;
 
-	public PropertyForm() {
-		propertyDelegate = new Property();
-		enLocalizedProperty = new LocalizedProperty();
-		enLocalizedProperty.setProperty(propertyDelegate);
-		ruLocalizedProperty = new LocalizedProperty();
-		ruLocalizedProperty.setProperty(propertyDelegate);
-	}
-
 	public PropertyForm(LocalizedProperty enLocalizedProperty, LocalizedProperty ruLocalizedProperty) {
 		this.enLocalizedProperty = enLocalizedProperty;
 		this.ruLocalizedProperty = ruLocalizedProperty;

@@ -211,10 +211,10 @@ function contactUsMap(){
 // Google Map - Submit Map
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function initSubmitMap(_latitude,_longitude){
+function initSubmitMap(_latitude,_longitude,_zoom){
     var mapCenter = new google.maps.LatLng(_latitude,_longitude);
     var mapOptions = {
-        zoom: 15,
+        zoom: _zoom,
         center: mapCenter,
         disableDefaultUI: false,
         //scrollwheel: false,

@@ -14,3 +14,5 @@ gotocy:
   webapp:
     email: "support@gotocy.eu"
     phone: "+357 99 166265"
+    defaultLatitude: "34.97351552254917"
+    defaultLongitude: "33.133228140624965"

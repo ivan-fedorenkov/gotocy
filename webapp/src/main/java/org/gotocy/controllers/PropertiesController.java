@@ -1,6 +1,7 @@
 package org.gotocy.controllers;
 
 import org.gotocy.beans.AssetsProvider;
+import org.gotocy.beans.PropertyFormFactory;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.LocalizedProperty;
 import org.gotocy.domain.Property;
@@ -29,6 +30,8 @@ public class PropertiesController {
 
 	@Autowired
 	private LocalizedPropertyRepository repository;
+	@Autowired
+	private PropertyFormFactory propertyFormFactory;
 	@Autowired
 	AssetsProvider assetsProvider;
 
@@ -81,18 +84,22 @@ public class PropertiesController {
 		return assetsProvider.loadUnderlyingObject(imageKey).getObject();
 	}
 
+	@RequestMapping(value = "/master/properties/new", method = RequestMethod.GET)
+	public String edit(Model model) {
+		model.addAttribute(propertyFormFactory.create());
+		return "master/property/new";
+	}
+
 	@RequestMapping(value = "/master/property/{id}/edit", method = RequestMethod.GET)
 	public String edit(Model model, @PathVariable("id") Long id) throws NoSuchRequestHandlingMethodException {
-		LocalizedProperty enLp = repository.findProperty(id, "en");
-		LocalizedProperty ruLp = repository.findProperty(id, "ru");
+		LocalizedProperty enLP = repository.findProperty(id, "en");
+		LocalizedProperty ruLP = repository.findProperty(id, "ru");
 
 		// TODO: replace with custom exception
-		if (enLp == null || ruLp == null)
+		if (enLP == null || ruLP == null)
 			throw new NoSuchRequestHandlingMethodException("get", PropertiesController.class);
 
-		PropertyForm propertyForm = new PropertyForm(enLp, ruLp);
-
-		model.addAttribute(propertyForm);
+		model.addAttribute(propertyFormFactory.create(enLP, ruLP));
 		return "master/property/edit";
 	}
 

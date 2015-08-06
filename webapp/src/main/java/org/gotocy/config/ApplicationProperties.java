@@ -4,6 +4,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @author ifedorenkov
  */
@@ -19,6 +21,12 @@ public class ApplicationProperties {
 
 	@NotEmpty
 	private String profile;
+
+	@NotNull
+	private Double defaultLatitude;
+
+	@NotNull
+	private Double defaultLongitude;
 
 	public String getEmail() {
 		return email;
@@ -42,5 +50,21 @@ public class ApplicationProperties {
 
 	public void setProfile(String profile) {
 		this.profile = profile;
+	}
+
+	public Double getDefaultLatitude() {
+		return defaultLatitude;
+	}
+
+	public void setDefaultLatitude(Double defaultLatitude) {
+		this.defaultLatitude = defaultLatitude;
+	}
+
+	public Double getDefaultLongitude() {
+		return defaultLongitude;
+	}
+
+	public void setDefaultLongitude(Double defaultLongitude) {
+		this.defaultLongitude = defaultLongitude;
 	}
 }

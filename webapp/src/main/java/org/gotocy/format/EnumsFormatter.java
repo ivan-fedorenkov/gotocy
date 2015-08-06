@@ -1,6 +1,5 @@
 package org.gotocy.format;
 
-import org.gotocy.domain.Location;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.format.Formatter;
