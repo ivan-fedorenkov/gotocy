@@ -55,12 +55,12 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a href="#">Home</a></li>
-                <li class="active">Edit property</li>
+                <li class="active">New property</li>
             </ol>
         </div>
 
         <div class="container">
-            <header><h1>Edit Property</h1></header>
+            <header><h1>New Property</h1></header>
             <form th:replace="master/property/form :: form('propertyForm', '/master/properties', 'post')"></form>
         </div>
     </div>
@@ -78,6 +78,8 @@
 <script th:inline="javascript">
     var _latitude = /*[[${propertyForm.latitude}]]*/ '35.126413';
     var _longitude = /*[[${propertyForm.longitude}]]*/ '33.429858999999965';
+    var _owners = /*[[${owners}]]*/ [{id: 1, name: 'Denis'}];
+
     google.maps.event.addDomListener(window, 'load', initSubmitMap(_latitude, _longitude, 8));
 </script>
 

@@ -27,7 +27,7 @@ CREATE TABLE property(
     title VARCHAR(256) NOT NULL,
     address VARCHAR(1024) NOT NULL,
     short_address VARCHAR(256) NOT NULL,
-    location VARCHAR(8) NOT NULL,
+    location VARCHAR(16) NOT NULL,
     latitude DOUBLE NOT NULL,
     longitude DOUBLE NOT NULL,
     property_type VARCHAR(16) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE property(
     furnishing VARCHAR(16) NULL,
     distance_to_sea INTEGER NULL,
 
-    representative_image_id BIGINT NOT NULL,
+    representative_image_id BIGINT NULL,
     pano_xml_id BIGINT NULL,
     owner_id BIGINT NOT NULL,
 

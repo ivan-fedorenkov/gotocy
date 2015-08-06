@@ -299,6 +299,23 @@ $(document).ready(function($) {
         });
     }
 
+// Property form / Owners
+
+    var owners = $('#owners');
+    if (owners.length > 0) {
+        var _ownersMap = {'-1': {name: '', phone: '', email: '', languages: ''}};
+        _owners.forEach(function(owner) {
+            _ownersMap[owner.id] = owner;
+        });
+        $('#ownerId').change(function() {
+            var owner = _ownersMap[$(this).val()];
+
+            $('#ownerName').val(owner.name);
+            $('#ownerPhone').val(owner.phone);
+            $('#ownerEmail').val(owner.email);
+            $('#ownerSpokenLanguages').val(owner.spokenLanguages);
+        });
+    }
 
 //  iCheck
 

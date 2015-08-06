@@ -41,6 +41,7 @@ public class PropertyFormFactory {
 		p.setLocation(Location.FAMAGUSTA);
 		p.setPropertyType(PropertyType.APARTMENT);
 		p.setPropertyStatus(PropertyStatus.LONG_TERM);
+		p.setOfferStatus(OfferStatus.ACTIVE);
 
 		p.setLatitude(applicationProperties.getDefaultLatitude());
 		p.setLongitude(applicationProperties.getDefaultLongitude());

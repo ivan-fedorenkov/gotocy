@@ -13,16 +13,44 @@ public class PropertyForm {
 
 	private static final String STRING_JOINER = "\n";
 
-	private final LocalizedProperty enLocalizedProperty;
-	private final LocalizedProperty ruLocalizedProperty;
+	private LocalizedProperty enLocalizedProperty;
+	private LocalizedProperty ruLocalizedProperty;
 
-	private final Property propertyDelegate;
+	private Property propertyDelegate;
+
+	// Default constructor for controller binding only
+	public PropertyForm() {
+		propertyDelegate = new Property();
+		propertyDelegate.setImageSet(new ImageSet());
+
+		enLocalizedProperty = new LocalizedProperty();
+		enLocalizedProperty.setProperty(propertyDelegate);
+
+		ruLocalizedProperty = new LocalizedProperty();
+		ruLocalizedProperty.setProperty(propertyDelegate);
+
+		setLocales();
+	}
 
 	public PropertyForm(LocalizedProperty enLocalizedProperty, LocalizedProperty ruLocalizedProperty) {
 		this.enLocalizedProperty = enLocalizedProperty;
 		this.ruLocalizedProperty = ruLocalizedProperty;
 
 		propertyDelegate = enLocalizedProperty.getProperty();
+
+		setLocales();
+	}
+
+	public LocalizedProperty getEnLocalizedProperty() {
+		return enLocalizedProperty;
+	}
+
+	public LocalizedProperty getRuLocalizedProperty() {
+		return ruLocalizedProperty;
+	}
+
+	public Property getPropertyDelegate() {
+		return propertyDelegate;
 	}
 
 	// En localized property delegate
@@ -278,6 +306,11 @@ public class PropertyForm {
 
 	public OfferStatus getOfferStatus() {
 		return propertyDelegate.getOfferStatus();
+	}
+
+	private void setLocales() {
+		enLocalizedProperty.setLocale("en");
+		ruLocalizedProperty.setLocale("ru");
 	}
 
 }

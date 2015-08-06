@@ -2,12 +2,12 @@ package org.gotocy.controllers;
 
 import org.gotocy.beans.AssetsProvider;
 import org.gotocy.beans.PropertyFormFactory;
-import org.gotocy.domain.Image;
-import org.gotocy.domain.LocalizedProperty;
-import org.gotocy.domain.Property;
-import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.*;
 import org.gotocy.forms.PropertyForm;
+import org.gotocy.repository.ImageRepository;
 import org.gotocy.repository.LocalizedPropertyRepository;
+import org.gotocy.repository.OwnerRepository;
+import org.gotocy.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,10 +15,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,6 +30,12 @@ import java.util.Locale;
 @Controller
 public class PropertiesController {
 
+	@Autowired
+	private PropertyRepository propertyRepository;
+	@Autowired
+	private ImageRepository imageRepository;
+	@Autowired
+	private OwnerRepository ownerRepository;
 	@Autowired
 	private LocalizedPropertyRepository repository;
 	@Autowired
@@ -86,8 +94,35 @@ public class PropertiesController {
 
 	@RequestMapping(value = "/master/properties/new", method = RequestMethod.GET)
 	public String edit(Model model) {
+		model.addAttribute("owners", ownerRepository.findAll());
 		model.addAttribute(propertyFormFactory.create());
 		return "master/property/new";
+	}
+
+	@RequestMapping(value = "/master/properties", method = RequestMethod.POST)
+	@ResponseBody
+	@Transactional
+	public Iterable<LocalizedProperty> create(PropertyForm propertyForm) {
+		Owner owner = ownerRepository.findOne(propertyForm.getOwner().getId());
+		Owner formOwner = propertyForm.getOwner();
+		if (!owner.equals(formOwner)) {
+			owner.setName(formOwner.getName());
+			owner.setPhone(formOwner.getPhone());
+			owner.setEmail(formOwner.getEmail());
+			owner.setSpokenLanguages(formOwner.getSpokenLanguages());
+			owner = ownerRepository.saveAndFlush(owner);
+		}
+
+		Property property = propertyForm.getPropertyDelegate();
+		property.setOwner(owner);
+		property = propertyRepository.saveAndFlush(property);
+
+		propertyForm.getEnLocalizedProperty().setProperty(property);
+		propertyForm.getRuLocalizedProperty().setProperty(property);
+		LocalizedProperty enLP = repository.saveAndFlush(propertyForm.getEnLocalizedProperty());
+		LocalizedProperty ruLP = repository.saveAndFlush(propertyForm.getRuLocalizedProperty());
+
+		return Arrays.asList(enLP, ruLP);
 	}
 
 	@RequestMapping(value = "/master/property/{id}/edit", method = RequestMethod.GET)
@@ -100,6 +135,8 @@ public class PropertiesController {
 			throw new NoSuchRequestHandlingMethodException("get", PropertiesController.class);
 
 		model.addAttribute(propertyFormFactory.create(enLP, ruLP));
+		model.addAttribute("owners", ownerRepository.findAll());
+
 		return "master/property/edit";
 	}
 

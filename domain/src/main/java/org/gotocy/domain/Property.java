@@ -63,7 +63,7 @@ public class Property extends BaseEntity {
 	@Embedded
 	private ImageSet imageSet;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private PanoXml panoXml;
 
 	public Owner getOwner() {

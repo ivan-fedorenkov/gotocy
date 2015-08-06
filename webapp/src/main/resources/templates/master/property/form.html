@@ -3,6 +3,38 @@
         <div class="block">
             <div class="col-md-9 col-sm-9">
                 <section id="submit-form">
+                    <section class="block" id="owners">
+                        <header><h2>Property Owner</h2></header>
+
+                        <div class="form-group">
+                            <label for="ownerId">Owner</label>
+                            <select id="ownerId" th:field="*{owner.id}">
+                                <option value="-1">Create new...</option>
+                                <option value="1" th:each="owner : ${owners}" th:value="${owner.id}" th:text="${owner.name}">Denis</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ownerName">Name</label>
+                            <input type="text" class="form-control" id="ownerName" th:field="*{owner.name}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ownerPhone">Phone</label>
+                            <input type="text" class="form-control" id="ownerPhone" th:field="*{owner.phone}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ownerEmail">Email</label>
+                            <input type="text" class="form-control" id="ownerEmail" th:field="*{owner.email}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ownerSpokenLanguages">Spoken Languages</label>
+                            <input type="text" class="form-control" id="ownerSpokenLanguages" th:field="*{owner.spokenLanguages}">
+                        </div>
+                    </section>
+
                     <section id="basic-information">
                         <header><h2>Basic Information</h2></header>
                         <div class="row">
@@ -46,6 +78,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="propertyType">Property Type</label>
@@ -61,18 +94,28 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-6 col-sm-6">
+                                            <div class="col-md-4 col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="propertyStatus">Property Status</label>
+                                                    <label for="propertyStatus">Offer Type</label>
                                                     <select id="propertyStatus" th:field="*{propertyStatus}" th:remove="all-but-first" required>
                                                         <option value="1" th:each="status : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${status}" th:text="${{status}}">Long Term Rent</option>
                                                         <option value="2">Short Term Rent</option>
                                                     </select>
                                                 </div><!-- /.form-group -->
                                             </div><!-- /.col-md-6 -->
-                                            <div class="col-md-6 col-sm-6">
+
+                                            <div class="col-md-4 col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="price">Price</label>
+                                                    <label for="offerStatus">Offer Status</label>
+                                                    <select id="offerStatus" th:field="*{offerStatus}" required>
+                                                        <option value="1" th:each="status : ${T(org.gotocy.domain.OfferStatus).values()}" th:value="${status}" th:text="${{status}}">Active</option>
+                                                    </select>
+                                                </div><!-- /.form-group -->
+                                            </div><!-- /.col-md-6 -->
+
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <label for="price">Offer Price</label>
                                                     <div class="input-group">
                                                         <span class="input-group-addon">&euro;</span>
                                                         <input type="text" class="form-control" id="price" th:field="*{price}" pattern="\d*" required>

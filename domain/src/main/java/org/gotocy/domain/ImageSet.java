@@ -19,10 +19,10 @@ import java.util.List;
 @Embeddable
 public class ImageSet {
 
-	@OneToOne(optional = false)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Image representativeImage;
 
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Image> images = new ArrayList<>();
 
 	public Image getRepresentativeImage() {
