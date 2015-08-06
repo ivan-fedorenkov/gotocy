@@ -208,80 +208,77 @@ function contactUsMap(){
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenStreetMap - Homepage
+// Google Map - Submit Map
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function createHomepageOSM(_latitude,_longitude){
-    setMapHeight();
-    if( document.getElementById('map') != null ){
-        $.getScript("http://assets.gotocy.eu/static/js/locations.js", function(){
-            var map = L.map('map', {
-                center: [_latitude,_longitude],
-                zoom: 14,
-                scrollWheelZoom: false
-            });
-            L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/roadsg/x={x}&y={y}&z={z}', {
-                //L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-                //subdomains: '0123',
-                attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-            }).addTo(map);
-            var markers = L.markerClusterGroup({
-                showCoverageOnHover: false
-            });
-            for (var i = 0; i < locations.length; i++) {
-                var _icon = L.divIcon({
-                    html: '<img src="' + locations[i][7] +'">',
-                    iconSize:     [40, 48],
-                    iconAnchor:   [20, 48],
-                    popupAnchor:  [0, -48]
-                });
-                var title = locations[i][0];
-                var marker = L.marker(new L.LatLng(locations[i][3],locations[i][4]), {
-                    title: title,
-                    icon: _icon
-                });
-                marker.bindPopup(
-                    '<div class="property">' +
-                        '<a href="' + locations[i][5] + '">' +
-                            '<div class="property-image">' +
-                                '<img src="' + locations[i][6] + '">' +
-                            '</div>' +
-                            '<div class="overlay">' +
-                                '<div class="info">' +
-                                    '<div class="tag price"> ' + locations[i][2] + '</div>' +
-                                    '<h3>' + locations[i][0] + '</h3>' +
-                                    '<figure>' + locations[i][1] + '</figure>' +
-                                '</div>' +
-                            '</div>' +
-                        '</a>' +
-                    '</div>'
-                );
-                markers.addLayer(marker);
-            }
+function initSubmitMap(_latitude,_longitude){
+    var mapCenter = new google.maps.LatLng(_latitude,_longitude);
+    var mapOptions = {
+        zoom: 15,
+        center: mapCenter,
+        disableDefaultUI: false,
+        //scrollwheel: false,
+        styles: mapStyles
+    };
+    var mapElement = document.getElementById('submit-map');
+    var map = new google.maps.Map(mapElement, mapOptions);
+    var marker = new MarkerWithLabel({
+        position: mapCenter,
+        map: map,
+        icon: 'http://assets.gotocy.eu/static/img/marker.png',
+        labelAnchor: new google.maps.Point(50, 0),
+        draggable: true
+    });
+    $('#submit-map').removeClass('fade-map');
+    google.maps.event.addListener(marker, "mouseup", function (event) {
+        var latitude = this.position.lat();
+        var longitude = this.position.lng();
+        $('#latitude').val( this.position.lat() );
+        $('#longitude').val( this.position.lng() );
+    });
 
-            map.addLayer(markers);
-            map.on('locationfound', onLocationFound);
+//      Autocomplete
+    var input = /** @type {HTMLInputElement} */( document.getElementById('address-map') );
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            return;
+        }
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+        }
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
+        $('#latitude').val( marker.getPosition().lat() );
+        $('#longitude').val( marker.getPosition().lng() );
+        var address = '';
+        if (place.address_components) {
+            address = [
+                (place.address_components[0] && place.address_components[0].short_name || ''),
+                (place.address_components[1] && place.address_components[1].short_name || ''),
+                (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+        }
+    });
 
-            function locateUser() {
-                $('#map').addClass('fade-map');
-                map.locate({setView : true})
-            }
-
-            function onLocationFound(){
-                $('#map').removeClass('fade-map');
-            }
-
-            $('.geo-location').on("click", function() {
-                locateUser();
-            });
-
-            $('body').addClass('loaded');
-            setTimeout(function() {
-                $('body').removeClass('has-fullscreen-map');
-            }, 1000);
-            $('#map').removeClass('fade-map');
-        });
-
+    function success(position) {
+        initSubmitMap(position.coords.latitude, position.coords.longitude);
+        $('#latitude').val( position.coords.latitude );
+        $('#longitude').val( position.coords.longitude );
     }
+
+    $('.geo-location').on("click", function() {
+        if (navigator.geolocation) {
+            $('#submit-map').addClass('fade-map');
+            navigator.geolocation.getCurrentPosition(success);
+        } else {
+            error('Geo Location is not supported');
+        }
+    });
 }
 
