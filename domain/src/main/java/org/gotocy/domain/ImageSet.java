@@ -19,7 +19,7 @@ import java.util.List;
 @Embeddable
 public class ImageSet {
 
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Image representativeImage;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -42,7 +42,8 @@ public class ImageSet {
 	}
 
 	public void setImages(List<Image> images) {
-		this.images = images;
+		this.images.clear();
+		this.images.addAll(images);
 	}
 
 	public Image getImage(int index) {

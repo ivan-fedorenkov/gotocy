@@ -2,6 +2,7 @@ package org.gotocy.forms;
 
 import org.gotocy.domain.*;
 
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 public class PropertyForm {
 
 	private static final String STRING_JOINER = "\n";
+	private static final Pattern STRING_SEPARATOR = Pattern.compile("[\n\r]+");
 
 	private LocalizedProperty enLocalizedProperty;
 	private LocalizedProperty ruLocalizedProperty;
@@ -53,6 +55,11 @@ public class PropertyForm {
 		return propertyDelegate;
 	}
 
+	private void setLocales() {
+		enLocalizedProperty.setLocale("en");
+		ruLocalizedProperty.setLocale("ru");
+	}
+
 	// En localized property delegate
 
 	public void setEnDescription(String description) {
@@ -63,8 +70,18 @@ public class PropertyForm {
 		return enLocalizedProperty.getDescription();
 	}
 
+	/**
+	 * Set en specifications from the given string representation.
+	 * Unit test: PropertyFormTest#setSpecifications
+	 */
 	public void setEnSpecifications(String specifications) {
-		// TODO
+		if (specifications != null && !specifications.isEmpty()) {
+			for (String s : STRING_SEPARATOR.split(specifications)) {
+				LocalizedPropertySpecification lps = new LocalizedPropertySpecification();
+				lps.setSpecification(s);
+				enLocalizedProperty.addSpecification(lps);
+			}
+		}
 	}
 
 	/**
@@ -84,18 +101,29 @@ public class PropertyForm {
 		ruLocalizedProperty.setDescription(description);
 	}
 
-	/**
-	 * Return ru specifications as a string.
-	 * Unit test: PropertyFormTest#getSpecifications
-	 */
+
 	public String getRuDescription() {
 		return ruLocalizedProperty.getDescription();
 	}
 
+	/**
+	 * Set ru specifications from the given string representation.
+	 * Unit test: PropertyFormTest#setSpecifications
+	 */
 	public void setRuSpecifications(String specifications) {
-		// TODO
+		if (specifications != null && !specifications.isEmpty()) {
+			for (String s : STRING_SEPARATOR.split(specifications)) {
+				LocalizedPropertySpecification lps = new LocalizedPropertySpecification();
+				lps.setSpecification(s);
+				ruLocalizedProperty.addSpecification(lps);
+			}
+		}
 	}
 
+	/**
+	 * Return ru specifications as a string.
+	 * Unit test: PropertyFormTest#getSpecifications
+	 */
 	public String getRuSpecifications() {
 		return ruLocalizedProperty.getSpecifications()
 			.stream()
@@ -105,8 +133,14 @@ public class PropertyForm {
 
 	// Property delegate
 
-	public void setImages() {
-		// TODO
+	public void setImages(String images) {
+		if (images != null && !images.isEmpty()) {
+			for (String imageKey : STRING_SEPARATOR.split(images)) {
+				Image image = new Image();
+				image.setKey(imageKey);
+				propertyDelegate.getImageSet().addImage(image);
+			}
+		}
 	}
 
 	/**
@@ -288,12 +322,12 @@ public class PropertyForm {
 		propertyDelegate.setTitle(title);
 	}
 
-	public String getAddress() {
+	public String getFullAddress() {
 		return propertyDelegate.getAddress();
 	}
 
-	public void setAddress(String address) {
-		propertyDelegate.setAddress(address);
+	public void setFullAddress(String fullAddress) {
+		propertyDelegate.setAddress(fullAddress);
 	}
 
 	public String getShortAddress() {
@@ -306,11 +340,6 @@ public class PropertyForm {
 
 	public OfferStatus getOfferStatus() {
 		return propertyDelegate.getOfferStatus();
-	}
-
-	private void setLocales() {
-		enLocalizedProperty.setLocale("en");
-		ruLocalizedProperty.setLocale("ru");
 	}
 
 }

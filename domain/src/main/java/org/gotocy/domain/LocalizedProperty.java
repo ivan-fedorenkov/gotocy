@@ -58,11 +58,13 @@ public class LocalizedProperty extends BaseEntity {
 	}
 
 	public void setSpecifications(List<LocalizedPropertySpecification> specifications) {
-		this.specifications = specifications;
+		this.specifications.clear();
 		specifications.forEach(s -> s.setLocalizedProperty(this));
+		this.specifications.addAll(specifications);
 	}
 
 	public void addSpecification(LocalizedPropertySpecification specification) {
+		specification.setLocalizedProperty(this);
 		specifications.add(specification);
 	}
 }
