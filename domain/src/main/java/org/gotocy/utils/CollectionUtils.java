@@ -6,7 +6,6 @@ import java.util.Objects;
 
 /**
  * Utility methods for collections.
- * TODO: unit tests
  *
  * @author ifedorenkov
  */
@@ -17,6 +16,7 @@ public class CollectionUtils {
 
 	/**
 	 * Determines if the given collections and their elements are equal.
+	 * Unit test: CollectionUtilsTest#collectionsEqualsTest
 	 */
 	public static <T> boolean collectionsEquals(Collection<? extends T> left, Collection<? extends T> right) {
 		if (left == right)
