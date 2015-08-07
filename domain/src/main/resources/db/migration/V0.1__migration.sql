@@ -32,6 +32,7 @@ CREATE TABLE property(
     longitude DOUBLE NOT NULL,
     property_type VARCHAR(16) NOT NULL,
     property_status VARCHAR(16) NOT NULL,
+    offer_status VARCHAR(64) NOT NULL,
     price INTEGER NOT NULL,
     bedrooms INTEGER NOT NULL,
 
