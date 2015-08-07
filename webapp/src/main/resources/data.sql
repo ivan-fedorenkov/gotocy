@@ -1,9 +1,7 @@
-insert into owner (id, version, name, email, phone, spoken_languages)
-  values (1, 0, 'Denis', 'support@gotocy.eu', '+357 96 740485', 'Eng, Rus');
-insert into owner (id, version, name, email, phone, spoken_languages)
-  values (2, 0, 'Demetris', '', '+357 99483998', 'Greek, Eng, Rus');
-insert into owner (id, version, name, email, phone, spoken_languages)
-  values (3, 0, 'Alexandros Trisveis', 'alextrisvei@hotmail.com', '+357 99627112', 'Greek, Eng');
+insert into owner (id, version, name, email, phone, spoken_languages) values (1, 0, 'Denis', 'support@gotocy.eu', '+357 96 740485', 'Eng, Rus');
+insert into owner (id, version, name, email, phone, spoken_languages) values (2, 0, 'Demetris', '', '+357 99483998', 'Greek, Eng, Rus');
+insert into owner (id, version, name, email, phone, spoken_languages) values (3, 0, 'Alexandros Trisveis', 'alextrisvei@hotmail.com', '+357 99627112', 'Greek, Eng');
+insert into owner (id, version, name, email, phone, spoken_languages) values (4, 0, 'George', 'georgiosg2@yahoo.com', '+357 99388318', 'Greek, Eng');
 
 -- 1 [Short term] http://www.housetrip.com/en/rentals/63167?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=3&source_element=card&source_type=list
 
@@ -2109,7 +2107,145 @@ insert into localized_property_specification (specification, localized_property_
 insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10024);
 insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10024);
 
+-- Villa Agathi
+
+insert into asset (id, version, key, asset_type) values (437, 0, 'property/25/DSC_3535.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (438, 0, 'property/25/DSCN1326.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (439, 0, 'property/25/DSCN1351.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (440, 0, 'property/25/DSCN1357.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (441, 0, 'property/25/DSCN1359.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (442, 0, 'property/25/DSCN1377.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (443, 0, 'property/25/DSCN1449.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (444, 0, 'property/25/DSCN1456.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (445, 0, 'property/25/_MG_4288.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (446, 0, 'property/25/_MG_4293.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (447, 0, 'property/25/_MG_4296.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (448, 0, 'property/25/_MG_4298.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (449, 0, 'property/25/_MG_4304.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (450, 0, 'property/25/_MG_4317.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (451, 0, 'property/25/_MG_4318.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (452, 0, 'property/25/_MG_4355.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (453, 0, 'property/25/_MG_4358.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (454, 0, 'property/25/_MG_4292.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (455, 0, 'property/25/DSC_3531.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (456, 0, 'property/25/IMG_3204.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (457, 0, 'property/25/DSC_3541.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (458, 0, 'property/25/DSC_3542.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (459, 0, 'property/25/DSC_3544.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (460, 0, 'property/25/DSC_3551.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (461, 0, 'property/25/DSC_3556.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (462, 0, 'property/25/DSC_3557.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (463, 0, 'property/25/DSC_3760.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (464, 0, 'property/25/DSC_3762.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (465, 0, 'property/25/DSC_3779.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (466, 0, 'property/25/DSC_3810.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (467, 0, 'property/25/DSC_3814.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (468, 0, 'property/25/DSC_3822.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (469, 0, 'property/25/DSC_3825.jpg', 'IMAGE');
+insert into asset (id, version, key, asset_type) values (470, 0, 'property/25/DSC_3819.jpg', 'IMAGE');
+
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (25, 0, 'Villa Agathi', 'PAPHOS', '34.912892', '32.422035', 'Kathikas, Paphos, Cyprus', 'Kathikas, Paphos.', 'HOUSE', 'SHORT_TERM', 150, NULL, NULL, 4, 12, 8000, TRUE, FALSE, FALSE, 'NONE', 465, NULL, 4);
+
+insert into localized_property (id, version, locale, description, property_id) values (25, 0, 'en', 'This luxury spacious 3 floor, 4 bedroom villa is situated just 2 minutes’ drive or 5 minutes on foot from the picturesque village of Kathikas with its traditional church and taverns. Just across of our villa, 3 minutes walking you can find the Vasilikon famous winery that you can go for free wine tasting and buy this famous international awarded Cyprus wine in special prices. It is also 20 minutes drive to Paphos and if you want to enjoy the famous Coral Bay beach is just 15 minutes drive. However, you might get enough, feeling the fresh air of the mountain, feel so relaxed, and calm looking the amazing view where the sea meets the mountain from the high of 600m from the balconies of our villa. The villa offers a large private swimming pool with sunbeds, umbrellas and outdoor tables and chairs. There is a kitchen just next to the swimming pool and covered veranda with chairs and table so you can enjoy your dinner or lunch next to the swimming pool. Indoors the villa is beautifully furnished throughout to the highest standards including sofas, TV, air conditioning, WIFI as well as all necessary.Upon entering the villa on the first floor you will find a luxury living room with 2 leather sofas and a large flat TV with a DVD and a CD player. Just across is the dining room with a wooden luxury dining table and 8 chairs. They are conveniently positioned in front of traditional designed fireplace. On the left is a large kitchen, which is equipped with modern appliances and cabinets. It provides a 25 cu ft. fridge/freezer , 4-ring electrical ceramic hob, extractor hood, dishwasher, electronic oven, coffee machine, electrical mixer, slice toaster and sandwich toaster. You can also find plenty dinnerware and all kitchen cookware (pots, pans etc.) ready to cook anything. Just next to kitchen, you will find also a washing machine for your use. On the upper floor there are 3 extra-large bedrooms with their balconies and patio furniture to each that you can sit and enjoy the view of the wonderful combination of sea and mountain. All bedrooms have double beds and dressing tables. They are fully air-conditioned. The master bedroom has its private shower, toilet and a Flat TV. On the same floor is a shared large bathroom, which has a high-tech Jacuzzi. Hair dryers, iron, iron boards are available as well.There is also a toilet for your convenience.On the ground floor where the swimming pool located there is another kitchen, again fully equipped with a gas stove, electrical oven, microwave, refrigerator, cooling water dispenser, slice toaster, and all the necessary dinnerware. There is also an extra-large bedroom with a double bed and fully air-contioned. There is also a treadmill for your exercise and a flat TV. On the same floor, there is a shower and a toilet. The ground floor can be optional separated and can be used as a private ground floor apartment.For babies we have a wooden baby orthopedic crib can be also available upon your request. We have also high chairs and 2 bassinets (playing yards) for babies to play safe.Kids can also play on our 400 square meters garden, which is decorated beautifully, with flowers and trees. Just on, the side of the garden there is a build in brick bbq/grill with and electric motor for kebab, and all the accessories for grilling your favorite meat or fish and enjoy the outdoor cooking next to the swimming pool. There is also a portable bbq for your use anywhere in the garden. There is also a covered driveway that fits easily up to 3 cars.', 25);
+insert into localized_property (id, version, locale, description, property_id) values (10025, 0, 'ru', '', 25);
+
+insert into property_images (property_id, images_id) values (25, 437);
+insert into property_images (property_id, images_id) values (25, 438);
+insert into property_images (property_id, images_id) values (25, 439);
+insert into property_images (property_id, images_id) values (25, 440);
+insert into property_images (property_id, images_id) values (25, 441);
+insert into property_images (property_id, images_id) values (25, 442);
+insert into property_images (property_id, images_id) values (25, 443);
+insert into property_images (property_id, images_id) values (25, 444);
+insert into property_images (property_id, images_id) values (25, 445);
+insert into property_images (property_id, images_id) values (25, 446);
+insert into property_images (property_id, images_id) values (25, 447);
+insert into property_images (property_id, images_id) values (25, 448);
+insert into property_images (property_id, images_id) values (25, 449);
+insert into property_images (property_id, images_id) values (25, 450);
+insert into property_images (property_id, images_id) values (25, 451);
+insert into property_images (property_id, images_id) values (25, 452);
+insert into property_images (property_id, images_id) values (25, 453);
+insert into property_images (property_id, images_id) values (25, 454);
+insert into property_images (property_id, images_id) values (25, 455);
+insert into property_images (property_id, images_id) values (25, 456);
+insert into property_images (property_id, images_id) values (25, 457);
+insert into property_images (property_id, images_id) values (25, 458);
+insert into property_images (property_id, images_id) values (25, 459);
+insert into property_images (property_id, images_id) values (25, 460);
+insert into property_images (property_id, images_id) values (25, 461);
+insert into property_images (property_id, images_id) values (25, 462);
+insert into property_images (property_id, images_id) values (25, 463);
+insert into property_images (property_id, images_id) values (25, 464);
+insert into property_images (property_id, images_id) values (25, 465);
+insert into property_images (property_id, images_id) values (25, 466);
+insert into property_images (property_id, images_id) values (25, 467);
+insert into property_images (property_id, images_id) values (25, 468);
+insert into property_images (property_id, images_id) values (25, 469);
+insert into property_images (property_id, images_id) values (25, 470);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Double beds', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Dressing tables', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Patio furniture', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Screens for mosquitos', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Jacuzzi', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Grill', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Hob', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Oven', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Dishwasher', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Slice toaster', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Kitchen utensils', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Cutlery', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Fire place', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('TV', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('DVD', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('CD player', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Barbecue', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Private pool', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Parking', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Garden', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Iron', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('High chair', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Internet', 25);
+insert into localized_property_specification (specification, localized_property_id) values ('Telephone', 25);
+
+insert into localized_property_specification (specification, localized_property_id) values ('Двухспальные кровати', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Туалетный столик', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Садовая мебель', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Сетка от комаров', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Джакузи', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Гриль', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Печь', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Морозильник', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Посуда', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Место для костра', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('TV', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('DVD', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('CD player', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Барбекю', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Частный бассейн', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Сад', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Стиральная машина', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Интернет', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Телефон', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Лежаки', 10025);
+insert into localized_property_specification (specification, localized_property_id) values ('Зонты', 10025);
+
 -- Offers status update
 
-update property set offer_status = 'BOOKED' where id = 9;
+update property set offer_status = 'RENTED' where id = 9;
 update property set offer_status = 'RENTED' where id = 20;
