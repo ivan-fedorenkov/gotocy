@@ -40,13 +40,12 @@ public abstract class Asset<T> extends BaseEntity {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		if (!super.equals(o)) return false;
 		Asset<?> asset = (Asset<?>) o;
 		return Objects.equals(key, asset.key);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(super.hashCode(), key);
+		return Objects.hash(key);
 	}
 }

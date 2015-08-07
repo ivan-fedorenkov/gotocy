@@ -76,8 +76,8 @@
 <![endif]-->
 
 <script th:inline="javascript">
-    var _latitude = /*[[${propertyForm.latitude}]]*/ '35.126413';
-    var _longitude = /*[[${propertyForm.longitude}]]*/ '33.429858999999965';
+    var _latitude = /*[[${propertyForm.latitude == null}? ${gotocy.defaultLatitude} : ${propertyForm.latitude}]]*/ '34.7071301';
+    var _longitude = /*[[${propertyForm.longitude == null}? ${gotocy.defaultLongitude} : ${propertyForm.longitude}]]*/ '33.022617399999945';
     var _owners = /*[[${owners}]]*/ [{id: 1, name: 'Denis'}];
 
     google.maps.event.addDomListener(window, 'load', initSubmitMap(_latitude, _longitude, 8));

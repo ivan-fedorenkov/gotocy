@@ -1,10 +1,11 @@
 package org.gotocy.controllers;
 
 import org.gotocy.beans.AssetsProvider;
-import org.gotocy.beans.PropertyFormFactory;
 import org.gotocy.domain.*;
 import org.gotocy.forms.PropertyForm;
-import org.gotocy.repository.*;
+import org.gotocy.repository.LocalizedPropertyRepository;
+import org.gotocy.repository.OwnerRepository;
+import org.gotocy.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +21,6 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 /**
  * @author ifedorenkov
@@ -31,15 +31,9 @@ public class PropertiesController {
 	@Autowired
 	private PropertyRepository propertyRepository;
 	@Autowired
-	private ImageRepository imageRepository;
-	@Autowired
-	private PanoXmlRepository panoXmlRepository;
-	@Autowired
 	private OwnerRepository ownerRepository;
 	@Autowired
 	private LocalizedPropertyRepository repository;
-	@Autowired
-	private PropertyFormFactory propertyFormFactory;
 	@Autowired
 	AssetsProvider assetsProvider;
 
@@ -95,7 +89,7 @@ public class PropertiesController {
 	@RequestMapping(value = "/master/properties/new", method = RequestMethod.GET)
 	public String edit(Model model) {
 		model.addAttribute("owners", ownerRepository.findAll());
-		model.addAttribute(propertyFormFactory.create());
+		model.addAttribute(new PropertyForm());
 		return "master/property/new";
 	}
 
@@ -103,137 +97,70 @@ public class PropertiesController {
 	@ResponseBody
 	@Transactional
 	public Iterable<LocalizedProperty> create(PropertyForm propertyForm) {
-		Owner existingOwner = getOrCreateOwner(propertyForm);
-		Owner owner = mergeOwner(existingOwner, propertyForm.getOwner());
+		Owner owner = getOrCreateOwner(propertyForm.getOwnerId());
+		owner = propertyForm.mergeWithOwner(owner);
 
-		List<Image> images = propertyForm.getImageSet().getImages();
-		if (!images.isEmpty())
-			images = imageRepository.save(images);
-
-		Image ri = propertyForm.getImageSet().getRepresentativeImage();
-		if (ri != null && ri.getKey() != null && !ri.getKey().isEmpty()) {
-			ri = imageRepository.saveAndFlush(ri);
-		} else {
-			ri = null;
-		}
-
-
-		PanoXml panoXml = propertyForm.getPanoXml();
-		if (panoXml != null && panoXml.getKey() != null && !panoXml.getKey().isEmpty()) {
-			panoXml = panoXmlRepository.saveAndFlush(panoXml);
-		} else {
-			panoXml = null;
-		}
-
-		Property property = propertyForm.getPropertyDelegate();
+		Property property = propertyForm.mergeWithProperty(new Property());
 		property.setOwner(owner);
-		property.getImageSet().setImages(images);
-		property.getImageSet().setRepresentativeImage(ri);
-		property.setPanoXml(panoXml);
 		property = propertyRepository.saveAndFlush(property);
 
-		propertyForm.getEnLocalizedProperty().setProperty(property);
-		propertyForm.getRuLocalizedProperty().setProperty(property);
-		LocalizedProperty enLP = repository.saveAndFlush(propertyForm.getEnLocalizedProperty());
-		LocalizedProperty ruLP = repository.saveAndFlush(propertyForm.getRuLocalizedProperty());
-
-		return Arrays.asList(enLP, ruLP);
-	}
-
-	@RequestMapping(value = "/master/property/{id}/edit", method = RequestMethod.GET)
-	public String edit(Model model, @PathVariable("id") Long id) throws NoSuchRequestHandlingMethodException {
-		LocalizedProperty enLP = repository.findProperty(id, "en");
-		LocalizedProperty ruLP = repository.findProperty(id, "ru");
-
-		// TODO: replace with custom exception
-		if (enLP == null || ruLP == null)
-			throw new NoSuchRequestHandlingMethodException("get", PropertiesController.class);
-
-		model.addAttribute(propertyFormFactory.create(enLP, ruLP));
-		model.addAttribute("owners", ownerRepository.findAll());
-
-		return "master/property/edit";
-	}
-
-
-	@RequestMapping(value = "/master/property/{id}", method = RequestMethod.PUT)
-	@ResponseBody
-	@Transactional
-	public List<LocalizedProperty> update(@PathVariable("id") Property property, PropertyForm propertyForm) {
-		Owner existingOwner = getOrCreateOwner(propertyForm);
-		Owner owner = mergeOwner(existingOwner, propertyForm.getOwner());
-
-		List<Image> existingImages = property.getImageSet().getImages();
-		List<Image> images = propertyForm.getImageSet().getImages();
-		images = !existingImages.equals(images) ? imageRepository.save(images) : existingImages;
-
-		Image existingRi = property.getImageSet().getRepresentativeImage();
-		Image ri = propertyForm.getImageSet().getRepresentativeImage();
-		ri = !Objects.equals(existingRi, ri) ? imageRepository.saveAndFlush(ri) : existingRi;
-
-		PanoXml existingPanoXml = property.getPanoXml();
-		PanoXml panoXml = propertyForm.getPanoXml();
-		panoXml = !Objects.equals(existingPanoXml, panoXml) ? panoXmlRepository.saveAndFlush(panoXml) : existingPanoXml;
-
-		property.setOwner(owner);
-		property.getImageSet().setImages(images);
-		property.getImageSet().setRepresentativeImage(ri);
-		property.setPanoXml(panoXml);
-		property.setLocation(propertyForm.getLocation());
-		property.setTitle(propertyForm.getTitle());
-		property.setAddress(propertyForm.getFullAddress());
-		property.setShortAddress(propertyForm.getShortAddress());
-		property.setLatitude(propertyForm.getLatitude());
-		property.setLongitude(propertyForm.getLongitude());
-		property.setPropertyType(propertyForm.getPropertyType());
-		property.setPropertyStatus(propertyForm.getPropertyStatus());
-		property.setOfferStatus(propertyForm.getOfferStatus());
-		property.setPrice(propertyForm.getPrice());
-		property.setCoveredArea(propertyForm.getCoveredArea());
-		property.setPlotSize(propertyForm.getPlotSize());
-		property.setBedrooms(propertyForm.getBedrooms());
-		property.setGuests(propertyForm.getGuests());
-		property.setDistanceToSea(propertyForm.getDistanceToSea());
-		property.setAirConditioner(propertyForm.getAirConditioner());
-		property.setReadyToMoveIn(propertyForm.getReadyToMoveIn());
-		property.setHeatingSystem(propertyForm.getHeatingSystem());
-		property.setFurnishing(propertyForm.getFurnishing());
-		property = propertyRepository.saveAndFlush(property);
-
-		LocalizedProperty enLP = repository.findProperty(property.getId(), "en");
-		if (enLP == null)
-			enLP = propertyForm.getEnLocalizedProperty();
-		enLP.setProperty(property);
-		enLP.setDescription(propertyForm.getEnDescription());
-		enLP.setSpecifications(propertyForm.getEnLocalizedProperty().getSpecifications());
-
-		LocalizedProperty ruLP = repository.findProperty(property.getId(), "ru");
-		if (ruLP == null)
-			ruLP = propertyForm.getRuLocalizedProperty();
-		ruLP.setProperty(property);
-		ruLP.setDescription(propertyForm.getRuDescription());
-		ruLP.setSpecifications(propertyForm.getRuLocalizedProperty().getSpecifications());
-
+		LocalizedProperty enLP = propertyForm.mergeWithEnLocalizedProperty(findOrCreateLP(property, "en"));
+		LocalizedProperty ruLP = propertyForm.mergeWithRuLocalizedProperty(findOrCreateLP(property, "ru"));
 		enLP = repository.saveAndFlush(enLP);
 		ruLP = repository.saveAndFlush(ruLP);
 
 		return Arrays.asList(enLP, ruLP);
 	}
 
-	private Owner getOrCreateOwner(PropertyForm form) {
-		Owner formOwner = form.getOwner();
-		return formOwner.getId() != null && formOwner.getId() != 0 ?
-			ownerRepository.findOne(formOwner.getId()) : ownerRepository.saveAndFlush(new Owner());
+	@RequestMapping(value = "/master/property/{property}/edit", method = RequestMethod.GET)
+	public String edit(Model model, @PathVariable("property") Property property) throws NoSuchRequestHandlingMethodException {
+		LocalizedProperty enLP = repository.findProperty(property.getId(), "en");
+		LocalizedProperty ruLP = repository.findProperty(property.getId(), "ru");
+
+		// TODO: replace with custom exception
+		if (enLP == null || ruLP == null)
+			throw new NoSuchRequestHandlingMethodException("get", PropertiesController.class);
+
+		model.addAttribute(new PropertyForm(property, enLP, ruLP));
+		model.addAttribute("owners", ownerRepository.findAll());
+
+		return "master/property/edit";
 	}
 
-	private Owner mergeOwner(Owner existing, Owner current) {
-		if (!existing.equals(current)) {
-			existing.setName(current.getName());
-			existing.setPhone(current.getPhone());
-			existing.setEmail(current.getEmail());
-			existing.setSpokenLanguages(current.getSpokenLanguages());
+
+	@RequestMapping(value = "/master/property/{property}", method = RequestMethod.PUT)
+	@ResponseBody
+	@Transactional
+	public List<LocalizedProperty> update(@PathVariable("property") Property property, PropertyForm propertyForm) {
+		Owner owner = getOrCreateOwner(propertyForm.getOwnerId());
+		owner = propertyForm.mergeWithOwner(owner);
+
+		property = propertyForm.mergeWithProperty(property);
+		property.setOwner(owner);
+		property = propertyRepository.saveAndFlush(property);
+
+		LocalizedProperty enLP = propertyForm.mergeWithEnLocalizedProperty(findOrCreateLP(property, "en"));
+		LocalizedProperty ruLP = propertyForm.mergeWithRuLocalizedProperty(findOrCreateLP(property, "ru"));
+		enLP = repository.saveAndFlush(enLP);
+		ruLP = repository.saveAndFlush(ruLP);
+
+		return Arrays.asList(enLP, ruLP);
+	}
+
+	private Owner getOrCreateOwner(Long ownerId) {
+		return ownerId != null && ownerId > 0 ?
+			ownerRepository.findOne(ownerId) : ownerRepository.saveAndFlush(new Owner());
+	}
+
+	private LocalizedProperty findOrCreateLP(Property property, String locale) {
+		LocalizedProperty lp = repository.findProperty(property.getId(), locale);
+		if (lp == null) {
+			lp = new LocalizedProperty();
+			lp.setProperty(property);
+			lp.setLocale(locale);
+			lp = repository.saveAndFlush(lp);
 		}
-		return existing;
+		return lp;
 	}
 
 }

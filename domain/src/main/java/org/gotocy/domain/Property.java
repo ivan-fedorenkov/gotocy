@@ -1,10 +1,10 @@
 package org.gotocy.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * TODO: validation / integration test on validation
- * TODO: cascading
  *
  * @author ifedorenkov
  */
@@ -61,11 +61,29 @@ public class Property extends BaseEntity {
 	private Furnishing furnishing;
 
 	@Embedded
-	private ImageSet imageSet;
+	private ImageSet imageSet = new ImageSet();
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private PanoXml panoXml;
 
+	// ImageSet delegate
+	public void setImages(List<Image> images) {
+		imageSet.setImages(images);
+	}
+
+	public List<Image> getImages() {
+		return imageSet.getImages();
+	}
+
+	public void setRepresentativeImage(Image image) {
+		imageSet.setRepresentativeImage(image);
+	}
+
+	public Image getRepresentativeImage() {
+		return imageSet.getRepresentativeImage();
+	}
+
+	// Getters and setters
 	public Owner getOwner() {
 		return owner;
 	}

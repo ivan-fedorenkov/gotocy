@@ -12,14 +12,12 @@ import java.util.List;
  * In addition to general one to many relation, each object that utilizes the set must have a defined link to the one
  * representativeImage image which could be used for displaying in small sizes (e.g. thumbnail).
  *
- * TODO: think about cascading
- *
  * @author ifedorenkov
  */
 @Embeddable
 public class ImageSet {
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Image representativeImage;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -35,10 +33,6 @@ public class ImageSet {
 
 	public List<Image> getImages() {
 		return images;
-	}
-
-	public void addImage(Image image) {
-		images.add(image);
 	}
 
 	public void setImages(List<Image> images) {

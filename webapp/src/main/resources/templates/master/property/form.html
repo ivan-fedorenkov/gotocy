@@ -8,7 +8,7 @@
 
                         <div class="form-group">
                             <label for="ownerId">Owner</label>
-                            <select id="ownerId" th:field="*{owner.id}">
+                            <select id="ownerId" th:field="*{ownerId}">
                                 <option value="-1">Create new...</option>
                                 <option value="1" th:each="owner : ${owners}" th:value="${owner.id}" th:text="${owner.name}">Denis</option>
                             </select>
@@ -16,22 +16,22 @@
 
                         <div class="form-group">
                             <label for="ownerName">Name</label>
-                            <input type="text" class="form-control" id="ownerName" th:field="*{owner.name}">
+                            <input type="text" class="form-control" id="ownerName" th:field="*{ownerName}">
                         </div>
 
                         <div class="form-group">
                             <label for="ownerPhone">Phone</label>
-                            <input type="text" class="form-control" id="ownerPhone" th:field="*{owner.phone}">
+                            <input type="text" class="form-control" id="ownerPhone" th:field="*{ownerPhone}">
                         </div>
 
                         <div class="form-group">
                             <label for="ownerEmail">Email</label>
-                            <input type="text" class="form-control" id="ownerEmail" th:field="*{owner.email}">
+                            <input type="text" class="form-control" id="ownerEmail" th:field="*{ownerEmail}">
                         </div>
 
                         <div class="form-group">
                             <label for="ownerSpokenLanguages">Spoken Languages</label>
-                            <input type="text" class="form-control" id="ownerSpokenLanguages" th:field="*{owner.spokenLanguages}">
+                            <input type="text" class="form-control" id="ownerSpokenLanguages" th:field="*{ownerSpokenLanguages}">
                         </div>
                     </section>
 
@@ -260,18 +260,18 @@
                         <header><h2>Assets</h2></header>
 
                         <div class="form-group">
-                            <label for="images">Images Path</label>
-                            <textarea class="form-control" id="images" rows="8" th:field="*{images}"></textarea>
+                            <label for="imageKeys">Images Path</label>
+                            <textarea class="form-control" id="imageKeys" rows="8" th:field="*{imageKeys}"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label for="representativeImage">Representative Image Path</label>
-                            <input type="text" class="form-control" id="representativeImage" th:field="*{imageSet.representativeImage.key}">
+                            <label for="representativeImageKey">Representative Image Path</label>
+                            <input type="text" class="form-control" id="representativeImageKey" th:field="*{representativeImageKey}">
                         </div>
 
                         <div class="form-group">
-                            <label for="panoXml">Pano XML Path</label>
-                            <input type="text" class="form-control" id="panoXml" th:field="*{panoXml.key}">
+                            <label for="panoXmlKey">Pano XML Path</label>
+                            <input type="text" class="form-control" id="panoXmlKey" th:field="*{panoXmlKey}">
                         </div>
                     </section>
 

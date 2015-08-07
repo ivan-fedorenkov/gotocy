@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 public class LocalizedProperty extends BaseEntity {
 
-	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@ManyToOne(optional = false)
 	private Property property;
 
 	private String locale;
@@ -61,10 +61,5 @@ public class LocalizedProperty extends BaseEntity {
 		this.specifications.clear();
 		specifications.forEach(s -> s.setLocalizedProperty(this));
 		this.specifications.addAll(specifications);
-	}
-
-	public void addSpecification(LocalizedPropertySpecification specification) {
-		specification.setLocalizedProperty(this);
-		specifications.add(specification);
 	}
 }

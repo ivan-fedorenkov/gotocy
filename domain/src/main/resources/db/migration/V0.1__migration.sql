@@ -2,10 +2,10 @@ CREATE TABLE owner(
     id BIGINT NOT NULL AUTO_INCREMENT,
     version INTEGER NOT NULL,
 
-    name VARCHAR(256) NOT NULL,
-    email VARCHAR(256) NOT NULL,
-    phone VARCHAR(256) NOT NULL,
-    spoken_languages VARCHAR(256) NOT NULL,
+    name VARCHAR(256) NULL,
+    email VARCHAR(256) NULL,
+    phone VARCHAR(256) NULL,
+    spoken_languages VARCHAR(256) NULL,
 
     PRIMARY KEY (id)
 );
@@ -71,7 +71,7 @@ CREATE TABLE localized_property(
     version INTEGER NOT NULL,
 
     locale VARCHAR(8) NOT NULL,
-    description CLOB NOT NULL,
+    description CLOB NULL,
 
 
     property_id BIGINT NOT NULL,
