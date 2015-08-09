@@ -87,7 +87,7 @@ public class PropertiesController {
 	}
 
 	@RequestMapping(value = "/master/properties/new", method = RequestMethod.GET)
-	public String edit(Model model) {
+	public String _new(Model model) {
 		model.addAttribute("owners", ownerRepository.findAll());
 		model.addAttribute(new PropertyForm());
 		return "master/property/new";

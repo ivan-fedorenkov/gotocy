@@ -8,6 +8,7 @@ import org.gotocy.domain.PropertyType;
 import org.gotocy.filters.LocaleFilter;
 import org.gotocy.format.EnumsFormatter;
 import org.gotocy.interceptors.HelpersInterceptor;
+import org.gotocy.interceptors.SecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
@@ -69,6 +70,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new HelpersInterceptor(applicationProperties, messageSource, assetsProvider));
+		registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/master/**");
 	}
 
 }
