@@ -9,7 +9,7 @@ import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.Region;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
-import org.gotocy.config.S3Configuration;
+import org.gotocy.config.S3Properties;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.ImageSize;
@@ -28,16 +28,16 @@ import java.io.IOException;
 @Component
 public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvider {
 
-	private final S3Configuration config;
+	private final S3Properties properties;
 
 	@Autowired
-	public AmazonAssetsProvider(S3Configuration config) {
-		super(new BasicAWSCredentials(config.getAccessKey(), config.getSecretKey()),
+	public AmazonAssetsProvider(S3Properties properties) {
+		super(new BasicAWSCredentials(properties.getAccessKey(), properties.getSecretKey()),
 			new ClientConfiguration().withProtocol(Protocol.HTTP));
 
 		setRegion(Region.EU_Ireland.toAWSRegion());
 
-		this.config = config;
+		this.properties = properties;
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 	public <T extends Asset> T loadUnderlyingObject(T asset) {
 		try {
 			// Load the object input stream
-			S3ObjectInputStream is = getObject(config.getBucket(), asset.getKey()).getObjectContent();
+			S3ObjectInputStream is = getObject(properties.getBucket(), asset.getKey()).getObjectContent();
 
 			// Set the underlying object in the given asset instance
 			if (asset instanceof PanoXml) {
@@ -77,13 +77,13 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 	}
 
 	private String generatePresignedUrl(String assetKey, HttpMethod method) {
-		return generatePresignedUrl(config.getBucket(), assetKey, config.getExpirationDate(), method).toString();
+		return generatePresignedUrl(properties.getBucket(), assetKey, properties.getExpirationDate(), method).toString();
 	}
 
 	private boolean exists(String assetKey) {
 		// Dirty, yet simple solution
 		try {
-			getObjectMetadata(config.getBucket(), assetKey);
+			getObjectMetadata(properties.getBucket(), assetKey);
 			return true;
 		} catch (AmazonS3Exception e) {
 			return false;

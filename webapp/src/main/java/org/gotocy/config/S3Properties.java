@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Component
 @ConfigurationProperties(prefix = "gotocy.s3")
-public class S3Configuration {
+public class S3Properties {
 
 	private static final long EXPIRATION_TIME = 1000 * 60 * 60; // 60 minutes
 
