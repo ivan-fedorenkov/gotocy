@@ -16,3 +16,15 @@ gotocy:
     phone: "+357 99 166265"
     defaultLatitude: "34.97351552254917"
     defaultLongitude: "33.133228140624965"
+
+---
+
+spring:
+  profiles: "heroku-cleardb"
+  datasource:
+    max-active: 10
+    max-idle: 5
+    min-idle: 2
+    initial-size: 5
+    validation-query: "SELECT 1"
+    test-while-idle: true
