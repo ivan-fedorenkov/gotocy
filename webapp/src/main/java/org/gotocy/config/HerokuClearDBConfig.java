@@ -1,5 +1,6 @@
 package org.gotocy.config;
 
+import org.apache.tomcat.jdbc.pool.PoolConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,13 +23,16 @@ public class HerokuClearDBConfig {
 
 	@Bean
 	public DataSource dataSource(HerokuClearDBProperties properties) {
-		DataSourceBuilder factory = DataSourceBuilder
-			.create(properties.getClassLoader())
-			.driverClassName(properties.getDriverClassName())
-			.url(properties.getUrl())
-			.username(properties.getUsername())
-			.password(properties.getPassword());
-		return factory.build();
+		org.apache.tomcat.jdbc.pool.DataSource dataSource = new org.apache.tomcat.jdbc.pool.DataSource();
+		dataSource.setDriverClassName(properties.getDriverClassName());
+		dataSource.setUsername(properties.getUsername());
+		dataSource.setPassword(properties.getPassword());
+		dataSource.setMaxActive(10);
+		dataSource.setInitialSize(5);
+		dataSource.setMinIdle(2);
+		dataSource.setMaxIdle(5);
+		dataSource.setValidationQuery("SELECT 1");
+		return dataSource;
 	}
 
 }
