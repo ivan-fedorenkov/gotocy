@@ -25,6 +25,7 @@ public class HerokuClearDBConfig {
 	public DataSource dataSource(HerokuClearDBProperties properties) {
 		org.apache.tomcat.jdbc.pool.DataSource dataSource = new org.apache.tomcat.jdbc.pool.DataSource();
 		dataSource.setDriverClassName(properties.getDriverClassName());
+		dataSource.setUrl(properties.getUrl());
 		dataSource.setUsername(properties.getUsername());
 		dataSource.setPassword(properties.getPassword());
 		dataSource.setMaxActive(10);
