@@ -20,6 +20,7 @@ public class HerokuPostgreSQLProperties implements BeanClassLoaderAware {
 	private ClassLoader classLoader;
 
 	private final String url;
+	private final String driverClassName;
 	private final String username;
 	private final String password;
 
@@ -28,6 +29,7 @@ public class HerokuPostgreSQLProperties implements BeanClassLoaderAware {
 		URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
 		url = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+		driverClassName = "org.postgresql.Driver";
 		username = dbUri.getUserInfo().split(":")[0];
 		password = dbUri.getUserInfo().split(":")[1];
 	}
@@ -39,6 +41,10 @@ public class HerokuPostgreSQLProperties implements BeanClassLoaderAware {
 
 	public ClassLoader getClassLoader() {
 		return classLoader;
+	}
+
+	public String getDriverClassName() {
+		return driverClassName;
 	}
 
 	public String getUrl() {
