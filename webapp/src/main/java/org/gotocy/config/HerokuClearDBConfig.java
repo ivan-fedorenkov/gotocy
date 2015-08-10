@@ -32,7 +32,11 @@ public class HerokuClearDBConfig {
 		dataSource.setInitialSize(5);
 		dataSource.setMinIdle(2);
 		dataSource.setMaxIdle(5);
-		dataSource.setValidationQuery("SELECT 1");
+		dataSource.setValidationQuery("SELECT 1 as pool_test");
+		dataSource.setTestOnBorrow(true);
+		dataSource.setTestOnReturn(true);
+		dataSource.setTestWhileIdle(true);
+
 		return dataSource;
 	}
 
