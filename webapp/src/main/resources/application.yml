@@ -28,3 +28,5 @@ spring:
     initial-size: 5
     validation-query: "SELECT 1"
     test-while-idle: true
+    timeBetweenEvictionRunsMillis: 5000
+    logAbandoned: true
