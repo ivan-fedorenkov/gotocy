@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
  * @author ifedorenkov
  */
 @Configuration
-@Profile("heroku-postgresql")
+@Profile("heroku-cleardb")
 public class HerokuClearDBConfig {
 
 	@Bean

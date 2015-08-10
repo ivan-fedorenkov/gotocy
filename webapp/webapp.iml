@@ -85,7 +85,7 @@
     <orderEntry type="library" name="Maven: xerces:xercesImpl:2.11.0" level="project" />
     <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.4.01" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.h2database:h2:1.4.187" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.postgresql:postgresql:9.4-1201-jdbc41" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: mysql:mysql-connector-java:5.1.35" level="project" />
     <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk:1.10.2" level="project" />
     <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-support:1.10.2" level="project" />
     <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-simpledb:1.10.2" level="project" />
