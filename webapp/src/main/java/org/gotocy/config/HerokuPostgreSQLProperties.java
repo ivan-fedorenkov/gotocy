@@ -11,7 +11,9 @@ import java.net.URISyntaxException;
 /**
  * @author ifedorenkov
  */
+@Component
 @Profile("heroku-postgresql")
+@ConfigurationProperties(prefix = DataSourceProperties.PREFIX)
 public class HerokuPostgreSQLProperties extends DataSourceProperties {
 
 	public HerokuPostgreSQLProperties() throws URISyntaxException {
