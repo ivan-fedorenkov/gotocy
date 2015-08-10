@@ -13,15 +13,15 @@ import java.net.URISyntaxException;
  */
 @Configuration
 @Profile("heroku-postgresql")
-public class HerokuPostgreSQLConfig {
+public class HerokuClearDBConfig {
 
 	@Bean
-	public HerokuPostgreSQLProperties herokuPostgreSQLProperties() throws URISyntaxException {
-		return new HerokuPostgreSQLProperties();
+	public HerokuClearDBProperties herokuPostgreSQLProperties() throws URISyntaxException {
+		return new HerokuClearDBProperties();
 	}
 
 	@Bean
-	public DataSource dataSource(HerokuPostgreSQLProperties properties) {
+	public DataSource dataSource(HerokuClearDBProperties properties) {
 		DataSourceBuilder factory = DataSourceBuilder
 			.create(properties.getClassLoader())
 			.driverClassName(properties.getDriverClassName())

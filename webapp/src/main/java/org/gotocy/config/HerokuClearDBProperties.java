@@ -8,7 +8,7 @@ import java.net.URISyntaxException;
 /**
  * @author ifedorenkov
  */
-public class HerokuPostgreSQLProperties implements BeanClassLoaderAware {
+public class HerokuClearDBProperties implements BeanClassLoaderAware {
 
 	private ClassLoader classLoader;
 
@@ -18,11 +18,11 @@ public class HerokuPostgreSQLProperties implements BeanClassLoaderAware {
 	private final String password;
 
 
-	public HerokuPostgreSQLProperties() throws URISyntaxException {
-		URI dbUri = new URI(System.getenv("DATABASE_URL"));
+	public HerokuClearDBProperties() throws URISyntaxException {
+		URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
 
-		url = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
-		driverClassName = "org.postgresql.Driver";
+		url = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+		driverClassName = "com.mysql.jdbc.Driver";
 		username = dbUri.getUserInfo().split(":")[0];
 		password = dbUri.getUserInfo().split(":")[1];
 	}
