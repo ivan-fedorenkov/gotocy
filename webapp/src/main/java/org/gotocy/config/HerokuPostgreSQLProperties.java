@@ -14,7 +14,6 @@ import java.net.URISyntaxException;
  */
 @Component
 @Profile("heroku-postgresql")
-@ConfigurationProperties(prefix = DataSourceProperties.PREFIX)
 public class HerokuPostgreSQLProperties implements BeanClassLoaderAware {
 
 	private ClassLoader classLoader;
