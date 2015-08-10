@@ -16,12 +16,13 @@
 		<spring-data-commons.version>1.10.0.RELEASE</spring-data-commons.version>
 		<nekohtml.version>1.9.22</nekohtml.version>
 		<aws-java-sdk-version>1.10.2</aws-java-sdk-version>
+		<org.postgresql.version>9.4-1201-jdbc41</org.postgresql.version>
 	</properties>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.2.4.RELEASE</version>
+		<version>1.2.5.RELEASE</version>
 	</parent>
 
 	<modules>
