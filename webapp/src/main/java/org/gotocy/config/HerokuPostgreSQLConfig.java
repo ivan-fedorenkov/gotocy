@@ -22,6 +22,8 @@ public class HerokuPostgreSQLConfig {
 
 	@Bean
 	public DataSource dataSource() {
+		System.out.println("Creating datasource with url: " + properties.getUrl());
+
 		DataSourceBuilder factory = DataSourceBuilder
 			.create(properties.getClassLoader())
 			.driverClassName(properties.getDriverClassName())
