@@ -72,7 +72,7 @@ CREATE TABLE `localized_property`(
     `version` INTEGER NOT NULL,
 
     `locale` VARCHAR(8) NOT NULL,
-    `description` CLOB NULL,
+    `description` TEXT NULL,
 
 
     `property_id` BIGINT NOT NULL,
