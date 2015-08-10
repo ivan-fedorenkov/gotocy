@@ -1,5 +1,6 @@
 package org.gotocy.config;
 
+import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Profile;
@@ -14,29 +15,42 @@ import java.net.URISyntaxException;
 @Component
 @Profile("heroku-postgresql")
 @ConfigurationProperties(prefix = DataSourceProperties.PREFIX)
-public class HerokuPostgreSQLProperties extends DataSourceProperties {
+public class HerokuPostgreSQLProperties implements BeanClassLoaderAware {
+
+	private ClassLoader classLoader;
+
+	private final String url;
+	private final String username;
+	private final String password;
+
 
 	public HerokuPostgreSQLProperties() throws URISyntaxException {
 		URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
-		setUrl("jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath());
-		setUsername(dbUri.getUserInfo().split(":")[0]);
-		setPassword(dbUri.getUserInfo().split(":")[1]);
+		url = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+		username = dbUri.getUserInfo().split(":")[0];
+		password = dbUri.getUserInfo().split(":")[1];
 	}
 
 	@Override
-	public void setUrl(String url) {
-		// do nothing
+	public void setBeanClassLoader(ClassLoader classLoader) {
+		this.classLoader = classLoader;
 	}
 
-	@Override
-	public void setUsername(String username) {
-		// do nothing
+	public ClassLoader getClassLoader() {
+		return classLoader;
 	}
 
-	@Override
-	public void setPassword(String password) {
-		// do nothing
+	public String getUrl() {
+		return url;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
 	}
 
 }
