@@ -1,5 +1,6 @@
 package org.gotocy.domain;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -16,6 +17,7 @@ import java.util.Objects;
 @DiscriminatorColumn(name = "asset_type")
 public abstract class Asset<T> extends BaseEntity {
 
+	@Column(name = "asset_key")
 	private String key;
 
 	protected transient T object;
