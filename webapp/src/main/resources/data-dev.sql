@@ -5,24 +5,24 @@ insert into owner (id, version, name, email, phone, spoken_languages) values (4,
 
 -- 1 [Short term] http://www.housetrip.com/en/rentals/63167?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=3&source_element=card&source_type=list
 
-insert into asset (id, version, `key`, asset_type) values (1, 0, 'property/1/1.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (2, 0, 'property/1/2.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (3, 0, 'property/1/3.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (4, 0, 'property/1/4.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (5, 0, 'property/1/5.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (6, 0, 'property/1/6.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (7, 0, 'property/1/7.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (8, 0, 'property/1/8.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (9, 0, 'property/1/9.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (10, 0, 'property/1/10.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (11, 0, 'property/1/11.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (12, 0, 'property/1/12.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (13, 0, 'property/1/13.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (14, 0, 'property/1/14.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (15, 0, 'property/1/18.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (16, 0, 'property/1/19.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (17, 0, 'property/1/20.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (18, 0, 'property/1/21.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (1, 0, 'property/1/1.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (2, 0, 'property/1/2.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (3, 0, 'property/1/3.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (4, 0, 'property/1/4.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (5, 0, 'property/1/5.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (6, 0, 'property/1/6.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (7, 0, 'property/1/7.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (8, 0, 'property/1/8.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (9, 0, 'property/1/9.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (10, 0, 'property/1/10.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (11, 0, 'property/1/11.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (12, 0, 'property/1/12.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (13, 0, 'property/1/13.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (14, 0, 'property/1/14.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (15, 0, 'property/1/18.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (16, 0, 'property/1/19.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (17, 0, 'property/1/20.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (18, 0, 'property/1/21.jpg', 'IMAGE');
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
   values (1, 0, 'Sofia', 'Chania, Crete, Nomós Chaníon', 'Chania, Crete, Nomós Chaníon', 'GREECE', '35.318198', '24.318744', 'APARTMENT', 'SHORT_TERM', 95, 1, 3, 1, true, 1200, 1, 1);
@@ -75,26 +75,26 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 2 [Short term] http://www.housetrip.com/en/rentals/61781?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=31&source_element=card&source_type=list
 
-insert into asset (id, version, `key`, asset_type) values (19, 0, 'property/2/1.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (20, 0, 'property/2/2.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (21, 0, 'property/2/3.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (22, 0, 'property/2/4.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (23, 0, 'property/2/5.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (24, 0, 'property/2/6.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (25, 0, 'property/2/7.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (26, 0, 'property/2/8.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (27, 0, 'property/2/9.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (28, 0, 'property/2/10.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (29, 0, 'property/2/12.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (30, 0, 'property/2/13.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (31, 0, 'property/2/14.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (32, 0, 'property/2/15.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (33, 0, 'property/2/16.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (34, 0, 'property/2/17.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (35, 0, 'property/2/19.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (36, 0, 'property/2/20.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (37, 0, 'property/2/21.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (38, 0, 'property/2/22.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (19, 0, 'property/2/1.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (20, 0, 'property/2/2.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (21, 0, 'property/2/3.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (22, 0, 'property/2/4.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (23, 0, 'property/2/5.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (24, 0, 'property/2/6.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (25, 0, 'property/2/7.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (26, 0, 'property/2/8.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (27, 0, 'property/2/9.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (28, 0, 'property/2/10.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (29, 0, 'property/2/12.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (30, 0, 'property/2/13.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (31, 0, 'property/2/14.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (32, 0, 'property/2/15.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (33, 0, 'property/2/16.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (34, 0, 'property/2/17.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (35, 0, 'property/2/19.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (36, 0, 'property/2/20.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (37, 0, 'property/2/21.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (38, 0, 'property/2/22.jpg', 'IMAGE');
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
@@ -152,16 +152,16 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 3 [Short term] http://www.housetrip.com/en/rentals/206592?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=28&source_element=card&source_type=list
 
-insert into asset (id, version, `key`, asset_type) values (39, 0, 'property/3/1.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (40, 0, 'property/3/2.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (41, 0, 'property/3/3.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (42, 0, 'property/3/4.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (43, 0, 'property/3/5.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (44, 0, 'property/3/6.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (45, 0, 'property/3/7.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (46, 0, 'property/3/8.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (47, 0, 'property/3/9.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (48, 0, 'property/3/10.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (39, 0, 'property/3/1.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (40, 0, 'property/3/2.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (41, 0, 'property/3/3.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (42, 0, 'property/3/4.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (43, 0, 'property/3/5.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (44, 0, 'property/3/6.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (45, 0, 'property/3/7.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (46, 0, 'property/3/8.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (47, 0, 'property/3/9.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (48, 0, 'property/3/10.jpg', 'IMAGE');
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
@@ -226,15 +226,15 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 4 [Short term] http://www.housetrip.com/en/rentals/296121?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=17&source_element=card&source_type=list
 
--- insert into asset (id, version, `key`, asset_type) values (49, 0, 'property/4/1.jpg', 'IMAGE');
--- insert into asset (id, version, `key`, asset_type) values (50, 0, 'property/4/2.jpg', 'IMAGE');
--- insert into asset (id, version, `key`, asset_type) values (51, 0, 'property/4/3.jpg', 'IMAGE');
--- insert into asset (id, version, `key`, asset_type) values (52, 0, 'property/4/4.jpg', 'IMAGE');
--- insert into asset (id, version, `key`, asset_type) values (53, 0, 'property/4/5.jpg', 'IMAGE');
--- insert into asset (id, version, `key`, asset_type) values (54, 0, 'property/4/6.jpg', 'IMAGE');
--- insert into asset (id, version, `key`, asset_type) values (55, 0, 'property/4/7.jpg', 'IMAGE');
--- insert into asset (id, version, `key`, asset_type) values (56, 0, 'property/4/8.jpg', 'IMAGE');
--- insert into asset (id, version, `key`, asset_type) values (57, 0, 'property/4/9.jpg', 'IMAGE');
+-- insert into asset (id, version, `asset_key`, asset_type) values (49, 0, 'property/4/1.jpg', 'IMAGE');
+-- insert into asset (id, version, `asset_key`, asset_type) values (50, 0, 'property/4/2.jpg', 'IMAGE');
+-- insert into asset (id, version, `asset_key`, asset_type) values (51, 0, 'property/4/3.jpg', 'IMAGE');
+-- insert into asset (id, version, `asset_key`, asset_type) values (52, 0, 'property/4/4.jpg', 'IMAGE');
+-- insert into asset (id, version, `asset_key`, asset_type) values (53, 0, 'property/4/5.jpg', 'IMAGE');
+-- insert into asset (id, version, `asset_key`, asset_type) values (54, 0, 'property/4/6.jpg', 'IMAGE');
+-- insert into asset (id, version, `asset_key`, asset_type) values (55, 0, 'property/4/7.jpg', 'IMAGE');
+-- insert into asset (id, version, `asset_key`, asset_type) values (56, 0, 'property/4/8.jpg', 'IMAGE');
+-- insert into asset (id, version, `asset_key`, asset_type) values (57, 0, 'property/4/9.jpg', 'IMAGE');
 --
 --
 -- insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
@@ -279,15 +279,15 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 5 [Sale] LAR 801/1
 
-insert into asset (id, version, `key`, asset_type) values (58, 0, 'property/5/DSC_3562.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (59, 0, 'property/5/DSC_3761.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (60, 0, 'property/5/DSC_3775.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (61, 0, 'property/5/DSC_3778.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (62, 0, 'property/5/DSC_3781.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (63, 0, 'property/5/DSC_3785.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (64, 0, 'property/5/DSC_3789.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (65, 0, 'property/5/DSC_3791.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (66, 0, 'property/5/DSC_3796.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (58, 0, 'property/5/DSC_3562.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (59, 0, 'property/5/DSC_3761.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (60, 0, 'property/5/DSC_3775.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (61, 0, 'property/5/DSC_3778.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (62, 0, 'property/5/DSC_3781.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (63, 0, 'property/5/DSC_3785.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (64, 0, 'property/5/DSC_3789.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (65, 0, 'property/5/DSC_3791.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (66, 0, 'property/5/DSC_3796.jpg', 'IMAGE');
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, distance_to_sea, bedrooms, baths, representative_image_id, owner_id)
@@ -323,10 +323,10 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 6 [Sale] LAR 802
 
-insert into asset (id, version, `key`, asset_type) values (67, 0, 'property/6/DSC_3529.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (68, 0, 'property/6/DSC_3534.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (69, 0, 'property/6/DSC_3539.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (70, 0, 'property/6/DSC_3545.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (67, 0, 'property/6/DSC_3529.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (68, 0, 'property/6/DSC_3534.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (69, 0, 'property/6/DSC_3539.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (70, 0, 'property/6/DSC_3545.jpg', 'IMAGE');
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, distance_to_sea, bedrooms, baths, ready_to_move_in, representative_image_id, owner_id)
@@ -358,12 +358,12 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 7 [Long term] http://www.greece-property.net/property/4003/
 
-insert into asset (id, version, `key`, asset_type) values (71, 0, 'property/7/1.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (72, 0, 'property/7/2.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (73, 0, 'property/7/3.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (74, 0, 'property/7/4.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (75, 0, 'property/7/5.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (76, 0, 'property/7/6.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (71, 0, 'property/7/1.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (72, 0, 'property/7/2.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (73, 0, 'property/7/3.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (74, 0, 'property/7/4.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (75, 0, 'property/7/5.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (76, 0, 'property/7/6.jpg', 'IMAGE');
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnishing, representative_image_id, owner_id)
@@ -405,21 +405,21 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 8 [Long term] http://www.greece-property.net/property/3964/
 
-insert into asset (id, version, `key`, asset_type) values (77, 0, 'property/8/1.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (78, 0, 'property/8/2.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (79, 0, 'property/8/3.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (80, 0, 'property/8/4.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (81, 0, 'property/8/5.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (82, 0, 'property/8/6.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (83, 0, 'property/8/7.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (84, 0, 'property/8/8.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (85, 0, 'property/8/9.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (86, 0, 'property/8/10.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (87, 0, 'property/8/11.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (88, 0, 'property/8/12.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (89, 0, 'property/8/13.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (90, 0, 'property/8/14.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (91, 0, 'property/8/15.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (77, 0, 'property/8/1.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (78, 0, 'property/8/2.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (79, 0, 'property/8/3.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (80, 0, 'property/8/4.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (81, 0, 'property/8/5.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (82, 0, 'property/8/6.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (83, 0, 'property/8/7.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (84, 0, 'property/8/8.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (85, 0, 'property/8/9.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (86, 0, 'property/8/10.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (87, 0, 'property/8/11.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (88, 0, 'property/8/12.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (89, 0, 'property/8/13.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (90, 0, 'property/8/14.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (91, 0, 'property/8/15.jpg', 'IMAGE');
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnishing, representative_image_id, owner_id)
@@ -457,25 +457,25 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 9 [House] Determinis
 
-insert into asset (id, version, `key`, asset_type) values (92, 0, 'property/9/IMG_0019.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (93, 0, 'property/9/IMG_0020.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (94, 0, 'property/9/IMG_0021.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (95, 0, 'property/9/IMG_0022.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (96, 0, 'property/9/IMG_0023.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (97, 0, 'property/9/IMG_0024.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (98, 0, 'property/9/IMG_0025.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (99, 0, 'property/9/IMG_0026.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (100, 0, 'property/9/IMG_0027.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (101, 0, 'property/9/IMG_0028.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (102, 0, 'property/9/IMG_0029.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (103, 0, 'property/9/IMG_0030.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (104, 0, 'property/9/IMG_0031.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (105, 0, 'property/9/IMG_0032.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (106, 0, 'property/9/IMG_0033.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (107, 0, 'property/9/IMG_0034.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (108, 0, 'property/9/IMG_0035.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (92, 0, 'property/9/IMG_0019.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (93, 0, 'property/9/IMG_0020.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (94, 0, 'property/9/IMG_0021.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (95, 0, 'property/9/IMG_0022.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (96, 0, 'property/9/IMG_0023.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (97, 0, 'property/9/IMG_0024.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (98, 0, 'property/9/IMG_0025.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (99, 0, 'property/9/IMG_0026.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (100, 0, 'property/9/IMG_0027.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (101, 0, 'property/9/IMG_0028.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (102, 0, 'property/9/IMG_0029.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (103, 0, 'property/9/IMG_0030.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (104, 0, 'property/9/IMG_0031.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (105, 0, 'property/9/IMG_0032.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (106, 0, 'property/9/IMG_0033.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (107, 0, 'property/9/IMG_0034.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (108, 0, 'property/9/IMG_0035.jpg', 'IMAGE');
 
-insert into asset (id, version, `key`, asset_type) values (109, 0, 'property/9/pano.xml', 'PANO_XML');
+insert into asset (id, version, `asset_key`, asset_type) values (109, 0, 'property/9/pano.xml', 'PANO_XML');
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id)
@@ -584,32 +584,32 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 11 Trisveis / Villa at dekhelia road(near Galu with common pool)
 
-insert into asset (id, version, `key`, asset_type) values (110, 0, 'property/11/H3DR0167-S-23.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (111, 0, 'property/11/DSC_0291.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (112, 0, 'property/11/DSC_0283.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (113, 0, 'property/11/19.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (114, 0, 'property/11/H3DR0167-S-22.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (115, 0, 'property/11/DSC_0287.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (116, 0, 'property/11/DSC_0294.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (117, 0, 'property/11/DSC_0293.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (118, 0, 'property/11/DSC_0279.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (119, 0, 'property/11/DSC_0278.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (120, 0, 'property/11/DSC_0282.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (121, 0, 'property/11/DSC_0288.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (122, 0, 'property/11/DSC_0277.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (123, 0, 'property/11/DSC_0284.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (124, 0, 'property/11/20.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (125, 0, 'property/11/DSC_0295.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (126, 0, 'property/11/DSC_0280.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (127, 0, 'property/11/DSC_0286.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (128, 0, 'property/11/DSC_0290.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (129, 0, 'property/11/H3DR0167-S.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (130, 0, 'property/11/DSC_0289.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (131, 0, 'property/11/1.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (132, 0, 'property/11/DSC_0276.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (133, 0, 'property/11/DSC_0292.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (134, 0, 'property/11/DSC_0281.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (135, 0, 'property/11/DSC_0285.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (110, 0, 'property/11/H3DR0167-S-23.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (111, 0, 'property/11/DSC_0291.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (112, 0, 'property/11/DSC_0283.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (113, 0, 'property/11/19.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (114, 0, 'property/11/H3DR0167-S-22.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (115, 0, 'property/11/DSC_0287.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (116, 0, 'property/11/DSC_0294.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (117, 0, 'property/11/DSC_0293.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (118, 0, 'property/11/DSC_0279.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (119, 0, 'property/11/DSC_0278.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (120, 0, 'property/11/DSC_0282.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (121, 0, 'property/11/DSC_0288.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (122, 0, 'property/11/DSC_0277.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (123, 0, 'property/11/DSC_0284.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (124, 0, 'property/11/20.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (125, 0, 'property/11/DSC_0295.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (126, 0, 'property/11/DSC_0280.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (127, 0, 'property/11/DSC_0286.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (128, 0, 'property/11/DSC_0290.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (129, 0, 'property/11/H3DR0167-S.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (130, 0, 'property/11/DSC_0289.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (131, 0, 'property/11/1.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (132, 0, 'property/11/DSC_0276.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (133, 0, 'property/11/DSC_0292.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (134, 0, 'property/11/DSC_0281.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (135, 0, 'property/11/DSC_0285.jpg', 'IMAGE');
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
@@ -710,21 +710,21 @@ insert into localized_property_specification (specification, localized_property_
 -- 12 Trisveis / Alex Residence #302
 
 
-insert into asset (id, version, `key`, asset_type) values (136, 0, 'property/12/DSC_0320.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (137, 0, 'property/12/DSC_0321.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (138, 0, 'property/12/DSC_0311.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (139, 0, 'property/12/DSC_0312.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (140, 0, 'property/12/DSC_0316.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (141, 0, 'property/12/DSC_0308.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (142, 0, 'property/12/DSC_0313.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (143, 0, 'property/12/DSC_0310.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (144, 0, 'property/12/DSC_0317.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (145, 0, 'property/12/DSC_0319.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (146, 0, 'property/12/DSC_0318.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (147, 0, 'property/12/DSC_0315.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (148, 0, 'property/12/DSC_0314.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (149, 0, 'property/12/DSC_0309.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (150, 0, 'property/12/DSC_0322.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (136, 0, 'property/12/DSC_0320.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (137, 0, 'property/12/DSC_0321.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (138, 0, 'property/12/DSC_0311.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (139, 0, 'property/12/DSC_0312.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (140, 0, 'property/12/DSC_0316.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (141, 0, 'property/12/DSC_0308.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (142, 0, 'property/12/DSC_0313.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (143, 0, 'property/12/DSC_0310.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (144, 0, 'property/12/DSC_0317.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (145, 0, 'property/12/DSC_0319.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (146, 0, 'property/12/DSC_0318.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (147, 0, 'property/12/DSC_0315.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (148, 0, 'property/12/DSC_0314.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (149, 0, 'property/12/DSC_0309.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (150, 0, 'property/12/DSC_0322.jpg', 'IMAGE');
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
@@ -808,22 +808,22 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 13 Trisveis / Alex Residence #103
 
-insert into asset (id, version, `key`, asset_type) values (151, 0, 'property/13/DSC00514.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (152, 0, 'property/13/DSC_0321.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (153, 0, 'property/13/DSC_0316.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (154, 0, 'property/13/DSC00515.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (155, 0, 'property/13/DSC00516.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (156, 0, 'property/13/DSC_0317.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (157, 0, 'property/13/DSC_0319.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (158, 0, 'property/13/DSC_0318.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (159, 0, 'property/13/DSC00517.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (160, 0, 'property/13/DSC00521.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (161, 0, 'property/13/DSC00522.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (162, 0, 'property/13/DSC00520.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (163, 0, 'property/13/DSC00513.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (164, 0, 'property/13/DSC_0320.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (165, 0, 'property/13/DSC_0322.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (166, 0, 'property/13/DSC00523.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (151, 0, 'property/13/DSC00514.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (152, 0, 'property/13/DSC_0321.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (153, 0, 'property/13/DSC_0316.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (154, 0, 'property/13/DSC00515.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (155, 0, 'property/13/DSC00516.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (156, 0, 'property/13/DSC_0317.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (157, 0, 'property/13/DSC_0319.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (158, 0, 'property/13/DSC_0318.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (159, 0, 'property/13/DSC00517.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (160, 0, 'property/13/DSC00521.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (161, 0, 'property/13/DSC00522.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (162, 0, 'property/13/DSC00520.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (163, 0, 'property/13/DSC00513.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (164, 0, 'property/13/DSC_0320.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (165, 0, 'property/13/DSC_0322.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (166, 0, 'property/13/DSC00523.jpg', 'IMAGE');
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
   values (13, 0, 'Alex Residence #103', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'LARNACA', '34.920028', '33.631734', 'FLAT', 'SHORT_TERM', 90, 2, 4, true, 500, 153, null, 3);
@@ -907,24 +907,24 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 14 Trisveis / Alex Residence #105
 
-insert into asset (id, version, `key`, asset_type) values (167, 0, 'property/14/DSC_0298.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (168, 0, 'property/14/DSC_0321.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (169, 0, 'property/14/DSC_0307.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (170, 0, 'property/14/DSC_0316.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (171, 0, 'property/14/DSC_0299.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (172, 0, 'property/14/DSC_0300.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (173, 0, 'property/14/DSC_0297.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (174, 0, 'property/14/DSC_0304.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (175, 0, 'property/14/DSC_0301.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (176, 0, 'property/14/DSC_0319.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (177, 0, 'property/14/DSC_0318.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (178, 0, 'property/14/DSC_0296.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (179, 0, 'property/14/DSC_0302.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (180, 0, 'property/14/DSC_0303.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (181, 0, 'property/14/DSC_0306.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (182, 0, 'property/14/DSC_0305.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (183, 0, 'property/14/DSC_0320.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (184, 0, 'property/14/DSC_0322.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (167, 0, 'property/14/DSC_0298.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (168, 0, 'property/14/DSC_0321.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (169, 0, 'property/14/DSC_0307.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (170, 0, 'property/14/DSC_0316.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (171, 0, 'property/14/DSC_0299.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (172, 0, 'property/14/DSC_0300.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (173, 0, 'property/14/DSC_0297.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (174, 0, 'property/14/DSC_0304.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (175, 0, 'property/14/DSC_0301.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (176, 0, 'property/14/DSC_0319.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (177, 0, 'property/14/DSC_0318.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (178, 0, 'property/14/DSC_0296.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (179, 0, 'property/14/DSC_0302.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (180, 0, 'property/14/DSC_0303.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (181, 0, 'property/14/DSC_0306.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (182, 0, 'property/14/DSC_0305.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (183, 0, 'property/14/DSC_0320.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (184, 0, 'property/14/DSC_0322.jpg', 'IMAGE');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (14, 0, 'Alex Residence #105', 'LARNACA', '34.920028', '33.631734', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'FLAT', 'SHORT_TERM', 90, NULL, NULL, 2, 4, 500, TRUE, FALSE, FALSE, NULL, 169, NULL, 3);
 
@@ -1004,29 +1004,29 @@ insert into localized_property_specification (specification, localized_property_
 -- 15 SSV Larnaca Beach Apartments Flat 105
 
 
-insert into asset (id, version, `key`, asset_type) values (185, 0, 'property/15/LBA flat 105 (19).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (186, 0, 'property/15/LBA flat 105 (23).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (187, 0, 'property/15/LBA flat 105 (2).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (188, 0, 'property/15/LBA flat 105 (3).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (189, 0, 'property/15/LBA flat 105 (5).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (190, 0, 'property/15/LBA flat 105 (7).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (191, 0, 'property/15/LBA flat 105 (8).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (192, 0, 'property/15/LBA flat 105 (9).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (193, 0, 'property/15/LBA flat 105 (12).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (194, 0, 'property/15/LBA flat 105 (14).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (195, 0, 'property/15/LBA flat 105 (15).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (196, 0, 'property/15/LBA flat 105 (16).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (197, 0, 'property/15/LBA flat 105 (18).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (198, 0, 'property/15/LBA flat 105 (24).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (199, 0, 'property/15/LBA flat 105 (20).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (200, 0, 'property/15/LBA flat 105 (26).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (201, 0, 'property/15/LBA flat 105 (1).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (202, 0, 'property/15/LBA flat 105 (32).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (203, 0, 'property/15/LBA flat 105 (27).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (204, 0, 'property/15/LBA flat 105 (28).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (205, 0, 'property/15/LBA flat 105 (29).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (206, 0, 'property/15/LBA flat 105 (30).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (207, 0, 'property/15/LBA flat 105 (31).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (185, 0, 'property/15/LBA flat 105 (19).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (186, 0, 'property/15/LBA flat 105 (23).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (187, 0, 'property/15/LBA flat 105 (2).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (188, 0, 'property/15/LBA flat 105 (3).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (189, 0, 'property/15/LBA flat 105 (5).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (190, 0, 'property/15/LBA flat 105 (7).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (191, 0, 'property/15/LBA flat 105 (8).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (192, 0, 'property/15/LBA flat 105 (9).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (193, 0, 'property/15/LBA flat 105 (12).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (194, 0, 'property/15/LBA flat 105 (14).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (195, 0, 'property/15/LBA flat 105 (15).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (196, 0, 'property/15/LBA flat 105 (16).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (197, 0, 'property/15/LBA flat 105 (18).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (198, 0, 'property/15/LBA flat 105 (24).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (199, 0, 'property/15/LBA flat 105 (20).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (200, 0, 'property/15/LBA flat 105 (26).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (201, 0, 'property/15/LBA flat 105 (1).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (202, 0, 'property/15/LBA flat 105 (32).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (203, 0, 'property/15/LBA flat 105 (27).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (204, 0, 'property/15/LBA flat 105 (28).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (205, 0, 'property/15/LBA flat 105 (29).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (206, 0, 'property/15/LBA flat 105 (30).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (207, 0, 'property/15/LBA flat 105 (31).jpg', 'IMAGE');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (15, 0, 'Larnaca Beach Apartments #105', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 189, NULL, 3);
 
@@ -1111,25 +1111,25 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 16 SSV Larnaca Beach Apartments Flat 204
 
-insert into asset (id, version, `key`, asset_type) values (208, 0, 'property/16/LBA Flat 204 (5).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (209, 0, 'property/16/LBA Flat 204 (2).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (210, 0, 'property/16/LBA Flat 204 (4).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (211, 0, 'property/16/LBA Flat 204 (1).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (212, 0, 'property/16/LBA Flat 204 (7).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (213, 0, 'property/16/LBA Flat 204 (9).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (214, 0, 'property/16/LBA Flat 204 (10).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (215, 0, 'property/16/LBA Flat 204 (12).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (216, 0, 'property/16/LBA Flat 204 (15).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (217, 0, 'property/16/LBA Flat 204 (16).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (218, 0, 'property/16/LBA Flat 204 (18).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (219, 0, 'property/16/LBA Flat 204 (19).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (220, 0, 'property/16/LBA Flat 204 (20).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (221, 0, 'property/16/LBA Flat 204 (22).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (222, 0, 'property/16/LBA Flat 204 (28).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (223, 0, 'property/16/LBA Flat 204 (29).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (224, 0, 'property/16/LBA Flat 204 (31).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (225, 0, 'property/16/LBA Flat 204 (33).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (226, 0, 'property/16/LBA Flat 204 (34).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (208, 0, 'property/16/LBA Flat 204 (5).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (209, 0, 'property/16/LBA Flat 204 (2).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (210, 0, 'property/16/LBA Flat 204 (4).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (211, 0, 'property/16/LBA Flat 204 (1).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (212, 0, 'property/16/LBA Flat 204 (7).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (213, 0, 'property/16/LBA Flat 204 (9).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (214, 0, 'property/16/LBA Flat 204 (10).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (215, 0, 'property/16/LBA Flat 204 (12).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (216, 0, 'property/16/LBA Flat 204 (15).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (217, 0, 'property/16/LBA Flat 204 (16).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (218, 0, 'property/16/LBA Flat 204 (18).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (219, 0, 'property/16/LBA Flat 204 (19).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (220, 0, 'property/16/LBA Flat 204 (20).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (221, 0, 'property/16/LBA Flat 204 (22).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (222, 0, 'property/16/LBA Flat 204 (28).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (223, 0, 'property/16/LBA Flat 204 (29).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (224, 0, 'property/16/LBA Flat 204 (31).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (225, 0, 'property/16/LBA Flat 204 (33).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (226, 0, 'property/16/LBA Flat 204 (34).jpg', 'IMAGE');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (16, 0, 'Larnaca Beach Apartments #204', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 209, NULL, 3);
 
@@ -1209,31 +1209,31 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 17 Larnaca Beach Apartments #102
 
-insert into asset (id, version, `key`, asset_type) values (227, 0, 'property/17/LBA Flat 102 (2).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (228, 0, 'property/17/LBA Flat 102 (32).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (229, 0, 'property/17/LBA Flat 102 (3).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (230, 0, 'property/17/LBA Flat 102 (5).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (231, 0, 'property/17/LBA Flat 102 (6).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (232, 0, 'property/17/LBA Flat 102 (7).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (233, 0, 'property/17/LBA Flat 102 (8).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (234, 0, 'property/17/LBA Flat 102 (10).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (235, 0, 'property/17/LBA Flat 102 (11).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (236, 0, 'property/17/LBA Flat 102 (14).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (237, 0, 'property/17/LBA Flat 102 (15).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (238, 0, 'property/17/LBA Flat 102 (17).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (239, 0, 'property/17/LBA Flat 102 (20).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (240, 0, 'property/17/LBA Flat 102 (26).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (241, 0, 'property/17/LBA Flat 102 (25).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (242, 0, 'property/17/LBA Flat 102 (27).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (243, 0, 'property/17/LBA Flat 102 (28).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (244, 0, 'property/17/LBA Flat 102 (29).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (245, 0, 'property/17/LBA Flat 102 (30).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (246, 0, 'property/17/LBA Flat 102 (31).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (247, 0, 'property/17/LBA Flat 102 (1).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (248, 0, 'property/17/LBA Flat 102 (4).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (249, 0, 'property/17/LBA Flat 102 (19).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (250, 0, 'property/17/LBA Flat 102 (23).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (251, 0, 'property/17/LBA Flat 102 (22).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (227, 0, 'property/17/LBA Flat 102 (2).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (228, 0, 'property/17/LBA Flat 102 (32).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (229, 0, 'property/17/LBA Flat 102 (3).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (230, 0, 'property/17/LBA Flat 102 (5).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (231, 0, 'property/17/LBA Flat 102 (6).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (232, 0, 'property/17/LBA Flat 102 (7).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (233, 0, 'property/17/LBA Flat 102 (8).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (234, 0, 'property/17/LBA Flat 102 (10).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (235, 0, 'property/17/LBA Flat 102 (11).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (236, 0, 'property/17/LBA Flat 102 (14).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (237, 0, 'property/17/LBA Flat 102 (15).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (238, 0, 'property/17/LBA Flat 102 (17).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (239, 0, 'property/17/LBA Flat 102 (20).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (240, 0, 'property/17/LBA Flat 102 (26).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (241, 0, 'property/17/LBA Flat 102 (25).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (242, 0, 'property/17/LBA Flat 102 (27).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (243, 0, 'property/17/LBA Flat 102 (28).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (244, 0, 'property/17/LBA Flat 102 (29).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (245, 0, 'property/17/LBA Flat 102 (30).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (246, 0, 'property/17/LBA Flat 102 (31).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (247, 0, 'property/17/LBA Flat 102 (1).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (248, 0, 'property/17/LBA Flat 102 (4).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (249, 0, 'property/17/LBA Flat 102 (19).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (250, 0, 'property/17/LBA Flat 102 (23).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (251, 0, 'property/17/LBA Flat 102 (22).jpg', 'IMAGE');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (17, 0, 'Larnaca Beach Apartments #102', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 230, NULL, 3);
 
@@ -1320,26 +1320,26 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 18 Larnaca Beach Apartments #201
 
-insert into asset (id, version, `key`, asset_type) values (252, 0, 'property/18/LBA Flat 201 (7).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (253, 0, 'property/18/LBA Flat 201 (6).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (254, 0, 'property/18/LBA Flat 201 (3).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (255, 0, 'property/18/LBA Flat 201 (9).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (256, 0, 'property/18/LBA Flat 201 (10).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (257, 0, 'property/18/LBA Flat 201 (11).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (258, 0, 'property/18/LBA Flat 201 (12).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (259, 0, 'property/18/LBA Flat 201 (13).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (260, 0, 'property/18/LBA Flat 201 (14).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (261, 0, 'property/18/LBA Flat 201 (16).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (262, 0, 'property/18/LBA Flat 201 (17).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (263, 0, 'property/18/LBA Flat 201 (19).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (264, 0, 'property/18/LBA Flat 201 (21).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (265, 0, 'property/18/LBA Flat 201 (22).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (266, 0, 'property/18/LBA Flat 201 (23).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (267, 0, 'property/18/LBA Flat 201 (25).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (268, 0, 'property/18/LBA Flat 201 (26).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (269, 0, 'property/18/LBA Flat 201 (27).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (270, 0, 'property/18/LBA Flat 201 (28).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (271, 0, 'property/18/LBA Flat 201 (1).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (252, 0, 'property/18/LBA Flat 201 (7).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (253, 0, 'property/18/LBA Flat 201 (6).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (254, 0, 'property/18/LBA Flat 201 (3).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (255, 0, 'property/18/LBA Flat 201 (9).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (256, 0, 'property/18/LBA Flat 201 (10).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (257, 0, 'property/18/LBA Flat 201 (11).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (258, 0, 'property/18/LBA Flat 201 (12).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (259, 0, 'property/18/LBA Flat 201 (13).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (260, 0, 'property/18/LBA Flat 201 (14).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (261, 0, 'property/18/LBA Flat 201 (16).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (262, 0, 'property/18/LBA Flat 201 (17).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (263, 0, 'property/18/LBA Flat 201 (19).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (264, 0, 'property/18/LBA Flat 201 (21).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (265, 0, 'property/18/LBA Flat 201 (22).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (266, 0, 'property/18/LBA Flat 201 (23).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (267, 0, 'property/18/LBA Flat 201 (25).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (268, 0, 'property/18/LBA Flat 201 (26).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (269, 0, 'property/18/LBA Flat 201 (27).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (270, 0, 'property/18/LBA Flat 201 (28).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (271, 0, 'property/18/LBA Flat 201 (1).jpg', 'IMAGE');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (18, 0, 'Larnaca Beach Apartments #201', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 259, NULL, 3);
 
@@ -1420,31 +1420,31 @@ insert into localized_property_specification (specification, localized_property_
 
 -- 19 SV Larnaca Beach Apartments #202
 
-insert into asset (id, version, `key`, asset_type) values (272, 0, 'property/19/LBA Flat 202 (12).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (273, 0, 'property/19/LBA Flat 202 (21).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (274, 0, 'property/19/LBA Flat 202 (23).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (275, 0, 'property/19/LBA Flat 202 (24).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (276, 0, 'property/19/LBA Flat 202 (25).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (277, 0, 'property/19/LBA Flat 202 (26).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (278, 0, 'property/19/LBA Flat 202 (27).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (279, 0, 'property/19/LBA Flat 202 (1).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (280, 0, 'property/19/LBA Flat 202 (3).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (281, 0, 'property/19/LBA Flat 202 (4).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (282, 0, 'property/19/LBA Flat 202 (5).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (283, 0, 'property/19/LBA Flat 202 (6).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (284, 0, 'property/19/LBA Flat 202 (7).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (285, 0, 'property/19/LBA Flat 202 (8).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (286, 0, 'property/19/LBA Flat 202 (9).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (287, 0, 'property/19/LBA Flat 202 (10).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (288, 0, 'property/19/LBA Flat 202 (11).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (289, 0, 'property/19/LBA Flat 202.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (290, 0, 'property/19/LBA Flat 202 (13).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (291, 0, 'property/19/LBA Flat 202 (14).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (292, 0, 'property/19/LBA Flat 202 (15).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (293, 0, 'property/19/LBA Flat 202 (16).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (294, 0, 'property/19/LBA Flat 202 (17).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (295, 0, 'property/19/LBA Flat 202 (18).jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (296, 0, 'property/19/LBA Flat 202 (19).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (272, 0, 'property/19/LBA Flat 202 (12).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (273, 0, 'property/19/LBA Flat 202 (21).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (274, 0, 'property/19/LBA Flat 202 (23).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (275, 0, 'property/19/LBA Flat 202 (24).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (276, 0, 'property/19/LBA Flat 202 (25).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (277, 0, 'property/19/LBA Flat 202 (26).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (278, 0, 'property/19/LBA Flat 202 (27).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (279, 0, 'property/19/LBA Flat 202 (1).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (280, 0, 'property/19/LBA Flat 202 (3).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (281, 0, 'property/19/LBA Flat 202 (4).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (282, 0, 'property/19/LBA Flat 202 (5).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (283, 0, 'property/19/LBA Flat 202 (6).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (284, 0, 'property/19/LBA Flat 202 (7).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (285, 0, 'property/19/LBA Flat 202 (8).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (286, 0, 'property/19/LBA Flat 202 (9).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (287, 0, 'property/19/LBA Flat 202 (10).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (288, 0, 'property/19/LBA Flat 202 (11).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (289, 0, 'property/19/LBA Flat 202.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (290, 0, 'property/19/LBA Flat 202 (13).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (291, 0, 'property/19/LBA Flat 202 (14).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (292, 0, 'property/19/LBA Flat 202 (15).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (293, 0, 'property/19/LBA Flat 202 (16).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (294, 0, 'property/19/LBA Flat 202 (17).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (295, 0, 'property/19/LBA Flat 202 (18).jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (296, 0, 'property/19/LBA Flat 202 (19).jpg', 'IMAGE');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (19, 0, 'Larnaca Beach Apartments #202', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 273, NULL, 3);
 
@@ -1530,19 +1530,19 @@ insert into localized_property_specification (specification, localized_property_
 
 -- Denis House
 
-insert into asset (id, version, `key`, asset_type) values (297, 0, 'property/20/IMG_0526.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (298, 0, 'property/20/IMG_0523.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (299, 0, 'property/20/IMG_0524.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (300, 0, 'property/20/IMG_0525.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (301, 0, 'property/20/IMG_0522.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (302, 0, 'property/20/IMG_0527.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (303, 0, 'property/20/IMG_0528.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (304, 0, 'property/20/IMG_0529.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (305, 0, 'property/20/IMG_0530.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (306, 0, 'property/20/IMG_0531.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (307, 0, 'property/20/IMG_0532.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (308, 0, 'property/20/IMG_0534.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (309, 0, 'property/20/pano.xml', 'PANO_XML');
+insert into asset (id, version, `asset_key`, asset_type) values (297, 0, 'property/20/IMG_0526.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (298, 0, 'property/20/IMG_0523.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (299, 0, 'property/20/IMG_0524.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (300, 0, 'property/20/IMG_0525.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (301, 0, 'property/20/IMG_0522.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (302, 0, 'property/20/IMG_0527.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (303, 0, 'property/20/IMG_0528.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (304, 0, 'property/20/IMG_0529.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (305, 0, 'property/20/IMG_0530.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (306, 0, 'property/20/IMG_0531.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (307, 0, 'property/20/IMG_0532.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (308, 0, 'property/20/IMG_0534.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (309, 0, 'property/20/pano.xml', 'PANO_XML');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (20, 0, 'Dimitraki Koumantari Residence', 'LARNACA', '34.940275', '33.590204', 'Demetri Koumandari Str. No.1, 7103, Aradippou, Larnaca', 'Demetri Koumandari Str.1, Larnaca', 'HOUSE', 'LONG_TERM', 850, NULL, NULL, 4, 10, 4700, TRUE, TRUE, TRUE, 'FULL', 300, 309, 1);
 
@@ -1601,42 +1601,42 @@ insert into localized_property_specification (specification, localized_property_
 
 -- LBA106
 
-insert into asset (id, version, `key`, asset_type) values (310, 0, 'property/21/DSC00371.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (311, 0, 'property/21/DSC00366.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (312, 0, 'property/21/DSC00367.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (313, 0, 'property/21/DSC00368.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (314, 0, 'property/21/DSC00369.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (315, 0, 'property/21/DSC00370.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (316, 0, 'property/21/DSC00389.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (317, 0, 'property/21/DSC00372.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (318, 0, 'property/21/DSC00373.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (319, 0, 'property/21/DSC00374.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (320, 0, 'property/21/DSC00375.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (321, 0, 'property/21/DSC00376.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (322, 0, 'property/21/DSC00377.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (323, 0, 'property/21/DSC00378.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (324, 0, 'property/21/DSC00379.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (325, 0, 'property/21/DSC00380.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (326, 0, 'property/21/DSC00381.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (327, 0, 'property/21/DSC00382.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (328, 0, 'property/21/DSC00383.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (329, 0, 'property/21/DSC00384.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (330, 0, 'property/21/DSC00385.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (331, 0, 'property/21/DSC00386.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (332, 0, 'property/21/DSC00387.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (333, 0, 'property/21/DSC00388.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (334, 0, 'property/21/DSC00390.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (335, 0, 'property/21/DSC00391.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (336, 0, 'property/21/DSC00392.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (337, 0, 'property/21/DSC00393.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (338, 0, 'property/21/DSC00394.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (339, 0, 'property/21/DSC00395.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (340, 0, 'property/21/DSC00396.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (341, 0, 'property/21/DSC00397.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (342, 0, 'property/21/DSC00398.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (343, 0, 'property/21/DSC00399.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (344, 0, 'property/21/DSC00400.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (345, 0, 'property/21/DSC00401.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (310, 0, 'property/21/DSC00371.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (311, 0, 'property/21/DSC00366.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (312, 0, 'property/21/DSC00367.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (313, 0, 'property/21/DSC00368.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (314, 0, 'property/21/DSC00369.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (315, 0, 'property/21/DSC00370.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (316, 0, 'property/21/DSC00389.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (317, 0, 'property/21/DSC00372.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (318, 0, 'property/21/DSC00373.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (319, 0, 'property/21/DSC00374.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (320, 0, 'property/21/DSC00375.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (321, 0, 'property/21/DSC00376.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (322, 0, 'property/21/DSC00377.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (323, 0, 'property/21/DSC00378.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (324, 0, 'property/21/DSC00379.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (325, 0, 'property/21/DSC00380.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (326, 0, 'property/21/DSC00381.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (327, 0, 'property/21/DSC00382.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (328, 0, 'property/21/DSC00383.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (329, 0, 'property/21/DSC00384.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (330, 0, 'property/21/DSC00385.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (331, 0, 'property/21/DSC00386.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (332, 0, 'property/21/DSC00387.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (333, 0, 'property/21/DSC00388.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (334, 0, 'property/21/DSC00390.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (335, 0, 'property/21/DSC00391.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (336, 0, 'property/21/DSC00392.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (337, 0, 'property/21/DSC00393.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (338, 0, 'property/21/DSC00394.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (339, 0, 'property/21/DSC00395.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (340, 0, 'property/21/DSC00396.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (341, 0, 'property/21/DSC00397.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (342, 0, 'property/21/DSC00398.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (343, 0, 'property/21/DSC00399.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (344, 0, 'property/21/DSC00400.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (345, 0, 'property/21/DSC00401.jpg', 'IMAGE');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (21, 0, 'LBA #106', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 311, NULL, 3);
 
@@ -1737,30 +1737,30 @@ insert into localized_property_specification (specification, localized_property_
 
 -- LBA 107
 
-insert into asset (id, version, `key`, asset_type) values (346, 0, 'property/22/DSC00406.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (347, 0, 'property/22/DSC00404.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (348, 0, 'property/22/DSC00405.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (349, 0, 'property/22/DSC00403.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (350, 0, 'property/22/DSC00407.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (351, 0, 'property/22/DSC00408.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (352, 0, 'property/22/DSC00410.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (353, 0, 'property/22/DSC00411.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (354, 0, 'property/22/DSC00412.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (355, 0, 'property/22/DSC00413.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (356, 0, 'property/22/DSC00414.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (357, 0, 'property/22/DSC00415.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (358, 0, 'property/22/DSC00416.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (359, 0, 'property/22/DSC00417.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (360, 0, 'property/22/DSC00418.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (361, 0, 'property/22/DSC00419.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (362, 0, 'property/22/DSC00420.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (363, 0, 'property/22/DSC00421.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (364, 0, 'property/22/DSC00422.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (365, 0, 'property/22/DSC00423.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (366, 0, 'property/22/DSC00424.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (367, 0, 'property/22/DSC00425.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (368, 0, 'property/22/DSC00426.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (369, 0, 'property/22/DSC00427.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (346, 0, 'property/22/DSC00406.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (347, 0, 'property/22/DSC00404.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (348, 0, 'property/22/DSC00405.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (349, 0, 'property/22/DSC00403.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (350, 0, 'property/22/DSC00407.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (351, 0, 'property/22/DSC00408.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (352, 0, 'property/22/DSC00410.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (353, 0, 'property/22/DSC00411.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (354, 0, 'property/22/DSC00412.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (355, 0, 'property/22/DSC00413.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (356, 0, 'property/22/DSC00414.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (357, 0, 'property/22/DSC00415.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (358, 0, 'property/22/DSC00416.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (359, 0, 'property/22/DSC00417.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (360, 0, 'property/22/DSC00418.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (361, 0, 'property/22/DSC00419.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (362, 0, 'property/22/DSC00420.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (363, 0, 'property/22/DSC00421.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (364, 0, 'property/22/DSC00422.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (365, 0, 'property/22/DSC00423.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (366, 0, 'property/22/DSC00424.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (367, 0, 'property/22/DSC00425.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (368, 0, 'property/22/DSC00426.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (369, 0, 'property/22/DSC00427.jpg', 'IMAGE');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (22, 0, 'LBA #107', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 367, NULL, 3);
 
@@ -1849,47 +1849,47 @@ insert into localized_property_specification (specification, localized_property_
 
 -- LBA205
 
-insert into asset (id, version, `key`, asset_type) values (370, 0, 'property/23/DSC00460.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (371, 0, 'property/23/DSC00430.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (372, 0, 'property/23/DSC00431.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (373, 0, 'property/23/DSC00432.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (374, 0, 'property/23/DSC00433.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (375, 0, 'property/23/DSC00434.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (376, 0, 'property/23/DSC00435.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (377, 0, 'property/23/DSC00436.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (378, 0, 'property/23/DSC00439.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (379, 0, 'property/23/DSC00438.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (380, 0, 'property/23/DSC00437.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (381, 0, 'property/23/DSC00440.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (382, 0, 'property/23/DSC00441.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (383, 0, 'property/23/DSC00442.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (384, 0, 'property/23/DSC00443.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (385, 0, 'property/23/DSC00444.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (386, 0, 'property/23/DSC00445.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (387, 0, 'property/23/DSC00446.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (388, 0, 'property/23/DSC00447.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (389, 0, 'property/23/DSC00448.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (390, 0, 'property/23/DSC00449.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (391, 0, 'property/23/DSC00450.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (392, 0, 'property/23/DSC00451.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (393, 0, 'property/23/DSC00452.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (394, 0, 'property/23/DSC00453.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (395, 0, 'property/23/DSC00454.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (396, 0, 'property/23/DSC00456.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (397, 0, 'property/23/DSC00455.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (398, 0, 'property/23/DSC00457.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (399, 0, 'property/23/DSC00458.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (400, 0, 'property/23/DSC00459.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (401, 0, 'property/23/DSC00429.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (402, 0, 'property/23/DSC00461.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (403, 0, 'property/23/DSC00462.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (404, 0, 'property/23/DSC00463.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (405, 0, 'property/23/DSC00464.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (406, 0, 'property/23/DSC00465.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (407, 0, 'property/23/DSC00466.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (408, 0, 'property/23/DSC00467.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (409, 0, 'property/23/DSC00468.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (410, 0, 'property/23/DSC00469.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (370, 0, 'property/23/DSC00460.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (371, 0, 'property/23/DSC00430.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (372, 0, 'property/23/DSC00431.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (373, 0, 'property/23/DSC00432.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (374, 0, 'property/23/DSC00433.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (375, 0, 'property/23/DSC00434.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (376, 0, 'property/23/DSC00435.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (377, 0, 'property/23/DSC00436.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (378, 0, 'property/23/DSC00439.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (379, 0, 'property/23/DSC00438.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (380, 0, 'property/23/DSC00437.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (381, 0, 'property/23/DSC00440.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (382, 0, 'property/23/DSC00441.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (383, 0, 'property/23/DSC00442.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (384, 0, 'property/23/DSC00443.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (385, 0, 'property/23/DSC00444.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (386, 0, 'property/23/DSC00445.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (387, 0, 'property/23/DSC00446.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (388, 0, 'property/23/DSC00447.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (389, 0, 'property/23/DSC00448.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (390, 0, 'property/23/DSC00449.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (391, 0, 'property/23/DSC00450.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (392, 0, 'property/23/DSC00451.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (393, 0, 'property/23/DSC00452.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (394, 0, 'property/23/DSC00453.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (395, 0, 'property/23/DSC00454.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (396, 0, 'property/23/DSC00456.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (397, 0, 'property/23/DSC00455.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (398, 0, 'property/23/DSC00457.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (399, 0, 'property/23/DSC00458.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (400, 0, 'property/23/DSC00459.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (401, 0, 'property/23/DSC00429.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (402, 0, 'property/23/DSC00461.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (403, 0, 'property/23/DSC00462.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (404, 0, 'property/23/DSC00463.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (405, 0, 'property/23/DSC00464.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (406, 0, 'property/23/DSC00465.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (407, 0, 'property/23/DSC00466.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (408, 0, 'property/23/DSC00467.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (409, 0, 'property/23/DSC00468.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (410, 0, 'property/23/DSC00469.jpg', 'IMAGE');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (23, 0, 'LBA #205', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 404, NULL, 3);
 
@@ -1994,32 +1994,32 @@ insert into localized_property_specification (specification, localized_property_
 
 -- LBA207
 
-insert into asset (id, version, `key`, asset_type) values (411, 0, 'property/24/DSC00479.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (412, 0, 'property/24/DSC00472.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (413, 0, 'property/24/DSC00473.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (414, 0, 'property/24/DSC00474.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (415, 0, 'property/24/DSC00475.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (416, 0, 'property/24/DSC00476.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (417, 0, 'property/24/DSC00477.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (418, 0, 'property/24/DSC00478.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (419, 0, 'property/24/DSC00471.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (420, 0, 'property/24/DSC00480.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (421, 0, 'property/24/DSC00481.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (422, 0, 'property/24/DSC00482.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (423, 0, 'property/24/DSC00483.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (424, 0, 'property/24/DSC00484.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (425, 0, 'property/24/DSC00485.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (426, 0, 'property/24/DSC00486.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (427, 0, 'property/24/DSC00487.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (428, 0, 'property/24/DSC00488.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (429, 0, 'property/24/DSC00489.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (430, 0, 'property/24/DSC00490.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (431, 0, 'property/24/DSC00491.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (432, 0, 'property/24/DSC00492.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (433, 0, 'property/24/DSC00493.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (434, 0, 'property/24/DSC00494.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (435, 0, 'property/24/DSC00495.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (436, 0, 'property/24/DSC00496.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (411, 0, 'property/24/DSC00479.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (412, 0, 'property/24/DSC00472.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (413, 0, 'property/24/DSC00473.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (414, 0, 'property/24/DSC00474.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (415, 0, 'property/24/DSC00475.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (416, 0, 'property/24/DSC00476.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (417, 0, 'property/24/DSC00477.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (418, 0, 'property/24/DSC00478.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (419, 0, 'property/24/DSC00471.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (420, 0, 'property/24/DSC00480.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (421, 0, 'property/24/DSC00481.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (422, 0, 'property/24/DSC00482.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (423, 0, 'property/24/DSC00483.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (424, 0, 'property/24/DSC00484.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (425, 0, 'property/24/DSC00485.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (426, 0, 'property/24/DSC00486.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (427, 0, 'property/24/DSC00487.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (428, 0, 'property/24/DSC00488.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (429, 0, 'property/24/DSC00489.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (430, 0, 'property/24/DSC00490.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (431, 0, 'property/24/DSC00491.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (432, 0, 'property/24/DSC00492.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (433, 0, 'property/24/DSC00493.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (434, 0, 'property/24/DSC00494.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (435, 0, 'property/24/DSC00495.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (436, 0, 'property/24/DSC00496.jpg', 'IMAGE');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (24, 0, 'LBA #207', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 426, NULL, 3);
 
@@ -2109,40 +2109,40 @@ insert into localized_property_specification (specification, localized_property_
 
 -- Villa Agathi
 
-insert into asset (id, version, `key`, asset_type) values (437, 0, 'property/25/DSC_3535.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (438, 0, 'property/25/DSCN1326.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (439, 0, 'property/25/DSCN1351.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (440, 0, 'property/25/DSCN1357.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (441, 0, 'property/25/DSCN1359.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (442, 0, 'property/25/DSCN1377.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (443, 0, 'property/25/DSCN1449.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (444, 0, 'property/25/DSCN1456.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (445, 0, 'property/25/_MG_4288.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (446, 0, 'property/25/_MG_4293.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (447, 0, 'property/25/_MG_4296.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (448, 0, 'property/25/_MG_4298.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (449, 0, 'property/25/_MG_4304.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (450, 0, 'property/25/_MG_4317.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (451, 0, 'property/25/_MG_4318.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (452, 0, 'property/25/_MG_4355.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (453, 0, 'property/25/_MG_4358.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (454, 0, 'property/25/_MG_4292.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (455, 0, 'property/25/DSC_3531.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (456, 0, 'property/25/IMG_3204.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (457, 0, 'property/25/DSC_3541.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (458, 0, 'property/25/DSC_3542.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (459, 0, 'property/25/DSC_3544.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (460, 0, 'property/25/DSC_3551.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (461, 0, 'property/25/DSC_3556.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (462, 0, 'property/25/DSC_3557.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (463, 0, 'property/25/DSC_3760.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (464, 0, 'property/25/DSC_3762.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (465, 0, 'property/25/DSC_3779.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (466, 0, 'property/25/DSC_3810.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (467, 0, 'property/25/DSC_3814.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (468, 0, 'property/25/DSC_3822.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (469, 0, 'property/25/DSC_3825.jpg', 'IMAGE');
-insert into asset (id, version, `key`, asset_type) values (470, 0, 'property/25/DSC_3819.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (437, 0, 'property/25/DSC_3535.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (438, 0, 'property/25/DSCN1326.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (439, 0, 'property/25/DSCN1351.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (440, 0, 'property/25/DSCN1357.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (441, 0, 'property/25/DSCN1359.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (442, 0, 'property/25/DSCN1377.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (443, 0, 'property/25/DSCN1449.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (444, 0, 'property/25/DSCN1456.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (445, 0, 'property/25/_MG_4288.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (446, 0, 'property/25/_MG_4293.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (447, 0, 'property/25/_MG_4296.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (448, 0, 'property/25/_MG_4298.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (449, 0, 'property/25/_MG_4304.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (450, 0, 'property/25/_MG_4317.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (451, 0, 'property/25/_MG_4318.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (452, 0, 'property/25/_MG_4355.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (453, 0, 'property/25/_MG_4358.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (454, 0, 'property/25/_MG_4292.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (455, 0, 'property/25/DSC_3531.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (456, 0, 'property/25/IMG_3204.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (457, 0, 'property/25/DSC_3541.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (458, 0, 'property/25/DSC_3542.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (459, 0, 'property/25/DSC_3544.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (460, 0, 'property/25/DSC_3551.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (461, 0, 'property/25/DSC_3556.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (462, 0, 'property/25/DSC_3557.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (463, 0, 'property/25/DSC_3760.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (464, 0, 'property/25/DSC_3762.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (465, 0, 'property/25/DSC_3779.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (466, 0, 'property/25/DSC_3810.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (467, 0, 'property/25/DSC_3814.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (468, 0, 'property/25/DSC_3822.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (469, 0, 'property/25/DSC_3825.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (470, 0, 'property/25/DSC_3819.jpg', 'IMAGE');
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (25, 0, 'Villa Agathi', 'PAPHOS', '34.912892', '32.422035', 'Kathikas, Paphos, Cyprus', 'Kathikas, Paphos.', 'HOUSE', 'SHORT_TERM', 150, NULL, NULL, 4, 12, 8000, TRUE, FALSE, FALSE, 'NONE', 465, NULL, 4);
 
