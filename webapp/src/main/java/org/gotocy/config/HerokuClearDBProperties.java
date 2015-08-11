@@ -1,6 +1,8 @@
 package org.gotocy.config;
 
 import org.springframework.beans.factory.BeanClassLoaderAware;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -8,7 +10,11 @@ import java.net.URISyntaxException;
 /**
  * @author ifedorenkov
  */
+@Component
+@ConfigurationProperties(prefix = "heroku.cleardb")
 public class HerokuClearDBProperties implements BeanClassLoaderAware {
+
+	public static final String PREFIX = "heroku.cleardb";
 
 	private ClassLoader classLoader;
 
