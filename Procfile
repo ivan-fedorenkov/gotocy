@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar webapp/target/*.jar --spring.profiles.active=dev,heroku-cleardb --gotocy.webapp.profile=dev
+web: java -Dserver.port=$PORT -jar webapp/target/*.jar --spring.profiles.active=production,heroku-cleardb --gotocy.webapp.profile=production
