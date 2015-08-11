@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import javax.sql.DataSource;
+import java.net.URISyntaxException;
 
 /**
  * @author ifedorenkov
@@ -13,6 +14,11 @@ import javax.sql.DataSource;
 @Configuration
 @Profile("heroku-cleardb")
 public class HerokuClearDBConfig {
+
+	@Bean
+	public HerokuClearDBProperties herokuClearDBProperties() throws URISyntaxException {
+		return new HerokuClearDBProperties();
+	}
 
 	@ConfigurationProperties(prefix = HerokuClearDBProperties.PREFIX)
 	@Bean

@@ -21,7 +21,9 @@ gotocy:
 
 spring:
   profiles: "heroku-cleardb"
-  datasource:
+
+heroku:
+  cleardb:
     max-active: 8
     max-idle: 8
     min-idle: 2
