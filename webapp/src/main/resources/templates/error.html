@@ -54,15 +54,6 @@
     </div><!-- /.navigation -->
     <!-- Page Content -->
     <div id="page-content">
-        <!-- Breadcrumb -->
-        <div class="container">
-            <ol class="breadcrumb">
-                <li><a th:href="@{${helper.path('/', #locale.language)}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
-                <li class="active" th:text="${status}">404</li>
-            </ol>
-        </div>
-        <!-- end Breadcrumb -->
-
         <div class="container">
             <section id="404">
                 <div class="error-page">
@@ -72,7 +63,7 @@
                         <img alt="" src="assets/img/error-page-background.png" class="bottom">
                     </div>
                     <h2 class="no-border" th:text="#{'org.gotocy.templates.error.' + ${status} + '.text-only'}">Page not found</h2>
-                    <a href="" class="link-arrow back" onclick="history.back(-1)">Go Back</a>
+                    <a href="" class="link-arrow back" th:text="#{org.gotocy.dictionary.go-back}" onclick="history.back(-1)">Go Back</a>
                 </div>
             </section>
         </div><!-- /.container -->
