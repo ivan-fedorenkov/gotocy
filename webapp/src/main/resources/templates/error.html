@@ -58,9 +58,9 @@
             <section id="404">
                 <div class="error-page">
                     <div class="title">
-                        <img alt="" src="assets/img/error-page-background.png" class="top">
+                        <img alt="" th:src="'http://assets.gotocy.eu/static/img/error-page-background.png'" src="/parent/webapp/public/assets/img/error-page-background.png" class="top">
                         <header th:text="${status}">404</header>
-                        <img alt="" src="assets/img/error-page-background.png" class="bottom">
+                        <img alt="" th:src="'http://assets.gotocy.eu/static/img/error-page-background.png'" src="/parent/webapp/public/assets/img/error-page-background.png" class="bottom">
                     </div>
                     <h2 class="no-border" th:text="#{'org.gotocy.templates.error.' + ${status} + '.text-only'}">Page not found</h2>
                     <a href="" class="link-arrow back" th:text="#{org.gotocy.dictionary.go-back}" onclick="history.back(-1)">Go Back</a>
