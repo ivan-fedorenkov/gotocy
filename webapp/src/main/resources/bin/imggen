@@ -48,5 +48,5 @@ echo "OK"
 
 echo
 echo "We're done. Here is the list of paths for you:"
-find . -maxdepth 1 -name "*.jpg" -exec sh -c 'echo "property/$ID/${1##*/}"' _ {} \;
+for f in *.jpg; do echo "property/$ID/$f"; done
 echo
