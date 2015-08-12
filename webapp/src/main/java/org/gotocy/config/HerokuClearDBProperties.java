@@ -27,7 +27,7 @@ public class HerokuClearDBProperties implements BeanClassLoaderAware {
 	public HerokuClearDBProperties() throws URISyntaxException {
 		URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
 
-		url = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+		url = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath() + "?useUnicode=yes&characterEncoding=UTF-8";
 		driverClassName = "com.mysql.jdbc.Driver";
 		username = dbUri.getUserInfo().split(":")[0];
 		password = dbUri.getUserInfo().split(":")[1];
