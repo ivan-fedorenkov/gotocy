@@ -16,12 +16,14 @@ import org.springframework.context.MessageSourceAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.annotation.Order;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import javax.annotation.Priority;
 import javax.servlet.Filter;
 
 /**
@@ -56,16 +58,17 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 		return resolver;
 	}
 
-	@Bean
-	public Filter localeFilter() {
-		return new LocaleFilter();
-	}
-
 	@Profile(value = "production")
 	@Bean
 	public Filter urlRewriteFilter() {
 		return new UrlRewriteFilter();
 	}
+
+	@Bean
+	public Filter localeFilter() {
+		return new LocaleFilter();
+	}
+
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
