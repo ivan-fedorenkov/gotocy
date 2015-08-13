@@ -6,9 +6,13 @@ spring:
       ddl-auto: validate
 
 server:
-  tomcat:
-    compression: on
-    compressableMimeTypes: "application/json,application/xml,text/html,text/xml,text/plain,text/css,application/javascript"
+  compression:
+    enabled: "true"
+    mimeTypes: "application/json,application/xml,text/html,text/xml,text/plain,text/css,application/javascript"
+  session:
+    tracking-modes: "COOKIE"
+    cookie:
+      http-only: true
 
 gotocy:
   webapp:
