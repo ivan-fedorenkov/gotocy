@@ -56,15 +56,15 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 		return resolver;
 	}
 
-	@Bean
-	public Filter localeFilter() {
-		return new LocaleFilter();
-	}
-
 	@Profile(value = "production")
 	@Bean
 	public Filter urlRewriteFilter() {
 		return new UrlRewriteFilter();
+	}
+
+	@Bean
+	public Filter localeFilter() {
+		return new LocaleFilter();
 	}
 
 	@Override
