@@ -6,6 +6,7 @@ import org.gotocy.domain.Location;
 import org.gotocy.domain.PropertyStatus;
 import org.gotocy.domain.PropertyType;
 import org.gotocy.filters.LocaleFilter;
+import org.gotocy.filters.UrlRewriteFilter;
 import org.gotocy.format.EnumsFormatter;
 import org.gotocy.interceptors.HelpersInterceptor;
 import org.gotocy.interceptors.SecurityInterceptor;
@@ -14,6 +15,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -57,6 +59,12 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 	@Bean
 	public Filter localeFilter() {
 		return new LocaleFilter();
+	}
+
+	@Profile(value = "production")
+	@Bean
+	public Filter urlRewriteFilter() {
+		return new UrlRewriteFilter();
 	}
 
 	@Override
