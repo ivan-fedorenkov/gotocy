@@ -1,0 +1,625 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}" lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
+
+    <title th:text="#{org.gotocy.templates.title(#{org.gotocy.dictionary.home-page})}">Homepage | GoToCy</title>
+
+</head>
+
+<body class="page-homepage navigation-fixed-top page-slider" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
+<div th:replace="fragments/metrics_div :: ya"></div>
+<!-- Wrapper -->
+<div class="wrapper">
+    <!-- Navigation -->
+    <div class="navigation">
+        <div class="secondary-navigation">
+            <div class="container">
+                <div class="contact" th:include="fragments/contact_div :: contact">
+                    <figure><strong>Phone:</strong>+1 810-991-3842</figure>
+                    <figure><strong>Email:</strong>zoner@example.com</figure>
+                </div>
+                <div class="user-area">
+                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar('/promo/index-1')">
+                        <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
+                        <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <header class="navbar" id="top" role="banner">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="sr-only" th:text="#{org.gotocy.dictionary.toggle-navigation}">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand nav" id="brand">
+                        <a th:href="@{${helper.path('/', #locale.language)}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
+                    </div>
+                </div>
+                <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li><a th:href="@{${helper.path('/', #locale.language)}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                    </ul>
+                </nav><!-- /.navbar collapse-->
+                <!-- <div class="add-your-property">
+                    <a href="#" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="#{org.gotocy.dictionary.add-your-property}">Add Your Property</span></a>
+                </div> -->
+            </header><!-- /.navbar -->
+        </div><!-- /.container -->
+    </div><!-- /.navigation -->
+    <!-- end Navigation -->
+
+    <!-- Slider -->
+    <div id="slider" class="hidden-xs loading">
+        <div id="loading-icon"><i class="fa fa-cog fa-spin"></i></div>
+        <div class="owl-carousel homepage-slider carousel-full-width">
+            <div class="slide">
+                <div class="container">
+                    <div class="overlay">
+                        <div class="info">
+                            <noindex>
+                                <a href="https://flic.kr/p/oXU5u4" rel="nofollow" target="_blank" class="text-left">Cyprus shipwreck Edro III &copy; Oliver Kratzke</a><br>
+                                <a href="https://creativecommons.org/licenses/by/2.0/" rel="nofollow" target="_blank" class="text-right">CC BY 2.0</a>
+                            </noindex>
+                        </div>
+                    </div>
+                </div>
+                <img alt="" th:src="'http://assets.gotocy.eu/static/img/index_1.jpg'" src="/parent/webapp/public/assets/img/index_1.jpg">
+            </div>
+            <div class="slide">
+                <div class="container">
+                    <div class="overlay">
+                        <div class="info">
+                            <noindex>
+                                <a href="https://flic.kr/p/pBxKUX" rel="nofollow" target="_blank" class="text-left">Limni Dock at sunset &copy; Oliver Kratzke</a><br>
+                                <a href="https://creativecommons.org/licenses/by/2.0/" rel="nofollow" target="_blank" class="text-right">CC BY 2.0</a>
+                            </noindex>
+                        </div>
+                    </div>
+                </div>
+                <img alt="" th:src="'http://assets.gotocy.eu/static/img/index_2.jpg'" src="/parent/webapp/public/assets/img/index_2.jpg">
+            </div>
+        </div>
+    </div>
+    <!-- end Slider -->
+
+    <!-- Page Content -->
+    <div id="page-content">
+        <section id="banner">
+            <div class="block has-dark-background background-color-default-darker center text-banner">
+                <div class="container">
+                    <h1 class="no-bottom-margin no-border" th:utext="|#{org.gotocy.templates.adding-property-banner-question} <a class='text-underline' href='mailto:${gotocy.email}'>#{org.gotocy.templates.adding-property-banner-contact-us}</a>|">Do you want your property do be listed here? <a href="#" class="text-underline">Contact Us</a>!</h1>
+                </div>
+            </div>
+        </section> <!-- /#banner -->
+
+        <section id="featured-properties" class="block" th:unless="${#lists.isEmpty(featuredProperties)}">
+            <div class="container">
+                <header class="section-title">
+                    <h2 th:text="#{org.gotocy.dictionary.featured-properties}">Featured Properties</h2>
+                </header>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6" th:each="lp : ${featuredProperties}">
+                        <div class="property">
+                            <a th:href="@{${helper.path('/promo/property-1', #locale.language)}}" href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price" th:utext="${helper.price(lp.property)}">$ 11,000</div>
+                                        <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
+                                        <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
+                                    </div>
+                                    <ul class="additional-info" th:include="'property/' + ${lp.property.propertyStatus.name()} + '/additional_info_ul' :: additional_info(${lp})">
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>2</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>2</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                </div>
+            </div>
+        </section>
+
+        <section id="long-term-properties" class="block" th:unless=${#lists.isEmpty(longTermProperties)}>
+            <div class="container">
+                <header class="section-title">
+                    <h2 th:text="#{org.gotocy.dictionary.long-term-rentals-for-you}">Long Term Rentals for You</h2>
+                    <a th:href="@{${helper.path('/properties?propertyStatus=LONG_TERM', #locale.language)}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="#{org.gotocy.dictionary.all-rentals}">All Rentals</a>
+                </header>
+                <div class="row" th:remove="all-but-first">
+                    <div class="col-md-3 col-sm-6" th:each="lp : ${longTermProperties}" th:with="offerStatus = ${lp.property.offerStatus}">
+                        <div class="property">
+                            <figure class="ribbon" th:if="${offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
+                            <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price" th:utext="${helper.price(lp.property)}">$ 11,000</div>
+                                        <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
+                                        <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
+                                    </div>
+                                    <ul class="additional-info" th:include="'property/' + ${lp.property.propertyStatus.name()} + '/additional_info_ul' :: additional_info(${lp})">
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>2</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>2</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-04.jpg'" src="/parent/webapp/public/assets/img/properties/property-04.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 38,000</div>
+                                        <h3>2186 Rinehart Road</h3>
+                                        <figure>Doral, FL 33178 </figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-07.jpg'" src="/parent/webapp/public/assets/img/properties/property-07.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 325,000</div>
+                                        <h3>3705 Brighton Circle Road</h3>
+                                        <figure>Glenwood, MN 56334</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-08.jpg'" src="/parent/webapp/public/assets/img/properties/property-08.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 16,000</div>
+                                        <h3>362 Lynn Ogden Lane</h3>
+                                        <figure>Galveston, TX 77550</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                </div><!-- /.row-->
+            </div><!-- /.container -->
+        </section><!-- /#long-term-properties -->
+        <section id="short-term-properties" class="block" th:unless=${#lists.isEmpty(shortTermProperties)}>
+            <div class="container">
+                <header class="section-title">
+                    <h2 th:text="#{org.gotocy.dictionary.short-term-rentals-for-you}">Short Term Rentals for You</h2>
+                    <a th:href="@{${helper.path('/properties?propertyStatus=SHORT_TERM', #locale.language)}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="#{org.gotocy.dictionary.all-rentals}">All Rentals</a>
+                </header>
+                <div class="row" th:remove="all-but-first">
+                    <div class="col-md-3 col-sm-6" th:each="lp : ${shortTermProperties}" th:with="offerStatus = ${lp.property.offerStatus}">
+                        <div class="property">
+                            <figure class="ribbon" th:if="${offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
+                            <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price" th:utext="${helper.price(lp.property)}">$ 11,000</div>
+                                        <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
+                                        <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
+                                    </div>
+                                    <ul class="additional-info" th:include="'property/' + ${lp.property.propertyStatus.name()} + '/additional_info_ul' :: additional_info(${lp})">
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>2</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>2</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-04.jpg'" src="/parent/webapp/public/assets/img/properties/property-04.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 38,000</div>
+                                        <h3>2186 Rinehart Road</h3>
+                                        <figure>Doral, FL 33178 </figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-07.jpg'" src="/parent/webapp/public/assets/img/properties/property-07.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 325,000</div>
+                                        <h3>3705 Brighton Circle Road</h3>
+                                        <figure>Glenwood, MN 56334</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-08.jpg'" src="/parent/webapp/public/assets/img/properties/property-08.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 16,000</div>
+                                        <h3>362 Lynn Ogden Lane</h3>
+                                        <figure>Galveston, TX 77550</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                </div><!-- /.row-->
+            </div><!-- /.container -->
+        </section><!-- /#short-term-properties -->
+        <section id="sale-properties" class="block" th:unless="${#lists.isEmpty(saleProperties)}">
+            <div class="container">
+                <header class="section-title">
+                    <h2 th:text="#{org.gotocy.dictionary.properties-for-you}">Properties for You</h2>
+                    <a th:href="@{${helper.path('/properties?propertyStatus=SALE', #locale.language)}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="#{org.gotocy.dictionary.all-properties}">All Properties</a>
+                </header>
+                <div class="row" th:remove="all-but-first">
+                    <div class="col-md-3 col-sm-6" th:each="lp : ${saleProperties}" th:with="offerStatus = ${lp.property.offerStatus}">
+                        <div class="property">
+                            <figure class="ribbon" th:if="${offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
+                            <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price" th:utext="${helper.price(lp.property)}">$ 11,000</div>
+                                        <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
+                                        <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
+                                    </div>
+                                    <ul class="additional-info" th:include="'property/' + ${lp.property.propertyStatus.name()} + '/additional_info_ul' :: additional_info(${lp})">
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>2</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>2</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-04.jpg'" src="/parent/webapp/public/assets/img/properties/property-04.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 38,000</div>
+                                        <h3>2186 Rinehart Road</h3>
+                                        <figure>Doral, FL 33178 </figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-07.jpg'" src="/parent/webapp/public/assets/img/properties/property-07.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 325,000</div>
+                                        <h3>3705 Brighton Circle Road</h3>
+                                        <figure>Glenwood, MN 56334</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-08.jpg'" src="/parent/webapp/public/assets/img/properties/property-08.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 16,000</div>
+                                        <h3>362 Lynn Ogden Lane</h3>
+                                        <figure>Galveston, TX 77550</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                </div><!-- /.row-->
+            </div><!-- /.container -->
+        </section><!-- /#sale-properties -->
+
+        <section id="partners" class="block">
+            <div class="container">
+                <header class="section-title"><h2 th:text="#{org.gotocy.dictionary.our-partners}">Our Partners</h2></header>
+                <div class="row">
+                    <div class="col-md-3 col-sm-3"><a th:href="@{${helper.path('/promo/property-2', #locale.language)}}" href="#"><img th:src="@{/assets/img/deloitte-banner.jpg}" src="assets/img/logo-partner-01.png" alt=""  style="width:100%;"></a></div>
+                    <div class="col-sm-12 visible-xs">&nbsp;</div>
+                    <div class="col-md-3 col-sm-3"><a th:href="@{${helper.path('/promo/property-2', #locale.language)}}" href="#"><img th:src="@{/assets/img/kmpg-banner.png}" src="assets/img/logo-partner-02.png" alt="" style="width:100%;"></a></div>
+                </div>
+            </div><!-- /.container -->
+        </section><!-- /#partners -->
+    </div>
+    <!-- end Page Content -->
+    <!-- Page Footer -->
+    <footer id="page-footer" th:include="fragments/footer :: footer">
+        <div class="inner">
+            <aside id="footer-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3">
+                            <article>
+                                <h3>About Us</h3>
+                                <p>Vel fermentum ipsum. Suspendisse quis molestie odio. Interdum et malesuada fames ac ante ipsum
+                                    primis in faucibus. Quisque aliquet a metus in aliquet. Praesent ut turpis posuere, commodo odio
+                                    id, ornare tortor
+                                </p>
+                            </article>
+                        </div><!-- /.col-sm-3 -->
+                        <div class="col-md-3 col-sm-3">
+                            <article>
+                                <h3>Contact</h3>
+                                <address>
+                                    <strong>Your Company</strong><br>
+                                    4877 Spruce Drive<br>West Newton, PA 15089
+                                </address>
+                                +1 (734) 123-4567<br>
+                                <a href="#">hello@example.com</a>
+                            </article>
+                        </div><!-- /.col-sm-3 -->
+                        <div class="col-md-3 col-sm-3">&nbsp;</div>
+                        <div class="col-md-3 col-sm-3">&nbsp;</div>
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </aside><!-- /#footer-main -->
+            <aside id="footer-copyright">
+                <div class="container">
+                    <span>Copyright © 2015. All Rights Reserved.</span>
+                    <span class="pull-right"><a href="#page-top" class="roll">Go to top</a></span>
+                </div>
+            </aside>
+        </div><!-- /.inner -->
+    </footer>
+    <!-- end Page Footer -->
+</div>
+
+<script type="text/javascript" th:src="@{/assets/js/application.min.js}" src="/parent/webapp/public/assets/js/application.min.js"></script>
+
+<!--[if gt IE 8]>
+<script type="text/javascript" src="http://assets.gotocy.eu/static/js/ie.js"></script>
+<![endif]-->
+
+<script>
+    $(window).load(function(){
+        initializeOwl(false);
+    });
+</script>
+</body>
+</html>
