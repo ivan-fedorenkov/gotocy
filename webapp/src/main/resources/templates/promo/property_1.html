@@ -30,7 +30,7 @@
                     <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
                 <div class="user-area">
-                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar('/property/promo')">
+                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar('/promo/property-1')">
                         <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
                         <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>
@@ -200,7 +200,7 @@
 
                         <aside id="featured-properties" th:unless="${#lists.isEmpty(featuredProperties)}">
                             <header><h3 th:text="#{org.gotocy.dictionary.featured-properties}">Featured Properties</h3></header>
-                            <div class="property small" th:each="lp : ${featuredProperties}" th:with="propertyPath=${helper.path('/property/promo', #locale.language)}">
+                            <div class="property small" th:each="lp : ${featuredProperties}" th:with="propertyPath=${helper.path('/promo/property-1', #locale.language)}">
                                 <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html">
                                     <div class="property-image">
                                         <img alt="" th:src="@{${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">

@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: /property/promo
+Disallow: /promo/*
