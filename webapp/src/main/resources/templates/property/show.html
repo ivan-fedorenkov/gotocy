@@ -87,7 +87,7 @@
                             <h1 th:text="*{property.title}">987 Cantebury Drive</h1>
                             <figure th:text="*{property.address}">Golden Valley, MN 55427</figure>
                         </header>
-                        <section id="property-gallery">
+                        <section id="property-gallery" th:unless="${#lists.isEmpty(#object.property.images)}">
                             <div class="pg-grid">
                                 <div class="pg-grid-sizer"></div>
                                 <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4" th:style="|background-image: url('${helper.imageUrl(#object.property.imageSet.getImage(0), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;">
