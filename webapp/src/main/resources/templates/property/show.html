@@ -124,7 +124,7 @@
                             <div class="col-md-4 col-sm-12">
                                 <section id="quick-summary" class="clearfix">
                                     <header><h2 th:text="#{org.gotocy.dictionary.quick-summary}">Quick Summary</h2></header>
-                                    <dl th:include="'property/' + ${#object.property.propertyStatus.name()} + '/quick_summary_dl' :: quick_summary(${#object})">
+                                    <dl th:utext="${helper.property.quickSummaryHtml(#object.property)}">
                                         <dt>Location:</dt>
                                             <dd>Chicago, IL 60610</dd>
                                         <dt>Price:</dt>
@@ -211,7 +211,7 @@
                                 <div class="info">
                                     <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html"><h4 th:text="${lp.property.title}">2186 Rinehart Road</h4></a>
                                     <figure th:text="${lp.property.shortAddress}">Doral, FL 33178 </figure>
-                                    <div class="tag price" th:utext="${helper.price(lp.property)}">$ 72,000</div>
+                                    <div class="tag price" th:utext="${helper.property.price(lp.property)}">$ 72,000</div>
                                 </div>
                             </div><!-- /.property -->
                         </aside><!-- /#similar-properties -->
@@ -268,7 +268,7 @@
 /*<![CDATA[*/
     var latitude = /*[[*{property.latitude}]]*/ '34.7071301';
     var longitude = /*[[*{property.longitude}]]*/ '33.022617399999945';
-    var markerPictureUrl = /*[[|http://assets.gotocy.eu/static/img/property-types/${helper.getPropertyTypeIcon(#object.property.propertyType)}.png|]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
+    var markerPictureUrl = /*[[|http://assets.gotocy.eu/static/img/property-types/${helper.property.typeIcon(#object.property.propertyType)}.png|]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
     var panoConfigUrl = /*[[${hasPano}? ${helper.path(#object.property)} + '/pano.xml' : '']]*/ '';
     var images = /*[[${helper.imageUrls(#object.property.imageSet.images)}]]*/ '';
 /*]]>*/

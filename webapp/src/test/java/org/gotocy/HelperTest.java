@@ -1,15 +1,10 @@
 package org.gotocy;
 
-import org.gotocy.beans.AssetsProvider;
-import org.gotocy.domain.*;
+import org.gotocy.domain.LocalizedProperty;
+import org.gotocy.domain.Property;
 import org.gotocy.helpers.Helper;
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.context.i18n.LocaleContextHolder;
-
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * @author ifedorenkov
@@ -58,20 +53,6 @@ public class HelperTest {
 	}
 
 	@Test
-	public void priceKey() {
-		Map<PropertyStatus, String> statusToPriceKey = new HashMap<>();
-		statusToPriceKey.put(PropertyStatus.SALE, "org.gotocy.domain.property.sale-price");
-		statusToPriceKey.put(PropertyStatus.SHORT_TERM, "org.gotocy.domain.property.short-term-price");
-		statusToPriceKey.put(PropertyStatus.LONG_TERM, "org.gotocy.domain.property.long-term-price");
-
-		Property p = new Property();
-		for (PropertyStatus status : PropertyStatus.values()) {
-			p.setPropertyStatus(status);
-			Assert.assertEquals(statusToPriceKey.get(status), Helper.priceKey(p));
-		}
-	}
-
-	@Test
 	public void newLinesToParagraphs() {
 		String initialText = "First line\nSecond line\nThird line";
 		String expectedResult = "<p>First line</p><p>Second line</p><p>Third line</p>";
@@ -114,13 +95,6 @@ public class HelperTest {
 		String initialCode = "org.gotocy.some-code";
 		Assert.assertEquals(initialCode, Helper.pluralize(initialCode, 1));
 		Assert.assertEquals(initialCode + ".plural", Helper.pluralize(initialCode, 2));
-	}
-
-	@Test
-	public void getPropertyTypeIcon() {
-		Assert.assertEquals("apartment", Helper.getPropertyTypeIcon(PropertyType.APARTMENT));
-		Assert.assertEquals("single-family", Helper.getPropertyTypeIcon(PropertyType.HOUSE));
-		Assert.assertEquals("land", Helper.getPropertyTypeIcon(PropertyType.LAND));
 	}
 
 }

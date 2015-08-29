@@ -260,7 +260,7 @@
 /*<![CDATA[*/
     var latitude = /*[[*{property.latitude}]]*/ '34.7071301';
     var longitude = /*[[*{property.longitude}]]*/ '33.022617399999945';
-    var markerPictureUrl = /*[[|http://assets.gotocy.eu/static/img/property-types/${helper.getPropertyTypeIcon(#object.property.propertyType)}.png|]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
+    var markerPictureUrl = /*[[|http://assets.gotocy.eu/static/img/property-types/${helper.property.typeIcon(#object.property.propertyType)}.png|]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
     var panoConfigUrl = /*[[${hasPano}? ${helper.path(#object.property)} + '/pano.xml' : '']]*/ '';
     var images = /*[[${helper.imageUrls(#object.property.imageSet.images)}]]*/ '';
 /*]]>*/

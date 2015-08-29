@@ -15,5 +15,5 @@
     <dd th:text="${lp.property.airConditioner}? #{org.gotocy.dictionary.yes} : #{org.gotocy.dictionary.no}">Yes</dd>
 
     <dt th:text="|#{org.gotocy.dictionary.distance-to-sea}:|">Distance to Sea:</dt>
-    <dd th:text="${helper.distance(lp.property.distanceToSea)}">100 m</dd>
+    <dd th:text="${helper.property.distance(lp.property.distanceToSea)}">100 m</dd>
 </dl>

@@ -92,10 +92,10 @@
                                             <div class="property-image">
                                                 <figure class="tag status" th:text="${{lp.property.propertyStatus}}" th:if="${param.propertyStatus == null}">Sale</figure>
                                                 <figure class="ribbon" th:unless="${active}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
-                                                <figure class="type" th:if="${active}" th:title="${{propertyType}}" title="Vineyard"><img th:src="|http://assets.gotocy.eu/static/img/property-types/${helper.getPropertyTypeIcon(propertyType)}.png|" src="assets/img/property-types/vineyard.png"  alt=""></figure>
+                                                <figure class="type" th:if="${active}" th:title="${{propertyType}}" title="Vineyard"><img th:src="|http://assets.gotocy.eu/static/img/property-types/${helper.property.typeIcon(propertyType)}.png|" src="assets/img/property-types/vineyard.png"  alt=""></figure>
                                                 <div class="overlay">
                                                     <div class="info">
-                                                        <div class="tag price" th:utext="${helper.price(lp.property)}">$ 11,000</div>
+                                                        <div class="tag price" th:utext="${helper.property.price(lp.property)}">$ 11,000</div>
                                                     </div>
                                                 </div>
                                                 <img alt="" th:class="${stat.count % 3 == 0}? 'extended-4' : (${stat.count % 2 == 0}? 'extended-3')" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-09.jpg">

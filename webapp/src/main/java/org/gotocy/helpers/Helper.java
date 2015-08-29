@@ -2,12 +2,14 @@ package org.gotocy.helpers;
 
 import org.gotocy.beans.AssetsProvider;
 import org.gotocy.domain.*;
+import org.gotocy.helpers.property.PropertyHelper;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.format.number.NumberFormatter;
 
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * A helper object for the view layer. Contains a number of utility methods, such as price formatting, etc.
@@ -16,27 +18,19 @@ import java.util.*;
  */
 public class Helper {
 
-	private static final Map<PropertyStatus, String> PROPERTY_STATUS_TO_PRICE_KEY = new HashMap<>();
-
-	static {
-		for (PropertyStatus status : PropertyStatus.values()) {
-			PROPERTY_STATUS_TO_PRICE_KEY.put(status, "org.gotocy.domain.property." +
-				status.name().toLowerCase().replaceAll("_", "-") + "-price");
-		}
-	}
-
-	private final MessageSource messageSource;
 	private final AssetsProvider assetsProvider;
-
-	private final NumberFormatter currencyFormatter;
-	private final NumberFormatter distanceFormatter;
+	private final PropertyHelper propertyHelper;
 
 	public Helper(@NotNull MessageSource messageSource, @NotNull AssetsProvider assetsProvider) {
-		this.messageSource = messageSource;
 		this.assetsProvider = assetsProvider;
+		propertyHelper = new PropertyHelper(messageSource);
+	}
 
-		currencyFormatter = new NumberFormatter("#,###");
-		distanceFormatter = new NumberFormatter("###.#");
+	/**
+	 * Exposes the property helper object.
+	 */
+	public PropertyHelper getProperty() {
+		return propertyHelper;
 	}
 
 	/**
@@ -66,30 +60,6 @@ public class Helper {
 		List<String> urls = new ArrayList<>(assets.size());
 		assets.forEach(asset -> urls.add(imageUrl(asset, ImageSize.BIG)));
 		return urls;
-	}
-
-	/**
-	 * Prints a given price in a locale specific manner.
-	 * TODO: unit test
-	 */
-	public String price(int price) {
-		return "&euro; " + currencyFormatter.print(price, LocaleContextHolder.getLocale());
-	}
-
-	/**
-	 * Returns a resource bundle key for price of the given property.
-	 */
-	public static String priceKey(Property property) {
-		return PROPERTY_STATUS_TO_PRICE_KEY.get(property.getPropertyStatus());
-	}
-
-	/**
-	 * Returns a fully formatted price of the given property.
-	 * TODO: unit test
-	 */
-	public String price(Property property) {
-		return messageSource.getMessage(priceKey(property), new Object[]{price(property.getPrice())},
-			LocaleContextHolder.getLocale());
 	}
 
 	/**
@@ -168,42 +138,6 @@ public class Helper {
 	 */
 	public static String pluralize(String code, int number) {
 		return number > 1 ? code + ".plural" : code;
-	}
-
-	/**
-	 * Returns the distance in the appropriate form, which is: < 500 m - meters (m), > 500 m - kilometers (km).
-	 * TODO: unit test
-	 */
-	public String distance(int meters) {
-		Locale locale = LocaleContextHolder.getLocale();
-		String ending;
-		Number number;
-		if (meters < 500) {
-			number = meters;
-			ending = messageSource.getMessage("org.gotocy.dictionary.meters", null, locale);
-		} else {
-			number = meters / 1000d;
-			ending = messageSource.getMessage("org.gotocy.dictionary.kilometers", null, locale);
-		}
-		return distanceFormatter.print(number, locale) + " " + ending;
-	}
-
-	/**
-	 * Returns suitable icon for the given {@link PropertyType}.
-	 * Unit test: HelperTest#getPropertyTypeIcon
-	 */
-	public static String getPropertyTypeIcon(PropertyType type) {
-		switch (type) {
-		case HOUSE:
-			return "single-family";
-		case APARTMENT:
-			return "apartment";
-		case LAND:
-			return "land";
-		default:
-			// TODO: log error
-			return "";
-		}
 	}
 
 	private static String getPrefixForLanguage(String language) {
