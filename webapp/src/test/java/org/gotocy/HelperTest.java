@@ -119,8 +119,8 @@ public class HelperTest {
 	@Test
 	public void getPropertyTypeIcon() {
 		Assert.assertEquals("apartment", Helper.getPropertyTypeIcon(PropertyType.APARTMENT));
-		Assert.assertEquals("apartment", Helper.getPropertyTypeIcon(PropertyType.FLAT));
 		Assert.assertEquals("single-family", Helper.getPropertyTypeIcon(PropertyType.HOUSE));
+		Assert.assertEquals("land", Helper.getPropertyTypeIcon(PropertyType.LAND));
 	}
 
 }

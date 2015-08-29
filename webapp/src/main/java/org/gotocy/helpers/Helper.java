@@ -193,7 +193,17 @@ public class Helper {
 	 * Unit test: HelperTest#getPropertyTypeIcon
 	 */
 	public static String getPropertyTypeIcon(PropertyType type) {
-		return type == PropertyType.HOUSE ? "single-family" : "apartment";
+		switch (type) {
+		case HOUSE:
+			return "single-family";
+		case APARTMENT:
+			return "apartment";
+		case LAND:
+			return "land";
+		default:
+			// TODO: log error
+			return "";
+		}
 	}
 
 	private static String getPrefixForLanguage(String language) {

@@ -728,7 +728,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (150, 0, 'proper
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
-  values (12, 0, 'Alex Residence #302', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'LARNACA', '34.920028', '33.631734', 'FLAT', 'SHORT_TERM', 90, 2, 4, true, 500, 145, null, 3);
+  values (12, 0, 'Alex Residence #302', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'LARNACA', '34.920028', '33.631734', 'APARTMENT', 'SHORT_TERM', 90, 2, 4, true, 500, 145, null, 3);
 
 
 insert into localized_property (id, version, locale, description, property_id)
@@ -826,7 +826,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (165, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (166, 0, 'property/13/DSC00523.jpg', 'IMAGE');
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
-  values (13, 0, 'Alex Residence #103', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'LARNACA', '34.920028', '33.631734', 'FLAT', 'SHORT_TERM', 90, 2, 4, true, 500, 153, null, 3);
+  values (13, 0, 'Alex Residence #103', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'LARNACA', '34.920028', '33.631734', 'APARTMENT', 'SHORT_TERM', 90, 2, 4, true, 500, 153, null, 3);
 
 
 insert into localized_property (id, version, locale, description, property_id)
@@ -926,7 +926,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (182, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (183, 0, 'property/14/DSC_0320.jpg', 'IMAGE');
 insert into asset (id, version, `asset_key`, asset_type) values (184, 0, 'property/14/DSC_0322.jpg', 'IMAGE');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (14, 0, 'Alex Residence #105', 'LARNACA', '34.920028', '33.631734', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'FLAT', 'SHORT_TERM', 90, NULL, NULL, 2, 4, 500, TRUE, FALSE, FALSE, NULL, 169, NULL, 3);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (14, 0, 'Alex Residence #105', 'LARNACA', '34.920028', '33.631734', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'APARTMENT', 'SHORT_TERM', 90, NULL, NULL, 2, 4, 500, TRUE, FALSE, FALSE, NULL, 169, NULL, 3);
 
 insert into localized_property (id, version, locale, description, property_id) values (14, 0, 'en', 'A brand new, never occupied, two bedroom duplex with a shared swimming pool on the roof. This beautiful flat consists two double bedrooms, fully equipped kitchen, fully furnished. Located just a few minutes from Phinikoudes (Palm trees) beach and town center. The modern design of the building gives the flat a unique/special vibe.The guests can enjoy their vacations in this quiet spot of the town center while they can enjoy the great beach, restaurants, and shops within walking distance from the duplex.A great get away for couples, families or group of friends.
 Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 14);

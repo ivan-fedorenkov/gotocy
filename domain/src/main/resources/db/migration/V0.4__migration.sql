@@ -1,0 +1,1 @@
+UPDATE `property` SET `property_type` = 'APARTMENT' where `property_type` = 'FLAT';
