@@ -1,0 +1,2 @@
+ALTER TABLE `property` ADD COLUMN `vat_included` BIT NOT NULL DEFAULT FALSE;
+ALTER TABLE `property` ADD COLUMN `levels` INTEGER NULL;

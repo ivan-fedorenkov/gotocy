@@ -49,6 +49,8 @@ public class Property extends BaseEntity {
 	// TODO: remove ?
 	private Integer baths;
 
+	private Integer levels;
+
 	private Integer distanceToSea;
 
 	private Boolean airConditioner;
@@ -56,6 +58,8 @@ public class Property extends BaseEntity {
 	private Boolean readyToMoveIn;
 
 	private Boolean heatingSystem;
+
+	private Boolean vatIncluded;
 
 	@Enumerated(EnumType.STRING)
 	private Furnishing furnishing;
@@ -172,6 +176,14 @@ public class Property extends BaseEntity {
 		this.guests = guests;
 	}
 
+	public Integer getLevels() {
+		return levels;
+	}
+
+	public void setLevels(Integer levels) {
+		this.levels = levels;
+	}
+
 	public Integer getBaths() {
 		return baths;
 	}
@@ -218,6 +230,14 @@ public class Property extends BaseEntity {
 
 	public void setHeatingSystem(Boolean heatingSystem) {
 		this.heatingSystem = heatingSystem;
+	}
+
+	public Boolean getVatIncluded() {
+		return vatIncluded;
+	}
+
+	public void setVatIncluded(Boolean vatIncluded) {
+		this.vatIncluded = vatIncluded;
 	}
 
 	public Furnishing getFurnishing() {
