@@ -37,8 +37,10 @@ public class PropertyForm {
 	private Integer plotSize;
 	private Integer bedrooms;
 	private Integer guests;
+	private Integer levels;
 	private Integer distanceToSea;
 	private Furnishing furnishing;
+	private Boolean vatIncluded;
 	private Boolean airConditioner;
 	private Boolean heatingSystem;
 	private Boolean readyToMoveIn;
@@ -72,8 +74,10 @@ public class PropertyForm {
 		plotSize = property.getPlotSize();
 		bedrooms = property.getBedrooms();
 		guests = property.getGuests();
+		levels = property.getLevels();
 		distanceToSea = property.getDistanceToSea();
 		furnishing = property.getFurnishing();
+		vatIncluded = property.getVatIncluded();
 		airConditioner = property.getAirConditioner();
 		heatingSystem = property.getHeatingSystem();
 		readyToMoveIn = property.getReadyToMoveIn();
@@ -138,8 +142,10 @@ public class PropertyForm {
 		property.setPlotSize(plotSize);
 		property.setBedrooms(bedrooms);
 		property.setGuests(guests);
+		property.setLevels(levels);
 		property.setDistanceToSea(distanceToSea);
 		property.setFurnishing(furnishing);
+		property.setVatIncluded(vatIncluded);
 		property.setAirConditioner(airConditioner);
 		property.setHeatingSystem(heatingSystem);
 		property.setReadyToMoveIn(readyToMoveIn);
@@ -353,6 +359,14 @@ public class PropertyForm {
 		this.guests = guests;
 	}
 
+	public Integer getLevels() {
+		return levels;
+	}
+
+	public void setLevels(Integer levels) {
+		this.levels = levels;
+	}
+
 	public Integer getDistanceToSea() {
 		return distanceToSea;
 	}
@@ -367,6 +381,14 @@ public class PropertyForm {
 
 	public void setFurnishing(Furnishing furnishing) {
 		this.furnishing = furnishing;
+	}
+
+	public Boolean getVatIncluded() {
+		return vatIncluded;
+	}
+
+	public void setVatIncluded(Boolean vatIncluded) {
+		this.vatIncluded = vatIncluded;
 	}
 
 	public Boolean getAirConditioner() {

@@ -11,15 +11,18 @@
     <dt th:text="|#{org.gotocy.dictionary.price}:|">Price:</dt>
         <dd><span class="tag price" th:utext="${helper.price(#object.property)}">$ 78,000</span></dd>
 
+    <dt th:text="|#{org.gotocy.dictionary.vat}:|">VAT:</dt>
+        <dd th:text="${lp.property.vatIncluded}? #{org.gotocy.dictionary.vat-included} : #{org.gotocy.dictionary.vat-not-included}">Yes</dd>
+
     <dt th:text="|#{org.gotocy.dictionary.covered-area}:|">Covered Area:</dt>
         <dd th:utext="|${lp.property.coveredArea} #{org.gotocy.dictionary.meters}<sup>2</sup>|">123 m<sup>2</sup></dd>
 
-    <dt th:text="|#{org.gotocy.dictionary.plot-size}:|">Plot Size:</dt>
-        <dd th:utext="|${lp.property.plotSize} #{org.gotocy.dictionary.meters}<sup>2</sup>|">123 m<sup>2</sup></dd>
+    <dt th:if="${lp.property.propertyType == T(org.gotocy.domain.PropertyType).HOUSE}" th:text="|#{org.gotocy.dictionary.plot-size}:|">Plot Size:</dt>
+        <dd th:if="${lp.property.propertyType == T(org.gotocy.domain.PropertyType).HOUSE}" th:utext="|${lp.property.plotSize} #{org.gotocy.dictionary.meters}<sup>2</sup>|">123 m<sup>2</sup></dd>
 
     <dt th:text="|${#messages.msg(helper.pluralize('org.gotocy.dictionary.bedrooms', lp.property.bedrooms))}:|">Bedrooms:</dt>
         <dd th:text="${lp.property.bedrooms}">3</dd>
 
-    <dt th:text="|#{org.gotocy.dictionary.distance-to-sea}:|">Distance to Sea:</dt>
-        <dd th:text="${helper.distance(lp.property.distanceToSea)}">100 m</dd>
+    <dt th:text="|#{'org.gotocy.dictionary.levels.' + ${lp.property.propertyType}} :|">Levels:</dt>
+        <dd th:text="${lp.property.levels}">3</dd>
 </dl>

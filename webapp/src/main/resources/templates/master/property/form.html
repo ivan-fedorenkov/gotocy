@@ -148,6 +148,13 @@
                                         <div class="row">
                                             <div class="col-md-4 col-sm-4">
                                                 <div class="form-group">
+                                                    <label for="bedrooms">Level(s)</label>
+                                                    <input type="text" class="form-control" id="levels" th:field="*{levels}" pattern="\d*">
+                                                </div><!-- /.form-group -->
+                                            </div><!-- /.col-md-4 -->
+
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="form-group">
                                                     <label for="bedrooms">Bedrooms</label>
                                                     <input type="text" class="form-control" id="bedrooms" th:field="*{bedrooms}" pattern="\d*">
                                                 </div><!-- /.form-group -->
@@ -159,8 +166,10 @@
                                                     <input type="text" class="form-control" id="guests" th:field="*{guests}" pattern="\d*">
                                                 </div><!-- /.form-group -->
                                             </div><!-- /.col-md-4 -->
+                                        </div><!-- /.row -->
 
-                                            <div class="col-md-4 col-sm-4">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="distanceToSea">To Sea</label>
                                                     <div class="input-group">
@@ -169,7 +178,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><!-- /.row -->
+                                        </div>
 
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6">
@@ -180,6 +189,12 @@
                                                     </select>
                                                 </div><!-- /.form-group -->
                                             </div>
+                                        </div>
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" th:field="*{vatIncluded}">Vat Included
+                                            </label>
                                         </div>
 
                                         <div class="checkbox">
