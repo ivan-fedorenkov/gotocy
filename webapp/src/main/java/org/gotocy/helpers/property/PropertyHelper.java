@@ -48,7 +48,8 @@ public class PropertyHelper {
 	}
 
 	/**
-	 * Generates the quick summary html code.
+	 * Generates the quick summary dl content html code.
+	 * TODO: generate dl itself?
 	 */
 	public String quickSummaryHtml(Property p) {
 		QuickSummaryGenerator generator = null;
@@ -71,6 +72,48 @@ public class PropertyHelper {
 			case LAND:
 				generator = QuickSummaryGenerator.SALE_LAND;
 			}
+		}
+
+		return generator.generateHtml(messageSource, p);
+	}
+
+	/**
+	 * Generates the additional info ul content html code.
+	 * TODO: generate ul itself?
+	 */
+	public String additionalInfoHtml(Property p) {
+		AdditionalInfoGenerator generator = null;
+
+		switch (p.getPropertyStatus()) {
+		case LONG_TERM:
+			generator = AdditionalInfoGenerator.LONG_TERM;
+			break;
+		case SHORT_TERM:
+			generator = AdditionalInfoGenerator.SHORT_TERM;
+			break;
+		case SALE:
+			generator = AdditionalInfoGenerator.SALE;
+		}
+
+		return generator.generateHtml(messageSource, p);
+	}
+
+	/**
+	 * Generates the listing summary dl content html code.
+	 * TODO: generate dl itself?
+	 */
+	public String listingSummaryHtml(Property p) {
+		ListingSummaryGenerator generator = null;
+
+		switch (p.getPropertyStatus()) {
+		case LONG_TERM:
+			generator = ListingSummaryGenerator.LONG_TERM;
+			break;
+		case SHORT_TERM:
+			generator = ListingSummaryGenerator.SHORT_TERM;
+			break;
+		case SALE:
+			generator = ListingSummaryGenerator.SALE;
 		}
 
 		return generator.generateHtml(messageSource, p);

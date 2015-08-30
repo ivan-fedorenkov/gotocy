@@ -4,66 +4,42 @@ import org.gotocy.domain.Property;
 import org.springframework.context.MessageSource;
 
 /**
- * DL quick summary generator.
+ * DL listing summary generator.
  *
  * @author ifedorenkov
  */
-enum QuickSummaryGenerator {
+enum ListingSummaryGenerator {
+
 	LONG_TERM(
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
-		FieldFormat.RENTAL_TYPE,
-		FieldFormat.PRICE,
 		FieldFormat.BEDROOMS,
 		FieldFormat.FURNISHING,
 		FieldFormat.HEATING_SYSTEM
 	),
 
-	SHORT_TERM (
+	SHORT_TERM(
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
-		FieldFormat.RENTAL_TYPE,
-		FieldFormat.PRICE,
 		FieldFormat.BEDROOMS,
 		FieldFormat.GUESTS,
 		FieldFormat.AIR_CONDITIONER,
 		FieldFormat.DISTANCE_TO_SEA
 	),
 
-	SALE_HOUSE(
+	SALE(
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
 		FieldFormat.READY_TO_MOVE_IN,
-		FieldFormat.PRICE,
-		FieldFormat.VAT,
 		FieldFormat.COVERED_AREA,
 		FieldFormat.PLOT_SIZE,
 		FieldFormat.BEDROOMS,
-		FieldFormat.LEVELS
-	),
-
-	SALE_APARTMENT(
-		FieldFormat.LOCATION,
-		FieldFormat.PROPERTY_TYPE,
-		FieldFormat.READY_TO_MOVE_IN,
-		FieldFormat.PRICE,
-		FieldFormat.VAT,
-		FieldFormat.COVERED_AREA,
-		FieldFormat.BEDROOMS,
-		FieldFormat.LEVELS
-	),
-
-	SALE_LAND(
-		FieldFormat.LOCATION,
-		FieldFormat.PROPERTY_TYPE,
-		FieldFormat.PRICE,
-		FieldFormat.VAT,
-		FieldFormat.PLOT_SIZE
+		FieldFormat.DISTANCE_TO_SEA
 	);
 
 	private final FieldFormat[] fields;
 
-	QuickSummaryGenerator(FieldFormat... fields) {
+	ListingSummaryGenerator(FieldFormat... fields) {
 		this.fields = fields;
 	}
 
@@ -77,4 +53,5 @@ enum QuickSummaryGenerator {
 
 		return dl.toString();
 	}
+
 }

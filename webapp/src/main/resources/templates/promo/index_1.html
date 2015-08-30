@@ -120,7 +120,7 @@
                                         <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
                                         <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
-                                    <ul class="additional-info" th:include="'property/' + ${lp.property.propertyStatus.name()} + '/additional_info_ul' :: additional_info(${lp})">
+                                    <ul class="additional-info" th:utext="${helper.property.additionalInfoHtml(lp.property)}">
                                         <li>
                                             <header>Bedrooms:</header>
                                             <figure>2</figure>
@@ -158,7 +158,7 @@
                                         <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
                                         <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
-                                    <ul class="additional-info" th:include="'property/' + ${lp.property.propertyStatus.name()} + '/additional_info_ul' :: additional_info(${lp})">
+                                    <ul class="additional-info" th:utext="${helper.property.additionalInfoHtml(lp.property)}">
                                         <li>
                                             <header>Bedrooms:</header>
                                             <figure>2</figure>
@@ -297,7 +297,7 @@
                                         <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
                                         <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
-                                    <ul class="additional-info" th:include="'property/' + ${lp.property.propertyStatus.name()} + '/additional_info_ul' :: additional_info(${lp})">
+                                    <ul class="additional-info" th:utext="${helper.property.additionalInfoHtml(lp.property)}">
                                         <li>
                                             <header>Bedrooms:</header>
                                             <figure>2</figure>
@@ -436,7 +436,7 @@
                                         <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
                                         <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
-                                    <ul class="additional-info" th:include="'property/' + ${lp.property.propertyStatus.name()} + '/additional_info_ul' :: additional_info(${lp})">
+                                    <ul class="additional-info" th:utext="${helper.property.additionalInfoHtml(lp.property)}">
                                         <li>
                                             <header>Bedrooms:</header>
                                             <figure>2</figure>

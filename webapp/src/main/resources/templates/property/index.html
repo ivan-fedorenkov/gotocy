@@ -107,7 +107,7 @@
                                                 <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
                                             </header>
                                             <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum</p>-->
-                                            <dl th:include="'property/' + ${lp.property.propertyStatus.name()} + '/listing_summary_dl' :: listing_summary(${lp})">
+                                            <dl th:utext="${helper.property.listingSummaryHtml(lp.property)}">
                                                 <dt>Status:</dt>
                                                 <dd>Sale</dd>
                                                 <dt>Area:</dt>
