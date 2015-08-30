@@ -20,10 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 
 import java.util.Arrays;
@@ -46,7 +43,7 @@ public class PropertiesController {
 	AssetsProvider assetsProvider;
 
 	@RequestMapping(value = "/properties", method = RequestMethod.GET)
-	public String index(Model model, PropertiesSearchForm form, Locale locale,
+	public String index(Model model, @ModelAttribute PropertiesSearchForm form, Locale locale,
 		@PageableDefault(size = 40, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
 		Page<LocalizedProperty> properties = repository.findAll(form.setLocale(locale).toPredicate(), pageable);

@@ -231,6 +231,96 @@
                         </section><!-- /#properties-->
                     </section><!-- /#results -->
                 </div><!-- /.col-md-9 -->
+
+
+                <!-- sidebar -->
+                <div class="col-md-3 col-sm-3">
+                    <section id="sidebar">
+                        <aside id="edit-search">
+                            <header><h3>Search Properties</h3></header>
+                            <form role="form" id="form-sidebar" class="form-search" th:action="@{/properties}" th:method="get" th:object="${propertiesSearchForm}">
+                                <div class="form-group">
+                                    <select th:field="*{propertyStatus}">
+                                        <option value="">Offer Status</option>
+                                        <option th:each="status : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${status}" th:text="${{status}}">Short Term</option>
+                                    </select>
+                                </div><!-- /.form-group -->
+                                <div class="form-group">
+                                    <select th:field="*{propertyType}">
+                                        <option value="">Property Type</option>
+                                        <option th:each="type : ${T(org.gotocy.domain.PropertyType).values()}" th:value="${type}" th:text="${{type}}">Apartment</option>
+                                    </select>
+                                </div><!-- /.form-group -->
+                                <div class="form-group">
+                                    <select th:field="*{location}">
+                                        <option value="">Location</option>
+                                        <option th:each="location : ${T(org.gotocy.domain.Location).values()}" th:value="${location}" th:text="${{location}}">Larnaca</option>
+                                    </select>
+                                </div><!-- /.form-group -->
+                                <div class="form-group">
+                                    <div class="price-range">
+                                        <input id="price-input" type="text" name="price" value="100;2500000" th:value="|*{priceFrom};*{priceTo}|">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default">Search Now</button>
+                                </div><!-- /.form-group -->
+                            </form><!-- /#form-map -->
+                        </aside><!-- /#edit-search -->
+                        <aside id="featured-properties">
+                            <header><h3>Featured Properties</h3></header>
+                            <div class="property small">
+                                <a href="property-detail.html">
+                                    <div class="property-image">
+                                        <img alt="" src="assets/img/properties/property-06.jpg">
+                                    </div>
+                                </a>
+                                <div class="info">
+                                    <a href="property-detail.html"><h4>2186 Rinehart Road</h4></a>
+                                    <figure>Doral, FL 33178 </figure>
+                                    <div class="tag price">$ 72,000</div>
+                                </div>
+                            </div><!-- /.property -->
+                            <div class="property small">
+                                <a href="property-detail.html">
+                                    <div class="property-image">
+                                        <img alt="" src="assets/img/properties/property-09.jpg">
+                                    </div>
+                                </a>
+                                <div class="info">
+                                    <a href="property-detail.html"><h4>2479 Murphy Court</h4></a>
+                                    <figure>Minneapolis, MN 55402</figure>
+                                    <div class="tag price">$ 36,000</div>
+                                </div>
+                            </div><!-- /.property -->
+                            <div class="property small">
+                                <a href="property-detail.html">
+                                    <div class="property-image">
+                                        <img alt="" src="assets/img/properties/property-03.jpg">
+                                    </div>
+                                </a>
+                                <div class="info">
+                                    <a href="property-detail.html"><h4>1949 Tennessee Avenue</h4></a>
+                                    <figure>Minneapolis, MN 55402</figure>
+                                    <div class="tag price">$ 128,600</div>
+                                </div>
+                            </div><!-- /.property -->
+                        </aside><!-- /#featured-properties -->
+                        <aside id="our-guides">
+                            <header><h3>Our Guides</h3></header>
+                            <a href="#" class="universal-button">
+                                <figure class="fa fa-home"></figure>
+                                <span>Buying Guide</span>
+                                <span class="arrow fa fa-angle-right"></span>
+                            </a><!-- /.universal-button -->
+                            <a href="#" class="universal-button">
+                                <figure class="fa fa-umbrella"></figure>
+                                <span>Right Insurance for You</span>
+                                <span class="arrow fa fa-angle-right"></span>
+                            </a><!-- /.universal-button -->
+                        </aside><!-- /#our-guide -->
+                    </section><!-- /#sidebar -->
+                </div><!-- /.col-md-3 -->
             </div><!-- /.row -->
         </div><!-- /.container -->
     </div>
