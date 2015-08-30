@@ -1820,7 +1820,7 @@ ul.list-links {
     transition: 0.4s;
     background-color: #fff;
     font-size: 12px;
-    width: 23.75%;
+    width: 32.1%;
     float: left;
     margin-bottom: 15px;
     overflow: visible; }
@@ -4236,7 +4236,7 @@ body, html {
       width: 90px; }
 
   .property.masonry {
-    width: 32.26%; }
+    width: 31.9%; }
   .property.big .overlay {
     bottom: -50px; }
     .property.big .overlay h3 {
@@ -4336,7 +4336,7 @@ body, html {
     .property.big .overlay .info {
       padding: 15px; }
   .property.masonry {
-    width: 31.9%; }
+    width: 31.45%; }
   .property.small .info {
     padding-left: 0; }
   .property.small .property-image {

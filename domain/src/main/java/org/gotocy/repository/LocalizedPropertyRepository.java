@@ -6,6 +6,7 @@ import org.gotocy.domain.PropertyStatus;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 
 import java.util.List;
 
@@ -13,7 +14,9 @@ import java.util.List;
  * TODO: query on each method
  * @author ifedorenkov
  */
-public interface LocalizedPropertyRepository extends JpaRepository<LocalizedProperty, Long> {
+public interface LocalizedPropertyRepository extends JpaRepository<LocalizedProperty, Long>,
+	QueryDslPredicateExecutor<LocalizedProperty>
+{
 
 	@Query("select lp from LocalizedProperty lp join fetch lp.property join fetch lp.property.imageSet.representativeImage " +
 		"left join fetch lp.property.panoXml where lp.property.id = ?1 and lp.locale = ?2")

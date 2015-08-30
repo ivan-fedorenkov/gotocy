@@ -1,12 +1,17 @@
 package org.gotocy.controllers;
 
 import org.gotocy.beans.AssetsProvider;
-import org.gotocy.domain.*;
+import org.gotocy.domain.Image;
+import org.gotocy.domain.LocalizedProperty;
+import org.gotocy.domain.Owner;
+import org.gotocy.domain.Property;
+import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.PropertyForm;
 import org.gotocy.repository.LocalizedPropertyRepository;
 import org.gotocy.repository.OwnerRepository;
 import org.gotocy.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,10 +20,12 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -39,12 +46,10 @@ public class PropertiesController {
 	AssetsProvider assetsProvider;
 
 	@RequestMapping(value = "/properties", method = RequestMethod.GET)
-	public String index(Model model, @RequestParam(required = false) PropertyStatus propertyStatus, Locale locale,
+	public String index(Model model, PropertiesSearchForm form, Locale locale,
 		@PageableDefault(size = 40, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
-		List<LocalizedProperty> properties = propertyStatus == null ?
-			repository.findByLocale(locale.getLanguage(), pageable) :
-			repository.findByPropertyPropertyStatusAndLocale(propertyStatus, locale.getLanguage(), pageable);
+		Page<LocalizedProperty> properties = repository.findAll(form.setLocale(locale).toPredicate(), pageable);
 		model.addAttribute("properties", properties);
 		return "property/index";
 	}

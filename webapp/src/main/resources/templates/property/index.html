@@ -81,9 +81,14 @@
         <div class="container">
             <div class="row">
                 <!-- Results -->
-                <div class="col-md-12 col-sm-12">
+                <div class="col-md-9 col-sm-9">
                     <section id="results">
                         <header><h1 th:text="${title}">Properties Listing</h1></header>
+                        <section id="search-filter">
+                            <figure><h3 th:utext="|<i class='fa fa-search'></i>#{org.gotocy.dictionary.search-results}:|">Search Results:</h3>
+                                <span class="search-count" th:text="${properties.totalElements}">28</span>
+                            </figure>
+                        </section>
                         <section id="properties">
                             <div class="grid" th:remove="all-but-first">
                                 <div class="property masonry" th:each="lp,stat : ${properties}">
