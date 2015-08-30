@@ -32,9 +32,17 @@ public class PropertiesSearchForm {
 		return this;
 	}
 
+	public String getParamsForUrl() {
+		return "propertyStatus=" + (propertyStatus == null ? "" : propertyStatus.name()) +
+			"&propertyType=" + (propertyType == null ? "" : propertyType.name()) +
+			"&location=" + (location == null ? "" : location.name());
+	}
+
 	public void setLocation(Location location) {
-		this.location = location;
-		builder.and(localizedProperty.property.location.eq(location));
+		if (location != null) {
+			this.location = location;
+			builder.and(localizedProperty.property.location.eq(location));
+		}
 	}
 
 	public Location getLocation() {
@@ -42,8 +50,10 @@ public class PropertiesSearchForm {
 	}
 
 	public void setPropertyStatus(PropertyStatus propertyStatus) {
-		this.propertyStatus = propertyStatus;
-		builder.and(localizedProperty.property.propertyStatus.eq(propertyStatus));
+		if (propertyStatus != null) {
+			this.propertyStatus = propertyStatus;
+			builder.and(localizedProperty.property.propertyStatus.eq(propertyStatus));
+		}
 	}
 
 	public PropertyStatus getPropertyStatus() {
@@ -51,8 +61,10 @@ public class PropertiesSearchForm {
 	}
 
 	public void setPropertyType(PropertyType propertyType) {
-		this.propertyType = propertyType;
-		builder.and(localizedProperty.property.propertyType.eq(propertyType));
+		if (propertyType != null) {
+			this.propertyType = propertyType;
+			builder.and(localizedProperty.property.propertyType.eq(propertyType));
+		}
 	}
 
 	public PropertyType getPropertyType() {

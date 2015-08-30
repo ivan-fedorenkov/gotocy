@@ -25,7 +25,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (17, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (18, 0, 'property/1/21.jpg', 'IMAGE');
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
-  values (1, 0, 'Sofia', 'Chania, Crete, Nomós Chaníon', 'Chania, Crete, Nomós Chaníon', 'GREECE', '35.318198', '24.318744', 'APARTMENT', 'SHORT_TERM', 95, 1, 3, 1, true, 1200, 1, 1);
+  values (1, 0, 'Sofia', 'Chania, Crete, Nomós Chaníon', 'Chania, Crete, Nomós Chaníon', 'LARNACA', '35.318198', '24.318744', 'APARTMENT', 'SHORT_TERM', 95, 1, 3, 1, true, 1200, 1, 1);
 
 insert into localized_property (id, version, locale, description, property_id)
   values (1, 0, 'en', 'Kastellos village is situated in the picturesque village of Kastellos in Georgioupolis, Chania. The complex is ideal for those wishing to escape everyday routine and relax enjoying the Cretan countryside; it’s for those who want to contact the nature, the wild life and of course to meet the people and their habits.
@@ -98,7 +98,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (38, 0, 'propert
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
-  values (2, 0, 'Anezina', 'Chania, Crete, Nomós Chaníon', 'Chania, Crete, Nomós Chaníon', 'GREECE', '35.31242', '24.310504', 'HOUSE', 'SHORT_TERM', 118, 2, 6, 2, true, 120, 19, 1);
+  values (2, 0, 'Anezina', 'Chania, Crete, Nomós Chaníon', 'Chania, Crete, Nomós Chaníon', 'LARNACA', '35.31242', '24.310504', 'HOUSE', 'SHORT_TERM', 118, 2, 6, 2, true, 120, 19, 1);
 
 insert into localized_property (id, version, locale, description, property_id)
   values (2, 0, 'en', 'Kastellos village is situated in the picturesque village of Kastellos in Georgioupolis, Chania. The complex is ideal for those wishing to escape everyday routine and relax enjoying the Cretan countryside; it’s for those who want to contact the nature, the wild life and of course to meet the people and their habits.
@@ -165,7 +165,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (48, 0, 'propert
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
-  values (3, 0, 'Green Paradise Luxury Villa', 'Rethymno, Crete, Nomós Rethýmnis', 'Rethymno, Crete, Nomós Rethýmnis', 'GREECE', '35.345041', '24.689299', 'HOUSE', 'SHORT_TERM', 141, 3, 7, 2, false, 150, 45, 1);
+  values (3, 0, 'Green Paradise Luxury Villa', 'Rethymno, Crete, Nomós Rethýmnis', 'Rethymno, Crete, Nomós Rethýmnis', 'LARNACA', '35.345041', '24.689299', 'HOUSE', 'SHORT_TERM', 141, 3, 7, 2, false, 150, 45, 1);
 
 insert into localized_property (id, version, locale, description, property_id)
   values (3, 0, 'en', 'Built in a quiet hamlet of the village Margarites, the Tzannakiana villa ‘Green Paradise’ is a country retreat, stone-built with a distinctive blend of modern and traditional. In an area of natural beauty, surrounded by a garden of flowers, herbs and trees. This is a luxurious villa to rent for your perfect holiday.
@@ -238,7 +238,7 @@ insert into localized_property_specification (specification, localized_property_
 --
 --
 -- insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
---   values (4, 0, 'GREECE', '36.295279', '28.155108', 'HOUSE', 'SHORT_TERM', 182, 4, 8, 4, true, 250, 49, 1);
+--   values (4, 0, 'LARNACA', '36.295279', '28.155108', 'HOUSE', 'SHORT_TERM', 182, 4, 8, 4, true, 250, 49, 1);
 --
 -- insert into localized_property (id, version, locale, title, address, description, property_id)
 --   values (4, 0, 'en', 'Villa Chrysa', 'Rhodes town, Rhodes, Dodecanese', 'Its located in St. Luke Afandou on the eastern side of the island . It is about 20 km away from the city of Rhodes and from Rhodes Airport , 3 km from Afandou beach -with panoramic view towards this beach- it is also 2 km away from Afandou Golf Course , 6 km from the tourist resort Faliraki of Rhodes with the known beach , 6 km from the tourist resort of Kolymbia Rhodes and the famous Tsampika beach .
@@ -367,7 +367,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (76, 0, 'propert
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnishing, representative_image_id, owner_id)
-  values (7, 0, 'Crete Apartment for rent', 'Greece, Crete, Chania', 'Greece, Crete, Chania', 'GREECE', '35.463105', '24.133071', 'APARTMENT', 'LONG_TERM', 350, 150, 2, true, 'NONE', 71, 1);
+  values (7, 0, 'Crete Apartment for rent', 'Greece, Crete, Chania', 'Greece, Crete, Chania', 'LARNACA', '35.463105', '24.133071', 'APARTMENT', 'LONG_TERM', 350, 150, 2, true, 'NONE', 71, 1);
 
 
 insert into localized_property (id, version, locale, description, property_id)
@@ -423,7 +423,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (91, 0, 'propert
 
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnishing, representative_image_id, owner_id)
-  values (8, 0, 'Traditional house for rent', 'Greece, Crete, Rethymno', 'Greece, Crete, Rethymno', 'GREECE', '35.368804', '24.703283', 'HOUSE', 'LONG_TERM', 450, 12000, 2, true, 'FULL', 77, 1);
+  values (8, 0, 'Traditional house for rent', 'Greece, Crete, Rethymno', 'Greece, Crete, Rethymno', 'LARNACA', '35.368804', '24.703283', 'HOUSE', 'LONG_TERM', 450, 12000, 2, true, 'FULL', 77, 1);
 
 
 insert into localized_property (id, version, locale, description, property_id)

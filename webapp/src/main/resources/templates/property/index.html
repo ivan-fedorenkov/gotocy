@@ -1,11 +1,13 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}"
-      th:with="propertyStatus=${param.propertyStatus},
-        curPath = ('/properties' + (${propertyStatus != null}? ('?propertyStatus=' + ${{propertyStatus}}) : '')),
-        title = #{'org.gotocy.templates.property.index' + (${propertyStatus != null}? ('.' + ${{propertyStatus}}) : '') + '.title'},
+      th:with="propertyStatus=${propertiesSearchForm.propertyStatus},
+        propertyType=${propertiesSearchForm.propertyStatus},
+        location=${propertiesSearchForm.location},
+        curPath = ('/properties?' + ${propertiesSearchForm.paramsForUrl}),
+        title = #{'org.gotocy.templates.property.index' + (${propertyStatus != null}? ('.' + ${propertyStatus}) : '') + '.title'},
         breadcrumps = #{org.gotocy.templates.property.index.breadcrumps},
-        breadcrumpsForStatus = #{'org.gotocy.templates.property.index' + (${propertyStatus != null}? ('.' + ${{propertyStatus}}) : '') + '.breadcrumps'}">
+        breadcrumpsForStatus = #{'org.gotocy.templates.property.index' + (${propertyStatus != null}? ('.' + ${propertyStatus}) : '') + '.breadcrumps'}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -241,8 +243,8 @@
                             <form role="form" id="form-sidebar" class="form-search" th:action="@{/properties}" th:method="get" th:object="${propertiesSearchForm}">
                                 <div class="form-group">
                                     <select th:field="*{propertyStatus}">
-                                        <option value="">Offer Status</option>
-                                        <option th:each="status : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${status}" th:text="${{status}}">Short Term</option>
+                                        <option value="">Offer Type</option>
+                                        <option th:each="type : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${type}" th:text="${{type}}">Short Term</option>
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
@@ -258,67 +260,10 @@
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
-                                    <div class="price-range">
-                                        <input id="price-input" type="text" name="price" value="100;2500000" th:value="|*{priceFrom};*{priceTo}|">
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <button type="submit" class="btn btn-default">Search Now</button>
                                 </div><!-- /.form-group -->
                             </form><!-- /#form-map -->
                         </aside><!-- /#edit-search -->
-                        <aside id="featured-properties">
-                            <header><h3>Featured Properties</h3></header>
-                            <div class="property small">
-                                <a href="property-detail.html">
-                                    <div class="property-image">
-                                        <img alt="" src="assets/img/properties/property-06.jpg">
-                                    </div>
-                                </a>
-                                <div class="info">
-                                    <a href="property-detail.html"><h4>2186 Rinehart Road</h4></a>
-                                    <figure>Doral, FL 33178 </figure>
-                                    <div class="tag price">$ 72,000</div>
-                                </div>
-                            </div><!-- /.property -->
-                            <div class="property small">
-                                <a href="property-detail.html">
-                                    <div class="property-image">
-                                        <img alt="" src="assets/img/properties/property-09.jpg">
-                                    </div>
-                                </a>
-                                <div class="info">
-                                    <a href="property-detail.html"><h4>2479 Murphy Court</h4></a>
-                                    <figure>Minneapolis, MN 55402</figure>
-                                    <div class="tag price">$ 36,000</div>
-                                </div>
-                            </div><!-- /.property -->
-                            <div class="property small">
-                                <a href="property-detail.html">
-                                    <div class="property-image">
-                                        <img alt="" src="assets/img/properties/property-03.jpg">
-                                    </div>
-                                </a>
-                                <div class="info">
-                                    <a href="property-detail.html"><h4>1949 Tennessee Avenue</h4></a>
-                                    <figure>Minneapolis, MN 55402</figure>
-                                    <div class="tag price">$ 128,600</div>
-                                </div>
-                            </div><!-- /.property -->
-                        </aside><!-- /#featured-properties -->
-                        <aside id="our-guides">
-                            <header><h3>Our Guides</h3></header>
-                            <a href="#" class="universal-button">
-                                <figure class="fa fa-home"></figure>
-                                <span>Buying Guide</span>
-                                <span class="arrow fa fa-angle-right"></span>
-                            </a><!-- /.universal-button -->
-                            <a href="#" class="universal-button">
-                                <figure class="fa fa-umbrella"></figure>
-                                <span>Right Insurance for You</span>
-                                <span class="arrow fa fa-angle-right"></span>
-                            </a><!-- /.universal-button -->
-                        </aside><!-- /#our-guide -->
                     </section><!-- /#sidebar -->
                 </div><!-- /.col-md-3 -->
             </div><!-- /.row -->

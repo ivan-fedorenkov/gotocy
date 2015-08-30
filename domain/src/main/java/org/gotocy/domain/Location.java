@@ -12,8 +12,7 @@ public enum Location implements MessageSourceResolvable {
 	LIMASSOL,
 	LARNACA,
 	NICOSIA,
-	PAPHOS,
-	GREECE;
+	PAPHOS;
 
 	@Override
 	public String[] getCodes() {
