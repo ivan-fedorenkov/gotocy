@@ -88,9 +88,16 @@ $(document).ready(function($) {
         $priceSlider.slider({
             from: 100,
             to: 5000000,
-            step: 10,
+            step: 100,
             round: 1,
-            format: {format: '&euro; ###,###', locale: 'en'}
+            heterogeneity: ['25/5000','50/500000','100/5000000'],
+            format: {format: '###,###', locale: 'en'},
+            dimension: '&nbsp;€',
+            calculate: function(value) {
+                if (isNaN(value))
+                    return 5000000;
+                return value;
+            }
         });
     }
 
