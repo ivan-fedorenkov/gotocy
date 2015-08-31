@@ -89,15 +89,9 @@ $(document).ready(function($) {
             from: 100,
             to: 5000000,
             step: 100,
-            round: 1,
-            heterogeneity: ['25/5000','50/500000','100/5000000'],
+            heterogeneity: ['30/5000', '60/500000'],
             format: {format: '###,###', locale: 'en'},
-            dimension: '&nbsp;€',
-            calculate: function(value) {
-                if (isNaN(value))
-                    return 5000000;
-                return value;
-            }
+            dimension: '&nbsp;€'
         });
     }
 

@@ -15,13 +15,16 @@ import static org.gotocy.domain.QLocalizedProperty.localizedProperty;
  */
 public class PropertiesSearchForm {
 
+	private static final int MIN_PRICE = 100;
+	private static final int MAX_PRICE = 5000000;
+
 	private final BooleanBuilder builder = new BooleanBuilder();
 
 	private Location location;
 	private PropertyStatus propertyStatus;
 	private PropertyType propertyType;
-	private Integer priceFrom = 100;
-	private Integer priceTo = 5000000;
+	private Integer priceFrom = MIN_PRICE;
+	private Integer priceTo = MAX_PRICE;
 
 
 	public Predicate toPredicate() {
@@ -36,7 +39,8 @@ public class PropertiesSearchForm {
 	public String getParamsForUrl() {
 		return "propertyStatus=" + (propertyStatus == null ? "" : propertyStatus.name()) +
 			"&propertyType=" + (propertyType == null ? "" : propertyType.name()) +
-			"&location=" + (location == null ? "" : location.name());
+			"&location=" + (location == null ? "" : location.name()) +
+			"&price=" + (priceFrom == MIN_PRICE && priceTo == MAX_PRICE ? "" : priceFrom + ";" + priceTo);
 	}
 
 	public void setLocation(Location location) {
@@ -73,7 +77,7 @@ public class PropertiesSearchForm {
 	}
 
 	public void setPriceFrom(Integer priceFrom) {
-		if (priceFrom > 0) {
+		if (priceFrom > MIN_PRICE) {
 			this.priceFrom = priceFrom;
 			builder.and(localizedProperty.property.price.goe(priceFrom));
 		}
@@ -84,7 +88,7 @@ public class PropertiesSearchForm {
 	}
 
 	public void setPriceTo(Integer priceTo) {
-		if (priceTo < Integer.MAX_VALUE) {
+		if (priceTo < MAX_PRICE) {
 			this.priceTo = priceTo;
 			builder.and(localizedProperty.property.price.loe(priceTo));
 		}
@@ -97,9 +101,18 @@ public class PropertiesSearchForm {
 	public void setPrice(String price) {
 		if (price != null && !price.isEmpty()) {
 			int semiPos = price.indexOf(';');
-			setPriceFrom(Integer.valueOf(price.substring(0, semiPos)));
-			setPriceTo(Integer.valueOf(price.substring(semiPos + 1)));
-
+			int priceFrom;
+			int priceTo;
+			try {
+				priceFrom = Integer.parseInt(price.substring(0, semiPos));
+				priceTo = Integer.parseInt(price.substring(semiPos + 1));
+			} catch (NumberFormatException nfe) {
+				// TODO: log error
+				priceFrom = MIN_PRICE;
+				priceTo = MAX_PRICE;
+			}
+			setPriceFrom(priceFrom);
+			setPriceTo(priceTo);
 		}
 	}
 

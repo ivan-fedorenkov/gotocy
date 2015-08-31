@@ -233,7 +233,7 @@
                             </div><!-- /js-masonry-->
 
                             <!-- Pagination -->
-                            <div class="center" th:unless="${properties.totalPages == 1}">
+                            <div class="center" th:unless="${properties.totalPages < 2}">
                                 <ul class="pagination" th:remove="all-but-first">
                                     <li th:each="i : ${#numbers.sequence(0, properties.totalPages - 1)}" th:class="${i == properties.number}? 'active'">
                                         <a href="#" th:href="${curPathNoPage} + '&page=' + ${i}" th:text="${i + 1}">1</a>
@@ -273,7 +273,7 @@
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
                                     <div class="price-range">
-                                        <input id="price-input" type="text" name="price" th:value="|${priceFrom};${priceTo}|">
+                                        <input id="price-input" type="text" name="price" th:value="*{priceFrom} + ';' + *{priceTo}">
                                     </div>
                                 </div>
                                 <div class="form-group">
