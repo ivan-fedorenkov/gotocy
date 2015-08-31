@@ -16,9 +16,14 @@
       //.overlay { margin-bottom: 20px !important; }
     }
   }
+}
 
-  .property.masonry img.extended-4 {
-    height: 290px;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 768px and more
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@media (min-width: 768px) {
+  .property.masonry img.extended-3 {
+    height: 270px;
     width: 120%;
   }
 }
@@ -57,8 +62,8 @@
   }
 
   .property.masonry img.extended-3 {
-    height: 290px;
-    width: 120%;
+    height: 240px;
+    width: 130%;
   }
 }
 
@@ -148,8 +153,8 @@
   }
 
   .property.masonry img.extended-3 {
-    height: 260px;
-    width: 125%;
+    height: 180px;
+    width: 130%;
   }
 }
 

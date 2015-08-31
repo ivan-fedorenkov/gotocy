@@ -4220,10 +4220,10 @@ body, html {
     overflow: hidden; }
     #slider .slide img {
       position: relative !important;
-      width: inherit !important; }
-
-  .property.masonry img.extended-4 {
-    height: 290px;
+      width: inherit !important; } }
+@media (min-width: 768px) {
+  .property.masonry img.extended-3 {
+    height: 270px;
     width: 120%; } }
 @media (min-width: 992px) and (max-width: 1199px) {
   .member {
@@ -4266,8 +4266,8 @@ body, html {
       width: inherit !important; }
 
   .property.masonry img.extended-3 {
-    height: 290px;
-    width: 120%; } }
+    height: 240px;
+    width: 130%; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .agency address {
     margin-left: 10px;
@@ -4384,8 +4384,8 @@ body, html {
       width: 30px; }
 
   .property.masonry img.extended-3 {
-    height: 260px;
-    width: 125%; } }
+    height: 180px;
+    width: 130%; } }
 @media screen and (max-width: 991px) {
   .icon-container {
     padding-top: 25px; }

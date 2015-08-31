@@ -105,7 +105,7 @@
                                                         <div class="tag price" th:utext="${helper.property.price(lp.property)}">$ 11,000</div>
                                                     </div>
                                                 </div>
-                                                <img alt="" th:class="${stat.count % 3 == 0}? 'extended-4' : (${stat.count % 2 == 0}? 'extended-3')" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-09.jpg">
+                                                <img alt="" th:class="${stat.count % 2 == 0}? 'extended-3'" th:src="${helper.imageUrl(lp.property.imageSet.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-09.jpg">
                                             </div>
                                         </a>
                                         <aside>
