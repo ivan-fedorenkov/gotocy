@@ -20,8 +20,9 @@ public class PropertiesSearchForm {
 	private Location location;
 	private PropertyStatus propertyStatus;
 	private PropertyType propertyType;
-	private Integer priceFrom = 0;
-	private Integer priceTo = Integer.MAX_VALUE;
+	private Integer priceFrom = 100;
+	private Integer priceTo = 5000000;
+
 
 	public Predicate toPredicate() {
 		return builder.getValue();
@@ -92,4 +93,14 @@ public class PropertiesSearchForm {
 	public Integer getPriceTo() {
 		return priceTo;
 	}
+
+	public void setPrice(String price) {
+		if (price != null && !price.isEmpty()) {
+			int semiPos = price.indexOf(';');
+			setPriceFrom(Integer.valueOf(price.substring(0, semiPos)));
+			setPriceTo(Integer.valueOf(price.substring(semiPos + 1)));
+
+		}
+	}
+
 }

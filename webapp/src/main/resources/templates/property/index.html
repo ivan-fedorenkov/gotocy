@@ -4,7 +4,8 @@
       th:with="propertyStatus=${propertiesSearchForm.propertyStatus},
         propertyType=${propertiesSearchForm.propertyStatus},
         location=${propertiesSearchForm.location},
-        curPath = ('/properties?' + ${propertiesSearchForm.paramsForUrl}),
+        curPathNoPage = ('/properties?' + ${propertiesSearchForm.paramsForUrl}),
+        curPath = ${curPathNoPage} + '&page=' + ${properties.number},
         title = #{'org.gotocy.templates.property.index' + (${propertyStatus != null}? ('.' + ${propertyStatus}) : '') + '.title'},
         breadcrumps = #{org.gotocy.templates.property.index.breadcrumps},
         breadcrumpsForStatus = #{'org.gotocy.templates.property.index' + (${propertyStatus != null}? ('.' + ${propertyStatus}) : '') + '.breadcrumps'}">
@@ -75,7 +76,7 @@
                 <li><a th:href="@{${helper.path('/', #locale.language)}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
                 <li th:if="${propertyStatus == null}" class="active" th:text="${breadcrumps}">Properties Listing</li>
                 <li th:unless="${propertyStatus == null}"><a th:href="@{${helper.path('/properties', #locale.language)}}" th:text="${breadcrumps}" href="#">Properties Listing</a></li>
-                <li th:unless="${param.propertyStatus == null}" class="active" th:text="${breadcrumpsForStatus}">Short Term</li>
+                <li th:unless="${propertyStatus == null}" class="active" th:text="${breadcrumpsForStatus}">Short Term</li>
             </ol>
         </div>
         <!-- end Breadcrumb -->
@@ -230,6 +231,17 @@
                                     </div>
                                 </div><!-- /.property -->
                             </div><!-- /js-masonry-->
+
+                            <!-- Pagination -->
+                            <div class="center" th:unless="${properties.totalPages == 1}">
+                                <ul class="pagination" th:remove="all-but-first">
+                                    <li th:each="i : ${#numbers.sequence(0, properties.totalPages - 1)}" th:class="${i == properties.number}? 'active'">
+                                        <a href="#" th:href="${curPathNoPage} + '&page=' + ${i}" th:text="${i + 1}">1</a>
+                                    </li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                </ul><!-- /.pagination-->
+                            </div><!-- /.center-->
                         </section><!-- /#properties-->
                     </section><!-- /#results -->
                 </div><!-- /.col-md-9 -->
@@ -241,6 +253,12 @@
                         <aside id="edit-search">
                             <header><h3>Search Properties</h3></header>
                             <form role="form" id="form-sidebar" class="form-search" th:action="@{/properties}" th:method="get" th:object="${propertiesSearchForm}">
+                                <div class="form-group">
+                                    <select th:field="*{location}">
+                                        <option value="">Location</option>
+                                        <option th:each="location : ${T(org.gotocy.domain.Location).values()}" th:value="${location}" th:text="${{location}}">Larnaca</option>
+                                    </select>
+                                </div><!-- /.form-group -->
                                 <div class="form-group">
                                     <select th:field="*{propertyStatus}">
                                         <option value="">Offer Type</option>
@@ -254,14 +272,8 @@
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
-                                    <select th:field="*{location}">
-                                        <option value="">Location</option>
-                                        <option th:each="location : ${T(org.gotocy.domain.Location).values()}" th:value="${location}" th:text="${{location}}">Larnaca</option>
-                                    </select>
-                                </div><!-- /.form-group -->
-                                <div class="form-group">
                                     <div class="price-range">
-                                        <input id="price-input" type="text" name="price" value="1000;299000">
+                                        <input id="price-input" type="text" name="price" th:value="|${priceFrom};${priceTo}|">
                                     </div>
                                 </div>
                                 <div class="form-group">

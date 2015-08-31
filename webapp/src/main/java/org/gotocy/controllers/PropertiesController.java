@@ -44,7 +44,7 @@ public class PropertiesController {
 
 	@RequestMapping(value = "/properties", method = RequestMethod.GET)
 	public String index(Model model, @ModelAttribute PropertiesSearchForm form, Locale locale,
-		@PageableDefault(size = 40, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
+		@PageableDefault(size = 18, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
 		Page<LocalizedProperty> properties = repository.findAll(form.setLocale(locale).toPredicate(), pageable);
 		model.addAttribute("properties", properties);
