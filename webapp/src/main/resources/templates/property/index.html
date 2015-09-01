@@ -6,9 +6,7 @@
         location=${propertiesSearchForm.location},
         curPathNoPage = ('/properties?' + ${propertiesSearchForm.paramsForUrl}),
         curPath = ${curPathNoPage} + '&page=' + ${properties.number},
-        title = #{'org.gotocy.templates.property.index' + (${propertyStatus != null}? ('.' + ${propertyStatus}) : '') + '.title'},
-        breadcrumps = #{org.gotocy.templates.property.index.breadcrumps},
-        breadcrumpsForStatus = #{'org.gotocy.templates.property.index' + (${propertyStatus != null}? ('.' + ${propertyStatus}) : '') + '.breadcrumps'}">
+        title = #{org.gotocy.dictionary.properties-search}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,9 +72,9 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a th:href="@{${helper.path('/', #locale.language)}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
-                <li th:if="${propertyStatus == null}" class="active" th:text="${breadcrumps}">Properties Listing</li>
-                <li th:unless="${propertyStatus == null}"><a th:href="@{${helper.path('/properties', #locale.language)}}" th:text="${breadcrumps}" href="#">Properties Listing</a></li>
-                <li th:unless="${propertyStatus == null}" class="active" th:text="${breadcrumpsForStatus}">Short Term</li>
+                <li th:if="${propertyStatus == null}" class="active" th:text="#{org.gotocy.dictionary.properties}">Properties Listing</li>
+                <li th:unless="${propertyStatus == null}"><a th:href="@{${helper.path('/properties', #locale.language)}}" th:text="#{org.gotocy.dictionary.properties}" href="#">Properties Listing</a></li>
+                <li th:unless="${propertyStatus == null}" class="active" th:text="#{org.gotocy.dictionary.search-results}">Search Results</li>
             </ol>
         </div>
         <!-- end Breadcrumb -->
@@ -251,23 +249,23 @@
                 <div class="col-md-3 col-sm-3">
                     <section id="sidebar">
                         <aside id="edit-search">
-                            <header><h3>Search Properties</h3></header>
+                            <header><h3 th:text="#{org.gotocy.dictionary.search-criteria}">Search Criteria</h3></header>
                             <form role="form" id="form-sidebar" class="form-search" th:action="@{/properties}" th:method="get" th:object="${propertiesSearchForm}">
                                 <div class="form-group">
                                     <select th:field="*{location}">
-                                        <option value="">Location</option>
+                                        <option value="" th:text="#{org.gotocy.dictionary.location}">Location</option>
                                         <option th:each="location : ${T(org.gotocy.domain.Location).values()}" th:value="${location}" th:text="${{location}}">Larnaca</option>
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
                                     <select th:field="*{propertyStatus}">
-                                        <option value="">Offer Type</option>
+                                        <option value="" th:text="#{org.gotocy.dictionary.offer-type}">Offer Type</option>
                                         <option th:each="type : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${type}" th:text="${{type}}">Short Term</option>
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
                                     <select th:field="*{propertyType}">
-                                        <option value="">Property Type</option>
+                                        <option value="" th:text="#{org.gotocy.dictionary.property-type}">Property Type</option>
                                         <option th:each="type : ${T(org.gotocy.domain.PropertyType).values()}" th:value="${type}" th:text="${{type}}">Apartment</option>
                                     </select>
                                 </div><!-- /.form-group -->
@@ -277,7 +275,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-default">Search Now</button>
+                                    <button type="submit" class="btn btn-default" th:text="#{org.gotocy.dictionary.search-now}">Search Now</button>
                                 </div><!-- /.form-group -->
                             </form><!-- /#form-map -->
                         </aside><!-- /#edit-search -->
