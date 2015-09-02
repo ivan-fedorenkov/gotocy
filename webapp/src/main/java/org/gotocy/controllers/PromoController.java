@@ -81,6 +81,7 @@ public class PromoController {
 		p.setTitle("The Promo property");
 		p.setAddress("Demetri Koumandari Str. No.1, 7103, Aradippou, Larnaca");
 		p.setShortAddress("Demetri Koumandari Str.1, Larnaca");
+		p.setLocation(Location.LARNACA);
 		p.setLatitude(34.940275);
 		p.setLongitude(33.590204);
 		p.setPropertyStatus(PropertyStatus.LONG_TERM);

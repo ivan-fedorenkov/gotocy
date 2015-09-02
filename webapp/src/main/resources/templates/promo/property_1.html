@@ -3,9 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US"
       th:lang="${#locale.language}"
       th:object="${localizedProperty}"
-      th:with="hasPano=${localizedProperty.property.panoXml != null}, propertyStatus=${#object.property.propertyStatus},
-        breadcrumpsAllPros = #{org.gotocy.templates.property.index.breadcrumps},
-        breadcrumpsForStatus = #{'org.gotocy.templates.property.index.' + ${propertyStatus} + '.breadcrumps'}">
+      th:with="hasPano=${localizedProperty.property.panoXml != null}, propertyStatus=${#object.property.propertyStatus}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,8 +66,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a th:href="@{${helper.path('/', #locale.language)}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
-                <li><a th:href="@{${helper.path('/properties', #locale.language)}}" th:text="${breadcrumpsAllPros}" href="#">Properties Listing</a></li>
-                <li><a th:href="@{${helper.path('/properties', #locale.language)}(propertyStatus=${propertyStatus})}" th:text="${breadcrumpsForStatus}" href="#">For Sale</a></li>
+                <li><a th:href="@{${helper.path('/properties', #locale.language)}}" th:text="#{org.gotocy.dictionary.properties-search}" href="#">Properties Search</a></li>
                 <li class="active" th:text="#{org.gotocy.dictionary.property-detail}">Property Detail</li>
             </ol>
         </div>
@@ -121,7 +118,7 @@
                             <div class="col-md-4 col-sm-12">
                                 <section id="quick-summary" class="clearfix">
                                     <header><h2 th:text="#{org.gotocy.dictionary.quick-summary}">Quick Summary</h2></header>
-                                    <dl th:include="'property/' + ${#object.property.propertyStatus.name()} + '/quick_summary_dl' :: quick_summary(${#object})">
+                                    <dl th:utext="${helper.property.quickSummaryHtml(#object.property)}">
                                         <dt>Location:</dt>
                                         <dd>Chicago, IL 60610</dd>
                                         <dt>Price:</dt>
