@@ -68,6 +68,10 @@ public class Property extends BaseEntity {
 	private ImageSet imageSet = new ImageSet();
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	private Image representativeImage;
+
+
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private PanoXml panoXml;
 
 	// ImageSet delegate
@@ -77,14 +81,6 @@ public class Property extends BaseEntity {
 
 	public List<Image> getImages() {
 		return imageSet.getImages();
-	}
-
-	public void setRepresentativeImage(Image image) {
-		imageSet.setRepresentativeImage(image);
-	}
-
-	public Image getRepresentativeImage() {
-		return imageSet.getRepresentativeImage();
 	}
 
 	// Getters and setters
@@ -286,5 +282,13 @@ public class Property extends BaseEntity {
 
 	public void setOfferStatus(OfferStatus offerStatus) {
 		this.offerStatus = offerStatus;
+	}
+
+	public Image getRepresentativeImage() {
+		return representativeImage;
+	}
+
+	public void setRepresentativeImage(Image representativeImage) {
+		this.representativeImage = representativeImage;
 	}
 }

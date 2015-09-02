@@ -1,10 +1,7 @@
 package org.gotocy.config;
 
 import org.gotocy.beans.AssetsProvider;
-import org.gotocy.domain.Furnishing;
-import org.gotocy.domain.Location;
-import org.gotocy.domain.PropertyStatus;
-import org.gotocy.domain.PropertyType;
+import org.gotocy.domain.*;
 import org.gotocy.filters.LocaleFilter;
 import org.gotocy.filters.UrlRewriteFilter;
 import org.gotocy.format.EnumsFormatter;
@@ -75,6 +72,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 		registry.addFormatter(new EnumsFormatter<Location>(Location.class, messageSource) {});
 		registry.addFormatter(new EnumsFormatter<PropertyType>(PropertyType.class, messageSource) {});
 		registry.addFormatter(new EnumsFormatter<PropertyStatus>(PropertyStatus.class, messageSource) {});
+		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class, messageSource) {});
 		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class, messageSource) {});
 	}
 

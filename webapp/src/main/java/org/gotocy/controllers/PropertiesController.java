@@ -7,6 +7,7 @@ import org.gotocy.domain.Owner;
 import org.gotocy.domain.Property;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.PropertyForm;
+import org.gotocy.repository.LocalizedPropertyPredicates;
 import org.gotocy.repository.LocalizedPropertyRepository;
 import org.gotocy.repository.OwnerRepository;
 import org.gotocy.repository.PropertyRepository;
@@ -53,18 +54,15 @@ public class PropertiesController {
 
 	@RequestMapping(value = "/property/{id}", method = RequestMethod.GET)
 	public String get(Model model, @PathVariable Long id, Locale locale) throws NoSuchRequestHandlingMethodException {
-		LocalizedProperty lp = repository.findProperty(id, locale.getLanguage());
+		LocalizedProperty lp = repository.findByPropertyIdAndLocale(id, locale.getLanguage());
 		// TODO: replace with custom exception
 		if (lp == null)
 			throw new NoSuchRequestHandlingMethodException("get", PropertiesController.class);
 		model.addAttribute(lp);
 
-		List<LocalizedProperty> similar = repository.findSimilar(lp.getProperty().getPropertyStatus(),
-			lp.getProperty().getLocation(), locale.getLanguage(), new PageRequest(0, 4));
+		Page<LocalizedProperty> similar = repository.findAll(LocalizedPropertyPredicates.similarWith(lp),
+			new PageRequest(0, 4));
 
-		// Remove self or last (if there was no self
-		if (!similar.remove(lp))
-			similar.remove(3);
 		model.addAttribute("similarProperties", similar);
 
 		return "property/show";
@@ -117,8 +115,8 @@ public class PropertiesController {
 
 	@RequestMapping(value = "/master/property/{property}/edit", method = RequestMethod.GET)
 	public String edit(Model model, @PathVariable("property") Property property) throws NoSuchRequestHandlingMethodException {
-		LocalizedProperty enLP = repository.findProperty(property.getId(), "en");
-		LocalizedProperty ruLP = repository.findProperty(property.getId(), "ru");
+		LocalizedProperty enLP = repository.findByPropertyIdAndLocale(property.getId(), "en");
+		LocalizedProperty ruLP = repository.findByPropertyIdAndLocale(property.getId(), "ru");
 
 		// TODO: replace with custom exception
 		if (enLP == null || ruLP == null)
@@ -156,7 +154,7 @@ public class PropertiesController {
 	}
 
 	private LocalizedProperty findOrCreateLP(Property property, String locale) {
-		LocalizedProperty lp = repository.findProperty(property.getId(), locale);
+		LocalizedProperty lp = repository.findByPropertyIdAndLocale(property.getId(), locale);
 		if (lp == null) {
 			lp = new LocalizedProperty();
 			lp.setProperty(property);

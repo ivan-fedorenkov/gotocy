@@ -1,34 +1,33 @@
 package org.gotocy.repository;
 
-import org.gotocy.domain.LocalizedProperty;
-import org.gotocy.domain.Location;
-import org.gotocy.domain.PropertyStatus;
+import com.mysema.query.BooleanBuilder;
+import com.mysema.query.types.Predicate;
+import org.gotocy.domain.*;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.repository.NoRepositoryBean;
 
+import javax.persistence.QueryHint;
 import java.util.List;
+import java.util.Locale;
+
+import static org.gotocy.domain.QLocalizedProperty.localizedProperty;
 
 /**
- * TODO: query on each method
  * @author ifedorenkov
  */
 public interface LocalizedPropertyRepository extends JpaRepository<LocalizedProperty, Long>,
-	QueryDslPredicateExecutor<LocalizedProperty>
+	QueryDslPredicateExecutor<LocalizedProperty>, LocalizedPropertyRepositoryCustom
 {
 
-	@Query("select lp from LocalizedProperty lp join fetch lp.property join fetch lp.property.imageSet.representativeImage " +
-		"left join fetch lp.property.panoXml where lp.property.id = ?1 and lp.locale = ?2")
-	LocalizedProperty findProperty(Long propertyId, String locale);
+	@EntityGraph(value = "LocalizedProperty.withProperty", type = EntityGraph.EntityGraphType.LOAD)
+	LocalizedProperty findByPropertyIdAndLocale(Long propertyId, String locale);
 
+	@EntityGraph(value = "LocalizedProperty.withProperty", type = EntityGraph.EntityGraphType.LOAD)
 	List<LocalizedProperty> findByPropertyPropertyStatusAndLocale(PropertyStatus propertyStatus, String locale, Pageable pageable);
-
-	List<LocalizedProperty> findByLocale(String locale, Pageable pageable);
-
-	@Query("select lp from LocalizedProperty lp join fetch lp.property join fetch lp.property.imageSet.representativeImage " +
-		"left join fetch lp.property.panoXml where lp.property.propertyStatus = ?1 and lp.property.location = ?2 and lp.locale = ?3")
-	List<LocalizedProperty> findSimilar(PropertyStatus propertyStatus,
-		Location location, String locale, Pageable pageable);
 
 }

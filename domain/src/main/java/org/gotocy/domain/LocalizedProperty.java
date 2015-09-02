@@ -15,7 +15,19 @@ import java.util.List;
  * @author ifedorenkov
  */
 @Entity
+@NamedEntityGraph(name = "LocalizedProperty.withProperty",
+	attributeNodes = @NamedAttributeNode(value = "property", subgraph = "propertyGraph"),
+	subgraphs = @NamedSubgraph(name = "propertyGraph", type = Property.class, attributeNodes = {
+		@NamedAttributeNode(value = "owner"),
+		@NamedAttributeNode(value = "panoXml"),
+		@NamedAttributeNode(value = "representativeImage")
+	})
+)
 public class LocalizedProperty extends BaseEntity {
+
+
+	/*@Query("select lp from LocalizedProperty lp join lp.property join lp.property.imageSet.representativeImage " +
+		"left join lp.property.panoXml where lp.property.id = ?1 and lp.locale = ?2")*/
 
 	@ManyToOne(optional = false)
 	private Property property;
