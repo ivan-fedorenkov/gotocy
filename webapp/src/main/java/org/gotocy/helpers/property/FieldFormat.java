@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author ifedorenkov
  */
-enum FieldFormat {
+public enum FieldFormat {
 	LOCATION {
 		@Override
 		public String getHeadingKey(Property p) {

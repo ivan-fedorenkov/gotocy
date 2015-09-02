@@ -21,8 +21,20 @@ class AdditionalInfoFieldsProvider implements FieldsProvider {
 		FieldFormat.DISTANCE_TO_SEA_SHORT
 	};
 
-	private static final FieldFormat[] SALE = new FieldFormat[]{
+
+	private static final FieldFormat[] SALE_HOUSE = new FieldFormat[]{
 		FieldFormat.COVERED_AREA,
+		FieldFormat.PLOT_SIZE,
+		FieldFormat.LEVELS
+	};
+
+	private static final FieldFormat[] SALE_APARTMENT = new FieldFormat[]{
+		FieldFormat.COVERED_AREA,
+		FieldFormat.BEDROOMS,
+		FieldFormat.LEVELS
+	};
+
+	private static final FieldFormat[] SALE_LAND = new FieldFormat[]{
 		FieldFormat.PLOT_SIZE
 	};
 
@@ -34,7 +46,14 @@ class AdditionalInfoFieldsProvider implements FieldsProvider {
 		case SHORT_TERM:
 			return AdditionalInfoFieldsProvider.SHORT_TERM;
 		case SALE:
-			return AdditionalInfoFieldsProvider.SALE;
+			switch (property.getPropertyType()) {
+			case HOUSE:
+				return SALE_HOUSE;
+			case APARTMENT:
+				return SALE_APARTMENT;
+			case LAND:
+				return SALE_LAND;
+			}
 		}
 		return new FieldFormat[0];
 	}

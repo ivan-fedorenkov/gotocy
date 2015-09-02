@@ -27,14 +27,29 @@ class ListingSummaryFieldsProvider implements FieldsProvider {
 		FieldFormat.DISTANCE_TO_SEA
 	};
 
-	private static final FieldFormat[] SALE = new FieldFormat[]{
+	private static final FieldFormat[] SALE_HOUSE = new FieldFormat[]{
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
 		FieldFormat.READY_TO_MOVE_IN,
 		FieldFormat.COVERED_AREA,
 		FieldFormat.PLOT_SIZE,
 		FieldFormat.BEDROOMS,
-		FieldFormat.DISTANCE_TO_SEA
+		FieldFormat.LEVELS
+	};
+
+	private static final FieldFormat[] SALE_APARTMENT = new FieldFormat[]{
+		FieldFormat.LOCATION,
+		FieldFormat.PROPERTY_TYPE,
+		FieldFormat.READY_TO_MOVE_IN,
+		FieldFormat.COVERED_AREA,
+		FieldFormat.BEDROOMS,
+		FieldFormat.LEVELS
+	};
+
+	private static final FieldFormat[] SALE_LAND = new FieldFormat[]{
+		FieldFormat.LOCATION,
+		FieldFormat.PROPERTY_TYPE,
+		FieldFormat.PLOT_SIZE
 	};
 
 	@Override
@@ -45,7 +60,14 @@ class ListingSummaryFieldsProvider implements FieldsProvider {
 		case SHORT_TERM:
 			return ListingSummaryFieldsProvider.SHORT_TERM;
 		case SALE:
-			return ListingSummaryFieldsProvider.SALE;
+			switch (property.getPropertyType()) {
+			case HOUSE:
+				return SALE_HOUSE;
+			case APARTMENT:
+				return SALE_APARTMENT;
+			case LAND:
+				return SALE_LAND;
+			}
 		}
 		return new FieldFormat[0];
 	}
