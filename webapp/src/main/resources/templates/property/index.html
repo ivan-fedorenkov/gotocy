@@ -72,9 +72,9 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a th:href="@{${helper.path('/', #locale.language)}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
-                <li th:if="${propertyStatus == null}" class="active" th:text="#{org.gotocy.dictionary.properties}">Properties Listing</li>
-                <li th:unless="${propertyStatus == null}"><a th:href="@{${helper.path('/properties', #locale.language)}}" th:text="#{org.gotocy.dictionary.properties}" href="#">Properties Listing</a></li>
-                <li th:unless="${propertyStatus == null}" class="active" th:text="#{org.gotocy.dictionary.search-results}">Search Results</li>
+                <li th:unless="${propertiesSearchForm.changed}" class="active" th:text="#{org.gotocy.dictionary.properties}">Properties Listing</li>
+                <li th:if="${propertiesSearchForm.changed}"><a th:href="@{${helper.path('/properties', #locale.language)}}" th:text="#{org.gotocy.dictionary.properties}" href="#">Properties Listing</a></li>
+                <li th:if="${propertiesSearchForm.changed}" class="active" th:text="#{org.gotocy.dictionary.search-results}">Search Results</li>
             </ol>
         </div>
         <!-- end Breadcrumb -->
@@ -253,7 +253,7 @@
                     <section id="sidebar">
                         <aside id="edit-search">
                             <header><h3 th:text="#{org.gotocy.dictionary.search-criteria}">Search Criteria</h3></header>
-                            <form role="form" id="form-sidebar" class="form-search" th:action="@{/properties}" th:method="get" th:object="${propertiesSearchForm}">
+                            <form role="form" id="form-sidebar" class="form-search" th:action="@{${helper.path('/properties', #locale.language)}}" th:method="get" th:object="${propertiesSearchForm}">
                                 <div class="form-group">
                                     <select th:field="*{location}">
                                         <option value="" th:text="#{org.gotocy.dictionary.location}">Location</option>

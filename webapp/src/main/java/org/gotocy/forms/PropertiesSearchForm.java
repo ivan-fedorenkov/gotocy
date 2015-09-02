@@ -36,11 +36,22 @@ public class PropertiesSearchForm {
 		return this;
 	}
 
+	/**
+	 * Returns the url params that are constructed from the form fields.
+	 */
 	public String getParamsForUrl() {
 		return "propertyStatus=" + (propertyStatus == null ? "" : propertyStatus.name()) +
 			"&propertyType=" + (propertyType == null ? "" : propertyType.name()) +
 			"&location=" + (location == null ? "" : location.name()) +
 			"&price=" + (priceFrom == MIN_PRICE && priceTo == MAX_PRICE ? "" : priceFrom + ";" + priceTo);
+	}
+
+	/**
+	 * Returns true of any of the form parameters was changed.
+	 */
+	public boolean isChanged() {
+		return location != null || propertyStatus != null || propertyType != null || priceFrom != MIN_PRICE ||
+			priceTo != MAX_PRICE;
 	}
 
 	public void setLocation(Location location) {
