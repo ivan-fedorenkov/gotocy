@@ -112,8 +112,11 @@
                                                 <a th:href="@{${helper.path(lp)}}" href="property-detail.html"><h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3></a>
                                                 <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
                                             </header>
-                                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum</p>-->
-                                            <dl th:utext="${helper.property.listingSummaryHtml(lp.property)}">
+                                            <dl th:remove="all-but-first">
+                                                <!--/*/ <th:block th:each="field : ${helper.property.formattedFields(lp.property, T(org.gotocy.helpers.property.FieldsStrategy).LISTING_SUMMARY)}"> /*/-->
+                                                <dt th:text="|${field.heading}:|">Location:</dt>
+                                                <dd th:utext="${field.value}">Chicago, IL 60610</dd>
+                                                <!--/*/ </th:block> /*/-->
                                                 <dt>Status:</dt>
                                                 <dd>Sale</dd>
                                                 <dt>Area:</dt>

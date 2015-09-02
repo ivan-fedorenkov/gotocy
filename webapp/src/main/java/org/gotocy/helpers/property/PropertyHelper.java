@@ -8,6 +8,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -48,75 +49,10 @@ public class PropertyHelper {
 	}
 
 	/**
-	 * Generates the quick summary dl content html code.
-	 * TODO: generate dl itself?
+	 * Returns the list of property {@link FormattedField} based on the given strategy.
 	 */
-	public String quickSummaryHtml(Property p) {
-		QuickSummaryGenerator generator = null;
-
-		switch (p.getPropertyStatus()) {
-		case LONG_TERM:
-			generator = QuickSummaryGenerator.LONG_TERM;
-			break;
-		case SHORT_TERM:
-			generator = QuickSummaryGenerator.SHORT_TERM;
-			break;
-		case SALE:
-			switch (p.getPropertyType()) {
-			case HOUSE:
-				generator = QuickSummaryGenerator.SALE_HOUSE;
-				break;
-			case APARTMENT:
-				generator = QuickSummaryGenerator.SALE_APARTMENT;
-				break;
-			case LAND:
-				generator = QuickSummaryGenerator.SALE_LAND;
-			}
-		}
-
-		return generator.generateHtml(messageSource, p);
-	}
-
-	/**
-	 * Generates the additional info ul content html code.
-	 * TODO: generate ul itself?
-	 */
-	public String additionalInfoHtml(Property p) {
-		AdditionalInfoGenerator generator = null;
-
-		switch (p.getPropertyStatus()) {
-		case LONG_TERM:
-			generator = AdditionalInfoGenerator.LONG_TERM;
-			break;
-		case SHORT_TERM:
-			generator = AdditionalInfoGenerator.SHORT_TERM;
-			break;
-		case SALE:
-			generator = AdditionalInfoGenerator.SALE;
-		}
-
-		return generator.generateHtml(messageSource, p);
-	}
-
-	/**
-	 * Generates the listing summary dl content html code.
-	 * TODO: generate dl itself?
-	 */
-	public String listingSummaryHtml(Property p) {
-		ListingSummaryGenerator generator = null;
-
-		switch (p.getPropertyStatus()) {
-		case LONG_TERM:
-			generator = ListingSummaryGenerator.LONG_TERM;
-			break;
-		case SHORT_TERM:
-			generator = ListingSummaryGenerator.SHORT_TERM;
-			break;
-		case SALE:
-			generator = ListingSummaryGenerator.SALE;
-		}
-
-		return generator.generateHtml(messageSource, p);
+	public List<FormattedField> formattedFields(Property property, FieldsStrategy strategy) {
+		return strategy.getFormattedFields(messageSource, property);
 	}
 
 	/**

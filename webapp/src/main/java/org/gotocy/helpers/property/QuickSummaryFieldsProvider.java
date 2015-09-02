@@ -1,15 +1,15 @@
 package org.gotocy.helpers.property;
 
 import org.gotocy.domain.Property;
-import org.springframework.context.MessageSource;
 
 /**
- * DL quick summary generator.
+ * Quick summary fields provider.
  *
  * @author ifedorenkov
  */
-enum QuickSummaryGenerator {
-	LONG_TERM(
+class QuickSummaryFieldsProvider implements FieldsProvider {
+
+	private static final FieldFormat[] LONG_TERM = new FieldFormat[]{
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
 		FieldFormat.RENTAL_TYPE,
@@ -17,9 +17,9 @@ enum QuickSummaryGenerator {
 		FieldFormat.BEDROOMS,
 		FieldFormat.FURNISHING,
 		FieldFormat.HEATING_SYSTEM
-	),
+	};
 
-	SHORT_TERM (
+	private static final FieldFormat[] SHORT_TERM = new FieldFormat[]{
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
 		FieldFormat.RENTAL_TYPE,
@@ -28,9 +28,9 @@ enum QuickSummaryGenerator {
 		FieldFormat.GUESTS,
 		FieldFormat.AIR_CONDITIONER,
 		FieldFormat.DISTANCE_TO_SEA
-	),
+	};
 
-	SALE_HOUSE(
+	private static final FieldFormat[] SALE_HOUSE = new FieldFormat[]{
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
 		FieldFormat.READY_TO_MOVE_IN,
@@ -40,9 +40,9 @@ enum QuickSummaryGenerator {
 		FieldFormat.PLOT_SIZE,
 		FieldFormat.BEDROOMS,
 		FieldFormat.LEVELS
-	),
+	};
 
-	SALE_APARTMENT(
+	private static final FieldFormat[] SALE_APARTMENT = new FieldFormat[]{
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
 		FieldFormat.READY_TO_MOVE_IN,
@@ -51,30 +51,32 @@ enum QuickSummaryGenerator {
 		FieldFormat.COVERED_AREA,
 		FieldFormat.BEDROOMS,
 		FieldFormat.LEVELS
-	),
+	};
 
-	SALE_LAND(
+	private static final FieldFormat[] SALE_LAND = new FieldFormat[]{
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
 		FieldFormat.PRICE,
 		FieldFormat.VAT,
 		FieldFormat.PLOT_SIZE
-	);
+	};
 
-	private final FieldFormat[] fields;
-
-	QuickSummaryGenerator(FieldFormat... fields) {
-		this.fields = fields;
-	}
-
-	public String generateHtml(MessageSource ms, Property p) {
-		StringBuilder dl = new StringBuilder();
-
-		for (FieldFormat field : fields) {
-			dl.append("<dt>").append(field.formatHeadingKey(ms, p)).append(":").append("</dt>");
-			dl.append("<dd>").append(field.formatValue(ms, p)).append("</dd>");
+	public FieldFormat[] getFields(Property property) {
+		switch (property.getPropertyStatus()) {
+		case LONG_TERM:
+			return QuickSummaryFieldsProvider.LONG_TERM;
+		case SHORT_TERM:
+			return QuickSummaryFieldsProvider.SHORT_TERM;
+		case SALE:
+			switch (property.getPropertyType()) {
+			case HOUSE:
+				return QuickSummaryFieldsProvider.SALE_HOUSE;
+			case APARTMENT:
+				return QuickSummaryFieldsProvider.SALE_APARTMENT;
+			case LAND:
+				return QuickSummaryFieldsProvider.SALE_LAND;
+			}
 		}
-
-		return dl.toString();
+		return new FieldFormat[0];
 	}
 }

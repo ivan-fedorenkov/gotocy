@@ -124,14 +124,10 @@
                                         <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
                                         <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
-                                    <ul class="additional-info" th:utext="${helper.property.additionalInfoHtml(lp.property)}">
-                                        <li>
-                                            <header>Bedrooms:</header>
-                                            <figure>2</figure>
-                                        </li>
-                                        <li>
-                                            <header>Baths:</header>
-                                            <figure>2</figure>
+                                    <ul class="additional-info">
+                                        <li th:each="field : ${helper.property.formattedFields(lp.property, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
+                                            <header th:text="|${field.heading}:|">Bedrooms:</header>
+                                            <figure th:utext="${field.value}">2</figure>
                                         </li>
                                     </ul>
                                 </div>
@@ -263,14 +259,10 @@
                                         <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
                                         <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
-                                    <ul class="additional-info" th:utext="${helper.property.additionalInfoHtml(lp.property)}">
-                                        <li>
-                                            <header>Bedrooms:</header>
-                                            <figure>2</figure>
-                                        </li>
-                                        <li>
-                                            <header>Baths:</header>
-                                            <figure>2</figure>
+                                    <ul class="additional-info">
+                                        <li th:each="field : ${helper.property.formattedFields(lp.property, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
+                                            <header th:text="|${field.heading}:|">Bedrooms:</header>
+                                            <figure th:utext="${field.value}">2</figure>
                                         </li>
                                     </ul>
                                 </div>
@@ -402,14 +394,10 @@
                                         <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
                                         <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
-                                    <ul class="additional-info" th:utext="${helper.property.additionalInfoHtml(lp.property)}">
-                                        <li>
-                                            <header>Bedrooms:</header>
-                                            <figure>2</figure>
-                                        </li>
-                                        <li>
-                                            <header>Baths:</header>
-                                            <figure>2</figure>
+                                    <ul class="additional-info">
+                                        <li th:each="field : ${helper.property.formattedFields(lp.property, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
+                                            <header th:text="|${field.heading}:|">Bedrooms:</header>
+                                            <figure th:utext="${field.value}">2</figure>
                                         </li>
                                     </ul>
                                 </div>

@@ -4,30 +4,30 @@ import org.gotocy.domain.Property;
 import org.springframework.context.MessageSource;
 
 /**
- * DL listing summary generator.
+ * Listing summary fields provider.
  *
  * @author ifedorenkov
  */
-enum ListingSummaryGenerator {
+class ListingSummaryFieldsProvider implements FieldsProvider {
 
-	LONG_TERM(
+	private static final FieldFormat[] LONG_TERM = new FieldFormat[]{
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
 		FieldFormat.BEDROOMS,
 		FieldFormat.FURNISHING,
 		FieldFormat.HEATING_SYSTEM
-	),
+	};
 
-	SHORT_TERM(
+	private static final FieldFormat[] SHORT_TERM = new FieldFormat[]{
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
 		FieldFormat.BEDROOMS,
 		FieldFormat.GUESTS,
 		FieldFormat.AIR_CONDITIONER,
 		FieldFormat.DISTANCE_TO_SEA
-	),
+	};
 
-	SALE(
+	private static final FieldFormat[] SALE = new FieldFormat[]{
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
 		FieldFormat.READY_TO_MOVE_IN,
@@ -35,23 +35,18 @@ enum ListingSummaryGenerator {
 		FieldFormat.PLOT_SIZE,
 		FieldFormat.BEDROOMS,
 		FieldFormat.DISTANCE_TO_SEA
-	);
+	};
 
-	private final FieldFormat[] fields;
-
-	ListingSummaryGenerator(FieldFormat... fields) {
-		this.fields = fields;
-	}
-
-	public String generateHtml(MessageSource ms, Property p) {
-		StringBuilder dl = new StringBuilder();
-
-		for (FieldFormat field : fields) {
-			dl.append("<dt>").append(field.formatHeadingKey(ms, p)).append(":").append("</dt>");
-			dl.append("<dd>").append(field.formatValue(ms, p)).append("</dd>");
+	@Override
+	public FieldFormat[] getFields(Property property) {
+		switch (property.getPropertyStatus()) {
+		case LONG_TERM:
+			return ListingSummaryFieldsProvider.LONG_TERM;
+		case SHORT_TERM:
+			return ListingSummaryFieldsProvider.SHORT_TERM;
+		case SALE:
+			return ListingSummaryFieldsProvider.SALE;
 		}
-
-		return dl.toString();
+		return new FieldFormat[0];
 	}
-
 }

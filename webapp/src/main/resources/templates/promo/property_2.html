@@ -118,9 +118,11 @@
                             <div class="col-md-4 col-sm-12">
                                 <section id="quick-summary" class="clearfix">
                                     <header><h2 th:text="#{org.gotocy.dictionary.quick-summary}">Quick Summary</h2></header>
-                                    <dl th:utext="${helper.property.quickSummaryHtml(#object.property)}">
-                                        <dt>Location:</dt>
-                                        <dd>Chicago, IL 60610</dd>
+                                    <dl th:remove="all-but-first">
+                                        <!--/*/ <th:block th:each="field : ${helper.property.formattedFields(#object.property, T(org.gotocy.helpers.property.FieldsStrategy).QUICK_SUMMARY)}"> /*/-->
+                                        <dt th:text="|${field.heading}:|">Location:</dt>
+                                        <dd th:utext="${field.value}">Chicago, IL 60610</dd>
+                                        <!--/*/ </th:block> /*/-->
                                         <dt>Price:</dt>
                                         <dd><span class="tag price">$ 78,000</span></dd>
                                         <dt>Property Type:</dt>
