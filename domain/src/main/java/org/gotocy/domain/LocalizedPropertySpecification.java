@@ -16,7 +16,6 @@ import java.util.Objects;
 @Entity
 public class LocalizedPropertySpecification extends BaseEntity {
 
-	@JsonBackReference
 	@ManyToOne(optional = false)
 	private LocalizedProperty localizedProperty;
 

@@ -1,5 +1,7 @@
 package org.gotocy.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -69,7 +71,6 @@ public class Property extends BaseEntity {
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Image representativeImage;
-
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private PanoXml panoXml;

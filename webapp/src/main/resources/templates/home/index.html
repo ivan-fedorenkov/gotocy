@@ -15,7 +15,7 @@
 
 </head>
 
-<body class="page-homepage navigation-fixed-top page-slider" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
+<body class="page-homepage map-google horizontal-search-float" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
 <div th:replace="fragments/metrics_div :: ya"></div>
 <!-- Wrapper -->
 <div class="wrapper">
@@ -61,49 +61,180 @@
     </div><!-- /.navigation -->
     <!-- end Navigation -->
 
-    <!-- Slider -->
-    <div id="slider" class="hidden-xs loading">
-        <div id="loading-icon"><i class="fa fa-cog fa-spin"></i></div>
-        <div class="owl-carousel homepage-slider carousel-full-width">
-            <div class="slide">
-                <div class="container">
-                    <div class="overlay">
-                        <div class="info">
-                            <noindex>
-                                <a href="https://flic.kr/p/oXU5u4" rel="nofollow" target="_blank" class="text-left">Cyprus shipwreck Edro III &copy; Oliver Kratzke</a><br>
-                                <a href="https://creativecommons.org/licenses/by/2.0/" rel="nofollow" target="_blank" class="text-right">CC BY 2.0</a>
-                            </noindex>
-                        </div>
-                    </div>
-                </div>
-                <img alt="" th:src="'http://assets.gotocy.eu/static/img/index_1.jpg'" src="/parent/webapp/public/assets/img/index_1.jpg">
-            </div>
-            <div class="slide">
-                <div class="container">
-                    <div class="overlay">
-                        <div class="info">
-                            <noindex>
-                                <a href="https://flic.kr/p/pBxKUX" rel="nofollow" target="_blank" class="text-left">Limni Dock at sunset &copy; Oliver Kratzke</a><br>
-                                <a href="https://creativecommons.org/licenses/by/2.0/" rel="nofollow" target="_blank" class="text-right">CC BY 2.0</a>
-                            </noindex>
-                        </div>
-                    </div>
-                </div>
-                <img alt="" th:src="'http://assets.gotocy.eu/static/img/index_2.jpg'" src="/parent/webapp/public/assets/img/index_2.jpg">
-            </div>
+    <div class="container">
+        <div class="geo-location-wrapper">
+            <span class="btn geo-location"><i class="fa fa-map-marker"></i><span class="text">Find My Position</span></span>
         </div>
     </div>
-    <!-- end Slider -->
+
+    <!-- Map -->
+    <div id="map"></div>
+    <!-- end Map -->
+
+    <!-- Search Box -->
+    <div class="search-box-wrapper">
+        <div class="search-box-inner">
+            <div class="container">
+                <div class="search-box map">
+                    <ul class="nav nav-pills">
+                        <li class="active"><a href="#search-form-sale" data-toggle="tab">Sale</a></li>
+                        <li><a href="#search-form-rent" data-toggle="tab">Rent</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="search-form-sale">
+                            <form role="form" id="form-map-sale" class="form-map form-search clearfix">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-4">
+                                        <div class="form-group">
+                                            <select name="form-sale-country">
+                                                <option value="">Country</option>
+                                                <option value="1">France</option>
+                                                <option value="2">Great Britain</option>
+                                                <option value="3">Spain</option>
+                                                <option value="4">Russia</option>
+                                                <option value="5">United States</option>
+                                            </select>
+                                        </div><!-- /.form-group -->
+                                    </div>
+                                    <div class="col-md-2 col-sm-4">
+                                        <div class="form-group">
+                                            <select name="form-sale-city">
+                                                <option value="">City</option>
+                                                <option value="1">New York</option>
+                                                <option value="2">Los Angeles</option>
+                                                <option value="3">Chicago</option>
+                                                <option value="4">Houston</option>
+                                                <option value="5">Philadelphia</option>
+                                            </select>
+                                        </div><!-- /.form-group -->
+                                    </div>
+                                    <div class="col-md-2 col-sm-4">
+                                        <div class="form-group">
+                                            <select name="form-sale-district">
+                                                <option value="">District</option>
+                                                <option value="1">Manhattan</option>
+                                                <option value="2">The Bronx</option>
+                                                <option value="3">Brooklyn</option>
+                                                <option value="4">Queens</option>
+                                                <option value="5">Staten Island</option>
+                                            </select>
+                                        </div><!-- /.form-group -->
+                                    </div>
+                                    <div class="col-md-2 col-sm-4">
+                                        <div class="form-group">
+                                            <select name="form-sale-property-type">
+                                                <option value="">Property Type</option>
+                                                <option value="1">Apartment</option>
+                                                <option value="2">Condominium</option>
+                                                <option value="3">Cottage</option>
+                                                <option value="4">Flat</option>
+                                                <option value="5">House</option>
+                                            </select>
+                                        </div><!-- /.form-group -->
+                                    </div>
+                                    <div class="col-md-2 col-sm-4">
+                                        <div class="form-group">
+                                            <select name="form-sale-price">
+                                                <option value="">Price</option>
+                                                <option value="1">$10,000 +</option>
+                                                <option value="2">$50,000 +</option>
+                                                <option value="3">$100,000 +</option>
+                                                <option value="4">$500,000 +</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-4">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-default">Search Sale</button>
+                                        </div><!-- /.form-group -->
+                                    </div>
+                                </div>
+                            </form><!-- /#form-map -->
+                        </div><!-- /#search-form-rent -->
+                        <div class="tab-pane fade" id="search-form-rent">
+                            <form role="form" id="form-map-rent" class="form-map form-search clearfix">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-4">
+                                        <div class="form-group">
+                                            <select name="form-rent-city">
+                                                <option value="">City</option>
+                                                <option value="1">New York</option>
+                                                <option value="2">Los Angeles</option>
+                                                <option value="3">Chicago</option>
+                                                <option value="4">Houston</option>
+                                                <option value="5">Philadelphia</option>
+                                            </select>
+                                        </div><!-- /.form-group -->
+                                    </div>
+                                    <div class="col-md-2 col-sm-4">
+                                        <div class="form-group">
+                                            <select name="form-rent-district">
+                                                <option value="">District</option>
+                                                <option value="1">Manhattan</option>
+                                                <option value="2">The Bronx</option>
+                                                <option value="3">Brooklyn</option>
+                                                <option value="4">Queens</option>
+                                                <option value="5">Staten Island</option>
+                                            </select>
+                                        </div><!-- /.form-group -->
+                                    </div>
+                                    <div class="col-md-2 col-sm-4">
+                                        <div class="form-group">
+                                            <select name="form-rent-property-type">
+                                                <option value="">Property Type</option>
+                                                <option value="1">Apartment</option>
+                                                <option value="2">Condominium</option>
+                                                <option value="3">Cottage</option>
+                                                <option value="4">Flat</option>
+                                                <option value="5">House</option>
+                                            </select>
+                                        </div><!-- /.form-group -->
+                                    </div>
+                                    <div class="col-md-2 col-sm-4">
+                                        <div class="form-group">
+                                            <select name="form-rent-payment">
+                                                <option value="">Payment</option>
+                                                <option value="1">Monthly</option>
+                                                <option value="2">Quarterly</option>
+                                                <option value="3">Yearly</option>
+                                            </select>
+                                        </div><!-- /.form-group -->
+                                    </div>
+                                    <div class="col-md-2 col-sm-4">
+                                        <div class="form-group">
+                                            <select name="form-rent-price">
+                                                <option value="">Price</option>
+                                                <option value="1">$100 +</option>
+                                                <option value="2">$500 +</option>
+                                                <option value="2">$1000 +</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-4">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-default">Search Rent</button>
+                                        </div><!-- /.form-group -->
+                                    </div>
+                                </div>
+                            </form><!-- /#form-map -->
+                        </div><!-- /#search-form-sale -->
+                    </div><!-- /.tab-content -->
+                </div><!-- /.search-box -->
+            </div><!-- /.container -->
+        </div><!-- /.search-box-inner -->
+    </div>
+    <!-- end Search Box -->
 
     <!-- Page Content -->
     <div id="page-content">
-         <section id="banner">
+        <section id="banner">
             <div class="block has-dark-background background-color-default-darker center text-banner">
                 <div class="container">
                     <h1 class="no-bottom-margin no-border" th:utext="|#{org.gotocy.templates.adding-property-banner-question} <a class='text-underline' href='mailto:${gotocy.email}'>#{org.gotocy.templates.adding-property-banner-contact-us}</a>|">Do you want your property do be listed here? <a href="#" class="text-underline">Contact Us</a>!</h1>
                 </div>
             </div>
         </section> <!-- /#banner -->
+
         <section id="long-term-properties" class="block" th:unless=${#lists.isEmpty(longTermProperties)}>
             <div class="container">
                 <header class="section-title">
@@ -554,15 +685,21 @@
 </div>
 
 <script type="text/javascript" th:src="@{/assets/js/application.min.js}" src="/parent/webapp/public/assets/js/application.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" th:src="@{/assets/js/application-maps.min.js}" src="/parent/webapp/public/assets/js/application-maps.min.js"></script>
 
 <!--[if gt IE 8]>
 <script type="text/javascript" src="http://assets.gotocy.eu/static/js/ie.js"></script>
 <![endif]-->
 
-<script>
+<script th:inline="javascript">
+    _latitude = /*[[${gotocy.defaultLatitude}]]*/ '34.7071301';
+    _longitude = /*[[${gotocy.defaultLongitude}]]*/ '33.022617399999945';
+    createHomepageGoogleMap(_latitude,_longitude, /*[[@{${helper.path('/properties.json', #locale.language)}}]]*/ 'http://assets.gotocy.eu/static/js/locations.js');
     $(window).load(function(){
         initializeOwl(false);
     });
 </script>
+
 </body>
 </html>

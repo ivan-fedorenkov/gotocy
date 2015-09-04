@@ -2,6 +2,7 @@ package org.gotocy.helpers;
 
 import org.gotocy.beans.AssetsProvider;
 import org.gotocy.domain.*;
+import org.gotocy.dto.PropertyJson;
 import org.gotocy.helpers.property.PropertyHelper;
 import org.springframework.context.MessageSource;
 
@@ -140,7 +141,7 @@ public class Helper {
 		return number > 1 ? code + ".plural" : code;
 	}
 
-	private static String getPrefixForLanguage(String language) {
+	public static String getPrefixForLanguage(String language) {
 		return Objects.equals(language, "ru") ? "/ru" : "";
 	}
 

@@ -21,6 +21,7 @@ public abstract class Asset<T> extends BaseEntity {
 	private String key;
 
 	protected transient T object;
+	protected transient String resolvedUrl;
 
 	public String getKey() {
 		return key;
@@ -36,6 +37,14 @@ public abstract class Asset<T> extends BaseEntity {
 
 	public void setObject(T object) {
 		this.object = object;
+	}
+
+	public String getResolvedUrl() {
+		return resolvedUrl;
+	}
+
+	public void setResolvedUrl(String resolvedUrl) {
+		this.resolvedUrl = resolvedUrl;
 	}
 
 	@Override

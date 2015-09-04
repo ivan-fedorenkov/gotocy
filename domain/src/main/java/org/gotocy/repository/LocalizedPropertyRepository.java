@@ -30,4 +30,7 @@ public interface LocalizedPropertyRepository extends JpaRepository<LocalizedProp
 	@EntityGraph(value = "LocalizedProperty.withProperty", type = EntityGraph.EntityGraphType.LOAD)
 	List<LocalizedProperty> findByPropertyPropertyStatusAndLocale(PropertyStatus propertyStatus, String locale, Pageable pageable);
 
+	@EntityGraph(value = "LocalizedProperty.withProperty", type = EntityGraph.EntityGraphType.LOAD)
+	Iterable<LocalizedProperty> findAll(Predicate predicate);
+
 }

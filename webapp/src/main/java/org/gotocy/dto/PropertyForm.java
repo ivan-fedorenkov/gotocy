@@ -1,4 +1,4 @@
-package org.gotocy.forms;
+package org.gotocy.dto;
 
 import org.gotocy.domain.*;
 import org.gotocy.utils.CollectionUtils;

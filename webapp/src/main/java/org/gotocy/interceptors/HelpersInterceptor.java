@@ -20,8 +20,8 @@ public class HelpersInterceptor implements HandlerInterceptor {
 	private final Helper helper;
 	private final ApplicationProperties applicationProperties;
 
-	public HelpersInterceptor(ApplicationProperties applicationProperties, MessageSource messageSource, AssetsProvider assetsProvider) {
-		helper = new Helper(messageSource, assetsProvider);
+	public HelpersInterceptor(ApplicationProperties applicationProperties, Helper helper) {
+		this.helper = helper;
 		this.applicationProperties = applicationProperties;
 	}
 
