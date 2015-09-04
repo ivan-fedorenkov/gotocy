@@ -1,5 +1,6 @@
 package org.gotocy.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -25,10 +26,6 @@ import java.util.List;
 )
 public class LocalizedProperty extends BaseEntity {
 
-
-	/*@Query("select lp from LocalizedProperty lp join lp.property join lp.property.imageSet.representativeImage " +
-		"left join lp.property.panoXml where lp.property.id = ?1 and lp.locale = ?2")*/
-
 	@ManyToOne(optional = false)
 	private Property property;
 
@@ -37,7 +34,6 @@ public class LocalizedProperty extends BaseEntity {
 	@Lob
 	private String description;
 
-	@JsonManagedReference
 	@OneToMany(mappedBy = "localizedProperty", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<LocalizedPropertySpecification> specifications = new ArrayList<>();
 

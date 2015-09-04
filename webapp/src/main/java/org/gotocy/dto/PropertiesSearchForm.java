@@ -1,4 +1,4 @@
-package org.gotocy.forms;
+package org.gotocy.dto;
 
 import com.mysema.query.BooleanBuilder;
 import com.mysema.query.types.Predicate;

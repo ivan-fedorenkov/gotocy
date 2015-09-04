@@ -1,12 +1,13 @@
 package org.gotocy.controllers;
 
 import org.gotocy.beans.AssetsProvider;
-import org.gotocy.domain.Image;
-import org.gotocy.domain.LocalizedProperty;
-import org.gotocy.domain.Owner;
-import org.gotocy.domain.Property;
-import org.gotocy.forms.PropertiesSearchForm;
-import org.gotocy.forms.PropertyForm;
+import org.gotocy.domain.*;
+import org.gotocy.dto.PropertiesSearchForm;
+import org.gotocy.dto.PropertyJson;
+import org.gotocy.dto.PropertyForm;
+import org.gotocy.helpers.Helper;
+import org.gotocy.helpers.property.FieldFormat;
+import org.gotocy.helpers.property.PropertyHelper;
 import org.gotocy.repository.LocalizedPropertyPredicates;
 import org.gotocy.repository.LocalizedPropertyRepository;
 import org.gotocy.repository.OwnerRepository;
@@ -27,6 +28,10 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.StreamSupport;
+
+import static java.util.stream.Collectors.toList;
+import static org.gotocy.repository.LocalizedPropertyPredicates.forLocale;
 
 /**
  * @author ifedorenkov
@@ -42,6 +47,8 @@ public class PropertiesController {
 	private LocalizedPropertyRepository repository;
 	@Autowired
 	AssetsProvider assetsProvider;
+	@Autowired
+	PropertyHelper propertyHelper;
 
 	@RequestMapping(value = "/properties", method = RequestMethod.GET)
 	public String index(Model model, @ModelAttribute PropertiesSearchForm form, Locale locale,
@@ -50,6 +57,25 @@ public class PropertiesController {
 		Page<LocalizedProperty> properties = repository.findAll(form.setLocale(locale).toPredicate(), pageable);
 		model.addAttribute("properties", properties);
 		return "property/index";
+	}
+
+	@RequestMapping(value = "/properties.json", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody Iterable<PropertyJson> indexJson(Locale locale) {
+		return StreamSupport.stream(repository.findAll(forLocale(locale)).spliterator(), false)
+			.map(lp -> {
+				PropertyJson p = new PropertyJson();
+				p.setTitle(lp.getProperty().getTitle());
+				p.setLatitude(lp.getProperty().getLatitude());
+				p.setLongitude(lp.getProperty().getLongitude());
+				p.setShortAddress(lp.getProperty().getShortAddress());
+				p.setPrice(propertyHelper.price(lp.getProperty()));
+				p.setTypeIcon(PropertyHelper.typeIcon(lp.getProperty().getPropertyType()));
+				p.setPropertyUrl(Helper.path(lp));
+				p.setRepresentativeImageUrl(assetsProvider.getImageUrl(lp.getProperty().getRepresentativeImage(),
+					ImageSize.MEDIUM));
+				return p;
+			})
+			.collect(toList());
 	}
 
 	@RequestMapping(value = "/property/{id}", method = RequestMethod.GET)

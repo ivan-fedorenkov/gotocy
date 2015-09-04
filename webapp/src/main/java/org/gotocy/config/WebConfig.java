@@ -5,6 +5,8 @@ import org.gotocy.domain.*;
 import org.gotocy.filters.LocaleFilter;
 import org.gotocy.filters.UrlRewriteFilter;
 import org.gotocy.format.EnumsFormatter;
+import org.gotocy.helpers.Helper;
+import org.gotocy.helpers.property.PropertyHelper;
 import org.gotocy.interceptors.HelpersInterceptor;
 import org.gotocy.interceptors.SecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +68,15 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 		return new LocaleFilter();
 	}
 
+	@Bean
+	public Helper helper() {
+		return new Helper(messageSource, assetsProvider);
+	}
+
+	@Bean
+	public PropertyHelper propertyHelper() {
+		return new PropertyHelper(messageSource);
+	}
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
@@ -78,7 +89,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new HelpersInterceptor(applicationProperties, messageSource, assetsProvider));
+		registry.addInterceptor(new HelpersInterceptor(applicationProperties, helper()));
 		registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/master/**");
 	}
 
