@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.support.CrudMethodMetadata;
 import org.springframework.data.jpa.repository.support.Querydsl;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.querydsl.SimpleEntityPathResolver;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.Collections;
@@ -22,24 +23,18 @@ import java.util.List;
 /**
  * @author ifedorenkov
  */
-public class LocalizedPropertyRepositoryImpl extends SimpleJpaRepository<LocalizedProperty, Long>
-	implements LocalizedPropertyRepositoryCustom
+@Transactional(readOnly = true)
+public class LocalizedPropertyRepositoryImpl implements LocalizedPropertyRepositoryCustom
 {
 	private final EntityManager entityManager;
 	private final EntityPath<LocalizedProperty> path;
-	private final PathBuilder<LocalizedProperty> builder;
 	private final Querydsl querydsl;
 
 	@Autowired
 	public LocalizedPropertyRepositoryImpl(EntityManager entityManager) {
-		super(LocalizedProperty.class, entityManager);
-
-
-		CrudMethodMetadata metadata = getRepositoryMethodMetadata();
 		this.entityManager = entityManager;
 		this.path = SimpleEntityPathResolver.INSTANCE.createPath(LocalizedProperty.class);
-		this.builder = new PathBuilder<>(path.getType(), path.getMetadata());
-		this.querydsl = new Querydsl(entityManager, builder);
+		this.querydsl = new Querydsl(entityManager, new PathBuilder<>(path.getType(), path.getMetadata()));
 	}
 
 	@Override

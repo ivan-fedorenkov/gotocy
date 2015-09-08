@@ -25,12 +25,12 @@ public class StandaloneControllerTestExample {
 
 	@Test
 	public void testIt() throws Exception {
-		mockMvc.perform(get("/")).andExpect(content().string("Hello World!"));
+		mockMvc.perform(get("/standalone-controller-test-example")).andExpect(content().string("Hello World!"));
 	}
 
 	@RestController
 	public static class ControllerUnderTest {
-		@RequestMapping("/")
+		@RequestMapping("/standalone-controller-test-example")
 		public String get() {
 			return "Hello world";
 		}
