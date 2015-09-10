@@ -33,6 +33,8 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 	private AssetsProvider assetsProvider;
 	private ApplicationProperties applicationProperties;
 
+	private HttpEncodingProperties httpEncodingProperties;
+
 	@Autowired
 	public void setAssetsProvider(AssetsProvider assetsProvider) {
 		this.assetsProvider = assetsProvider;
@@ -41,6 +43,11 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 	@Autowired
 	public void setApplicationProperties(ApplicationProperties applicationProperties) {
 		this.applicationProperties = applicationProperties;
+	}
+
+	@Autowired
+	public void setHttpEncodingProperties(HttpEncodingProperties httpEncodingProperties) {
+		this.httpEncodingProperties = httpEncodingProperties;
 	}
 
 	@Override
@@ -66,6 +73,15 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 		return new LocaleFilter();
 	}
 
+	// TODO: remove after 1.3.0.RC1 and check the regression
+	@Bean
+	public OrderedCharacterEncodingFilter characterEncodingFilter() {
+		OrderedCharacterEncodingFilter filter = new OrderedCharacterEncodingFilter();
+		filter.setEncoding(this.httpEncodingProperties.getCharset().name());
+		filter.setForceEncoding(this.httpEncodingProperties.isForce());
+		filter.setOrder(Ordered.HIGHEST_PRECEDENCE);
+		return filter;
+	}
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
