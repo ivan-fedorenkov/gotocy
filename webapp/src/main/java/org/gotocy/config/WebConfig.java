@@ -6,21 +6,22 @@ import org.gotocy.filters.LocaleFilter;
 import org.gotocy.filters.UrlRewriteFilter;
 import org.gotocy.format.EnumsFormatter;
 import org.gotocy.interceptors.HelpersInterceptor;
-import org.gotocy.interceptors.SecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.HttpEncodingProperties;
+import org.springframework.boot.context.web.OrderedCharacterEncodingFilter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.annotation.Order;
+import org.springframework.core.Ordered;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import javax.annotation.Priority;
 import javax.servlet.Filter;
 
 /**
