@@ -6,6 +6,7 @@ import org.gotocy.filters.LocaleFilter;
 import org.gotocy.filters.UrlRewriteFilter;
 import org.gotocy.format.EnumsFormatter;
 import org.gotocy.interceptors.HelpersInterceptor;
+import org.gotocy.interceptors.SecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.HttpEncodingProperties;
 import org.springframework.boot.context.web.OrderedCharacterEncodingFilter;
@@ -18,7 +19,6 @@ import org.springframework.core.Ordered;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
@@ -96,11 +96,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new HelpersInterceptor(applicationProperties, messageSource, assetsProvider));
-	}
-
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/login").setViewName("login");
+		registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/master/**");
 	}
 
 }
