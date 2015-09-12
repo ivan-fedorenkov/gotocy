@@ -181,6 +181,74 @@ function initMap(latitude, longitude, markerPictureSrc) {
     });
 }
 
+
+function complexMap(complexTitle, coordinates) {
+    var latitude = 0;
+    var longitude = 0;
+
+    for (i = 0; i < coordinates.length; i++) {
+        latitude = latitude + coordinates[i].lat;
+        longitude = longitude + coordinates[i].lng;
+    }
+    latitude = latitude / coordinates.length;
+    longitude = longitude / coordinates.length;
+
+    var subtractPosition = 0;
+    var mapWrapper = $('#property-detail-map.float');
+
+    if (document.documentElement.clientWidth > 1200) {
+        subtractPosition = 0.013;
+    }
+    if (document.documentElement.clientWidth < 1199) {
+        subtractPosition = 0.006;
+    }
+    if (document.documentElement.clientWidth < 979) {
+        subtractPosition = 0.001;
+    }
+    if (document.documentElement.clientWidth < 767) {
+        subtractPosition = 0;
+    }
+
+    var mapCenter = new google.maps.LatLng(latitude, longitude);
+
+    if ( $("#property-detail-map").hasClass("float") ) {
+        mapCenter = new google.maps.LatLng(latitude, longitude - subtractPosition);
+        mapWrapper.css('width', mapWrapper.width() + mapWrapper.offset().left )
+    }
+
+    var mapOptions = {
+        zoom: 16,
+        center: mapCenter,
+        disableDefaultUI: false,
+        scrollwheel: false,
+        styles: mapStyles
+    };
+    var mapElement = document.getElementById('property-detail-map');
+    var map = new google.maps.Map(mapElement, mapOptions);
+
+    var plot = new google.maps.Polygon({
+        paths: coordinates,
+        strokeColor: '#1396e2',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#1396e2',
+        fillOpacity: 0.35
+    });
+
+    plot.setMap(map);
+
+    var infoWindow = new google.maps.InfoWindow;
+    infoWindow.setContent('<b>' + complexTitle + '</b>');
+    infoWindow.setPosition(new google.maps.LatLng(latitude, longitude));
+    infoWindow.open(map);
+
+    plot.addListener('click', function(e) {
+       infoWindow.setPosition(e.latLng);
+       infoWindow.open(map);
+    });
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Google Map - Contact
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
