@@ -19,6 +19,7 @@ import org.springframework.core.Ordered;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
@@ -88,15 +89,23 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addFormatter(new EnumsFormatter<Location>(Location.class, messageSource) {});
 		registry.addFormatter(new EnumsFormatter<PropertyType>(PropertyType.class, messageSource) {});
-		registry.addFormatter(new EnumsFormatter<PropertyStatus>(PropertyStatus.class, messageSource) {});
-		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class, messageSource) {});
-		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class, messageSource) {});
+		registry.addFormatter(new EnumsFormatter<PropertyStatus>(PropertyStatus.class, messageSource) {
+		});
+		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class, messageSource) {
+		});
+		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class, messageSource) {
+		});
 	}
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new HelpersInterceptor(applicationProperties, messageSource, assetsProvider));
 		registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/master/**");
+	}
+
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/complex").setViewName("complex/show");
 	}
 
 }

@@ -9,7 +9,7 @@
     <link rel="alternate" hreflang="ru" href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
-    <link href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
     <title>Mesoyios Park Residences | GoToCy</title>
 
@@ -29,8 +29,8 @@
                 </div>
                 <div class="user-area">
                     <div class="language-bar" >
-                        <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
-                        <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+                        <a href="#" class="active"><img th:src="@{/assets/img/flags/gb.png}" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
+                        <a href="#"><img th:src="@{/assets/img/flags/ru.png}" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand nav" id="brand">
-                        <a href="/parent/webapp/templates/home/index.html"><img src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
+                        <a href="/parent/webapp/templates/home/index.html"><img th:src="@{/assets/img/logo.png}" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
                     </div>
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
@@ -258,21 +258,9 @@
     <!-- end Page Footer -->
 </div>
 
-
-<script type="text/javascript" >
-/*<![CDATA[*/
-    var latitude = /*[[*{property.latitude}]]*/ '34.979627';
-    var longitude = /*[[*{property.longitude}]]*/ '33.729963';
-    var markerPictureUrl = /*[[|http://assets.gotocy.eu/static/img/property-types/${helper.property.typeIcon(#object.property.propertyType)}.png|]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
-    var panoConfigUrl = /*[[${hasPano}? ${helper.path(#object.property)} + '/pano.xml' : '']]*/ '';
-    var images = /*[[${helper.imageUrls(#object.property.imageSet.images)}]]*/ '';
-/*]]>*/
-</script>
-
-<script type="text/javascript" src="/parent/webapp/public/assets/js/application.min.js"></script>
+<script type="text/javascript" th:src="@{/assets/js/application.min.js}" src="/parent/webapp/public/assets/js/application.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="/parent/webapp/public/assets/js/application-maps.min.js"></script>
-<script type="text/javascript" src="/parent/webapp/public/assets/js/application-pano.min.js"></script>
+<script type="text/javascript" th:src="@{/assets/js/application-maps.min.js}" src="/parent/webapp/public/assets/js/application-maps.min.js"></script>
 
 <!--[if gt IE 8]>
 <script type="text/javascript" src="http://assets.gotocy.eu/static/js/ie.js"></script>
