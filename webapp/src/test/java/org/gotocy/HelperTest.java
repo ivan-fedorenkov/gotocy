@@ -1,10 +1,13 @@
 package org.gotocy;
 
-import org.gotocy.domain.LocalizedProperty;
 import org.gotocy.domain.Property;
+import org.gotocy.filters.LocaleFilter;
 import org.gotocy.helpers.Helper;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.context.i18n.LocaleContextHolder;
+
+import java.util.Locale;
 
 /**
  * @author ifedorenkov
@@ -15,39 +18,34 @@ public class HelperTest {
 	public void entityPathTest() {
 		Property p = new Property();
 		p.setId(1L);
-		LocalizedProperty lp = new LocalizedProperty();
-		lp.setProperty(p);
 
 		// Language is not specified
 
-		// Just an ordinary path
+		LocaleContextHolder.setLocale(LocaleFilter.DEFAULT_LOCALE);
 		Assert.assertEquals("/property/1", Helper.path(p));
 
-		// Path of LocalizedProperty uses id of parent Property object, adding the language prefix (like localized path
-		// on a Property object).
-		lp.setLocale("en");
-		Assert.assertEquals("/property/1", Helper.path(lp));
-		lp.setLocale("ru");
-		Assert.assertEquals("/ru/property/1", Helper.path(lp));
+		LocaleContextHolder.setLocale(LocaleFilter.RUSSIAN_LOCALE);
+		Assert.assertEquals("/ru/property/1", Helper.path(p));
 
 		// Language is specified explicitly
 
 		// Default language, no prefix
+
 		Assert.assertEquals("/property/1", Helper.path(p, "en"));
 		// Russian language prefix
 		Assert.assertEquals("/ru/property/1", Helper.path(p, "ru"));
-
-		// The given language overrides LocalizedProperty's locale language
-		lp.setLocale("ru");
-		Assert.assertEquals("/property/1", Helper.path(lp, "en"));
-		lp.setLocale("en");
-		Assert.assertEquals("/ru/property/1", Helper.path(lp, "ru"));
-
 	}
 
 	@Test
 	public void stringPathTest() {
-		// Adds a language prefix to the given path
+		// Language is not specified
+		LocaleContextHolder.setLocale(LocaleFilter.DEFAULT_LOCALE);
+		Assert.assertEquals("/some-path", Helper.path("/some-path"));
+
+		LocaleContextHolder.setLocale(LocaleFilter.RUSSIAN_LOCALE);
+		Assert.assertEquals("/ru/some-path", Helper.path("/some-path"));
+
+		// Language is specified explicitly
 		Assert.assertEquals("/some-path", Helper.path("/some-path", "en"));
 		Assert.assertEquals("/ru/some-path", Helper.path("/some-path", "ru"));
 	}

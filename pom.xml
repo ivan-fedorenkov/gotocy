@@ -16,6 +16,7 @@
 		<spring-data-commons.version>1.10.0.RELEASE</spring-data-commons.version>
 		<nekohtml.version>1.9.22</nekohtml.version>
 		<com.amazonaws.aws-java-sdk-version.version>1.10.2</com.amazonaws.aws-java-sdk-version.version>
+		<lombok.version>1.16.6</lombok.version>
 	</properties>
 
 	<parent>
@@ -40,6 +41,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

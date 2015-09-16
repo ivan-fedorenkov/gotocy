@@ -1,7 +1,7 @@
 package org.gotocy.controllers;
 
 import org.gotocy.domain.*;
-import org.gotocy.repository.LocalizedPropertyRepository;
+import org.gotocy.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,30 +22,27 @@ import java.util.Locale;
 @RequestMapping("/promo")
 public class PromoController {
 
-	private final LocalizedPropertyRepository localizedPropertyRepository;
+	private final PropertyRepository repository;
 
 	@Autowired
-	public PromoController(LocalizedPropertyRepository localizedPropertyRepository) {
-		this.localizedPropertyRepository = localizedPropertyRepository;
+	public PromoController(PropertyRepository repository) {
+		this.repository = repository;
 	}
 
 	@RequestMapping(value = "/index-1", method = RequestMethod.GET)
 	public String getIndex1(Model model, Locale locale,
 		@PageableDefault(size = 4, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
-		model.addAttribute("longTermProperties", localizedPropertyRepository.findByPropertyPropertyStatusAndLocale(
-			PropertyStatus.LONG_TERM, locale.getLanguage(), pageable));
-		model.addAttribute("shortTermProperties", localizedPropertyRepository.findByPropertyPropertyStatusAndLocale(
-			PropertyStatus.SHORT_TERM, locale.getLanguage(), pageable));
-		model.addAttribute("saleProperties", localizedPropertyRepository.findByPropertyPropertyStatusAndLocale(
-			PropertyStatus.SALE, locale.getLanguage(), pageable));
+		model.addAttribute("longTermProperties", repository.findByPropertyStatus(PropertyStatus.LONG_TERM, pageable));
+		model.addAttribute("shortTermProperties", repository.findByPropertyStatus(PropertyStatus.SHORT_TERM, pageable));
+		model.addAttribute("saleProperties", repository.findByPropertyStatus(PropertyStatus.SALE, pageable));
 
 		// List of featured properties (commercial)
-		List<LocalizedProperty> featured = new ArrayList<>(3);
+		List<Property> featured = new ArrayList<>(3);
 		for (int i = 0; i < 3; i++) {
-			LocalizedProperty lp = createPromo();
-			lp.getProperty().setRepresentativeImage(lp.getProperty().getImages().get(i));
-			featured.add(lp);
+			Property p = createPromo();
+			p.setRepresentativeImage(p.getImages().get(i));
+			featured.add(p);
 		}
 		model.addAttribute("featuredProperties", featured);
 
@@ -59,11 +56,11 @@ public class PromoController {
 		model.addAttribute(createPromo());
 
 		// List of featured properties (commercial)
-		List<LocalizedProperty> featured = new ArrayList<>(3);
+		List<Property> featured = new ArrayList<>(3);
 		for (int i = 0; i < 3; i++) {
-			LocalizedProperty lp = createPromo();
-			lp.getProperty().setRepresentativeImage(lp.getProperty().getImages().get(i));
-			featured.add(lp);
+			Property p = createPromo();
+			p.setRepresentativeImage(p.getImages().get(i));
+			featured.add(p);
 		}
 		model.addAttribute("featuredProperties", featured);
 
@@ -76,7 +73,7 @@ public class PromoController {
 		return "promo/property_2";
 	}
 
-	private static LocalizedProperty createPromo() {
+	private static Property createPromo() {
 		Property p = new Property();
 		p.setTitle("The Promo property");
 		p.setAddress("Demetri Koumandari Str. No.1, 7103, Aradippou, Larnaca");
@@ -116,11 +113,7 @@ public class PromoController {
 		owner.setSpokenLanguages("Eng, Rus");
 		p.setOwner(owner);
 
-		LocalizedProperty lp = new LocalizedProperty();
-		lp.setLocale("en");
-		lp.setProperty(p);
-
-		return lp;
+		return p;
 	}
 
 }

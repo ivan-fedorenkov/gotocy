@@ -51,12 +51,12 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand nav" id="brand">
-                        <a th:href="@{${helper.path('/', #locale.language)}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
+                        <a th:href="@{${helper.path('/')}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
                     </div>
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li><a th:href="@{${helper.path('/', #locale.language)}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
                     </ul>
                 </nav><!-- /.navbar collapse-->
                 <!-- <div class="add-your-property">
@@ -71,9 +71,9 @@
         <!-- Breadcrumb -->
         <div class="container">
             <ol class="breadcrumb">
-                <li><a th:href="@{${helper.path('/', #locale.language)}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
+                <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
                 <li th:unless="${propertiesSearchForm.changed}" class="active" th:text="#{org.gotocy.dictionary.properties}">Properties Listing</li>
-                <li th:if="${propertiesSearchForm.changed}"><a th:href="@{${helper.path('/properties', #locale.language)}}" th:text="#{org.gotocy.dictionary.properties}" href="#">Properties Listing</a></li>
+                <li th:if="${propertiesSearchForm.changed}"><a th:href="@{${helper.path('/properties')}}" th:text="#{org.gotocy.dictionary.properties}" href="#">Properties Listing</a></li>
                 <li th:if="${propertiesSearchForm.changed}" class="active" th:text="#{org.gotocy.dictionary.search-results}">Search Results</li>
             </ol>
         </div>
@@ -92,28 +92,28 @@
                         </section>
                         <section id="properties">
                             <div class="grid" th:remove="all-but-first">
-                                <div class="property masonry" th:each="lp,stat : ${properties}">
-                                    <div class="inner" data-scroll-reveal th:attr="data-scroll-reveal=(${stat.index > 7}? 'true' : '')" th:with="offerStatus=${lp.property.offerStatus}, active=${offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}, propertyType=${lp.property.propertyType}">
-                                        <a th:href="@{${helper.path(lp)}}" href="property-detail.html">
+                                <div class="property masonry" th:each="p,stat : ${properties}">
+                                    <div class="inner" data-scroll-reveal th:attr="data-scroll-reveal=(${stat.index > 7}? 'true' : '')" th:with="offerStatus=${p.offerStatus}, active=${offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}, propertyType=${p.propertyType}">
+                                        <a th:href="@{${helper.path(p)}}" href="property-detail.html">
                                             <div class="property-image">
-                                                <figure class="tag status" th:text="${{lp.property.propertyStatus}}" th:if="${param.propertyStatus == null}">Sale</figure>
+                                                <figure class="tag status" th:text="${{p.propertyStatus}}" th:if="${param.propertyStatus == null}">Sale</figure>
                                                 <figure class="ribbon" th:unless="${active}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
                                                 <figure class="type" th:if="${active}" th:title="${{propertyType}}" title="Vineyard"><img th:src="|http://assets.gotocy.eu/static/img/property-types/${helper.property.typeIcon(propertyType)}.png|" src="assets/img/property-types/vineyard.png"  alt=""></figure>
                                                 <div class="overlay">
                                                     <div class="info">
-                                                        <div class="tag price" th:utext="${helper.property.price(lp.property)}">$ 11,000</div>
+                                                        <div class="tag price" th:utext="${helper.property.price(p)}">$ 11,000</div>
                                                     </div>
                                                 </div>
-                                                <img alt="" th:class="${stat.count % 2 == 0}? 'extended-3'" th:src="${helper.imageUrl(lp.property.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-09.jpg">
+                                                <img alt="" th:class="${stat.count % 2 == 0}? 'extended-3'" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-09.jpg">
                                             </div>
                                         </a>
                                         <aside>
                                             <header>
-                                                <a th:href="@{${helper.path(lp)}}" href="property-detail.html"><h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3></a>
-                                                <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
+                                                <a th:href="@{${helper.path(p)}}" href="property-detail.html"><h3 th:text="${p.title}">3398 Lodgeville Road</h3></a>
+                                                <figure th:text="${p.shortAddress}">Golden Valley, MN 55427</figure>
                                             </header>
                                             <dl th:remove="all-but-first">
-                                                <!--/*/ <th:block th:each="field : ${helper.property.formattedFields(lp.property, T(org.gotocy.helpers.property.FieldsStrategy).LISTING_SUMMARY)}"> /*/-->
+                                                <!--/*/ <th:block th:each="field : ${helper.property.formattedFields(p, T(org.gotocy.helpers.property.FieldsStrategy).LISTING_SUMMARY)}"> /*/-->
                                                 <dt th:text="|${field.heading}:|">Location:</dt>
                                                 <dd th:utext="${field.value}">Chicago, IL 60610</dd>
                                                 <!--/*/ </th:block> /*/-->
@@ -126,7 +126,7 @@
                                                 <dt>Baths:</dt>
                                                 <dd>2</dd>
                                             </dl>
-                                            <a th:href="@{${helper.path(lp)}}" href="property-detail.html" class="link-arrow" th:text="#{org.gotocy.dictionary.read-more}">Read More</a>
+                                            <a th:href="@{${helper.path(p)}}" href="property-detail.html" class="link-arrow" th:text="#{org.gotocy.dictionary.read-more}">Read More</a>
                                         </aside>
                                     </div>
                                 </div><!-- /.property -->
@@ -253,7 +253,7 @@
                     <section id="sidebar">
                         <aside id="edit-search">
                             <header><h3 th:text="#{org.gotocy.dictionary.search-criteria}">Search Criteria</h3></header>
-                            <form role="form" id="form-sidebar" class="form-search" th:action="@{${helper.path('/properties', #locale.language)}}" th:method="get" th:object="${propertiesSearchForm}">
+                            <form role="form" id="form-sidebar" class="form-search" th:action="@{${helper.path('/properties')}}" th:method="get" th:object="${propertiesSearchForm}">
                                 <div class="form-group">
                                     <select th:field="*{location}">
                                         <option value="" th:text="#{org.gotocy.dictionary.location}">Location</option>

@@ -45,12 +45,12 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand nav" id="brand">
-                        <a th:href="@{${helper.path('/', #locale.language)}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
+                        <a th:href="@{${helper.path('/')}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
                     </div>
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li><a th:href="@{${helper.path('/', #locale.language)}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
                     </ul>
                 </nav><!-- /.navbar collapse-->
                 <!-- <div class="add-your-property">
@@ -108,24 +108,24 @@
             <div class="container">
                 <header class="section-title">
                     <h2 th:text="#{org.gotocy.dictionary.long-term-rentals-for-you}">Long Term Rentals for You</h2>
-                    <a th:href="@{${helper.path('/properties?propertyStatus=LONG_TERM', #locale.language)}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="#{org.gotocy.dictionary.all-rentals}">All Rentals</a>
+                    <a th:href="@{${helper.path('/properties?propertyStatus=LONG_TERM')}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="#{org.gotocy.dictionary.all-rentals}">All Rentals</a>
                 </header>
                 <div class="row" th:remove="all-but-first">
-                    <div class="col-md-3 col-sm-6" th:each="lp : ${longTermProperties}" th:with="offerStatus = ${lp.property.offerStatus}">
+                    <div class="col-md-3 col-sm-6" th:each="p : ${longTermProperties}">
                         <div class="property">
-                            <figure class="ribbon" th:if="${offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
-                            <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
+                            <figure class="ribbon" th:if="${p.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${p.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{p.offerStatus}}">Sold</figure>
+                            <a th:href="@{${helper.path(p)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="${helper.imageUrl(lp.property.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                    <img alt="" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price" th:utext="${helper.property.price(lp.property)}">$ 11,000</div>
-                                        <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
-                                        <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
+                                        <div class="tag price" th:utext="${helper.property.price(p)}">$ 11,000</div>
+                                        <h3 th:text="${p.title}">3398 Lodgeville Road</h3>
+                                        <figure th:text="${p.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
-                                        <li th:each="field : ${helper.property.formattedFields(lp.property, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
+                                        <li th:each="field : ${helper.property.formattedFields(p, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
                                             <header th:text="|${field.heading}:|">Bedrooms:</header>
                                             <figure th:utext="${field.value}">2</figure>
                                         </li>
@@ -243,24 +243,24 @@
             <div class="container">
                 <header class="section-title">
                     <h2 th:text="#{org.gotocy.dictionary.short-term-rentals-for-you}">Short Term Rentals for You</h2>
-                    <a th:href="@{${helper.path('/properties?propertyStatus=SHORT_TERM', #locale.language)}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="#{org.gotocy.dictionary.all-rentals}">All Rentals</a>
+                    <a th:href="@{${helper.path('/properties?propertyStatus=SHORT_TERM')}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="#{org.gotocy.dictionary.all-rentals}">All Rentals</a>
                 </header>
                 <div class="row" th:remove="all-but-first">
-                    <div class="col-md-3 col-sm-6" th:each="lp : ${shortTermProperties}" th:with="offerStatus = ${lp.property.offerStatus}">
+                    <div class="col-md-3 col-sm-6" th:each="p : ${shortTermProperties}">
                         <div class="property">
-                            <figure class="ribbon" th:if="${offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
-                            <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
+                            <figure class="ribbon" th:if="${p.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${p.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{p.offerStatus}}">Sold</figure>
+                            <a th:href="@{${helper.path(p)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="${helper.imageUrl(lp.property.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                    <img alt="" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price" th:utext="${helper.property.price(lp.property)}">$ 11,000</div>
-                                        <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
-                                        <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
+                                        <div class="tag price" th:utext="${helper.property.price(p)}">$ 11,000</div>
+                                        <h3 th:text="${p.title}">3398 Lodgeville Road</h3>
+                                        <figure th:text="${p.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
-                                        <li th:each="field : ${helper.property.formattedFields(lp.property, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
+                                        <li th:each="field : ${helper.property.formattedFields(p, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
                                             <header th:text="|${field.heading}:|">Bedrooms:</header>
                                             <figure th:utext="${field.value}">2</figure>
                                         </li>
@@ -378,24 +378,24 @@
             <div class="container">
                 <header class="section-title">
                     <h2 th:text="#{org.gotocy.dictionary.properties-for-you}">Properties for You</h2>
-                    <a th:href="@{${helper.path('/properties?propertyStatus=SALE', #locale.language)}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="#{org.gotocy.dictionary.all-properties}">All Properties</a>
+                    <a th:href="@{${helper.path('/properties?propertyStatus=SALE')}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="#{org.gotocy.dictionary.all-properties}">All Properties</a>
                 </header>
                 <div class="row" th:remove="all-but-first">
-                    <div class="col-md-3 col-sm-6" th:each="lp : ${saleProperties}" th:with="offerStatus = ${lp.property.offerStatus}">
+                    <div class="col-md-3 col-sm-6" th:each="p : ${saleProperties}">
                         <div class="property">
-                            <figure class="ribbon" th:if="${offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
-                            <a th:href="@{${helper.path(lp)}}" href="/parent/webapp/templates/property/show.html">
+                            <figure class="ribbon" th:if="${p.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${p.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{p.offerStatus}}">Sold</figure>
+                            <a th:href="@{${helper.path(p)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="${helper.imageUrl(lp.property.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                    <img alt="" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price" th:utext="${helper.property.price(lp.property)}">$ 11,000</div>
-                                        <h3 th:text="${lp.property.title}">3398 Lodgeville Road</h3>
-                                        <figure th:text="${lp.property.shortAddress}">Golden Valley, MN 55427</figure>
+                                        <div class="tag price" th:utext="${helper.property.price(p)}">$ 11,000</div>
+                                        <h3 th:text="${p.title}">3398 Lodgeville Road</h3>
+                                        <figure th:text="${p.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
-                                        <li th:each="field : ${helper.property.formattedFields(lp.property, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
+                                        <li th:each="field : ${helper.property.formattedFields(p, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
                                             <header th:text="|${field.heading}:|">Bedrooms:</header>
                                             <figure th:utext="${field.value}">2</figure>
                                         </li>

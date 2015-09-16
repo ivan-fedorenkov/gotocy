@@ -8,7 +8,7 @@ import org.gotocy.domain.PropertyType;
 
 import java.util.Locale;
 
-import static org.gotocy.domain.QLocalizedProperty.localizedProperty;
+import static org.gotocy.domain.QProperty.property;
 
 /**
  * @author ifedorenkov
@@ -29,11 +29,6 @@ public class PropertiesSearchForm {
 
 	public Predicate toPredicate() {
 		return builder.getValue();
-	}
-
-	public PropertiesSearchForm setLocale(Locale locale) {
-		builder.and(localizedProperty.locale.eq(locale.getLanguage()));
-		return this;
 	}
 
 	/**
@@ -57,7 +52,7 @@ public class PropertiesSearchForm {
 	public void setLocation(Location location) {
 		if (location != null) {
 			this.location = location;
-			builder.and(localizedProperty.property.location.eq(location));
+			builder.and(property.location.eq(location));
 		}
 	}
 
@@ -68,7 +63,7 @@ public class PropertiesSearchForm {
 	public void setPropertyStatus(PropertyStatus propertyStatus) {
 		if (propertyStatus != null) {
 			this.propertyStatus = propertyStatus;
-			builder.and(localizedProperty.property.propertyStatus.eq(propertyStatus));
+			builder.and(property.propertyStatus.eq(propertyStatus));
 		}
 	}
 
@@ -79,7 +74,7 @@ public class PropertiesSearchForm {
 	public void setPropertyType(PropertyType propertyType) {
 		if (propertyType != null) {
 			this.propertyType = propertyType;
-			builder.and(localizedProperty.property.propertyType.eq(propertyType));
+			builder.and(property.propertyType.eq(propertyType));
 		}
 	}
 
@@ -90,7 +85,7 @@ public class PropertiesSearchForm {
 	public void setPriceFrom(Integer priceFrom) {
 		if (priceFrom > MIN_PRICE) {
 			this.priceFrom = priceFrom;
-			builder.and(localizedProperty.property.price.goe(priceFrom));
+			builder.and(property.price.goe(priceFrom));
 		}
 	}
 
@@ -101,7 +96,7 @@ public class PropertiesSearchForm {
 	public void setPriceTo(Integer priceTo) {
 		if (priceTo < MAX_PRICE) {
 			this.priceTo = priceTo;
-			builder.and(localizedProperty.property.price.loe(priceTo));
+			builder.and(property.price.loe(priceTo));
 		}
 	}
 

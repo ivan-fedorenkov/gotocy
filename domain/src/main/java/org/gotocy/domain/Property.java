@@ -1,7 +1,14 @@
 package org.gotocy.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.gotocy.domain.i18n.LocalizedField;
+import org.gotocy.domain.i18n.PropertyLocalizedFieldsManager;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * TODO: validation / integration test on validation
@@ -9,6 +16,15 @@ import java.util.List;
  * @author ifedorenkov
  */
 @Entity
+@NamedEntityGraph(name = "Property.withAssets",
+	attributeNodes = {
+		@NamedAttributeNode("owner"),
+		@NamedAttributeNode("panoXml"),
+		@NamedAttributeNode("representativeImage")
+	}
+)
+@Getter
+@Setter
 public class Property extends BaseEntity {
 
 	@ManyToOne(optional = false)
@@ -70,11 +86,42 @@ public class Property extends BaseEntity {
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Image representativeImage;
 
-
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private PanoXml panoXml;
 
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<LocalizedField> localizedFields = new ArrayList<>();
+
+	// Localized fields
+
+	private transient PropertyLocalizedFieldsManager localizedFieldsManager;
+	private transient String description;
+	private transient List<String> features;
+
+	public void initLocalizedFields(Locale locale) {
+		getLocalizedFieldsManager().setFields(locale);
+	}
+
+	public String getDescription(Locale locale) {
+		return getLocalizedFieldsManager().getDescription(locale).orElse("");
+	}
+
+	public void setDescription(String description, Locale locale) {
+		setDescription(description);
+		getLocalizedFieldsManager().setDescription(description, locale);
+	}
+
+	public List<String> getFeatures(Locale locale) {
+		return getLocalizedFieldsManager().getFeatures(locale);
+	}
+
+	public void setFeatures(List<String> features, Locale locale) {
+		setFeatures(features);
+		getLocalizedFieldsManager().setFeatures(features, locale);
+	}
+
 	// ImageSet delegate
+
 	public void setImages(List<Image> images) {
 		imageSet.setImages(images);
 	}
@@ -83,212 +130,12 @@ public class Property extends BaseEntity {
 		return imageSet.getImages();
 	}
 
-	// Getters and setters
-	public Owner getOwner() {
-		return owner;
+	// Private stuff
+
+	private PropertyLocalizedFieldsManager getLocalizedFieldsManager() {
+		if (localizedFieldsManager == null)
+			localizedFieldsManager = new PropertyLocalizedFieldsManager(this);
+		return localizedFieldsManager;
 	}
 
-	public void setOwner(Owner owner) {
-		this.owner = owner;
-	}
-
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
-	}
-
-	public Double getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
-	}
-
-	public Double getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
-	}
-
-	public PropertyType getPropertyType() {
-		return propertyType;
-	}
-
-	public void setPropertyType(PropertyType propertyType) {
-		this.propertyType = propertyType;
-	}
-
-	public PropertyStatus getPropertyStatus() {
-		return propertyStatus;
-	}
-
-	public void setPropertyStatus(PropertyStatus propertyStatus) {
-		this.propertyStatus = propertyStatus;
-	}
-
-	public Integer getPrice() {
-		return price;
-	}
-
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-
-	public Integer getCoveredArea() {
-		return coveredArea;
-	}
-
-	public void setCoveredArea(Integer coveredArea) {
-		this.coveredArea = coveredArea;
-	}
-
-	public Integer getPlotSize() {
-		return plotSize;
-	}
-
-	public void setPlotSize(Integer plotSize) {
-		this.plotSize = plotSize;
-	}
-
-	public Integer getBedrooms() {
-		return bedrooms;
-	}
-
-	public void setBedrooms(Integer bedrooms) {
-		this.bedrooms = bedrooms;
-	}
-
-	public Integer getGuests() {
-		return guests;
-	}
-
-	public void setGuests(Integer guests) {
-		this.guests = guests;
-	}
-
-	public Integer getLevels() {
-		return levels;
-	}
-
-	public void setLevels(Integer levels) {
-		this.levels = levels;
-	}
-
-	public Integer getBaths() {
-		return baths;
-	}
-
-	public void setBaths(Integer baths) {
-		this.baths = baths;
-	}
-
-	public ImageSet getImageSet() {
-		return imageSet;
-	}
-
-	public void setImageSet(ImageSet imageSet) {
-		this.imageSet = imageSet;
-	}
-
-	public Integer getDistanceToSea() {
-		return distanceToSea;
-	}
-
-	public void setDistanceToSea(Integer distanceToSea) {
-		this.distanceToSea = distanceToSea;
-	}
-
-	public Boolean getAirConditioner() {
-		return airConditioner;
-	}
-
-	public void setAirConditioner(Boolean airConditioner) {
-		this.airConditioner = airConditioner;
-	}
-
-	public Boolean getReadyToMoveIn() {
-		return readyToMoveIn;
-	}
-
-	public void setReadyToMoveIn(Boolean readyToMoveIn) {
-		this.readyToMoveIn = readyToMoveIn;
-	}
-
-	public Boolean getHeatingSystem() {
-		return heatingSystem;
-	}
-
-	public void setHeatingSystem(Boolean heatingSystem) {
-		this.heatingSystem = heatingSystem;
-	}
-
-	public Boolean getVatIncluded() {
-		return vatIncluded;
-	}
-
-	public void setVatIncluded(Boolean vatIncluded) {
-		this.vatIncluded = vatIncluded;
-	}
-
-	public Furnishing getFurnishing() {
-		return furnishing;
-	}
-
-	public void setFurnishing(Furnishing furnishing) {
-		this.furnishing = furnishing;
-	}
-
-	public PanoXml getPanoXml() {
-		return panoXml;
-	}
-
-	public void setPanoXml(PanoXml panoXml) {
-		this.panoXml = panoXml;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getShortAddress() {
-		return shortAddress;
-	}
-
-	public void setShortAddress(String shortAddress) {
-		this.shortAddress = shortAddress;
-	}
-
-	public OfferStatus getOfferStatus() {
-		return offerStatus;
-	}
-
-	public void setOfferStatus(OfferStatus offerStatus) {
-		this.offerStatus = offerStatus;
-	}
-
-	public Image getRepresentativeImage() {
-		return representativeImage;
-	}
-
-	public void setRepresentativeImage(Image representativeImage) {
-		this.representativeImage = representativeImage;
-	}
 }

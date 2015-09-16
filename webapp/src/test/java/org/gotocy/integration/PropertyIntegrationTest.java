@@ -2,6 +2,9 @@ package org.gotocy.integration;
 
 import org.gotocy.Application;
 import org.gotocy.config.SecurityProperties;
+import org.gotocy.domain.*;
+import org.gotocy.repository.OwnerRepository;
+import org.gotocy.repository.PropertyRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +17,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
+
+import java.util.Locale;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -38,6 +43,11 @@ public class PropertyIntegrationTest {
 	@Autowired
 	private WebApplicationContext wac;
 	private MockMvc mockMvc;
+
+	@Autowired
+	private OwnerRepository ownerRepository;
+	@Autowired
+	private PropertyRepository propertyRepository;
 
 	@Before
 	public void setUp() throws Exception {
@@ -64,6 +74,46 @@ public class PropertyIntegrationTest {
 				.param("heatingSystem", "FALSE")
 				.param("vatIncluded", "FALSE"))
 			.andDo(print()).andExpect(MockMvcResultMatchers.status().isOk());
+	}
+
+	@Test
+	public void test() throws Exception {
+		Property p = new Property();
+		p.setLocation(Location.LARNACA);
+		p.setLatitude(0D);
+		p.setLongitude(0D);
+		p.setAddress("Some address");
+		p.setShortAddress("Some address");
+		p.setTitle("Any title");
+		p.setPropertyType(PropertyType.HOUSE);
+		p.setPropertyStatus(PropertyStatus.SALE);
+		p.setOfferStatus(OfferStatus.ACTIVE);
+		p.setPrice(0);
+		p.setBedrooms(0);
+		p.setLevels(0);
+		p.setReadyToMoveIn(Boolean.FALSE);
+		p.setAirConditioner(Boolean.FALSE);
+		p.setVatIncluded(Boolean.FALSE);
+		p.setHeatingSystem(Boolean.FALSE);
+		p.setFurnishing(Furnishing.NONE);
+
+		Owner o = new Owner();
+		o.setName("Test owner");
+		o = ownerRepository.saveAndFlush(o);
+		p.setOwner(o);
+
+		p = propertyRepository.saveAndFlush(p);
+
+		p.setDescription("Some description in english", Locale.ENGLISH);
+		p.setDescription("Описание на русском", new Locale("ru"));
+
+		p = propertyRepository.saveAndFlush(p);
+		p.initLocalizedFields(new Locale("ru"));
+
+		propertyRepository.delete(p);
+		propertyRepository.flush();
+
+		int j = 1;
 	}
 
 

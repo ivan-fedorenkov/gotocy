@@ -5,14 +5,13 @@ import com.mysema.query.types.EntityPath;
 import com.mysema.query.types.Predicate;
 import com.mysema.query.types.path.PathBuilder;
 import org.gotocy.domain.LocalizedProperty;
+import org.gotocy.domain.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.data.jpa.repository.support.CrudMethodMetadata;
 import org.springframework.data.jpa.repository.support.Querydsl;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.querydsl.SimpleEntityPathResolver;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,30 +23,30 @@ import java.util.List;
  * @author ifedorenkov
  */
 @Transactional(readOnly = true)
-public class LocalizedPropertyRepositoryImpl implements LocalizedPropertyRepositoryCustom
+public class PropertyRepositoryImpl implements PropertyRepositoryCustom
 {
 	private final EntityManager entityManager;
-	private final EntityPath<LocalizedProperty> path;
+	private final EntityPath<Property> path;
 	private final Querydsl querydsl;
 
 	@Autowired
-	public LocalizedPropertyRepositoryImpl(EntityManager entityManager) {
+	public PropertyRepositoryImpl(EntityManager entityManager) {
 		this.entityManager = entityManager;
-		this.path = SimpleEntityPathResolver.INSTANCE.createPath(LocalizedProperty.class);
+		this.path = SimpleEntityPathResolver.INSTANCE.createPath(Property.class);
 		this.querydsl = new Querydsl(entityManager, new PathBuilder<>(path.getType(), path.getMetadata()));
 	}
 
 	@Override
-	public Page<LocalizedProperty> findAll(Predicate predicate, Pageable pageable) {
+	public Page<Property> findAll(Predicate predicate, Pageable pageable) {
 		JPAQuery countQuery = createQuery(predicate);
 		JPAQuery query = (JPAQuery) querydsl.applyPagination(pageable, createQuery(predicate));
 
 		query.setHint(EntityGraph.EntityGraphType.LOAD.getKey(),
-			entityManager.getEntityGraph("LocalizedProperty.withProperty"));
+			entityManager.getEntityGraph("Property.withAssets"));
 
 		Long total = countQuery.count();
-		List<LocalizedProperty> content = total > pageable.getOffset() ? query.list(path) :
-			Collections.<LocalizedProperty> emptyList();
+		List<Property> content = total > pageable.getOffset() ? query.list(path) :
+			Collections.<Property> emptyList();
 
 		return new PageImpl<>(content, pageable, total);
 	}

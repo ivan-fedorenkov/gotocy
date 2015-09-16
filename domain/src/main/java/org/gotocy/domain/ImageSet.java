@@ -1,9 +1,6 @@
 package org.gotocy.domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Embeddable;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 

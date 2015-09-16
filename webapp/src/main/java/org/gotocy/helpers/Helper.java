@@ -4,6 +4,7 @@ import org.gotocy.beans.AssetsProvider;
 import org.gotocy.domain.*;
 import org.gotocy.helpers.property.PropertyHelper;
 import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -63,35 +64,36 @@ public class Helper {
 	}
 
 	/**
-	 * Returns path of a given entity object.
+	 * Returns path of a given entity object using the current (thread local) locale prefix.
+	 * Unit test: HelperTest#entityPathTest
 	 */
 	public static <T extends BaseEntity> String path(T entity) {
-		if (entity instanceof Property) {
-			return "/property/" + entity.getId();
-		} else if (entity instanceof LocalizedProperty) {
-			LocalizedProperty lp = (LocalizedProperty) entity;
-			return getPrefixForLanguage(lp.getLocale()) + path(lp.getProperty());
-		}
-		// TODO: log error
-		return "";
+		return path(entity, LocaleContextHolder.getLocale().getLanguage());
 	}
 
 	/**
 	 * Returns path of of a given entity object using the given language.
 	 * The language should follow {@link java.util.Locale} rules.
+	 * Unit test: HelperTest#entityPathTest
 	 */
 	public static <T extends BaseEntity> String path(T entity, String language) {
-		if (entity instanceof Property) {
+		if (entity instanceof Property)
 			return getPrefixForLanguage(language) + "/property/" + entity.getId();
-		} else if (entity instanceof LocalizedProperty) {
-			return path(((LocalizedProperty) entity).getProperty(), language);
-		}
 		// TODO: log error
 		return "";
 	}
 
 	/**
+	 * Returns localized version of the given path using the current (thread local) locale prefix.
+	 * Unit test: HelperTest#stringPathTest
+	 */
+	public static String path(String path) {
+		return path(path, LocaleContextHolder.getLocale().getLanguage());
+	}
+
+	/**
 	 * Returns localized version of the given path.
+	 * Unit test: HelperTest#stringPathTest
 	 */
 	public static String path(String path, String language) {
 		return getPrefixForLanguage(language) + path;
@@ -99,6 +101,7 @@ public class Helper {
 
 	/**
 	 * Encloses all the text subparts separated by the new line character into the p tags.
+	 * Unit test: HelperTest#newLinesToParagraphs
 	 */
 	public static String newLinesToParagraphs(String text) {
 		// No text - no paragraphs
@@ -135,6 +138,7 @@ public class Helper {
 	 * then one.
 	 * E.g.: 'com.example.code' would be converted to 'com.example.code.plural' in case of number is greater then one
 	 * and would stay the same in case of number is less then one.
+	 * Unit test: HelperTest#pluralize
 	 */
 	public static String pluralize(String code, int number) {
 		return number > 1 ? code + ".plural" : code;

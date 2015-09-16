@@ -1,6 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}" th:with="curPath='/master/property/' + ${property.id} + '/edit'">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,12 +21,6 @@
                     <figure><strong>Phone:</strong>+1 810-991-3842</figure>
                     <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
-                <div class="user-area">
-                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${curPath})">
-                        <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
-                        <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="container">
@@ -39,12 +33,12 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand nav" id="brand">
-                        <a th:href="@{${helper.path('/', #locale.language)}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
+                        <a th:href="@{${helper.path('/')}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
                     </div>
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li><a th:href="@{${helper.path('/', #locale.language)}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
                     </ul>
                 </nav><!-- /.navbar collapse-->
             </header><!-- /.navbar -->

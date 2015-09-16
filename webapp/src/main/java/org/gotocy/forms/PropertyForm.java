@@ -1,21 +1,29 @@
 package org.gotocy.forms;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.gotocy.domain.*;
 import org.gotocy.utils.CollectionUtils;
 
 import java.util.*;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.joining;
 
 /**
  * TODO: unit tests
  *
  * @author ifedorenkov
  */
+@Getter
+@Setter
 public class PropertyForm {
 
 	private static final Pattern STRING_SEPARATOR = Pattern.compile("[\n\r]+");
 	private static final String STRINGS_JOINER = "\n";
+
+	private static final Locale EN_LOCALE = Locale.ENGLISH;
+	private static final Locale RU_LOCALE = new Locale("ru");
 
 	// Owner
 	private Long ownerId;
@@ -47,6 +55,19 @@ public class PropertyForm {
 	private Double latitude;
 	private Double longitude;
 
+	// En Localized Property
+	private String enDescription;
+	private String enFeatures;
+
+	// Ru Localized Property
+	private String ruDescription;
+	private String ruFeatures;
+
+	// Assets
+	private String imageKeys;
+	private String representativeImageKey;
+	private String panoXmlKey;
+
 	public PropertyForm() {
 		location = Location.FAMAGUSTA;
 		propertyType = PropertyType.APARTMENT;
@@ -55,7 +76,7 @@ public class PropertyForm {
 		furnishing = Furnishing.NONE;
 	}
 
-	public PropertyForm(Property property, LocalizedProperty enLP, LocalizedProperty ruLP) {
+	public PropertyForm(Property property) {
 		ownerId = property.getOwner().getId();
 		ownerName = property.getOwner().getName();
 		ownerPhone = property.getOwner().getPhone();
@@ -84,22 +105,16 @@ public class PropertyForm {
 		latitude = property.getLatitude();
 		longitude = property.getLongitude();
 
-		enDescription = enLP.getDescription();
-		enSpecifications = enLP.getSpecifications()
-			.stream()
-			.map(LocalizedPropertySpecification::getSpecification)
-			.collect(Collectors.joining(STRINGS_JOINER));
+		enDescription = property.getDescription(EN_LOCALE);
+		enFeatures = property.getFeatures(EN_LOCALE).stream().collect(joining(STRINGS_JOINER));
 
-		ruDescription = ruLP.getDescription();
-		ruSpecifications = ruLP.getSpecifications()
-			.stream()
-			.map(LocalizedPropertySpecification::getSpecification)
-			.collect(Collectors.joining(STRINGS_JOINER));
+		ruDescription = property.getDescription(RU_LOCALE);
+		ruFeatures = property.getFeatures(RU_LOCALE).stream().collect(joining(STRINGS_JOINER));
 
 		imageKeys = property.getImages()
 			.stream()
 			.map(Image::getKey)
-			.collect(Collectors.joining(STRINGS_JOINER));
+			.collect(joining(STRINGS_JOINER));
 
 		if (property.getRepresentativeImage() != null)
 			representativeImageKey = property.getRepresentativeImage().getKey();
@@ -107,19 +122,6 @@ public class PropertyForm {
 			panoXmlKey = property.getPanoXml().getKey();
 
 	}
-
-	// En Localized Property
-	private String enDescription;
-	private String enSpecifications;
-
-	// Ru Localized Property
-	private String ruDescription;
-	private String ruSpecifications;
-
-	// Assets
-	private String imageKeys;
-	private String representativeImageKey;
-	private String panoXmlKey;
 
 	public Owner mergeWithOwner(Owner owner) {
 		owner.setName(ownerName);
@@ -151,6 +153,21 @@ public class PropertyForm {
 		property.setReadyToMoveIn(readyToMoveIn);
 		property.setLatitude(latitude);
 		property.setLongitude(longitude);
+
+		property.setDescription(enDescription, EN_LOCALE);
+		property.setDescription(ruDescription, RU_LOCALE);
+
+		List<String> enFeaturesList = enFeatures != null && !enFeatures.isEmpty() ?
+			Arrays.asList(STRING_SEPARATOR.split(enFeatures)) : Collections.emptyList();
+		// Only if features changed
+		if (!CollectionUtils.collectionsEquals(property.getFeatures(), enFeaturesList))
+			property.setFeatures(enFeaturesList, EN_LOCALE);
+
+		List<String> ruFeaturesList = ruFeatures != null && !ruFeatures.isEmpty() ?
+			Arrays.asList(STRING_SEPARATOR.split(ruFeatures)) : Collections.emptyList();
+		// Only if features changed
+		if (!CollectionUtils.collectionsEquals(property.getFeatures(), ruFeaturesList))
+			property.setFeatures(ruFeaturesList, RU_LOCALE);
 
 		List<Image> images = new ArrayList<>();
 		if (imageKeys != null && !imageKeys.isEmpty()) {
@@ -188,302 +205,8 @@ public class PropertyForm {
 		return property;
 	}
 
-	public LocalizedProperty mergeWithRuLocalizedProperty(LocalizedProperty lp) {
-		return mergeWithLocalizedProperty(lp, ruDescription, ruSpecifications);
-	}
-
-	public LocalizedProperty mergeWithEnLocalizedProperty(LocalizedProperty lp) {
-		return mergeWithLocalizedProperty(lp, enDescription, enSpecifications);
-	}
-
-	private LocalizedProperty mergeWithLocalizedProperty(LocalizedProperty lp, String description, String specifications)
-	{
-		lp.setDescription(description);
-
-		List<LocalizedPropertySpecification> updatedSpecifications = new ArrayList<>();
-		if (specifications != null && !specifications.isEmpty()) {
-			for (String s : STRING_SEPARATOR.split(specifications)) {
-				if (s != null && !s.trim().isEmpty()) {
-					LocalizedPropertySpecification lps = new LocalizedPropertySpecification();
-					lps.setSpecification(s);
-					updatedSpecifications.add(lps);
-				}
-			}
-		}
-		// Only if specifications changed
-		if (!CollectionUtils.collectionsEquals(lp.getSpecifications(), updatedSpecifications))
-			lp.setSpecifications(updatedSpecifications);
-
-		return lp;
-	}
-
 	private static boolean assetKeyIsDefined(String assetKey) {
 		return assetKey != null && !assetKey.trim().isEmpty();
 	}
 
-	// Getters and setters
-
-	public Long getOwnerId() {
-		return ownerId;
-	}
-
-	public void setOwnerId(Long ownerId) {
-		this.ownerId = ownerId;
-	}
-
-	public String getOwnerName() {
-		return ownerName;
-	}
-
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
-	}
-
-	public String getOwnerPhone() {
-		return ownerPhone;
-	}
-
-	public void setOwnerPhone(String ownerPhone) {
-		this.ownerPhone = ownerPhone;
-	}
-
-	public String getOwnerEmail() {
-		return ownerEmail;
-	}
-
-	public void setOwnerEmail(String ownerEmail) {
-		this.ownerEmail = ownerEmail;
-	}
-
-	public String getOwnerSpokenLanguages() {
-		return ownerSpokenLanguages;
-	}
-
-	public void setOwnerSpokenLanguages(String ownerSpokenLanguages) {
-		this.ownerSpokenLanguages = ownerSpokenLanguages;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getFullAddress() {
-		return fullAddress;
-	}
-
-	public void setFullAddress(String fullAddress) {
-		this.fullAddress = fullAddress;
-	}
-
-	public String getShortAddress() {
-		return shortAddress;
-	}
-
-	public void setShortAddress(String shortAddress) {
-		this.shortAddress = shortAddress;
-	}
-
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
-	}
-
-	public PropertyType getPropertyType() {
-		return propertyType;
-	}
-
-	public void setPropertyType(PropertyType propertyType) {
-		this.propertyType = propertyType;
-	}
-
-	public PropertyStatus getPropertyStatus() {
-		return propertyStatus;
-	}
-
-	public void setPropertyStatus(PropertyStatus propertyStatus) {
-		this.propertyStatus = propertyStatus;
-	}
-
-	public OfferStatus getOfferStatus() {
-		return offerStatus;
-	}
-
-	public void setOfferStatus(OfferStatus offerStatus) {
-		this.offerStatus = offerStatus;
-	}
-
-	public Integer getPrice() {
-		return price;
-	}
-
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-
-	public Integer getCoveredArea() {
-		return coveredArea;
-	}
-
-	public void setCoveredArea(Integer coveredArea) {
-		this.coveredArea = coveredArea;
-	}
-
-	public Integer getPlotSize() {
-		return plotSize;
-	}
-
-	public void setPlotSize(Integer plotSize) {
-		this.plotSize = plotSize;
-	}
-
-	public Integer getBedrooms() {
-		return bedrooms;
-	}
-
-	public void setBedrooms(Integer bedrooms) {
-		this.bedrooms = bedrooms;
-	}
-
-	public Integer getGuests() {
-		return guests;
-	}
-
-	public void setGuests(Integer guests) {
-		this.guests = guests;
-	}
-
-	public Integer getLevels() {
-		return levels;
-	}
-
-	public void setLevels(Integer levels) {
-		this.levels = levels;
-	}
-
-	public Integer getDistanceToSea() {
-		return distanceToSea;
-	}
-
-	public void setDistanceToSea(Integer distanceToSea) {
-		this.distanceToSea = distanceToSea;
-	}
-
-	public Furnishing getFurnishing() {
-		return furnishing;
-	}
-
-	public void setFurnishing(Furnishing furnishing) {
-		this.furnishing = furnishing;
-	}
-
-	public Boolean getVatIncluded() {
-		return vatIncluded;
-	}
-
-	public void setVatIncluded(Boolean vatIncluded) {
-		this.vatIncluded = vatIncluded;
-	}
-
-	public Boolean getAirConditioner() {
-		return airConditioner;
-	}
-
-	public void setAirConditioner(Boolean airConditioner) {
-		this.airConditioner = airConditioner;
-	}
-
-	public Boolean getHeatingSystem() {
-		return heatingSystem;
-	}
-
-	public void setHeatingSystem(Boolean heatingSystem) {
-		this.heatingSystem = heatingSystem;
-	}
-
-	public Boolean getReadyToMoveIn() {
-		return readyToMoveIn;
-	}
-
-	public void setReadyToMoveIn(Boolean readyToMoveIn) {
-		this.readyToMoveIn = readyToMoveIn;
-	}
-
-	public Double getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
-	}
-
-	public Double getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
-	}
-
-	public String getEnDescription() {
-		return enDescription;
-	}
-
-	public void setEnDescription(String enDescription) {
-		this.enDescription = enDescription;
-	}
-
-	public String getEnSpecifications() {
-		return enSpecifications;
-	}
-
-	public void setEnSpecifications(String enSpecifications) {
-		this.enSpecifications = enSpecifications;
-	}
-
-	public String getRuDescription() {
-		return ruDescription;
-	}
-
-	public void setRuDescription(String ruDescription) {
-		this.ruDescription = ruDescription;
-	}
-
-	public String getRuSpecifications() {
-		return ruSpecifications;
-	}
-
-	public void setRuSpecifications(String ruSpecifications) {
-		this.ruSpecifications = ruSpecifications;
-	}
-
-	public String getImageKeys() {
-		return imageKeys;
-	}
-
-	public void setImageKeys(String imageKeys) {
-		this.imageKeys = imageKeys;
-	}
-
-	public String getRepresentativeImageKey() {
-		return representativeImageKey;
-	}
-
-	public void setRepresentativeImageKey(String representativeImageKey) {
-		this.representativeImageKey = representativeImageKey;
-	}
-
-	public String getPanoXmlKey() {
-		return panoXmlKey;
-	}
-
-	public void setPanoXmlKey(String panoXmlKey) {
-		this.panoXmlKey = panoXmlKey;
-	}
 }

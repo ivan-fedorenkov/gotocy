@@ -21,7 +21,7 @@ import static org.gotocy.domain.QLocalizedProperty.localizedProperty;
  * @author ifedorenkov
  */
 public interface LocalizedPropertyRepository extends JpaRepository<LocalizedProperty, Long>,
-	QueryDslPredicateExecutor<LocalizedProperty>, LocalizedPropertyRepositoryCustom
+	QueryDslPredicateExecutor<LocalizedProperty>
 {
 
 	@EntityGraph(value = "LocalizedProperty.withProperty", type = EntityGraph.EntityGraphType.LOAD)
