@@ -2,6 +2,7 @@ package org.gotocy.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.gotocy.domain.i18n.ComplexLocalizedFieldsManager;
 import org.gotocy.domain.i18n.LocalizedField;
 import org.gotocy.domain.i18n.PropertyLocalizedFieldsManager;
 
@@ -16,69 +17,21 @@ import java.util.Locale;
  * @author ifedorenkov
  */
 @Entity
-@NamedEntityGraph(name = "Property.withAssets",
-	attributeNodes = {
-		@NamedAttributeNode("owner"),
-		@NamedAttributeNode("panoXml"),
-		@NamedAttributeNode("representativeImage")
-	}
-)
 @Getter
 @Setter
-public class Property extends BaseEntity implements ImageSetDelegate {
+public class Complex extends BaseEntity implements ImageSetDelegate {
 
-	@ManyToOne(optional = false)
-	private Owner owner;
+	@ManyToOne
+	private Owner primaryContact;
 
 	@Enumerated(EnumType.STRING)
 	private Location location;
 
 	private String title;
-
 	private String address;
-
 	private String shortAddress;
-
-	private Double latitude;
-
-	private Double longitude;
-
-	@Enumerated(EnumType.STRING)
-	private PropertyType propertyType;
-
-	@Enumerated(EnumType.STRING)
-	private PropertyStatus propertyStatus;
-
-	@Enumerated(EnumType.STRING)
-	private OfferStatus offerStatus;
-
-	private Integer price;
-
-	private Integer coveredArea;
-
-	private Integer plotSize;
-
-	private Integer bedrooms;
-
-	private Integer guests;
-
-	// TODO: remove ?
-	private Integer baths;
-
-	private Integer levels;
-
-	private Integer distanceToSea;
-
-	private Boolean airConditioner;
-
-	private Boolean readyToMoveIn;
-
-	private Boolean heatingSystem;
-
-	private Boolean vatIncluded;
-
-	@Enumerated(EnumType.STRING)
-	private Furnishing furnishing;
+	private String developer;
+	private String coordinates;
 
 	@Embedded
 	private ImageSet imageSet = new ImageSet();
@@ -86,15 +39,12 @@ public class Property extends BaseEntity implements ImageSetDelegate {
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Image representativeImage;
 
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	private PanoXml panoXml;
-
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<LocalizedField> localizedFields = new ArrayList<>();
 
 	// Localized fields
 
-	private transient PropertyLocalizedFieldsManager localizedFieldsManager;
+	private transient ComplexLocalizedFieldsManager localizedFieldsManager;
 	private transient String description;
 	private transient List<String> features;
 
@@ -122,9 +72,9 @@ public class Property extends BaseEntity implements ImageSetDelegate {
 
 	// Private stuff
 
-	private PropertyLocalizedFieldsManager getLocalizedFieldsManager() {
+	private ComplexLocalizedFieldsManager getLocalizedFieldsManager() {
 		if (localizedFieldsManager == null)
-			localizedFieldsManager = new PropertyLocalizedFieldsManager(this);
+			localizedFieldsManager = new ComplexLocalizedFieldsManager(this);
 		return localizedFieldsManager;
 	}
 

@@ -40,9 +40,6 @@ There are many restaurants and taverns in the village, where you can enjoy the f
 Semi-mountainous village built on the feet of the White Mountains on an altitude of 252m. Its named derived from the site it was built (like a castle). Originally the village was situated lower on the valley in the present area of the settlement Agathes from where the inhabitants were forced to leave in 1800 due to the Ottomans. Close to the village a there was in 1835 a severe battle amongst Cretans and Ottomans that left 22 dead Ottomans and just 1 Cretan. It was the reason that the ottomans stopped raiding the area. The locals had an important contribution to the resistance against the Germans fascists during the 2sn World War.'
   , 1);
 
-insert into localized_property (id, version, locale, description, property_id)
-  values (10001, 0, 'ru', '', 1);
-
 insert into property_images (property_id, images_id) values (1, 1);
 insert into property_images (property_id, images_id) values (1, 2);
 insert into property_images (property_id, images_id) values (1, 3);
@@ -62,16 +59,20 @@ insert into property_images (property_id, images_id) values (1, 16);
 insert into property_images (property_id, images_id) values (1, 17);
 insert into property_images (property_id, images_id) values (1, 18);
 
-
---insert into localized_property_specification (id, version, specification, localized_property_id) values (1, 0, 'Bedroom (2 Guests - 1 double bed)', 1);
---insert into localized_property_specification (id, version, specification, localized_property_id) values (2, 0, 'Living Room (1 Guest - 1 sofa bed / futon)', 1);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 1);
-insert into localized_property_specification (specification, localized_property_id) values ('Children friendly, Smoking', 1);
-insert into localized_property_specification (specification, localized_property_id) values ('Board games, Internet (Wi-Fi), Radio, TV', 1);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 1);
-insert into localized_property_specification (specification, localized_property_id) values ('Barbecue', 1);
-insert into localized_property_specification (specification, localized_property_id) values ('Garden', 1);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking / Garage', 1);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (1, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Children friendly, Smoking');
+insert into property_localized_fields (property_id, localized_fields_id) values (1, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Board games, Internet (Wi-Fi), Radio, TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (1, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (1, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Barbecue');
+insert into property_localized_fields (property_id, localized_fields_id) values (1, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Garden');
+insert into property_localized_fields (property_id, localized_fields_id) values (1, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking / Garage');
+insert into property_localized_fields (property_id, localized_fields_id) values (1, select last_insert_id());
 
 -- 2 [Short term] http://www.housetrip.com/en/rentals/61781?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=31&source_element=card&source_type=list
 
@@ -113,9 +114,6 @@ There are many restaurants and taverns in the village, where you can enjoy the f
 Semi-mountainous village built on the feet of the White Mountains on an altitude of 252m. Its named derived from the site it was built (like a castle). Originally the village was situated lower on the valley in the present area of the settlement Agathes from where the inhabitants were forced to leave in 1800 due to the Ottomans. Close to the village a there was in 1835 a severe battle amongst Cretans and Ottomans that left 22 dead Ottomans and just 1 Cretan. It was the reason that the ottomans stopped raiding the area. The locals had an important contribution to the resistance against the Germans fascists during the 2sn World War.'
   , 2);
 
-insert into localized_property (id, version, locale, description, property_id)
-  values (10002, 0, 'ru', '', 2);
-
 insert into property_images (property_id, images_id) values (2, 19);
 insert into property_images (property_id, images_id) values (2, 20);
 insert into property_images (property_id, images_id) values (2, 21);
@@ -137,18 +135,20 @@ insert into property_images (property_id, images_id) values (2, 36);
 insert into property_images (property_id, images_id) values (2, 37);
 insert into property_images (property_id, images_id) values (2, 38);
 
-
---insert into localized_property_specification (specification, localized_property_id) values ('Bedroom (2 Guests - 1 double bed)', 2);
---insert into localized_property_specification (specification, localized_property_id) values ('Bedroom (2 Guests - 1 double bed)', 2);
---insert into localized_property_specification (specification, localized_property_id) values ('Living Room (2 Guests - 2 sofa beds / futons)', 2);
---insert into localized_property_specification (specification, localized_property_id) values ('Board games, Internet (Wi-Fi), Radio, TV, Telephone', 2);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 2);
-insert into localized_property_specification (specification, localized_property_id) values ('Children friendly, Smoking', 2);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 2);
-insert into localized_property_specification (specification, localized_property_id) values ('Barbecue', 2);
-insert into localized_property_specification (specification, localized_property_id) values ('Garden', 2);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking / Garage', 2);
-insert into localized_property_specification (specification, localized_property_id) values ('Swimming Pool', 2);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (2, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Children friendly, Smoking');
+insert into property_localized_fields (property_id, localized_fields_id) values (2, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (2, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Barbecue');
+insert into property_localized_fields (property_id, localized_fields_id) values (2, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Garden');
+insert into property_localized_fields (property_id, localized_fields_id) values (2, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking / Garage');
+insert into property_localized_fields (property_id, localized_fields_id) values (2, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Swimming Pool');
+insert into property_localized_fields (property_id, localized_fields_id) values (2, select last_insert_id());
 
 -- 3 [Short term] http://www.housetrip.com/en/rentals/206592?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=28&source_element=card&source_type=list
 
@@ -189,9 +189,6 @@ Your stay, here at Green Paradise Luxury Villa, is sure to be heavenly!
 Green Paradise Villa is approved by Greek Tourism Organisation with license number: 1041K91002955601'
   , 3);
 
-insert into localized_property (id, version, locale, description, property_id)
-  values (10003, 0, 'ru', '', 3);
-
 insert into property_images (property_id, images_id) values (3, 39);
 insert into property_images (property_id, images_id) values (3, 40);
 insert into property_images (property_id, images_id) values (3, 41);
@@ -203,79 +200,36 @@ insert into property_images (property_id, images_id) values (3, 46);
 insert into property_images (property_id, images_id) values (3, 47);
 insert into property_images (property_id, images_id) values (3, 48);
 
-
---insert into localized_property_specification (specification, localized_property_id) values ('Bedroom (2 Guests - 1 double bed)', 3);
---insert into localized_property_specification (specification, localized_property_id) values ('Bedroom (2 Guests - 1 double bed)', 3);
---insert into localized_property_specification (specification, localized_property_id) values ('Bedroom (2 Guests - 2 single beds)', 3);
---insert into localized_property_specification (specification, localized_property_id) values ('Living area (1 Guest - 1 sofa bed / futon)', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Barbecue', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Childrens Games', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Garden', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking / Garage', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Swimming Pool', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Terrace', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Safe', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Children friendly, Pets', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Board games', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Internet (Wi-Fi)', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('Internet (cable)', 3);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 3);
-
--- 4 [Short term] http://www.housetrip.com/en/rentals/296121?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=17&source_element=card&source_type=list
-
--- insert into asset (id, version, `asset_key`, asset_type) values (49, 0, 'property/4/1.jpg', 'IMAGE');
--- insert into asset (id, version, `asset_key`, asset_type) values (50, 0, 'property/4/2.jpg', 'IMAGE');
--- insert into asset (id, version, `asset_key`, asset_type) values (51, 0, 'property/4/3.jpg', 'IMAGE');
--- insert into asset (id, version, `asset_key`, asset_type) values (52, 0, 'property/4/4.jpg', 'IMAGE');
--- insert into asset (id, version, `asset_key`, asset_type) values (53, 0, 'property/4/5.jpg', 'IMAGE');
--- insert into asset (id, version, `asset_key`, asset_type) values (54, 0, 'property/4/6.jpg', 'IMAGE');
--- insert into asset (id, version, `asset_key`, asset_type) values (55, 0, 'property/4/7.jpg', 'IMAGE');
--- insert into asset (id, version, `asset_key`, asset_type) values (56, 0, 'property/4/8.jpg', 'IMAGE');
--- insert into asset (id, version, `asset_key`, asset_type) values (57, 0, 'property/4/9.jpg', 'IMAGE');
---
---
--- insert into property (id, version, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
---   values (4, 0, 'LARNACA', '36.295279', '28.155108', 'HOUSE', 'SHORT_TERM', 182, 4, 8, 4, true, 250, 49, 1);
---
--- insert into localized_property (id, version, locale, title, address, description, property_id)
---   values (4, 0, 'en', 'Villa Chrysa', 'Rhodes town, Rhodes, Dodecanese', 'Its located in St. Luke Afandou on the eastern side of the island . It is about 20 km away from the city of Rhodes and from Rhodes Airport , 3 km from Afandou beach -with panoramic view towards this beach- it is also 2 km away from Afandou Golf Course , 6 km from the tourist resort Faliraki of Rhodes with the known beach , 6 km from the tourist resort of Kolymbia Rhodes and the famous Tsampika beach .
--- Also , its location is such that it is easily accessible to other tourist resorts/sightseeings of the island such as Lindos which is 30km away , Seven Springs - 7km, Butterflies - 15k , -and Filerimos is 20km away, the above are just a portion of the accessible options close and relatively close to its location, there are many more. It was built in 2010 and it will be the first year that will be used by visitors .The town in which is located, Afandou, has population of approximately 7000 inhabitants, it is easily accessible , and it takes just 15 minutes to get to the city because of the existence of the highway. Except from golf and the known beach with length over 7 thousand km , in the area you can find Super Market, Banks , Police Station, tavernas , cafes , bars and hotel complexes .
--- The house is located on a hill above the city Afandou with boundless view. It has a private driveway along with 4 other houses in the area , it was built on a plot of 13,000 sq.m. and it has ground floor. The total area of ​the 1st floor is ​150sq.m. On the ground floor there are kitchen , living room , dining room, storage room and WC, and on the first floor there are three bedrooms and two bathrooms . It also features a guest house made of stone, in the courtyard area. Its dimensions are 40sqm, and includes kitchen, bathroom, air-condition and other amenities. Overall the house, along with the guest house, has the possibility of hosting at least 8 people. Besides the swimming pool and Spa, it also has barbecue, oven (wood-fired oven), garden etc.
--- It is available all year round.
---
--- Note that the charge of the main villa for months July and August is 50 euro extra.
--- Also, the charge of guest house is 50 euro.'
---   , 4);
---
--- insert into localized_property (id, version, locale, title, address, description, property_id)
---   values (404, 0, 'ru', 'Villa Chrysa', 'Rhodes town, Rhodes, Dodecanese', '', 4);
---
--- insert into property_images (property_id, images_id) values (4, 49);
--- insert into property_images (property_id, images_id) values (4, 50);
--- insert into property_images (property_id, images_id) values (4, 51);
--- insert into property_images (property_id, images_id) values (4, 52);
--- insert into property_images (property_id, images_id) values (4, 53);
--- insert into property_images (property_id, images_id) values (4, 54);
--- insert into property_images (property_id, images_id) values (4, 55);
--- insert into property_images (property_id, images_id) values (4, 56);
--- insert into property_images (property_id, images_id) values (4, 57);
-
-
---insert into localized_property_specification (specification, localized_property_id) values ('Bedroom (2 Guests - 1 double bed)', 4);
---insert into localized_property_specification (specification, localized_property_id) values ('Bedroom (2 Guests - 1 double bed)', 4);
---insert into localized_property_specification (specification, localized_property_id) values ('Bedroom (1 Guest - 1 single bed)', 4);
---insert into localized_property_specification (specification, localized_property_id) values ('Bedroom (3 Guests - 1 double bed, 1 single bed)', 4);
---insert into localized_property_specification (specification, localized_property_id) values ('Hair Dryer, Shower, Soap and Shampoo, Towels', 4);
--- insert into localized_property_specification (specification, localized_property_id) values ('Children friendly, Pets, Smoking', 4);
--- insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 4);
--- insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 4);
--- insert into localized_property_specification (specification, localized_property_id) values ('Barbecue', 4);
--- insert into localized_property_specification (specification, localized_property_id) values ('Garden', 4);
--- insert into localized_property_specification (specification, localized_property_id) values ('Parking / Garage', 4);
--- insert into localized_property_specification (specification, localized_property_id) values ('Swimming Pool', 4);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Barbecue');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Childrens Games');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Garden');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking / Garage');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Swimming Pool');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Terrace');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Safe');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Children friendly, Pets');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Board games');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Internet (Wi-Fi)');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Internet (cable)');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (3, select last_insert_id());
 
 -- 5 [Sale] LAR 801/1
 
@@ -289,16 +243,8 @@ insert into asset (id, version, `asset_key`, asset_type) values (64, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (65, 0, 'property/5/DSC_3791.jpg', 'IMAGE');
 insert into asset (id, version, `asset_key`, asset_type) values (66, 0, 'property/5/DSC_3796.jpg', 'IMAGE');
 
-
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, distance_to_sea, bedrooms, baths, representative_image_id, owner_id)
   values (5, 0, 'LAR 801/1', 'Oroklini, Larnaca', 'Oroklini, Larnaca', 'LARNACA', '34.972661', '33.645909', 'APARTMENT', 'SALE', 338000, 105, 177, 1500, 3, 1, 66, 1);
-
-insert into localized_property (id, version, locale, description, property_id)
-  values (5, 0, 'en', '', 5);
-
-insert into localized_property (id, version, locale, description, property_id)
-  values (10005, 0, 'ru', '', 5);
-
 
 insert into property_images (property_id, images_id) values (5, 58);
 insert into property_images (property_id, images_id) values (5, 59);
@@ -311,14 +257,22 @@ insert into property_images (property_id, images_id) values (5, 65);
 insert into property_images (property_id, images_id) values (5, 66);
 
 
-insert into localized_property_specification (specification, localized_property_id) values ('Communal swimming pool', 5);
-insert into localized_property_specification (specification, localized_property_id) values ('Showers, toilets, wardrobe', 5);
-insert into localized_property_specification (specification, localized_property_id) values ('Kitchen fully electrical appliances', 5);
-insert into localized_property_specification (specification, localized_property_id) values ('Landscaped garden (designer)', 5);
-insert into localized_property_specification (specification, localized_property_id) values ('Automatic entrance and exit', 5);
-insert into localized_property_specification (specification, localized_property_id) values ('Fully air-conditioning', 5);
-insert into localized_property_specification (specification, localized_property_id) values ('Elevators (Lift)', 5);
-insert into localized_property_specification (specification, localized_property_id) values ('Gypsum board ceilings, lighting', 5);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Communal swimming pool');
+insert into property_localized_fields (property_id, localized_fields_id) values (5, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Showers, toilets, wardrobe');
+insert into property_localized_fields (property_id, localized_fields_id) values (5, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kitchen fully electrical appliances');
+insert into property_localized_fields (property_id, localized_fields_id) values (5, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Landscaped garden (designer)');
+insert into property_localized_fields (property_id, localized_fields_id) values (5, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Automatic entrance and exit');
+insert into property_localized_fields (property_id, localized_fields_id) values (5, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fully air-conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (5, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Elevators (Lift)');
+insert into property_localized_fields (property_id, localized_fields_id) values (5, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Gypsum board ceilings, lighting');
+insert into property_localized_fields (property_id, localized_fields_id) values (5, select last_insert_id());
 
 
 -- 6 [Sale] LAR 802
@@ -328,32 +282,30 @@ insert into asset (id, version, `asset_key`, asset_type) values (68, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (69, 0, 'property/6/DSC_3539.jpg', 'IMAGE');
 insert into asset (id, version, `asset_key`, asset_type) values (70, 0, 'property/6/DSC_3545.jpg', 'IMAGE');
 
-
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, distance_to_sea, bedrooms, baths, ready_to_move_in, representative_image_id, owner_id)
   values (6, 0, 'LAR 802', 'Athenon street, Larnaca', 'Athenon street, Larnaca', 'LARNACA', '34.914313', '33.637733', 'APARTMENT', 'SALE', 572000, 78, 82, 50, 2, 1, true, 70, 1);
-
-insert into localized_property (id, version, locale, description, property_id)
-  values (6, 0, 'en', '', 6);
-
-insert into localized_property (id, version, locale, description, property_id)
-  values (10006, 0, 'ru', '', 6);
-
-
 
 insert into property_images (property_id, images_id) values (6, 67);
 insert into property_images (property_id, images_id) values (6, 68);
 insert into property_images (property_id, images_id) values (6, 69);
 insert into property_images (property_id, images_id) values (6, 70);
 
-
-insert into localized_property_specification (specification, localized_property_id) values ('Fully furnishing, including TV', 6);
-insert into localized_property_specification (specification, localized_property_id) values ('Kitchen fully electrical appliances', 6);
-insert into localized_property_specification (specification, localized_property_id) values ('Automatic entrance and exit', 6);
-insert into localized_property_specification (specification, localized_property_id) values ('Fully air-conditioning', 6);
-insert into localized_property_specification (specification, localized_property_id) values ('Elevators (Lift)', 6);
-insert into localized_property_specification (specification, localized_property_id) values ('Gypsum board  ceilings, lighting', 6);
-insert into localized_property_specification (specification, localized_property_id) values ('Concierge service', 6);
-insert into localized_property_specification (specification, localized_property_id) values ('Store room', 6);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fully furnishing, including TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (6, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kitchen fully electrical appliances');
+insert into property_localized_fields (property_id, localized_fields_id) values (6, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Automatic entrance and exit');
+insert into property_localized_fields (property_id, localized_fields_id) values (6, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fully air-conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (6, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Elevators (Lift)');
+insert into property_localized_fields (property_id, localized_fields_id) values (6, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Gypsum board  ceilings, lighting');
+insert into property_localized_fields (property_id, localized_fields_id) values (6, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Concierge service');
+insert into property_localized_fields (property_id, localized_fields_id) values (6, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Store room');
+insert into property_localized_fields (property_id, localized_fields_id) values (6, select last_insert_id());
 
 
 -- 7 [Long term] http://www.greece-property.net/property/4003/
@@ -383,10 +335,6 @@ A great advantage of this rental is its proximity to all amenities such as a big
 
 This is an ideal base for a memorable living experience...', 7);
 
-insert into localized_property (id, version, locale, description, property_id)
-  values (10007, 0, 'ru', '', 7);
-
-
 insert into property_images (property_id, images_id) values (7, 71);
 insert into property_images (property_id, images_id) values (7, 72);
 insert into property_images (property_id, images_id) values (7, 73);
@@ -395,13 +343,19 @@ insert into property_images (property_id, images_id) values (7, 75);
 insert into property_images (property_id, images_id) values (7, 76);
 
 
-insert into localized_property_specification (specification, localized_property_id) values ('Autonomous heating', 7);
-insert into localized_property_specification (specification, localized_property_id) values ('Internet connection possible', 7);
-insert into localized_property_specification (specification, localized_property_id) values ('Pet friendly', 7);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Autonomous heating');
+insert into property_localized_fields (property_id, localized_fields_id) values (7, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Internet connection possible');
+insert into property_localized_fields (property_id, localized_fields_id) values (7, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Pet friendly');
+insert into property_localized_fields (property_id, localized_fields_id) values (7, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Автономное отопление', 10007);
-insert into localized_property_specification (specification, localized_property_id) values ('Доступ в интернет', 10007);
-insert into localized_property_specification (specification, localized_property_id) values ('Отдых с животными разрешён', 10007);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Автономное отопление');
+insert into property_localized_fields (property_id, localized_fields_id) values (07, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Доступ в интернет');
+insert into property_localized_fields (property_id, localized_fields_id) values (07, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Отдых с животными разрешён');
+insert into property_localized_fields (property_id, localized_fields_id) values (07, select last_insert_id());
 
 -- 8 [Long term] http://www.greece-property.net/property/3964/
 
@@ -421,17 +375,8 @@ insert into asset (id, version, `asset_key`, asset_type) values (89, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (90, 0, 'property/8/14.jpg', 'IMAGE');
 insert into asset (id, version, `asset_key`, asset_type) values (91, 0, 'property/8/15.jpg', 'IMAGE');
 
-
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnishing, representative_image_id, owner_id)
   values (8, 0, 'Traditional house for rent', 'Greece, Crete, Rethymno', 'Greece, Crete, Rethymno', 'LARNACA', '35.368804', '24.703283', 'HOUSE', 'LONG_TERM', 450, 12000, 2, true, 'FULL', 77, 1);
-
-
-insert into localized_property (id, version, locale, description, property_id)
-  values (8, 0, 'en', '', 8);
-
-insert into localized_property (id, version, locale, description, property_id)
-  values (10008, 0, 'ru', '', 8);
-
 
 insert into property_images (property_id, images_id) values (8, 77);
 insert into property_images (property_id, images_id) values (8, 78);
@@ -450,9 +395,12 @@ insert into property_images (property_id, images_id) values (8, 90);
 insert into property_images (property_id, images_id) values (8, 91);
 
 
-insert into localized_property_specification (specification, localized_property_id) values ('Garden', 8);
-insert into localized_property_specification (specification, localized_property_id) values ('Fire place', 8);
-insert into localized_property_specification (specification, localized_property_id) values ('Internet Connection', 8);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Garden');
+insert into property_localized_fields (property_id, localized_fields_id) values (8, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fire place');
+insert into property_localized_fields (property_id, localized_fields_id) values (8, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Internet Connection');
+insert into property_localized_fields (property_id, localized_fields_id) values (8, select last_insert_id());
 
 
 -- 9 [House] Determinis
@@ -481,14 +429,6 @@ insert into asset (id, version, `asset_key`, asset_type) values (109, 0, 'proper
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id)
   values (9, 0, 'Demetris Residence', '18 Agiou Amvrosiou street Krasas area 7100 Aradippou Larnaca Cyprus', '18 Agiou Amvrosiou st, Larnaca', 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'LONG_TERM', 1000, 4, true, 'FULL', 93, 109, 2);
 
-
-insert into localized_property (id, version, locale, description, property_id)
-  values (9, 0, 'en', '', 9);
-
-insert into localized_property (id, version, locale, description, property_id)
-  values (10009, 0, 'ru', '', 9);
-
-
 insert into property_images (property_id, images_id) values (9, 92);
 insert into property_images (property_id, images_id) values (9, 93);
 insert into property_images (property_id, images_id) values (9, 94);
@@ -507,40 +447,53 @@ insert into property_images (property_id, images_id) values (9, 106);
 insert into property_images (property_id, images_id) values (9, 107);
 insert into property_images (property_id, images_id) values (9, 108);
 
-insert into localized_property_specification (specification, localized_property_id) values ('A wood fireplace', 9);
-insert into localized_property_specification (specification, localized_property_id) values ('A/C in all bed rooms and kitchen', 9);
-insert into localized_property_specification (specification, localized_property_id) values ('Ceiling fans with remote control', 9);
-insert into localized_property_specification (specification, localized_property_id) values ('Alarm system', 9);
-insert into localized_property_specification (specification, localized_property_id) values ('Garage gate with remote control', 9);
-insert into localized_property_specification (specification, localized_property_id) values ('Three olive trees', 9);
-insert into localized_property_specification (specification, localized_property_id) values ('One lemon tree', 9);
-insert into localized_property_specification (specification, localized_property_id) values ('One mandarin tree', 9);
-insert into localized_property_specification (specification, localized_property_id) values ('One walnut tree', 9);
-insert into localized_property_specification (specification, localized_property_id) values ('Other plants', 9);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'A wood fireplace');
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'A/C in all bed rooms and kitchen');
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ceiling fans with remote control');
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Alarm system');
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Garage gate with remote control');
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Three olive trees');
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'One lemon tree');
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'One mandarin tree');
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'One walnut tree');
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Other plants');
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Дровяной камин', 10009);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционеры во всех комнатах', 10009);
-insert into localized_property_specification (specification, localized_property_id) values ('Потолочные вентиляторы', 10009);
-insert into localized_property_specification (specification, localized_property_id) values ('Охранная система', 10009);
-insert into localized_property_specification (specification, localized_property_id) values ('Гараж с дистанц. управлением', 10009);
-insert into localized_property_specification (specification, localized_property_id) values ('Три оливковых дерева', 10009);
-insert into localized_property_specification (specification, localized_property_id) values ('Лимонное дерево', 10009);
-insert into localized_property_specification (specification, localized_property_id) values ('Мандариновое дерево', 10009);
-insert into localized_property_specification (specification, localized_property_id) values ('Ореховое дерево', 10009);
-insert into localized_property_specification (specification, localized_property_id) values ('Другие растения', 10009);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Дровяной камин');
+insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционеры во всех комнатах');
+insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Потолочные вентиляторы');
+insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Охранная система');
+insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гараж с дистанц. управлением');
+insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Три оливковых дерева');
+insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Лимонное дерево');
+insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Мандариновое дерево');
+insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Ореховое дерево');
+insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Другие растения');
+insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
 
 
 -- 10 (Short term) - a short term offer for property #9
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
   values (10, 0, 'Demetris Residence', '18 Agiou Amvrosiou street Krasas area 7100 Aradippou Larnaca Cyprus', '18 Agiou Amvrosiou st, Larnaca', 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'SHORT_TERM', 100, 4, 8, true, 4500, 93, 109, 2);
-
-
-insert into localized_property (id, version, locale, description, property_id)
-  values (10, 0, 'en', '', 10);
-
-insert into localized_property (id, version, locale, description, property_id)
-  values (10010, 0, 'ru', '', 10);
 
 insert into property_images (property_id, images_id) values (10, 92);
 insert into property_images (property_id, images_id) values (10, 93);
@@ -560,27 +513,47 @@ insert into property_images (property_id, images_id) values (10, 106);
 insert into property_images (property_id, images_id) values (10, 107);
 insert into property_images (property_id, images_id) values (10, 108);
 
-insert into localized_property_specification (specification, localized_property_id) values ('A wood fireplace', 10);
-insert into localized_property_specification (specification, localized_property_id) values ('A/C in all bed rooms and kitchen', 10);
-insert into localized_property_specification (specification, localized_property_id) values ('Ceiling fans with remote control', 10);
-insert into localized_property_specification (specification, localized_property_id) values ('Alarm system', 10);
-insert into localized_property_specification (specification, localized_property_id) values ('Garage gate with remote control', 10);
-insert into localized_property_specification (specification, localized_property_id) values ('Three olive trees', 10);
-insert into localized_property_specification (specification, localized_property_id) values ('One lemon tree', 10);
-insert into localized_property_specification (specification, localized_property_id) values ('One mandarin tree', 10);
-insert into localized_property_specification (specification, localized_property_id) values ('One walnut tree', 10);
-insert into localized_property_specification (specification, localized_property_id) values ('Other plants', 10);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'A wood fireplace');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'A/C in all bed rooms and kitchen');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ceiling fans with remote control');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Alarm system');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Garage gate with remote control');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Three olive trees');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'One lemon tree');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'One mandarin tree');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'One walnut tree');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Other plants');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Дровяной камин', 10010);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционеры во всех комнатах', 10010);
-insert into localized_property_specification (specification, localized_property_id) values ('Потолочные вентиляторы', 10010);
-insert into localized_property_specification (specification, localized_property_id) values ('Охранная система', 10010);
-insert into localized_property_specification (specification, localized_property_id) values ('Гараж с дистанц. управлением', 10010);
-insert into localized_property_specification (specification, localized_property_id) values ('Три оливковых дерева', 10010);
-insert into localized_property_specification (specification, localized_property_id) values ('Лимонное дерево', 10010);
-insert into localized_property_specification (specification, localized_property_id) values ('Мандариновое дерево', 10010);
-insert into localized_property_specification (specification, localized_property_id) values ('Ореховое дерево', 10010);
-insert into localized_property_specification (specification, localized_property_id) values ('Другие растения', 10010);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Дровяной камин');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционеры во всех комнатах');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Потолочные вентиляторы');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Охранная система');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гараж с дистанц. управлением');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Три оливковых дерева');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Лимонное дерево');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Мандариновое дерево');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Ореховое дерево');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Другие растения');
+insert into property_localized_fields (property_id, localized_fields_id) values (10, select last_insert_id());
 
 -- 11 Trisveis / Villa at dekhelia road(near Galu with common pool)
 
@@ -660,50 +633,93 @@ insert into property_images (property_id, images_id) values (11, 134);
 insert into property_images (property_id, images_id) values (11, 135);
 
 
-insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Dishwasher', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Clothes dryer', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('High chair', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Satellite TV', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Ceiling Fans', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Shared outdoor pool', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Shared garden', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony or terrace', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking', 11);
-insert into localized_property_specification (specification, localized_property_id) values ('Garage', 11);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Dishwasher');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Clothes dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'High chair');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Satellite TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ceiling Fans');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Shared outdoor pool');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Shared garden');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony or terrace');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Garage');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Стиральная машина', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Сушилка для белья', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Барный стул', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Спутниковое ТВ', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Потолочные вентиляторы', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Бассейн на два дома', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Общий сад', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Терраса', 10011);
-insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10011);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посудомоечная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стиральная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Сушилка для белья');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Барный стул');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Спутниковое ТВ');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Потолочные вентиляторы');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Бассейн на два дома');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Общий сад');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Терраса');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стоянка');
+insert into property_localized_fields (property_id, localized_fields_id) values (11, select last_insert_id());
 
 
 
@@ -758,52 +774,97 @@ insert into property_images (property_id, images_id) values (12, 148);
 insert into property_images (property_id, images_id) values (12, 149);
 insert into property_images (property_id, images_id) values (12, 150);
 
-insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Local Guides', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Satellite TV', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Housekeeping', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Shared outdoor pool', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Mountain Views', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Solarium or roof terrace', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony or terrace', 12);
-insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 12);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Local Guides');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Satellite TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hair dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Housekeeping');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Shared outdoor pool');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Mountain Views');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Solarium or roof terrace');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony or terrace');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Sea view');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Стиральная машина', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Спутниковое ТВ', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Уборка дома', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Общий бассейн', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на горы', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Место для загара', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Терраса', 10012);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10012);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стиральная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Спутниковое ТВ');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Фен');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Уборка дома');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Общий бассейн');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на горы');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Место для загара');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Терраса');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на море');
+insert into property_localized_fields (property_id, localized_fields_id) values (12, select last_insert_id());
 
 
 -- 13 Trisveis / Alex Residence #103
@@ -856,52 +917,97 @@ insert into property_images (property_id, images_id) values (13, 164);
 insert into property_images (property_id, images_id) values (13, 165);
 insert into property_images (property_id, images_id) values (13, 166);
 
-insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Local Guides', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Satellite TV', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Housekeeping', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Shared outdoor pool', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Mountain Views', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Solarium or roof terrace', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony or terrace', 13);
-insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 13);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Local Guides');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Satellite TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hair dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Housekeeping');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Shared outdoor pool');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Mountain Views');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Solarium or roof terrace');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony or terrace');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Sea view');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Стиральная машина', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Спутниковое ТВ', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Уборка дома', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Общий бассейн', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на горы', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Место для загара', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Терраса', 10013);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10013);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стиральная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Спутниковое ТВ');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Фен');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Уборка дома');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Общий бассейн');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на горы');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Место для загара');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Терраса');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на море');
+insert into property_localized_fields (property_id, localized_fields_id) values (13, select last_insert_id());
 
 
 
@@ -928,10 +1034,12 @@ insert into asset (id, version, `asset_key`, asset_type) values (184, 0, 'proper
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (14, 0, 'Alex Residence #105', 'LARNACA', '34.920028', '33.631734', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'APARTMENT', 'SHORT_TERM', 90, NULL, NULL, 2, 4, 500, TRUE, FALSE, FALSE, NULL, 169, NULL, 3);
 
-insert into localized_property (id, version, locale, description, property_id) values (14, 0, 'en', 'A brand new, never occupied, two bedroom duplex with a shared swimming pool on the roof. This beautiful flat consists two double bedrooms, fully equipped kitchen, fully furnished. Located just a few minutes from Phinikoudes (Palm trees) beach and town center. The modern design of the building gives the flat a unique/special vibe.The guests can enjoy their vacations in this quiet spot of the town center while they can enjoy the great beach, restaurants, and shops within walking distance from the duplex.A great get away for couples, families or group of friends.
-Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 14);
-insert into localized_property (id, version, locale, description, property_id) values (10014, 0, 'ru', 'Совершенно новые двуспальные апартаменты с общим бассейном на крыше с потрясающим видом. Апартаменты с полным набором мебели и полностью оборудованной кухней. Находится в 10 минутах от центра города и набережной Финикудес (Пальмовая аллея). Современные технологии, использованные при строительстве, позволяют наслаждаться абсолютной тишиной жизни практически в центре города. Отличное место для проживания парой, семьей или компании друзей.
-Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо будет покрыть разницу.', 14);
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'A brand new, never occupied, two bedroom duplex with a shared swimming pool on the roof. This beautiful flat consists two double bedrooms, fully equipped kitchen, fully furnished. Located just a few minutes from Phinikoudes (Palm trees) beach and town center. The modern design of the building gives the flat a unique/special vibe.The guests can enjoy their vacations in this quiet spot of the town center while they can enjoy the great beach, restaurants, and shops within walking distance from the duplex.A great get away for couples, families or group of friends.
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'ru', 'Совершенно новые двуспальные апартаменты с общим бассейном на крыше с потрясающим видом. Апартаменты с полным набором мебели и полностью оборудованной кухней. Находится в 10 минутах от центра города и набережной Финикудес (Пальмовая аллея). Современные технологии, использованные при строительстве, позволяют наслаждаться абсолютной тишиной жизни практически в центре города. Отличное место для проживания парой, семьей или компании друзей.
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо будет покрыть разницу.');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
 
 insert into property_images (property_id, images_id) values (14, 167);
 insert into property_images (property_id, images_id) values (14, 168);
@@ -952,52 +1060,97 @@ insert into property_images (property_id, images_id) values (14, 182);
 insert into property_images (property_id, images_id) values (14, 183);
 insert into property_images (property_id, images_id) values (14, 184);
 
-insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Local Guides', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Satellite TV', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Housekeeping', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Shared outdoor pool', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Mountain Views', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Solarium or roof terrace', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony or terrace', 14);
-insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 14);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Local Guides');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Satellite TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hair dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Housekeeping');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Shared outdoor pool');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Mountain Views');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Solarium or roof terrace');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony or terrace');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Sea view');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Стиральная машина', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Спутниковое ТВ', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Уборка дома', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Общий бассейн', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на горы', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Место для загара', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Терраса', 10014);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10014);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стиральная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Спутниковое ТВ');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Фен');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Уборка дома');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Общий бассейн');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на горы');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Место для загара');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Терраса');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на море');
+insert into property_localized_fields (property_id, localized_fields_id) values (14, select last_insert_id());
 
 
 
@@ -1030,18 +1183,20 @@ insert into asset (id, version, `asset_key`, asset_type) values (207, 0, 'proper
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (15, 0, 'Larnaca Beach Apartments #105', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 189, NULL, 3);
 
-insert into localized_property (id, version, locale, description, property_id) values (15, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
 There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
 The family bathroom has a full bath, hand basin and wc. 
 There are two bedrooms with fitted wardrobes and furnished to sleep four persons. 
-Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 15);
-insert into localized_property (id, version, locale, description, property_id) values (10015, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
 Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
 Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
 Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
 В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
-Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 15);
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
 
 insert into property_images (property_id, images_id) values (15, 185);
 insert into property_images (property_id, images_id) values (15, 186);
@@ -1067,46 +1222,85 @@ insert into property_images (property_id, images_id) values (15, 205);
 insert into property_images (property_id, images_id) values (15, 206);
 insert into property_images (property_id, images_id) values (15, 207);
 
-insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Porch', 15);
-insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 15);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hair dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Sea view');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Porch');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Outdoor dining');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10015);
-insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10015);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посудомоечная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Фен');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на море');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Балкон');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стоянка');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Крыльцо');
+insert into property_localized_fields (property_id, localized_fields_id) values (15, select last_insert_id());
 
 
 -- 16 SSV Larnaca Beach Apartments Flat 204
@@ -1133,18 +1327,20 @@ insert into asset (id, version, `asset_key`, asset_type) values (226, 0, 'proper
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (16, 0, 'Larnaca Beach Apartments #204', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 209, NULL, 3);
 
-insert into localized_property (id, version, locale, description, property_id) values (16, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
 There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
 The family bathroom has a full bath, hand basin and wc. 
 There are two bedrooms with fitted wardrobes and furnished to sleep four persons. 
-Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 16);
-insert into localized_property (id, version, locale, description, property_id) values (10016, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
 Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
 Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
 Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
 В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
-Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 16);
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
 
 insert into property_images (property_id, images_id) values (16, 208);
 insert into property_images (property_id, images_id) values (16, 209);
@@ -1166,46 +1362,85 @@ insert into property_images (property_id, images_id) values (16, 224);
 insert into property_images (property_id, images_id) values (16, 225);
 insert into property_images (property_id, images_id) values (16, 226);
 
-insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Porch', 16);
-insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 16);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hair dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Sea view');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Porch');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Outdoor dining');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10016);
-insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10016);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посудомоечная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Фен');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на море');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Балкон');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стоянка');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Крыльцо');
+insert into property_localized_fields (property_id, localized_fields_id) values (16, select last_insert_id());
 
 -- 17 Larnaca Beach Apartments #102
 
@@ -1237,19 +1472,21 @@ insert into asset (id, version, `asset_key`, asset_type) values (251, 0, 'proper
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (17, 0, 'Larnaca Beach Apartments #102', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 230, NULL, 3);
 
-insert into localized_property (id, version, locale, description, property_id) values (17, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
 There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
 The family bathroom has a full bath, hand basin and wc. 
 There are two bedrooms with fitted wardrobes and furnished to sleep four persons. 
 Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.
-', 17);
-insert into localized_property (id, version, locale, description, property_id) values (10017, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
 Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
 Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
 Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
 В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
-Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 17);
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
 
 insert into property_images (property_id, images_id) values (17, 227);
 insert into property_images (property_id, images_id) values (17, 228);
@@ -1277,46 +1514,85 @@ insert into property_images (property_id, images_id) values (17, 249);
 insert into property_images (property_id, images_id) values (17, 250);
 insert into property_images (property_id, images_id) values (17, 251);
 
-insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Porch', 17);
-insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 17);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hair dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Sea view');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Porch');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Outdoor dining');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10017);
-insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10017);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посудомоечная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Фен');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на море');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Балкон');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стоянка');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Крыльцо');
+insert into property_localized_fields (property_id, localized_fields_id) values (17, select last_insert_id());
 
 -- 18 Larnaca Beach Apartments #201
 
@@ -1343,18 +1619,20 @@ insert into asset (id, version, `asset_key`, asset_type) values (271, 0, 'proper
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (18, 0, 'Larnaca Beach Apartments #201', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 259, NULL, 3);
 
-insert into localized_property (id, version, locale, description, property_id) values (18, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
 There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
 The family bathroom has a full bath, hand basin and wc. 
 There are two bedrooms with fitted wardrobes and furnished to sleep four persons. 
-Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 18);
-insert into localized_property (id, version, locale, description, property_id) values (10018, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
 Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
 Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
 Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
 В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
-Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 18);
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
 
 insert into property_images (property_id, images_id) values (18, 252);
 insert into property_images (property_id, images_id) values (18, 253);
@@ -1377,46 +1655,85 @@ insert into property_images (property_id, images_id) values (18, 269);
 insert into property_images (property_id, images_id) values (18, 270);
 insert into property_images (property_id, images_id) values (18, 271);
 
-insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Porch', 18);
-insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 18);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hair dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Sea view');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Porch');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Outdoor dining');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10018);
-insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10018);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посудомоечная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Фен');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на море');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Балкон');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стоянка');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Крыльцо');
+insert into property_localized_fields (property_id, localized_fields_id) values (18, select last_insert_id());
 
 -- 19 SV Larnaca Beach Apartments #202
 
@@ -1448,18 +1765,20 @@ insert into asset (id, version, `asset_key`, asset_type) values (296, 0, 'proper
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (19, 0, 'Larnaca Beach Apartments #202', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 273, NULL, 3);
 
-insert into localized_property (id, version, locale, description, property_id) values (19, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
 There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
 The family bathroom has a full bath, hand basin and wc. 
 There are two bedrooms with fitted wardrobes and furnished to sleep four persons. 
-Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 19);
-insert into localized_property (id, version, locale, description, property_id) values (10019, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
 Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
 Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
 Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
 В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
-Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 19);
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
 
 insert into property_images (property_id, images_id) values (19, 272);
 insert into property_images (property_id, images_id) values (19, 273);
@@ -1487,46 +1806,85 @@ insert into property_images (property_id, images_id) values (19, 294);
 insert into property_images (property_id, images_id) values (19, 295);
 insert into property_images (property_id, images_id) values (19, 296);
 
-insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Porch', 19);
-insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 19);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hair dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Sea view');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Porch');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Outdoor dining');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10019);
-insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10019);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посудомоечная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Фен');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на море');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Балкон');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стоянка');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Крыльцо');
+insert into property_localized_fields (property_id, localized_fields_id) values (19, select last_insert_id());
 
 -- Denis House
 
@@ -1546,8 +1904,8 @@ insert into asset (id, version, `asset_key`, asset_type) values (309, 0, 'proper
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (20, 0, 'Dimitraki Koumantari Residence', 'LARNACA', '34.940275', '33.590204', 'Demetri Koumandari Str. No.1, 7103, Aradippou, Larnaca', 'Demetri Koumandari Str.1, Larnaca', 'HOUSE', 'LONG_TERM', 850, NULL, NULL, 4, 10, 4700, TRUE, TRUE, TRUE, 'FULL', 300, 309, 1);
 
-insert into localized_property (id, version, locale, description, property_id) values (20, 0, 'en', '', 20);
-insert into localized_property (id, version, locale, description, property_id) values (10020, 0, 'ru', '', 20);
+
+
 
 insert into property_images (property_id, images_id) values (20, 297);
 insert into property_images (property_id, images_id) values (20, 298);
@@ -1562,41 +1920,75 @@ insert into property_images (property_id, images_id) values (20, 306);
 insert into property_images (property_id, images_id) values (20, 307);
 insert into property_images (property_id, images_id) values (20, 308);
 
-insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Ceiling Fans', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Mountain view', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Private garden', 20);
-insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 20);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ceiling Fans');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Mountain view');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Private garden');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Outdoor dining');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Потолочные вентиляторы', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на горы', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Сад', 10020);
-insert into localized_property_specification (specification, localized_property_id) values ('Беседка', 10020);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посудомоечная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Потолочные вентиляторы');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на горы');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Балкон');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стоянка');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Сад');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Беседка');
+insert into property_localized_fields (property_id, localized_fields_id) values (20, select last_insert_id());
 
 
 -- LBA106
@@ -1640,21 +2032,23 @@ insert into asset (id, version, `asset_key`, asset_type) values (345, 0, 'proper
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (21, 0, 'LBA #106', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 311, NULL, 3);
 
-insert into localized_property (id, version, locale, description, property_id) values (21, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
 There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
 The family bathroom has a full bath, hand basin and wc. 
 There are two bedrooms with fitted wardrobes and furnished to sleep four persons.
 
-Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 21);
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
 
-insert into localized_property (id, version, locale, description, property_id) values (10021, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
 Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
 Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
 Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
 В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
 
-Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 21);
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
 
 insert into property_images (property_id, images_id) values (21, 310);
 insert into property_images (property_id, images_id) values (21, 311);
@@ -1693,46 +2087,85 @@ insert into property_images (property_id, images_id) values (21, 343);
 insert into property_images (property_id, images_id) values (21, 344);
 insert into property_images (property_id, images_id) values (21, 345);
 
-insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Porch', 21);
-insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 21);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hair dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Sea view');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Porch');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Outdoor dining');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10021);
-insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10021);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посудомоечная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Фен');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на море');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Балкон');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стоянка');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Крыльцо');
+insert into property_localized_fields (property_id, localized_fields_id) values (21, select last_insert_id());
 
 
 -- LBA 107
@@ -1764,22 +2197,24 @@ insert into asset (id, version, `asset_key`, asset_type) values (369, 0, 'proper
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (22, 0, 'LBA #107', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 367, NULL, 3);
 
-insert into localized_property (id, version, locale, description, property_id) values (22, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
 There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
 The family bathroom has a full bath, hand basin and wc. 
 There are two bedrooms with fitted wardrobes and furnished to sleep four persons.
 
-Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 22);
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
 
 
-insert into localized_property (id, version, locale, description, property_id) values (10022, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
 Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
 Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
 Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
 В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
 
-Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 22);
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
 
 insert into property_images (property_id, images_id) values (22, 346);
 insert into property_images (property_id, images_id) values (22, 347);
@@ -1806,46 +2241,85 @@ insert into property_images (property_id, images_id) values (22, 367);
 insert into property_images (property_id, images_id) values (22, 368);
 insert into property_images (property_id, images_id) values (22, 369);
 
-insert into localized_property_specification (specification, localized_property_id) values ('﻿Cooker', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Porch', 22);
-insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 22);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', '﻿Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hair dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Sea view');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Porch');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Outdoor dining');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('﻿Плита', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10022);
-insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10022);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', '﻿Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посудомоечная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Фен');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на море');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Балкон');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стоянка');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Крыльцо');
+insert into property_localized_fields (property_id, localized_fields_id) values (22, select last_insert_id());
 
 -- LBA205
 
@@ -1893,21 +2367,23 @@ insert into asset (id, version, `asset_key`, asset_type) values (410, 0, 'proper
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (23, 0, 'LBA #205', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 404, NULL, 3);
 
-insert into localized_property (id, version, locale, description, property_id) values (23, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
 There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
 The family bathroom has a full bath, hand basin and wc. 
 There are two bedrooms with fitted wardrobes and furnished to sleep four persons.
 
-Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 23);
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
 
-insert into localized_property (id, version, locale, description, property_id) values (10023, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
 Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
 Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
 Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
 В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
 
-Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 23);
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
 
 insert into property_images (property_id, images_id) values (23, 370);
 insert into property_images (property_id, images_id) values (23, 371);
@@ -1951,46 +2427,85 @@ insert into property_images (property_id, images_id) values (23, 408);
 insert into property_images (property_id, images_id) values (23, 409);
 insert into property_images (property_id, images_id) values (23, 410);
 
-insert into localized_property_specification (specification, localized_property_id) values ('﻿Cooker', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Porch', 23);
-insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 23);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', '﻿Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hair dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Sea view');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Porch');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Outdoor dining');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('﻿Плита', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10023);
-insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10023);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', '﻿Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посудомоечная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Фен');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на море');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Балкон');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стоянка');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Крыльцо');
+insert into property_localized_fields (property_id, localized_fields_id) values (23, select last_insert_id());
 
 -- LBA207
 
@@ -2023,21 +2538,23 @@ insert into asset (id, version, `asset_key`, asset_type) values (436, 0, 'proper
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (24, 0, 'LBA #207', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 426, NULL, 3);
 
-insert into localized_property (id, version, locale, description, property_id) values (24, 0, 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
 There are sliding patio doors leading to the balcony with patio table and chairs, with either a promenade and sea view (102, 201 & 202) or a side sea view over the children’s funfair, shops and towards the harbour (105 & 204). 
 The family bathroom has a full bath, hand basin and wc. 
 There are two bedrooms with fitted wardrobes and furnished to sleep four persons.
 
-Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.', 24);
+Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
 
-insert into localized_property (id, version, locale, description, property_id) values (10024, 0, 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'ru', 'Эти прекрасные просторные апартаменты расположены на набережной Финикудес (Пальмовая аллея). Удобный вход с лицевой стороны здания.  В фойе имеются лифты.
 Вход в апартаменты через центральный коридор. Кухня оборудована новой электрической плитой с духовкой, имеется стиральная машинка. Современный обеденный стол с 4-мя стульями, кофейный столик с удобными креслами. Светильники и телевизор с местными каналами.
 Балконная дверь-слайдер позволяет без потери пространства находиться внутри комнаты и на балконе, где можно скоротать время за уличным (деревенским) столиком, созерцая великолепный вид на средиземное море и мирскую суету.
 Созерцая мирскую суету на детской площадке и местные лавочки и бутики, где люди могут познакомиться со средиземноморским шопингом.
 В ванной комнате помимо стандартных удобств можно принять ванну (basin?). Две спальни позволяют разместить на ночлег 4-х человек. Весь багаж можно разместить во встроенных шкафах.
 
-Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.', 24);
+Гости при въезде должны внести 100 евро на депозит на случай непредвиденных инцидентов, связанных с порчей имущества в апартаментах. Депозит возвращается в полном объеме в день выезда (сдачи апартаментов владельцу). Если Вы или Ваши гости случайно разбили или повредили оборудование, то из внесенного депозита вычитается необходимая сумма для покрытия убытков владельца. Если ущерб превышает размер депозита, то Вам необходимо покрыть этот ущерб дополнительно по обоснованному требованию владельца.');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
 
 insert into property_images (property_id, images_id) values (24, 411);
 insert into property_images (property_id, images_id) values (24, 412);
@@ -2066,46 +2583,85 @@ insert into property_images (property_id, images_id) values (24, 434);
 insert into property_images (property_id, images_id) values (24, 435);
 insert into property_images (property_id, images_id) values (24, 436);
 
-insert into localized_property_specification (specification, localized_property_id) values ('﻿Cooker', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Toaster', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi available', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Hair dryer', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Ironing board', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Air conditioning', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Linen provided', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Towels provided', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Sea view', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Balcony', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Porch', 24);
-insert into localized_property_specification (specification, localized_property_id) values ('Outdoor dining', 24);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', '﻿Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Wi-Fi available');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hair dryer');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Ironing board');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Air conditioning');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Linen provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Towels provided');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Sea view');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Balcony');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Porch');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Outdoor dining');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('﻿Плита', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильная камера', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Телевизор', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Wi-Fi', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Фен', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Гладильная доска', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Кондиционер', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Постельное белье', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Полотенца', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Вид на море', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Балкон', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10024);
-insert into localized_property_specification (specification, localized_property_id) values ('Крыльцо', 10024);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', '﻿Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильная камера');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посудомоечная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телевизор');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Wi-Fi');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Фен');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гладильная доска');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционер');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Постельное белье');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Полотенца');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Вид на море');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Балкон');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стоянка');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Крыльцо');
+insert into property_localized_fields (property_id, localized_fields_id) values (24, select last_insert_id());
 
 -- Villa Agathi
 
@@ -2146,12 +2702,13 @@ insert into asset (id, version, `asset_key`, asset_type) values (470, 0, 'proper
 
 insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (25, 0, 'Villa Agathi', 'PAPHOS', '34.912892', '32.422035', 'Kathikas, Paphos, Cyprus', 'Kathikas, Paphos.', 'HOUSE', 'SHORT_TERM', 150, NULL, NULL, 4, 12, 8000, TRUE, FALSE, FALSE, 'NONE', 465, NULL, 4);
 
-insert into localized_property (id, version, locale, description, property_id) values (25, 0, 'en', 'This luxury spacious 3 floor, 4 bedroom villa is situated just 2 minutes’ drive or 5 minutes on foot from the picturesque village of Kathikas with its traditional church and taverns. Just across of our villa, 3 minutes walking you can find the Vasilikon famous winery that you can go for free wine tasting and buy this famous international awarded Cyprus wine in special prices. It is also 20 minutes drive to Paphos and if you want to enjoy the famous Coral Bay beach is just 15 minutes drive. However, you might get enough, feeling the fresh air of the mountain, feel so relaxed, and calm looking the amazing view where the sea meets the mountain from the high of 600m from the balconies of our villa.
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'This luxury spacious 3 floor, 4 bedroom villa is situated just 2 minutes’ drive or 5 minutes on foot from the picturesque village of Kathikas with its traditional church and taverns. Just across of our villa, 3 minutes walking you can find the Vasilikon famous winery that you can go for free wine tasting and buy this famous international awarded Cyprus wine in special prices. It is also 20 minutes drive to Paphos and if you want to enjoy the famous Coral Bay beach is just 15 minutes drive. However, you might get enough, feeling the fresh air of the mountain, feel so relaxed, and calm looking the amazing view where the sea meets the mountain from the high of 600m from the balconies of our villa.
 The villa offers a large private swimming pool with sunbeds, umbrellas and outdoor tables and chairs. There is a kitchen just next to the swimming pool and covered veranda with chairs and table so you can enjoy your dinner or lunch next to the swimming pool.
 Indoors the villa is beautifully furnished throughout to the highest standards including sofas, TV, air conditioning, WIFI as well as all necessary.Upon entering the villa on the first floor you will find a luxury living room with 2 leather sofas and a large flat TV with a DVD and a CD player. Just across is the dining room with a wooden luxury dining table and 8 chairs. They are conveniently positioned in front of traditional designed fireplace. On the left is a large kitchen, which is equipped with modern appliances and cabinets. It provides a 25 cu ft. fridge/freezer , 4-ring electrical ceramic hob, extractor hood, dishwasher, electronic oven, coffee machine, electrical mixer, slice toaster and sandwich toaster. You can also find plenty dinnerware and all kitchen cookware (pots, pans etc.) ready to cook anything. Just next to kitchen, you will find also a washing machine for your use. On the upper floor there are 3 extra-large bedrooms with their balconies and patio furniture to each that you can sit and enjoy the view of the wonderful combination of sea and mountain. All bedrooms have double beds and dressing tables. They are fully air-conditioned. The master bedroom has its private shower, toilet and a Flat TV. On the same floor is a shared large bathroom, which has a high-tech Jacuzzi. Hair dryers, iron, iron boards are available as well.There is also a toilet for your convenience.On the ground floor where the swimming pool located there is another kitchen, again fully equipped with a gas stove, electrical oven, microwave, refrigerator, cooling water dispenser, slice toaster, and all the necessary dinnerware. There is also an extra-large bedroom with a double bed and fully air-contioned. There is also a treadmill for your exercise and a flat TV. On the same floor, there is a shower and a toilet. The ground floor can be optional separated and can be used as a private ground floor apartment.
 For babies we have a wooden baby orthopedic crib can be also available upon your request. We have also high chairs and 2 bassinets (playing yards) for babies to play safe. Kids can also play on our 400 square meters garden, which is decorated beautifully, with flowers and trees.
-Just on, the side of the garden there is a build in brick bbq/grill with and electric motor for kebab, and all the accessories for grilling your favorite meat or fish and enjoy the outdoor cooking next to the swimming pool. There is also a portable bbq for your use anywhere in the garden. There is also a covered driveway that fits easily up to 3 cars.', 25);
-insert into localized_property (id, version, locale, description, property_id) values (10025, 0, 'ru', '', 25);
+Just on, the side of the garden there is a build in brick bbq/grill with and electric motor for kebab, and all the accessories for grilling your favorite meat or fish and enjoy the outdoor cooking next to the swimming pool. There is also a portable bbq for your use anywhere in the garden. There is also a covered driveway that fits easily up to 3 cars.');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+
 
 insert into property_images (property_id, images_id) values (25, 437);
 insert into property_images (property_id, images_id) values (25, 438);
@@ -2188,68 +2745,133 @@ insert into property_images (property_id, images_id) values (25, 468);
 insert into property_images (property_id, images_id) values (25, 469);
 insert into property_images (property_id, images_id) values (25, 470);
 
-insert into localized_property_specification (specification, localized_property_id) values ('Double beds', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Dressing tables', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Patio furniture', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Screens for mosquitos', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Jacuzzi', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Cooker', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Grill', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Hob', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Oven', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Microwave', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Dishwasher', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Fridge', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Freezer', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Kettle', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Slice toaster', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Kitchen utensils', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Cutlery', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Fire place', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('DVD', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('CD player', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Barbecue', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Private pool', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Parking', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Garden', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Iron', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Washing machine', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('High chair', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Internet', 25);
-insert into localized_property_specification (specification, localized_property_id) values ('Telephone', 25);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Double beds');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Dressing tables');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Patio furniture');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Screens for mosquitos');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Jacuzzi');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cooker');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Grill');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Hob');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Oven');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Microwave');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Dishwasher');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fridge');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Freezer');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kettle');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Slice toaster');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Kitchen utensils');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Cutlery');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Fire place');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'DVD');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'CD player');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Barbecue');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Private pool');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Parking');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Garden');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Iron');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Washing machine');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'High chair');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Internet');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'en', 'Telephone');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
 
-insert into localized_property_specification (specification, localized_property_id) values ('Двухспальные кровати', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Туалетный столик', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Садовая мебель', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Сетка от комаров', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Джакузи', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Плита', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Гриль', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Печь', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Микроволновка', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Посудомоечная машина', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Холодильник', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Морозильник', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Чайник', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Тостер', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Посуда', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Место для костра', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('TV', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('DVD', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('CD player', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Барбекю', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Частный бассейн', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Стоянка', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Сад', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Утюг', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Стиральная машина', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Интернет', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Телефон', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Лежаки', 10025);
-insert into localized_property_specification (specification, localized_property_id) values ('Зонты', 10025);
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Двухспальные кровати');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Туалетный столик');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Садовая мебель');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Сетка от комаров');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Джакузи');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Плита');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гриль');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Печь');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Микроволновка');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посудомоечная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Холодильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Морозильник');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Чайник');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Тостер');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Посуда');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Место для костра');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'TV');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'DVD');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'CD player');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Барбекю');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Частный бассейн');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стоянка');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Сад');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Утюг');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Стиральная машина');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Интернет');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Телефон');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Лежаки');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Зонты');
+insert into property_localized_fields (property_id, localized_fields_id) values (25, select last_insert_id());
 
 -- Offers status update
 
 update property set offer_status = 'RENTED' where id = 9;
 update property set offer_status = 'RENTED' where id = 20;
+
+
+-- Complexes
+
+insert into complex (version, title, location, address, short_address, developer, coordinates)
+  values (0, 'Mesoyios Park Residences', 'LARNACA', 'Larnaca Dhekelia', 'Larnaca Dhekelia', 'Livadhiotis Developers', '[{lat:34.983005, lng:33.729343},{lat:34.983919, lng:33.729756},{lat:34.983845, lng:33.730158},{lat:34.983651, lng:33.730561},{lat:34.983137, lng:33.730979},{lat:34.982838, lng:33.729616}]');
