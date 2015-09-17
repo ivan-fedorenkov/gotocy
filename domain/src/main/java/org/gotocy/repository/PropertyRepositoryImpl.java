@@ -4,7 +4,6 @@ import com.mysema.query.jpa.impl.JPAQuery;
 import com.mysema.query.types.EntityPath;
 import com.mysema.query.types.Predicate;
 import com.mysema.query.types.path.PathBuilder;
-import org.gotocy.domain.LocalizedProperty;
 import org.gotocy.domain.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
