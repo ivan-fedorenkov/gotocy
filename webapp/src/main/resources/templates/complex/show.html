@@ -308,11 +308,12 @@
                             </dl>
                         </aside><!-- /#complex-stats -->
 
-                        <aside id="additional-materials" th:remove="all">
-                            <header><h3>Additional Materials</h3></header>
-                            <a href="#" class="universal-button">
+                        <aside id="additional-materials" th:unless="${#lists.isEmpty(complex.pdfFiles)}">
+                            <header><h3 th:text="#{org.gotocy.dictionary.additional-materials}">Additional Materials</h3></header>
+                            <!--/*/ <th:block th:each="file : *{pdfFiles}" th:remove="all-but-first"> /*/-->
+                            <a href="#" th:href="${helper.url(file)}" class="universal-button">
                                 <figure class="fa fa-file-pdf-o"></figure>
-                                <span>A34 -Mesoyios Residences</span>
+                                <span th:text="${file.displayName}">A34 -Mesoyios Residences</span>
                             </a>
                             <a href="#" class="universal-button">
                                 <figure class="fa fa-file-pdf-o"></figure>
@@ -322,6 +323,7 @@
                                 <figure class="fa fa-file-pdf-o"></figure>
                                 <span>Presentation House Type B</span>
                             </a>
+                            <!--/*/ </th:block> /*/-->
                         </aside>
                     </section><!-- /#sidebar -->
                 </div><!-- /.col-md-3 -->

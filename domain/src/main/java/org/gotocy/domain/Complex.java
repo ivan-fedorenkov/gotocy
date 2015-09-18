@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.i18n.ComplexLocalizedFieldsManager;
 import org.gotocy.domain.i18n.LocalizedField;
+import org.gotocy.utils.CollectionUtils;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.Locale;
 @Entity
 @Getter
 @Setter
-public class Complex extends BaseEntity implements ImageSetDelegate {
+public class Complex extends BaseEntity {
 
 	@ManyToOne(optional = false)
 	private Owner primaryContact;
@@ -32,11 +33,14 @@ public class Complex extends BaseEntity implements ImageSetDelegate {
 	private String shortAddress;
 	private String coordinates;
 
-	@Embedded
-	private ImageSet imageSet = new ImageSet();
-
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Image representativeImage;
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Image> images = new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<PdfFile> pdfFiles = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<LocalizedField> localizedFields = new ArrayList<>();
@@ -50,6 +54,21 @@ public class Complex extends BaseEntity implements ImageSetDelegate {
 
 	public long getPropertiesWithActiveOfferCount() {
 		return properties.stream().filter(p -> p.getOfferStatus() == OfferStatus.ACTIVE).count();
+	}
+
+	public Image getImage(int index) {
+		// Ensure that the index is in the images list bounds
+		if (index >= images.size())
+			index = index % images.size();
+		return images.get(index);
+	}
+
+	public void setImages(List<Image> images) {
+		CollectionUtils.updateCollection(this.images, images);
+	}
+
+	public void setPdfFiles(List<PdfFile> pdfFiles) {
+		CollectionUtils.updateCollection(this.pdfFiles, pdfFiles);
 	}
 
 	// Localized fields

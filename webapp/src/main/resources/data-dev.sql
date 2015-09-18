@@ -2878,6 +2878,9 @@ insert into asset (id, version, `asset_key`, asset_type) values (473, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (474, 0, 'property/25/DSCN1357.jpg', 'IMAGE');
 insert into asset (id, version, `asset_key`, asset_type) values (475, 0, 'property/25/DSCN1359.jpg', 'IMAGE');
 
+insert into asset (id, version, `asset_key`, asset_type, display_name) values (476, 0, 'property/25/DSCN1359.jpg', 'PDF_FILE', 'Some interesting plan #1');
+insert into asset (id, version, `asset_key`, asset_type, display_name) values (477, 0, 'property/25/DSCN1359.jpg', 'PDF_FILE', 'Some interesting plan #2');
+
 insert into complex (id, version, title, location, address, short_address, coordinates, primary_contact_id, representative_image_id)
   values (1, 0, 'Mesoyios Park Residences', 'LARNACA', 'Larnaca Dhekelia', 'Livadhiotis Developers', '[{lat:34.983005, lng:33.729343},{lat:34.983919, lng:33.729756},{lat:34.983845, lng:33.730158},{lat:34.983651, lng:33.730561},{lat:34.983137, lng:33.730979},{lat:34.982838, lng:33.729616}]', 1, 471);
 
@@ -2886,6 +2889,9 @@ insert into complex_images (complex_id, images_id) values (1, 472);
 insert into complex_images (complex_id, images_id) values (1, 473);
 insert into complex_images (complex_id, images_id) values (1, 474);
 insert into complex_images (complex_id, images_id) values (1, 475);
+
+insert into complex_pdf_files (complex_id, pdf_files_id) values (1, 476);
+insert into complex_pdf_files (complex_id, pdf_files_id) values (1, 477);
 
 insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'specification', 'en', 'Multiple modern architectural designs to choose from');
 insert into complex_localized_fields (complex_id, localized_fields_id) values (1, select last_insert_id());

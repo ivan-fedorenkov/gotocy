@@ -10,10 +10,7 @@ import com.amazonaws.services.s3.model.Region;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
 import org.gotocy.config.S3Properties;
-import org.gotocy.domain.Asset;
-import org.gotocy.domain.Image;
-import org.gotocy.domain.ImageSize;
-import org.gotocy.domain.PanoXml;
+import org.gotocy.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -69,6 +66,8 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 				((PanoXml) asset).setObject(IOUtils.toString(is));
 			} else if (asset instanceof Image) {
 				((Image) asset).setObject(IOUtils.toByteArray(is));
+			} else if (asset instanceof PdfFile) {
+				((PdfFile) asset).setObject(IOUtils.toByteArray(is));
 			}
 		} catch (IOException ignore) {
 			// TODO: log IOException

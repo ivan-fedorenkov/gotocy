@@ -1,11 +1,16 @@
 package org.gotocy.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 /**
  * @author ifedorenkov
  */
 @MappedSuperclass
+@Getter
+@Setter
 public abstract class BaseEntity {
 
 	@Id
@@ -14,22 +19,6 @@ public abstract class BaseEntity {
 
 	@Version
 	private Integer version;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
 
 	@Override
 	public boolean equals(Object o) {

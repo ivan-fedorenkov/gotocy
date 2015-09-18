@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.i18n.LocalizedField;
 import org.gotocy.domain.i18n.PropertyLocalizedFieldsManager;
+import org.gotocy.utils.CollectionUtils;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,16 +17,23 @@ import java.util.Locale;
  * @author ifedorenkov
  */
 @Entity
-@NamedEntityGraph(name = "Property.withAssets",
+@NamedEntityGraph(name = "Property.withAssociations",
 	attributeNodes = {
+		@NamedAttributeNode(value = "complex", subgraph = "complex"),
 		@NamedAttributeNode("owner"),
 		@NamedAttributeNode("panoXml"),
-		@NamedAttributeNode("representativeImage")
+		@NamedAttributeNode("representativeImage"),
+	},
+	subgraphs = {
+		@NamedSubgraph(name = "complex", attributeNodes = {
+			@NamedAttributeNode("primaryContact"),
+			@NamedAttributeNode("representativeImage")
+		})
 	}
 )
 @Getter
 @Setter
-public class Property extends BaseEntity implements ImageSetDelegate {
+public class Property extends BaseEntity {
 
 	@ManyToOne
 	private Complex complex;
@@ -83,8 +91,8 @@ public class Property extends BaseEntity implements ImageSetDelegate {
 	@Enumerated(EnumType.STRING)
 	private Furnishing furnishing;
 
-	@Embedded
-	private ImageSet imageSet = new ImageSet();
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Image> images = new ArrayList<>();
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Image representativeImage;
@@ -94,6 +102,17 @@ public class Property extends BaseEntity implements ImageSetDelegate {
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<LocalizedField> localizedFields = new ArrayList<>();
+
+	public Image getImage(int index) {
+		// Ensure that the index is in the images list bounds
+		if (index >= images.size())
+			index = index % images.size();
+		return images.get(index);
+	}
+
+	public void setImages(List<Image> images) {
+		CollectionUtils.updateCollection(this.images, images);
+	}
 
 	// Localized fields
 

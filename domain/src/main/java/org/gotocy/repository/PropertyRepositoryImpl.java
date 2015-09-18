@@ -41,7 +41,7 @@ public class PropertyRepositoryImpl implements PropertyRepositoryCustom
 		JPAQuery query = (JPAQuery) querydsl.applyPagination(pageable, createQuery(predicate));
 
 		query.setHint(EntityGraph.EntityGraphType.LOAD.getKey(),
-			entityManager.getEntityGraph("Property.withAssets"));
+			entityManager.getEntityGraph("Property.withAssociations"));
 
 		Long total = countQuery.count();
 		List<Property> content = total > pageable.getOffset() ? query.list(path) :

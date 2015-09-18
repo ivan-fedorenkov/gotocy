@@ -25,6 +25,15 @@ CREATE TABLE `complex_images`(
     PRIMARY KEY (`complex_id`, `images_id`)
 );
 
+CREATE TABLE `complex_pdf_files`(
+    `complex_id` BIGINT NOT NULL,
+    `pdf_files_id` BIGINT NOT NULL,
+
+    CONSTRAINT fk_complex_pdf_files_complex_id FOREIGN KEY (`complex_id`) REFERENCES `complex` (`id`),
+    CONSTRAINT fk_complex_pdf_files_pdf_files_id FOREIGN KEY (`pdf_files_id`) REFERENCES `asset` (`id`),
+    PRIMARY KEY (`complex_id`, `pdf_files_id`)
+);
+
 CREATE TABLE `complex_localized_fields`(
     `complex_id` BIGINT NOT NULL,
     `localized_fields_id` BIGINT NOT NULL,
@@ -36,3 +45,4 @@ CREATE TABLE `complex_localized_fields`(
 
 ALTER TABLE `property` ADD COLUMN `complex_id` BIGINT NULL;
 ALTER TABLE `property` ADD CONSTRAINT fk_property_complex_id FOREIGN KEY (`complex_id`) REFERENCES `complex` (`id`);
+ALTER TABLE `asset` ADD COLUMN `display_name` VARCHAR(256) NULL;

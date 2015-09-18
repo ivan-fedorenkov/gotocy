@@ -14,7 +14,7 @@ import org.springframework.data.querydsl.QueryDslPredicateExecutor;
  */
 public interface PropertyRepository extends JpaRepository<Property, Long>, QueryDslPredicateExecutor<Property> {
 
-	@EntityGraph(value = "Property.withAssets", type = EntityGraph.EntityGraphType.FETCH)
+	@EntityGraph(value = "Property.withAssociations", type = EntityGraph.EntityGraphType.FETCH)
 	Page<Property> findByPropertyStatus(PropertyStatus propertyStatus, Pageable pageable);
 
 }

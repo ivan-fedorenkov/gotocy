@@ -84,14 +84,14 @@
                         <section id="property-gallery">
                             <div class="pg-grid">
                                 <div class="pg-grid-sizer"></div>
-                                <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4" th:style="|background-image: url('${helper.imageUrl(property.imageSet.getImage(0), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;">
+                                <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4" th:style="|background-image: url('${helper.imageUrl(property.getImage(0), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;">
                                     <div class="pg-ribbon-container" th:if="${property.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}">
                                         <figure class="pg-ribbon" th:classappend="${property.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="*{{offerStatus}}">Booked</figure>
                                     </div>
                                 </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(property.imageSet.getImage(1), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(property.imageSet.getImage(2), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(property.imageSet.getImage(3), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg');">
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(property.getImage(1), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(property.getImage(2), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(property.getImage(3), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg');">
                                     <div id="pano-popup-container" class="icon-container" th:if="${hasPano}">
                                         <i class="fa fa-street-view"></i><br><span class="hint" th:text="#{org.gotocy.templates.property.show.click-to-view-pano}">Click to View Pano 360</span>
                                         <div id="pano-popup" class="mfp-hide">
@@ -107,7 +107,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(property.imageSet.getImage(4), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-01.jpg');">
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(property.getImage(4), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-01.jpg');">
                                     <div id="gallery-popup-container" class="icon-container">
                                         <i class="fa fa-camera"></i><br><span class="hint" th:text="#{org.gotocy.templates.property.show.click-to-view-gallery}">Click to View Gallery</span>
                                     </div>
@@ -261,7 +261,7 @@
     var longitude = /*[[*{longitude}]]*/ '33.022617399999945';
     var markerPictureUrl = /*[[|http://assets.gotocy.eu/static/img/property-types/${helper.property.typeIcon(property.propertyType)}.png|]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
     var panoConfigUrl = /*[[${hasPano}? ${helper.path(property)} + '/pano.xml' : '']]*/ '';
-    var images = /*[[${helper.imageUrls(property.imageSet.images)}]]*/ '';
+    var images = /*[[${helper.imageUrls(property.images)}]]*/ '';
 /*]]>*/
 </script>
 

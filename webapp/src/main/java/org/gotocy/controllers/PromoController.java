@@ -98,12 +98,11 @@ public class PromoController {
 		representative.setKey("property/promo/representative.jpg");
 		p.setRepresentativeImage(representative);
 
-		ImageSet imageSet = p.getImageSet();
 		Image img;
 		for (int i = 1; i < 5; i++) {
 			img = new Image();
 			img.setKey("property/promo/" + i + ".jpg");
-			imageSet.getImages().add(img);
+			p.getImages().add(img);
 		}
 
 		Owner owner = new Owner();
