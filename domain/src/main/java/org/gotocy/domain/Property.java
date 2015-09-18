@@ -27,6 +27,9 @@ import java.util.Locale;
 @Setter
 public class Property extends BaseEntity implements ImageSetDelegate {
 
+	@ManyToOne
+	private Complex complex;
+
 	@ManyToOne(optional = false)
 	private Owner owner;
 

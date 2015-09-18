@@ -77,8 +77,11 @@ public class Helper {
 	 * Unit test: HelperTest#entityPathTest
 	 */
 	public static <T extends BaseEntity> String path(T entity, String language) {
-		if (entity instanceof Property)
+		if (entity instanceof Property) {
 			return getPrefixForLanguage(language) + "/property/" + entity.getId();
+		} else if (entity instanceof Complex) {
+			return getPrefixForLanguage(language) + "/complex/" + entity.getId();
+		}
 		// TODO: log error
 		return "";
 	}

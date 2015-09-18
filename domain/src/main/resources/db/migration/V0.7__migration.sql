@@ -6,11 +6,10 @@ CREATE TABLE `complex`(
     `location` VARCHAR(16) NOT NULL,
     `address` VARCHAR(1024) NOT NULL,
     `short_address` VARCHAR(256) NOT NULL,
-    `developer` VARCHAR(1024) NOT NULL,
     `coordinates` VARCHAR(1024) NOT NULL,
 
-    `representative_image_id` BIGINT NULL,
-    `primary_contact_id` BIGINT NULL DEFAULT NULL,
+    `representative_image_id` BIGINT NOT NULL,
+    `primary_contact_id` BIGINT NOT NULL,
 
     CONSTRAINT fk_complex_representative_image_id FOREIGN KEY (`representative_image_id`) REFERENCES `asset` (`id`),
     CONSTRAINT fk_complex_primary_contact_id FOREIGN KEY (`primary_contact_id`) REFERENCES `owner` (`id`),
@@ -34,3 +33,6 @@ CREATE TABLE `complex_localized_fields`(
     CONSTRAINT fk_complex_localized_fields_localized_field_id FOREIGN KEY (`localized_fields_id`) REFERENCES `localized_field` (`id`),
     PRIMARY KEY (`complex_id`, `localized_fields_id`)
 );
+
+ALTER TABLE `property` ADD COLUMN `complex_id` BIGINT NULL;
+ALTER TABLE `property` ADD CONSTRAINT fk_property_complex_id FOREIGN KEY (`complex_id`) REFERENCES `complex` (`id`);

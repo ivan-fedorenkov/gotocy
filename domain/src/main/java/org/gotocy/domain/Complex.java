@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.i18n.ComplexLocalizedFieldsManager;
 import org.gotocy.domain.i18n.LocalizedField;
-import org.gotocy.domain.i18n.PropertyLocalizedFieldsManager;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,12 +15,13 @@ import java.util.Locale;
  *
  * @author ifedorenkov
  */
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 @Entity
 @Getter
 @Setter
 public class Complex extends BaseEntity implements ImageSetDelegate {
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Owner primaryContact;
 
 	@Enumerated(EnumType.STRING)
@@ -30,7 +30,6 @@ public class Complex extends BaseEntity implements ImageSetDelegate {
 	private String title;
 	private String address;
 	private String shortAddress;
-	private String developer;
 	private String coordinates;
 
 	@Embedded
@@ -42,11 +41,22 @@ public class Complex extends BaseEntity implements ImageSetDelegate {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<LocalizedField> localizedFields = new ArrayList<>();
 
+	@OneToMany(mappedBy = "complex")
+	private List<Property> properties = new ArrayList<>();
+
+	public int getPropertiesCount() {
+		return properties.size();
+	}
+
+	public long getPropertiesWithActiveOfferCount() {
+		return properties.stream().filter(p -> p.getOfferStatus() == OfferStatus.ACTIVE).count();
+	}
+
 	// Localized fields
 
 	private transient ComplexLocalizedFieldsManager localizedFieldsManager;
 	private transient String description;
-	private transient List<String> features;
+	private transient List<String> specifications;
 
 	public void initLocalizedFields(Locale locale) {
 		getLocalizedFieldsManager().setFields(locale);
@@ -61,13 +71,13 @@ public class Complex extends BaseEntity implements ImageSetDelegate {
 		getLocalizedFieldsManager().setDescription(description, locale);
 	}
 
-	public List<String> getFeatures(Locale locale) {
-		return getLocalizedFieldsManager().getFeatures(locale);
+	public List<String> getSpecifications(Locale locale) {
+		return getLocalizedFieldsManager().getSpecifications(locale);
 	}
 
-	public void setFeatures(List<String> features, Locale locale) {
-		setFeatures(features);
-		getLocalizedFieldsManager().setFeatures(features, locale);
+	public void setSpecifications(List<String> specifications, Locale locale) {
+		this.setSpecifications(specifications);
+		getLocalizedFieldsManager().setSpecifications(specifications, locale);
 	}
 
 	// Private stuff

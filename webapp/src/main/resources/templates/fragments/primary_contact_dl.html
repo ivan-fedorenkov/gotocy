@@ -1,0 +1,13 @@
+<dl th:fragment="primary_contact(contact)">
+    <dt th:text="|#{org.gotocy.dictionary.name}:|">Name:</dt>
+    <dd th:text="${contact.name}">Denis</dd>
+
+    <dt th:unless="${#strings.isEmpty(contact.email)}" th:text="|#{org.gotocy.dictionary.email}:|">Email:</dt>
+    <dd th:unless="${#strings.isEmpty(contact.email)}" th:text="${contact.email}">support@gotocy.eu</dd>
+
+    <dt th:text="|#{org.gotocy.dictionary.phone}:|">Phone:</dt>
+    <dd th:text="${contact.phone}">123-45-67</dd>
+
+    <dt th:text="|#{org.gotocy.dictionary.spoken-languages}:|">Spoken Languages:</dt>
+    <dd th:text="${contact.spokenLanguages}">English, Russian</dd>
+</dl>

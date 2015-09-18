@@ -27,8 +27,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (18, 0, 'propert
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
   values (1, 0, 'Sofia', 'Chania, Crete, Nomós Chaníon', 'Chania, Crete, Nomós Chaníon', 'LARNACA', '35.318198', '24.318744', 'APARTMENT', 'SHORT_TERM', 95, 1, 3, 1, true, 1200, 1, 1);
 
-insert into localized_property (id, version, locale, description, property_id)
-  values (1, 0, 'en', 'Kastellos village is situated in the picturesque village of Kastellos in Georgioupolis, Chania. The complex is ideal for those wishing to escape everyday routine and relax enjoying the Cretan countryside; it’s for those who want to contact the nature, the wild life and of course to meet the people and their habits.
+insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'Kastellos village is situated in the picturesque village of Kastellos in Georgioupolis, Chania. The complex is ideal for those wishing to escape everyday routine and relax enjoying the Cretan countryside; it’s for those who want to contact the nature, the wild life and of course to meet the people and their habits.
 "Sofia Apartment" independent and fully equipped. It is built according to the traditional architecture. On the outside, beautiful stone work frames the dark green doorways and windows, further accentuated by the pastel strawberry and lemon walls. Add to this lovely tiled roofs and backdrop of the blue sky and mountains, and then you begin to understand why we were so smitten.
 Inside the restoration is if anything, even more remarkable, with beautifully tiled floors, ceilings supported by huge beams interlaced with traditional bamboo linings and pale ochre coloured walls set off by elegant concealed lighting.
 "Sofia Apartment" has two floors and a private veranda with panoramic view of the mountain and the sea. Is has a fully equipped kitchen (with kitchen appliances and utensils), bathroom with bathtub, WC with shower and one or two bedrooms with king size beds. The house combines harmoniously the traditional style with modern decorative elements, creating a warm and cosy atmosphere. For your convenience, you can find A/C, fireplace and plasma TV and can accommodate 2 to 6 persons.
@@ -37,8 +36,8 @@ KASTELLOS VILLAGE is built in a privileged location. During your stay here you c
 It is worth visiting the famous Kourna lake, which is only 5 km from the village. You can also visit the area of Argiroupolis, known for the running and spring waters. You will have a meal under the plane trees and visit the small church of Saint Prokopios, which is built in a cave.
 The popular beach of Georgioupolis (5 km from the complex) is a pole of attraction for the visitors of the area.
 There are many restaurants and taverns in the village, where you can enjoy the famous recipes of the traditional Cretan cuisine.
-Semi-mountainous village built on the feet of the White Mountains on an altitude of 252m. Its named derived from the site it was built (like a castle). Originally the village was situated lower on the valley in the present area of the settlement Agathes from where the inhabitants were forced to leave in 1800 due to the Ottomans. Close to the village a there was in 1835 a severe battle amongst Cretans and Ottomans that left 22 dead Ottomans and just 1 Cretan. It was the reason that the ottomans stopped raiding the area. The locals had an important contribution to the resistance against the Germans fascists during the 2sn World War.'
-  , 1);
+Semi-mountainous village built on the feet of the White Mountains on an altitude of 252m. Its named derived from the site it was built (like a castle). Originally the village was situated lower on the valley in the present area of the settlement Agathes from where the inhabitants were forced to leave in 1800 due to the Ottomans. Close to the village a there was in 1835 a severe battle amongst Cretans and Ottomans that left 22 dead Ottomans and just 1 Cretan. It was the reason that the ottomans stopped raiding the area. The locals had an important contribution to the resistance against the Germans fascists during the 2sn World War.');
+insert into property_localized_fields (property_id, localized_fields_id) values (1, select last_insert_id());
 
 insert into property_images (property_id, images_id) values (1, 1);
 insert into property_images (property_id, images_id) values (1, 2);
@@ -2873,5 +2872,32 @@ update property set offer_status = 'RENTED' where id = 20;
 
 -- Complexes
 
-insert into complex (version, title, location, address, short_address, developer, coordinates)
-  values (0, 'Mesoyios Park Residences', 'LARNACA', 'Larnaca Dhekelia', 'Larnaca Dhekelia', 'Livadhiotis Developers', '[{lat:34.983005, lng:33.729343},{lat:34.983919, lng:33.729756},{lat:34.983845, lng:33.730158},{lat:34.983651, lng:33.730561},{lat:34.983137, lng:33.730979},{lat:34.982838, lng:33.729616}]');
+insert into asset (id, version, `asset_key`, asset_type) values (471, 0, 'property/25/DSC_3535.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (472, 0, 'property/25/DSCN1326.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (473, 0, 'property/25/DSCN1351.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (474, 0, 'property/25/DSCN1357.jpg', 'IMAGE');
+insert into asset (id, version, `asset_key`, asset_type) values (475, 0, 'property/25/DSCN1359.jpg', 'IMAGE');
+
+insert into complex (id, version, title, location, address, short_address, coordinates, primary_contact_id, representative_image_id)
+  values (1, 0, 'Mesoyios Park Residences', 'LARNACA', 'Larnaca Dhekelia', 'Livadhiotis Developers', '[{lat:34.983005, lng:33.729343},{lat:34.983919, lng:33.729756},{lat:34.983845, lng:33.730158},{lat:34.983651, lng:33.730561},{lat:34.983137, lng:33.730979},{lat:34.982838, lng:33.729616}]', 1, 471);
+
+insert into complex_images (complex_id, images_id) values (1, 471);
+insert into complex_images (complex_id, images_id) values (1, 472);
+insert into complex_images (complex_id, images_id) values (1, 473);
+insert into complex_images (complex_id, images_id) values (1, 474);
+insert into complex_images (complex_id, images_id) values (1, 475);
+
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'specification', 'en', 'Multiple modern architectural designs to choose from');
+insert into complex_localized_fields (complex_id, localized_fields_id) values (1, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'specification', 'en', 'A selection of three and four bedroom , three bathroom houses');
+insert into complex_localized_fields (complex_id, localized_fields_id) values (1, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'specification', 'en', 'Provision for fireplace');
+insert into complex_localized_fields (complex_id, localized_fields_id) values (1, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'specification', 'en', 'Allocated space for W/M and dryer on first floor');
+insert into complex_localized_fields (complex_id, localized_fields_id) values (1, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'specification', 'en', 'Optional private pools');
+insert into complex_localized_fields (complex_id, localized_fields_id) values (1, select last_insert_id());
+insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'specification', 'en', 'Covered garage');
+insert into complex_localized_fields (complex_id, localized_fields_id) values (1, select last_insert_id());
+
+update property set complex_id = 1 where id in (1, 2, 9, 20);

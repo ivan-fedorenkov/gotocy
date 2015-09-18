@@ -14,7 +14,7 @@ import static java.util.stream.Collectors.toList;
 public class ComplexLocalizedFieldsManager extends LocalizedFieldsManager {
 
 	private static final String DESCRIPTION_KEY = "description";
-	private static final String FEATURE_KEY = "feature";
+	private static final String SPECIFICATION_KEY = "specification";
 
 	private final Complex complex;
 
@@ -25,7 +25,7 @@ public class ComplexLocalizedFieldsManager extends LocalizedFieldsManager {
 	@Override
 	public void setFields(Locale locale) {
 		complex.setDescription(getFieldValue(DESCRIPTION_KEY, locale).orElse(""));
-		complex.setFeatures(getFieldValues(FEATURE_KEY, locale));
+		complex.setSpecifications(getFieldValues(SPECIFICATION_KEY, locale));
 	}
 
 	@Override
@@ -48,16 +48,16 @@ public class ComplexLocalizedFieldsManager extends LocalizedFieldsManager {
 		return getFieldValue(DESCRIPTION_KEY, locale);
 	}
 
-	public List<String> getFeatures(Locale locale) {
-		return getFieldValues(FEATURE_KEY, locale);
+	public List<String> getSpecifications(Locale locale) {
+		return getFieldValues(SPECIFICATION_KEY, locale);
 	}
 
-	public void setFeatures(List<String> features, Locale locale) {
-		List<LocalizedField> existingFeatures = getFieldList(FEATURE_KEY, locale);
+	public void setSpecifications(List<String> specifications, Locale locale) {
+		List<LocalizedField> existingFeatures = getFieldList(SPECIFICATION_KEY, locale);
 		getFields().removeAll(existingFeatures);
 
-		getFields().addAll(features.stream()
-			.map(f -> new LocalizedStringField(FEATURE_KEY, f, locale.getLanguage()))
+		getFields().addAll(specifications.stream()
+			.map(f -> new LocalizedStringField(SPECIFICATION_KEY, f, locale.getLanguage()))
 			.collect(toList()));
 	}
 

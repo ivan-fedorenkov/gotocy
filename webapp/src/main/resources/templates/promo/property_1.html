@@ -180,22 +180,22 @@
                 <!-- sidebar -->
                 <div class="col-md-3 col-sm-3">
                     <section id="sidebar">
-                        <aside id="property-owner">
-                            <header><h3 th:text="#{org.gotocy.dictionary.property-owner}">Property Owner</h3></header>
-                            <dl>
-                                <dt th:text="|#{org.gotocy.dictionary.name}:|">Name:</dt>
-                                <dd th:text="*{owner.name}">Denis</dd>
+                        <aside id="primary-contact">
+                            <header><h3 th:text="#{org.gotocy.dictionary.primary-contact}">Primary Contact</h3></header>
+                            <dl th:replace="fragments/primary_contact_dl :: primary_contact(contact=*{owner})">
+                                <dt>Name:</dt>
+                                <dd>Denis</dd>
 
-                                <dt th:unless="${#strings.isEmpty(property.owner.email)}" th:text="|#{org.gotocy.dictionary.email}:|">Email:</dt>
-                                <dd th:unless="${#strings.isEmpty(property.owner.email)}" th:text="*{owner.email}">support@gotocy.eu</dd>
+                                <dt>Email:</dt>
+                                <dd>support@gotocy.eu</dd>
 
-                                <dt th:text="|#{org.gotocy.dictionary.phone}:|">Phone:</dt>
-                                <dd th:text="*{owner.phone}">123-45-67</dd>
+                                <dt>Phone:</dt>
+                                <dd>123-45-67</dd>
 
-                                <dt th:text="|#{org.gotocy.dictionary.spoken-languages}:|">Spoken Languages:</dt>
-                                <dd th:text="*{owner.spokenLanguages}">English, Russian</dd>
+                                <dt>Spoken Languages:</dt>
+                                <dd>English, Russian</dd>
                             </dl>
-                        </aside><!-- /#property-owner -->
+                        </aside><!-- /#primary-contact -->
 
                         <aside id="featured-properties" th:unless="${#lists.isEmpty(featuredProperties)}">
                             <header><h3 th:text="#{org.gotocy.dictionary.featured-properties}">Featured Properties</h3></header>

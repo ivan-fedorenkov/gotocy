@@ -19,4 +19,8 @@ public interface ImageSetDelegate {
 		getImageSet().setImages(images);
 	}
 
+	default Image getImage(int index) {
+		return getImageSet().getImage(index);
+	}
+
 }
