@@ -151,128 +151,146 @@
                             </div>
                         </section><!-- /#property-map -->
 
-                        <section id="properties" th:remove="all">
-                            <header><h2>Properties</h2></header>
-                            <div class="my-properties">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>Property</th>
-                                            <th></th>
-                                            <th>Date Added</th>
-                                            <th>Views</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="image">
-                                                <a href="property-detail.html"><img alt="" src="http://assets.gotocy.eu/static/img/properties/property-04.jpg"></a>
-                                            </td>
-                                            <td><div class="inner">
-                                                <a href="property-detail.html"><h2>987 Cantebury Drive</h2></a>
+                        <section id="properties">
+                            <header><h2 th:text="#{org.gotocy.dictionary.properties}">Properties</h2></header>
+                            <div class="grid" th:include="fragments/property_masonry_grid_div :: property_masonry_grid (properties=${complex.properties})">
+                                <div class="property masonry">
+                                    <div class="inner" data-scroll-reveal>
+                                        <a href="#">
+                                            <div class="property-image">
+                                                <figure class="tag status">Sale</figure>
+                                                <figure class="ribbon">Sold</figure>
+                                                <figure class="type" title="Vineyard"><img src="assets/img/property-types/vineyard.png"  alt=""></figure>
+                                                <div class="overlay">
+                                                    <div class="info">
+                                                        <div class="tag price">$ 11,000</div>
+                                                    </div>
+                                                </div>
+                                                <img alt="" src="/parent/webapp/public/assets/img/properties/property-09.jpg">
+                                            </div>
+                                        </a>
+                                        <aside>
+                                            <header>
+                                                <a href="#"><h3>3398 Lodgeville Road</h3></a>
                                                 <figure>Golden Valley, MN 55427</figure>
-                                                <div class="tag price">$ 38,000</div>
+                                            </header>
+                                            <dl>
+                                                <dt>Status:</dt>
+                                                <dd>Sale</dd>
+                                                <dt>Area:</dt>
+                                                <dd>860 m<sup>2</sup></dd>
+                                                <dt>Beds:</dt>
+                                                <dd>3</dd>
+                                                <dt>Baths:</dt>
+                                                <dd>2</dd>
+                                            </dl>
+                                            <a href="#" class="link-arrow">Read More</a>
+                                        </aside>
+                                    </div>
+                                </div><!-- /.property -->
+                                <div class="property masonry">
+                                    <div class="inner">
+                                        <a href="property-detail.html">
+                                            <div class="property-image">
+                                                <figure class="type" title="Villa"><img src="/parent/webapp/public/assets/img/property-types/villa.png"  alt=""></figure>
+                                                <div class="overlay">
+                                                    <div class="info">
+                                                        <div class="tag price">$ 15,000</div>
+                                                    </div>
+                                                </div>
+                                                <img alt="" src="/parent/webapp/public/assets/img/properties/masonry-03.jpg">
                                             </div>
-                                            </td>
-                                            <td>20.05.2014</td>
-                                            <td>236</td>
-                                            <td class="actions">
-                                                <a href="#" class="edit"><i class="fa fa-pencil"></i>Edit</a>
-                                                <a href="#"><i class="delete fa fa-trash-o"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="image">
-                                                <a href="property-detail.html"><img alt="" src="http://assets.gotocy.eu/static/img/properties/property-02.jpg"></a>
-                                            </td>
-                                            <td><div class="inner">
-                                                <a href="property-detail.html"><h2>3398 Lodgeville Road</h2></a>
-                                                <figure>Golden Valley, MN 55427</figure>
-                                                <div class="tag price">$ 135,000</div>
+                                        </a>
+                                        <aside>
+                                            <header>
+                                                <a href="property-detail.html"><h3>1179 Stroop Hill Road</h3></a>
+                                                <figure>Atlanta, GA 30309 </figure>
+                                            </header>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum</p>
+                                            <dl>
+                                                <dt>Status:</dt>
+                                                <dd>Sale</dd>
+                                                <dt>Area:</dt>
+                                                <dd>860 m<sup>2</sup></dd>
+                                                <dt>Beds:</dt>
+                                                <dd>3</dd>
+                                                <dt>Baths:</dt>
+                                                <dd>2</dd>
+                                            </dl>
+                                            <a href="property-detail.html" class="link-arrow">Read More</a>
+                                        </aside>
+                                    </div>
+                                </div><!-- /.property -->
+                                <div class="property masonry">
+                                    <div class="inner">
+                                        <a href="property-detail.html">
+                                            <div class="property-image">
+                                                <figure class="tag status">For Sale</figure>
+                                                <figure class="type" title="Vineyard"><img src="/parent/webapp/public/assets/img/property-types/vineyard.png"  alt=""></figure>
+                                                <div class="overlay">
+                                                    <div class="info">
+                                                        <div class="tag price">$ 39,000</div>
+                                                    </div>
+                                                </div>
+                                                <img alt="" src="/parent/webapp/public/assets/img/properties/property-02.jpg">
                                             </div>
-                                            </td>
-                                            <td>06.05.2014</td>
-                                            <td>662</td>
-                                            <td class="actions">
-                                                <a href="#" class="edit"><i class="fa fa-pencil"></i>Edit</a>
-                                                <a href="#"><i class="delete fa fa-trash-o"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="image">
-                                                <a href="property-detail.html"><img alt="" src="http://assets.gotocy.eu/static/img/properties/property-01.jpg"></a>
-                                            </td>
-                                            <td><div class="inner">
-                                                <a href="property-detail.html"><h2>1179 Stroop Hill Road</h2></a>
-                                                <figure>Atlanta, GA 30309</figure>
-                                                <div class="tag price">$ 26,000</div>
+                                        </a>
+                                        <aside>
+                                            <header>
+                                                <a href="property-detail.html"><h3>1028 Henery Street</h3></a>
+                                                <figure>Wichita, KS 67202 </figure>
+                                            </header>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum</p>
+                                            <dl>
+                                                <dt>Status:</dt>
+                                                <dd>Sale</dd>
+                                                <dt>Area:</dt>
+                                                <dd>860 m<sup>2</sup></dd>
+                                                <dt>Beds:</dt>
+                                                <dd>3</dd>
+                                                <dt>Baths:</dt>
+                                                <dd>2</dd>
+                                            </dl>
+                                            <a href="property-detail.html" class="link-arrow">Read More</a>
+                                        </aside>
+                                    </div>
+                                </div><!-- /.property -->
+                                <div class="property masonry">
+                                    <div class="inner">
+                                        <a href="property-detail.html">
+                                            <div class="property-image">
+                                                <figure class="tag status">For Sale</figure>
+                                                <figure class="type" title="Vineyard"><img src="/parent/webapp/public/assets/img/property-types/vineyard.png"  alt=""></figure>
+                                                <div class="overlay">
+                                                    <div class="info">
+                                                        <div class="tag price">$ 39,000</div>
+                                                    </div>
+                                                </div>
+                                                <img alt="" src="/parent/webapp/public/assets/img/properties/property-02.jpg">
                                             </div>
-                                            </td>
-                                            <td>29.04.2014</td>
-                                            <td>85</td>
-                                            <td class="actions">
-                                                <a href="#" class="edit"><i class="fa fa-pencil"></i>Edit</a>
-                                                <a href="#"><i class="delete fa fa-trash-o"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="image">
-                                                <a href="property-detail.html"><img alt="" src="http://assets.gotocy.eu/static/img/properties/property-06.jpg"></a>
-                                            </td>
-                                            <td><div class="inner">
-                                                <a href="property-detail.html"><h2>1028 Henery Street</h2></a>
-                                                <figure>Wichita, KS 67202</figure>
-                                                <div class="tag price">$ 47,000</div>
-                                            </div>
-                                            </td>
-                                            <td>22.04.2014</td>
-                                            <td>357</td>
-                                            <td class="actions">
-                                                <a href="#" class="edit"><i class="fa fa-pencil"></i>Edit</a>
-                                                <a href="#"><i class="delete fa fa-trash-o"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="image">
-                                                <a href="property-detail.html"><img alt="" src="http://assets.gotocy.eu/static/img/properties/property-07.jpg"></a>
-                                            </td>
-                                            <td><div class="inner">
-                                                <a href="property-detail.html"><h2>4068 Diamond Street</h2></a>
-                                                <figure>Charlotte, NC 28217 </figure>
-                                                <div class="tag price">$ 980,000</div>
-                                            </div>
-                                            </td>
-                                            <td>16.03.2014</td>
-                                            <td>456</td>
-                                            <td class="actions">
-                                                <a href="#" class="edit"><i class="fa fa-pencil"></i>Edit</a>
-                                                <a href="#"><i class="delete fa fa-trash-o"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="image">
-                                                <a href="property-detail.html"><img alt="" src="http://assets.gotocy.eu/static/img/properties/property-08.jpg"></a>
-                                            </td>
-                                            <td><div class="inner">
-                                                <a href="property-detail.html"><h2>2088 May Street</h2></a>
-                                                <figure>Somerset, KY 42503 </figure>
-                                                <div class="tag price">$ 11,000</div>
-                                            </div>
-                                            </td>
-                                            <td>18.02.2014</td>
-                                            <td>267</td>
-                                            <td class="actions">
-                                                <a href="#" class="edit"><i class="fa fa-pencil"></i>Edit</a>
-                                                <a href="#"><i class="delete fa fa-trash-o"></i></a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div><!-- /.table-responsive -->
-                            </div>
-                        </section>
+                                        </a>
+                                        <aside>
+                                            <header>
+                                                <a href="property-detail.html"><h3>1028 Henery Street</h3></a>
+                                                <figure>Wichita, KS 67202 </figure>
+                                            </header>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum</p>
+                                            <dl>
+                                                <dt>Status:</dt>
+                                                <dd>Sale</dd>
+                                                <dt>Area:</dt>
+                                                <dd>860 m<sup>2</sup></dd>
+                                                <dt>Beds:</dt>
+                                                <dd>3</dd>
+                                                <dt>Baths:</dt>
+                                                <dd>2</dd>
+                                            </dl>
+                                            <a href="property-detail.html" class="link-arrow">Read More</a>
+                                        </aside>
+                                    </div>
+                                </div><!-- /.property -->
+                            </div><!-- /js-masonry-->
+                        </section><!-- /#properties-->
 
                     </section><!-- /#property-detail -->
                 </div><!-- /.col-md-9 -->

@@ -1,0 +1,32 @@
+<div class="grid" th:fragment="property_masonry_grid (properties)">
+    <div class="property masonry" th:each="p,stat : ${properties}">
+        <div class="inner" data-scroll-reveal th:attr="data-scroll-reveal=(${stat.index > 7}? 'true' : '')" th:with="offerStatus=${p.offerStatus}, active=${offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}, propertyType=${p.propertyType}">
+            <a th:href="@{${helper.path(p)}}">
+                <div class="property-image">
+                    <figure class="tag status" th:text="${{p.propertyStatus}}" th:if="${param.propertyStatus == null}">Sale</figure>
+                    <figure class="ribbon" th:unless="${active}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
+                    <figure class="type" th:if="${active}" th:title="${{propertyType}}"><img th:src="|http://assets.gotocy.eu/static/img/property-types/${helper.property.typeIcon(propertyType)}.png|" alt=""></figure>
+                    <div class="overlay">
+                        <div class="info">
+                            <div class="tag price" th:utext="${helper.property.price(p)}">$ 11,000</div>
+                        </div>
+                    </div>
+                    <img alt="" th:class="${stat.count % 2 == 0}? 'extended-3'" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}">
+                </div>
+            </a>
+            <aside>
+                <header>
+                    <a th:href="@{${helper.path(p)}}"><h3 th:text="${p.title}">3398 Lodgeville Road</h3></a>
+                    <figure th:text="${p.shortAddress}">Golden Valley, MN 55427</figure>
+                </header>
+                <dl th:remove="all-but-first">
+                    <!--/*/ <th:block th:each="field : ${helper.property.formattedFields(p, T(org.gotocy.helpers.property.FieldsStrategy).LISTING_SUMMARY)}"> /*/-->
+                    <dt th:text="|${field.heading}:|">Location:</dt>
+                    <dd th:utext="${field.value}">Chicago, IL 60610</dd>
+                    <!--/*/ </th:block> /*/-->
+                </dl>
+                <a th:href="@{${helper.path(p)}}" class="link-arrow" th:text="#{org.gotocy.dictionary.read-more}">Read More</a>
+            </aside>
+        </div>
+    </div>
+</div>
