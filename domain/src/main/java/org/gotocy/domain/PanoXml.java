@@ -11,4 +11,11 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("pano_xml")
 public class PanoXml extends Asset<String> {
+
+	public PanoXml() {
+	}
+
+	public PanoXml(String key) {
+		super(key);
+	}
 }

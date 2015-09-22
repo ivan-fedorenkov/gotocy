@@ -49,6 +49,22 @@ public class CollectionUtils {
 	 * @return the updated current collection, the returning value may be ignored.
 	 */
 	public static <T> Collection<T> updateCollection(Collection<T> current, Collection<T> updated) {
+
+		// Updated is empty
+		if (updated.isEmpty()) {
+			current.clear();
+			return current;
+		}
+		// Current is empty
+		if (current.isEmpty()) {
+			current.addAll(updated);
+			return current;
+		}
+		// Collections are equals
+		if (collectionsEquals(current, updated))
+			return current;
+
+
 		T[] curArr = (T[]) current.toArray();
 		T[] updArr = (T[]) updated.toArray();
 

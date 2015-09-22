@@ -34,14 +34,7 @@ public class PropertyLocalizedFieldsManager extends LocalizedFieldsManager {
 	}
 
 	public void setDescription(String description, Locale locale) {
-		Optional<LocalizedField> field = getField(DESCRIPTION_KEY, locale);
-
-		// Substitute the description field value
-		if (field.isPresent()) {
-			field.get().setValue(description);
-		} else {
-			getFields().add(new LocalizedTextField(DESCRIPTION_KEY, description, locale.getLanguage()));
-		}
+		updateTextField(DESCRIPTION_KEY, description, locale);
 	}
 
 	public Optional<String> getDescription(Locale locale) {
@@ -53,12 +46,7 @@ public class PropertyLocalizedFieldsManager extends LocalizedFieldsManager {
 	}
 
 	public void setFeatures(List<String> features, Locale locale) {
-		List<LocalizedField> existingFeatures = getFieldList(FEATURE_KEY, locale);
-		getFields().removeAll(existingFeatures);
-
-		getFields().addAll(features.stream()
-			.map(f -> new LocalizedStringField(FEATURE_KEY, f, locale.getLanguage()))
-			.collect(toList()));
+		updateStringFields(FEATURE_KEY, features, locale);
 	}
 
 }

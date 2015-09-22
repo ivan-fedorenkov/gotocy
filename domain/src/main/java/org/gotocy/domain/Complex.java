@@ -13,6 +13,7 @@ import java.util.Locale;
 
 /**
  * TODO: validation / integration test on validation
+ * TODO: optimize #setRepresentativeImage
  *
  * @author ifedorenkov
  */
@@ -30,7 +31,6 @@ public class Complex extends BaseEntity {
 
 	private String title;
 	private String address;
-	private String shortAddress;
 	private String coordinates;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

@@ -11,6 +11,13 @@ import java.util.Objects;
 @DiscriminatorValue("image")
 public class Image extends Asset<byte[]> {
 
+	public Image() {
+	}
+
+	public Image(String key) {
+		super(key);
+	}
+
 	/**
 	 * Returns an image asset key for the given image size.
 	 */

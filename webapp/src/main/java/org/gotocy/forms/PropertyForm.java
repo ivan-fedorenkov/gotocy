@@ -9,9 +9,11 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 /**
  * TODO: unit tests
+ * TODO: optimize / refactor : features, assets
  *
  * @author ifedorenkov
  */
@@ -159,45 +161,32 @@ public class PropertyForm {
 
 		List<String> enFeaturesList = enFeatures != null && !enFeatures.isEmpty() ?
 			Arrays.asList(STRING_SEPARATOR.split(enFeatures)) : Collections.emptyList();
-		// Only if features changed
-		if (!CollectionUtils.collectionsEquals(property.getFeatures(), enFeaturesList))
-			property.setFeatures(enFeaturesList, EN_LOCALE);
+		property.setFeatures(enFeaturesList, EN_LOCALE);
 
 		List<String> ruFeaturesList = ruFeatures != null && !ruFeatures.isEmpty() ?
 			Arrays.asList(STRING_SEPARATOR.split(ruFeatures)) : Collections.emptyList();
-		// Only if features changed
-		if (!CollectionUtils.collectionsEquals(property.getFeatures(), ruFeaturesList))
-			property.setFeatures(ruFeaturesList, RU_LOCALE);
+		property.setFeatures(ruFeaturesList, RU_LOCALE);
 
-		List<Image> images = new ArrayList<>();
-		if (imageKeys != null && !imageKeys.isEmpty()) {
-			for (String imageKey : STRING_SEPARATOR.split(imageKeys)) {
-				if (assetKeyIsDefined(imageKey)) {
-					Image image = new Image();
-					image.setKey(imageKey);
-					images.add(image);
-				}
-			}
-		}
-		// Only if images changed
-		if (!CollectionUtils.collectionsEquals(property.getImages(), images))
-			property.setImages(images);
+		List<Image> images = imageKeys != null && !imageKeys.isEmpty() ?
+			Arrays.stream(STRING_SEPARATOR.split(imageKeys))
+				.filter(PropertyForm::assetKeyIsDefined)
+				.map(Image::new)
+				.collect(toList()) : Collections.emptyList();
+		property.setImages(images);
 
 
 		Image representativeImage = null;
-		if (assetKeyIsDefined(representativeImageKey)) {
-			representativeImage = new Image();
-			representativeImage.setKey(representativeImageKey);
-		}
+		if (assetKeyIsDefined(representativeImageKey))
+			representativeImage = new Image(representativeImageKey);
+
 		// Only if representative image changed
 		if (!Objects.equals(property.getRepresentativeImage(), representativeImage))
 			property.setRepresentativeImage(representativeImage);
 
 		PanoXml panoXml = null;
-		if (assetKeyIsDefined(panoXmlKey)) {
-			panoXml = new PanoXml();
-			panoXml.setKey(panoXmlKey);
-		}
+		if (assetKeyIsDefined(panoXmlKey))
+			panoXml = new PanoXml(panoXmlKey);
+
 		// Only if pano xml changed
 		if (!Objects.equals(property.getPanoXml(), panoXml))
 			property.setPanoXml(panoXml);

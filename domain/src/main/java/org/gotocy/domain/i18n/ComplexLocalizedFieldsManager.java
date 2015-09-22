@@ -34,14 +34,7 @@ public class ComplexLocalizedFieldsManager extends LocalizedFieldsManager {
 	}
 
 	public void setDescription(String description, Locale locale) {
-		Optional<LocalizedField> field = getField(DESCRIPTION_KEY, locale);
-
-		// Substitute the description field value
-		if (field.isPresent()) {
-			field.get().setValue(description);
-		} else {
-			getFields().add(new LocalizedTextField(DESCRIPTION_KEY, description, locale.getLanguage()));
-		}
+		updateTextField(DESCRIPTION_KEY, description, locale);
 	}
 
 	public Optional<String> getDescription(Locale locale) {
@@ -53,12 +46,7 @@ public class ComplexLocalizedFieldsManager extends LocalizedFieldsManager {
 	}
 
 	public void setSpecifications(List<String> specifications, Locale locale) {
-		List<LocalizedField> existingFeatures = getFieldList(SPECIFICATION_KEY, locale);
-		getFields().removeAll(existingFeatures);
-
-		getFields().addAll(specifications.stream()
-			.map(f -> new LocalizedStringField(SPECIFICATION_KEY, f, locale.getLanguage()))
-			.collect(toList()));
+		updateStringFields(SPECIFICATION_KEY, specifications, locale);
 	}
 
 }

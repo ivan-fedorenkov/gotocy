@@ -5,7 +5,6 @@ CREATE TABLE `complex`(
     `title` VARCHAR(256) NOT NULL,
     `location` VARCHAR(16) NOT NULL,
     `address` VARCHAR(1024) NOT NULL,
-    `short_address` VARCHAR(256) NOT NULL,
     `coordinates` VARCHAR(1024) NOT NULL,
 
     `representative_image_id` BIGINT NOT NULL,

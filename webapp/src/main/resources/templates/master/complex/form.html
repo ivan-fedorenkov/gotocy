@@ -1,0 +1,120 @@
+<form th:fragment="form(object, action, method)" role="form" id="form-submit" class="form-submit" th:action="${action}" th:method="${method}" th:object="${__${object}__}">
+    <div class="row">
+        <div class="block">
+            <div class="col-md-9 col-sm-9">
+                <section id="submit-form">
+                    <section class="block" id="owners">
+                        <header><h2>Primary Contact</h2></header>
+
+                        <div class="form-group">
+                            <label for="ownerId">Contact</label>
+                            <select id="ownerId" th:field="*{contactId}">
+                                <option value="-1">Create new...</option>
+                                <option value="1" th:each="contact : ${contacts}" th:value="${contact.id}" th:text="${contact.name}">Denis</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ownerName">Name</label>
+                            <input type="text" class="form-control" id="ownerName" th:field="*{contactName}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ownerPhone">Phone</label>
+                            <input type="text" class="form-control" id="ownerPhone" th:field="*{contactPhone}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ownerEmail">Email</label>
+                            <input type="text" class="form-control" id="ownerEmail" th:field="*{contactEmail}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ownerSpokenLanguages">Spoken Languages</label>
+                            <input type="text" class="form-control" id="ownerSpokenLanguages" th:field="*{contactSpokenLanguages}">
+                        </div>
+                    </section>
+
+                    <section id="complex-details">
+                        <header><h2>Complex Details</h2></header>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" th:field="*{title}" required>
+                                </div><!-- /.form-group -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="location">Location</label>
+                                    <select id="location" th:field="*{location}" th:remove="all-but-first" required>
+                                        <option value="1" th:each="location : ${T(org.gotocy.domain.Location).values()}" th:value="${location}" th:text="${{location}}">Larnaca</option>
+                                        <option value="2">Limassol</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input type="text" class="form-control" id="address" th:field="*{address}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="descriptionEn">Description (en)</label>
+                                    <textarea class="form-control" id="descriptionEn" rows="8" th:field="*{enDescription}"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="enSpecifications">Specifications (en)</label>
+                                    <textarea class="form-control" id="enSpecifications" rows="8" th:field="*{enSpecifications}"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="descriptionRu">Description (ru)</label>
+                                    <textarea class="form-control" id="descriptionRu" rows="8" th:field="*{ruDescription}"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ruSpecifications">Specifications (ru)</label>
+                                    <textarea class="form-control" id="ruSpecifications" rows="8" th:field="*{ruSpecifications}"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </section><!-- /#complex-details-->
+
+                    <section class="block" id="assets">
+                        <header><h2>Assets</h2></header>
+
+                        <div class="form-group">
+                            <label for="imagesKeys">Images Path</label>
+                            <textarea class="form-control" id="imagesKeys" rows="8" th:field="*{imagesKeys}"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="representativeImageKey">Representative Image Path</label>
+                            <input type="text" class="form-control" id="representativeImageKey" th:field="*{representativeImageKey}">
+                        </div>
+                    </section>
+
+                    <hr>
+                </section>
+            </div><!-- /.col-md-9 -->
+        </div>
+    </div><!-- /.row -->
+    <div class="row">
+        <div class="block">
+            <div class="col-md-9 col-sm-9">
+                <div class="center">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default large">Save</button>
+                    </div><!-- /.form-group -->
+                </div>
+            </div>
+        </div>
+    </div>
+</form><!-- /#form-submit -->

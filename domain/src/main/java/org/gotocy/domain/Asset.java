@@ -1,5 +1,8 @@
 package org.gotocy.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -15,28 +18,21 @@ import java.util.Objects;
 @Entity
 @Inheritance
 @DiscriminatorColumn(name = "asset_type")
+@Getter
+@Setter
 public abstract class Asset<T> extends BaseEntity {
+
+	public Asset() {
+	}
+
+	public Asset(String key) {
+		this.key = key;
+	}
 
 	@Column(name = "asset_key")
 	private String key;
 
 	protected transient T object;
-
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	public T getObject() {
-		return object;
-	}
-
-	public void setObject(T object) {
-		this.object = object;
-	}
 
 	@Override
 	public boolean equals(Object o) {
