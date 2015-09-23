@@ -250,36 +250,10 @@ function complexMap(complexTitle, coordinates) {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Google Map - Contact
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function contactUsMap(){
-    var mapCenter = new google.maps.LatLng(_latitude,_longitude);
-    var mapOptions = {
-        zoom: 15,
-        center: mapCenter,
-        disableDefaultUI: false,
-        scrollwheel: false,
-        styles: mapStyles
-    };
-    var mapElement = document.getElementById('contact-map');
-    var map = new google.maps.Map(mapElement, mapOptions);
-
-    var marker = new MarkerWithLabel({
-        position: mapCenter,
-        map: map,
-        icon: 'http://assets.gotocy.eu/static/img/marker.png',
-        //labelContent: pictureLabel,
-        labelAnchor: new google.maps.Point(50, 0),
-        labelClass: "marker-style"
-    });
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Google Map - Submit Map
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function initSubmitMap(_latitude,_longitude,_zoom){
+function initPropertySubmitMap(_latitude,_longitude,_zoom){
     var mapCenter = new google.maps.LatLng(_latitude,_longitude);
     var mapOptions = {
         zoom: _zoom,
@@ -335,7 +309,7 @@ function initSubmitMap(_latitude,_longitude,_zoom){
     });
 
     function success(position) {
-        initSubmitMap(position.coords.latitude, position.coords.longitude);
+        initPropertySubmitMap(position.coords.latitude, position.coords.longitude, 8);
         $('#latitude').val( position.coords.latitude );
         $('#longitude').val( position.coords.longitude );
     }
@@ -350,3 +324,15 @@ function initSubmitMap(_latitude,_longitude,_zoom){
     });
 }
 
+function initComplexSubmitMap(_latitude,_longitude) {
+    var mapCenter = new google.maps.LatLng(_latitude, _longitude);
+    var mapOptions = {
+        zoom: 8,
+        center: mapCenter,
+        disableDefaultUI: false,
+        //scrollwheel: false,
+        styles: mapStyles
+    };
+    var mapElement = document.getElementById('submit-map');
+    var map = new google.maps.Map(mapElement, mapOptions);
+}

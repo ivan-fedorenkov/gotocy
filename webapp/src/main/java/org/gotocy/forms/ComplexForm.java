@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 /**
  * TODO: unit test
@@ -48,9 +49,7 @@ public class ComplexForm {
 	// Assets
 	private String representativeImageKey;
 	private String imagesKeys;
-
-	private String[] pdfFilesKeys;
-	private String[] pdfFilesNames;
+	private String pdfFilesKeys;
 
 	public ComplexForm() {
 		location = Location.FAMAGUSTA;
@@ -75,15 +74,7 @@ public class ComplexForm {
 		ruSpecifications = complex.getSpecifications(RU_LOCALE).stream().collect(joining(STRINGS_JOINER));
 
 		imagesKeys = complex.getImages().stream().map(Image::getKey).collect(joining(STRINGS_JOINER));
-
-		pdfFilesKeys = new String[complex.getPdfFiles().size()];
-		pdfFilesNames = new String[complex.getPdfFiles().size()];
-
-		for (int i = 0; i < complex.getPdfFiles().size(); i++) {
-			PdfFile file = complex.getPdfFiles().get(i);
-			pdfFilesKeys[i] = file.getKey();
-			pdfFilesNames[i] = file.getDisplayName();
-		}
+		pdfFilesKeys = complex.getPdfFiles().stream().map(PdfFile::getKey).collect(joining(STRINGS_JOINER));
 
 		if (complex.getRepresentativeImage() != null)
 			representativeImageKey = complex.getRepresentativeImage().getKey();
@@ -122,6 +113,19 @@ public class ComplexForm {
 		if (!Objects.equals(complex.getRepresentativeImage(), representativeImage))
 			complex.setRepresentativeImage(representativeImage);
 
+		List<Image> images = imagesKeys != null && !imagesKeys.isEmpty() ?
+			Arrays.stream(STRING_SEPARATOR.split(imagesKeys))
+				.filter(ComplexForm::assetKeyIsDefined)
+				.map(Image::new)
+				.collect(toList()) : Collections.emptyList();
+		complex.setImages(images);
+
+		List<PdfFile> pdfFiles = pdfFilesKeys != null && !pdfFilesKeys.isEmpty() ?
+			Arrays.stream(STRING_SEPARATOR.split(imagesKeys))
+				.filter(ComplexForm::assetKeyIsDefined)
+				.map(PdfFile::new)
+				.collect(toList()) : Collections.emptyList();
+		complex.setPdfFiles(pdfFiles);
 
 		return complex;
 	}

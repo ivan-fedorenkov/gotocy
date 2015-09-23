@@ -47,10 +47,15 @@ public abstract class LocalizedFieldsManager {
 	protected void updateTextField(String key, String value, Locale locale) {
 		Optional<LocalizedField> field = getField(key, locale);
 
-		if (field.isPresent()) {
-			field.get().setValue(value);
+		if (value == null || value.isEmpty()) {
+			if (field.isPresent())
+				getFields().remove(field.get());
 		} else {
-			getFields().add(new LocalizedTextField(key, value, locale.getLanguage()));
+			if (field.isPresent()) {
+				field.get().setValue(value);
+			} else {
+				getFields().add(new LocalizedTextField(key, value, locale.getLanguage()));
+			}
 		}
 	}
 

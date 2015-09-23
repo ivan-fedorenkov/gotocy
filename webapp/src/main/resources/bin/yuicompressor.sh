@@ -10,7 +10,7 @@
 ## app-wide
 # yui.sh -f -o js/application.min.js js/jquery-2.1.0.min.js js/jquery-migrate-1.2.1.min.js bootstrap/js/bootstrap.min.js js/smoothscroll.js js/owl.carousel.min.js js/bootstrap-select.min.js js/jquery.validate.min.js js/jquery.placeholder.js js/icheck.min.js js/retina-1.1.0.min.js js/jquery.raty.min.js js/jquery.magnific-popup.min.js js/jshashtable-2.1_src.js js/jquery.numberformatter-1.2.3.js js/tmpl.js js/jquery.dependClass-0.1.js js/draggable-0.1.js js/jquery.slider.min.js js/jquery.fitvids.js js/imagesloaded.pkgd.min.js js/masonry.pkgd.min.js js/scrollReveal.min.js js/custom.js
 ## maps
-# yui.sh -f -o js/application-maps.min.js js/markerwithlabel_packed.js js/infobox.js js/custom-map.js
+  # yui.sh -f -o js/application-maps.min.js js/markerwithlabel_packed.js js/infobox.js js/custom-map.js
 ## pano
 # yui.sh -f -o js/application-pano.min.js pano2vr/pano2vr_player.js pano2vr/skin.js
 

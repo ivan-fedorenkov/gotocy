@@ -2,9 +2,6 @@ package org.gotocy.integration;
 
 import org.gotocy.Application;
 import org.gotocy.config.SecurityProperties;
-import org.gotocy.domain.*;
-import org.gotocy.repository.OwnerRepository;
-import org.gotocy.repository.PropertyRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,8 +14,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
-
-import java.util.Locale;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -38,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 	"debug"
 })
 @Transactional
-public class PropertyIntegrationTest {
+public class ComplexIntegrationTest {
 
 	@Autowired
 	private WebApplicationContext wac;
@@ -50,24 +45,13 @@ public class PropertyIntegrationTest {
 	}
 
 	@Test
-	public void propertyCreation() throws Exception {
-		mockMvc.perform(post("/master/properties")
+	public void complexCreation() throws Exception {
+		mockMvc.perform(post("/master/complex")
 				.sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE)
 				.param("title", "Test title")
-				.param("propertyType", "LAND")
-				.param("propertyStatus", "SALE")
-				.param("offerStatus", "ACTIVE")
-				.param("fullAddress", "Test address")
-				.param("shortAddress", "Test address")
-				.param("price", "123")
-				.param("latitude", "1")
-				.param("longitude", "1")
-				.param("ownerName", "Any owner")
-				.param("bedrooms", "0")
-				.param("readyToMoveIn", "FALSE")
-				.param("airConditioner", "FALSE")
-				.param("heatingSystem", "FALSE")
-				.param("vatIncluded", "FALSE"))
+				.param("address", "Test address")
+				.param("coordinates", "anything")
+				.param("contactName", "Any contact"))
 			.andDo(print()).andExpect(MockMvcResultMatchers.status().isOk());
 	}
 

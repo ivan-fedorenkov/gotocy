@@ -2878,8 +2878,8 @@ insert into asset (id, version, `asset_key`, asset_type) values (473, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (474, 0, 'property/25/DSCN1357.jpg', 'IMAGE');
 insert into asset (id, version, `asset_key`, asset_type) values (475, 0, 'property/25/DSCN1359.jpg', 'IMAGE');
 
-insert into asset (id, version, `asset_key`, asset_type, display_name) values (476, 0, 'property/25/DSCN1359.jpg', 'PDF_FILE', 'Some interesting plan #1');
-insert into asset (id, version, `asset_key`, asset_type, display_name) values (477, 0, 'property/25/DSCN1359.jpg', 'PDF_FILE', 'Some interesting plan #2');
+insert into asset (id, version, `asset_key`, asset_type) values (476, 0, 'property/25/DSCN1359.jpg', 'PDF_FILE');
+insert into asset (id, version, `asset_key`, asset_type) values (477, 0, 'property/25/DSCN1359.jpg', 'PDF_FILE');
 
 insert into complex (id, version, title, location, address, coordinates, primary_contact_id, representative_image_id)
   values (1, 0, 'Mesoyios Park Residences', 'LARNACA', 'Larnaca Dhekelia', '[{lat:34.983005, lng:33.729343},{lat:34.983919, lng:33.729756},{lat:34.983845, lng:33.730158},{lat:34.983651, lng:33.730561},{lat:34.983137, lng:33.730979},{lat:34.982838, lng:33.729616}]', 1, 471);
