@@ -1,11 +1,13 @@
 package org.gotocy.controllers;
 
 import org.gotocy.beans.AssetsProvider;
+import org.gotocy.domain.Complex;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.Owner;
 import org.gotocy.domain.Property;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.PropertyForm;
+import org.gotocy.repository.ComplexRepository;
 import org.gotocy.repository.OwnerRepository;
 import org.gotocy.repository.PropertyPredicates;
 import org.gotocy.repository.PropertyRepository;
@@ -22,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * @author ifedorenkov
@@ -33,6 +36,8 @@ public class PropertiesController {
 	private PropertyRepository repository;
 	@Autowired
 	private OwnerRepository ownerRepository;
+	@Autowired
+	private ComplexRepository complexRepository;
 	@Autowired
 	AssetsProvider assetsProvider;
 
@@ -72,6 +77,7 @@ public class PropertiesController {
 
 	@RequestMapping(value = "/master/properties/new", method = RequestMethod.GET)
 	public String _new(Model model) {
+		model.addAttribute("complexes", complexRepository.findAll());
 		model.addAttribute("owners", ownerRepository.findAll());
 		model.addAttribute(new PropertyForm());
 		return "master/property/new";
@@ -86,6 +92,7 @@ public class PropertiesController {
 
 		Property property = propertyForm.mergeWithProperty(new Property());
 		property.setOwner(owner);
+		property.setComplex(getComplex(propertyForm.getComplexId()));
 		return repository.saveAndFlush(property);
 	}
 
@@ -93,6 +100,7 @@ public class PropertiesController {
 	public String edit(Model model, @PathVariable("id") Property property) {
 		model.addAttribute(property);
 		model.addAttribute(new PropertyForm(property));
+		model.addAttribute("complexes", complexRepository.findAll());
 		model.addAttribute("owners", ownerRepository.findAll());
 
 		return "master/property/edit";
@@ -109,7 +117,12 @@ public class PropertiesController {
 		property.initLocalizedFields(locale);
 		property = propertyForm.mergeWithProperty(property);
 		property.setOwner(owner);
+		property.setComplex(getComplex(propertyForm.getComplexId()));
 		return repository.saveAndFlush(property);
+	}
+
+	private Complex getComplex(Long complexId) {
+		return complexId == null ? null : complexRepository.findOne(complexId);
 	}
 
 	private Owner getOrCreateOwner(Long ownerId) {

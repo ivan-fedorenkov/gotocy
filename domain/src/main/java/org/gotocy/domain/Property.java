@@ -1,5 +1,6 @@
 package org.gotocy.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.i18n.LocalizedField;
@@ -37,6 +38,7 @@ import java.util.Objects;
 @Setter
 public class Property extends BaseEntity {
 
+	@JsonBackReference
 	@ManyToOne
 	private Complex complex;
 

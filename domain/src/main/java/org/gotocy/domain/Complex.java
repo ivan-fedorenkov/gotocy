@@ -1,5 +1,6 @@
 package org.gotocy.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.i18n.ComplexLocalizedFieldsManager;
@@ -19,6 +20,10 @@ import java.util.Locale;
  */
 @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 @Entity
+@NamedEntityGraph(name = "Complex.withRequiredAssociations", attributeNodes = {
+	@NamedAttributeNode("primaryContact"),
+	@NamedAttributeNode("representativeImage")
+})
 @Getter
 @Setter
 public class Complex extends BaseEntity {
@@ -46,6 +51,7 @@ public class Complex extends BaseEntity {
 	private List<LocalizedField> localizedFields = new ArrayList<>();
 
 	@OneToMany(mappedBy = "complex")
+	@JsonManagedReference
 	private List<Property> properties = new ArrayList<>();
 
 	public int getPropertiesCount() {

@@ -27,6 +27,9 @@ public class PropertyForm {
 	private static final Locale EN_LOCALE = Locale.ENGLISH;
 	private static final Locale RU_LOCALE = new Locale("ru");
 
+	// Complex
+	private Long complexId;
+
 	// Owner
 	private Long ownerId;
 	private String ownerName;

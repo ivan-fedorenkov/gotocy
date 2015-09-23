@@ -232,12 +232,12 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id="latitude" th:field="*{latitude}">
+                                                    <input type="text" class="form-control" id="latitude" th:field="*{latitude}" required>
                                                 </div><!-- /.form-group -->
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id="longitude" th:field="*{longitude}">
+                                                    <input type="text" class="form-control" id="longitude" th:field="*{longitude}" required>
                                                 </div><!-- /.form-group -->
                                             </div>
                                         </div>
@@ -287,6 +287,16 @@
                         <div class="form-group">
                             <label for="panoXmlKey">Pano XML Path</label>
                             <input type="text" class="form-control" id="panoXmlKey" th:field="*{panoXmlKey}">
+                        </div>
+                    </section>
+
+                    <section class="block" id="complex">
+                        <header><h2>Complex</h2></header>
+                        <div class="form-group">
+                            <select th:field="*{complexId}">
+                                <option value="">Choose or leave as is...</option>
+                                <option th:each="complex : ${complexes}" th:value="${complex.id}" th:text="${complex.title}">Complex #1</option>
+                            </select>
                         </div>
                     </section>
 

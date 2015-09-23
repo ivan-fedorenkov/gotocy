@@ -151,7 +151,7 @@
                             </div>
                         </section><!-- /#property-map -->
 
-                        <section id="properties">
+                        <section id="properties" th:unless="${#lists.isEmpty(complex.properties)}">
                             <header><h2 th:text="#{org.gotocy.dictionary.properties}">Properties</h2></header>
                             <div class="grid" th:include="fragments/property_masonry_grid_div :: property_masonry_grid (properties=${complex.properties})">
                                 <div class="property masonry">
