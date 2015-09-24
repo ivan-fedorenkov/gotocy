@@ -82,6 +82,8 @@ public class PropertyForm {
 	}
 
 	public PropertyForm(Property property) {
+		complexId = property.getComplex() == null ? null : property.getComplex().getId();
+
 		ownerId = property.getOwner().getId();
 		ownerName = property.getOwner().getName();
 		ownerPhone = property.getOwner().getPhone();

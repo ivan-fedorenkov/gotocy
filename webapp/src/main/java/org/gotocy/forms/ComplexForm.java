@@ -121,7 +121,7 @@ public class ComplexForm {
 		complex.setImages(images);
 
 		List<PdfFile> pdfFiles = pdfFilesKeys != null && !pdfFilesKeys.isEmpty() ?
-			Arrays.stream(STRING_SEPARATOR.split(imagesKeys))
+			Arrays.stream(STRING_SEPARATOR.split(pdfFilesKeys))
 				.filter(ComplexForm::assetKeyIsDefined)
 				.map(PdfFile::new)
 				.collect(toList()) : Collections.emptyList();
