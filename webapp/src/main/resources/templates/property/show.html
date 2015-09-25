@@ -142,8 +142,8 @@
                                 </section><!-- /#quick-summary -->
 
                                 <section id="property-complex" th:unless="*{complex == null}">
-                                    <div class="well link-well">
-                                        <p th:utext="#{org.gotocy.templates.property.show.link-to-complex(*{complex.title}, ${helper.path(#object.complex)})}">This property is a part of the <a href="/parent/webapp/templates/complex/show.html">Zenon Stadium Towers complex.</a></p>
+                                    <div class="well link-well" th:utext="#{org.gotocy.templates.property.show.link-to-complex(*{complex.title}, ${helper.path(#object.complex)})}">
+                                        This property is a part of the <a href="/parent/webapp/templates/complex/show.html">Mesoyios Park Residences</a> project
                                     </div>
                                 </section>
                             </div><!-- /.col-md-4 -->
