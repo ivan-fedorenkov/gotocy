@@ -206,7 +206,7 @@
                                 <dd>English, Russian</dd>
                             </dl>                            
                         </aside><!-- /#primary-contact -->
-                        <aside id="similar-properties" th:unless="${#lists.isEmpty(similarProperties)}">
+                        <aside id="similar-properties" th:unless="${#lists.isEmpty(similarProperties.content)}">
                             <header><h3 th:text="#{org.gotocy.dictionary.similar-properties}">Similar Properties</h3></header>
                             <div class="property small" th:each="p : ${similarProperties}" th:with="propertyPath=${helper.path(p)}">
                                 <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html">
