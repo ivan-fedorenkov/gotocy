@@ -140,6 +140,12 @@
                                         <dd>1</dd>
                                     </dl>
                                 </section><!-- /#quick-summary -->
+
+                                <section id="property-complex" th:unless="*{complex == null}">
+                                    <div class="well link-well">
+                                        <p th:utext="#{org.gotocy.templates.property.show.link-to-complex(*{complex.title}, ${helper.path(#object.complex)})}">This property is a part of the <a href="/parent/webapp/templates/complex/show.html">Zenon Stadium Towers complex.</a></p>
+                                    </div>
+                                </section>
                             </div><!-- /.col-md-4 -->
                             <div class="col-md-8 col-sm-12">
                                 <section id="description" th:unless=${#strings.isEmpty(property.description)}>
@@ -154,6 +160,7 @@
                                         </p>
                                     </div>
                                 </section><!-- /#description -->
+
                                 <section id="property-features" th:unless=${#lists.isEmpty(property.features)}>
                                     <header><h2 th:text="#{org.gotocy.dictionary.property-features}">Property Features</h2></header>
                                     <ul class="list-unstyled property-features-list" th:remove="all-but-first">
