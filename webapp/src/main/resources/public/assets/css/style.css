@@ -1368,6 +1368,10 @@ ul.list-links {
         filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
         opacity: 1; }
 
+.link-well {
+  border: 1px dotted #e3e3e3;
+  background-color: white; }
+
 /****
   N
 ****/
