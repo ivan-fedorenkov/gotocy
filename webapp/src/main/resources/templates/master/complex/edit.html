@@ -70,7 +70,7 @@
 <![endif]-->
 
 <script th:inline="javascript">
-    var _owners = /*[[${contacts}]]*/ [{id: 1, name: 'Denis'}];
+    var _contacts = /*[[${contacts}]]*/ [{id: 1, name: 'Denis'}];
     var _latitude = /*[[${gotocy.defaultLatitude}]]*/ '34.7071301';
     var _longitude = /*[[${gotocy.defaultLongitude}]]*/ '33.022617399999945';
     google.maps.event.addDomListener(window, 'load', initComplexSubmitMap(_latitude, _longitude));

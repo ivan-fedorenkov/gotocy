@@ -80,7 +80,7 @@ public class ComplexForm {
 			representativeImageKey = complex.getRepresentativeImage().getKey();
 	}
 
-	public Owner mergeWithContact(Owner contact) {
+	public Contact mergeWithContact(Contact contact) {
 		contact.setName(contactName);
 		contact.setPhone(contactPhone);
 		contact.setEmail(contactEmail);

@@ -2,9 +2,6 @@ package org.gotocy.integration;
 
 import org.gotocy.Application;
 import org.gotocy.config.SecurityProperties;
-import org.gotocy.domain.*;
-import org.gotocy.repository.OwnerRepository;
-import org.gotocy.repository.PropertyRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,8 +14,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
-
-import java.util.Locale;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -62,7 +57,7 @@ public class PropertyIntegrationTest {
 				.param("price", "123")
 				.param("latitude", "1")
 				.param("longitude", "1")
-				.param("ownerName", "Any owner")
+				.param("contactName", "Any contact")
 				.param("bedrooms", "0")
 				.param("readyToMoveIn", "FALSE")
 				.param("airConditioner", "FALSE")

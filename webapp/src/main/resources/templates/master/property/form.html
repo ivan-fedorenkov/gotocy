@@ -3,35 +3,35 @@
         <div class="block">
             <div class="col-md-9 col-sm-9">
                 <section id="submit-form">
-                    <section class="block" id="owners">
-                        <header><h2>Property Owner</h2></header>
+                    <section class="block" id="contacts">
+                        <header><h2>Primary Contact</h2></header>
 
                         <div class="form-group">
-                            <label for="ownerId">Owner</label>
-                            <select id="ownerId" th:field="*{ownerId}">
+                            <label for="contactId">Contact</label>
+                            <select id="contactId" th:field="*{contactId}">
                                 <option value="-1">Create new...</option>
-                                <option value="1" th:each="owner : ${owners}" th:value="${owner.id}" th:text="${owner.name}">Denis</option>
+                                <option value="1" th:each="contact : ${contacts}" th:value="${contact.id}" th:text="${contact.name}">Denis</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="ownerName">Name</label>
-                            <input type="text" class="form-control" id="ownerName" th:field="*{ownerName}">
+                            <label for="contactName">Name</label>
+                            <input type="text" class="form-control" id="contactName" th:field="*{contactName}">
                         </div>
 
                         <div class="form-group">
-                            <label for="ownerPhone">Phone</label>
-                            <input type="text" class="form-control" id="ownerPhone" th:field="*{ownerPhone}">
+                            <label for="contactPhone">Phone</label>
+                            <input type="text" class="form-control" id="contactPhone" th:field="*{contactPhone}">
                         </div>
 
                         <div class="form-group">
-                            <label for="ownerEmail">Email</label>
-                            <input type="text" class="form-control" id="ownerEmail" th:field="*{ownerEmail}">
+                            <label for="contactEmail">Email</label>
+                            <input type="text" class="form-control" id="contactEmail" th:field="*{contactEmail}">
                         </div>
 
                         <div class="form-group">
-                            <label for="ownerSpokenLanguages">Spoken Languages</label>
-                            <input type="text" class="form-control" id="ownerSpokenLanguages" th:field="*{ownerSpokenLanguages}">
+                            <label for="contactSpokenLanguages">Spoken Languages</label>
+                            <input type="text" class="form-control" id="contactSpokenLanguages" th:field="*{contactSpokenLanguages}">
                         </div>
                     </section>
 

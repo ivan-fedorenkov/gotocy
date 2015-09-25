@@ -23,7 +23,7 @@ import java.util.Objects;
 @NamedEntityGraph(name = "Property.withAssociations",
 	attributeNodes = {
 		@NamedAttributeNode(value = "complex", subgraph = "complex"),
-		@NamedAttributeNode("owner"),
+		@NamedAttributeNode("primaryContact"),
 		@NamedAttributeNode("panoXml"),
 		@NamedAttributeNode("representativeImage"),
 	},
@@ -43,7 +43,7 @@ public class Property extends BaseEntity {
 	private Complex complex;
 
 	@ManyToOne(optional = false)
-	private Owner owner;
+	private Contact primaryContact;
 
 	@Enumerated(EnumType.STRING)
 	private Location location;

@@ -105,12 +105,12 @@ public class PromoController {
 			p.getImages().add(img);
 		}
 
-		Owner owner = new Owner();
-		owner.setName("Denis");
-		owner.setPhone("+357 96 740485");
-		owner.setEmail("support@gotocy.eu");
-		owner.setSpokenLanguages("Eng, Rus");
-		p.setOwner(owner);
+		Contact contact = new Contact();
+		contact.setName("Denis");
+		contact.setPhone("+357 96 740485");
+		contact.setEmail("support@gotocy.eu");
+		contact.setSpokenLanguages("Eng, Rus");
+		p.setPrimaryContact(contact);
 
 		return p;
 	}

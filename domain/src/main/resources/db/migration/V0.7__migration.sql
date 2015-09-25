@@ -1,3 +1,8 @@
+ALTER TABLE `owner` RENAME TO `contact`;
+ALTER TABLE `property` DROP FOREIGN KEY fk_property_owner_id;
+ALTER TABLE `property` CHANGE COLUMN `owner_id` `primary_contact_id` BIGINT NOT NULL;
+ALTER TABLE `property` ADD CONSTRAINT fk_property_primary_contact_id FOREIGN KEY (`primary_contact_id`) REFERENCES `contact` (`id`);
+
 CREATE TABLE `complex`(
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `version` INTEGER NOT NULL,
@@ -11,7 +16,7 @@ CREATE TABLE `complex`(
     `primary_contact_id` BIGINT NOT NULL,
 
     CONSTRAINT fk_complex_representative_image_id FOREIGN KEY (`representative_image_id`) REFERENCES `asset` (`id`),
-    CONSTRAINT fk_complex_primary_contact_id FOREIGN KEY (`primary_contact_id`) REFERENCES `owner` (`id`),
+    CONSTRAINT fk_complex_primary_contact_id FOREIGN KEY (`primary_contact_id`) REFERENCES `contact` (`id`),
     PRIMARY KEY (`id`)
 );
 

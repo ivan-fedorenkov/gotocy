@@ -29,7 +29,7 @@ import java.util.Locale;
 public class Complex extends BaseEntity {
 
 	@ManyToOne(optional = false)
-	private Owner primaryContact;
+	private Contact primaryContact;
 
 	@Enumerated(EnumType.STRING)
 	private Location location;

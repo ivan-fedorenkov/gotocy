@@ -1,7 +1,7 @@
-insert into owner (id, version, name, email, phone, spoken_languages) values (1, 0, 'Denis', 'support@gotocy.eu', '+357 96 740485', 'Eng, Rus');
-insert into owner (id, version, name, email, phone, spoken_languages) values (2, 0, 'Demetris', '', '+357 99483998', 'Greek, Eng, Rus');
-insert into owner (id, version, name, email, phone, spoken_languages) values (3, 0, 'Alexandros Trisveis', 'alextrisvei@hotmail.com', '+357 99627112', 'Greek, Eng');
-insert into owner (id, version, name, email, phone, spoken_languages) values (4, 0, 'George', 'georgiosg2@yahoo.com', '+357 99388318', 'Greek, Eng');
+insert into contact (id, version, name, email, phone, spoken_languages) values (1, 0, 'Denis', 'support@gotocy.eu', '+357 96 740485', 'Eng, Rus');
+insert into contact (id, version, name, email, phone, spoken_languages) values (2, 0, 'Demetris', '', '+357 99483998', 'Greek, Eng, Rus');
+insert into contact (id, version, name, email, phone, spoken_languages) values (3, 0, 'Alexandros Trisveis', 'alextrisvei@hotmail.com', '+357 99627112', 'Greek, Eng');
+insert into contact (id, version, name, email, phone, spoken_languages) values (4, 0, 'George', 'georgiosg2@yahoo.com', '+357 99388318', 'Greek, Eng');
 
 -- 1 [Short term] http://www.housetrip.com/en/rentals/63167?destination_id=160317&destination_name=Greece&guests=2&origin=search&search_result_position=3&source_element=card&source_type=list
 
@@ -24,7 +24,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (16, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (17, 0, 'property/1/20.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (18, 0, 'property/1/21.jpg', 'image');
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, primary_contact_id)
   values (1, 0, 'Sofia', 'Chania, Crete, Nomós Chaníon', 'Chania, Crete, Nomós Chaníon', 'LARNACA', '35.318198', '24.318744', 'APARTMENT', 'SHORT_TERM', 95, 1, 3, 1, true, 1200, 1, 1);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'Kastellos village is situated in the picturesque village of Kastellos in Georgioupolis, Chania. The complex is ideal for those wishing to escape everyday routine and relax enjoying the Cretan countryside; it’s for those who want to contact the nature, the wild life and of course to meet the people and their habits.
@@ -97,7 +97,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (37, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (38, 0, 'property/2/22.jpg', 'image');
 
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, primary_contact_id)
   values (2, 0, 'Anezina', 'Chania, Crete, Nomós Chaníon', 'Chania, Crete, Nomós Chaníon', 'LARNACA', '35.31242', '24.310504', 'HOUSE', 'SHORT_TERM', 118, 2, 6, 2, true, 120, 19, 1);
 
 insert into localized_property (id, version, locale, description, property_id)
@@ -163,7 +163,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (47, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (48, 0, 'property/3/10.jpg', 'image');
 
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, primary_contact_id)
   values (3, 0, 'Green Paradise Luxury Villa', 'Rethymno, Crete, Nomós Rethýmnis', 'Rethymno, Crete, Nomós Rethýmnis', 'LARNACA', '35.345041', '24.689299', 'HOUSE', 'SHORT_TERM', 141, 3, 7, 2, false, 150, 45, 1);
 
 insert into localized_property (id, version, locale, description, property_id)
@@ -242,7 +242,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (64, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (65, 0, 'property/5/DSC_3791.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (66, 0, 'property/5/DSC_3796.jpg', 'image');
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, distance_to_sea, bedrooms, baths, representative_image_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, distance_to_sea, bedrooms, baths, representative_image_id, primary_contact_id)
   values (5, 0, 'LAR 801/1', 'Oroklini, Larnaca', 'Oroklini, Larnaca', 'LARNACA', '34.972661', '33.645909', 'APARTMENT', 'SALE', 338000, 105, 177, 1500, 3, 1, 66, 1);
 
 insert into property_images (property_id, images_id) values (5, 58);
@@ -281,7 +281,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (68, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (69, 0, 'property/6/DSC_3539.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (70, 0, 'property/6/DSC_3545.jpg', 'image');
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, distance_to_sea, bedrooms, baths, ready_to_move_in, representative_image_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, distance_to_sea, bedrooms, baths, ready_to_move_in, representative_image_id, primary_contact_id)
   values (6, 0, 'LAR 802', 'Athenon street, Larnaca', 'Athenon street, Larnaca', 'LARNACA', '34.914313', '33.637733', 'APARTMENT', 'SALE', 572000, 78, 82, 50, 2, 1, true, 70, 1);
 
 insert into property_images (property_id, images_id) values (6, 67);
@@ -317,7 +317,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (75, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (76, 0, 'property/7/6.jpg', 'image');
 
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnishing, representative_image_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnishing, representative_image_id, primary_contact_id)
   values (7, 0, 'Crete Apartment for rent', 'Greece, Crete, Chania', 'Greece, Crete, Chania', 'LARNACA', '35.463105', '24.133071', 'APARTMENT', 'LONG_TERM', 350, 150, 2, true, 'NONE', 71, 1);
 
 
@@ -374,7 +374,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (89, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (90, 0, 'property/8/14.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (91, 0, 'property/8/15.jpg', 'image');
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnishing, representative_image_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, distance_to_sea, bedrooms, heating_system, furnishing, representative_image_id, primary_contact_id)
   values (8, 0, 'Traditional house for rent', 'Greece, Crete, Rethymno', 'Greece, Crete, Rethymno', 'LARNACA', '35.368804', '24.703283', 'HOUSE', 'LONG_TERM', 450, 12000, 2, true, 'FULL', 77, 1);
 
 insert into property_images (property_id, images_id) values (8, 77);
@@ -425,7 +425,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (108, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (109, 0, 'property/9/pano.xml', 'pano_xml');
 
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id)
   values (9, 0, 'Demetris Residence', '18 Agiou Amvrosiou street Krasas area 7100 Aradippou Larnaca Cyprus', '18 Agiou Amvrosiou st, Larnaca', 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'LONG_TERM', 1000, 4, true, 'FULL', 93, 109, 2);
 
 insert into property_images (property_id, images_id) values (9, 92);
@@ -491,7 +491,7 @@ insert into property_localized_fields (property_id, localized_fields_id) values 
 
 -- 10 (Short term) - a short term offer for property #9
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, primary_contact_id)
   values (10, 0, 'Demetris Residence', '18 Agiou Amvrosiou street Krasas area 7100 Aradippou Larnaca Cyprus', '18 Agiou Amvrosiou st, Larnaca', 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'SHORT_TERM', 100, 4, 8, true, 4500, 93, 109, 2);
 
 insert into property_images (property_id, images_id) values (10, 92);
@@ -584,7 +584,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (134, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (135, 0, 'property/11/DSC_0285.jpg', 'image');
 
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, primary_contact_id)
   values (11, 0, 'East Villa #4', '8 Anatolis street, house #4, 7041, Larnaca, Cyprus', '8 Anatolis st, Larnaca', 'LARNACA', '34.960201', '33.654542', 'HOUSE', 'SHORT_TERM', 150, 3, 6, true, 200, 110, null, 3);
 
 
@@ -742,7 +742,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (149, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (150, 0, 'property/12/DSC_0322.jpg', 'image');
 
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, primary_contact_id)
   values (12, 0, 'Alex Residence #302', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'LARNACA', '34.920028', '33.631734', 'APARTMENT', 'SHORT_TERM', 90, 2, 4, true, 500, 145, null, 3);
 
 
@@ -885,7 +885,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (164, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (165, 0, 'property/13/DSC_0322.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (166, 0, 'property/13/DSC00523.jpg', 'image');
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, primary_contact_id)
   values (13, 0, 'Alex Residence #103', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'LARNACA', '34.920028', '33.631734', 'APARTMENT', 'SHORT_TERM', 90, 2, 4, true, 500, 153, null, 3);
 
 
@@ -1031,7 +1031,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (182, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (183, 0, 'property/14/DSC_0320.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (184, 0, 'property/14/DSC_0322.jpg', 'image');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (14, 0, 'Alex Residence #105', 'LARNACA', '34.920028', '33.631734', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'APARTMENT', 'SHORT_TERM', 90, NULL, NULL, 2, 4, 500, TRUE, FALSE, FALSE, NULL, 169, NULL, 3);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id) values (14, 0, 'Alex Residence #105', 'LARNACA', '34.920028', '33.631734', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'APARTMENT', 'SHORT_TERM', 90, NULL, NULL, 2, 4, 500, TRUE, FALSE, FALSE, NULL, 169, NULL, 3);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'A brand new, never occupied, two bedroom duplex with a shared swimming pool on the roof. This beautiful flat consists two double bedrooms, fully equipped kitchen, fully furnished. Located just a few minutes from Phinikoudes (Palm trees) beach and town center. The modern design of the building gives the flat a unique/special vibe.The guests can enjoy their vacations in this quiet spot of the town center while they can enjoy the great beach, restaurants, and shops within walking distance from the duplex.A great get away for couples, families or group of friends.
 Guests will be required to pay a security deposit of 100 euros upon arrival. This security deposit is to cover any costs due to any damage(s) by yourself or any member of your party. If no deductions are required, a full refund will be made upon departure from the property. Should the security deposit not be sufficient to cover any damage(s) or service charges incurred by yourself and/or your party, you will be responsible for the extra payment immediately and upon request by the owners representative.');
@@ -1180,7 +1180,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (205, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (206, 0, 'property/15/LBA flat 105 (30).jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (207, 0, 'property/15/LBA flat 105 (31).jpg', 'image');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (15, 0, 'Larnaca Beach Apartments #105', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 189, NULL, 3);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id) values (15, 0, 'Larnaca Beach Apartments #105', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 189, NULL, 3);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
@@ -1324,7 +1324,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (224, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (225, 0, 'property/16/LBA Flat 204 (33).jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (226, 0, 'property/16/LBA Flat 204 (34).jpg', 'image');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (16, 0, 'Larnaca Beach Apartments #204', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 209, NULL, 3);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id) values (16, 0, 'Larnaca Beach Apartments #204', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 209, NULL, 3);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
@@ -1469,7 +1469,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (249, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (250, 0, 'property/17/LBA Flat 102 (23).jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (251, 0, 'property/17/LBA Flat 102 (22).jpg', 'image');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (17, 0, 'Larnaca Beach Apartments #102', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 230, NULL, 3);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id) values (17, 0, 'Larnaca Beach Apartments #102', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 230, NULL, 3);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
@@ -1616,7 +1616,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (269, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (270, 0, 'property/18/LBA Flat 201 (28).jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (271, 0, 'property/18/LBA Flat 201 (1).jpg', 'image');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (18, 0, 'Larnaca Beach Apartments #201', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 259, NULL, 3);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id) values (18, 0, 'Larnaca Beach Apartments #201', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 259, NULL, 3);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
@@ -1762,7 +1762,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (294, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (295, 0, 'property/19/LBA Flat 202 (18).jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (296, 0, 'property/19/LBA Flat 202 (19).jpg', 'image');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (19, 0, 'Larnaca Beach Apartments #202', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 273, NULL, 3);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id) values (19, 0, 'Larnaca Beach Apartments #202', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue. 6023, Carisa Ithaki Building Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 273, NULL, 3);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
@@ -1901,7 +1901,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (307, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (308, 0, 'property/20/IMG_0534.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (309, 0, 'property/20/pano.xml', 'pano_xml');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (20, 0, 'Dimitraki Koumantari Residence', 'LARNACA', '34.940275', '33.590204', 'Demetri Koumandari Str. No.1, 7103, Aradippou, Larnaca', 'Demetri Koumandari Str.1, Larnaca', 'HOUSE', 'LONG_TERM', 850, NULL, NULL, 4, 10, 4700, TRUE, TRUE, TRUE, 'FULL', 300, 309, 1);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id) values (20, 0, 'Dimitraki Koumantari Residence', 'LARNACA', '34.940275', '33.590204', 'Demetri Koumandari Str. No.1, 7103, Aradippou, Larnaca', 'Demetri Koumandari Str.1, Larnaca', 'HOUSE', 'LONG_TERM', 850, NULL, NULL, 4, 10, 4700, TRUE, TRUE, TRUE, 'FULL', 300, 309, 1);
 
 
 
@@ -2029,7 +2029,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (343, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (344, 0, 'property/21/DSC00400.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (345, 0, 'property/21/DSC00401.jpg', 'image');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (21, 0, 'LBA #106', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 311, NULL, 3);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id) values (21, 0, 'LBA #106', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 311, NULL, 3);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
@@ -2194,7 +2194,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (367, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (368, 0, 'property/22/DSC00426.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (369, 0, 'property/22/DSC00427.jpg', 'image');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (22, 0, 'LBA #107', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 367, NULL, 3);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id) values (22, 0, 'LBA #107', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 367, NULL, 3);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
@@ -2364,7 +2364,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (408, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (409, 0, 'property/23/DSC00468.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (410, 0, 'property/23/DSC00469.jpg', 'image');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (23, 0, 'LBA #205', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 404, NULL, 3);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id) values (23, 0, 'LBA #205', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 404, NULL, 3);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
@@ -2535,7 +2535,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (434, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (435, 0, 'property/24/DSC00495.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (436, 0, 'property/24/DSC00496.jpg', 'image');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (24, 0, 'LBA #207', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 426, NULL, 3);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id) values (24, 0, 'LBA #207', 'LARNACA', '34.914190', '33.637757', '18 Athenon Avenue, 6023, Carisa Ithaki Building, Larnaca, Cyprus', '18 Athenon Ave, Larnaca', 'APARTMENT', 'SHORT_TERM', 115, NULL, NULL, 2, 4, 10, TRUE, FALSE, FALSE, 'NONE', 426, NULL, 3);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'These lovely spacious apartments are directly on the Finikoudes promenade, they have a private front entrance door and an elevator to the 1st and 2nd floor. 
 The apartments lead from the hallway and are designed as open plan. There is a brand new fully equipped kitchen with an electric oven, hob and a washing machine. With a modern dining table with four chairs and a relaxing lounge suite including coffee table, lamps and TV with local channels.  
@@ -2699,7 +2699,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (468, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (469, 0, 'property/25/DSC_3825.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (470, 0, 'property/25/DSC_3819.jpg', 'image');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id) values (25, 0, 'Villa Agathi', 'PAPHOS', '34.912892', '32.422035', 'Kathikas, Paphos, Cyprus', 'Kathikas, Paphos.', 'HOUSE', 'SHORT_TERM', 150, NULL, NULL, 4, 12, 8000, TRUE, FALSE, FALSE, 'NONE', 465, NULL, 4);
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, primary_contact_id) values (25, 0, 'Villa Agathi', 'PAPHOS', '34.912892', '32.422035', 'Kathikas, Paphos, Cyprus', 'Kathikas, Paphos.', 'HOUSE', 'SHORT_TERM', 150, NULL, NULL, 4, 12, 8000, TRUE, FALSE, FALSE, 'NONE', 465, NULL, 4);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'This luxury spacious 3 floor, 4 bedroom villa is situated just 2 minutes’ drive or 5 minutes on foot from the picturesque village of Kathikas with its traditional church and taverns. Just across of our villa, 3 minutes walking you can find the Vasilikon famous winery that you can go for free wine tasting and buy this famous international awarded Cyprus wine in special prices. It is also 20 minutes drive to Paphos and if you want to enjoy the famous Coral Bay beach is just 15 minutes drive. However, you might get enough, feeling the fresh air of the mountain, feel so relaxed, and calm looking the amazing view where the sea meets the mountain from the high of 600m from the balconies of our villa.
 The villa offers a large private swimming pool with sunbeds, umbrellas and outdoor tables and chairs. There is a kitchen just next to the swimming pool and covered veranda with chairs and table so you can enjoy your dinner or lunch next to the swimming pool.

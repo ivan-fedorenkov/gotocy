@@ -1,16 +1,18 @@
 package org.gotocy.controllers;
 
 import org.gotocy.domain.Complex;
-import org.gotocy.domain.Owner;
+import org.gotocy.domain.Contact;
 import org.gotocy.forms.ComplexForm;
-import org.gotocy.forms.PropertyForm;
 import org.gotocy.repository.ComplexRepository;
-import org.gotocy.repository.OwnerRepository;
+import org.gotocy.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Locale;
 
@@ -23,7 +25,7 @@ public class ComplexesController {
 	@Autowired
 	private ComplexRepository complexRepository;
 	@Autowired
-	private OwnerRepository contactRepository;
+	private ContactRepository contactRepository;
 
 	@RequestMapping(value = "/complex/{id}", method = RequestMethod.GET)
 	public String get(Model model, @PathVariable("id") Complex complex, Locale locale) {
@@ -43,7 +45,7 @@ public class ComplexesController {
 	@ResponseBody
 	@Transactional
 	public Complex create(ComplexForm complexForm) {
-		Owner contact = getOrCreateContact(complexForm.getContactId());
+		Contact contact = getOrCreateContact(complexForm.getContactId());
 		contact = complexForm.mergeWithContact(contact);
 
 		Complex complex = complexForm.mergeWithComplex(new Complex());
@@ -63,7 +65,7 @@ public class ComplexesController {
 	@ResponseBody
 	@Transactional
 	public Complex update(@PathVariable("id") Complex complex, ComplexForm complexForm, Locale locale) {
-		Owner contact = getOrCreateContact(complexForm.getContactId());
+		Contact contact = getOrCreateContact(complexForm.getContactId());
 		contact = complexForm.mergeWithContact(contact);
 
 		complex.initLocalizedFields(locale);
@@ -72,9 +74,9 @@ public class ComplexesController {
 		return complexRepository.saveAndFlush(complex);
 	}
 
-	private Owner getOrCreateContact(Long contactId) {
+	private Contact getOrCreateContact(Long contactId) {
 		return contactId != null && contactId > 0 ?
-			contactRepository.findOne(contactId) : contactRepository.saveAndFlush(new Owner());
+			contactRepository.findOne(contactId) : contactRepository.saveAndFlush(new Contact());
 	}
 
 }

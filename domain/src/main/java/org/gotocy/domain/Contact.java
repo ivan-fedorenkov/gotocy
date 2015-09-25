@@ -7,14 +7,14 @@ import javax.persistence.Entity;
 import java.util.Objects;
 
 /**
- * An owner of a property object(s).
+ * An contact of a property object(s).
  *
  * @author ifedorenkov
  */
 @Entity
 @Getter
 @Setter
-public class Owner extends BaseEntity {
+public class Contact extends BaseEntity {
 
 	private String name;
 	private String email;
@@ -24,13 +24,13 @@ public class Owner extends BaseEntity {
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof Owner)) return false;
+		if (!(o instanceof Contact)) return false;
 		if (!super.equals(o)) return false;
-		Owner owner = (Owner) o;
-		return Objects.equals(getName(), owner.getName()) &&
-			Objects.equals(getEmail(), owner.getEmail()) &&
-			Objects.equals(getPhone(), owner.getPhone()) &&
-			Objects.equals(getSpokenLanguages(), owner.getSpokenLanguages());
+		Contact contact = (Contact) o;
+		return Objects.equals(getName(), contact.getName()) &&
+			Objects.equals(getEmail(), contact.getEmail()) &&
+			Objects.equals(getPhone(), contact.getPhone()) &&
+			Objects.equals(getSpokenLanguages(), contact.getSpokenLanguages());
 	}
 
 	@Override

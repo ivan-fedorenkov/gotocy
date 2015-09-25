@@ -3,7 +3,6 @@ package org.gotocy.forms;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.*;
-import org.gotocy.utils.CollectionUtils;
 
 import java.util.*;
 import java.util.regex.Pattern;
@@ -30,12 +29,12 @@ public class PropertyForm {
 	// Complex
 	private Long complexId;
 
-	// Owner
-	private Long ownerId;
-	private String ownerName;
-	private String ownerPhone;
-	private String ownerEmail;
-	private String ownerSpokenLanguages;
+	// Primary Contact
+	private Long contactId;
+	private String contactName;
+	private String contactPhone;
+	private String contactEmail;
+	private String contactSpokenLanguages;
 
 	// Property
 	private String title;
@@ -84,11 +83,11 @@ public class PropertyForm {
 	public PropertyForm(Property property) {
 		complexId = property.getComplex() == null ? null : property.getComplex().getId();
 
-		ownerId = property.getOwner().getId();
-		ownerName = property.getOwner().getName();
-		ownerPhone = property.getOwner().getPhone();
-		ownerEmail = property.getOwner().getEmail();
-		ownerSpokenLanguages = property.getOwner().getSpokenLanguages();
+		contactId = property.getPrimaryContact().getId();
+		contactName = property.getPrimaryContact().getName();
+		contactPhone = property.getPrimaryContact().getPhone();
+		contactEmail = property.getPrimaryContact().getEmail();
+		contactSpokenLanguages = property.getPrimaryContact().getSpokenLanguages();
 
 		title = property.getTitle();
 		fullAddress = property.getAddress();
@@ -130,12 +129,12 @@ public class PropertyForm {
 
 	}
 
-	public Owner mergeWithOwner(Owner owner) {
-		owner.setName(ownerName);
-		owner.setPhone(ownerPhone);
-		owner.setEmail(ownerEmail);
-		owner.setSpokenLanguages(ownerSpokenLanguages);
-		return owner;
+	public Contact mergeWithContact(Contact contact) {
+		contact.setName(contactName);
+		contact.setPhone(contactPhone);
+		contact.setEmail(contactEmail);
+		contact.setSpokenLanguages(contactSpokenLanguages);
+		return contact;
 	}
 
 	public Property mergeWithProperty(Property property) {

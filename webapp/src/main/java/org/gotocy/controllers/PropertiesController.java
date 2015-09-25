@@ -1,14 +1,11 @@
 package org.gotocy.controllers;
 
 import org.gotocy.beans.AssetsProvider;
-import org.gotocy.domain.Complex;
-import org.gotocy.domain.Image;
-import org.gotocy.domain.Owner;
-import org.gotocy.domain.Property;
+import org.gotocy.domain.*;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.PropertyForm;
 import org.gotocy.repository.ComplexRepository;
-import org.gotocy.repository.OwnerRepository;
+import org.gotocy.repository.ContactRepository;
 import org.gotocy.repository.PropertyPredicates;
 import org.gotocy.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +31,7 @@ public class PropertiesController {
 	@Autowired
 	private PropertyRepository repository;
 	@Autowired
-	private OwnerRepository ownerRepository;
+	private ContactRepository contactRepository;
 	@Autowired
 	private ComplexRepository complexRepository;
 	@Autowired
@@ -77,7 +74,7 @@ public class PropertiesController {
 	@RequestMapping(value = "/master/properties/new", method = RequestMethod.GET)
 	public String _new(Model model) {
 		model.addAttribute("complexes", complexRepository.findAll());
-		model.addAttribute("owners", ownerRepository.findAll());
+		model.addAttribute("contacts", contactRepository.findAll());
 		model.addAttribute(new PropertyForm());
 		return "master/property/new";
 	}
@@ -86,11 +83,11 @@ public class PropertiesController {
 	@ResponseBody
 	@Transactional
 	public Property create(PropertyForm propertyForm) {
-		Owner owner = getOrCreateOwner(propertyForm.getOwnerId());
-		owner = propertyForm.mergeWithOwner(owner);
+		Contact contact = getOrCreateContact(propertyForm.getContactId());
+		contact = propertyForm.mergeWithContact(contact);
 
 		Property property = propertyForm.mergeWithProperty(new Property());
-		property.setOwner(owner);
+		property.setPrimaryContact(contact);
 		property.setComplex(getComplex(propertyForm.getComplexId()));
 		return repository.saveAndFlush(property);
 	}
@@ -100,7 +97,7 @@ public class PropertiesController {
 		model.addAttribute(property);
 		model.addAttribute(new PropertyForm(property));
 		model.addAttribute("complexes", complexRepository.findAll());
-		model.addAttribute("owners", ownerRepository.findAll());
+		model.addAttribute("contacts", contactRepository.findAll());
 
 		return "master/property/edit";
 	}
@@ -110,12 +107,12 @@ public class PropertiesController {
 	@ResponseBody
 	@Transactional
 	public Property update(@PathVariable("id") Property property, PropertyForm propertyForm, Locale locale) {
-		Owner owner = getOrCreateOwner(propertyForm.getOwnerId());
-		owner = propertyForm.mergeWithOwner(owner);
+		Contact contact = getOrCreateContact(propertyForm.getContactId());
+		contact = propertyForm.mergeWithContact(contact);
 
 		property.initLocalizedFields(locale);
 		property = propertyForm.mergeWithProperty(property);
-		property.setOwner(owner);
+		property.setPrimaryContact(contact);
 		property.setComplex(getComplex(propertyForm.getComplexId()));
 		return repository.saveAndFlush(property);
 	}
@@ -124,9 +121,9 @@ public class PropertiesController {
 		return complexId == null ? null : complexRepository.findOne(complexId);
 	}
 
-	private Owner getOrCreateOwner(Long ownerId) {
-		return ownerId != null && ownerId > 0 ?
-			ownerRepository.findOne(ownerId) : ownerRepository.saveAndFlush(new Owner());
+	private Contact getOrCreateContact(Long contactId) {
+		return contactId != null && contactId > 0 ?
+			contactRepository.findOne(contactId) : contactRepository.saveAndFlush(new Contact());
 	}
 
 }
