@@ -26,6 +26,9 @@ public class PropertyForm {
 	private static final Locale EN_LOCALE = Locale.ENGLISH;
 	private static final Locale RU_LOCALE = new Locale("ru");
 
+	// Developer
+	private Long developerId;
+
 	// Complex
 	private Long complexId;
 
@@ -81,6 +84,7 @@ public class PropertyForm {
 	}
 
 	public PropertyForm(Property property) {
+		developerId = property.getDeveloper() == null ? null : property.getDeveloper().getId();
 		complexId = property.getComplex() == null ? null : property.getComplex().getId();
 
 		contactId = property.getPrimaryContact().getId();

@@ -118,10 +118,10 @@
                             </div>
                         </section><!-- /#description -->
 
-                        <section id="complex-developer" th:remove="all">
+                        <section id="complex-developer" th:unless="*{developer == null}">
                             <div class="well link-well">
-                                <h3>Project of the Livadhiotis Developers group</h3>
-                                <a href="#" class="link-arrow">Read More</a>
+                                <h3 th:text="#{org.gotocy.templates.complex.show.link-to-developer(*{developer.name})}">Project of the Livadhiotis Developers group</h3>
+                                <a class="link-arrow" href="#" th:href="@{${helper.path(complex.developer)}}" th:text="#{org.gotocy.dictionary.read-more}">Read More</a>
                             </div>
                         </section>
 

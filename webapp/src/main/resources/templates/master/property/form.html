@@ -290,6 +290,16 @@
                         </div>
                     </section>
 
+                    <section class="block" id="developer">
+                        <header><h2>Developer</h2></header>
+                        <div class="form-group">
+                            <select th:field="*{developerId}">
+                                <option value="">Choose or leave as is...</option>
+                                <option th:each="developer : ${developers}" th:value="${developer.id}" th:text="${developer.name}">Developer #1</option>
+                            </select>
+                        </div>
+                    </section>
+
                     <section class="block" id="complex">
                         <header><h2>Complex</h2></header>
                         <div class="form-group">

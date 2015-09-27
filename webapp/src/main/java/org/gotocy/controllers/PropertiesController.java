@@ -4,10 +4,7 @@ import org.gotocy.beans.AssetsProvider;
 import org.gotocy.domain.*;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.PropertyForm;
-import org.gotocy.repository.ComplexRepository;
-import org.gotocy.repository.ContactRepository;
-import org.gotocy.repository.PropertyPredicates;
-import org.gotocy.repository.PropertyRepository;
+import org.gotocy.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,6 +31,8 @@ public class PropertiesController {
 	private ContactRepository contactRepository;
 	@Autowired
 	private ComplexRepository complexRepository;
+	@Autowired
+	private DeveloperRepository developerRepository;
 	@Autowired
 	AssetsProvider assetsProvider;
 
@@ -73,6 +72,7 @@ public class PropertiesController {
 
 	@RequestMapping(value = "/master/properties/new", method = RequestMethod.GET)
 	public String _new(Model model) {
+		model.addAttribute("developers", developerRepository.findAll());
 		model.addAttribute("complexes", complexRepository.findAll());
 		model.addAttribute("contacts", contactRepository.findAll());
 		model.addAttribute(new PropertyForm());
@@ -89,6 +89,7 @@ public class PropertiesController {
 		Property property = propertyForm.mergeWithProperty(new Property());
 		property.setPrimaryContact(contact);
 		property.setComplex(getComplex(propertyForm.getComplexId()));
+		property.setDeveloper(getDeveloper(propertyForm.getDeveloperId()));
 		return repository.saveAndFlush(property);
 	}
 
@@ -96,6 +97,7 @@ public class PropertiesController {
 	public String edit(Model model, @PathVariable("id") Property property) {
 		model.addAttribute(property);
 		model.addAttribute(new PropertyForm(property));
+		model.addAttribute("developers", developerRepository.findAll());
 		model.addAttribute("complexes", complexRepository.findAll());
 		model.addAttribute("contacts", contactRepository.findAll());
 
@@ -106,19 +108,23 @@ public class PropertiesController {
 	@RequestMapping(value = "/master/property/{id}", method = RequestMethod.PUT)
 	@ResponseBody
 	@Transactional
-	public Property update(@PathVariable("id") Property property, PropertyForm propertyForm, Locale locale) {
+	public Property update(@PathVariable("id") Property property, PropertyForm propertyForm) {
 		Contact contact = getOrCreateContact(propertyForm.getContactId());
 		contact = propertyForm.mergeWithContact(contact);
 
-		property.initLocalizedFields(locale);
 		property = propertyForm.mergeWithProperty(property);
 		property.setPrimaryContact(contact);
 		property.setComplex(getComplex(propertyForm.getComplexId()));
+		property.setDeveloper(getDeveloper(propertyForm.getDeveloperId()));
 		return repository.saveAndFlush(property);
 	}
 
 	private Complex getComplex(Long complexId) {
 		return complexId == null ? null : complexRepository.findOne(complexId);
+	}
+
+	private Developer getDeveloper(Long developerId) {
+		return developerId == null ? null : developerRepository.findOne(developerId);
 	}
 
 	private Contact getOrCreateContact(Long contactId) {

@@ -1,0 +1,72 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
+
+    <title>GoToCy</title>
+
+</head>
+
+<body class="page-sub-page page-submit" id="page-top">
+<div class="wrapper">
+    <div class="navigation">
+        <div class="secondary-navigation">
+            <div class="container">
+                <div class="contact" th:include="fragments/contact_div :: contact">
+                    <figure><strong>Phone:</strong>+1 810-991-3842</figure>
+                    <figure><strong>Email:</strong>zoner@example.com</figure>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <header class="navbar" id="top" role="banner">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="sr-only" th:text="#{org.gotocy.dictionary.toggle-navigation}">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand nav" id="brand">
+                        <a th:href="@{${helper.path('/')}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
+                    </div>
+                </div>
+                <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                    </ul>
+                </nav><!-- /.navbar collapse-->
+            </header><!-- /.navbar -->
+        </div><!-- /.container -->
+    </div><!-- /.navigation -->
+
+    <div id="page-content">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="#" th:href="@{/}">Home</a></li>
+                <li class="active">Edit developer</li>
+            </ol>
+        </div>
+
+        <div class="container">
+            <header><h1>Edit Developer</h1></header>
+            <form th:replace="master/developer/form :: form('developerForm', '/master/developer/' + ${developer.id}, 'put')"></form>
+        </div>
+    </div>
+    <footer id="page-footer" th:include="fragments/footer :: footer"></footer>
+</div>
+
+<script type="text/javascript" th:src="@{/assets/js/application.min.js}" src="/parent/webapp/public/assets/js/application.min.js"></script>
+
+<!--[if gt IE 8]>
+<script type="text/javascript" src="http://assets.gotocy.eu/static/js/ie.js"></script>
+<![endif]-->
+
+
+</body>
+</html>

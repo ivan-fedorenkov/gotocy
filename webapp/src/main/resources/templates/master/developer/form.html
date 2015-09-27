@@ -1,0 +1,36 @@
+<form th:fragment="form(object, action, method)" role="form" id="form-submit" class="form-submit" th:action="${action}" th:method="${method}" th:object="${__${object}__}">
+    <div class="row">
+        <div class="block">
+            <div class="col-md-9 col-sm-9">
+                <section class="block" id="submit-form">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" th:field="*{name}" required>
+                    </div><!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label for="descriptionEn">Description (en)</label>
+                        <textarea class="form-control" id="descriptionEn" rows="8" th:field="*{enDescription}"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descriptionRu">Description (ru)</label>
+                        <textarea class="form-control" id="descriptionRu" rows="8" th:field="*{ruDescription}"></textarea>
+                    </div>
+                </section>
+                <hr>
+            </div><!-- /.col-md-9 -->
+        </div>
+    </div><!-- /.row -->
+    <div class="row">
+        <div class="block">
+            <div class="col-md-9 col-sm-9">
+                <div class="center">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default large">Save</button>
+                    </div><!-- /.form-group -->
+                </div>
+            </div>
+        </div>
+    </div>
+</form><!-- /#form-submit -->

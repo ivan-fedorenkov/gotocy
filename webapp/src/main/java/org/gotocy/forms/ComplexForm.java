@@ -26,6 +26,9 @@ public class ComplexForm {
 	private static final Locale EN_LOCALE = Locale.ENGLISH;
 	private static final Locale RU_LOCALE = new Locale("ru");
 
+	// Developer
+	private Long developerId;
+
 	// Primary Contact
 	private Long contactId;
 	private String contactName;
@@ -56,6 +59,8 @@ public class ComplexForm {
 	}
 
 	public ComplexForm(Complex complex) {
+		developerId = complex.getDeveloper() == null ? null : complex.getDeveloper().getId();
+
 		contactId = complex.getPrimaryContact().getId();
 		contactName = complex.getPrimaryContact().getName();
 		contactPhone = complex.getPrimaryContact().getPhone();
