@@ -1,5 +1,6 @@
 package org.gotocy.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +28,10 @@ import java.util.Locale;
 @Getter
 @Setter
 public class Complex extends BaseEntity {
+
+	@JsonBackReference
+	@ManyToOne
+	private Developer developer;
 
 	@ManyToOne(optional = false)
 	private Contact primaryContact;

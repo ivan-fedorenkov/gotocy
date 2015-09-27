@@ -11,7 +11,7 @@ import javax.persistence.*;
 @MappedSuperclass
 @Getter
 @Setter
-public abstract class BaseEntity {
+public abstract class BaseEntity implements Identifiable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

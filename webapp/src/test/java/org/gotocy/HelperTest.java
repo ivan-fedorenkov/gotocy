@@ -1,6 +1,7 @@
 package org.gotocy;
 
 import org.gotocy.domain.Complex;
+import org.gotocy.domain.Developer;
 import org.gotocy.domain.Property;
 import org.gotocy.filters.LocaleFilter;
 import org.gotocy.helpers.Helper;
@@ -23,15 +24,20 @@ public class HelperTest {
 		Complex c = new Complex();
 		c.setId(2L);
 
+		Developer d = new Developer();
+		d.setId(3L);
+
 		// Language is not specified
 
 		LocaleContextHolder.setLocale(LocaleFilter.DEFAULT_LOCALE);
 		Assert.assertEquals("/property/1", Helper.path(p));
 		Assert.assertEquals("/complex/2", Helper.path(c));
+		Assert.assertEquals("/developer/3", Helper.path(d));
 
 		LocaleContextHolder.setLocale(LocaleFilter.RUSSIAN_LOCALE);
 		Assert.assertEquals("/ru/property/1", Helper.path(p));
 		Assert.assertEquals("/ru/complex/2", Helper.path(c));
+		Assert.assertEquals("/ru/developer/3", Helper.path(d));
 
 		// Language is specified explicitly
 
@@ -39,9 +45,11 @@ public class HelperTest {
 
 		Assert.assertEquals("/property/1", Helper.path(p, "en"));
 		Assert.assertEquals("/complex/2", Helper.path(c, "en"));
+		Assert.assertEquals("/developer/3", Helper.path(d, "en"));
 		// Russian language prefix
 		Assert.assertEquals("/ru/property/1", Helper.path(p, "ru"));
 		Assert.assertEquals("/ru/complex/2", Helper.path(c, "ru"));
+		Assert.assertEquals("/ru/developer/3", Helper.path(d, "ru"));
 	}
 
 	@Test

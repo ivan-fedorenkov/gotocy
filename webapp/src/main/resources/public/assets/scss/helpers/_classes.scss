@@ -649,6 +649,12 @@
   }
 }
 
+#object-detail {
+  section { margin-bottom: 25px;
+    h2 { margin-bottom: 25px; }
+  }
+}
+
 /****
   P
 ****/
@@ -827,12 +833,6 @@
   }
 }
 
-#property-detail {
-  section { margin-bottom: 25px;
-    h2 { margin-bottom: 25px; }
-  }
-}
-
 .property-detail-map-wrapper { position: relative; height: 340px;
     .property-detail-map { height: 100%; position: absolute; right: 0; width: 100%;  }
 }
@@ -937,6 +937,17 @@
 
   @include rotate(-45deg);
   @include shadow;
+}
+
+// Developer's project
+
+#projects {
+  .project {
+    border-bottom:1px solid $color-grey-light;margin-bottom:60px;padding-bottom:30px;
+    &:last-child { border-bottom: 0; }
+    .project-image { width: 100%; }
+    .project-header { margin-top: 0; }
+  }
 }
 
 /****

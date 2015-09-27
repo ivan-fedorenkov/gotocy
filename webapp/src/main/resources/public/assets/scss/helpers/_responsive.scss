@@ -461,4 +461,12 @@
     img { width: 100%; }
   }
   .wrapper { display: block; }
+
+  #projects {
+    .project {
+      .project-header {
+        margin-top: 10px;
+      }
+    }
+  }
 }

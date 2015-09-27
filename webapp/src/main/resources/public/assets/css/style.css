@@ -1523,6 +1523,11 @@ ul.list-links {
     .owl-carousel .owl-dots .owl-dot.active {
       background-color: rgba(0, 0, 0, 0.6); }
 
+#object-detail section {
+  margin-bottom: 25px; }
+  #object-detail section h2 {
+    margin-bottom: 25px; }
+
 /****
   P
 ****/
@@ -1955,11 +1960,6 @@ ul.list-links {
   .property-carousel .owl-controls .owl-prev:after {
     content: "\f104"; }
 
-#property-detail section {
-  margin-bottom: 25px; }
-  #property-detail section h2 {
-    margin-bottom: 25px; }
-
 .property-detail-map-wrapper {
   position: relative;
   height: 340px; }
@@ -2106,6 +2106,17 @@ ul.list-links {
   -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2); }
+
+#projects .project {
+  border-bottom: 1px solid #f3f3f3;
+  margin-bottom: 60px;
+  padding-bottom: 30px; }
+  #projects .project:last-child {
+    border-bottom: 0; }
+  #projects .project .project-image {
+    width: 100%; }
+  #projects .project .project-header {
+    margin-top: 0; }
 
 /****
   R
@@ -4920,7 +4931,10 @@ body, html {
     width: 100%; }
 
   .wrapper {
-    display: block; } }
+    display: block; }
+
+  #projects .project .project-header {
+    margin-top: 10px; } }
 @media print {
   #page-footer, .breadcrumb {
     display: none; }

@@ -40,6 +40,10 @@ public class Property extends BaseEntity {
 
 	@JsonBackReference
 	@ManyToOne
+	private Developer developer;
+
+	@JsonBackReference
+	@ManyToOne
 	private Complex complex;
 
 	@ManyToOne(optional = false)
