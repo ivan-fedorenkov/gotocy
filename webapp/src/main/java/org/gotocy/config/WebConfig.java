@@ -105,7 +105,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/complex").setViewName("complex/show");
+		registry.addViewController("/submit").setViewName("property/new");
 	}
 
 }
