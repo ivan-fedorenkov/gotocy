@@ -208,7 +208,7 @@
                                 <div class="info">
                                     <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html"><h4 th:text="${property.title}">2186 Rinehart Road</h4></a>
                                     <figure th:text="${property.shortAddress}">Doral, FL 33178 </figure>
-                                    <div class="tag price" th:utext="${helper.property.price(property)}">$ 72,000</div>
+                                    <div class="tag price" th:if="${property.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:utext="${helper.property.price(property)}">$ 72,000</div>
                                 </div>
                             </div><!-- /.property -->
                         </aside><!-- /#similar-properties -->
