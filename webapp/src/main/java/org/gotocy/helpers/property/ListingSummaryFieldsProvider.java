@@ -1,5 +1,6 @@
 package org.gotocy.helpers.property;
 
+import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
 import org.springframework.context.MessageSource;
 
@@ -37,10 +38,27 @@ class ListingSummaryFieldsProvider implements FieldsProvider {
 		FieldFormat.LEVELS
 	};
 
+	private static final FieldFormat[] SOLD_HOUSE = new FieldFormat[]{
+		FieldFormat.LOCATION,
+		FieldFormat.PROPERTY_TYPE,
+		FieldFormat.COVERED_AREA,
+		FieldFormat.PLOT_SIZE,
+		FieldFormat.BEDROOMS,
+		FieldFormat.LEVELS
+	};
+
 	private static final FieldFormat[] SALE_APARTMENT = new FieldFormat[]{
 		FieldFormat.LOCATION,
 		FieldFormat.PROPERTY_TYPE,
 		FieldFormat.READY_TO_MOVE_IN,
+		FieldFormat.COVERED_AREA,
+		FieldFormat.BEDROOMS,
+		FieldFormat.LEVELS
+	};
+
+	private static final FieldFormat[] SOLD_APARTMENT = new FieldFormat[]{
+		FieldFormat.LOCATION,
+		FieldFormat.PROPERTY_TYPE,
 		FieldFormat.COVERED_AREA,
 		FieldFormat.BEDROOMS,
 		FieldFormat.LEVELS
@@ -62,9 +80,9 @@ class ListingSummaryFieldsProvider implements FieldsProvider {
 		case SALE:
 			switch (property.getPropertyType()) {
 			case HOUSE:
-				return SALE_HOUSE;
+				return property.getOfferStatus() == OfferStatus.SOLD ? SOLD_HOUSE : SALE_HOUSE;
 			case APARTMENT:
-				return SALE_APARTMENT;
+				return property.getOfferStatus() == OfferStatus.SOLD ? SOLD_APARTMENT : SALE_APARTMENT;
 			case LAND:
 				return SALE_LAND;
 			}
