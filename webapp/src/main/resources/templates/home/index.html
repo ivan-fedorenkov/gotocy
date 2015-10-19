@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price" th:utext="${helper.property.price(p)}">$ 11,000</div>
+                                        <div class="tag price" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:utext="${helper.property.price(p)}">$ 11,000</div>
                                         <h3 th:text="${p.title}">3398 Lodgeville Road</h3>
                                         <figure th:text="${p.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
@@ -255,7 +255,7 @@
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price" th:utext="${helper.property.price(p)}">$ 11,000</div>
+                                        <div class="tag price" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:utext="${helper.property.price(p)}">$ 11,000</div>
                                         <h3 th:text="${p.title}">3398 Lodgeville Road</h3>
                                         <figure th:text="${p.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
@@ -390,7 +390,7 @@
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price" th:utext="${helper.property.price(p)}">$ 11,000</div>
+                                        <div class="tag price" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:utext="${helper.property.price(p)}">$ 11,000</div>
                                         <h3 th:text="${p.title}">3398 Lodgeville Road</h3>
                                         <figure th:text="${p.shortAddress}">Golden Valley, MN 55427</figure>
                                     </div>
