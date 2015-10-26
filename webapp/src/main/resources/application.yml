@@ -20,6 +20,11 @@ gotocy:
     phone: "+357 99 166265"
     defaultLatitude: "34.97351552254917"
     defaultLongitude: "33.133228140624965"
+    defaultContact:
+      name: Anna
+      email: anna@gotocy.eu
+      phone: "+357 99 166265"
+      spokenLanguages: "Greek, Eng, Rus"
 
 ---
 

@@ -25,7 +25,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (17, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (18, 0, 'property/1/21.jpg', 'image');
 
 insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, baths, air_conditioner, distance_to_sea, representative_image_id, primary_contact_id)
-  values (1, 0, 'Sofia', 'Chania, Crete, Nomós Chaníon', 'Chania, Crete, Nomós Chaníon', 'LARNACA', '35.318198', '24.318744', 'APARTMENT', 'SHORT_TERM', 95, 1, 3, 1, true, 1200, 1, 1);
+  values (1, 0, 'Sofia', 'Chania, Crete, Nomós Chaníon', 'Chania, Crete, Nomós Chaníon', 'LARNACA', '35.318198', '24.318744', 'APARTMENT', 'SHORT_TERM', 95, 1, 3, 1, true, 1200, 1, null);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'Kastellos village is situated in the picturesque village of Kastellos in Georgioupolis, Chania. The complex is ideal for those wishing to escape everyday routine and relax enjoying the Cretan countryside; it’s for those who want to contact the nature, the wild life and of course to meet the people and their habits.
 "Sofia Apartment" independent and fully equipped. It is built according to the traditional architecture. On the outside, beautiful stone work frames the dark green doorways and windows, further accentuated by the pastel strawberry and lemon walls. Add to this lovely tiled roofs and backdrop of the blue sky and mountains, and then you begin to understand why we were so smitten.

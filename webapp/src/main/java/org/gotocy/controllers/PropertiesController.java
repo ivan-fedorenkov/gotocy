@@ -79,6 +79,15 @@ public class PropertiesController {
 		return "master/property/new";
 	}
 
+	@RequestMapping(value = "/property", method = RequestMethod.POST)
+	@ResponseBody
+	@Transactional
+	public Property createByUser(PropertyForm propertyForm) {
+		Property property = propertyForm.mergeWithProperty(new Property());
+		property.setOfferStatus(OfferStatus.ACTIVE);
+		return repository.saveAndFlush(property);
+	}
+
 	@RequestMapping(value = "/master/properties", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional

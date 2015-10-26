@@ -11,10 +11,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 /**
- * TODO: validation / integration test on validation
  * TODO: optimize #setRepresentativeImage #setPanoXml
  *
  * @author ifedorenkov
@@ -46,7 +44,7 @@ public class Property extends BaseEntity {
 	@ManyToOne
 	private Complex complex;
 
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Contact primaryContact;
 
 	@Enumerated(EnumType.STRING)

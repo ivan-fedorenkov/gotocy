@@ -1,0 +1,2 @@
+ALTER TABLE `property` MODIFY COLUMN `primary_contact_id` BIGINT NULL DEFAULT NULL;
+ALTER TABLE `complex` MODIFY COLUMN `primary_contact_id` BIGINT NULL DEFAULT NULL;

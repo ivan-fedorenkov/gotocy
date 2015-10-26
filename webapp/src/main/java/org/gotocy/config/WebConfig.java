@@ -89,12 +89,9 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addFormatter(new EnumsFormatter<Location>(Location.class, messageSource) {});
 		registry.addFormatter(new EnumsFormatter<PropertyType>(PropertyType.class, messageSource) {});
-		registry.addFormatter(new EnumsFormatter<PropertyStatus>(PropertyStatus.class, messageSource) {
-		});
-		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class, messageSource) {
-		});
-		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class, messageSource) {
-		});
+		registry.addFormatter(new EnumsFormatter<PropertyStatus>(PropertyStatus.class, messageSource) {});
+		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class, messageSource) {});
+		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class, messageSource) {});
 	}
 
 	@Override
