@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.Contact;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
@@ -24,9 +26,6 @@ public class ApplicationProperties {
 	@NotEmpty
 	private String phone;
 
-	@NotEmpty
-	private String profile;
-
 	@NotNull
 	private Double defaultLatitude;
 
@@ -34,5 +33,17 @@ public class ApplicationProperties {
 	private Double defaultLongitude;
 
 	private Contact defaultContact = new Contact();
+
+	// Expose the spring active profiles
+	@Autowired
+	private Environment environment;
+
+	/**
+	 * @return the first spring active profile or an empty string if there are no active profiles.
+	 */
+	public String getFirstActiveProfile() {
+		String[] activeProfiles = environment.getActiveProfiles();
+		return activeProfiles.length > 0 ? activeProfiles[0] : "";
+	}
 
 }

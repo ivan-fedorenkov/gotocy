@@ -1,6 +1,6 @@
 package org.gotocy.interceptors;
 
-import org.gotocy.beans.AssetsProvider;
+import org.gotocy.beans.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.helpers.Helper;
 import org.springframework.context.MessageSource;
@@ -20,8 +20,8 @@ public class HelpersInterceptor implements HandlerInterceptor {
 	private final Helper helper;
 	private final ApplicationProperties applicationProperties;
 
-	public HelpersInterceptor(ApplicationProperties applicationProperties, MessageSource messageSource, AssetsProvider assetsProvider) {
-		helper = new Helper(messageSource, assetsProvider);
+	public HelpersInterceptor(ApplicationProperties applicationProperties, MessageSource messageSource, AssetsManager assetsManager) {
+		helper = new Helper(messageSource, assetsManager);
 		this.applicationProperties = applicationProperties;
 	}
 

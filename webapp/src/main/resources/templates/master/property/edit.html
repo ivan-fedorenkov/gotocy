@@ -70,8 +70,8 @@
 <![endif]-->
 
 <script th:inline="javascript">
-    var _latitude = /*[[${propertyForm.latitude == null}? ${gotocy.defaultLatitude} : ${propertyForm.latitude}]]*/ '34.7071301';
-    var _longitude = /*[[${propertyForm.longitude == null}? ${gotocy.defaultLongitude} : ${propertyForm.longitude}]]*/ '33.022617399999945';
+    var _latitude = /*[[${propertyForm.latitude == 0d}? ${gotocy.defaultLatitude} : ${propertyForm.latitude}]]*/ '34.7071301';
+    var _longitude = /*[[${propertyForm.longitude == 0d}? ${gotocy.defaultLongitude} : ${propertyForm.longitude}]]*/ '33.022617399999945';
     var _contacts = /*[[${contacts}]]*/ [{id: 1, name: 'Denis'}];
     google.maps.event.addDomListener(window, 'load', initPropertySubmitMap(_latitude, _longitude, 15));
 </script>

@@ -27,10 +27,10 @@ public class ComplexForm {
 	private static final Locale RU_LOCALE = new Locale("ru");
 
 	// Developer
-	private Long developerId;
+	private long developerId;
 
 	// Primary Contact
-	private Long contactId;
+	private long contactId;
 	private String contactName;
 	private String contactPhone;
 	private String contactEmail;
@@ -59,13 +59,15 @@ public class ComplexForm {
 	}
 
 	public ComplexForm(Complex complex) {
-		developerId = complex.getDeveloper() == null ? null : complex.getDeveloper().getId();
+		developerId = complex.getDeveloper() == null ? 0 : complex.getDeveloper().getId();
 
-		contactId = complex.getPrimaryContact().getId();
-		contactName = complex.getPrimaryContact().getName();
-		contactPhone = complex.getPrimaryContact().getPhone();
-		contactEmail = complex.getPrimaryContact().getEmail();
-		contactSpokenLanguages = complex.getPrimaryContact().getSpokenLanguages();
+		if (complex.getPrimaryContact() != null) {
+			contactId = complex.getPrimaryContact().getId();
+			contactName = complex.getPrimaryContact().getName();
+			contactPhone = complex.getPrimaryContact().getPhone();
+			contactEmail = complex.getPrimaryContact().getEmail();
+			contactSpokenLanguages = complex.getPrimaryContact().getSpokenLanguages();
+		}
 
 		title = complex.getTitle();
 		location = complex.getLocation();

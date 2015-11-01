@@ -27,13 +27,13 @@ public class PropertyForm {
 	private static final Locale RU_LOCALE = new Locale("ru");
 
 	// Developer
-	private Long developerId;
+	private long developerId;
 
 	// Complex
-	private Long complexId;
+	private long complexId;
 
 	// Primary Contact
-	private Long contactId;
+	private long contactId;
 	private String contactName;
 	private String contactPhone;
 	private String contactEmail;
@@ -47,20 +47,20 @@ public class PropertyForm {
 	private PropertyType propertyType;
 	private PropertyStatus propertyStatus;
 	private OfferStatus offerStatus;
-	private Integer price;
-	private Integer coveredArea;
-	private Integer plotSize;
-	private Integer bedrooms;
-	private Integer guests;
-	private Integer levels;
-	private Integer distanceToSea;
+	private int price;
+	private int coveredArea;
+	private int plotSize;
+	private int bedrooms;
+	private int guests;
+	private int levels;
+	private int distanceToSea;
 	private Furnishing furnishing;
-	private Boolean vatIncluded;
-	private Boolean airConditioner;
-	private Boolean heatingSystem;
-	private Boolean readyToMoveIn;
-	private Double latitude;
-	private Double longitude;
+	private boolean vatIncluded;
+	private boolean airConditioner;
+	private boolean heatingSystem;
+	private boolean readyToMoveIn;
+	private double latitude;
+	private double longitude;
 
 	// En Localized Property
 	private String enDescription;
@@ -79,19 +79,21 @@ public class PropertyForm {
 		location = Location.FAMAGUSTA;
 		propertyType = PropertyType.APARTMENT;
 		propertyStatus = PropertyStatus.LONG_TERM;
-		offerStatus = OfferStatus.ACTIVE;
+		offerStatus = OfferStatus.DEMO;
 		furnishing = Furnishing.NONE;
 	}
 
 	public PropertyForm(Property property) {
-		developerId = property.getDeveloper() == null ? null : property.getDeveloper().getId();
-		complexId = property.getComplex() == null ? null : property.getComplex().getId();
+		developerId = property.getDeveloper() == null ? 0 : property.getDeveloper().getId();
+		complexId = property.getComplex() == null ? 0 : property.getComplex().getId();
 
-		contactId = property.getPrimaryContact().getId();
-		contactName = property.getPrimaryContact().getName();
-		contactPhone = property.getPrimaryContact().getPhone();
-		contactEmail = property.getPrimaryContact().getEmail();
-		contactSpokenLanguages = property.getPrimaryContact().getSpokenLanguages();
+		if (property.getPrimaryContact() != null) {
+			contactId = property.getPrimaryContact().getId();
+			contactName = property.getPrimaryContact().getName();
+			contactPhone = property.getPrimaryContact().getPhone();
+			contactEmail = property.getPrimaryContact().getEmail();
+			contactSpokenLanguages = property.getPrimaryContact().getSpokenLanguages();
+		}
 
 		title = property.getTitle();
 		fullAddress = property.getAddress();
@@ -108,10 +110,10 @@ public class PropertyForm {
 		levels = property.getLevels();
 		distanceToSea = property.getDistanceToSea();
 		furnishing = property.getFurnishing();
-		vatIncluded = property.getVatIncluded();
-		airConditioner = property.getAirConditioner();
-		heatingSystem = property.getHeatingSystem();
-		readyToMoveIn = property.getReadyToMoveIn();
+		vatIncluded = property.isVatIncluded();
+		airConditioner = property.hasAirConditioner();
+		heatingSystem = property.hasHeatingSystem();
+		readyToMoveIn = property.isReadyToMoveIn();
 		latitude = property.getLatitude();
 		longitude = property.getLongitude();
 

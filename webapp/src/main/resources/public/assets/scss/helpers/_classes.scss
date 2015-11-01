@@ -431,6 +431,15 @@
   .bottom { bottom: 90px; left: 0; margin: auto; position: absolute; right: 0; z-index: 0; }
 }
 
+.error-messages {
+  background-color: $color-errors-background;
+  padding: 20px 0 20px 0;
+
+  ul {
+    margin-bottom: 0;
+  }
+}
+
 /****
   F
 ****/
@@ -977,6 +986,14 @@
 
 .ribbon-booked {
   background: $color-orange;
+}
+
+#registration-offer {
+  margin-bottom: 20px;
+}
+
+#register-link {
+  margin-top: 10px;
 }
 
 /****

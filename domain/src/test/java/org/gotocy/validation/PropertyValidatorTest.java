@@ -4,13 +4,11 @@ import org.gotocy.domain.*;
 import org.gotocy.domain.validation.PropertyValidator;
 import org.gotocy.domain.validation.ValidationConstraints;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 
 import java.util.EnumSet;
 import java.util.Set;
@@ -23,6 +21,7 @@ public class PropertyValidatorTest {
 
 	private static final String ANY_STRING = "any_string";
 	private static final Integer ANY_INT = 1;
+	private static final Integer ZERO = 0;
 	private static final Integer NEGATIVE_INT = -1;
 	private static final Double ANY_DOUBLE = 1D;
 	private static final Boolean ANY_BOOLEAN = Boolean.FALSE;
@@ -31,16 +30,9 @@ public class PropertyValidatorTest {
 	private static final Set<PropertyStatus> ALL_PROPERTY_STATUSES = EnumSet.allOf(PropertyStatus.class);
 	private static final Set<OfferStatus> ALL_OFFER_STATUSES = EnumSet.allOf(OfferStatus.class);
 
-	private static Validator validator;
-
-	@BeforeClass
-	public static void init() {
-		validator = new PropertyValidator();
-	}
-
 	@Test
 	public void shouldSupportPropertyClass() {
-		Assert.assertTrue(validator.supports(Property.class));
+		Assert.assertTrue(PropertyValidator.INSTANCE.supports(Property.class));
 	}
 
 	@Test
@@ -66,16 +58,6 @@ public class PropertyValidatorTest {
 	}
 
 	@Test
-	public void latitudeValidation() {
-		forEachTypeAndStatus(p -> shouldNotBeNull(p, "latitude"));
-	}
-
-	@Test
-	public void longitudeValidation() {
-		forEachTypeAndStatus(p -> shouldNotBeNull(p, "longitude"));
-	}
-
-	@Test
 	public void propertyTypeValidation() {
 		forEachTypeAndStatus(p -> shouldNotBeNull(p, "propertyType"));
 	}
@@ -98,17 +80,7 @@ public class PropertyValidatorTest {
 			ALL_PROPERTY_TYPES,
 			ALL_PROPERTY_STATUSES,
 			EnumSet.of(OfferStatus.ACTIVE),
-			getAnyValidProperty(), p -> shouldBePositiveInteger(p, "price")
-		);
-	}
-
-	@Test
-	public void readyToMoveInValidation() {
-		forEach(
-			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
-			EnumSet.of(PropertyStatus.SALE),
-			ALL_OFFER_STATUSES,
-			getAnyValidProperty(), p -> shouldNotBeNull(p, "readyToMoveIn")
+			getAnyValidProperty(), p -> shouldBePositiveInt(p, "price")
 		);
 	}
 
@@ -118,7 +90,7 @@ public class PropertyValidatorTest {
 			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
 			EnumSet.of(PropertyStatus.SALE),
 			ALL_OFFER_STATUSES,
-			getAnyValidProperty(), p -> shouldBePositiveInteger(p, "coveredArea")
+			getAnyValidProperty(), p -> shouldBePositiveInt(p, "coveredArea")
 		);
 	}
 
@@ -128,7 +100,7 @@ public class PropertyValidatorTest {
 			EnumSet.of(PropertyType.HOUSE, PropertyType.LAND),
 			EnumSet.of(PropertyStatus.SALE),
 			ALL_OFFER_STATUSES,
-			getAnyValidProperty(), p -> shouldBePositiveInteger(p, "plotSize")
+			getAnyValidProperty(), p -> shouldBePositiveInt(p, "plotSize")
 		);
 	}
 
@@ -138,7 +110,7 @@ public class PropertyValidatorTest {
 			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
 			ALL_PROPERTY_STATUSES,
 			ALL_OFFER_STATUSES,
-			getAnyValidProperty(), p -> shouldBePositiveInteger(p, "bedrooms")
+			getAnyValidProperty(), p -> shouldBePositiveInt(p, "bedrooms")
 		);
 	}
 
@@ -148,17 +120,7 @@ public class PropertyValidatorTest {
 			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
 			EnumSet.of(PropertyStatus.SALE),
 			ALL_OFFER_STATUSES,
-			getAnyValidProperty(), p -> shouldBePositiveInteger(p, "levels")
-		);
-	}
-
-	@Test
-	public void vatIncludedValidation() {
-		forEach(
-			ALL_PROPERTY_TYPES,
-			EnumSet.of(PropertyStatus.SALE),
-			ALL_OFFER_STATUSES,
-			getAnyValidProperty(), p -> shouldNotBeNull(p, "vatIncluded")
+			getAnyValidProperty(), p -> shouldBePositiveInt(p, "levels")
 		);
 	}
 
@@ -168,7 +130,7 @@ public class PropertyValidatorTest {
 			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
 			EnumSet.of(PropertyStatus.SHORT_TERM),
 			ALL_OFFER_STATUSES,
-			getAnyValidProperty(), p -> shouldBePositiveInteger(p, "guests")
+			getAnyValidProperty(), p -> shouldBePositiveInt(p, "guests")
 		);
 	}
 
@@ -178,27 +140,7 @@ public class PropertyValidatorTest {
 			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
 			EnumSet.of(PropertyStatus.SHORT_TERM),
 			ALL_OFFER_STATUSES,
-			getAnyValidProperty(), p -> shouldBePositiveInteger(p, "distanceToSea")
-		);
-	}
-
-	@Test
-	public void airConditionerTest() {
-		forEach(
-			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
-			EnumSet.of(PropertyStatus.SHORT_TERM),
-			ALL_OFFER_STATUSES,
-			getAnyValidProperty(), p -> shouldNotBeNull(p, "airConditioner")
-		);
-	}
-
-	@Test
-	public void heatingSystemValidation() {
-		forEach(
-			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
-			EnumSet.of(PropertyStatus.LONG_TERM),
-			ALL_OFFER_STATUSES,
-			getAnyValidProperty(), p -> shouldNotBeNull(p, "heatingSystem")
+			getAnyValidProperty(), p -> shouldBePositiveInt(p, "distanceToSea")
 		);
 	}
 
@@ -214,7 +156,7 @@ public class PropertyValidatorTest {
 
 	private static Errors validateProperty(Property property) {
 		Errors errors = new BeanPropertyBindingResult(property, "property");
-		validator.validate(property, errors);
+		PropertyValidator.INSTANCE.validate(property, errors);
 		return errors;
 	}
 
@@ -223,9 +165,9 @@ public class PropertyValidatorTest {
 		Assert.assertEquals(ValidationConstraints.NOT_EMPTY, errors.getFieldError(field).getCode());
 	}
 
-	private static void assertHasNotNegativeFieldError(Errors errors, String field) {
+	private static void assertHasPositiveIntFieldError(Errors errors, String field) {
 		Assert.assertTrue(errors.hasFieldErrors(field));
-		Assert.assertEquals(ValidationConstraints.NOT_NEGATIVE, errors.getFieldError(field).getCode());
+		Assert.assertEquals(ValidationConstraints.POSITIVE_INT, errors.getFieldError(field).getCode());
 	}
 
 	private static void shouldNotBeNull(Property property, String field) {
@@ -234,12 +176,12 @@ public class PropertyValidatorTest {
 		assertHasNotEmptyFieldError(validateProperty(property), field);
 	}
 
-	private static void shouldBePositiveInteger(Property property, String field) {
+	private static void shouldBePositiveInt(Property property, String field) {
 		BeanWrapper wrapper = PropertyAccessorFactory.forBeanPropertyAccess(property);
-		wrapper.setPropertyValue(field, null);
-		assertHasNotEmptyFieldError(validateProperty(property), field);
+		wrapper.setPropertyValue(field, ZERO);
+		assertHasPositiveIntFieldError(validateProperty(property), field);
 		wrapper.setPropertyValue(field, NEGATIVE_INT);
-		assertHasNotNegativeFieldError(validateProperty(property), field);
+		assertHasPositiveIntFieldError(validateProperty(property), field);
 	}
 
 	private static void shouldNotBeEmptyOrWhitespace(Property property, String field) {

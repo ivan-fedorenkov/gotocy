@@ -18,6 +18,7 @@ public class PropertyFactory {
 		p.setPropertyType(PropertyType.HOUSE);
 		p.setPropertyStatus(PropertyStatus.SALE);
 		p.setOfferStatus(OfferStatus.ACTIVE);
+		p.setLocation(Location.LARNACA);
 		p.setAddress("Test address");
 		p.setShortAddress("Test address");
 		p.setPrice(1);

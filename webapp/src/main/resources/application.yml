@@ -14,6 +14,12 @@ server:
     cookie:
       http-only: true
 
+multipart:
+  enabled: "true"
+  maxFileSize: "2Mb"
+  maxRequestSize: "-1"
+
+
 gotocy:
   webapp:
     email: "support@gotocy.eu"
@@ -29,7 +35,7 @@ gotocy:
 ---
 
 spring:
-  profiles: "heroku-cleardb"
+  profiles: "heroku-prod"
 
 heroku:
   cleardb:

@@ -9,7 +9,7 @@
                         <div class="form-group">
                             <label for="contactId">Contact</label>
                             <select id="contactId" th:field="*{contactId}">
-                                <option value="-1">Create new...</option>
+                                <option value="0">Create new...</option>
                                 <option value="1" th:each="contact : ${contacts}" th:value="${contact.id}" th:text="${contact.name}">Denis</option>
                             </select>
                         </div>
@@ -221,7 +221,6 @@
                                     <section id="place-on-map">
                                         <header class="section-title">
                                             <h2>Place on Map</h2>
-                                            <span class="link-arrow geo-location">Get My Position</span>
                                         </header>
                                         <div class="form-group">
                                             <label for="address-map">Address</label>
@@ -294,7 +293,7 @@
                         <header><h2>Developer</h2></header>
                         <div class="form-group">
                             <select th:field="*{developerId}">
-                                <option value="">Choose or leave as is...</option>
+                                <option value="0">Choose or leave as is...</option>
                                 <option th:each="developer : ${developers}" th:value="${developer.id}" th:text="${developer.name}">Developer #1</option>
                             </select>
                         </div>
@@ -304,7 +303,7 @@
                         <header><h2>Complex</h2></header>
                         <div class="form-group">
                             <select th:field="*{complexId}">
-                                <option value="">Choose or leave as is...</option>
+                                <option value="0">Choose or leave as is...</option>
                                 <option th:each="complex : ${complexes}" th:value="${complex.id}" th:text="${complex.title}">Complex #1</option>
                             </select>
                         </div>

@@ -66,7 +66,7 @@ public enum FieldFormat {
 		@Override
 		public String formatValue(MessageSource ms, Property p) {
 			return ms.getMessage(
-				Boolean.TRUE.equals(p.getVatIncluded()) ?
+				p.isVatIncluded() ?
 					"org.gotocy.dictionary.vat-included" : "org.gotocy.dictionary.vat-not-included",
 				new Object[0], LocaleContextHolder.getLocale());
 		}
@@ -79,7 +79,7 @@ public enum FieldFormat {
 
 		@Override
 		public String formatValue(MessageSource ms, Property p) {
-			return intValueSafe(p.getCoveredArea()) + " " +
+			return p.getCoveredArea() + " " +
 				ms.getMessage("org.gotocy.dictionary.meters", new Object[0], LocaleContextHolder.getLocale()) +
 				"<sup>2</sup>";
 		}
@@ -92,7 +92,7 @@ public enum FieldFormat {
 
 		@Override
 		public String formatValue(MessageSource ms, Property p) {
-			return intValueSafe(p.getPlotSize()) + " " +
+			return p.getPlotSize() + " " +
 				ms.getMessage("org.gotocy.dictionary.meters", new Object[0], LocaleContextHolder.getLocale()) +
 				"<sup>2</sup>";
 		}
@@ -105,18 +105,18 @@ public enum FieldFormat {
 
 		@Override
 		public String formatValue(MessageSource ms, Property p) {
-			return intValueSafe(p.getLevels());
+			return Integer.toString(p.getLevels());
 		}
 	},
 	BEDROOMS {
 		@Override
 		public String getHeadingKey(Property p) {
-			return Helper.pluralize("org.gotocy.dictionary.bedrooms", p.getBedrooms() == null ? 0 : p.getBedrooms());
+			return Helper.pluralize("org.gotocy.dictionary.bedrooms", p.getBedrooms());
 		}
 
 		@Override
 		public String formatValue(MessageSource ms, Property p) {
-			return intValueSafe(p.getBedrooms());
+			return Integer.toString(p.getBedrooms());
 		}
 	},
 	GUESTS {
@@ -127,7 +127,7 @@ public enum FieldFormat {
 
 		@Override
 		public String formatValue(MessageSource ms, Property p) {
-			return intValueSafe(p.getGuests());
+			return Integer.toString(p.getGuests());
 		}
 	},
 	FURNISHING {
@@ -149,7 +149,7 @@ public enum FieldFormat {
 
 		@Override
 		public String formatValue(MessageSource ms, Property p) {
-			return yesNoValue(ms, p.getHeatingSystem());
+			return yesNoValue(ms, p.hasHeatingSystem());
 		}
 	},
 	AIR_CONDITIONER {
@@ -160,7 +160,7 @@ public enum FieldFormat {
 
 		@Override
 		public String formatValue(MessageSource ms, Property p) {
-			return yesNoValue(ms, p.getAirConditioner());
+			return yesNoValue(ms, p.hasAirConditioner());
 		}
 	},
 	READY_TO_MOVE_IN {
@@ -171,7 +171,7 @@ public enum FieldFormat {
 
 		@Override
 		public String formatValue(MessageSource ms, Property p) {
-			return yesNoValue(ms, p.getReadyToMoveIn());
+			return yesNoValue(ms, p.isReadyToMoveIn());
 		}
 	},
 	DISTANCE_TO_SEA {
@@ -182,7 +182,7 @@ public enum FieldFormat {
 
 		@Override
 		public String formatValue(MessageSource ms, Property p) {
-			return PropertyHelper.distance(ms, p.getDistanceToSea() == null ? 0 : p.getDistanceToSea());
+			return PropertyHelper.distance(ms, p.getDistanceToSea());
 		}
 	},
 	DISTANCE_TO_SEA_SHORT {
@@ -193,7 +193,7 @@ public enum FieldFormat {
 
 		@Override
 		public String formatValue(MessageSource ms, Property p) {
-			return PropertyHelper.distance(ms, p.getDistanceToSea() == null ? 0 : p.getDistanceToSea());
+			return PropertyHelper.distance(ms, p.getDistanceToSea());
 		}
 	};
 
@@ -214,14 +214,9 @@ public enum FieldFormat {
 	 */
 	public abstract String formatValue(MessageSource ms, Property p);
 
-	protected String yesNoValue(MessageSource ms, Boolean condition) {
-		return ms.getMessage(Boolean.TRUE.equals(condition) ?
-				"org.gotocy.dictionary.yes" : "org.gotocy.dictionary.no",
+	protected String yesNoValue(MessageSource ms, boolean condition) {
+		return ms.getMessage(condition ? "org.gotocy.dictionary.yes" : "org.gotocy.dictionary.no",
 			new Object[0], LocaleContextHolder.getLocale());
-	}
-
-	protected String intValueSafe(Integer value) {
-		return Objects.toString(value, "0");
 	}
 
 }

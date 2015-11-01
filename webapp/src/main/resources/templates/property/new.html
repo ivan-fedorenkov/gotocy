@@ -57,60 +57,15 @@
 
         <div class="container">
             <header><h1>Add Your Property</h1></header>
-            <form role="form" id="form-submit" class="form-submit" action="thank-you.html">
-                <div class="row">
-                    <div class="block">
-                        <div class="col-md-9 col-sm-9">
-                            <section>
-                                <div class="row">
-                                    <div class="block clearfix">
-                                        <div class="col-md-6 col-sm-6">
-                                            <section id="offer">
-                                                <header><h2>Offer Details</h2></header>
+            <form role="form" id="form-submit" class="form-submit" method="post" th:object="${userPropertyForm}" th:action="@{/property}" enctype="multipart/form-data">
 
-                                                <div class="row">
-                                                    <div class="col-md-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <label for="propertyStatus">Offer Type</label>
-                                                            <select id="propertyStatus" th:field="*{propertyStatus}" th:remove="all-but-first" required>
-                                                                <option value="1" th:each="status : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${status}" th:text="${{status}}">Sale</option>
-                                                                <option value="2">Rental</option>
-                                                            </select>
-                                                        </div><!-- /.form-group -->
-                                                    </div><!-- /.col-md-6 -->
-
-                                                    <div class="col-md-8 col-sm-8">
-                                                        <div class="form-group">
-                                                            <label for="price">Offer Price</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">&euro;</span>
-                                                                <input type="text" class="form-control" id="price" th:field="*{price}" pattern="\d*" required>
-                                                                <div class="input-group-btn">
-                                                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Per Day <span class="caret"></span></button>
-                                                                    <ul class="dropdown-menu pull-right">
-                                                                        <li><a href="#">Per Day</a></li>
-                                                                        <li><a href="#">Per Month</a></li>
-                                                                    </ul>
-                                                                </div><!-- /.input-group-btn -->
-                                                            </div>
-                                                        </div><!-- /.form-group -->
-                                                    </div><!-- /.col-md-6 -->
-                                                </div><!-- /.row -->
-                                            </section>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-
-                        <div class="col-md-3 col-sm-3">
-                            <aside class="submit-step">
-                                <figure class="step-number">1</figure>
-                                <div class="description">
-                                    <h4>Enter Offer Details</h4>
-                                    <p>Choose the appropriate offer and type a price</p>
-                                </div>
-                            </aside>
+                <!--Errors-->
+                <div class="row" th:if="${#fields.hasAnyErrors()}">
+                    <div class="col-md-9 col-sm-9">
+                        <div class="error-messages">
+                            <ul>
+                                <li th:each="error : ${#fields.detailedErrors()}" th:text="${error.message}">Some error</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -126,25 +81,17 @@
                                         <input type="text" class="form-control" id="title" th:field="*{title}" required>
                                     </div><!-- /.form-group -->
                                     <div class="form-group">
-                                        <label for="submit-description">Description</label>
-                                        <textarea class="form-control" id="submit-description" rows="8" name="submit-description" required></textarea>
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" id="description" rows="8" th:field="*{description}"></textarea>
                                     </div><!-- /.form-group -->
                                 </section><!-- /#basic-information -->
 
                                 <section>
                                     <div class="row">
                                         <div class="block clearfix">
-                                            <div class="col-md-6 col-sm-6">
+                                            <div class="col-md-4 col-sm-4">
                                                 <section id="summary">
                                                     <header><h2>Quick Summary</h2></header>
-
-                                                    <div class="form-group">
-                                                        <label for="location">Location</label>
-                                                        <select id="location" th:field="*{location}" th:remove="all-but-first" required>
-                                                            <option value="1" th:each="location : ${T(org.gotocy.domain.Location).values()}" th:value="${location}" th:text="${{location}}">Larnaca</option>
-                                                            <option value="2">Limassol</option>
-                                                        </select>
-                                                    </div>
 
                                                     <div class="form-group">
                                                         <label for="propertyType">Property Type</label>
@@ -157,79 +104,62 @@
                                                         </select>
                                                     </div><!-- /.form-group -->
 
-                                                    <div class="row">
-                                                        <div class="col-md-6 col-sm-6">
-                                                            <div class="form-group">
-                                                                <label for="plotSize">Plot Size</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" id="plotSize" th:field="*{plotSize}" pattern="\d*">
-                                                                    <span class="input-group-addon">m<sup>2</sup></span>
-                                                                </div>
-                                                            </div><!-- /.form-group -->
-                                                        </div><!-- /.col-md-6 -->
+                                                    <div class="form-group">
+                                                        <label for="propertyStatus">Offer Type</label>
+                                                        <select id="propertyStatus" th:field="*{propertyStatus}" th:remove="all-but-first" required>
+                                                            <option value="1" th:each="status : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${status}" th:text="${{status}}">Sale</option>
+                                                            <option value="2">Short Term</option>
+                                                            <option value="3">Long Term</option>
+                                                        </select>
+                                                    </div><!-- /.form-group -->
 
-                                                        <div class="col-md-6 col-sm-6">
-                                                            <div class="form-group">
-                                                                <label for="coveredArea">Covered Area</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" id="coveredArea" th:field="*{coveredArea}" pattern="\d*">
-                                                                    <span class="input-group-addon">m<sup>2</sup></span>
-                                                                </div>
-                                                            </div><!-- /.form-group -->
-                                                        </div><!-- /.col-md-6 -->
-                                                    </div><!-- /.row -->
 
-                                                    <div class="row">
-                                                        <div class="col-md-4 col-sm-4">
-                                                            <div class="form-group">
-                                                                <label for="bedrooms">Level(s)</label>
-                                                                <input type="text" class="form-control" id="levels" th:field="*{levels}" pattern="\d*">
-                                                            </div><!-- /.form-group -->
-                                                        </div><!-- /.col-md-4 -->
+                                                    <div class="form-group">
+                                                        <label for="plotSize">Plot Size</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="plotSize" th:field="*{plotSize}" pattern="\d+">
+                                                            <span class="input-group-addon">m<sup>2</sup></span>
+                                                        </div>
+                                                    </div><!-- /.form-group -->
 
-                                                        <div class="col-md-4 col-sm-4">
-                                                            <div class="form-group">
-                                                                <label for="bedrooms">Bedrooms</label>
-                                                                <input type="text" class="form-control" id="bedrooms" th:field="*{bedrooms}" pattern="\d*">
-                                                            </div><!-- /.form-group -->
-                                                        </div><!-- /.col-md-4 -->
+                                                    <div class="form-group">
+                                                        <label for="coveredArea" class="control-label">Covered Area</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="coveredArea" th:field="*{coveredArea}" pattern="\d+">
+                                                            <span class="input-group-addon">m<sup>2</sup></span>
+                                                        </div>
+                                                    </div><!-- /.form-group -->
 
-                                                        <div class="col-md-4 col-sm-4">
-                                                            <div class="form-group">
-                                                                <label for="guests">Guests</label>
-                                                                <input type="text" class="form-control" id="guests" th:field="*{guests}" pattern="\d*">
-                                                            </div><!-- /.form-group -->
-                                                        </div><!-- /.col-md-4 -->
-                                                    </div><!-- /.row -->
+                                                    <div class="form-group">
+                                                        <label for="bedrooms">Level(s)</label>
+                                                        <input type="text" class="form-control" id="levels" th:field="*{levels}" pattern="\d+">
+                                                    </div><!-- /.form-group -->
 
-                                                    <div class="row">
-                                                        <div class="col-md-6 col-sm-6">
-                                                            <div class="form-group">
-                                                                <label for="distanceToSea">To Sea</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" id="distanceToSea" th:field="*{distanceToSea}" pattern="\d*">
-                                                                    <span class="input-group-addon">m</span>
-                                                                </div>
-                                                            </div>
+
+                                                    <div class="form-group">
+                                                        <label for="bedrooms">Bedrooms</label>
+                                                        <input type="text" class="form-control" id="bedrooms" th:field="*{bedrooms}" pattern="\d+">
+                                                    </div><!-- /.form-group -->
+
+                                                    <div class="form-group">
+                                                        <label for="guests">Guests</label>
+                                                        <input type="text" class="form-control" id="guests" th:field="*{guests}" pattern="\d+">
+                                                    </div><!-- /.form-group -->
+
+                                                    <div class="form-group">
+                                                        <label for="distanceToSea">To Sea</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="distanceToSea" th:field="*{distanceToSea}" pattern="\d+">
+                                                            <span class="input-group-addon">m</span>
                                                         </div>
                                                     </div>
 
-                                                    <div class="row">
-                                                        <div class="col-md-6 col-sm-6">
-                                                            <div class="form-group">
-                                                                <label for="furnishing">Furnishing</label>
-                                                                <select id="furnishing" th:field="*{furnishing}">
-                                                                    <option value="1" th:each="furnishing : ${T(org.gotocy.domain.Furnishing).values()}" th:value="${furnishing}" th:text="${{furnishing}}">Semi</option>
-                                                                </select>
-                                                            </div><!-- /.form-group -->
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" th:field="*{vatIncluded}">Vat Included
-                                                        </label>
-                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="furnishing">Furnishing</label>
+                                                        <select id="furnishing" th:field="*{furnishing}">
+                                                            <option value="1" th:each="furnishing : ${T(org.gotocy.domain.Furnishing).values()}" th:value="${furnishing}" th:text="${{furnishing}}">Semi</option>
+                                                        </select>
+                                                    </div><!-- /.form-group -->
 
                                                     <div class="checkbox">
                                                         <label>
@@ -251,30 +181,23 @@
 
                                                 </section><!-- /#summary -->
                                             </div><!-- /.col-md-6 -->
-                                            <div class="col-md-6 col-sm-6">
+                                            <div class="col-md-8 col-sm-8">
                                                 <section id="place-on-map">
                                                     <header class="section-title">
                                                         <h2>Place on Map</h2>
-                                                        <span class="link-arrow geo-location">Get My Position</span>
                                                     </header>
                                                     <div class="form-group">
-                                                        <label for="address-map">Address</label>
-                                                        <input type="text" class="form-control" id="address-map" name="address">
+                                                        <label for="address-search">Search the Address</label>
+                                                        <input type="text" class="form-control" id="address-search" name="address-search">
                                                     </div><!-- /.form-group -->
-                                                    <label for="address-map">Or drag the marker to property position</label>
+                                                    <label for="submit-map">Or drag the marker to property position</label>
                                                     <div id="submit-map"></div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="latitude" th:field="*{latitude}" required>
-                                                            </div><!-- /.form-group -->
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="longitude" th:field="*{longitude}" required>
-                                                            </div><!-- /.form-group -->
-                                                        </div>
-                                                    </div>
+
+                                                    <input type="hidden" id="location" th:field="*{location}">
+                                                    <input type="hidden" id="address" th:field="*{address}">
+                                                    <input type="hidden" id="latitude" th:field="*{latitude}">
+                                                    <input type="hidden" id="longitude" th:field="*{longitude}">
+
                                                 </section><!-- /#place-on-map -->
                                             </div><!-- /.col-md-6 -->
                                         </div><!-- /.block -->
@@ -284,7 +207,7 @@
                         </div><!-- /.col-md-9 -->
                         <div class="col-md-3 col-sm-3">
                             <aside class="submit-step">
-                                <figure class="step-number">2</figure>
+                                <figure class="step-number">1</figure>
                                 <div class="description">
                                     <h4>Enter Property Details</h4>
                                     <p>Type information about your property</p>
@@ -302,7 +225,7 @@
                                 <header><h2>Gallery</h2></header>
                                 <div class="center">
                                     <div class="form-group">
-                                        <input id="file-upload" type="file" class="file" multiple="true" data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-default" data-browse-label="Browse Images">
+                                        <input id="file-upload" type="file" name="files" class="file" multiple="true" data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg" data-browse-class="btn btn-default" data-browse-label="Browse Images">
                                         <figure class="note"><strong>Hint:</strong> You can upload all images at once!</figure>
                                     </div>
                                 </div>
@@ -311,7 +234,7 @@
 
                         <div class="col-md-3 col-sm-3">
                             <aside class="submit-step">
-                                <figure class="step-number">3</figure>
+                                <figure class="step-number">2</figure>
                                 <div class="description">
                                     <h4>Upload Property Pictures</h4>
                                     <p>You are permitted to upload maximum ten pictures in the JPG format</p>
@@ -431,8 +354,8 @@
 <![endif]-->
 
 <script th:inline="javascript">
-    var _latitude = /*[[${gotocy.defaultLatitude}]]*/ '34.7071301';
-    var _longitude = /*[[${gotocy.defaultLongitude}]]*/ '33.022617399999945';
+    var _latitude = /*[[${userPropertyForm.latitude == 0d}? ${gotocy.defaultLatitude} : ${userPropertyForm.latitude}]]*/ '34.7071301';
+    var _longitude = /*[[${userPropertyForm.longitude == 0d}? ${gotocy.defaultLongitude} : ${userPropertyForm.longitude}]]*/ '33.022617399999945';
 
     google.maps.event.addDomListener(window, 'load', initPropertySubmitMap(_latitude, _longitude, 8));
 </script>

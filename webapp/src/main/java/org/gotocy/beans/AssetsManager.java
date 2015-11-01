@@ -4,12 +4,15 @@ import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.ImageSize;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * An adapter interface to deal with various backend asset providers.
  *
  * @author ifedorenkov
  */
-public interface AssetsProvider {
+public interface AssetsManager {
 
 	/**
 	 * Returns an asset url by using the given asset key.
@@ -33,5 +36,13 @@ public interface AssetsProvider {
 	 * TODO: from input stream to data types and Asset would return the appropriate converter.
 	 */
 	<T extends Asset> T loadUnderlyingObject(T asset);
+
+	default void saveUnderlyingObject(Asset asset, InputStream in) throws IOException {
+		throw new UnsupportedOperationException("Not supported yet");
+	};
+
+	default void deleteUnderlyingObject(Asset asset) throws IOException {
+		throw new UnsupportedOperationException("Not supported yet");
+	}
 
 }

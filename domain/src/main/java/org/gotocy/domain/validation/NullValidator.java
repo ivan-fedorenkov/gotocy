@@ -16,9 +16,9 @@ public class NullValidator implements FieldValidator {
 	}
 
 	@Override
-	public void validate(String field, Errors errors) {
+	public void validate(String field, Object fieldValue, Errors errors) {
 		Assert.notNull(errors, "Errors object must not be null");
-		if (errors.getFieldValue(field) == null)
+		if (fieldValue == null)
 			errors.rejectValue(field, ValidationConstraints.NOT_EMPTY);
 	}
 }

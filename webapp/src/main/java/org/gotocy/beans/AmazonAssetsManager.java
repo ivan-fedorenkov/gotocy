@@ -11,8 +11,6 @@ import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
 import org.gotocy.config.S3Properties;
 import org.gotocy.domain.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
@@ -22,13 +20,11 @@ import java.io.IOException;
  *
  * @author ifedorenkov
  */
-@Component
-public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvider {
+public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager {
 
 	private final S3Properties properties;
 
-	@Autowired
-	public AmazonAssetsProvider(S3Properties properties) {
+	public AmazonAssetsManager(S3Properties properties) {
 		super(new BasicAWSCredentials(properties.getAccessKey(), properties.getSecretKey()),
 			new ClientConfiguration().withProtocol(Protocol.HTTP));
 
@@ -49,7 +45,7 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 
 	@Override
 	public String getImageUrl(Image image, ImageSize size) {
-		String key =image.getKeyForSize(size);
+		String key = image.getKeyForSize(size);
 		// Fall back to original if key can't be found.
 		// TODO: log error
 		return exists(key) ? generatePresignedUrl(key, HttpMethod.GET) : getUrl(image);

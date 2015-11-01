@@ -10,11 +10,13 @@ import org.springframework.validation.Validator;
 import java.util.function.Predicate;
 
 /**
- * Property validator.
+ * Property validator. Singleton, thread safe.
  *
  * @author ifedorenkov
  */
 public class PropertyValidator implements Validator {
+
+	public static final PropertyValidator INSTANCE = new PropertyValidator();
 
 	private static final Predicate<Property> ACTIVE_OFFER = p -> p.getOfferStatus() == OfferStatus.ACTIVE;
 
@@ -28,7 +30,11 @@ public class PropertyValidator implements Validator {
 
 	private static final FieldValidator NOT_NULL = new NullValidator();
 	private static final FieldValidator NOT_EMPTY = new EmptyStringValidator();
-	private static final FieldValidator POSITIVE_INTEGER = new PositiveIntegerValidator();
+
+	private static final IntFieldValidator POSITIVE_INT = new PositiveIntValidator();
+
+	private PropertyValidator() {
+	}
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -39,58 +45,48 @@ public class PropertyValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		Property property = (Property) target;
 
-		validate(errors, "title", NOT_EMPTY);
-		validate(errors, "address", NOT_EMPTY);
-		validate(errors, "location", NOT_NULL);
-		validate(errors, "latitude", NOT_NULL);
-		validate(errors, "longitude", NOT_NULL);
-		validate(errors, "propertyType", NOT_NULL);
-		validate(errors, "propertyStatus", NOT_NULL);
-		validate(errors, "offerStatus", NOT_NULL);
+		validate(errors, "title", property.getTitle(), NOT_EMPTY);
+		validate(errors, "address", property.getAddress(), NOT_EMPTY);
+		validate(errors, "location", property.getLocation(), NOT_NULL);
+		validate(errors, "propertyType", property.getPropertyType(), NOT_NULL);
+		validate(errors, "propertyStatus", property.getPropertyStatus(), NOT_NULL);
+		validate(errors, "offerStatus", property.getOfferStatus(), NOT_NULL);
 
 		if (ACTIVE_OFFER.test(property))
-			validate(errors, "price", NOT_NULL, POSITIVE_INTEGER);
-
-		if (SALE.test(property))
-			validate(errors, "vatIncluded", NOT_NULL);
+			validate(errors, "price", property.getPrice(), POSITIVE_INT);
 
 		if (HOUSE.or(APARTMENT).and(SALE).test(property))
-			validate(errors, "coveredArea", NOT_NULL, POSITIVE_INTEGER);
+			validate(errors, "coveredArea", property.getCoveredArea(), POSITIVE_INT);
 
 		if (HOUSE.or(LAND).and(SALE).test(property))
-			validate(errors, "plotSize", NOT_NULL, POSITIVE_INTEGER);
+			validate(errors, "plotSize", property.getPlotSize(), POSITIVE_INT);
 
 		if (HOUSE.or(APARTMENT).test(property))
-			validate(errors, "bedrooms", NOT_NULL, POSITIVE_INTEGER);
+			validate(errors, "bedrooms", property.getBedrooms(), POSITIVE_INT);
 
 		if (APARTMENT.or(HOUSE).and(SALE).test(property))
-			validate(errors, "readyToMoveIn", NOT_NULL);
-
-		if (APARTMENT.or(HOUSE).and(SALE).test(property))
-			validate(errors, "levels", NOT_NULL, POSITIVE_INTEGER);
+			validate(errors, "levels", property.getLevels(), POSITIVE_INT);
 
 		if (APARTMENT.or(HOUSE).and(LONG_TERM).test(property))
-			validate(errors, "furnishing", NOT_NULL);
+			validate(errors, "furnishing", property.getFurnishing(), NOT_NULL);
 
 		if (APARTMENT.or(HOUSE).and(SHORT_TERM).test(property))
-			validate(errors, "guests", NOT_NULL, POSITIVE_INTEGER);
+			validate(errors, "guests", property.getGuests(), POSITIVE_INT);
 
 		if (APARTMENT.or(HOUSE).and(SHORT_TERM).test(property))
-			validate(errors, "airConditioner", NOT_NULL);
-
-		if (APARTMENT.or(HOUSE).and(SHORT_TERM).test(property))
-			validate(errors, "distanceToSea", NOT_NULL, POSITIVE_INTEGER);
-
-		if (APARTMENT.or(HOUSE).and(LONG_TERM).test(property))
-			validate(errors, "heatingSystem", NOT_NULL);
+			validate(errors, "distanceToSea", property.getDistanceToSea(), POSITIVE_INT);
 	}
 
-	private static void validate(Errors errors, String field, FieldValidator... validators)	{
+	private static void validate(Errors errors, String field, Object fieldValue, FieldValidator... validators)	{
 		for (FieldValidator validator : validators) {
 			// TODO: log errors
 			if (validator.supports(errors.getFieldType(field)))
-				validator.validate(field, errors);
+				validator.validate(field, fieldValue, errors);
 		}
+	}
+
+	private static void validate(Errors errors, String field, int fieldValue, IntFieldValidator validator) {
+		validator.validate(field, fieldValue, errors);
 	}
 
 }

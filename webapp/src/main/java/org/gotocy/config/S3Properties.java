@@ -1,52 +1,32 @@
 package org.gotocy.config;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
  * @author ifedorenkov
  */
-@Component
 @ConfigurationProperties(prefix = "gotocy.s3")
+@Getter
+@Setter
 public class S3Properties {
+
+	public static final String PREFIX = "gotocy.s3";
 
 	private static final long EXPIRATION_TIME = 1000 * 60 * 60; // 60 minutes
 
-	@NotNull
+	@NotEmpty
 	private String accessKey;
 
-	@NotNull
+	@NotEmpty
 	private String secretKey;
 
-	@NotNull
+	@NotEmpty
 	private String bucket;
-
-	public String getAccessKey() {
-		return accessKey;
-	}
-
-	public void setAccessKey(String accessKey) {
-		this.accessKey = accessKey;
-	}
-
-	public String getSecretKey() {
-		return secretKey;
-	}
-
-	public void setSecretKey(String secretKey) {
-		this.secretKey = secretKey;
-	}
-
-	public String getBucket() {
-		return bucket;
-	}
-
-	public void setBucket(String bucket) {
-		this.bucket = bucket;
-	}
 
 	public Date getExpirationDate() {
 		return new Date(System.currentTimeMillis() + EXPIRATION_TIME);

@@ -56,9 +56,9 @@ public class Property extends BaseEntity {
 
 	private String shortAddress;
 
-	private Double latitude;
+	private double latitude;
 
-	private Double longitude;
+	private double longitude;
 
 	@Enumerated(EnumType.STRING)
 	private PropertyType propertyType;
@@ -69,33 +69,30 @@ public class Property extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private OfferStatus offerStatus;
 
-	private Integer price;
+	private int price;
 
-	private Integer coveredArea;
+	private int coveredArea;
 
-	private Integer plotSize;
+	private int plotSize;
 
-	private Integer bedrooms;
+	private int bedrooms;
 
-	private Integer guests;
+	private int guests;
 
-	// TODO: remove ?
-	private Integer baths;
+	private int levels;
 
-	private Integer levels;
+	private int distanceToSea;
 
-	private Integer distanceToSea;
+	private boolean airConditioner;
 
-	private Boolean airConditioner;
+	private boolean readyToMoveIn;
 
-	private Boolean readyToMoveIn;
+	private boolean heatingSystem;
 
-	private Boolean heatingSystem;
-
-	private Boolean vatIncluded;
+	private boolean vatIncluded;
 
 	@Enumerated(EnumType.STRING)
-	private Furnishing furnishing;
+	private Furnishing furnishing = Furnishing.NONE;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Image> images = new ArrayList<>();
@@ -146,6 +143,18 @@ public class Property extends BaseEntity {
 	public void setFeatures(List<String> features, Locale locale) {
 		setFeatures(features);
 		getLocalizedFieldsManager().setFeatures(features, locale);
+	}
+
+	public String getShortAddress() {
+		return shortAddress == null ? address : shortAddress;
+	}
+
+	public boolean hasHeatingSystem() {
+		return isHeatingSystem();
+	}
+
+	public boolean hasAirConditioner() {
+		return isAirConditioner();
 	}
 
 	// Private stuff

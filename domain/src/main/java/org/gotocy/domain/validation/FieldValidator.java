@@ -2,6 +2,8 @@ package org.gotocy.domain.validation;
 
 import org.springframework.validation.Errors;
 
+import java.util.Optional;
+
 /**
  * Base interface for field validators.
  *
@@ -15,8 +17,8 @@ public interface FieldValidator {
 	boolean supports(Class<?> clazz);
 
 	/**
-	 * Validates the given field.
+	 * Validates the given field's value.
 	 */
-	void validate(String field, Errors errors);
+	void validate(String field, Object fieldValue, Errors errors);
 
 }

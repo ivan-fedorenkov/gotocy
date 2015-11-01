@@ -79,6 +79,17 @@
             <div class="row">
                 <!-- Property Detail Content -->
                 <div class="col-md-9 col-sm-9">
+                    <section id="registration-offer" th:if="${showRegistrationOffer}">
+                        <header>
+                            <h2>Register now and make this page publicly visible just in a few minutes!</h2>
+                        </header>
+                        <figure>
+                            Your property's page has been successfully created. This page will be available on the current url for the next few weeks.<br>
+                            Would you like to stay with us and make this property page visible for everyone?<br>
+                            <a href="#" id="register-link" class="btn btn-default">Register Now</a>
+                        </figure>
+                    </section>
+
                     <section id="object-detail">
                         <header class="property-title">
                             <h1 th:text="*{title}">987 Cantebury Drive</h1>

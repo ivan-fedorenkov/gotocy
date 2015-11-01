@@ -12,11 +12,11 @@ public class EmptyStringValidator implements FieldValidator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return String.class.isAssignableFrom(clazz);
+		return String.class == clazz;
 	}
 
 	@Override
-	public void validate(String field, Errors errors) {
+	public void validate(String field, Object fieldValue, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, field, ValidationConstraints.NOT_EMPTY);
 	}
 

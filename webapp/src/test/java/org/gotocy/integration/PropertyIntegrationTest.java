@@ -5,6 +5,7 @@ import org.gotocy.config.SecurityProperties;
 import org.gotocy.domain.Contact;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
+import org.gotocy.domain.PropertyStatus;
 import org.gotocy.factory.PropertyFactory;
 import org.gotocy.repository.PropertyRepository;
 import org.junit.Assert;
@@ -16,6 +17,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,31 +59,42 @@ public class PropertyIntegrationTest {
 
 	@Test
 	public void propertyCreation() throws Exception {
+		// Prepare property that should be created
 		Property property = PropertyFactory.build();
-		mockMvc.perform(post("/property")
+		property.setOfferStatus(OfferStatus.DEMO);
+
+		// Post the property
+		ResultActions result = mockMvc.perform(post("/property")
 			.param("title", property.getTitle())
 			.param("propertyType", property.getPropertyType().name())
 			.param("propertyStatus", property.getPropertyStatus().name())
-			.param("fullAddress", property.getAddress())
+			.param("location", property.getLocation().name())
+			.param("address", property.getAddress())
 			.param("shortAddress", property.getShortAddress())
 			.param("price", String.valueOf(property.getPrice()))
 			.param("latitude", String.valueOf(property.getLatitude()))
 			.param("longitude", String.valueOf(property.getLongitude()))
 			.param("bedrooms", String.valueOf(property.getBedrooms()))
 			.param("furnishing", property.getFurnishing().name())
-			.param("readyToMoveIn", String.valueOf(property.getReadyToMoveIn()))
-			.param("airConditioner", String.valueOf(property.getAirConditioner()))
-			.param("heatingSystem", String.valueOf(property.getHeatingSystem()))
-			.param("vatIncluded", String.valueOf(property.getVatIncluded())))
-			.andExpect(MockMvcResultMatchers.status().isOk());
+			.param("readyToMoveIn", String.valueOf(property.isReadyToMoveIn()))
+			.param("airConditioner", String.valueOf(property.hasAirConditioner()))
+			.param("heatingSystem", String.valueOf(property.hasHeatingSystem()))
+			.param("vatIncluded", String.valueOf(property.isVatIncluded())));
 
+		// Verify that the property has been created
 		List<Property> properties = propertyRepository.findAll();
 		Assert.assertEquals(1, properties.size());
 		Property createdProperty = properties.get(0);
 		assertPropertiesEquals(property, createdProperty);
-		// A user can only add properties with the active offer and without primary contact
-		Assert.assertEquals(OfferStatus.ACTIVE, createdProperty.getOfferStatus());
+
+		// Verify fields that must be set disregard to what a user typed in
+		Assert.assertEquals(OfferStatus.DEMO, createdProperty.getOfferStatus());
 		Assert.assertNull(createdProperty.getPrimaryContact());
+
+		// Verify the response status and the response page
+		result.andExpect(MockMvcResultMatchers.status().isFound())
+			.andExpect(MockMvcResultMatchers.redirectedUrl("/property/" + createdProperty.getId()));
+
 	}
 
 
@@ -101,10 +114,10 @@ public class PropertyIntegrationTest {
 			.param("longitude", String.valueOf(property.getLongitude()))
 			.param("bedrooms", String.valueOf(property.getBedrooms()))
 			.param("furnishing", property.getFurnishing().name())
-			.param("readyToMoveIn", String.valueOf(property.getReadyToMoveIn()))
-			.param("airConditioner", String.valueOf(property.getAirConditioner()))
-			.param("heatingSystem", String.valueOf(property.getHeatingSystem()))
-			.param("vatIncluded", String.valueOf(property.getVatIncluded()))
+			.param("readyToMoveIn", String.valueOf(property.isReadyToMoveIn()))
+			.param("airConditioner", String.valueOf(property.hasAirConditioner()))
+			.param("heatingSystem", String.valueOf(property.hasHeatingSystem()))
+			.param("vatIncluded", String.valueOf(property.isVatIncluded()))
 			.param("contactName", property.getPrimaryContact().getName())
 			.param("contactEmail", property.getPrimaryContact().getEmail())
 			.param("contactPhone", property.getPrimaryContact().getPhone())
@@ -126,14 +139,14 @@ public class PropertyIntegrationTest {
 		Assert.assertEquals(expected.getAddress(), actual.getAddress());
 		Assert.assertEquals(expected.getShortAddress(), actual.getShortAddress());
 		Assert.assertEquals(expected.getPrice(), actual.getPrice());
-		Assert.assertEquals(expected.getLatitude(), actual.getLatitude());
-		Assert.assertEquals(expected.getLongitude(), actual.getLongitude());
+		Assert.assertEquals(expected.getLatitude(), actual.getLatitude(), 0d);
+		Assert.assertEquals(expected.getLongitude(), actual.getLongitude(), 0d);
 		Assert.assertEquals(expected.getBedrooms(), actual.getBedrooms());
 		Assert.assertEquals(expected.getFurnishing(), actual.getFurnishing());
-		Assert.assertEquals(expected.getReadyToMoveIn(), actual.getReadyToMoveIn());
-		Assert.assertEquals(expected.getAirConditioner(), actual.getAirConditioner());
-		Assert.assertEquals(expected.getHeatingSystem(), actual.getHeatingSystem());
-		Assert.assertEquals(expected.getVatIncluded(), actual.getVatIncluded());
+		Assert.assertEquals(expected.isReadyToMoveIn(), actual.isReadyToMoveIn());
+		Assert.assertEquals(expected.hasAirConditioner(), actual.hasAirConditioner());
+		Assert.assertEquals(expected.hasHeatingSystem(), actual.hasHeatingSystem());
+		Assert.assertEquals(expected.isVatIncluded(), actual.isVatIncluded());
 	}
 
 	private static void assertPrimaryContactsEquals(Contact expected, Contact actual) {

@@ -7,5 +7,5 @@ package org.gotocy.domain.validation;
  */
 public interface ValidationConstraints {
 	String NOT_EMPTY = "org.gotocy.validation.constraints.NotEmpty.message";
-	String NOT_NEGATIVE = "org.gotocy.validation.constraints.NotNegative.message";
+	String POSITIVE_INT = "org.gotocy.validation.constraints.PositiveInt.message";
 }
