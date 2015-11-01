@@ -77,7 +77,7 @@ public class PropertiesController {
 	@RequestMapping(value = "/property/{id}/pano.xml", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	@ResponseBody
 	public String getPanoXml(@RequiredDomainObject @PathVariable("id") Property property) {
-		return assetsManager.loadUnderlyingObject(property.getPanoXml()).getObject();
+		return assetsManager.loadUnderlyingObject(property.getPanoXml()).decodeToXml();
 	}
 
 	@RequestMapping(value = "/property/{id}/360_images/{image}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
@@ -85,7 +85,7 @@ public class PropertiesController {
 	public byte[] getImage(@PathVariable String id, @PathVariable String image) {
 		Image imageKey = new Image();
 		imageKey.setKey("property/" + id + "/360_images/" + image + ".jpg");
-		return assetsManager.loadUnderlyingObject(imageKey).getObject();
+		return assetsManager.loadUnderlyingObject(imageKey).getBytes();
 	}
 
 	@RequestMapping(value = "/master/properties/new", method = RequestMethod.GET)
@@ -122,7 +122,8 @@ public class PropertiesController {
 				for (MultipartFile file : files) {
 					String fileName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('/' + 1));
 					Image image = new Image("property/" + property.getId() + "/" + fileName);
-					assetsManager.saveUnderlyingObject(image, file.getInputStream());
+					image.setBytes(file.getBytes());
+					assetsManager.saveUnderlyingObject(image);
 					images.add(image);
 				}
 

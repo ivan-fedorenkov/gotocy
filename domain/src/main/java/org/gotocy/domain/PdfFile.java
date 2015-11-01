@@ -13,13 +13,18 @@ import java.util.Objects;
  */
 @Entity
 @DiscriminatorValue(value = "pdf_file")
-public class PdfFile extends Asset<byte[]> {
+public class PdfFile extends Asset {
 
 	public PdfFile() {
 	}
 
 	public PdfFile(String key) {
 		super(key);
+	}
+
+	@Override
+	public String getContentType() {
+		return "application/pdf";
 	}
 
 	/**

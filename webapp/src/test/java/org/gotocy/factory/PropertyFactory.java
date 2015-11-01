@@ -24,6 +24,9 @@ public class PropertyFactory {
 		p.setPrice(1);
 		p.setLatitude(1D);
 		p.setLongitude(1D);
+		p.setPlotSize(1);
+		p.setCoveredArea(1);
+		p.setLevels(1);
 		p.setBedrooms(1);
 		p.setReadyToMoveIn(Boolean.TRUE);
 		p.setAirConditioner(Boolean.TRUE);

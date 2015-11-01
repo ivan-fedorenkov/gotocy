@@ -20,7 +20,7 @@ import java.util.Objects;
 @DiscriminatorColumn(name = "asset_type")
 @Getter
 @Setter
-public abstract class Asset<T> extends BaseEntity {
+public abstract class Asset extends BaseEntity {
 
 	public Asset() {
 	}
@@ -32,13 +32,25 @@ public abstract class Asset<T> extends BaseEntity {
 	@Column(name = "asset_key")
 	private String key;
 
-	protected transient T object;
+	private transient byte[] bytes;
+
+	/**
+	 * @return the asset content type.
+	 */
+	public abstract String getContentType();
+
+	/**
+	 * @return the size of the underlying object bytes.
+	 */
+	public long getSize() {
+		return bytes == null ? 0 : bytes.length;
+	}
 
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Asset<?> asset = (Asset<?>) o;
+		Asset asset = (Asset) o;
 		return Objects.equals(key, asset.key);
 	}
 

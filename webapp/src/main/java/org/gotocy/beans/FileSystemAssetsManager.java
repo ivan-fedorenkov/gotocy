@@ -1,14 +1,14 @@
 package org.gotocy.beans;
 
-import org.gotocy.domain.*;
+import org.gotocy.domain.Asset;
+import org.gotocy.domain.Image;
+import org.gotocy.domain.ImageSize;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 
 /**
  * @author ifedorenkov
@@ -45,13 +45,7 @@ public class FileSystemAssetsManager implements AssetsManager {
 		Path assetPath = Paths.get(assetsDirPath, asset.getKey());
 		if (Files.isReadable(assetPath)) {
 			try {
-				if (asset instanceof PanoXml) {
-					((PanoXml) asset).setObject(new String(Files.readAllBytes(assetPath), Charset.forName("UTF-8")));
-				} else if (asset instanceof Image) {
-					((Image) asset).setObject(Files.readAllBytes(assetPath));
-				} else if (asset instanceof PdfFile) {
-					((PdfFile) asset).setObject(Files.readAllBytes(assetPath));
-				}
+				asset.setBytes(Files.readAllBytes(assetPath));
 			} catch (IOException ioe) {
 				// TODO: log error
 			}
@@ -60,9 +54,10 @@ public class FileSystemAssetsManager implements AssetsManager {
 	}
 
 	@Override
-	public void saveUnderlyingObject(Asset asset, InputStream in) throws IOException {
+	public void saveUnderlyingObject(Asset asset) throws IOException {
 		Path assetPath = Paths.get(assetsDirPath, asset.getKey());
 		Files.createDirectories(assetPath.getParent());
-		Files.copy(in, assetPath, StandardCopyOption.REPLACE_EXISTING);
+		Files.write(assetPath, asset.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.WRITE,
+			StandardOpenOption.TRUNCATE_EXISTING);
 	}
 }

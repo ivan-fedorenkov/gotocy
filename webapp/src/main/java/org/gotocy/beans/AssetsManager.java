@@ -37,7 +37,7 @@ public interface AssetsManager {
 	 */
 	<T extends Asset> T loadUnderlyingObject(T asset);
 
-	default void saveUnderlyingObject(Asset asset, InputStream in) throws IOException {
+	default void saveUnderlyingObject(Asset asset) throws IOException {
 		throw new UnsupportedOperationException("Not supported yet");
 	};
 

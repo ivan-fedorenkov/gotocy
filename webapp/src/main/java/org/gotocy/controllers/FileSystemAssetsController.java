@@ -25,7 +25,7 @@ public class FileSystemAssetsController {
 	private AssetsManager assetsManager;
 
 	@RequestMapping("/fs_assets")
-	public @ResponseBody Object getAsset(@RequestParam String key) {
+	public @ResponseBody byte[] getAsset(@RequestParam String key) {
 		Asset asset;
 
 		if (key.endsWith("jpg") || key.endsWith("jpeg")) {
@@ -38,7 +38,7 @@ public class FileSystemAssetsController {
 			throw new DomainObjectNotFoundException();
 		}
 
-		return assetsManager.loadUnderlyingObject(asset).getObject();
+		return assetsManager.loadUnderlyingObject(asset).getBytes();
 	}
 
 }

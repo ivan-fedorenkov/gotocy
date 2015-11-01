@@ -1,11 +1,11 @@
 package org.gotocy.integration;
 
 import org.gotocy.Application;
+import org.gotocy.config.Profiles;
 import org.gotocy.config.SecurityProperties;
 import org.gotocy.domain.Contact;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
-import org.gotocy.domain.PropertyStatus;
 import org.gotocy.factory.PropertyFactory;
 import org.gotocy.repository.PropertyRepository;
 import org.junit.Assert;
@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -25,6 +26,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 /**
@@ -32,15 +34,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-@WebIntegrationTest(randomPort = true, value = {
-	"gotocy.s3.secretKey=test",
-	"gotocy.s3.accessKey=test",
-	"gotocy.s3.bucket=test",
-	"gotocy.webapp.profile=test",
-	"gotocy.webapp.security.login=test",
-	"gotocy.webapp.security.password=test",
-	"debug"
-})
+@WebIntegrationTest(randomPort = true, value = "debug")
+@ActiveProfiles(Profiles.TEST)
 @Transactional
 public class PropertyIntegrationTest {
 
@@ -64,7 +59,7 @@ public class PropertyIntegrationTest {
 		property.setOfferStatus(OfferStatus.DEMO);
 
 		// Post the property
-		ResultActions result = mockMvc.perform(post("/property")
+		ResultActions result = mockMvc.perform(fileUpload("/property")
 			.param("title", property.getTitle())
 			.param("propertyType", property.getPropertyType().name())
 			.param("propertyStatus", property.getPropertyStatus().name())
@@ -74,6 +69,9 @@ public class PropertyIntegrationTest {
 			.param("price", String.valueOf(property.getPrice()))
 			.param("latitude", String.valueOf(property.getLatitude()))
 			.param("longitude", String.valueOf(property.getLongitude()))
+			.param("coveredArea", String.valueOf(property.getCoveredArea()))
+			.param("plotSize", String.valueOf(property.getPlotSize()))
+			.param("levels", String.valueOf(property.getLevels()))
 			.param("bedrooms", String.valueOf(property.getBedrooms()))
 			.param("furnishing", property.getFurnishing().name())
 			.param("readyToMoveIn", String.valueOf(property.isReadyToMoveIn()))

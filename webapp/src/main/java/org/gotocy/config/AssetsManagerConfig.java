@@ -31,4 +31,10 @@ public class AssetsManagerConfig {
 		return new FileSystemAssetsManager("/home/killer/tmp/gtc_assets");
 	}
 
+	@Bean
+	@Profile(Profiles.TEST)
+	public AssetsManager testAssetsManager() {
+		return new FileSystemAssetsManager("/tmp/gtc_assets");
+	}
+
 }
