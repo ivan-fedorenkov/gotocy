@@ -21,6 +21,7 @@ import java.util.Locale;
 @NamedEntityGraph(name = "Property.withAssociations",
 	attributeNodes = {
 		@NamedAttributeNode(value = "complex", subgraph = "complex"),
+		@NamedAttributeNode("developer"),
 		@NamedAttributeNode("primaryContact"),
 		@NamedAttributeNode("panoXml"),
 		@NamedAttributeNode("representativeImage"),

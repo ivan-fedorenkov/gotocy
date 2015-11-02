@@ -1,13 +1,17 @@
 package org.gotocy.controllers;
 
 import org.gotocy.beans.AssetsManager;
+import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.*;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.PropertyForm;
 import org.gotocy.forms.UserPropertyForm;
 import org.gotocy.forms.validation.UserPropertyFormValidator;
-import org.gotocy.repository.*;
+import org.gotocy.repository.ComplexRepository;
+import org.gotocy.repository.ContactRepository;
+import org.gotocy.repository.DeveloperRepository;
+import org.gotocy.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
@@ -30,6 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
+import static org.gotocy.repository.PropertyPredicates.similarWith;
+
 /**
  * @author ifedorenkov
  */
@@ -46,6 +53,8 @@ public class PropertiesController {
 	private DeveloperRepository developerRepository;
 	@Autowired
 	private AssetsManager assetsManager;
+	@Autowired
+	private ApplicationProperties applicationProperties;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -57,7 +66,7 @@ public class PropertiesController {
 	public String index(Model model, @ModelAttribute PropertiesSearchForm form, Locale locale,
 		@PageableDefault(size = 18, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
-		Page<Property> properties = repository.findAll(form.toPredicate(), pageable);
+		Page<Property> properties = repository.findAll(publiclyVisible().and(form.toPredicate()), pageable);
 		model.addAttribute("properties", properties);
 		return "property/index";
 	}
@@ -68,7 +77,7 @@ public class PropertiesController {
 		model.addAttribute(property);
 
 		model.addAttribute("similarProperties",
-			repository.findAll(PropertyPredicates.similarWith(property), new PageRequest(0, 4)));
+			repository.findAll(publiclyVisible().and(similarWith(property)), new PageRequest(0, 4)));
 		model.addAttribute("showRegistrationOffer", property.getOfferStatus() == OfferStatus.DEMO);
 
 		return "property/show";
@@ -93,12 +102,22 @@ public class PropertiesController {
 		model.addAttribute("developers", developerRepository.findAll());
 		model.addAttribute("complexes", complexRepository.findAll());
 		model.addAttribute("contacts", contactRepository.findAll());
-		model.addAttribute(new PropertyForm());
+
+		PropertyForm propertyForm = new PropertyForm();
+		propertyForm.setLatitude(applicationProperties.getDefaultLatitude());
+		propertyForm.setLongitude(applicationProperties.getDefaultLongitude());
+		model.addAttribute(propertyForm);
+
 		return "master/property/new";
 	}
 
 	@RequestMapping(value = "/property/new", method = RequestMethod.GET)
-	public String newByUser(@ModelAttribute UserPropertyForm userPropertyForm) {
+	public String newByUser(Model model) {
+		UserPropertyForm userPropertyForm = new UserPropertyForm();
+		userPropertyForm.setLatitude(applicationProperties.getDefaultLatitude());
+		userPropertyForm.setLongitude(applicationProperties.getDefaultLongitude());
+		model.addAttribute(userPropertyForm);
+
 		return "property/new";
 	}
 
@@ -120,7 +139,8 @@ public class PropertiesController {
 			try {
 				// TODO: check extension (that a file is a valid image)
 				for (MultipartFile file : files) {
-					String fileName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('/' + 1));
+					// TODO: possible NPE when file#getOriginalFilename returns null
+					String fileName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('/') + 1);
 					Image image = new Image("property/" + property.getId() + "/" + fileName);
 					image.setBytes(file.getBytes());
 					assetsManager.saveUnderlyingObject(image);

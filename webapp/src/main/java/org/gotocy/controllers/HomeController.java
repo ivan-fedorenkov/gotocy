@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Locale;
 
+import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
+import static org.gotocy.repository.PropertyPredicates.withPropertyStatus;
+
 /**
  * @author ifedorenkov
  */
@@ -30,9 +33,12 @@ public class HomeController {
 		@PageableDefault(size = 4, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
 		// TODO: make them recent :)
-		model.addAttribute("longTermProperties", repository.findByPropertyStatus(PropertyStatus.LONG_TERM, pageable));
-		model.addAttribute("shortTermProperties", repository.findByPropertyStatus(PropertyStatus.SHORT_TERM, pageable));
-		model.addAttribute("saleProperties", repository.findByPropertyStatus(PropertyStatus.SALE, pageable));
+		model.addAttribute("longTermProperties", repository.findAll(
+			publiclyVisible().and(withPropertyStatus(PropertyStatus.LONG_TERM)), pageable));
+		model.addAttribute("shortTermProperties", repository.findAll(
+			publiclyVisible().and(withPropertyStatus(PropertyStatus.SHORT_TERM)), pageable));
+		model.addAttribute("saleProperties", repository.findAll(
+			publiclyVisible().and(withPropertyStatus(PropertyStatus.SALE)), pageable));
 		return "home/index";
 	}
 

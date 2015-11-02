@@ -11,7 +11,6 @@ import java.util.Objects;
 
 /**
  * An abstract asset which could be an image,a pano xml file, etc.
- * @param <T> is the type of the underlying object
  *
  * @author ifedorenkov
  */
