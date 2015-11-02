@@ -3,6 +3,10 @@ package org.gotocy.forms;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User form for property submissions.
@@ -34,6 +38,8 @@ public class UserPropertyForm {
 	private boolean readyToMoveIn;
 	private double latitude;
 	private double longitude;
+
+	private MultipartFile[] images;
 
 	public UserPropertyForm() {
 		location = Location.FAMAGUSTA;

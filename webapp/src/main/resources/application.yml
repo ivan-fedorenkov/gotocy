@@ -16,7 +16,7 @@ server:
 
 multipart:
   enabled: "true"
-  maxFileSize: "2Mb"
+  maxFileSize: "5Mb"
   maxRequestSize: "-1"
 
 

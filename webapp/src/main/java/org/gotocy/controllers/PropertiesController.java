@@ -123,9 +123,7 @@ public class PropertiesController {
 
 	@RequestMapping(value = "/property", method = RequestMethod.POST)
 	@Transactional
-	public String createByUser(@Valid @ModelAttribute UserPropertyForm form, BindingResult formErrors, Locale locale,
-		@RequestParam(value = "files", required = false) MultipartFile[] files)
-	{
+	public String createByUser(@Valid @ModelAttribute UserPropertyForm form, BindingResult formErrors, Locale locale) {
 		if (formErrors.hasErrors())
 			return "property/new";
 
@@ -134,27 +132,27 @@ public class PropertiesController {
 		property.setDescription(property.getDescription(), locale);
 		property = repository.saveAndFlush(property);
 
-		if (files.length > 0) {
-			List<Image> images = new ArrayList<>(files.length);
+		MultipartFile[] images = form.getImages();
+		if (images != null && images.length > 0) {
+			List<Image> createdImages = new ArrayList<>(images.length);
 			try {
-				// TODO: check extension (that a file is a valid image)
-				for (MultipartFile file : files) {
+				for (MultipartFile image : images) {
 					// TODO: possible NPE when file#getOriginalFilename returns null
-					String fileName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('/') + 1);
-					Image image = new Image("property/" + property.getId() + "/" + fileName);
-					image.setBytes(file.getBytes());
-					assetsManager.saveUnderlyingObject(image);
-					images.add(image);
+					String fileName = image.getOriginalFilename().substring(image.getOriginalFilename().lastIndexOf('/') + 1);
+					Image imageAsset = new Image("property/" + property.getId() + "/" + fileName);
+					imageAsset.setBytes(image.getBytes());
+					assetsManager.saveUnderlyingObject(imageAsset);
+					createdImages.add(imageAsset);
 				}
 
-				property.setImages(images);
-				property.setRepresentativeImage(images.get(0));
+				property.setImages(createdImages);
+				property.setRepresentativeImage(createdImages.get(0));
 				property = repository.saveAndFlush(property);
 			} catch (IOException | DataAccessException e) {
 				// Clean up created objects
 				try {
 					repository.delete(property);
-					for (Image image : images)
+					for (Image image : createdImages)
 						assetsManager.deleteUnderlyingObject(image);
 				} catch (DataAccessException | IOException ignored) {
 					// TODO: log error

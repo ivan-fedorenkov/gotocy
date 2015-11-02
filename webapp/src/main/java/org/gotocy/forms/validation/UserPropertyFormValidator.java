@@ -2,20 +2,35 @@ package org.gotocy.forms.validation;
 
 import org.gotocy.domain.Property;
 import org.gotocy.domain.validation.PropertyValidator;
+import org.gotocy.domain.validation.ValidationConstraints;
 import org.gotocy.forms.UserPropertyForm;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Collections;
+import java.util.Set;
 
 /**
  * Validator of the user property form. Basically it just delegates all the validation logic
  * to the {@link org.gotocy.domain.validation.PropertyValidator}.
  * Singleton, thread safe.
  *
+ * TODO: unit test
+ *
  * @author ifedorenkov
  */
 public class UserPropertyFormValidator implements Validator {
 
 	public static final UserPropertyFormValidator INSTANCE = new UserPropertyFormValidator();
+
+	public static final int MAX_ALLOWED_IMAGES = 10;
+	public static final int MAX_ALLOWED_SIZE_MB = 2;
+	public static final long MAX_ALLOWED_SIZE = MAX_ALLOWED_SIZE_MB * 1024 * 1024; // in bytes
+
+	public static final String ALLOWED_IMAGE_CONTENT_TYPE = "image/jpeg";
+	public static final String ALLOWED_IMAGE_CONTENT_TYPE_USER_FRIENDLY = "jpeg";
+
 
 	private UserPropertyFormValidator() {
 	}
@@ -29,6 +44,25 @@ public class UserPropertyFormValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		UserPropertyForm form = (UserPropertyForm) target;
 		PropertyValidator.INSTANCE.validate(form.mergeWithProperty(new Property()), errors);
+
+		if (form.getImages() != null) {
+			if (form.getImages().length > MAX_ALLOWED_IMAGES)
+				errors.rejectValue("images", ValidationConstraints.MAX_SIZE, new Object[]{MAX_ALLOWED_IMAGES}, null);
+			for (MultipartFile image : form.getImages()) {
+				if (!ALLOWED_IMAGE_CONTENT_TYPE.equalsIgnoreCase(image.getContentType())) {
+					// if any of images violates the supported content type then reject all of them
+					errors.rejectValue("images", ValidationConstraints.CONTENT_TYPE,
+						new Object[]{ALLOWED_IMAGE_CONTENT_TYPE_USER_FRIENDLY}, null);
+					break;
+				}
+
+				if (image.getSize() > MAX_ALLOWED_SIZE) {
+					// if any of images exceeds the maximum size then reject all of them
+					errors.rejectValue("images", ValidationConstraints.MAX, new Object[]{MAX_ALLOWED_SIZE_MB}, null);
+					break;
+				}
+			}
+		}
 	}
 
 }
