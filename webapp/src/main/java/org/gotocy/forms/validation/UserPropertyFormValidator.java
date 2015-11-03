@@ -9,6 +9,7 @@ import org.springframework.validation.Validator;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -45,26 +46,25 @@ public class UserPropertyFormValidator implements Validator {
 		UserPropertyForm form = (UserPropertyForm) target;
 		PropertyValidator.INSTANCE.validate(form.mergeWithProperty(new Property()), errors);
 
-		if (form.getImages() != null) {
-			if (form.getImages().length > MAX_ALLOWED_IMAGES)
-				errors.rejectValue("images", ValidationConstraints.MAX_SIZE, new Object[]{MAX_ALLOWED_IMAGES}, null);
-			for (MultipartFile image : form.getImages()) {
-				// Skip empty images
-				if (image.isEmpty())
-					continue;
+		List<MultipartFile> images = form.getImages();
+		if (images.size() > MAX_ALLOWED_IMAGES)
+			errors.rejectValue("images", ValidationConstraints.MAX_SIZE, new Object[]{MAX_ALLOWED_IMAGES}, null);
+		for (MultipartFile image : images) {
+			// Skip empty images
+			if (image.isEmpty())
+				continue;
 
-				if (!ALLOWED_IMAGE_CONTENT_TYPE.equalsIgnoreCase(image.getContentType())) {
-					// if any of images violates the supported content type then reject all of them
-					errors.rejectValue("images", ValidationConstraints.CONTENT_TYPE,
-						new Object[]{ALLOWED_IMAGE_CONTENT_TYPE_USER_FRIENDLY}, null);
-					break;
-				}
+			if (!ALLOWED_IMAGE_CONTENT_TYPE.equalsIgnoreCase(image.getContentType())) {
+				// if any of images violates the supported content type then reject all of them
+				errors.rejectValue("images", ValidationConstraints.CONTENT_TYPE,
+					new Object[]{ALLOWED_IMAGE_CONTENT_TYPE_USER_FRIENDLY}, null);
+				break;
+			}
 
-				if (image.getSize() > MAX_ALLOWED_SIZE) {
-					// if any of images exceeds the maximum size then reject all of them
-					errors.rejectValue("images", ValidationConstraints.MAX, new Object[]{MAX_ALLOWED_SIZE_MB}, null);
-					break;
-				}
+			if (image.getSize() > MAX_ALLOWED_SIZE) {
+				// if any of images exceeds the maximum size then reject all of them
+				errors.rejectValue("images", ValidationConstraints.MAX, new Object[]{MAX_ALLOWED_SIZE_MB}, null);
+				break;
 			}
 		}
 	}

@@ -133,15 +133,11 @@ public class PropertiesController {
 		property.setDescription(property.getDescription(), locale);
 		property = repository.saveAndFlush(property);
 
-		MultipartFile[] images = form.getImages();
-		if (images != null && images.length > 0) {
-			List<Image> createdImages = new ArrayList<>(images.length);
+		List<MultipartFile> images = form.getImages();
+		if (!images.isEmpty()) {
+			List<Image> createdImages = new ArrayList<>(images.size());
 			try {
 				for (MultipartFile image : images) {
-					// Skip empty files
-					if (image.isEmpty())
-						continue;
-
 					String fileName = image.getOriginalFilename().substring(image.getOriginalFilename().lastIndexOf('/') + 1);
 					Image imageAsset = new Image("property/" + property.getId() + "/" + fileName);
 					imageAsset.setBytes(image.getBytes());
@@ -149,11 +145,9 @@ public class PropertiesController {
 					createdImages.add(imageAsset);
 				}
 
-				if (!createdImages.isEmpty()) {
-					property.setImages(createdImages);
-					property.setRepresentativeImage(createdImages.get(0));
-					property = repository.saveAndFlush(property);
-				}
+				property.setImages(createdImages);
+				property.setRepresentativeImage(createdImages.get(0));
+				property = repository.saveAndFlush(property);
 			} catch (NullPointerException | IOException | DataAccessException e) {
 				// Clean up created objects
 				try {

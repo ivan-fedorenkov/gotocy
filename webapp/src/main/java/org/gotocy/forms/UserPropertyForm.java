@@ -8,6 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  * User form for property submissions.
  *
@@ -39,7 +41,7 @@ public class UserPropertyForm {
 	private double latitude;
 	private double longitude;
 
-	private MultipartFile[] images;
+	private List<MultipartFile> images = new ArrayList<>();
 
 	public UserPropertyForm() {
 		location = Location.FAMAGUSTA;
@@ -96,6 +98,13 @@ public class UserPropertyForm {
 		property.setLatitude(latitude);
 		property.setLongitude(longitude);
 		return property;
+	}
+
+	/**
+	 * @return collection of non-empty images.
+	 */
+	public List<MultipartFile> getImages() {
+		return images.stream().filter(image -> !image.isEmpty()).collect(toList());
 	}
 
 }
