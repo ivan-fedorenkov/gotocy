@@ -218,7 +218,7 @@
                             <aside class="submit-step">
                                 <figure class="step-number">1</figure>
                                 <div class="description">
-                                    <h4 th:text="#{org.gotocy.dictionary.enter-property-details}">Enter Property Details</h4>
+                                    <h4 th:text="#{org.gotocy.templates.property.new.enter-property-details}">Enter Property Details</h4>
                                     <p th:text="#{org.gotocy.templates.property.new.hint-1-upper}">Type information about your property</p>
                                     <p th:utext="#{org.gotocy.templates.property.new.hint-1-lower}"><strong>Hint:</strong> Visitors tend to pay more attention on properties with descriptive title</p>
                                 </div>
@@ -231,11 +231,11 @@
                     <div class="block">
                         <div class="col-md-9 col-sm-9">
                             <section class="block" id="gallery">
-                                <header><h2>Gallery</h2></header>
+                                <header><h2 th:text="#{org.gotocy.dictionary.gallery}">Gallery</h2></header>
                                 <div class="center">
                                     <div class="form-group">
-                                        <input id="file-upload" type="file" name="images" class="file" multiple="true" data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg" data-browse-class="btn btn-default" data-browse-label="Browse Images">
-                                        <figure class="note"><strong>Hint:</strong> You can upload all images at once!</figure>
+                                        <input id="file-upload" type="file" name="images" class="file" multiple="true" data-show-upload="false" data-show-caption="false" data-show-remove="false" data-max-file-count="10" accept="image/jpeg" data-browse-class="btn btn-default" data-browse-label="Browse Images" th:attr="data-browse-label=#{org.gotocy.dictionary.browse-images}">
+                                        <figure class="note" th:utext="#{org.gotocy.templates.property.new.upload-hint}"><strong>Hint:</strong> You can upload all images at once!</figure>
                                     </div>
                                 </div>
                             </section>
@@ -245,9 +245,9 @@
                             <aside class="submit-step">
                                 <figure class="step-number">2</figure>
                                 <div class="description">
-                                    <h4>Upload Property Pictures</h4>
-                                    <p>You are permitted to upload maximum ten pictures in the JPEG format of maximum size 2Mb each</p>
-                                    <p><strong>NB:</strong> The first picture will be used for preview purposes</p>
+                                    <h4 th:text="#{org.gotocy.templates.property.new.upload-property-pictures}">Upload Property Pictures</h4>
+                                    <p th:text="#{org.gotocy.templates.property.new.hint-2-upper}">You are permitted to upload maximum ten pictures in the JPEG format of maximum size 2Mb each</p>
+                                    <p th:utext="#{org.gotocy.templates.property.new.hint-2-lower}"><strong>NB:</strong> The first picture will be used for preview purposes</p>
                                 </div>
                             </aside>
                         </div>
@@ -259,9 +259,8 @@
                         <div class="col-md-9 col-sm-9">
                             <div class="center">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-default large">Proceed</button>
+                                    <button type="submit" class="btn btn-default large" th:text="#{org.gotocy.dictionary.proceed}">Proceed</button>
                                 </div><!-- /.form-group -->
-                                <figure class="note block">By clicking the “Proceed” button you agree with our <a href="terms-conditions.html">Terms and conditions</a></figure>
                             </div>
                         </div>
                     </div>
