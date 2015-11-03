@@ -49,6 +49,10 @@ public class UserPropertyFormValidator implements Validator {
 			if (form.getImages().length > MAX_ALLOWED_IMAGES)
 				errors.rejectValue("images", ValidationConstraints.MAX_SIZE, new Object[]{MAX_ALLOWED_IMAGES}, null);
 			for (MultipartFile image : form.getImages()) {
+				// Skip empty images
+				if (image.isEmpty())
+					continue;
+
 				if (!ALLOWED_IMAGE_CONTENT_TYPE.equalsIgnoreCase(image.getContentType())) {
 					// if any of images violates the supported content type then reject all of them
 					errors.rejectValue("images", ValidationConstraints.CONTENT_TYPE,

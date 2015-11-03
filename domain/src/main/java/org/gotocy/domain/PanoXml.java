@@ -2,7 +2,7 @@ package org.gotocy.domain;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * A configuration xml file of a 360 pano.
@@ -29,6 +29,6 @@ public class PanoXml extends Asset {
 	 * Decodes the underlying asset bytes into an xml {@link String}.
 	 */
 	public String decodeToXml() {
-		return getBytes() == null ? "" : new String(getBytes(), Charset.forName("UTF-8"));
+		return getBytes() == null ? "" : new String(getBytes(), StandardCharsets.UTF_8);
 	}
 }

@@ -2,9 +2,13 @@ package org.gotocy.forms;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.gotocy.config.Locales;
 import org.gotocy.domain.*;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.joining;
@@ -22,9 +26,6 @@ public class PropertyForm {
 
 	private static final Pattern STRING_SEPARATOR = Pattern.compile("[\n\r]+");
 	private static final String STRINGS_JOINER = "\n";
-
-	private static final Locale EN_LOCALE = Locale.ENGLISH;
-	private static final Locale RU_LOCALE = new Locale("ru");
 
 	// Developer
 	private long developerId;
@@ -117,11 +118,11 @@ public class PropertyForm {
 		latitude = property.getLatitude();
 		longitude = property.getLongitude();
 
-		enDescription = property.getDescription(EN_LOCALE);
-		enFeatures = property.getFeatures(EN_LOCALE).stream().collect(joining(STRINGS_JOINER));
+		enDescription = property.getDescription(Locales.EN);
+		enFeatures = property.getFeatures(Locales.EN).stream().collect(joining(STRINGS_JOINER));
 
-		ruDescription = property.getDescription(RU_LOCALE);
-		ruFeatures = property.getFeatures(RU_LOCALE).stream().collect(joining(STRINGS_JOINER));
+		ruDescription = property.getDescription(Locales.RU);
+		ruFeatures = property.getFeatures(Locales.RU).stream().collect(joining(STRINGS_JOINER));
 
 		imageKeys = property.getImages()
 			.stream()
@@ -166,16 +167,16 @@ public class PropertyForm {
 		property.setLatitude(latitude);
 		property.setLongitude(longitude);
 
-		property.setDescription(enDescription, EN_LOCALE);
-		property.setDescription(ruDescription, RU_LOCALE);
+		property.setDescription(enDescription, Locales.EN);
+		property.setDescription(ruDescription, Locales.RU);
 
 		List<String> enFeaturesList = enFeatures != null && !enFeatures.isEmpty() ?
 			Arrays.asList(STRING_SEPARATOR.split(enFeatures)) : Collections.emptyList();
-		property.setFeatures(enFeaturesList, EN_LOCALE);
+		property.setFeatures(enFeaturesList, Locales.EN);
 
 		List<String> ruFeaturesList = ruFeatures != null && !ruFeatures.isEmpty() ?
 			Arrays.asList(STRING_SEPARATOR.split(ruFeatures)) : Collections.emptyList();
-		property.setFeatures(ruFeaturesList, RU_LOCALE);
+		property.setFeatures(ruFeaturesList, Locales.RU);
 
 		List<Image> images = imageKeys != null && !imageKeys.isEmpty() ?
 			Arrays.stream(STRING_SEPARATOR.split(imageKeys))

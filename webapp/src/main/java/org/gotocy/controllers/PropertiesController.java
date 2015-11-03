@@ -8,6 +8,7 @@ import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.PropertyForm;
 import org.gotocy.forms.UserPropertyForm;
 import org.gotocy.forms.validation.UserPropertyFormValidator;
+import org.gotocy.helpers.Helper;
 import org.gotocy.repository.ComplexRepository;
 import org.gotocy.repository.ContactRepository;
 import org.gotocy.repository.DeveloperRepository;
@@ -137,7 +138,10 @@ public class PropertiesController {
 			List<Image> createdImages = new ArrayList<>(images.length);
 			try {
 				for (MultipartFile image : images) {
-					// TODO: possible NPE when file#getOriginalFilename returns null
+					// Skip empty files
+					if (image.isEmpty())
+						continue;
+
 					String fileName = image.getOriginalFilename().substring(image.getOriginalFilename().lastIndexOf('/') + 1);
 					Image imageAsset = new Image("property/" + property.getId() + "/" + fileName);
 					imageAsset.setBytes(image.getBytes());
@@ -145,10 +149,12 @@ public class PropertiesController {
 					createdImages.add(imageAsset);
 				}
 
-				property.setImages(createdImages);
-				property.setRepresentativeImage(createdImages.get(0));
-				property = repository.saveAndFlush(property);
-			} catch (IOException | DataAccessException e) {
+				if (!createdImages.isEmpty()) {
+					property.setImages(createdImages);
+					property.setRepresentativeImage(createdImages.get(0));
+					property = repository.saveAndFlush(property);
+				}
+			} catch (NullPointerException | IOException | DataAccessException e) {
 				// Clean up created objects
 				try {
 					repository.delete(property);
@@ -157,10 +163,11 @@ public class PropertiesController {
 				} catch (DataAccessException | IOException ignored) {
 					// TODO: log error
 				}
+				// TODO: show something to user
 				return "property/new";
 			}
 		}
-		return "redirect:/property/" + property.getId();
+		return "redirect:" + Helper.path("/property/" + property.getId(), locale.getLanguage());
 	}
 
 	@RequestMapping(value = "/master/properties", method = RequestMethod.POST)

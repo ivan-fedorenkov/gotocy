@@ -15,7 +15,7 @@ import java.util.Locale;
  */
 public class EnumsFormatter<T extends Enum<T> & MessageSourceResolvable> implements Formatter<T> {
 
-	private final MessageSource messageSource;
+	protected final MessageSource messageSource;
 	private final Class<T> clazz;
 
 	public EnumsFormatter(Class<T> clazz, MessageSource messageSource) {
@@ -25,11 +25,7 @@ public class EnumsFormatter<T extends Enum<T> & MessageSourceResolvable> impleme
 
 	@Override
 	public T parse(String str, Locale locale) throws ParseException {
-		try {
-			return Enum.<T>valueOf(clazz, str);
-		} catch (IllegalArgumentException e) {
-			throw new ParseException(e.getMessage(), 0);
-		}
+		return Enum.<T>valueOf(clazz, str);
 	}
 
 	@Override

@@ -15,6 +15,7 @@ import org.gotocy.domain.ImageSize;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Assets provider that utilizes Amazon S3 as a backend storage.
@@ -55,10 +56,8 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 
 	@Override
 	public <T extends Asset> T loadUnderlyingObject(T asset) {
-		try {
-			// Load the object input stream
-			S3ObjectInputStream is = getObject(properties.getBucket(), asset.getKey()).getObjectContent();
-			asset.setBytes(IOUtils.toByteArray(is));
+		try (InputStream in = getObject(properties.getBucket(), asset.getKey()).getObjectContent()) {
+			asset.setBytes(IOUtils.toByteArray(in));
 		} catch (AmazonClientException | IOException ignore) {
 			// TODO: log IOException
 		}
@@ -70,9 +69,8 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 		ObjectMetadata metadata = new ObjectMetadata();
 		metadata.setContentLength(asset.getSize());
 		metadata.setContentType(asset.getContentType());
-		PutObjectRequest putObjectRequest = new PutObjectRequest(properties.getBucket(), asset.getKey(),
-			new ByteArrayInputStream(asset.getBytes()), metadata);
-		try {
+		try (InputStream in = new ByteArrayInputStream(asset.getBytes())) {
+			PutObjectRequest putObjectRequest = new PutObjectRequest(properties.getBucket(), asset.getKey(), in, metadata);
 			putObject(putObjectRequest.withStorageClass(StorageClass.Standard));
 		} catch (AmazonClientException e) {
 			throw new IOException(e);
@@ -88,7 +86,7 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 		try {
 			getObjectMetadata(properties.getBucket(), assetKey);
 			return true;
-		} catch (AmazonS3Exception e) {
+		} catch (AmazonClientException e) {
 			return false;
 		}
 	}

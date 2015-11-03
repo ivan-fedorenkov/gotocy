@@ -6,6 +6,7 @@ import org.gotocy.domain.*;
 import org.gotocy.filters.LocaleFilter;
 import org.gotocy.filters.UrlRewriteFilter;
 import org.gotocy.format.EnumsFormatter;
+import org.gotocy.format.LocationFormatter;
 import org.gotocy.interceptors.HelpersInterceptor;
 import org.gotocy.interceptors.SecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 	@Bean
 	public LocaleResolver localeResolver() {
 		SessionLocaleResolver resolver = new SessionLocaleResolver();
-		resolver.setDefaultLocale(LocaleFilter.DEFAULT_LOCALE);
+		resolver.setDefaultLocale(Locales.DEFAULT);
 		return resolver;
 	}
 
@@ -96,7 +97,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addFormatter(new EnumsFormatter<Location>(Location.class, messageSource) {});
+		registry.addFormatter(new LocationFormatter(messageSource));
 		registry.addFormatter(new EnumsFormatter<PropertyType>(PropertyType.class, messageSource) {});
 		registry.addFormatter(new EnumsFormatter<PropertyStatus>(PropertyStatus.class, messageSource) {});
 		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class, messageSource) {});

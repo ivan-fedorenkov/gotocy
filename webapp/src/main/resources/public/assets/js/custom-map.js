@@ -355,7 +355,7 @@ function initPropertySubmitMap(_latitude,_longitude,_zoom){
             var addressComponentTypes = addressComponent.types;
             if (addressComponentTypes.length > 1) {
                 if (addressComponentTypes[0] == 'administrative_area_level_1' && addressComponentTypes[1] == 'political') {
-                    return addressComponent.long_name.toUpperCase();
+                    return addressComponent.long_name;
                 }
             }
         }

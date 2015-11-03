@@ -2,9 +2,13 @@ package org.gotocy.forms;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.gotocy.config.Locales;
 import org.gotocy.domain.*;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.joining;
@@ -22,9 +26,6 @@ public class ComplexForm {
 
 	private static final Pattern STRING_SEPARATOR = Pattern.compile("[\n\r]+");
 	private static final String STRINGS_JOINER = "\n";
-
-	private static final Locale EN_LOCALE = Locale.ENGLISH;
-	private static final Locale RU_LOCALE = new Locale("ru");
 
 	// Developer
 	private long developerId;
@@ -74,11 +75,11 @@ public class ComplexForm {
 		address = complex.getAddress();
 		coordinates = complex.getCoordinates();
 
-		enDescription = complex.getDescription(EN_LOCALE);
-		enSpecifications = complex.getSpecifications(EN_LOCALE).stream().collect(joining(STRINGS_JOINER));
+		enDescription = complex.getDescription(Locales.EN);
+		enSpecifications = complex.getSpecifications(Locales.EN).stream().collect(joining(STRINGS_JOINER));
 
-		ruDescription = complex.getDescription(RU_LOCALE);
-		ruSpecifications = complex.getSpecifications(RU_LOCALE).stream().collect(joining(STRINGS_JOINER));
+		ruDescription = complex.getDescription(Locales.RU);
+		ruSpecifications = complex.getSpecifications(Locales.RU).stream().collect(joining(STRINGS_JOINER));
 
 		imagesKeys = complex.getImages().stream().map(Image::getKey).collect(joining(STRINGS_JOINER));
 		pdfFilesKeys = complex.getPdfFiles().stream().map(PdfFile::getKey).collect(joining(STRINGS_JOINER));
@@ -101,16 +102,16 @@ public class ComplexForm {
 		complex.setAddress(address);
 		complex.setCoordinates(coordinates);
 
-		complex.setDescription(enDescription, EN_LOCALE);
-		complex.setDescription(ruDescription, RU_LOCALE);
+		complex.setDescription(enDescription, Locales.EN);
+		complex.setDescription(ruDescription, Locales.RU);
 
 		List<String> enSpecificationsList = enSpecifications != null && !enSpecifications.isEmpty() ?
 			Arrays.asList(STRING_SEPARATOR.split(enSpecifications)) : Collections.emptyList();
-		complex.setSpecifications(enSpecificationsList, EN_LOCALE);
+		complex.setSpecifications(enSpecificationsList, Locales.EN);
 
 		List<String> ruSpecificationsList = ruSpecifications != null && !ruSpecifications.isEmpty() ?
 			Arrays.asList(STRING_SEPARATOR.split(ruSpecifications)) : Collections.emptyList();
-		complex.setSpecifications(ruSpecificationsList, RU_LOCALE);
+		complex.setSpecifications(ruSpecificationsList, Locales.RU);
 
 		Image representativeImage = null;
 		if (assetKeyIsDefined(representativeImageKey))

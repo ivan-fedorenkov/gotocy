@@ -1,15 +1,13 @@
 package org.gotocy;
 
+import org.gotocy.config.Locales;
 import org.gotocy.domain.Complex;
 import org.gotocy.domain.Developer;
 import org.gotocy.domain.Property;
-import org.gotocy.filters.LocaleFilter;
 import org.gotocy.helpers.Helper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
-
-import java.util.Locale;
 
 /**
  * @author ifedorenkov
@@ -29,12 +27,12 @@ public class HelperTest {
 
 		// Language is not specified
 
-		LocaleContextHolder.setLocale(LocaleFilter.DEFAULT_LOCALE);
+		LocaleContextHolder.setLocale(Locales.DEFAULT);
 		Assert.assertEquals("/property/1", Helper.path(p));
 		Assert.assertEquals("/complex/2", Helper.path(c));
 		Assert.assertEquals("/developer/3", Helper.path(d));
 
-		LocaleContextHolder.setLocale(LocaleFilter.RUSSIAN_LOCALE);
+		LocaleContextHolder.setLocale(Locales.RU);
 		Assert.assertEquals("/ru/property/1", Helper.path(p));
 		Assert.assertEquals("/ru/complex/2", Helper.path(c));
 		Assert.assertEquals("/ru/developer/3", Helper.path(d));
@@ -55,10 +53,10 @@ public class HelperTest {
 	@Test
 	public void stringPathTest() {
 		// Language is not specified
-		LocaleContextHolder.setLocale(LocaleFilter.DEFAULT_LOCALE);
+		LocaleContextHolder.setLocale(Locales.DEFAULT);
 		Assert.assertEquals("/some-path", Helper.path("/some-path"));
 
-		LocaleContextHolder.setLocale(LocaleFilter.RUSSIAN_LOCALE);
+		LocaleContextHolder.setLocale(Locales.RU);
 		Assert.assertEquals("/ru/some-path", Helper.path("/some-path"));
 
 		// Language is specified explicitly

@@ -1,5 +1,6 @@
 package org.gotocy.filters;
 
+import org.gotocy.config.Locales;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.util.UrlPathHelper;
@@ -29,13 +30,10 @@ import java.util.Map;
  */
 public class LocaleFilter extends OncePerRequestFilter {
 
-	public static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
-	public static final Locale RUSSIAN_LOCALE = new Locale("ru");
-
 	private static final Map<String, Locale> PATH_TO_LOCALE = new HashMap<>();
 
 	static {
-		PATH_TO_LOCALE.put("/ru", RUSSIAN_LOCALE);
+		PATH_TO_LOCALE.put("/ru", Locales.RU);
 	}
 
 	@Override
@@ -61,7 +59,7 @@ public class LocaleFilter extends OncePerRequestFilter {
 		}
 
 		// Language code is not present in the uri, use the default locale
-		WebUtils.setSessionAttribute(request, SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, DEFAULT_LOCALE);
+		WebUtils.setSessionAttribute(request, SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, Locales.DEFAULT);
 		filterChain.doFilter(request, response);
 	}
 
