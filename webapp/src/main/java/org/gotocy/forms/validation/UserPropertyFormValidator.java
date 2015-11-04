@@ -24,7 +24,7 @@ public class UserPropertyFormValidator implements Validator {
 	public static final UserPropertyFormValidator INSTANCE = new UserPropertyFormValidator();
 
 	public static final int MAX_ALLOWED_IMAGES = 10;
-	public static final int MAX_ALLOWED_SIZE_MB = 2;
+	public static final int MAX_ALLOWED_SIZE_MB = 3;
 	public static final long MAX_ALLOWED_SIZE = MAX_ALLOWED_SIZE_MB * 1024 * 1024; // in bytes
 
 	public static final String ALLOWED_IMAGE_CONTENT_TYPE = "image/jpeg";
