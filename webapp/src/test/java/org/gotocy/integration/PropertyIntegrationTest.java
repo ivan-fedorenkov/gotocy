@@ -6,6 +6,7 @@ import org.gotocy.config.SecurityProperties;
 import org.gotocy.domain.Contact;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
+import org.gotocy.factory.ContactFactory;
 import org.gotocy.factory.PropertyFactory;
 import org.gotocy.repository.PropertyRepository;
 import org.junit.Assert;
@@ -55,8 +56,7 @@ public class PropertyIntegrationTest {
 	@Test
 	public void propertyCreation() throws Exception {
 		// Prepare property that should be created
-		Property property = PropertyFactory.build();
-		property.setOfferStatus(OfferStatus.DEMO);
+		Property property = PropertyFactory.INSTANCE.get(p -> p.setOfferStatus(OfferStatus.DEMO));
 
 		// Post the property
 		ResultActions result = mockMvc.perform(fileUpload("/property")
@@ -98,7 +98,7 @@ public class PropertyIntegrationTest {
 
 	@Test
 	public void propertyCreationByAdmin() throws Exception {
-		Property property = PropertyFactory.build();
+		Property property = PropertyFactory.INSTANCE.get(p -> p.setPrimaryContact(ContactFactory.INSTANCE.get()));
 		mockMvc.perform(post("/master/properties")
 			.sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE)
 			.param("title", property.getTitle())
