@@ -76,24 +76,24 @@
             <div class="row">
                 <!-- Property Detail Content -->
                 <div class="col-md-9 col-sm-9">
-                    <section id="object-detail">
+                    <section id="object-detail" th:include="property/show :: property_section(${property})">
                         <header class="property-title">
-                            <h1 th:text="*{title}">987 Cantebury Drive</h1>
-                            <figure th:text="*{address}">Golden Valley, MN 55427</figure>
+                            <h1>987 Cantebury Drive</h1>
+                            <figure>Golden Valley, MN 55427</figure>
                         </header>
                         <section id="property-gallery">
                             <div class="pg-grid">
                                 <div class="pg-grid-sizer"></div>
-                                <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4" th:style="|background-image: url('${helper.imageUrl(property.getImage(0), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;">
-                                    <div class="pg-ribbon-container" th:if="${property.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}">
-                                        <figure class="pg-ribbon" th:classappend="${property.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="*{{offerStatus}}">Booked</figure>
+                                <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;">
+                                    <div class="pg-ribbon-container">
+                                        <figure class="pg-ribbon">Booked</figure>
                                     </div>
                                 </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(property.getImage(1), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(property.getImage(2), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(property.getImage(3), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg');">
-                                    <div id="pano-popup-container" class="icon-container" th:if="${hasPano}">
-                                        <i class="fa fa-street-view"></i><br><span class="hint" th:text="#{org.gotocy.templates.property.show.click-to-view-pano}">Click to View Pano 360</span>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg');">
+                                    <div id="pano-popup-container" class="icon-container">
+                                        <i class="fa fa-street-view"></i><br><span class="hint">Click to View Pano 360</span>
                                         <div id="pano-popup" class="mfp-hide">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-8 col-sm-8 col-lg-offset-3 col-md-offset-2 col-sm-offset-2">
@@ -107,9 +107,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(property.getImage(4), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-01.jpg');">
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-01.jpg');">
                                     <div id="gallery-popup-container" class="icon-container">
-                                        <i class="fa fa-camera"></i><br><span class="hint" th:text="#{org.gotocy.templates.property.show.click-to-view-gallery}">Click to View Gallery</span>
+                                        <i class="fa fa-camera"></i><br><span class="hint">Click to View Gallery</span>
                                     </div>
                                 </div>
                             </div>
@@ -117,11 +117,10 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
                                 <section id="quick-summary" class="clearfix">
-                                    <header><h2 th:text="#{org.gotocy.dictionary.quick-summary}">Quick Summary</h2></header>
-                                    <dl th:remove="all-but-first">
-                                        <!--/*/ <th:block th:each="field : ${helper.property.formattedFields(property, T(org.gotocy.helpers.property.FieldsStrategy).QUICK_SUMMARY)}"> /*/-->
-                                        <dt th:text="|${field.heading}:|">Location:</dt>
-                                        <dd th:utext="${field.value}">Chicago, IL 60610</dd>
+                                    <header><h2>Quick Summary</h2></header>
+                                    <dl>
+                                        <dt>Location:</dt>
+                                        <dd>Chicago, IL 60610</dd>
                                         <!--/*/ </th:block> /*/-->
                                         <dt>Price:</dt>
                                         <dd><span class="tag price">$ 78,000</span></dd>
@@ -139,9 +138,9 @@
                                 </section><!-- /#quick-summary -->
                             </div><!-- /.col-md-4 -->
                             <div class="col-md-8 col-sm-12">
-                                <section id="description" th:unless=${#strings.isEmpty(property.description)}>
-                                    <header><h2 th:text="#{org.gotocy.dictionary.property-description}">Property Description</h2></header>
-                                    <div th:utext="${helper.newLinesToParagraphs(property.description)}">
+                                <section id="description">
+                                    <header><h2>Property Description</h2></header>
+                                    <div>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
                                             bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt.
@@ -151,10 +150,10 @@
                                         </p>
                                     </div>
                                 </section><!-- /#description -->
-                                <section id="property-features" th:unless=${#lists.isEmpty(property.features)}>
-                                    <header><h2 th:text="#{org.gotocy.dictionary.property-features}">Property Features</h2></header>
-                                    <ul class="list-unstyled property-features-list" th:remove="all-but-first">
-                                        <li th:each="feature : *{features}" th:text="${feature}">Sauna</li>
+                                <section id="property-features">
+                                    <header><h2>Property Features</h2></header>
+                                    <ul class="list-unstyled property-features-list">
+                                        <li>Sauna</li>
                                         <li>Fireplace or fire pit</li>
                                         <li>Outdoor Kitchen</li>
                                         <li>Tennis Courts</li>
@@ -166,7 +165,7 @@
                                 </section><!-- /#property-features -->
 
                                 <section id="property-map">
-                                    <header><h2 th:text="#{org.gotocy.dictionary.map}">Map</h2></header>
+                                    <header><h2>Map</h2></header>
                                     <div class="property-detail-map-wrapper">
                                         <div class="property-detail-map" id="property-detail-map"></div>
                                     </div>

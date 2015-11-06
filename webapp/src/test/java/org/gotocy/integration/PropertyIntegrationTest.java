@@ -6,8 +6,8 @@ import org.gotocy.config.SecurityProperties;
 import org.gotocy.domain.Contact;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
-import org.gotocy.factory.ContactFactory;
-import org.gotocy.factory.PropertyFactory;
+import org.gotocy.domain.factory.ContactFactory;
+import org.gotocy.domain.factory.PropertyFactory;
 import org.gotocy.repository.PropertyRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -56,7 +56,7 @@ public class PropertyIntegrationTest {
 	@Test
 	public void propertyCreation() throws Exception {
 		// Prepare property that should be created
-		Property property = PropertyFactory.INSTANCE.get(p -> p.setOfferStatus(OfferStatus.DEMO));
+		Property property = PropertyFactory.INSTANCE.get(p -> p.setOfferStatus(OfferStatus.PROMO));
 
 		// Post the property
 		ResultActions result = mockMvc.perform(fileUpload("/property")
@@ -86,12 +86,12 @@ public class PropertyIntegrationTest {
 		assertPropertiesEquals(property, createdProperty);
 
 		// Verify fields that must be set disregard to what a user typed in
-		Assert.assertEquals(OfferStatus.DEMO, createdProperty.getOfferStatus());
+		Assert.assertEquals(OfferStatus.PROMO, createdProperty.getOfferStatus());
 		Assert.assertNull(createdProperty.getPrimaryContact());
 
 		// Verify the response status and the response page
 		result.andExpect(MockMvcResultMatchers.status().isFound())
-			.andExpect(MockMvcResultMatchers.redirectedUrl("/property/" + createdProperty.getId()));
+			.andExpect(MockMvcResultMatchers.redirectedUrl("/promo/property/" + createdProperty.getId()));
 
 	}
 

@@ -25,7 +25,7 @@ public class PropertyPredicates {
 	}
 
 	public static BooleanBuilder publiclyVisible() {
-		return new BooleanBuilder(property.offerStatus.ne(OfferStatus.DEMO));
+		return new BooleanBuilder(property.offerStatus.ne(OfferStatus.PROMO));
 	}
 
 }

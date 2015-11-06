@@ -14,3 +14,17 @@ ALTER TABLE `property` MODIFY COLUMN `plot_size` INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE `property` MODIFY COLUMN `guests` INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE `property` MODIFY COLUMN `distance_to_sea` INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE `property` MODIFY COLUMN `levels` INTEGER NOT NULL DEFAULT 0;
+
+
+CREATE TABLE `registration`(
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `version` INTEGER NOT NULL,
+
+    `contact_id` BIGINT NOT NULL,
+    `introduction` LONGTEXT NULL DEFAULT NULL,
+    `related_property_id` BIGINT NULL DEFAULT NULL,
+
+    CONSTRAINT fk_registration_contact_id FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`),
+    CONSTRAINT fk_registration_property_id FOREIGN KEY (`related_property_id`) REFERENCES `property` (`id`),
+    PRIMARY KEY (`id`)
+);

@@ -1,18 +1,12 @@
 package org.gotocy.helpers;
 
 import org.gotocy.beans.AssetsManager;
-import org.gotocy.domain.Asset;
-import org.gotocy.domain.BaseEntity;
-import org.gotocy.domain.Image;
-import org.gotocy.domain.ImageSize;
+import org.gotocy.domain.*;
 import org.gotocy.helpers.property.PropertyHelper;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * A helper object for the view layer. Contains a number of utility methods, such as price formatting, etc.
@@ -79,8 +73,13 @@ public class Helper {
 	 * Unit test: HelperTest#entityPathTest
 	 */
 	public static <T extends BaseEntity> String path(T entity, String language) {
-		return getPrefixForLanguage(language) + "/" + entity.getClass().getSimpleName().toLowerCase() + "/" +
-			entity.getId();
+		String path;
+		if (entity instanceof Property) {
+			path = (((Property) entity).getOfferStatus() == OfferStatus.PROMO ? "/promo" : "") + "/property/" + entity.getId();
+		} else {
+			path = "/" + entity.getClass().getSimpleName().toLowerCase() + "/" + entity.getId();
+		}
+		return getPrefixForLanguage(language) + path;
 	}
 
 	/**

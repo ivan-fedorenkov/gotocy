@@ -28,11 +28,6 @@ public class PropertyValidator implements Validator {
 	private static final Predicate<Property> APARTMENT = p -> p.getPropertyType() == PropertyType.APARTMENT;
 	private static final Predicate<Property> LAND = p -> p.getPropertyType() == PropertyType.LAND;
 
-	private static final FieldValidator NOT_NULL = new NullValidator();
-	private static final FieldValidator NOT_EMPTY = new EmptyStringValidator();
-
-	private static final IntFieldValidator POSITIVE_INT = new PositiveIntValidator();
-
 	private PropertyValidator() {
 	}
 
@@ -45,48 +40,36 @@ public class PropertyValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		Property property = (Property) target;
 
-		validate(errors, "title", property.getTitle(), NOT_EMPTY);
-		validate(errors, "address", property.getAddress(), NOT_EMPTY);
-		validate(errors, "location", property.getLocation(), NOT_NULL);
-		validate(errors, "propertyType", property.getPropertyType(), NOT_NULL);
-		validate(errors, "propertyStatus", property.getPropertyStatus(), NOT_NULL);
-		validate(errors, "offerStatus", property.getOfferStatus(), NOT_NULL);
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", property.getTitle());
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", property.getAddress());
+		ValidationUtils.rejectIfNull(errors, "location", property.getLocation());
+		ValidationUtils.rejectIfNull(errors, "propertyType", property.getPropertyType());
+		ValidationUtils.rejectIfNull(errors, "propertyStatus", property.getPropertyStatus());
+		ValidationUtils.rejectIfNull(errors, "offerStatus", property.getOfferStatus());
 
 		if (ACTIVE_OFFER.test(property))
-			validate(errors, "price", property.getPrice(), POSITIVE_INT);
+			ValidationUtils.rejectIfNegativeOrZero(errors, "price", property.getPrice());
 
 		if (HOUSE.or(APARTMENT).and(SALE).test(property))
-			validate(errors, "coveredArea", property.getCoveredArea(), POSITIVE_INT);
+			ValidationUtils.rejectIfNegativeOrZero(errors, "coveredArea", property.getCoveredArea());
 
 		if (HOUSE.or(LAND).and(SALE).test(property))
-			validate(errors, "plotSize", property.getPlotSize(), POSITIVE_INT);
+			ValidationUtils.rejectIfNegativeOrZero(errors, "plotSize", property.getPlotSize());
 
 		if (HOUSE.or(APARTMENT).test(property))
-			validate(errors, "bedrooms", property.getBedrooms(), POSITIVE_INT);
+			ValidationUtils.rejectIfNegativeOrZero(errors, "bedrooms", property.getBedrooms());
 
 		if (APARTMENT.or(HOUSE).and(SALE).test(property))
-			validate(errors, "levels", property.getLevels(), POSITIVE_INT);
+			ValidationUtils.rejectIfNegativeOrZero(errors, "levels", property.getLevels());
 
 		if (APARTMENT.or(HOUSE).and(LONG_TERM).test(property))
-			validate(errors, "furnishing", property.getFurnishing(), NOT_NULL);
+			ValidationUtils.rejectIfNull(errors, "furnishing", property.getFurnishing());
 
 		if (APARTMENT.or(HOUSE).and(SHORT_TERM).test(property))
-			validate(errors, "guests", property.getGuests(), POSITIVE_INT);
+			ValidationUtils.rejectIfNegativeOrZero(errors, "guests", property.getGuests());
 
 		if (APARTMENT.or(HOUSE).and(SHORT_TERM).test(property))
-			validate(errors, "distanceToSea", property.getDistanceToSea(), POSITIVE_INT);
-	}
-
-	private static void validate(Errors errors, String field, Object fieldValue, FieldValidator... validators)	{
-		for (FieldValidator validator : validators) {
-			// TODO: log errors
-			if (validator.supports(errors.getFieldType(field)))
-				validator.validate(field, fieldValue, errors);
-		}
-	}
-
-	private static void validate(Errors errors, String field, int fieldValue, IntFieldValidator validator) {
-		validator.validate(field, fieldValue, errors);
+			ValidationUtils.rejectIfNegativeOrZero(errors, "distanceToSea", property.getDistanceToSea());
 	}
 
 }

@@ -3,16 +3,18 @@ package org.gotocy.domain;
 import org.springframework.context.MessageSourceResolvable;
 
 /**
- * A property offer status.
+ * Forms of business.
  *
  * @author ifedorenkov
  */
-public enum OfferStatus implements MessageSourceResolvable {
-	ACTIVE, BOOKED, SOLD, RENTED, PROMO;
+public enum BusinessForm implements MessageSourceResolvable {
+
+	INDIVIDUAL, AGENT, DEVELOPER;
+
 
 	@Override
 	public String[] getCodes() {
-		return new String[] {"org.gotocy.domain.OfferStatus." + name()};
+		return new String[] {"org.gotocy.domain.BusinessForm." + name()};
 	}
 
 	@Override
@@ -24,4 +26,5 @@ public enum OfferStatus implements MessageSourceResolvable {
 	public String getDefaultMessage() {
 		return name();
 	}
+
 }

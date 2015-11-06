@@ -80,7 +80,7 @@ public class PropertyForm {
 		location = Location.FAMAGUSTA;
 		propertyType = PropertyType.APARTMENT;
 		propertyStatus = PropertyStatus.LONG_TERM;
-		offerStatus = OfferStatus.DEMO;
+		offerStatus = OfferStatus.PROMO;
 		furnishing = Furnishing.NONE;
 	}
 

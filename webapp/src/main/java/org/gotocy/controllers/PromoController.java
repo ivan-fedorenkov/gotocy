@@ -1,6 +1,8 @@
 package org.gotocy.controllers;
 
+import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.*;
+import org.gotocy.helpers.Helper;
 import org.gotocy.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,6 +30,21 @@ public class PromoController {
 	@Autowired
 	public PromoController(PropertyRepository repository) {
 		this.repository = repository;
+	}
+
+	/**
+	 * TODO: unit test on redirect
+	 */
+	@RequestMapping(value = "/property/{id}", method = RequestMethod.GET)
+	public String show(@RequiredDomainObject @PathVariable("id") Property property, Model model, Locale locale) {
+		if (property.getOfferStatus() != OfferStatus.PROMO)
+			return "redirect:" + Helper.path(property);
+
+		property.initLocalizedFields(locale);
+		model.addAttribute(property);
+		model.addAttribute("showRegistrationOffer", true);
+
+		return "promo/property";
 	}
 
 	@RequestMapping(value = "/index-1", method = RequestMethod.GET)
@@ -83,7 +101,7 @@ public class PromoController {
 		p.setLongitude(33.590204);
 		p.setPropertyStatus(PropertyStatus.LONG_TERM);
 		p.setPropertyType(PropertyType.HOUSE);
-		p.setOfferStatus(OfferStatus.RENTED);
+		p.setOfferStatus(OfferStatus.PROMO);
 		p.setReadyToMoveIn(Boolean.TRUE);
 		p.setPrice(850);
 		p.setGuests(10);

@@ -47,7 +47,7 @@ public class UserPropertyForm {
 		location = Location.FAMAGUSTA;
 		propertyType = PropertyType.APARTMENT;
 		propertyStatus = PropertyStatus.SALE;
-		offerStatus = OfferStatus.DEMO;
+		offerStatus = OfferStatus.PROMO;
 		furnishing = Furnishing.NONE;
 	}
 

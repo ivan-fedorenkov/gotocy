@@ -1,4 +1,4 @@
-package org.gotocy.factory;
+package org.gotocy.domain.factory;
 
 import org.gotocy.domain.Contact;
 

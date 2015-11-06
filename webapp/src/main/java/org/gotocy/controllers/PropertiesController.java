@@ -1,5 +1,7 @@
 package org.gotocy.controllers;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.gotocy.beans.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
@@ -44,6 +46,8 @@ import static org.gotocy.repository.PropertyPredicates.similarWith;
 @Controller
 public class PropertiesController {
 
+	private static final Log log = LogFactory.getLog(PropertiesController.class);
+
 	@Autowired
 	private PropertyRepository repository;
 	@Autowired
@@ -74,12 +78,13 @@ public class PropertiesController {
 
 	@RequestMapping(value = "/property/{id}", method = RequestMethod.GET)
 	public String get(@RequiredDomainObject @PathVariable("id") Property property, Model model, Locale locale) {
+		if (property.getOfferStatus() == OfferStatus.PROMO)
+			return "redirect:" + Helper.path(property, locale.getLanguage());
+
 		property.initLocalizedFields(locale);
 		model.addAttribute(property);
-
 		model.addAttribute("similarProperties",
 			repository.findAll(publiclyVisible().and(similarWith(property)), new PageRequest(0, 4)));
-		model.addAttribute("showRegistrationOffer", property.getOfferStatus() == OfferStatus.DEMO);
 
 		return "property/show";
 	}
@@ -129,7 +134,7 @@ public class PropertiesController {
 			return "property/new";
 
 		Property property = form.mergeWithProperty(new Property());
-		property.setOfferStatus(OfferStatus.DEMO);
+		property.setOfferStatus(OfferStatus.PROMO);
 		property.setDescription(property.getDescription(), locale);
 		property = repository.saveAndFlush(property);
 
@@ -149,19 +154,22 @@ public class PropertiesController {
 				property.setRepresentativeImage(createdImages.get(0));
 				property = repository.saveAndFlush(property);
 			} catch (NullPointerException | IOException | DataAccessException e) {
+				// Log error
+				log.error("Failed to upload property's assets.", e);
+
 				// Clean up created objects
 				try {
 					repository.delete(property);
 					for (Image image : createdImages)
 						assetsManager.deleteUnderlyingObject(image);
-				} catch (DataAccessException | IOException ignored) {
-					// TODO: log error
+				} catch (DataAccessException | IOException ee) {
+					log.error("Failed to clean up resources.", ee);
 				}
 				// TODO: show something to user
 				return "property/new";
 			}
 		}
-		return "redirect:" + Helper.path("/property/" + property.getId(), locale.getLanguage());
+		return "redirect:" + Helper.path(property, locale.getLanguage());
 	}
 
 	@RequestMapping(value = "/master/properties", method = RequestMethod.POST)

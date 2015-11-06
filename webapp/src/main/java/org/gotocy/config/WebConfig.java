@@ -16,7 +16,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.Ordered;
 import org.springframework.format.FormatterRegistry;
@@ -102,6 +101,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 		registry.addFormatter(new EnumsFormatter<PropertyStatus>(PropertyStatus.class, messageSource) {});
 		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class, messageSource) {});
 		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class, messageSource) {});
+		registry.addFormatter(new EnumsFormatter<BusinessForm>(BusinessForm.class, messageSource) {});
 	}
 
 	@Override

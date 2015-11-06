@@ -5,7 +5,7 @@ import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyStatus;
 import org.gotocy.domain.PropertyType;
 import org.gotocy.domain.validation.PropertyValidator;
-import org.gotocy.factory.PropertyFactory;
+import org.gotocy.domain.factory.PropertyFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.validation.BeanPropertyBindingResult;
@@ -14,7 +14,6 @@ import org.springframework.validation.Errors;
 import java.util.EnumSet;
 import java.util.Set;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 import static org.gotocy.FieldValidationAsserts.*;
 
