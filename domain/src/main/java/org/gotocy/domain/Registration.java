@@ -3,22 +3,26 @@ package org.gotocy.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * @author ifedorenkov
  */
-//@Entity
+@Entity
 @Getter
 @Setter
-public class Registration /*extends BaseEntity*/ {
+public class Registration extends BaseEntity {
 
-//	@OneToOne
-	private Contact contact;
+	private String name;
 
-//	@OneToOne
+	private String email;
+
+	@Enumerated(EnumType.STRING)
+	private BusinessForm businessForm;
+
+	private int propertiesCount;
+
+	@OneToOne
 	private Property relatedProperty;
 
 }

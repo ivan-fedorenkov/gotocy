@@ -41,7 +41,7 @@ public class DevelopersController {
 	@ResponseBody
 	@Transactional
 	public Developer create(DeveloperForm developerForm) {
-		return developerRepository.saveAndFlush(developerForm.mergeWithDeveloper(new Developer()));
+		return developerRepository.save(developerForm.mergeWithDeveloper(new Developer()));
 	}
 
 	@RequestMapping(value = "/master/developer/{id}/edit", method = RequestMethod.GET)
@@ -55,7 +55,7 @@ public class DevelopersController {
 	@ResponseBody
 	@Transactional
 	public Developer update(@RequiredDomainObject @PathVariable("id") Developer developer, DeveloperForm developerForm) {
-		return developerRepository.saveAndFlush(developerForm.mergeWithDeveloper(developer));
+		return developerRepository.save(developerForm.mergeWithDeveloper(developer));
 	}
 
 }

@@ -79,7 +79,7 @@ public class PropertiesController {
 	@RequestMapping(value = "/property/{id}", method = RequestMethod.GET)
 	public String get(@RequiredDomainObject @PathVariable("id") Property property, Model model, Locale locale) {
 		if (property.getOfferStatus() == OfferStatus.PROMO)
-			return "redirect:" + Helper.path(property, locale.getLanguage());
+			return "redirect:" + Helper.path(property);
 
 		property.initLocalizedFields(locale);
 		model.addAttribute(property);
@@ -136,7 +136,7 @@ public class PropertiesController {
 		Property property = form.mergeWithProperty(new Property());
 		property.setOfferStatus(OfferStatus.PROMO);
 		property.setDescription(property.getDescription(), locale);
-		property = repository.saveAndFlush(property);
+		property = repository.save(property);
 
 		List<MultipartFile> images = form.getImages();
 		if (!images.isEmpty()) {
@@ -152,7 +152,7 @@ public class PropertiesController {
 
 				property.setImages(createdImages);
 				property.setRepresentativeImage(createdImages.get(0));
-				property = repository.saveAndFlush(property);
+				property = repository.save(property);
 			} catch (NullPointerException | IOException | DataAccessException e) {
 				// Log error
 				log.error("Failed to upload property's assets.", e);
@@ -169,7 +169,7 @@ public class PropertiesController {
 				return "property/new";
 			}
 		}
-		return "redirect:" + Helper.path(property, locale.getLanguage());
+		return "redirect:" + Helper.path(property);
 	}
 
 	@RequestMapping(value = "/master/properties", method = RequestMethod.POST)
@@ -183,7 +183,7 @@ public class PropertiesController {
 		property.setPrimaryContact(contact);
 		property.setComplex(getComplex(propertyForm.getComplexId()));
 		property.setDeveloper(getDeveloper(propertyForm.getDeveloperId()));
-		return repository.saveAndFlush(property);
+		return repository.save(property);
 	}
 
 	@RequestMapping(value = "/master/property/{id}/edit", method = RequestMethod.GET)
@@ -209,7 +209,7 @@ public class PropertiesController {
 		property.setPrimaryContact(contact);
 		property.setComplex(getComplex(propertyForm.getComplexId()));
 		property.setDeveloper(getDeveloper(propertyForm.getDeveloperId()));
-		return repository.saveAndFlush(property);
+		return repository.save(property);
 	}
 
 	private Complex getComplex(long complexId) {
@@ -221,7 +221,7 @@ public class PropertiesController {
 	}
 
 	private Contact getOrCreateContact(long contactId) {
-		return contactId > 0 ? contactRepository.findOne(contactId) : contactRepository.saveAndFlush(new Contact());
+		return contactId > 0 ? contactRepository.findOne(contactId) : contactRepository.save(new Contact());
 	}
 
 }

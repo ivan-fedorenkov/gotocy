@@ -178,7 +178,7 @@
                 <!-- sidebar -->
                 <div class="col-md-3 col-sm-3">
                     <section id="sidebar">
-                        <aside id="registration-offer" th:if="${showRegistrationOffer}">
+                        <aside id="registration-offer" th:unless="${relatedRegistration}">
                             <header><h3 th:text="#{org.gotocy.dictionary.congratulations}">Congratulations</h3></header>
                             <section th:utext="#{org.gotocy.templates.promo.property.registration-offer-text}">
                                 <p>Congrats, your property's page has been successfully created!</p>
@@ -186,25 +186,35 @@
                                 <p>Register now and we will contact you shortly!</p>
                             </section>
                         </aside>
-                        <aside id="registration-form" th:if="${showRegistrationOffer}">
+                        <aside id="registration-form" th:unless="${relatedRegistration}">
                             <header><h3 th:text="#{org.gotocy.templates.promo.property.registration-form-header}">Register Now</h3></header>
-                            <form role="form">
-                                <div class="form-group">
-                                    <label for="name" th:text="#{org.gotocy.dictionary.your-name}">Your Name</label>
-                                    <input type="text" class="form-control" id="name" required>
+                            <form role="form" th:object="${registrationForm}" th:action="@{${helper.path('/promo/property/' + property.id + '/registration')}}" method="post">
+                                <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
+                                    <label class="control-label" for="name" th:text="#{org.gotocy.dictionary.your-name}">Your Name</label>
+                                    <input type="text" class="form-control" id="name" th:field="*{name}" required>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="email" th:text="#{org.gotocy.dictionary.your-email}">Your Email</label>
-                                    <input type="text" class="form-control" id="email" required>
+                                <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? has-error">
+                                    <label class="control-label" for="email" th:text="#{org.gotocy.dictionary.your-email}">Your Email</label>
+                                    <input type="text" class="form-control" id="email" th:field="*{email}" required>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="businessForm" th:text="#{org.gotocy.dictionary.business-form}">Business Form</label>
-                                    <select id="businessForm" th:field="*{businessForm}" th:remove="all-but-first" required>
-                                        <option value="1" th:each="type : ${T(org.gotocy.domain.BusinessForm.values()}" th:value="${form}" th:text="${{form}}">Individual</option>
+                                <div class="form-group" th:classappend="${#fields.hasErrors('businessForm')} ? has-error">
+                                    <label class="control-label" for="businessForm" th:text="#{org.gotocy.dictionary.business-form}">Business Form</label>
+                                    <select id="businessForm" th:field="*{businessForm}" th:remove="all-but-first">
+                                        <option value="1" th:each="form : ${T(org.gotocy.domain.BusinessForm).values()}" th:value="${form}" th:text="${{form}}">Individual</option>
                                         <option value="2">Agent</option>
                                         <option value="3">Developer</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" th:classappend="${#fields.hasErrors('propertiesCount')} ? has-error">
+                                    <label class="control-label" for="propertiesCount" th:text="#{org.gotocy.dictionary.properties-count}">How many properties do you have?</label>
+                                    <select id="propertiesCount" th:field="*{propertiesCount}" th:remove="all-but-first" th:errorclass="has-error">
+                                        <option value="1">1+</option>
+                                        <option value="2">5+</option>
+                                        <option value="3">10+</option>
+                                        <option value="4">50+</option>
                                     </select>
                                 </div>
 
@@ -212,7 +222,14 @@
                                     <button type="submit" id="register-button" class="btn btn-default" th:text="#{org.gotocy.templates.promo.property.registration-form-submit}">Register Now</button>
                                 </div>
                             </form>
-                        </aside><!-- /#primary-contact -->
+                        </aside>
+                        <aside id="thank-you" th:if="${relatedRegistration}">
+                            <header><h3 th:text="#{org.gotocy.dictionary.thank-you}">Thank You!</h3></header>
+                            <section th:utext="#{org.gotocy.templates.promo.property.thank-you-text}">
+                                <p>Your registration request has been sent to our moderator!</p>
+                                <p>We will contact you soon!</p>
+                            </section>
+                        </aside>
                     </section><!-- /#sidebar -->
                 </div><!-- /.col-md-3 -->
                 <!-- end Sidebar -->

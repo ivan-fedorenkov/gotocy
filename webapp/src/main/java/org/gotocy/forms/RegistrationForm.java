@@ -3,6 +3,7 @@ package org.gotocy.forms;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.BusinessForm;
+import org.gotocy.domain.Registration;
 
 /**
  * @author ifedorenkov
@@ -18,6 +19,14 @@ public class RegistrationForm {
 
 	public RegistrationForm() {
 		businessForm = BusinessForm.INDIVIDUAL;
+	}
+
+	public Registration mergeWithRegistration(Registration registration) {
+		registration.setName(name);
+		registration.setEmail(email);
+		registration.setBusinessForm(businessForm);
+		registration.setPropertiesCount(propertiesCount);
+		return registration;
 	}
 
 }

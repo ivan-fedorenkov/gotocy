@@ -57,7 +57,7 @@ public class ComplexesController {
 		Complex complex = complexForm.mergeWithComplex(new Complex());
 		complex.setPrimaryContact(contact);
 		complex.setDeveloper(getDeveloper(complexForm.getDeveloperId()));
-		return complexRepository.saveAndFlush(complex);
+		return complexRepository.save(complex);
 	}
 
 	@RequestMapping(value = "/master/complex/{id}/edit", method = RequestMethod.GET)
@@ -79,7 +79,7 @@ public class ComplexesController {
 		complex = complexForm.mergeWithComplex(complex);
 		complex.setPrimaryContact(contact);
 		complex.setDeveloper(getDeveloper(complexForm.getDeveloperId()));
-		return complexRepository.saveAndFlush(complex);
+		return complexRepository.save(complex);
 	}
 
 	private Developer getDeveloper(long developerId) {
@@ -87,7 +87,7 @@ public class ComplexesController {
 	}
 
 	private Contact getOrCreateContact(long contactId) {
-		return contactId > 0 ? contactRepository.findOne(contactId) : contactRepository.saveAndFlush(new Contact());
+		return contactId > 0 ? contactRepository.findOne(contactId) : contactRepository.save(new Contact());
 	}
 
 }

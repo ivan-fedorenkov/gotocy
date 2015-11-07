@@ -20,11 +20,12 @@ CREATE TABLE `registration`(
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `version` INTEGER NOT NULL,
 
-    `contact_id` BIGINT NOT NULL,
-    `introduction` LONGTEXT NULL DEFAULT NULL,
+    `name` VARCHAR(256) NOT NULL,
+    `email` VARCHAR(256) NOT NULL,
+    `business_form` VARCHAR(16) NOT NULL,
+    `properties_count` INTEGER NOT NULL DEFAULT 0,
     `related_property_id` BIGINT NULL DEFAULT NULL,
 
-    CONSTRAINT fk_registration_contact_id FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`),
     CONSTRAINT fk_registration_property_id FOREIGN KEY (`related_property_id`) REFERENCES `property` (`id`),
     PRIMARY KEY (`id`)
 );
