@@ -105,7 +105,7 @@ public class PropertyIntegrationTest {
 			.param("propertyType", property.getPropertyType().name())
 			.param("propertyStatus", property.getPropertyStatus().name())
 			.param("offerStatus", property.getOfferStatus().name())
-			.param("fullAddress", property.getAddress())
+			.param("address", property.getAddress())
 			.param("shortAddress", property.getShortAddress())
 			.param("price", String.valueOf(property.getPrice()))
 			.param("latitude", String.valueOf(property.getLatitude()))

@@ -21,7 +21,7 @@ public class HelpersInterceptor implements HandlerInterceptor {
 	private final ApplicationProperties applicationProperties;
 
 	public HelpersInterceptor(ApplicationProperties applicationProperties, MessageSource messageSource, AssetsManager assetsManager) {
-		helper = new Helper(messageSource, assetsManager);
+		helper = new Helper(messageSource, assetsManager, applicationProperties);
 		this.applicationProperties = applicationProperties;
 	}
 

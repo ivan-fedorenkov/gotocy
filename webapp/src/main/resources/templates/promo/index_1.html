@@ -112,7 +112,7 @@
                         <div class="property">
                             <a th:href="@{${helper.path('/promo/property-1')}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                    <img alt="" th:src="${helper.property.representativeImageUrl(p)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
@@ -146,7 +146,7 @@
                             <figure class="ribbon" th:if="${offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
                             <a th:href="@{${helper.path(p)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                    <img alt="" th:src="${helper.property.representativeImageUrl(p)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
@@ -281,7 +281,7 @@
                             <figure class="ribbon" th:if="${offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
                             <a th:href="@{${helper.path(p)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                    <img alt="" th:src="${helper.property.representativeImageUrl(p)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
@@ -416,7 +416,7 @@
                             <figure class="ribbon" th:if="${offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
                             <a th:href="@{${helper.path(p)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                    <img alt="" th:src="${helper.property.representativeImageUrl(p)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">

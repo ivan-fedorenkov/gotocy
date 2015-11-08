@@ -45,20 +45,6 @@
                                 </div><!-- /.form-group -->
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <label for="fullAddress">Full Address</label>
-                                    <input type="text" class="form-control" id="fullAddress" th:field="*{fullAddress}" required>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="shortAddress">Short Address</label>
-                                    <input type="text" class="form-control" id="shortAddress" th:field="*{shortAddress}" required>
-                                </div>
-                            </div>
-                        </div>
                     </section><!-- /#basic-information -->
 
                     <section>
@@ -69,16 +55,6 @@
                                         <header><h2>Quick Summary</h2></header>
 
                                         <div class="row">
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="location">Location</label>
-                                                    <select id="location" th:field="*{location}" th:remove="all-but-first" required>
-                                                        <option value="1" th:each="location : ${T(org.gotocy.domain.Location).values()}" th:value="${location}" th:text="${{location}}">Larnaca</option>
-                                                        <option value="2">Limassol</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
                                             <div class="col-md-6 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="propertyType">Property Type</label>
@@ -223,11 +199,23 @@
                                             <h2>Place on Map</h2>
                                         </header>
                                         <div class="form-group">
-                                            <label for="address-map">Address</label>
-                                            <input type="text" class="form-control" id="address-map" name="address">
+                                            <label for="address-search">Address</label>
+                                            <input type="text" class="form-control" id="address-search" name="address-search">
                                         </div><!-- /.form-group -->
-                                        <label for="address-map">Or drag the marker to property position</label>
+                                        <label for="submit-map">Or drag the marker to property position</label>
                                         <div id="submit-map"></div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="location" th:field="*{location}" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="address" th:field="*{address}" required>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">

@@ -42,7 +42,7 @@ public class PropertyForm {
 
 	// Property
 	private String title;
-	private String fullAddress;
+	private String address;
 	private String shortAddress;
 	private Location location;
 	private PropertyType propertyType;
@@ -97,7 +97,7 @@ public class PropertyForm {
 		}
 
 		title = property.getTitle();
-		fullAddress = property.getAddress();
+		address = property.getAddress();
 		shortAddress = property.getShortAddress();
 		location = property.getLocation();
 		propertyType = property.getPropertyType();
@@ -146,7 +146,7 @@ public class PropertyForm {
 
 	public Property mergeWithProperty(Property property) {
 		property.setTitle(title);
-		property.setAddress(fullAddress);
+		property.setAddress(address);
 		property.setShortAddress(shortAddress);
 		property.setLocation(location);
 		property.setPropertyType(propertyType);

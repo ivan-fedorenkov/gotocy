@@ -1,8 +1,8 @@
 package org.gotocy.helpers.property;
 
-import org.gotocy.domain.Property;
-import org.gotocy.domain.PropertyStatus;
-import org.gotocy.domain.PropertyType;
+import org.gotocy.beans.AssetsManager;
+import org.gotocy.config.ApplicationProperties;
+import org.gotocy.domain.*;
 import org.gotocy.helpers.Format;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -29,9 +29,15 @@ public class PropertyHelper {
 	}
 
 	private final MessageSource messageSource;
+	private final AssetsManager assetsManager;
+	private final ApplicationProperties applicationProperties;
 
-	public PropertyHelper(MessageSource messageSource) {
+	public PropertyHelper(MessageSource messageSource, AssetsManager assetsManager,
+		ApplicationProperties applicationProperties)
+	{
 		this.messageSource = messageSource;
+		this.assetsManager = assetsManager;
+		this.applicationProperties = applicationProperties;
 	}
 
 	/**
@@ -53,6 +59,18 @@ public class PropertyHelper {
 	 */
 	public List<FormattedField> formattedFields(Property property, FieldsStrategy strategy) {
 		return strategy.getFormattedFields(messageSource, property);
+	}
+
+	/**
+	 * Returns property's representative image url or the {@link ApplicationProperties#defaultRepresentativeImage} if a
+	 * property doesn't have an attached representative.
+	 */
+	public String representativeImageUrl(Property property) {
+		if (property.getRepresentativeImage() == null) {
+			return assetsManager.getUrl(applicationProperties.getDefaultRepresentativeImage());
+		} else {
+			return assetsManager.getImageUrl(property.getRepresentativeImage(), ImageSize.MEDIUM);
+		}
 	}
 
 	/**

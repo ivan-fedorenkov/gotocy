@@ -201,7 +201,7 @@
                             <div class="property small" th:each="lp : ${featuredProperties}" th:with="propertyPath=${helper.path('/promo/property-1')}">
                                 <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html">
                                     <div class="property-image">
-                                        <img alt="" th:src="@{${helper.imageUrl(property.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                        <img alt="" th:src="${helper.property.representativeImageUrl(property)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                     </div>
                                 </a>
                                 <div class="info">

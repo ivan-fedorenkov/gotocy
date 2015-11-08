@@ -3,6 +3,7 @@ package org.gotocy.config;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.Contact;
+import org.gotocy.domain.Image;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -33,6 +34,9 @@ public class ApplicationProperties {
 	private Double defaultLongitude;
 
 	private Contact defaultContact = new Contact();
+
+	@NotNull
+	private Image defaultRepresentativeImage;
 
 	// Expose the spring active profiles
 	@Autowired

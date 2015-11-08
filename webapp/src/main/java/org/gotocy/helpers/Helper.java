@@ -1,6 +1,7 @@
 package org.gotocy.helpers;
 
 import org.gotocy.beans.AssetsManager;
+import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.*;
 import org.gotocy.helpers.property.PropertyHelper;
 import org.springframework.context.MessageSource;
@@ -18,9 +19,11 @@ public class Helper {
 	private final AssetsManager assetsManager;
 	private final PropertyHelper propertyHelper;
 
-	public Helper(MessageSource messageSource, AssetsManager assetsManager) {
+	public Helper(MessageSource messageSource, AssetsManager assetsManager,
+		ApplicationProperties applicationProperties)
+	{
 		this.assetsManager = assetsManager;
-		propertyHelper = new PropertyHelper(messageSource);
+		propertyHelper = new PropertyHelper(messageSource, assetsManager, applicationProperties);
 	}
 
 	/**
