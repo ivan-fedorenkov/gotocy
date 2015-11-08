@@ -32,7 +32,7 @@ gotocy:
       phone: "+357 99 166265"
       spokenLanguages: "Greek, Eng, Rus"
     defaultRepresentativeImage:
-      key: "/static/img/no-image.jpg"
+      key: "static/img/no-image.jpg"
 
 ---
 
