@@ -100,7 +100,7 @@
          <section id="banner">
             <div class="block has-dark-background background-color-default-darker center text-banner">
                 <div class="container">
-                    <h1 class="no-bottom-margin no-border" th:utext="|#{org.gotocy.templates.adding-property-banner-question} <a class='text-underline' href='mailto:${gotocy.email}'>#{org.gotocy.templates.adding-property-banner-contact-us}</a>|">Do you want your property do be listed here? <a href="#" class="text-underline">Contact Us</a>!</h1>
+                    <h1 class="no-bottom-margin no-border" th:utext="#{org.gotocy.templates.home.index.banner(@{${helper.path('/property/new')}})}">Do you want your property do be listed here? <a href="#" class="text-underline">Click Here</a>!</h1>
                 </div>
             </div>
         </section> <!-- /#banner -->

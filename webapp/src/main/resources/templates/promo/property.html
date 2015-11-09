@@ -210,11 +210,12 @@
 
                                 <div class="form-group" th:classappend="${#fields.hasErrors('propertiesCount')} ? has-error">
                                     <label class="control-label" for="propertiesCount" th:text="#{org.gotocy.dictionary.properties-count}">How many properties do you have?</label>
-                                    <select id="propertiesCount" th:field="*{propertiesCount}" th:remove="all-but-first" th:errorclass="has-error">
+                                    <select id="propertiesCount" th:field="*{propertiesCount}" th:errorclass="has-error">
                                         <option value="1">1+</option>
-                                        <option value="2">5+</option>
-                                        <option value="3">10+</option>
-                                        <option value="4">50+</option>
+                                        <option value="3">3+</option>
+                                        <option value="5">5+</option>
+                                        <option value="10">10+</option>
+                                        <option value="50">50+</option>
                                     </select>
                                 </div>
 
