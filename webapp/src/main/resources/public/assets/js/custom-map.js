@@ -258,6 +258,7 @@ function initPropertySubmitMap(_latitude,_longitude,_zoom){
     };
     var mapElement = document.getElementById('submit-map');
     var map = new google.maps.Map(mapElement, mapOptions);
+    var geocoder = new google.maps.Geocoder;
     var marker = new MarkerWithLabel({
         position: mapCenter,
         map: map,
@@ -265,16 +266,23 @@ function initPropertySubmitMap(_latitude,_longitude,_zoom){
         labelAnchor: new google.maps.Point(50, 0),
         draggable: true
     });
+
+    var locationInput = $('#location');
+    var addressInput = $('#address');
+    var latitudeInput = $('#latitude');
+    var longitudeInput = $('#longitude');
+
     $('#submit-map').removeClass('fade-map');
     google.maps.event.addListener(marker, "mouseup", function (event) {
         var latitude = this.position.lat();
         var longitude = this.position.lng();
-        $('#latitude').val( this.position.lat() );
-        $('#longitude').val( this.position.lng() );
+        latitudeInput.val(latitude);
+        longitudeInput.val(longitude);
+        resolveAndSetAddress(latitude, longitude);
     });
 
-//      Autocomplete
-    var input = /** @type {HTMLInputElement} */( document.getElementById('address-map') );
+    // Autocomplete
+    var input = /** @type {HTMLInputElement} */( document.getElementById('address-search') );
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
@@ -290,32 +298,85 @@ function initPropertySubmitMap(_latitude,_longitude,_zoom){
         }
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
-        $('#latitude').val( marker.getPosition().lat() );
-        $('#longitude').val( marker.getPosition().lng() );
-        var address = '';
-        if (place.address_components) {
-            address = [
-                (place.address_components[0] && place.address_components[0].short_name || ''),
-                (place.address_components[1] && place.address_components[1].short_name || ''),
-                (place.address_components[2] && place.address_components[2].short_name || '')
-            ].join(' ');
-        }
+
+        var latitude = marker.getPosition().lat();
+        var longitude = marker.getPosition().lng();
+
+        latitudeInput.val(latitude);
+        longitudeInput.val(longitude);
+        resolveAndSetAddress(latitude, longitude);
     });
 
-    function success(position) {
-        initPropertySubmitMap(position.coords.latitude, position.coords.longitude, 8);
-        $('#latitude').val( position.coords.latitude );
-        $('#longitude').val( position.coords.longitude );
+    function resolveAndSetAddress(lat, lng) {
+        geocoder.geocode({'location': {lat: lat, lng: lng}}, function(results, status) {
+
+            if (status === google.maps.GeocoderStatus.OK) {
+
+                var location;
+                var address;
+
+                for (i = 0; i < results.length; i++) {
+                    var result = results[i];
+                    var resultTypes = result.types;
+                    if (resultTypes.length > 1) {
+                        // Best case - we can get all the required information from this result object
+                        if (resultTypes[0] == 'locality' && resultTypes[1] == 'political') {
+                            address = result.formatted_address;
+                            location = resolveLocationFromAddressComponents(result.address_components);
+                        }
+
+                        // We can obtain location, but the address would be less accurate
+                        if (resultTypes[0] == 'administrative_area_level_1' && resultTypes[1] == 'political') {
+                            if (!address) {
+                                address = result.formatted_address;
+                            }
+                            location = resolveLocationFromAddressComponents(result.address_components);
+                        }
+                    }
+
+                    if (address && location) {
+                        break;
+                    }
+                }
+
+                setLocation(location);
+                setAddress(address);
+            } else {
+                // No results found
+                setLocation(null);
+                setAddress(null);
+            }
+        });
     }
 
-    $('.geo-location').on("click", function() {
-        if (navigator.geolocation) {
-            $('#submit-map').addClass('fade-map');
-            navigator.geolocation.getCurrentPosition(success);
-        } else {
-            error('Geo Location is not supported');
+    function resolveLocationFromAddressComponents(addressComponents) {
+        for (j = 0; j < addressComponents.length; j++) {
+            var addressComponent = addressComponents[j];
+            var addressComponentTypes = addressComponent.types;
+            if (addressComponentTypes.length > 1) {
+                if (addressComponentTypes[0] == 'administrative_area_level_1' && addressComponentTypes[1] == 'political') {
+                    return addressComponent.long_name;
+                }
+            }
         }
-    });
+        return null;
+    }
+
+    function setLocation(location) {
+        if (!location) {
+            location = 'FAMAGUSTA';
+        }
+        locationInput.val(location);
+    }
+
+    function setAddress(address) {
+        if (!address) {
+            address = 'Cyprus';
+        }
+        addressInput.val(address);
+    }
+
+    resolveAndSetAddress(_latitude, _longitude);
 }
 
 function initComplexSubmitMap(_latitude,_longitude) {

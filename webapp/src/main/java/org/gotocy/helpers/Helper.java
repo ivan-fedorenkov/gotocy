@@ -1,16 +1,13 @@
 package org.gotocy.helpers;
 
-import org.gotocy.beans.AssetsProvider;
+import org.gotocy.beans.AssetsManager;
+import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.*;
 import org.gotocy.helpers.property.PropertyHelper;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * A helper object for the view layer. Contains a number of utility methods, such as price formatting, etc.
@@ -19,12 +16,14 @@ import java.util.Objects;
  */
 public class Helper {
 
-	private final AssetsProvider assetsProvider;
+	private final AssetsManager assetsManager;
 	private final PropertyHelper propertyHelper;
 
-	public Helper(@NotNull MessageSource messageSource, @NotNull AssetsProvider assetsProvider) {
-		this.assetsProvider = assetsProvider;
-		propertyHelper = new PropertyHelper(messageSource);
+	public Helper(MessageSource messageSource, AssetsManager assetsManager,
+		ApplicationProperties applicationProperties)
+	{
+		this.assetsManager = assetsManager;
+		propertyHelper = new PropertyHelper(messageSource, assetsManager, applicationProperties);
 	}
 
 	/**
@@ -35,24 +34,24 @@ public class Helper {
 	}
 
 	/**
-	 * Generates url for a given asset, using the configured {@link AssetsProvider} instance.
+	 * Generates url for a given asset, using the configured {@link AssetsManager} instance.
 	 * TODO: unit test
 	 */
 	public String url(Asset asset) {
-		return assetsProvider.getUrl(asset);
+		return assetsManager.getUrl(asset);
 	}
 
 	/**
-	 * Generate url for a given image asset, using the configured {@link AssetsProvider} instance and the given image
+	 * Generate url for a given image asset, using the configured {@link AssetsManager} instance and the given image
 	 * size.
 	 * TODO: unit test
 	 */
 	public String imageUrl(Image image, ImageSize size) {
-		return assetsProvider.getImageUrl(image, size);
+		return assetsManager.getImageUrl(image, size);
 	}
 
 	/**
-	 * Generates a list of urls for a given images collection, using the configured {@link AssetsProvider} instance and
+	 * Generates a list of urls for a given images collection, using the configured {@link AssetsManager} instance and
 	 * the {@link ImageSize#BIG} size.
 	 *
 	 * TODO: unit test
@@ -77,8 +76,13 @@ public class Helper {
 	 * Unit test: HelperTest#entityPathTest
 	 */
 	public static <T extends BaseEntity> String path(T entity, String language) {
-		return getPrefixForLanguage(language) + "/" + entity.getClass().getSimpleName().toLowerCase() + "/" +
-			entity.getId();
+		String path;
+		if (entity instanceof Property) {
+			path = (((Property) entity).getOfferStatus() == OfferStatus.PROMO ? "/promo" : "") + "/property/" + entity.getId();
+		} else {
+			path = "/" + entity.getClass().getSimpleName().toLowerCase() + "/" + entity.getId();
+		}
+		return getPrefixForLanguage(language) + path;
 	}
 
 	/**

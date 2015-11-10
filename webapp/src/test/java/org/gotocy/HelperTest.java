@@ -1,15 +1,14 @@
 package org.gotocy;
 
+import org.gotocy.config.Locales;
 import org.gotocy.domain.Complex;
 import org.gotocy.domain.Developer;
+import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
-import org.gotocy.filters.LocaleFilter;
 import org.gotocy.helpers.Helper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
-
-import java.util.Locale;
 
 /**
  * @author ifedorenkov
@@ -18,47 +17,56 @@ public class HelperTest {
 
 	@Test
 	public void entityPathTest() {
-		Property p = new Property();
-		p.setId(1L);
+		Property property = new Property();
+		property.setId(1L);
+		property.setOfferStatus(OfferStatus.ACTIVE);
 
-		Complex c = new Complex();
-		c.setId(2L);
+		Complex complex = new Complex();
+		complex.setId(2L);
 
-		Developer d = new Developer();
-		d.setId(3L);
+		Developer developer = new Developer();
+		developer.setId(3L);
+
+		Property promoProperty = new Property();
+		promoProperty.setId(4L);
+		promoProperty.setOfferStatus(OfferStatus.PROMO);
 
 		// Language is not specified
 
-		LocaleContextHolder.setLocale(LocaleFilter.DEFAULT_LOCALE);
-		Assert.assertEquals("/property/1", Helper.path(p));
-		Assert.assertEquals("/complex/2", Helper.path(c));
-		Assert.assertEquals("/developer/3", Helper.path(d));
+		LocaleContextHolder.setLocale(Locales.DEFAULT);
+		Assert.assertEquals("/property/1", Helper.path(property));
+		Assert.assertEquals("/complex/2", Helper.path(complex));
+		Assert.assertEquals("/developer/3", Helper.path(developer));
+		Assert.assertEquals("/promo/property/4", Helper.path(promoProperty));
 
-		LocaleContextHolder.setLocale(LocaleFilter.RUSSIAN_LOCALE);
-		Assert.assertEquals("/ru/property/1", Helper.path(p));
-		Assert.assertEquals("/ru/complex/2", Helper.path(c));
-		Assert.assertEquals("/ru/developer/3", Helper.path(d));
+		LocaleContextHolder.setLocale(Locales.RU);
+		Assert.assertEquals("/ru/property/1", Helper.path(property));
+		Assert.assertEquals("/ru/complex/2", Helper.path(complex));
+		Assert.assertEquals("/ru/developer/3", Helper.path(developer));
+		Assert.assertEquals("/ru/promo/property/4", Helper.path(promoProperty));
 
 		// Language is specified explicitly
 
 		// Default language, no prefix
 
-		Assert.assertEquals("/property/1", Helper.path(p, "en"));
-		Assert.assertEquals("/complex/2", Helper.path(c, "en"));
-		Assert.assertEquals("/developer/3", Helper.path(d, "en"));
+		Assert.assertEquals("/property/1", Helper.path(property, "en"));
+		Assert.assertEquals("/complex/2", Helper.path(complex, "en"));
+		Assert.assertEquals("/developer/3", Helper.path(developer, "en"));
+		Assert.assertEquals("/promo/property/4", Helper.path(promoProperty, "en"));
 		// Russian language prefix
-		Assert.assertEquals("/ru/property/1", Helper.path(p, "ru"));
-		Assert.assertEquals("/ru/complex/2", Helper.path(c, "ru"));
-		Assert.assertEquals("/ru/developer/3", Helper.path(d, "ru"));
+		Assert.assertEquals("/ru/property/1", Helper.path(property, "ru"));
+		Assert.assertEquals("/ru/complex/2", Helper.path(complex, "ru"));
+		Assert.assertEquals("/ru/developer/3", Helper.path(developer, "ru"));
+		Assert.assertEquals("/ru/promo/property/4", Helper.path(promoProperty, "ru"));
 	}
 
 	@Test
 	public void stringPathTest() {
 		// Language is not specified
-		LocaleContextHolder.setLocale(LocaleFilter.DEFAULT_LOCALE);
+		LocaleContextHolder.setLocale(Locales.DEFAULT);
 		Assert.assertEquals("/some-path", Helper.path("/some-path"));
 
-		LocaleContextHolder.setLocale(LocaleFilter.RUSSIAN_LOCALE);
+		LocaleContextHolder.setLocale(Locales.RU);
 		Assert.assertEquals("/ru/some-path", Helper.path("/some-path"));
 
 		// Language is specified explicitly

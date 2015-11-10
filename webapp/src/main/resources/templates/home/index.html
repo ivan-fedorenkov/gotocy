@@ -53,9 +53,9 @@
                         <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
                     </ul>
                 </nav><!-- /.navbar collapse-->
-                <!-- <div class="add-your-property">
-                    <a href="#" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="#{org.gotocy.dictionary.add-your-property}">Add Your Property</span></a>
-                </div> -->
+                <div class="add-your-property">
+                    <a href="/parent/webapp/templates/property/new.html" th:href="@{${helper.path('/property/new')}}" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="#{org.gotocy.dictionary.add-your-property}">Add Your Property</span></a>
+                </div>
             </header><!-- /.navbar -->
         </div><!-- /.container -->
     </div><!-- /.navigation -->
@@ -100,7 +100,7 @@
          <section id="banner">
             <div class="block has-dark-background background-color-default-darker center text-banner">
                 <div class="container">
-                    <h1 class="no-bottom-margin no-border" th:utext="|#{org.gotocy.templates.adding-property-banner-question} <a class='text-underline' href='mailto:${gotocy.email}'>#{org.gotocy.templates.adding-property-banner-contact-us}</a>|">Do you want your property do be listed here? <a href="#" class="text-underline">Contact Us</a>!</h1>
+                    <h1 class="no-bottom-margin no-border" th:utext="#{org.gotocy.templates.home.index.banner(@{${helper.path('/property/new')}})}">Do you want your property do be listed here? <a href="#" class="text-underline">Click Here</a>!</h1>
                 </div>
             </div>
         </section> <!-- /#banner -->
@@ -116,7 +116,7 @@
                             <figure class="ribbon" th:if="${p.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${p.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{p.offerStatus}}">Sold</figure>
                             <a th:href="@{${helper.path(p)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                    <img alt="" th:src="${helper.property.representativeImageUrl(p)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
@@ -251,7 +251,7 @@
                             <figure class="ribbon" th:if="${p.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${p.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{p.offerStatus}}">Sold</figure>
                             <a th:href="@{${helper.path(p)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                    <img alt="" th:src="${helper.property.representativeImageUrl(p)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
@@ -386,7 +386,7 @@
                             <figure class="ribbon" th:if="${p.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${p.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{p.offerStatus}}">Sold</figure>
                             <a th:href="@{${helper.path(p)}}" href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                    <img alt="" th:src="${helper.property.representativeImageUrl(p)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">

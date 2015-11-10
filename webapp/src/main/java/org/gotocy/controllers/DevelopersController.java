@@ -1,5 +1,6 @@
 package org.gotocy.controllers;
 
+import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.Developer;
 import org.gotocy.forms.DeveloperForm;
 import org.gotocy.repository.DeveloperRepository;
@@ -24,7 +25,7 @@ public class DevelopersController {
 	private DeveloperRepository developerRepository;
 
 	@RequestMapping(value = "/developer/{id}", method = RequestMethod.GET)
-	public String get(Model model, @PathVariable("id") Developer developer, Locale locale) {
+	public String get(@RequiredDomainObject @PathVariable("id") Developer developer, Model model, Locale locale) {
 		developer.initLocalizedFields(locale);
 		model.addAttribute(developer);
 		return "developer/show";
@@ -40,11 +41,11 @@ public class DevelopersController {
 	@ResponseBody
 	@Transactional
 	public Developer create(DeveloperForm developerForm) {
-		return developerRepository.saveAndFlush(developerForm.mergeWithDeveloper(new Developer()));
+		return developerRepository.save(developerForm.mergeWithDeveloper(new Developer()));
 	}
 
 	@RequestMapping(value = "/master/developer/{id}/edit", method = RequestMethod.GET)
-	public String edit(Model model, @PathVariable("id") Developer developer) {
+	public String edit(@RequiredDomainObject @PathVariable("id") Developer developer, Model model) {
 		model.addAttribute(developer);
 		model.addAttribute(new DeveloperForm(developer));
 		return "master/developer/edit";
@@ -53,8 +54,8 @@ public class DevelopersController {
 	@RequestMapping(value = "/master/developer/{id}", method = RequestMethod.PUT)
 	@ResponseBody
 	@Transactional
-	public Developer update(@PathVariable("id") Developer developer, DeveloperForm developerForm) {
-		return developerRepository.saveAndFlush(developerForm.mergeWithDeveloper(developer));
+	public Developer update(@RequiredDomainObject @PathVariable("id") Developer developer, DeveloperForm developerForm) {
+		return developerRepository.save(developerForm.mergeWithDeveloper(developer));
 	}
 
 }

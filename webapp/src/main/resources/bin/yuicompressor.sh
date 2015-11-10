@@ -3,12 +3,12 @@
 # CSS compression commands
 # cd /home/killer/Projects/gotocy-dev/webapp/src/main/resources/public/assets
 ## application wide
-# yui.sh -o css/application.min.css fonts/font-awesome.min.css bootstrap/css/bootstrap.min.css css/bootstrap-select.min.css css/magnific-popup.css css/owl.carousel.css css/jquery.slider.min.css css/style.css
+# yui.sh -o css/application.min.css fonts/font-awesome.min.css bootstrap/css/bootstrap.min.css css/bootstrap-select.min.css css/magnific-popup.css css/owl.carousel.css css/jquery.slider.min.css css/fileinput.min.css css/style.css
 
 # JS compression commands
 # cd /home/killer/Projects/gotocy-dev/webapp/src/main/resources/public/assets
 ## app-wide
-# yui.sh -f -o js/application.min.js js/jquery-2.1.0.min.js js/jquery-migrate-1.2.1.min.js bootstrap/js/bootstrap.min.js js/smoothscroll.js js/owl.carousel.min.js js/bootstrap-select.min.js js/jquery.validate.min.js js/jquery.placeholder.js js/icheck.min.js js/retina-1.1.0.min.js js/jquery.raty.min.js js/jquery.magnific-popup.min.js js/jshashtable-2.1_src.js js/jquery.numberformatter-1.2.3.js js/tmpl.js js/jquery.dependClass-0.1.js js/draggable-0.1.js js/jquery.slider.min.js js/jquery.fitvids.js js/imagesloaded.pkgd.min.js js/masonry.pkgd.min.js js/scrollReveal.min.js js/custom.js
+# yui.sh -f -o js/application.min.js js/jquery-2.1.0.min.js js/jquery-migrate-1.2.1.min.js bootstrap/js/bootstrap.min.js js/smoothscroll.js js/owl.carousel.min.js js/bootstrap-select.min.js js/jquery.validate.min.js js/jquery.placeholder.js js/icheck.min.js js/retina-1.1.0.min.js js/jquery.raty.min.js js/jquery.magnific-popup.min.js js/jshashtable-2.1_src.js js/jquery.numberformatter-1.2.3.js js/tmpl.js js/jquery.dependClass-0.1.js js/draggable-0.1.js js/jquery.slider.min.js js/jquery.fitvids.js js/imagesloaded.pkgd.min.js js/masonry.pkgd.min.js js/scrollReveal.min.js js/fileinput.min.js js/custom.js
 ## maps
 # yui.sh -f -o js/application-maps.min.js js/markerwithlabel_packed.js js/infobox.js js/custom-map.js
 ## pano

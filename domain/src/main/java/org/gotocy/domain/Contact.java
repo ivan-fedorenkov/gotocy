@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import java.util.Objects;
 
 /**
- * An contact of a property object(s).
+ * Just a contact on the website. Could be an owner of a property, complex, etc.
  *
  * @author ifedorenkov
  */
@@ -25,7 +25,6 @@ public class Contact extends BaseEntity {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (!(o instanceof Contact)) return false;
-		if (!super.equals(o)) return false;
 		Contact contact = (Contact) o;
 		return Objects.equals(getName(), contact.getName()) &&
 			Objects.equals(getEmail(), contact.getEmail()) &&
@@ -35,6 +34,6 @@ public class Contact extends BaseEntity {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(super.hashCode(), getName(), getEmail(), getPhone(), getSpokenLanguages());
+		return Objects.hash(getName(), getEmail(), getPhone(), getSpokenLanguages());
 	}
 }

@@ -6,8 +6,6 @@ import org.gotocy.domain.Location;
 import org.gotocy.domain.PropertyStatus;
 import org.gotocy.domain.PropertyType;
 
-import java.util.Locale;
-
 import static org.gotocy.domain.QProperty.property;
 
 /**
@@ -23,8 +21,8 @@ public class PropertiesSearchForm {
 	private Location location;
 	private PropertyStatus propertyStatus;
 	private PropertyType propertyType;
-	private Integer priceFrom = MIN_PRICE;
-	private Integer priceTo = MAX_PRICE;
+	private int priceFrom = MIN_PRICE;
+	private int priceTo = MAX_PRICE;
 
 
 	public Predicate toPredicate() {
@@ -82,43 +80,39 @@ public class PropertiesSearchForm {
 		return propertyType;
 	}
 
-	public void setPriceFrom(Integer priceFrom) {
+	public void setPriceFrom(int priceFrom) {
 		if (priceFrom > MIN_PRICE) {
 			this.priceFrom = priceFrom;
 			builder.and(property.price.goe(priceFrom));
 		}
 	}
 
-	public Integer getPriceFrom() {
+	public int getPriceFrom() {
 		return priceFrom;
 	}
 
-	public void setPriceTo(Integer priceTo) {
+	public void setPriceTo(int priceTo) {
 		if (priceTo < MAX_PRICE) {
 			this.priceTo = priceTo;
 			builder.and(property.price.loe(priceTo));
 		}
 	}
 
-	public Integer getPriceTo() {
+	public int getPriceTo() {
 		return priceTo;
 	}
 
 	public void setPrice(String price) {
 		if (price != null && !price.isEmpty()) {
 			int semiPos = price.indexOf(';');
-			int priceFrom;
-			int priceTo;
 			try {
-				priceFrom = Integer.parseInt(price.substring(0, semiPos));
-				priceTo = Integer.parseInt(price.substring(semiPos + 1));
+				setPriceFrom(Integer.parseInt(price.substring(0, semiPos)));
+				setPriceTo(Integer.parseInt(price.substring(semiPos + 1)));
 			} catch (NumberFormatException nfe) {
 				// TODO: log error
 				priceFrom = MIN_PRICE;
 				priceTo = MAX_PRICE;
 			}
-			setPriceFrom(priceFrom);
-			setPriceTo(priceTo);
 		}
 	}
 

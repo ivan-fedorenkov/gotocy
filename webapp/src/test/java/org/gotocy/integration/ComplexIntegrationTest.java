@@ -1,6 +1,7 @@
 package org.gotocy.integration;
 
 import org.gotocy.Application;
+import org.gotocy.config.Profiles;
 import org.gotocy.config.SecurityProperties;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -23,15 +25,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-@WebIntegrationTest(randomPort = true, value = {
-	"gotocy.s3.secretKey=test",
-	"gotocy.s3.accessKey=test",
-	"gotocy.s3.bucket=test",
-	"gotocy.webapp.profile=test",
-	"gotocy.webapp.security.login=test",
-	"gotocy.webapp.security.password=test",
-	"debug"
-})
+@WebIntegrationTest(randomPort = true)
+@ActiveProfiles(Profiles.TEST)
 @Transactional
 public class ComplexIntegrationTest {
 

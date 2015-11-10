@@ -1,0 +1,307 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US"
+      th:lang="${#locale.language}"
+      th:object="${property}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
+
+    <title th:text="#{org.gotocy.templates.title(*{title})}">Property Detail | GoToCy</title>
+
+</head>
+
+<body class="page-sub-page page-property-detail" id="page-top">
+<div th:replace="fragments/metrics_div :: ya"></div>
+<!-- Wrapper -->
+<div class="wrapper">
+    <!-- Navigation -->
+    <div class="navigation">
+        <div class="secondary-navigation">
+            <div class="container">
+                <div class="contact" th:include="fragments/contact_div :: contact">
+                    <figure><strong>Phone:</strong>+1 810-991-3842</figure>
+                    <figure><strong>Email:</strong>zoner@example.com</figure>
+                </div>
+                <div class="user-area">
+                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${property})">
+                        <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
+                        <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <header class="navbar" id="top" role="banner">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="sr-only" th:text="#{org.gotocy.dictionary.toggle-navigation}">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand nav" id="brand">
+                        <a th:href="@{${helper.path('/')}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
+                    </div>
+                </div>
+                <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                    </ul>
+                </nav><!-- /.navbar collapse-->
+                <!-- <div class="add-your-property">
+                    <a href="#" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="#{org.gotocy.dictionary.add-your-property}">Add Your Property</span></a>
+                </div> -->
+            </header><!-- /.navbar -->
+        </div><!-- /.container -->
+    </div><!-- /.navigation -->
+    <!-- end Navigation -->
+    <!-- Page Content -->
+    <div id="page-content">
+        <!-- Breadcrumb -->
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
+                <li><a th:href="@{${helper.path('/properties')}}" th:text="#{org.gotocy.dictionary.properties}" href="#">Properties Search</a></li>
+                <li class="active" th:text="#{org.gotocy.dictionary.property-detail}">Property Detail</li>
+            </ol>
+        </div>
+        <!-- end Breadcrumb -->
+
+        <div class="container">
+            <div class="row">
+                <!-- Property Detail Content -->
+                <div class="col-md-9 col-sm-9">
+                    <section id="object-detail" th:include="property/show :: property_section(${property})">
+                        <header class="property-title">
+                            <h1>987 Cantebury Drive</h1>
+                            <figure>Golden Valley, MN 55427</figure>
+                        </header>
+                        <section id="property-gallery">
+                            <div class="pg-grid">
+                                <div class="pg-grid-sizer"></div>
+                                <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;">
+                                    <div class="pg-ribbon-container">
+                                        <figure class="pg-ribbon">Booked</figure>
+                                    </div>
+                                </div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg');">
+                                    <div id="pano-popup-container" class="icon-container">
+                                        <i class="fa fa-street-view"></i><br><span class="hint">Click to View Pano 360</span>
+                                        <div id="pano-popup" class="mfp-hide">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-8 col-sm-8 col-lg-offset-3 col-md-offset-2 col-sm-offset-2">
+                                                    <div class="well">
+                                                        <div id="pano">
+                                                            This content requires HTML5/CSS3, WebGL, or Adobe Flash Player Version 9 or higher.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-01.jpg');">
+                                    <div id="gallery-popup-container" class="icon-container">
+                                        <i class="fa fa-camera"></i><br><span class="hint">Click to View Gallery</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <section id="quick-summary" class="clearfix">
+                                    <header><h2>Quick Summary</h2></header>
+                                    <dl>
+                                        <dt>Location:</dt>
+                                        <dd>Chicago, IL 60610</dd>
+                                        <!--/*/ </th:block> /*/-->
+                                        <dt>Price:</dt>
+                                        <dd><span class="tag price">$ 78,000</span></dd>
+                                        <dt>Property Type:</dt>
+                                        <dd>House</dd>
+                                        <dt>Rental:</dt>
+                                        <dd>Long Term</dd>
+                                        <dt>Area:</dt>
+                                        <dd>3 m<sup>2</sup></dd>
+                                        <dt>Bedrooms:</dt>
+                                        <dd>3</dd>
+                                        <dt>Baths:</dt>
+                                        <dd>1</dd>
+                                    </dl>
+                                </section><!-- /#quick-summary -->
+                            </div><!-- /.col-md-4 -->
+                            <div class="col-md-8 col-sm-12">
+                                <section id="description">
+                                    <header><h2>Property Description</h2></header>
+                                    <div>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
+                                            bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt.
+                                            Duis euismod placerat rhoncus. Phasellus mollis imperdiet placerat. Sed ac
+                                            turpis nisl. Mauris at ante mauris. Aliquam posuere fermentum lorem, a aliquam
+                                            mauris rutrum a. Curabitur sit amet pretium lectus, nec consequat orci.
+                                        </p>
+                                    </div>
+                                </section><!-- /#description -->
+                                <section id="property-features">
+                                    <header><h2>Property Features</h2></header>
+                                    <ul class="list-unstyled property-features-list">
+                                        <li>Sauna</li>
+                                        <li>Fireplace or fire pit</li>
+                                        <li>Outdoor Kitchen</li>
+                                        <li>Tennis Courts</li>
+                                        <li>Trees and Landscaping</li>
+                                        <li>Sun Room</li>
+                                        <li>Family Room</li>
+                                        <li>Concrete Flooring</li>
+                                    </ul>
+                                </section><!-- /#property-features -->
+
+                                <section id="property-map">
+                                    <header><h2>Map</h2></header>
+                                    <div class="property-detail-map-wrapper">
+                                        <div class="property-detail-map" id="property-detail-map"></div>
+                                    </div>
+                                </section><!-- /#property-map -->
+                            </div><!-- /.col-md-8 -->
+                        </div><!-- /.row -->
+                    </section><!-- /#object-detail -->
+                </div><!-- /.col-md-9 -->
+                <!-- end Property Detail Content -->
+
+                <!-- sidebar -->
+                <div class="col-md-3 col-sm-3">
+                    <section id="sidebar">
+                        <aside id="registration-offer" th:unless="${relatedRegistration}">
+                            <header><h3 th:text="#{org.gotocy.dictionary.congratulations}">Congratulations</h3></header>
+                            <section th:utext="#{org.gotocy.templates.promo.property.registration-offer-text}">
+                                <p>Congrats, your property's page has been successfully created!</p>
+                                <p>You are just a few steps behind offering your property to our huge auditory!</p>
+                                <p>Register now and we will contact you shortly!</p>
+                            </section>
+                        </aside>
+                        <aside id="registration-form" th:unless="${relatedRegistration}">
+                            <header><h3 th:text="#{org.gotocy.templates.promo.property.registration-form-header}">Register Now</h3></header>
+                            <form role="form" th:object="${registrationForm}" th:action="@{${helper.path('/promo/property/' + property.id + '/registration')}}" method="post">
+                                <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
+                                    <label class="control-label" for="name" th:text="#{org.gotocy.dictionary.your-name}">Your Name</label>
+                                    <input type="text" class="form-control" id="name" th:field="*{name}" required>
+                                </div>
+
+                                <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? has-error">
+                                    <label class="control-label" for="email" th:text="#{org.gotocy.dictionary.your-email}">Your Email</label>
+                                    <input type="text" class="form-control" id="email" th:field="*{email}" required>
+                                </div>
+
+                                <div class="form-group" th:classappend="${#fields.hasErrors('businessForm')} ? has-error">
+                                    <label class="control-label" for="businessForm" th:text="#{org.gotocy.dictionary.business-form}">Business Form</label>
+                                    <select id="businessForm" th:field="*{businessForm}" th:remove="all-but-first">
+                                        <option value="1" th:each="form : ${T(org.gotocy.domain.BusinessForm).values()}" th:value="${form}" th:text="${{form}}">Individual</option>
+                                        <option value="2">Agent</option>
+                                        <option value="3">Developer</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" th:classappend="${#fields.hasErrors('propertiesCount')} ? has-error">
+                                    <label class="control-label" for="propertiesCount" th:text="#{org.gotocy.dictionary.properties-count}">How many properties do you have?</label>
+                                    <select id="propertiesCount" th:field="*{propertiesCount}" th:errorclass="has-error">
+                                        <option value="1">1+</option>
+                                        <option value="3">3+</option>
+                                        <option value="5">5+</option>
+                                        <option value="10">10+</option>
+                                        <option value="50">50+</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" id="register-button" class="btn btn-default" th:text="#{org.gotocy.templates.promo.property.registration-form-submit}">Register Now</button>
+                                </div>
+                            </form>
+                        </aside>
+                        <aside id="thank-you" th:if="${relatedRegistration}">
+                            <header><h3 th:text="#{org.gotocy.dictionary.thank-you}">Thank You!</h3></header>
+                            <section th:utext="#{org.gotocy.templates.promo.property.thank-you-text}">
+                                <p>Your registration request has been sent to our moderator!</p>
+                                <p>We will contact you soon!</p>
+                            </section>
+                        </aside>
+                    </section><!-- /#sidebar -->
+                </div><!-- /.col-md-3 -->
+                <!-- end Sidebar -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div>
+    <!-- end Page Content -->
+    <!-- Page Footer -->
+    <footer id="page-footer" th:include="fragments/footer :: footer">
+        <div class="inner">
+            <aside id="footer-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3">
+                            <article>
+                                <h3>About Us</h3>
+                                <p>Vel fermentum ipsum. Suspendisse quis molestie odio. Interdum et malesuada fames ac ante ipsum
+                                    primis in faucibus. Quisque aliquet a metus in aliquet. Praesent ut turpis posuere, commodo odio
+                                    id, ornare tortor
+                                </p>
+                            </article>
+                        </div><!-- /.col-sm-3 -->
+                        <div class="col-md-3 col-sm-3">
+                            <article>
+                                <h3>Contact</h3>
+                                <address>
+                                    <strong>Your Company</strong><br>
+                                    4877 Spruce Drive<br>
+                                    West Newton, PA 15089
+                                </address>
+                                +1 (734) 123-4567<br>
+                                <a href="#">hello@example.com</a>
+                            </article>
+                        </div><!-- /.col-sm-3 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </aside><!-- /#footer-main -->
+            <aside id="footer-copyright">
+                <div class="container">
+                    <span>Copyright © 2015. All Rights Reserved.</span>
+                    <span class="pull-right"><a href="#page-top" class="roll">Go to top</a></span>
+                </div>
+            </aside>
+        </div><!-- /.inner -->
+    </footer>
+    <!-- end Page Footer -->
+</div>
+
+
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+    var latitude = /*[[*{latitude}]]*/ '34.7071301';
+    var longitude = /*[[*{longitude}]]*/ '33.022617399999945';
+    var markerPictureUrl = /*[[|http://assets.gotocy.eu/static/img/property-types/${helper.property.typeIcon(property.propertyType)}.png|]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
+    var panoConfigUrl = '';
+    var images = /*[[${helper.imageUrls(property.images)}]]*/ '';
+/*]]>*/
+</script>
+
+<script type="text/javascript" th:src="@{/assets/js/application.min.js}" src="/parent/webapp/public/assets/js/application.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" th:src="@{/assets/js/application-maps.min.js}" src="/parent/webapp/public/assets/js/application-maps.min.js"></script>
+
+<!--[if gt IE 8]>
+<script type="text/javascript" src="http://assets.gotocy.eu/static/js/ie.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+    google.maps.event.addDomListener(window, 'load', initMap(latitude, longitude, markerPictureUrl));
+</script>
+
+
+</body>
+</html>

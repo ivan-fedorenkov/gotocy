@@ -11,7 +11,7 @@
                             <div class="tag price" th:utext="${helper.property.price(p)}">$ 11,000</div>
                         </div>
                     </div>
-                    <img alt="" th:class="${stat.count % 2 == 0}? 'extended-3'" th:src="${helper.imageUrl(p.representativeImage, T(org.gotocy.domain.ImageSize).MEDIUM)}">
+                    <img alt="" th:class="${stat.count % 2 == 0}? 'extended-3'" th:src="${helper.property.representativeImageUrl(p)}">
                 </div>
             </a>
             <aside>

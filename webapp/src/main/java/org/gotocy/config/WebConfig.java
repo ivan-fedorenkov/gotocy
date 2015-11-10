@@ -1,10 +1,12 @@
 package org.gotocy.config;
 
-import org.gotocy.beans.AssetsProvider;
+import org.gotocy.beans.AssetsManager;
+import org.gotocy.controllers.aop.RequiredDomainObjectAspect;
 import org.gotocy.domain.*;
 import org.gotocy.filters.LocaleFilter;
 import org.gotocy.filters.UrlRewriteFilter;
 import org.gotocy.format.EnumsFormatter;
+import org.gotocy.format.LocationFormatter;
 import org.gotocy.interceptors.HelpersInterceptor;
 import org.gotocy.interceptors.SecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,6 @@ import org.springframework.core.Ordered;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
@@ -32,19 +33,18 @@ import javax.servlet.Filter;
 public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceAware {
 
 	private MessageSource messageSource;
-	private AssetsProvider assetsProvider;
 	private ApplicationProperties applicationProperties;
-
+	private AssetsManager assetsManager;
 	private HttpEncodingProperties httpEncodingProperties;
-
-	@Autowired
-	public void setAssetsProvider(AssetsProvider assetsProvider) {
-		this.assetsProvider = assetsProvider;
-	}
 
 	@Autowired
 	public void setApplicationProperties(ApplicationProperties applicationProperties) {
 		this.applicationProperties = applicationProperties;
+	}
+
+	@Autowired
+	public void setAssetsManager(AssetsManager assetsManager) {
+		this.assetsManager = assetsManager;
 	}
 
 	@Autowired
@@ -57,17 +57,13 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 		this.messageSource = messageSource;
 	}
 
+	// Beans
+
 	@Bean
 	public LocaleResolver localeResolver() {
 		SessionLocaleResolver resolver = new SessionLocaleResolver();
-		resolver.setDefaultLocale(LocaleFilter.DEFAULT_LOCALE);
+		resolver.setDefaultLocale(Locales.DEFAULT);
 		return resolver;
-	}
-
-	@Profile(value = "production")
-	@Bean
-	public Filter urlRewriteFilter() {
-		return new UrlRewriteFilter();
 	}
 
 	@Bean
@@ -85,27 +81,33 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 		return filter;
 	}
 
+	@Bean
+	public RequiredDomainObjectAspect requiredDomainObjectAspect() {
+		return new RequiredDomainObjectAspect();
+	}
+
+	// Production beans
+
+	@Bean
+	@Profile(Profiles.HEROKU_PROD)
+	public Filter urlRewriteFilter() {
+		return new UrlRewriteFilter();
+	}
+
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addFormatter(new EnumsFormatter<Location>(Location.class, messageSource) {});
+		registry.addFormatter(new LocationFormatter(messageSource));
 		registry.addFormatter(new EnumsFormatter<PropertyType>(PropertyType.class, messageSource) {});
-		registry.addFormatter(new EnumsFormatter<PropertyStatus>(PropertyStatus.class, messageSource) {
-		});
-		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class, messageSource) {
-		});
-		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class, messageSource) {
-		});
+		registry.addFormatter(new EnumsFormatter<PropertyStatus>(PropertyStatus.class, messageSource) {});
+		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class, messageSource) {});
+		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class, messageSource) {});
+		registry.addFormatter(new EnumsFormatter<BusinessForm>(BusinessForm.class, messageSource) {});
 	}
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new HelpersInterceptor(applicationProperties, messageSource, assetsProvider));
+		registry.addInterceptor(new HelpersInterceptor(applicationProperties, messageSource, assetsManager));
 		registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/master/**");
-	}
-
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/complex").setViewName("complex/show");
 	}
 
 }

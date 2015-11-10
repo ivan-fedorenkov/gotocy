@@ -3,12 +3,16 @@ package org.gotocy.helpers.property;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
 
+import java.util.function.Predicate;
+
 /**
  * Quick summary fields provider.
  *
  * @author ifedorenkov
  */
 class QuickSummaryFieldsProvider implements FieldsProvider {
+
+	private static final Predicate<Property> INACTIVE_OFFER = p -> p.getOfferStatus() != OfferStatus.ACTIVE;
 
 	private static final FieldFormat[] LONG_TERM = new FieldFormat[]{
 		FieldFormat.LOCATION,
@@ -107,19 +111,20 @@ class QuickSummaryFieldsProvider implements FieldsProvider {
 	public FieldFormat[] getFields(Property property) {
 		switch (property.getPropertyStatus()) {
 		case LONG_TERM:
-			return property.getOfferStatus() == OfferStatus.RENTED ? RENTED_LONG_TERM : LONG_TERM;
+			return INACTIVE_OFFER.test(property) ? RENTED_LONG_TERM : LONG_TERM;
 		case SHORT_TERM:
-			return property.getOfferStatus() == OfferStatus.RENTED ? RENTED_SHORT_TERM : SHORT_TERM;
+			return INACTIVE_OFFER.test(property) ? RENTED_SHORT_TERM : SHORT_TERM;
 		case SALE:
 			switch (property.getPropertyType()) {
 			case HOUSE:
-				return property.getOfferStatus() == OfferStatus.SOLD ? SOLD_HOUSE : SALE_HOUSE;
+				return INACTIVE_OFFER.test(property) ? SOLD_HOUSE : SALE_HOUSE;
 			case APARTMENT:
-				return property.getOfferStatus() == OfferStatus.SOLD ? SOLD_APARTMENT : SALE_APARTMENT;
+				return INACTIVE_OFFER.test(property) ? SOLD_APARTMENT : SALE_APARTMENT;
 			case LAND:
-				return property.getOfferStatus() == OfferStatus.SOLD ? SOLD_LAND : SALE_LAND;
+				return INACTIVE_OFFER.test(property) ? SOLD_LAND : SALE_LAND;
 			}
 		}
 		return new FieldFormat[0];
 	}
+
 }

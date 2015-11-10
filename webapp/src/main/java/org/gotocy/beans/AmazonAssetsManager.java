@@ -1,20 +1,21 @@
 package org.gotocy.beans;
 
+import com.amazonaws.AmazonClientException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.AmazonS3Exception;
-import com.amazonaws.services.s3.model.Region;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.services.s3.model.*;
 import com.amazonaws.util.IOUtils;
 import org.gotocy.config.S3Properties;
-import org.gotocy.domain.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.gotocy.domain.Asset;
+import org.gotocy.domain.Image;
+import org.gotocy.domain.ImageSize;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Assets provider that utilizes Amazon S3 as a backend storage.
@@ -22,13 +23,11 @@ import java.io.IOException;
  *
  * @author ifedorenkov
  */
-@Component
-public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvider {
+public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager {
 
 	private final S3Properties properties;
 
-	@Autowired
-	public AmazonAssetsProvider(S3Properties properties) {
+	public AmazonAssetsManager(S3Properties properties) {
 		super(new BasicAWSCredentials(properties.getAccessKey(), properties.getSecretKey()),
 			new ClientConfiguration().withProtocol(Protocol.HTTP));
 
@@ -49,7 +48,7 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 
 	@Override
 	public String getImageUrl(Image image, ImageSize size) {
-		String key =image.getKeyForSize(size);
+		String key = image.getKeyForSize(size);
 		// Fall back to original if key can't be found.
 		// TODO: log error
 		return exists(key) ? generatePresignedUrl(key, HttpMethod.GET) : getUrl(image);
@@ -57,22 +56,25 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 
 	@Override
 	public <T extends Asset> T loadUnderlyingObject(T asset) {
-		try {
-			// Load the object input stream
-			S3ObjectInputStream is = getObject(properties.getBucket(), asset.getKey()).getObjectContent();
-
-			// Set the underlying object in the given asset instance
-			if (asset instanceof PanoXml) {
-				((PanoXml) asset).setObject(IOUtils.toString(is));
-			} else if (asset instanceof Image) {
-				((Image) asset).setObject(IOUtils.toByteArray(is));
-			} else if (asset instanceof PdfFile) {
-				((PdfFile) asset).setObject(IOUtils.toByteArray(is));
-			}
-		} catch (IOException ignore) {
+		try (InputStream in = getObject(properties.getBucket(), asset.getKey()).getObjectContent()) {
+			asset.setBytes(IOUtils.toByteArray(in));
+		} catch (AmazonClientException | IOException ignore) {
 			// TODO: log IOException
 		}
 		return asset;
+	}
+
+	@Override
+	public void saveUnderlyingObject(Asset asset) throws IOException {
+		ObjectMetadata metadata = new ObjectMetadata();
+		metadata.setContentLength(asset.getSize());
+		metadata.setContentType(asset.getContentType());
+		try (InputStream in = new ByteArrayInputStream(asset.getBytes())) {
+			PutObjectRequest putObjectRequest = new PutObjectRequest(properties.getBucket(), asset.getKey(), in, metadata);
+			putObject(putObjectRequest.withStorageClass(StorageClass.Standard));
+		} catch (AmazonClientException e) {
+			throw new IOException(e);
+		}
 	}
 
 	private String generatePresignedUrl(String assetKey, HttpMethod method) {
@@ -84,7 +86,7 @@ public class AmazonAssetsProvider extends AmazonS3Client implements AssetsProvid
 		try {
 			getObjectMetadata(properties.getBucket(), assetKey);
 			return true;
-		} catch (AmazonS3Exception e) {
+		} catch (AmazonClientException e) {
 			return false;
 		}
 	}

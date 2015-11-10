@@ -1,16 +1,25 @@
 package org.gotocy.controllers;
 
+import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.*;
+import org.gotocy.forms.RegistrationForm;
+import org.gotocy.forms.validation.RegistrationFormValidator;
+import org.gotocy.forms.validation.UserPropertyFormValidator;
+import org.gotocy.helpers.Helper;
 import org.gotocy.repository.PropertyRepository;
+import org.gotocy.repository.RegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -22,20 +31,65 @@ import java.util.Locale;
 @RequestMapping("/promo")
 public class PromoController {
 
-	private final PropertyRepository repository;
-
 	@Autowired
-	public PromoController(PropertyRepository repository) {
-		this.repository = repository;
+	private PropertyRepository propertyRepository;
+	@Autowired
+	private RegistrationRepository registrationRepository;
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		if (binder.getTarget() != null && RegistrationFormValidator.INSTANCE.supports(binder.getTarget().getClass()))
+			binder.addValidators(RegistrationFormValidator.INSTANCE);
+	}
+
+	/**
+	 * TODO: unit test
+	 */
+	@RequestMapping(value = "/property/{id}", method = RequestMethod.GET)
+	public String show(@RequiredDomainObject @PathVariable("id") Property property, Model model, Locale locale) {
+		if (property.getOfferStatus() != OfferStatus.PROMO)
+			return "redirect:" + Helper.path(property);
+
+		property.initLocalizedFields(locale);
+		model.addAttribute(property);
+		model.addAttribute(new RegistrationForm());
+		model.addAttribute("relatedRegistration", registrationRepository.findByRelatedProperty(property));
+
+		return "promo/property";
+	}
+
+	/**
+	 * TODO: integration test
+	 */
+	@Transactional
+	@RequestMapping(value = "/property/{id}/registration", method = RequestMethod.POST)
+	public String createRegistration(@RequiredDomainObject @PathVariable("id") Property property,
+		@Valid @ModelAttribute RegistrationForm registrationForm, BindingResult errors,
+		Model model, Locale locale)
+	{
+		if (property.getOfferStatus() != OfferStatus.PROMO)
+			return "redirect:" + Helper.path(property);
+
+		property.initLocalizedFields(locale);
+		model.addAttribute(property);
+
+		if (errors.hasErrors())
+			return "promo/property";
+
+		Registration registration = registrationForm.mergeWithRegistration(new Registration());
+		registration.setRelatedProperty(property);
+		registrationRepository.save(registration);
+
+		return "redirect:" + Helper.path(property);
 	}
 
 	@RequestMapping(value = "/index-1", method = RequestMethod.GET)
 	public String getIndex1(Model model, Locale locale,
 		@PageableDefault(size = 4, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
-		model.addAttribute("longTermProperties", repository.findByPropertyStatus(PropertyStatus.LONG_TERM, pageable));
-		model.addAttribute("shortTermProperties", repository.findByPropertyStatus(PropertyStatus.SHORT_TERM, pageable));
-		model.addAttribute("saleProperties", repository.findByPropertyStatus(PropertyStatus.SALE, pageable));
+		model.addAttribute("longTermProperties", propertyRepository.findByPropertyStatus(PropertyStatus.LONG_TERM, pageable));
+		model.addAttribute("shortTermProperties", propertyRepository.findByPropertyStatus(PropertyStatus.SHORT_TERM, pageable));
+		model.addAttribute("saleProperties", propertyRepository.findByPropertyStatus(PropertyStatus.SALE, pageable));
 
 		// List of featured properties (commercial)
 		List<Property> featured = new ArrayList<>(3);
@@ -83,7 +137,7 @@ public class PromoController {
 		p.setLongitude(33.590204);
 		p.setPropertyStatus(PropertyStatus.LONG_TERM);
 		p.setPropertyType(PropertyType.HOUSE);
-		p.setOfferStatus(OfferStatus.RENTED);
+		p.setOfferStatus(OfferStatus.PROMO);
 		p.setReadyToMoveIn(Boolean.TRUE);
 		p.setPrice(850);
 		p.setGuests(10);

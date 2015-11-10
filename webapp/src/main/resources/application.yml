@@ -14,17 +14,30 @@ server:
     cookie:
       http-only: true
 
+multipart:
+  enabled: "true"
+  maxFileSize: "5Mb"
+  maxRequestSize: "-1"
+
+
 gotocy:
   webapp:
     email: "support@gotocy.eu"
     phone: "+357 99 166265"
     defaultLatitude: "34.97351552254917"
     defaultLongitude: "33.133228140624965"
+    defaultContact:
+      name: Anna
+      email: anna@gotocy.eu
+      phone: "+357 99 166265"
+      spokenLanguages: "Greek, Eng, Rus"
+    defaultRepresentativeImage:
+      key: "static/img/no-image.jpg"
 
 ---
 
 spring:
-  profiles: "heroku-cleardb"
+  profiles: "heroku-prod"
 
 heroku:
   cleardb:

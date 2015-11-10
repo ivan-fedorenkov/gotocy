@@ -1094,6 +1094,12 @@ ul.list-links {
     right: 0;
     z-index: 0; }
 
+.error-messages {
+  background-color: #f2dede;
+  padding: 20px 0 20px 0; }
+  .error-messages ul {
+    margin-bottom: 0; }
+
 /****
   F
 ****/
@@ -2165,6 +2171,9 @@ ul.list-links {
 
 .ribbon-booked {
   background: #e82; }
+
+#register-button {
+  margin-top: 10px; }
 
 /****
   S

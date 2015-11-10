@@ -9,13 +9,19 @@ import java.util.Objects;
  */
 @Entity
 @DiscriminatorValue("image")
-public class Image extends Asset<byte[]> {
+public class Image extends Asset {
 
 	public Image() {
 	}
 
 	public Image(String key) {
 		super(key);
+	}
+
+	@Override
+	public String getContentType() {
+		// TODO: image could be in different format, currently we support only jpeg images
+		return "image/jpeg";
 	}
 
 	/**

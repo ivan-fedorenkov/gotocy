@@ -62,7 +62,7 @@
 </div>
 
 <script type="text/javascript" th:src="@{/assets/js/application.min.js}" src="/parent/webapp/public/assets/js/application.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en"></script>
 <script type="text/javascript" th:src="@{/assets/js/application-maps.min.js}" src="/parent/webapp/public/assets/js/application-maps.min.js"></script>
 
 <!--[if gt IE 8]>
@@ -70,8 +70,8 @@
 <![endif]-->
 
 <script th:inline="javascript">
-    var _latitude = /*[[${propertyForm.latitude == null}? ${gotocy.defaultLatitude} : ${propertyForm.latitude}]]*/ '34.7071301';
-    var _longitude = /*[[${propertyForm.longitude == null}? ${gotocy.defaultLongitude} : ${propertyForm.longitude}]]*/ '33.022617399999945';
+    var _latitude = /*[[${propertyForm.latitude}]]*/ '34.7071301';
+    var _longitude = /*[[${propertyForm.longitude}]]*/ '33.022617399999945';
     var _contacts = /*[[${contacts}]]*/ [{id: 1, name: 'Denis'}];
 
     google.maps.event.addDomListener(window, 'load', initPropertySubmitMap(_latitude, _longitude, 8));

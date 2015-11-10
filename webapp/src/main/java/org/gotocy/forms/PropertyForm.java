@@ -2,9 +2,13 @@ package org.gotocy.forms;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.gotocy.config.Locales;
 import org.gotocy.domain.*;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.joining;
@@ -23,17 +27,14 @@ public class PropertyForm {
 	private static final Pattern STRING_SEPARATOR = Pattern.compile("[\n\r]+");
 	private static final String STRINGS_JOINER = "\n";
 
-	private static final Locale EN_LOCALE = Locale.ENGLISH;
-	private static final Locale RU_LOCALE = new Locale("ru");
-
 	// Developer
-	private Long developerId;
+	private long developerId;
 
 	// Complex
-	private Long complexId;
+	private long complexId;
 
 	// Primary Contact
-	private Long contactId;
+	private long contactId;
 	private String contactName;
 	private String contactPhone;
 	private String contactEmail;
@@ -41,26 +42,26 @@ public class PropertyForm {
 
 	// Property
 	private String title;
-	private String fullAddress;
+	private String address;
 	private String shortAddress;
 	private Location location;
 	private PropertyType propertyType;
 	private PropertyStatus propertyStatus;
 	private OfferStatus offerStatus;
-	private Integer price;
-	private Integer coveredArea;
-	private Integer plotSize;
-	private Integer bedrooms;
-	private Integer guests;
-	private Integer levels;
-	private Integer distanceToSea;
+	private int price;
+	private int coveredArea;
+	private int plotSize;
+	private int bedrooms;
+	private int guests;
+	private int levels;
+	private int distanceToSea;
 	private Furnishing furnishing;
-	private Boolean vatIncluded;
-	private Boolean airConditioner;
-	private Boolean heatingSystem;
-	private Boolean readyToMoveIn;
-	private Double latitude;
-	private Double longitude;
+	private boolean vatIncluded;
+	private boolean airConditioner;
+	private boolean heatingSystem;
+	private boolean readyToMoveIn;
+	private double latitude;
+	private double longitude;
 
 	// En Localized Property
 	private String enDescription;
@@ -79,22 +80,24 @@ public class PropertyForm {
 		location = Location.FAMAGUSTA;
 		propertyType = PropertyType.APARTMENT;
 		propertyStatus = PropertyStatus.LONG_TERM;
-		offerStatus = OfferStatus.ACTIVE;
+		offerStatus = OfferStatus.PROMO;
 		furnishing = Furnishing.NONE;
 	}
 
 	public PropertyForm(Property property) {
-		developerId = property.getDeveloper() == null ? null : property.getDeveloper().getId();
-		complexId = property.getComplex() == null ? null : property.getComplex().getId();
+		developerId = property.getDeveloper() == null ? 0 : property.getDeveloper().getId();
+		complexId = property.getComplex() == null ? 0 : property.getComplex().getId();
 
-		contactId = property.getPrimaryContact().getId();
-		contactName = property.getPrimaryContact().getName();
-		contactPhone = property.getPrimaryContact().getPhone();
-		contactEmail = property.getPrimaryContact().getEmail();
-		contactSpokenLanguages = property.getPrimaryContact().getSpokenLanguages();
+		if (property.getPrimaryContact() != null) {
+			contactId = property.getPrimaryContact().getId();
+			contactName = property.getPrimaryContact().getName();
+			contactPhone = property.getPrimaryContact().getPhone();
+			contactEmail = property.getPrimaryContact().getEmail();
+			contactSpokenLanguages = property.getPrimaryContact().getSpokenLanguages();
+		}
 
 		title = property.getTitle();
-		fullAddress = property.getAddress();
+		address = property.getAddress();
 		shortAddress = property.getShortAddress();
 		location = property.getLocation();
 		propertyType = property.getPropertyType();
@@ -108,18 +111,18 @@ public class PropertyForm {
 		levels = property.getLevels();
 		distanceToSea = property.getDistanceToSea();
 		furnishing = property.getFurnishing();
-		vatIncluded = property.getVatIncluded();
-		airConditioner = property.getAirConditioner();
-		heatingSystem = property.getHeatingSystem();
-		readyToMoveIn = property.getReadyToMoveIn();
+		vatIncluded = property.isVatIncluded();
+		airConditioner = property.hasAirConditioner();
+		heatingSystem = property.hasHeatingSystem();
+		readyToMoveIn = property.isReadyToMoveIn();
 		latitude = property.getLatitude();
 		longitude = property.getLongitude();
 
-		enDescription = property.getDescription(EN_LOCALE);
-		enFeatures = property.getFeatures(EN_LOCALE).stream().collect(joining(STRINGS_JOINER));
+		enDescription = property.getDescription(Locales.EN);
+		enFeatures = property.getFeatures(Locales.EN).stream().collect(joining(STRINGS_JOINER));
 
-		ruDescription = property.getDescription(RU_LOCALE);
-		ruFeatures = property.getFeatures(RU_LOCALE).stream().collect(joining(STRINGS_JOINER));
+		ruDescription = property.getDescription(Locales.RU);
+		ruFeatures = property.getFeatures(Locales.RU).stream().collect(joining(STRINGS_JOINER));
 
 		imageKeys = property.getImages()
 			.stream()
@@ -143,7 +146,7 @@ public class PropertyForm {
 
 	public Property mergeWithProperty(Property property) {
 		property.setTitle(title);
-		property.setAddress(fullAddress);
+		property.setAddress(address);
 		property.setShortAddress(shortAddress);
 		property.setLocation(location);
 		property.setPropertyType(propertyType);
@@ -164,16 +167,16 @@ public class PropertyForm {
 		property.setLatitude(latitude);
 		property.setLongitude(longitude);
 
-		property.setDescription(enDescription, EN_LOCALE);
-		property.setDescription(ruDescription, RU_LOCALE);
+		property.setDescription(enDescription, Locales.EN);
+		property.setDescription(ruDescription, Locales.RU);
 
 		List<String> enFeaturesList = enFeatures != null && !enFeatures.isEmpty() ?
 			Arrays.asList(STRING_SEPARATOR.split(enFeatures)) : Collections.emptyList();
-		property.setFeatures(enFeaturesList, EN_LOCALE);
+		property.setFeatures(enFeaturesList, Locales.EN);
 
 		List<String> ruFeaturesList = ruFeatures != null && !ruFeatures.isEmpty() ?
 			Arrays.asList(STRING_SEPARATOR.split(ruFeatures)) : Collections.emptyList();
-		property.setFeatures(ruFeaturesList, RU_LOCALE);
+		property.setFeatures(ruFeaturesList, Locales.RU);
 
 		List<Image> images = imageKeys != null && !imageKeys.isEmpty() ?
 			Arrays.stream(STRING_SEPARATOR.split(imageKeys))

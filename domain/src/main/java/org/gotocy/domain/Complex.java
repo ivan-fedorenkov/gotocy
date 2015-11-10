@@ -33,7 +33,7 @@ public class Complex extends BaseEntity {
 	@ManyToOne
 	private Developer developer;
 
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Contact primaryContact;
 
 	@Enumerated(EnumType.STRING)

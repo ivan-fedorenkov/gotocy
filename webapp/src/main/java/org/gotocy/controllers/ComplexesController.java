@@ -1,5 +1,6 @@
 package org.gotocy.controllers;
 
+import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.Complex;
 import org.gotocy.domain.Contact;
 import org.gotocy.domain.Developer;
@@ -32,7 +33,7 @@ public class ComplexesController {
 	private DeveloperRepository developerRepository;
 
 	@RequestMapping(value = "/complex/{id}", method = RequestMethod.GET)
-	public String get(Model model, @PathVariable("id") Complex complex, Locale locale) {
+	public String get(@RequiredDomainObject @PathVariable("id") Complex complex, Model model, Locale locale) {
 		complex.initLocalizedFields(locale);
 		model.addAttribute(complex);
 		return "complex/show";
@@ -56,11 +57,11 @@ public class ComplexesController {
 		Complex complex = complexForm.mergeWithComplex(new Complex());
 		complex.setPrimaryContact(contact);
 		complex.setDeveloper(getDeveloper(complexForm.getDeveloperId()));
-		return complexRepository.saveAndFlush(complex);
+		return complexRepository.save(complex);
 	}
 
 	@RequestMapping(value = "/master/complex/{id}/edit", method = RequestMethod.GET)
-	public String edit(Model model, @PathVariable("id") Complex complex) {
+	public String edit(@RequiredDomainObject @PathVariable("id") Complex complex, Model model) {
 		model.addAttribute(complex);
 		model.addAttribute("developers", developerRepository.findAll());
 		model.addAttribute("contacts", contactRepository.findAll());
@@ -71,23 +72,22 @@ public class ComplexesController {
 	@RequestMapping(value = "/master/complex/{id}", method = RequestMethod.PUT)
 	@ResponseBody
 	@Transactional
-	public Complex update(@PathVariable("id") Complex complex, ComplexForm complexForm) {
+	public Complex update(@RequiredDomainObject @PathVariable("id") Complex complex, ComplexForm complexForm) {
 		Contact contact = getOrCreateContact(complexForm.getContactId());
 		contact = complexForm.mergeWithContact(contact);
 
 		complex = complexForm.mergeWithComplex(complex);
 		complex.setPrimaryContact(contact);
 		complex.setDeveloper(getDeveloper(complexForm.getDeveloperId()));
-		return complexRepository.saveAndFlush(complex);
+		return complexRepository.save(complex);
 	}
 
-	private Developer getDeveloper(Long developerId) {
-		return developerId == null ? null : developerRepository.findOne(developerId);
+	private Developer getDeveloper(long developerId) {
+		return developerId > 0 ? developerRepository.findOne(developerId) : null;
 	}
 
-	private Contact getOrCreateContact(Long contactId) {
-		return contactId != null && contactId > 0 ?
-			contactRepository.findOne(contactId) : contactRepository.saveAndFlush(new Contact());
+	private Contact getOrCreateContact(long contactId) {
+		return contactId > 0 ? contactRepository.findOne(contactId) : contactRepository.save(new Contact());
 	}
 
 }
