@@ -4410,6 +4410,8 @@ body, html {
     #property-gallery .icon-container .fa {
       font-size: 2em; }
 
+  .grid .grid-item-w-66 {
+    width: 100%; }
   .grid .grid-item-w-50 {
     width: 100%; }
   .grid .grid-item-w-25 {
