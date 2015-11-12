@@ -489,6 +489,31 @@
   }
 }
 
+
+/****
+  G
+****/
+
+.grid {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  .grid-item {
+    float: left;
+    border: solid 1px #ffffff;
+    background-size: cover;
+  }
+
+  .grid-item-w-25 { width: 25%; }
+  .grid-item-w-33 { width: 33.33333%; }
+  .grid-item-w-50 { width: 50%; }
+  .grid-item-w-66 { width: 66.66666%; }
+}
+
+
 /****
   I
 ****/
@@ -875,77 +900,63 @@
 
 // Property Gallery
 
-.pg-grid:after {
-  content: '';
-  display: block;
-  clear: both;
-}
+#property-gallery {
 
-.pg-grid-sizer,
-.pg-grid-item {
-  width: 25%;
-}
-
-.pg-grid-item {
-  height: 360px;
-  float: left;
-  border: solid 1px #ffffff;
-
-  background-size: cover;
-}
-
-.pg-grid-item-w-2 { width: 25%; }
-.pg-grid-item-w-4 { width: 50%; }
-
-.pg-grid-item-h-2 { height: 180px; }
-.pg-grid-item-h-4 { height: 360px; }
-
-.icon-container {
-  height: 120px;
-  width: 120px;
-  position: relative;
-  padding: 0;
-  margin: 0 auto;
-  top: 30px;
-  padding-top: 15px;
-
-  background-color: $color-default;
-  border-radius: 50%;
-  @include opacity(0.8);
-  color: #fff;
-
-  text-align: center;
-  cursor: pointer; cursor: hand;
-
-  .fa {
-    font-size: 3em;
+  .grid-item {
+    height: 180px;
   }
-}
 
-.pg-ribbon-container {
-  width: 100%;
-  height: inherit;
-  position: relative;
-  overflow: hidden;
-}
+  .grid-item:first-child {
+    height: 360px;
+  }
 
-.pg-ribbon {
-  width: 200px;
-  background: $color-default;
-  position: absolute;
-  top: 25px;
-  left: -50px;
-  text-align: center;
-  line-height: 50px;
-  letter-spacing: 1px;
-  color: #fff;
+  .icon-container {
+    height: 120px;
+    width: 120px;
+    position: relative;
+    padding: 0;
+    margin: 0 auto;
+    top: 30px;
+    padding-top: 15px;
 
-  overflow: hidden;
-  z-index: 3;
-  display: block;
+    background-color: $color-default;
+    border-radius: 50%;
+    @include opacity(0.8);
+    color: #fff;
 
-  @include rotate(-45deg);
-  @include shadow;
+    text-align: center;
+    cursor: hand;
+
+    .fa {
+      font-size: 3em;
+    }
+  }
+
+  .pg-ribbon-container {
+    width: 100%;
+    height: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pg-ribbon {
+    width: 200px;
+    background: $color-default;
+    position: absolute;
+    top: 25px;
+    left: -50px;
+    text-align: center;
+    line-height: 50px;
+    letter-spacing: 1px;
+    color: #fff;
+
+    overflow: hidden;
+    z-index: 3;
+    display: block;
+
+    @include rotate(-45deg);
+    @include shadow;
+  }
 }
 
 // Developer's project

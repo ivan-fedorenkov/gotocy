@@ -162,17 +162,22 @@
 // max to 991px
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 @media screen and (max-width: 991px) {
-  .icon-container {
-    padding-top: 25px;
+  #property-gallery {
+    .icon-container {
+      padding-top: 25px;
 
-    .fa {
-      font-size: 2em;
+      .fa {
+        font-size: 2em;
+      }
     }
   }
 
-  .pg-grid-item-w-4 { width: 100%; }
-  .pg-grid-item-w-2 { width: 50%; }
-  .pg-grid-item-small-hide { display: none; }
+
+  .grid {
+    .grid-item-w-50 { width: 100%; }
+    .grid-item-w-25 { width: 50%; }
+    .grid-item-small-hide { display: none; }
+  }
 }
 
 
@@ -247,6 +252,12 @@
   .geo-location-wrapper {
     .btn { top: 20px; }
   }
+
+  .grid {
+    .grid-item-w-66 { width: 100%; }
+    .grid-item-w-33 { width: 50%; }
+  }
+
   .horizontal-search {
     .advanced-search-toggle { position: relative !important; }
     .search-box-wrapper {

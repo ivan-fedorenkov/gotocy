@@ -251,16 +251,6 @@ $(document).ready(function($) {
         }
     }
 
-// Property/Show Masonry
-
-    var pg = $('#pg-grid');
-    if (pg.length > 0) {
-        pg.masonry({
-            itemSelector: '.pg-grid-item',
-            columnWidth: '.pg-grid-sizer',
-            percentPosition: true
-        });
-    }
 
 // Property/Show Pano Popup
 

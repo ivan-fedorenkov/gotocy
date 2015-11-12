@@ -1221,6 +1221,26 @@ ul.list-links {
         z-index: -1; }
 
 /****
+  G
+****/
+.grid:after {
+  content: '';
+  display: block;
+  clear: both; }
+.grid .grid-item {
+  float: left;
+  border: solid 1px #ffffff;
+  background-size: cover; }
+.grid .grid-item-w-25 {
+  width: 25%; }
+.grid .grid-item-w-33 {
+  width: 33.33333%; }
+.grid .grid-item-w-50 {
+  width: 50%; }
+.grid .grid-item-w-66 {
+  width: 66.66666%; }
+
+/****
   I
 ****/
 .invoice {
@@ -2040,34 +2060,11 @@ ul.list-links {
 .show-rating-form {
   height: auto; }
 
-.pg-grid:after {
-  content: '';
-  display: block;
-  clear: both; }
-
-.pg-grid-sizer,
-.pg-grid-item {
-  width: 25%; }
-
-.pg-grid-item {
-  height: 360px;
-  float: left;
-  border: solid 1px #ffffff;
-  background-size: cover; }
-
-.pg-grid-item-w-2 {
-  width: 25%; }
-
-.pg-grid-item-w-4 {
-  width: 50%; }
-
-.pg-grid-item-h-2 {
+#property-gallery .grid-item {
   height: 180px; }
-
-.pg-grid-item-h-4 {
+#property-gallery .grid-item:first-child {
   height: 360px; }
-
-.icon-container {
+#property-gallery .icon-container {
   height: 120px;
   width: 120px;
   position: relative;
@@ -2081,18 +2078,15 @@ ul.list-links {
   opacity: 0.8;
   color: #fff;
   text-align: center;
-  cursor: pointer;
   cursor: hand; }
-  .icon-container .fa {
+  #property-gallery .icon-container .fa {
     font-size: 3em; }
-
-.pg-ribbon-container {
+#property-gallery .pg-ribbon-container {
   width: 100%;
   height: inherit;
   position: relative;
   overflow: hidden; }
-
-.pg-ribbon {
+#property-gallery .pg-ribbon {
   width: 200px;
   background: #1396e2;
   position: absolute;
@@ -4411,18 +4405,16 @@ body, html {
     height: 180px;
     width: 130%; } }
 @media screen and (max-width: 991px) {
-  .icon-container {
+  #property-gallery .icon-container {
     padding-top: 25px; }
-    .icon-container .fa {
+    #property-gallery .icon-container .fa {
       font-size: 2em; }
 
-  .pg-grid-item-w-4 {
+  .grid .grid-item-w-50 {
     width: 100%; }
-
-  .pg-grid-item-w-2 {
+  .grid .grid-item-w-25 {
     width: 50%; }
-
-  .pg-grid-item-small-hide {
+  .grid .grid-item-small-hide {
     display: none; } }
 @media (max-width: 767px) {
   .agency .agency-image {
@@ -4559,6 +4551,11 @@ body, html {
 
   .geo-location-wrapper .btn {
     top: 20px; }
+
+  .grid .grid-item-w-66 {
+    width: 100%; }
+  .grid .grid-item-w-33 {
+    width: 50%; }
 
   .horizontal-search .advanced-search-toggle {
     position: relative !important; }
