@@ -36,6 +36,19 @@
             font-weight: bold;
             text-transform: uppercase;
         }
+
+        @media (max-width: 767px) {
+            header h1 {
+                text-align: center;
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            .image-with-header header h3 {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        }
     </style>
 
     <title th:text="#{org.gotocy.templates.title('G.M. DECO FOR YOU')}">Property Detail | GoToCy</title>
@@ -154,21 +167,21 @@
 
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="image-with-header">
-                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-04.jpg">
+                                    <img alt="" src="/parent/webapp/public/assets/img/gm_deco/offices_logo.jpg">
                                     <header><h3><span>Offices</span></h3></header>
                                 </div>
                             </div>
 
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="image-with-header">
-                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-07.jpg">
+                                    <img alt="" src="/parent/webapp/public/assets/img/gm_deco/shops_logo.jpg">
                                     <header><h3><span>Shops</span></h3></header>
                                 </div>
                             </div>
 
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="image-with-header">
-                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-08.jpg">
+                                    <img alt="" src="/parent/webapp/public/assets/img/gm_deco/modern_houses_logo.jpg">
                                     <header><h3><span>Modern Houses</span></h3></header>
                                 </div>
                             </div>
