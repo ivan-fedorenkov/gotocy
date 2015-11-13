@@ -8,6 +8,36 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
+    <style>
+        .image-with-header {
+            position: relative;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .image-with-header img {
+            width: 100%;
+        }
+
+        .image-with-header header h3 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+
+            background: rgb(255, 255, 255); /* fallback color */
+            background: rgba(255, 255, 255, 0.7);
+
+            text-align: center;
+        }
+
+        .image-with-header header h3 span {
+            color: rgb(90, 90, 90);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+
     <title th:text="#{org.gotocy.templates.title('G.M. DECO FOR YOU')}">Property Detail | GoToCy</title>
 
 </head>
@@ -110,7 +140,40 @@
                     </section>
 
                     <section>
-                        <header class="text-center"><h2>Our Projects</h2></header>
+                        <header class="text-center"><h2>Our Gallery</h2></header>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <a href="#">
+                                    <div class="image-with-header">
+                                        <img alt="" src="/parent/webapp/public/assets/img/gm_deco/buildings_logo.jpg">
+                                        <header><h3><span>Buildings</span></h3></header>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="image-with-header">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-04.jpg">
+                                    <header><h3><span>Offices</span></h3></header>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="image-with-header">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-07.jpg">
+                                    <header><h3><span>Shops</span></h3></header>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="image-with-header">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-08.jpg">
+                                    <header><h3><span>Modern Houses</span></h3></header>
+                                </div>
+                            </div>
+
+                        </div>
                     </section>
                 </div><!-- /.col-md-9 -->
 
@@ -143,7 +206,7 @@
     <!-- Page Footer -->
     <footer id="page-footer" th:include="fragments/footer :: footer">
         <div class="inner">
-            <aside id="footer-main">
+            <!--<aside id="footer-main">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
@@ -154,7 +217,7 @@
                                     id, ornare tortor
                                 </p>
                             </article>
-                        </div><!-- /.col-sm-3 -->
+                        </div>&lt;!&ndash; /.col-sm-3 &ndash;&gt;
                         <div class="col-md-3 col-sm-3">
                             <article>
                                 <h3>Contact</h3>
@@ -166,10 +229,10 @@
                                 +1 (734) 123-4567<br>
                                 <a href="#">hello@example.com</a>
                             </article>
-                        </div><!-- /.col-sm-3 -->
-                    </div><!-- /.row -->
-                </div><!-- /.container -->
-            </aside><!-- /#footer-main -->
+                        </div>&lt;!&ndash; /.col-sm-3 &ndash;&gt;
+                    </div>&lt;!&ndash; /.row &ndash;&gt;
+                </div>&lt;!&ndash; /.container &ndash;&gt;
+            </aside>&lt;!&ndash; /#footer-main &ndash;&gt;-->
             <aside id="footer-copyright">
                 <div class="container">
                     <span>Copyright © 2015. All Rights Reserved.</span>
@@ -182,6 +245,11 @@
 </div>
 
 <script type="text/javascript" th:src="@{/assets/js/application.min.js}" src="/parent/webapp/public/assets/js/application.min.js"></script>
+<script type="text/javascript">
+    $(window).on('resize', function() {
+
+    });
+</script>
 
 <!--[if gt IE 8]>
 <script type="text/javascript" src="http://assets.gotocy.eu/static/js/ie.js"></script>
