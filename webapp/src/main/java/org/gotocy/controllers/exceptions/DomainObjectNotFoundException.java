@@ -1,4 +1,4 @@
-package org.gotocy.controllers.aop;
+package org.gotocy.controllers.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author ifedorenkov
  */
 @ResponseStatus(code = HttpStatus.NOT_FOUND)
-public class DomainObjectNotFoundException extends RuntimeException {
+public class DomainObjectNotFoundException extends NotFoundException {
 }

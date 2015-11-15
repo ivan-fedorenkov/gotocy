@@ -3,6 +3,7 @@ package org.gotocy.controllers.aop;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.gotocy.controllers.exceptions.DomainObjectNotFoundException;
 
 /**
  * Aspect that ensures the required domain object is found.

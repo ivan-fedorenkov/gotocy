@@ -1,0 +1,577 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="alternate" hreflang="en" th:href="@{${helper.path('/gmdeco4u', 'en')}}" href="#" />
+    <link rel="alternate" hreflang="ru" th:href="@{${helper.path('/gmdeco4u', 'ru')}}" href="#" />
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
+
+    <style>
+        a {
+            color: #5a5a5a;
+        }
+
+        a.fa, button.fa {
+            width: 36px;
+        }
+
+
+        .contact-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-group div {
+            margin-bottom: 2px;
+        }
+
+        .contact-group div button {
+            margin-right: 12px;
+            cursor: default;
+        }
+
+        .gallery {
+            cursor: pointer;
+        }
+
+        .gallery-logo {
+            position: relative;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .gallery-logo img {
+            width: 100%;
+        }
+
+        .gallery-logo header h3 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+
+            background: rgb(255, 255, 255); /* fallback color */
+            background: rgba(255, 255, 255, 0.7);
+
+            text-align: center;
+        }
+
+        .gallery-logo header h3 span {
+            color: rgb(90, 90, 90);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .work-direction {
+            text-align: center;
+        }
+        
+        .work-direction header h3 {
+            height: 40px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .work-direction .work-direction-descr {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .grid-item img {
+            max-width:100%;
+            display:block;
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        @media (max-width: 767px) {
+            header h1 {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .gallery-logo header h3 {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        }
+    </style>
+
+    <title th:text="#{org.gotocy.templates.title('G.M. DECO FOR YOU')}">Property Detail | GoToCy</title>
+
+</head>
+
+<body class="page-sub-page page-property-detail" id="page-top">
+<div th:replace="fragments/metrics_div :: ya"></div>
+<!-- Wrapper -->
+<div class="wrapper">
+    <!-- Navigation -->
+    <div class="navigation">
+        <div class="secondary-navigation">
+            <div class="container">
+                <div class="contact" th:include="fragments/contact_div :: contact">
+                    <figure><strong>Phone:</strong>+1 810-991-3842</figure>
+                    <figure><strong>Email:</strong>zoner@example.com</figure>
+                </div>
+                <div class="user-area">
+                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar('/gmdeco4u')">
+                        <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
+                        <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <header class="navbar" id="top" role="banner">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="sr-only" th:text="#{org.gotocy.dictionary.toggle-navigation}">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand nav" id="brand">
+                        <a th:href="@{${helper.path('/')}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
+                    </div>
+                </div>
+                <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                    </ul>
+                </nav><!-- /.navbar collapse-->
+            </header><!-- /.navbar -->
+        </div><!-- /.container -->
+    </div><!-- /.navigation -->
+    <!-- end Navigation -->
+    <!-- Page Content -->
+    <div id="page-content">
+        <!-- Breadcrumb -->
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
+                <li class="active">G.M. DECO FOR YOU</li>
+            </ol>
+        </div>
+        <!-- end Breadcrumb -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-12">
+                    <section id="content">
+                        <header><h1>G.M. DECO FOR YOU</h1></header>
+                        <div class="grid">
+                            <div class="grid-item grid-item-w-33 grid-item-xs-w-50">
+                                <img src="http://assets.gotocy.eu/commercial/gm_deco/logo_1.jpg">
+                            </div>
+                            <div class="grid-item grid-item-w-33 grid-item-xs-w-50">
+                                <img src="http://assets.gotocy.eu/commercial/gm_deco/logo_2.jpg">
+                            </div>
+                            <div class="grid-item grid-item-w-33 grid-item-xs-hide">
+                                <img src="http://assets.gotocy.eu/commercial/gm_deco/logo_3.jpg">
+                            </div>
+                        </div>
+
+                        <div class="block">
+                            <div class="row">
+                                <div class="work-direction col-md-4 col-sm-12">
+                                    <header><h3>INTERIOR AND EXTERIOR DESIGN</h3></header>
+                                    <div class="work-direction-descr">
+                                        decoration and functionalism
+                                        residences, shops, offices, surgeries, restaurants, cafeterias
+                                        creation and manufacture of decorative unique work
+                                    </div>
+                                </div>
+
+                                <div class="work-direction col-md-4 col-sm-12">
+                                    <header><h3>ARCHITECTURAL PLANNING AND STUDIES</h3></header>
+                                    <div class="work-direction-descr">
+                                        planning of buildings, residences, shops, office places and anything that needs architectural study
+                                        restoration, maintenance
+                                        static study, electromechanical engineering study,
+                                        lighting and climate control
+                                    </div>
+                                </div>
+
+                                <div class="work-direction col-md-4 col-sm-12">
+                                    <header><h3>GARDEN</h3></header>
+                                    <div class="work-direction-descr">
+                                        planning and creation of gardens, swimming-pools
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <header class="text-center"><h2>Our Gallery</h2></header>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div id="buildings-gallery" class="gallery">
+                                    <div class="gallery-logo">
+                                        <img alt="Buildings" src="http://assets.gotocy.eu/commercial/gm_deco/buildings_logo.jpg">
+                                        <header><h3><span>Buildings</span></h3></header>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div id="offices-gallery" class="gallery">
+                                    <div class="gallery-logo">
+                                        <img alt="Offices" src="http://assets.gotocy.eu/commercial/gm_deco/offices_logo.jpg">
+                                        <header><h3><span>Offices</span></h3></header>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div id="shops-gallery" class="gallery">
+                                    <div class="gallery-logo">
+                                        <img alt="Shops" src="http://assets.gotocy.eu/commercial/gm_deco/shops_logo.jpg">
+                                        <header><h3><span>Shops</span></h3></header>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div id="modern-houses-gallery" class="gallery">
+                                    <div class="gallery-logo">
+                                        <img alt="Modern Houses" src="http://assets.gotocy.eu/commercial/gm_deco/modern_houses_logo.jpg">
+                                        <header><h3><span>Modern Houses</span></h3></header>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div id="classic-houses-gallery" class="gallery">
+                                    <div class="gallery-logo">
+                                        <img alt="Classic Houses" src="http://assets.gotocy.eu/commercial/gm_deco/classic_houses_logo.jpg">
+                                        <header><h3><span>Classic Houses</span></h3></header>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div id="uclan-gallery" class="gallery">
+                                    <div class="gallery-logo">
+                                        <img alt="Uclan" src="http://assets.gotocy.eu/commercial/gm_deco/uclan_logo.jpg">
+                                        <header><h3><span>Uclan</span></h3></header>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div id="gardens-gallery" class="gallery">
+                                    <div class="gallery-logo">
+                                        <img alt="Gardens" src="http://assets.gotocy.eu/commercial/gm_deco/gardens_logo.jpg">
+                                        <header><h3><span>Gardens</span></h3></header>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-sm-12">
+                    <section id="sidebar">
+                        <aside>
+                            <header><h3>Contact Us</h3></header>
+
+                            <section class="contact-group">
+                                <div>
+                                    <button class="fa fa-link btn btn-grey-dark"></button>
+                                    <noindex><a href="http://www.deco-4u.com" rel="nofollow" target="_blank"><span>www.deco-4u.com</span></a></noindex>
+                                </div>
+
+                                <div>
+                                    <button class="fa fa-envelope btn btn-grey-dark"></button>
+                                    <a href="mailto:deco.4u@cytanet.com.cy"><span>deco.4u@cytanet.com.cy</span></a>
+                                </div>
+                            </section>
+
+                            <section class="contact-group">
+                                <div>
+                                    <button class="fa fa-user btn btn-grey-dark"></button>
+                                    Giorgos Mourouzis
+                                </div>
+
+                                <div>
+                                    <button class="fa fa-phone btn btn-grey-dark"></button>
+                                    00357 99634911
+                                </div>
+                            </section>
+
+                            <section class="contact-group">
+                                <div>
+                                    <button class="fa fa-user btn btn-grey-dark"></button>
+                                    Natasa Anastasiou
+                                </div>
+
+                                <div>
+                                    <button class="fa fa-phone btn btn-grey-dark"></button>
+                                    00357 97887823
+                                </div>
+                            </section>
+                        </aside>
+
+                        <aside>
+                            <header><h3>Stay In Touch</h3></header>
+                            <noindex><a href="https://www.facebook.com/GM-DECO-FOR-YOU-209206719116885/?fref=ts" rel="nofollow" target="_blank" class="fa fa-facebook btn btn-grey-dark"></a></noindex>
+                            <noindex><a href="https://twitter.com/gmdeco4u" rel="nofollow" class="fa fa-twitter btn btn-grey-dark" target="_blank"></a></noindex>
+                        </aside>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Page Content -->
+    <!-- Page Footer -->
+    <footer id="page-footer" th:include="fragments/footer :: footer">
+        <div class="inner">
+            <aside id="footer-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3">
+                            <article>
+                                <h3>About Us</h3>
+                                <p>Vel fermentum ipsum. Suspendisse quis molestie odio. Interdum et malesuada fames ac ante ipsum
+                                    primis in faucibus. Quisque aliquet a metus in aliquet. Praesent ut turpis posuere, commodo odio
+                                    id, ornare tortor
+                                </p>
+                            </article>
+                        </div><!-- /.col-sm-3 -->
+                        <div class="col-md-3 col-sm-3">
+                            <article>
+                                <h3>Contact</h3>
+                                <address>
+                                    <strong>Your Company</strong><br>
+                                    4877 Spruce Drive<br>
+                                    West Newton, PA 15089
+                                </address>
+                                +1 (734) 123-4567<br>
+                                <a href="#">hello@example.com</a>
+                            </article>
+                        </div><!-- /.col-sm-3 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </aside><!-- /#footer-main -->
+            <aside id="footer-copyright">
+                <div class="container">
+                    <span>Copyright © 2015. All Rights Reserved.</span>
+                    <span class="pull-right"><a href="#page-top" class="roll">Go to top</a></span>
+                </div>
+            </aside>
+        </div><!-- /.inner -->
+    </footer>
+    <!-- end Page Footer -->
+</div>
+
+<script type="text/javascript" th:src="@{/assets/js/application.min.js}" src="/parent/webapp/public/assets/js/application.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var galleryOptions = {
+            gallery: {
+                enabled: true
+            },
+            type: 'image',
+            overflowY: 'scroll'
+        };
+
+        $('#buildings-gallery').magnificPopup($.extend({
+            items: [
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/1.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/2.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/3.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/4.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/5.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/6.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/7.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/8.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/9.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/10.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/12.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/13.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/14.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/15.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/16.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/17.jpg" },
+                { src:"http://assets.gotocy.eu/commercial/gm_deco/buildings/18.jpg" }
+            ]}, galleryOptions));
+
+        $('#offices-gallery').magnificPopup($.extend({
+            items: [
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/1.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/2.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/3.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/4.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/5.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/6.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/7.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/8.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/9.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/10.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/11.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/12.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/13.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/14.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/15.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/16.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/17.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/18.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/19.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/20.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/21.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/22.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/23.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/24.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/25.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/26.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/27.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/28.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/29.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/30.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/31.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/32.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/33.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/34.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/35.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/36.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/37.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/38.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/39.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/40.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/41.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/42.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/43.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/44.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/45.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/46.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/offices/47.jpg" }
+            ]}, galleryOptions));
+
+        $('#shops-gallery').magnificPopup($.extend({
+            items: [
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/shops/1.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/shops/2.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/shops/3.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/shops/4.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/shops/5.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/shops/6.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/shops/7.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/shops/8.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/shops/9.jpg" }
+            ]}, galleryOptions));
+
+        $('#modern-houses-gallery').magnificPopup($.extend({
+            items: [
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/modern_houses/1.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/modern_houses/2.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/modern_houses/3.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/modern_houses/4.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/modern_houses/5.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/modern_houses/6.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/modern_houses/7.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/modern_houses/8.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/modern_houses/9.jpg" }
+            ]}, galleryOptions));
+
+        $('#classic-houses-gallery').magnificPopup($.extend({
+            items: [
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/1.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/2.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/3.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/4.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/5a.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/5.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/6.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/7.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/8.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/9.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/10.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/11.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/11b.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/classic_houses/12.jpg" }
+            ]}, galleryOptions));
+
+        $('#uclan-gallery').magnificPopup($.extend({
+            items: [
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/1.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/2.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/3.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/4.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/5.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/6.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/7.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/8.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/9.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/10.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/11.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/12.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/13.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/14.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/15.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/16.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/17.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/uclan/18.jpg" }
+            ]}, galleryOptions));
+
+        $('#gardens-gallery').magnificPopup($.extend({
+            items: [
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/10.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/11.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/12.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/13.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/14.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/15.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/16.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/17.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/18.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/19.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/1.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/20.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/21.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/22.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/23.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/24.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/25.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/26.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/27.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/28.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/29.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/2.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/30.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/31.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/32.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/33.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/34.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/35.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/36.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/37.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/38.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/39.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/3.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/40.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/41.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/42.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/4.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/5.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/6.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/7.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/8.jpg" },
+                { src: "http://assets.gotocy.eu/commercial/gm_deco/gardens/9.jpg" }
+            ]}, galleryOptions));
+
+    });
+</script>
+
+<!--[if gt IE 8]>
+<script type="text/javascript" src="http://assets.gotocy.eu/static/js/ie.js"></script>
+<![endif]-->
+
+</body>
+</html>

@@ -504,13 +504,13 @@
   .grid-item {
     float: left;
     border: solid 1px #ffffff;
-    background-size: cover;
   }
 
   .grid-item-w-25 { width: 25%; }
   .grid-item-w-33 { width: 33.33333%; }
   .grid-item-w-50 { width: 50%; }
   .grid-item-w-66 { width: 66.66666%; }
+  .grid-item-w-100 { width: 100%; }
 }
 
 
@@ -903,11 +903,9 @@
 #property-gallery {
 
   .grid-item {
+    background-size: cover;
     height: 180px;
-  }
-
-  .grid-item:first-child {
-    height: 360px;
+    &:first-child { height: 360px; }
   }
 
   .icon-container {
@@ -956,6 +954,9 @@
 
     @include rotate(-45deg);
     @include shadow;
+
+    &.ribbon-booked { background: $color-orange; }
+    &.ribbon-sold { background: $color-red; }
   }
 }
 

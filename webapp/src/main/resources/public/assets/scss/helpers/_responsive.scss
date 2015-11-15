@@ -18,13 +18,19 @@
   }
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 768px and more
+// Max to 1199px
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@media (min-width: 768px) {
-  .property.masonry img.extended-3 {
-    height: 270px;
-    width: 120%;
+
+@media (max-width: 1199px) {
+  .grid {
+    .grid-item-md-hide { display: none; }
+    .grid-item-md-w-25 { width: 25%; }
+    .grid-item-md-w-33 { width: 33.33333%; }
+    .grid-item-md-w-50 { width: 50%; }
+    .grid-item-md-w-66 { width: 66.66666%; }
+    .grid-item-md-w-100 { width: 100%; }
   }
 }
 
@@ -162,6 +168,16 @@
 // max to 991px
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 @media screen and (max-width: 991px) {
+  .grid {
+    .grid-item-sm-hide { display: none; }
+    .grid-item-sm-w-25 { width: 25%; }
+    .grid-item-sm-w-33 { width: 33.33333%; }
+    .grid-item-sm-w-50 { width: 50%; }
+    .grid-item-sm-w-66 { width: 66.66666%; }
+    .grid-item-sm-w-100 { width: 100%; }
+  }
+
+
   #property-gallery {
     .icon-container {
       padding-top: 25px;
@@ -171,16 +187,17 @@
       }
     }
   }
-
-
-  .grid {
-    .grid-item-w-66 { width: 100%; }
-    .grid-item-w-50 { width: 100%; }
-    .grid-item-w-25 { width: 50%; }
-    .grid-item-small-hide { display: none; }
-  }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 768px and more
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@media (min-width: 768px) {
+  .property.masonry img.extended-3 {
+    height: 270px;
+    width: 120%;
+  }
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // max to 767px
@@ -255,8 +272,12 @@
   }
 
   .grid {
-    .grid-item-w-66 { width: 100%; }
-    .grid-item-w-33 { width: 50%; }
+    .grid-item-xs-hide { display: none; }
+    .grid-item-xs-w-25 { width: 25%; }
+    .grid-item-xs-w-33 { width: 33.33333%; }
+    .grid-item-xs-w-50 { width: 50%; }
+    .grid-item-xs-w-66 { width: 66.66666%; }
+    .grid-item-xs-w-100 { width: 100%; }
   }
 
   .horizontal-search {

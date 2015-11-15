@@ -2,7 +2,7 @@ package org.gotocy.controllers;
 
 import org.gotocy.beans.AssetsManager;
 import org.gotocy.config.Profiles;
-import org.gotocy.controllers.aop.DomainObjectNotFoundException;
+import org.gotocy.controllers.exceptions.DomainObjectNotFoundException;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.PanoXml;
