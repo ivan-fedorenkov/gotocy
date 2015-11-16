@@ -1,0 +1,21 @@
+<div class="property" th:fragment="property_div (p)">
+    <figure class="ribbon" th:if="${p.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${p.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{p.offerStatus}}"></figure>
+    <a th:href="@{${helper.path(p)}}">
+        <div class="property-image">
+            <img alt="" th:src="${helper.property.representativeImageUrl(p)}">
+        </div>
+        <div class="overlay">
+            <div class="info">
+                <div class="tag price" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:utext="${helper.property.price(p)}"></div>
+                <h3 th:text="${p.title}"></h3>
+                <figure th:text="${p.shortAddress}"></figure>
+            </div>
+            <ul class="additional-info">
+                <li th:each="field : ${helper.property.formattedFields(p, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
+                    <header th:text="|${field.heading}:|"></header>
+                    <figure th:utext="${field.value}"></figure>
+                </li>
+            </ul>
+        </div>
+    </a>
+</div>

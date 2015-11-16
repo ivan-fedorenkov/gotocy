@@ -104,6 +104,157 @@
                 </div>
             </div>
         </section> <!-- /#banner -->
+
+        <section id="featured-properties" class="block" th:unless="${#lists.isEmpty(featuredProperties)}">
+            <div class="container">
+                <header class="section-title">
+                    <h2 th:text="#{org.gotocy.dictionary.featured-properties}">Featured Properties</h2>
+                </header>
+                <div class="row" th:remove="all-but-first">
+                    <div class="col-md-3 col-sm-6" th:each="p : ${featuredProperties}">
+                        <div class="property" th:replace="fragments/property_div :: property_div (${p})">
+                            <figure class="ribbon">Sold</figure>
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <figure class="ribbon">Sold</figure>
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <figure class="ribbon">Sold</figure>
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <figure class="ribbon">Sold</figure>
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                </div><!-- /.row-->
+            </div><!-- /.container -->
+        </section><!-- /#featured-properties -->
+
         <section id="long-term-properties" class="block" th:unless=${#lists.isEmpty(longTermProperties)}>
             <div class="container">
                 <header class="section-title">
@@ -112,39 +263,17 @@
                 </header>
                 <div class="row" th:remove="all-but-first">
                     <div class="col-md-3 col-sm-6" th:each="p : ${longTermProperties}">
-                        <div class="property">
-                            <figure class="ribbon" th:if="${p.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${p.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{p.offerStatus}}">Sold</figure>
-                            <a th:href="@{${helper.path(p)}}" href="/parent/webapp/templates/property/show.html">
-                                <div class="property-image">
-                                    <img alt="" th:src="${helper.property.representativeImageUrl(p)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
-                                </div>
-                                <div class="overlay">
-                                    <div class="info">
-                                        <div class="tag price" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:utext="${helper.property.price(p)}">$ 11,000</div>
-                                        <h3 th:text="${p.title}">3398 Lodgeville Road</h3>
-                                        <figure th:text="${p.shortAddress}">Golden Valley, MN 55427</figure>
-                                    </div>
-                                    <ul class="additional-info">
-                                        <li th:each="field : ${helper.property.formattedFields(p, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
-                                            <header th:text="|${field.heading}:|">Bedrooms:</header>
-                                            <figure th:utext="${field.value}">2</figure>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </a>
-                        </div><!-- /.property -->
-                    </div><!-- /.col-md-3 -->
-                    <div class="col-md-3 col-sm-6">
-                        <div class="property">
+                        <div class="property" th:replace="fragments/property_div :: property_div (${p})">
+                            <figure class="ribbon">Sold</figure>
                             <a href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-04.jpg'" src="/parent/webapp/public/assets/img/properties/property-04.jpg">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price">$ 38,000</div>
-                                        <h3>2186 Rinehart Road</h3>
-                                        <figure>Doral, FL 33178 </figure>
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
                                         <li>
@@ -170,15 +299,16 @@
                     </div><!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
                         <div class="property">
+                            <figure class="ribbon">Sold</figure>
                             <a href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-07.jpg'" src="/parent/webapp/public/assets/img/properties/property-07.jpg">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price">$ 325,000</div>
-                                        <h3>3705 Brighton Circle Road</h3>
-                                        <figure>Glenwood, MN 56334</figure>
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
                                         <li>
@@ -204,15 +334,51 @@
                     </div><!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
                         <div class="property">
+                            <figure class="ribbon">Sold</figure>
                             <a href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-08.jpg'" src="/parent/webapp/public/assets/img/properties/property-08.jpg">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price">$ 16,000</div>
-                                        <h3>362 Lynn Ogden Lane</h3>
-                                        <figure>Galveston, TX 77550</figure>
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <figure class="ribbon">Sold</figure>
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
                                         <li>
@@ -239,6 +405,7 @@
                 </div><!-- /.row-->
             </div><!-- /.container -->
         </section><!-- /#long-term-properties -->
+
         <section id="short-term-properties" class="block" th:unless=${#lists.isEmpty(shortTermProperties)}>
             <div class="container">
                 <header class="section-title">
@@ -247,39 +414,17 @@
                 </header>
                 <div class="row" th:remove="all-but-first">
                     <div class="col-md-3 col-sm-6" th:each="p : ${shortTermProperties}">
-                        <div class="property">
-                            <figure class="ribbon" th:if="${p.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${p.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{p.offerStatus}}">Sold</figure>
-                            <a th:href="@{${helper.path(p)}}" href="/parent/webapp/templates/property/show.html">
-                                <div class="property-image">
-                                    <img alt="" th:src="${helper.property.representativeImageUrl(p)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
-                                </div>
-                                <div class="overlay">
-                                    <div class="info">
-                                        <div class="tag price" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:utext="${helper.property.price(p)}">$ 11,000</div>
-                                        <h3 th:text="${p.title}">3398 Lodgeville Road</h3>
-                                        <figure th:text="${p.shortAddress}">Golden Valley, MN 55427</figure>
-                                    </div>
-                                    <ul class="additional-info">
-                                        <li th:each="field : ${helper.property.formattedFields(p, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
-                                            <header th:text="|${field.heading}:|">Bedrooms:</header>
-                                            <figure th:utext="${field.value}">2</figure>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </a>
-                        </div><!-- /.property -->
-                    </div><!-- /.col-md-3 -->
-                    <div class="col-md-3 col-sm-6">
-                        <div class="property">
+                        <div class="property" th:replace="fragments/property_div :: property_div (${p})">
+                            <figure class="ribbon">Sold</figure>
                             <a href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-04.jpg'" src="/parent/webapp/public/assets/img/properties/property-04.jpg">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price">$ 38,000</div>
-                                        <h3>2186 Rinehart Road</h3>
-                                        <figure>Doral, FL 33178 </figure>
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
                                         <li>
@@ -305,15 +450,16 @@
                     </div><!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
                         <div class="property">
+                            <figure class="ribbon">Sold</figure>
                             <a href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-07.jpg'" src="/parent/webapp/public/assets/img/properties/property-07.jpg">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price">$ 325,000</div>
-                                        <h3>3705 Brighton Circle Road</h3>
-                                        <figure>Glenwood, MN 56334</figure>
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
                                         <li>
@@ -339,15 +485,51 @@
                     </div><!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
                         <div class="property">
+                            <figure class="ribbon">Sold</figure>
                             <a href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-08.jpg'" src="/parent/webapp/public/assets/img/properties/property-08.jpg">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price">$ 16,000</div>
-                                        <h3>362 Lynn Ogden Lane</h3>
-                                        <figure>Galveston, TX 77550</figure>
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <figure class="ribbon">Sold</figure>
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
                                         <li>
@@ -374,6 +556,7 @@
                 </div><!-- /.row-->
             </div><!-- /.container -->
         </section><!-- /#short-term-properties -->
+
         <section id="sale-properties" class="block" th:unless="${#lists.isEmpty(saleProperties)}">
             <div class="container">
                 <header class="section-title">
@@ -382,39 +565,17 @@
                 </header>
                 <div class="row" th:remove="all-but-first">
                     <div class="col-md-3 col-sm-6" th:each="p : ${saleProperties}">
-                        <div class="property">
-                            <figure class="ribbon" th:if="${p.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${p.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{p.offerStatus}}">Sold</figure>
-                            <a th:href="@{${helper.path(p)}}" href="/parent/webapp/templates/property/show.html">
-                                <div class="property-image">
-                                    <img alt="" th:src="${helper.property.representativeImageUrl(p)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
-                                </div>
-                                <div class="overlay">
-                                    <div class="info">
-                                        <div class="tag price" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:utext="${helper.property.price(p)}">$ 11,000</div>
-                                        <h3 th:text="${p.title}">3398 Lodgeville Road</h3>
-                                        <figure th:text="${p.shortAddress}">Golden Valley, MN 55427</figure>
-                                    </div>
-                                    <ul class="additional-info">
-                                        <li th:each="field : ${helper.property.formattedFields(p, T(org.gotocy.helpers.property.FieldsStrategy).ADDITIONAL_INFO)}">
-                                            <header th:text="|${field.heading}:|">Bedrooms:</header>
-                                            <figure th:utext="${field.value}">2</figure>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </a>
-                        </div><!-- /.property -->
-                    </div><!-- /.col-md-3 -->
-                    <div class="col-md-3 col-sm-6">
-                        <div class="property">
+                        <div class="property" th:replace="fragments/property_div :: property_div (${p})">
+                            <figure class="ribbon">Sold</figure>
                             <a href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-04.jpg'" src="/parent/webapp/public/assets/img/properties/property-04.jpg">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price">$ 38,000</div>
-                                        <h3>2186 Rinehart Road</h3>
-                                        <figure>Doral, FL 33178 </figure>
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
                                         <li>
@@ -440,15 +601,16 @@
                     </div><!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
                         <div class="property">
+                            <figure class="ribbon">Sold</figure>
                             <a href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-07.jpg'" src="/parent/webapp/public/assets/img/properties/property-07.jpg">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price">$ 325,000</div>
-                                        <h3>3705 Brighton Circle Road</h3>
-                                        <figure>Glenwood, MN 56334</figure>
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
                                         <li>
@@ -474,15 +636,51 @@
                     </div><!-- /.col-md-3 -->
                     <div class="col-md-3 col-sm-6">
                         <div class="property">
+                            <figure class="ribbon">Sold</figure>
                             <a href="/parent/webapp/templates/property/show.html">
                                 <div class="property-image">
-                                    <img alt="" th:src="'http://assets.gotocy.eu/static/img/properties/property-08.jpg'" src="/parent/webapp/public/assets/img/properties/property-08.jpg">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
-                                        <div class="tag price">$ 16,000</div>
-                                        <h3>362 Lynn Ogden Lane</h3>
-                                        <figure>Galveston, TX 77550</figure>
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
+                                    </div>
+                                    <ul class="additional-info">
+                                        <li>
+                                            <header>Area:</header>
+                                            <figure>240m<sup>2</sup></figure>
+                                        </li>
+                                        <li>
+                                            <header>Bedrooms:</header>
+                                            <figure>3</figure>
+                                        </li>
+                                        <li>
+                                            <header>Baths:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                        <li>
+                                            <header>Garages:</header>
+                                            <figure>1</figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div><!-- /.property -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="property">
+                            <figure class="ribbon">Sold</figure>
+                            <a href="/parent/webapp/templates/property/show.html">
+                                <div class="property-image">
+                                    <img alt="" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="tag price">$ 11,000</div>
+                                        <h3>3398 Lodgeville Road</h3>
+                                        <figure>Golden Valley, MN 55427</figure>
                                     </div>
                                     <ul class="additional-info">
                                         <li>

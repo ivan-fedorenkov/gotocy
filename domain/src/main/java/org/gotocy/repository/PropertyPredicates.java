@@ -1,6 +1,6 @@
 package org.gotocy.repository;
 
-import com.mysema.query.BooleanBuilder;
+import com.mysema.query.types.expr.BooleanExpression;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyStatus;
@@ -15,17 +15,20 @@ public class PropertyPredicates {
 	private PropertyPredicates() {
 	}
 
-	public static BooleanBuilder similarWith(Property p) {
-		return new BooleanBuilder(property.propertyStatus.eq(p.getPropertyStatus()))
-			.and(property.location.eq(p.getLocation())).and(property.ne(p));
+	public static BooleanExpression inStatus(PropertyStatus propertyStatus) {
+		return property.propertyStatus.eq(propertyStatus);
 	}
 
-	public static BooleanBuilder withPropertyStatus(PropertyStatus propertyStatus) {
-		return new BooleanBuilder(property.propertyStatus.eq(propertyStatus));
+	public static BooleanExpression publiclyVisible() {
+		return property.offerStatus.ne(OfferStatus.PROMO);
 	}
 
-	public static BooleanBuilder publiclyVisible() {
-		return new BooleanBuilder(property.offerStatus.ne(OfferStatus.PROMO));
+	public static BooleanExpression featured() {
+		return property.featured.isTrue();
+	}
+
+	public static BooleanExpression ne(Property p) {
+		return property.ne(p);
 	}
 
 }

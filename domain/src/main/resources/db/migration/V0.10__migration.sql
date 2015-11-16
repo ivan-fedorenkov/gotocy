@@ -1,0 +1,1 @@
+ALTER TABLE `property` ADD COLUMN `featured` BIT NOT NULL DEFAULT FALSE;

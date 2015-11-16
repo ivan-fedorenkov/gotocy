@@ -92,6 +92,8 @@ public class Property extends BaseEntity {
 
 	private boolean vatIncluded;
 
+	private boolean featured;
+
 	@Enumerated(EnumType.STRING)
 	private Furnishing furnishing = Furnishing.NONE;
 

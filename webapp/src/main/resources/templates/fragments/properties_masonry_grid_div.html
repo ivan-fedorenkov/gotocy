@@ -1,4 +1,4 @@
-<div class="grid" th:fragment="property_masonry_grid (properties)">
+<div class="grid" th:fragment="properties_masonry_grid (properties)">
     <div class="property masonry" th:each="p,stat : ${properties}">
         <div class="inner" data-scroll-reveal th:attr="data-scroll-reveal=(${stat.index > 7}? 'true' : '')" th:with="offerStatus=${p.offerStatus}, active=${offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}, propertyType=${p.propertyType}">
             <a th:href="@{${helper.path(p)}}">
