@@ -60,6 +60,7 @@ public class PropertyForm {
 	private boolean airConditioner;
 	private boolean heatingSystem;
 	private boolean readyToMoveIn;
+	private boolean featured;
 	private double latitude;
 	private double longitude;
 
@@ -115,6 +116,7 @@ public class PropertyForm {
 		airConditioner = property.hasAirConditioner();
 		heatingSystem = property.hasHeatingSystem();
 		readyToMoveIn = property.isReadyToMoveIn();
+		featured = property.isFeatured();
 		latitude = property.getLatitude();
 		longitude = property.getLongitude();
 
@@ -164,6 +166,7 @@ public class PropertyForm {
 		property.setAirConditioner(airConditioner);
 		property.setHeatingSystem(heatingSystem);
 		property.setReadyToMoveIn(readyToMoveIn);
+		property.setFeatured(featured);
 		property.setLatitude(latitude);
 		property.setLongitude(longitude);
 

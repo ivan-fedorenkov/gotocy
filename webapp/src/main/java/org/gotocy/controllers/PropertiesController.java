@@ -18,7 +18,6 @@ import org.gotocy.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -37,8 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
-import static org.gotocy.repository.PropertyPredicates.similarWith;
+import static org.gotocy.repository.PropertyPredicates.*;
 
 /**
  * @author ifedorenkov
@@ -83,8 +81,7 @@ public class PropertiesController {
 
 		property.initLocalizedFields(locale);
 		model.addAttribute(property);
-		model.addAttribute("similarProperties",
-			repository.findAll(publiclyVisible().and(similarWith(property)), new PageRequest(0, 4)));
+		model.addAttribute("featuredProperties", repository.findAll(publiclyVisible().and(featured()).and(ne(property))));
 
 		return "property/show";
 	}

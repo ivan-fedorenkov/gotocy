@@ -220,9 +220,9 @@
                             </div>
                         </aside>
 
-                        <aside id="similar-properties" th:unless="${#lists.isEmpty(similarProperties.content)}">
-                            <header><h3 th:text="#{org.gotocy.dictionary.similar-properties}">Similar Properties</h3></header>
-                            <div class="property small" th:each="p : ${similarProperties}" th:with="propertyPath=${helper.path(p)}">
+                        <aside id="featured-properties" th:unless="${#lists.isEmpty(featuredProperties)}">
+                            <header><h3 th:text="#{org.gotocy.dictionary.featured-properties}">Featured Properties</h3></header>
+                            <div class="property small" th:each="p : ${featuredProperties}" th:with="propertyPath=${helper.path(p)}">
                                 <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html">
                                     <div class="property-image">
                                         <img alt="" th:src="${helper.property.representativeImageUrl(p)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
