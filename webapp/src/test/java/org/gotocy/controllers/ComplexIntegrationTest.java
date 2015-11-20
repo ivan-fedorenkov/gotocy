@@ -1,4 +1,4 @@
-package org.gotocy.integration;
+package org.gotocy.controllers;
 
 import org.gotocy.Application;
 import org.gotocy.config.Profiles;
@@ -41,7 +41,7 @@ public class ComplexIntegrationTest {
 
 	@Test
 	public void complexCreation() throws Exception {
-		mockMvc.perform(post("/master/complex")
+		mockMvc.perform(post("/master/complexes")
 				.sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE)
 				.param("title", "Test title")
 				.param("address", "Test address")

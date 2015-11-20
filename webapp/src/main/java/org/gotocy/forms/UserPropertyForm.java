@@ -100,11 +100,9 @@ public class UserPropertyForm {
 		return property;
 	}
 
-	/**
-	 * @return collection of non-empty images.
-	 */
-	public List<MultipartFile> getImages() {
-		return images.stream().filter(image -> !image.isEmpty()).collect(toList());
+	public void setImages(List<MultipartFile> images) {
+		images.removeIf(MultipartFile::isEmpty);
+		this.images.addAll(images);
 	}
 
 }

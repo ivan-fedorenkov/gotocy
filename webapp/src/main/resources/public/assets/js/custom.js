@@ -216,7 +216,7 @@ $(document).ready(function($) {
 //  Masonry grid listing
 
     if ($('.property').hasClass('masonry')) {
-        var container = $('.grid');
+        var container = $('.masonry-grid');
         container.imagesLoaded(function () {
             container.masonry({
                 gutter: 15,

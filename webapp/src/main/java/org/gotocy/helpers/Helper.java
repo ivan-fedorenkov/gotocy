@@ -7,7 +7,11 @@ import org.gotocy.helpers.property.PropertyHelper;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * A helper object for the view layer. Contains a number of utility methods, such as price formatting, etc.
@@ -35,7 +39,6 @@ public class Helper {
 
 	/**
 	 * Generates url for a given asset, using the configured {@link AssetsManager} instance.
-	 * TODO: unit test
 	 */
 	public String url(Asset asset) {
 		return assetsManager.getUrl(asset);
@@ -44,7 +47,6 @@ public class Helper {
 	/**
 	 * Generate url for a given image asset, using the configured {@link AssetsManager} instance and the given image
 	 * size.
-	 * TODO: unit test
 	 */
 	public String imageUrl(Image image, ImageSize size) {
 		return assetsManager.getImageUrl(image, size);
@@ -53,13 +55,9 @@ public class Helper {
 	/**
 	 * Generates a list of urls for a given images collection, using the configured {@link AssetsManager} instance and
 	 * the {@link ImageSize#BIG} size.
-	 *
-	 * TODO: unit test
 	 */
 	public List<String> imageUrls(Collection<Image> assets) {
-		List<String> urls = new ArrayList<>(assets.size());
-		assets.forEach(asset -> urls.add(imageUrl(asset, ImageSize.BIG)));
-		return urls;
+		return assets.stream().map(a -> imageUrl(a, ImageSize.BIG)).collect(toList());
 	}
 
 	/**
@@ -78,7 +76,11 @@ public class Helper {
 	public static <T extends BaseEntity> String path(T entity, String language) {
 		String path;
 		if (entity instanceof Property) {
-			path = (((Property) entity).getOfferStatus() == OfferStatus.PROMO ? "/promo" : "") + "/property/" + entity.getId();
+			path = (((Property) entity).getOfferStatus() == OfferStatus.PROMO ? "/promo" : "") + "/properties/" + entity.getId();
+		} else if (entity instanceof Complex) {
+			path = "/complexes/" + entity.getId();
+		} else if (entity instanceof Developer) {
+			path = "/developers/" + entity.getId();
 		} else {
 			path = "/" + entity.getClass().getSimpleName().toLowerCase() + "/" + entity.getId();
 		}

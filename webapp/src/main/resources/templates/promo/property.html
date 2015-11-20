@@ -188,7 +188,7 @@
                         </aside>
                         <aside id="registration-form" th:unless="${relatedRegistration}">
                             <header><h3 th:text="#{org.gotocy.templates.promo.property.registration-form-header}">Register Now</h3></header>
-                            <form role="form" th:object="${registrationForm}" th:action="@{${helper.path('/promo/property/' + property.id + '/registration')}}" method="post">
+                            <form role="form" th:object="${registrationForm}" th:action="@{${helper.path(property) + '/registration'}}" method="post">
                                 <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
                                     <label class="control-label" for="name" th:text="#{org.gotocy.dictionary.your-name}">Your Name</label>
                                     <input type="text" class="form-control" id="name" th:field="*{name}" required>

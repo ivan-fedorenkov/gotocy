@@ -80,14 +80,14 @@
                             <h1 th:text="*{title}">Mesoyios Park Residences</h1>
                             <figure th:text="*{address}">Larnaca Dhekelia</figure>
                         </header>
+
                         <section id="property-gallery" th:unless="${#lists.isEmpty(complex.images)}">
-                            <div class="pg-grid">
-                                <div class="pg-grid-sizer"></div>
-                                <div class="pg-grid-item pg-grid-item-w-4 pg-grid-item-h-4" th:style="|background-image: url('${helper.imageUrl(complex.getImage(0), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(complex.getImage(1), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2 pg-grid-item-small-hide" th:style="|background-image: url('${helper.imageUrl(complex.getImage(2), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(complex.getImage(3), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg');"></div>
-                                <div class="pg-grid-item pg-grid-item-w-2 pg-grid-item-h-2" th:style="|background-image: url('${helper.imageUrl(complex.getImage(4), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('http://assets.gotocy.eu/static/img/properties/property-detail-01.jpg');">
+                            <div class="grid">
+                                <div class="grid-item grid-item-w-50 grid-item-sm-w-100" th:style="|background-image: url('${helper.imageUrl(complex.getImage(0), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="grid-item grid-item-w-25 grid-item-sm-hide" th:style="|background-image: url('${helper.imageUrl(complex.getImage(1), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="grid-item grid-item-w-25 grid-item-sm-hide" th:style="|background-image: url('${helper.imageUrl(complex.getImage(2), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
+                                <div class="grid-item grid-item-w-25 grid-item-sm-w-50" th:style="|background-image: url('${helper.imageUrl(complex.getImage(3), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg');"></div>
+                                <div class="grid-item grid-item-w-25 grid-item-sm-w-50" th:style="|background-image: url('${helper.imageUrl(complex.getImage(4), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('http://assets.gotocy.eu/static/img/properties/property-detail-01.jpg');">
                                     <div id="gallery-popup-container" class="icon-container">
                                         <i class="fa fa-camera"></i><br><span class="hint" >Click to View Gallery</span>
                                     </div>
@@ -153,7 +153,7 @@
 
                         <section id="properties" th:unless="${#lists.isEmpty(complex.properties)}">
                             <header><h2 th:text="#{org.gotocy.dictionary.properties}">Properties</h2></header>
-                            <div class="grid" th:include="fragments/properties_masonry_grid_div :: properties_masonry_grid (properties=${complex.properties})">
+                            <div class="masonry-grid" th:include="fragments/properties_masonry_grid_div :: properties_masonry_grid (properties=${complex.properties})">
                                 <div class="property masonry">
                                     <div class="inner" data-scroll-reveal>
                                         <a href="#">

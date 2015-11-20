@@ -55,7 +55,7 @@
 
         <div class="container">
             <header><h1>Edit Developer</h1></header>
-            <form th:replace="master/developer/form :: form('developerForm', '/master/developer/' + ${developer.id}, 'put')"></form>
+            <form th:replace="master/developer/form :: form('developerForm', '/master/developers/' + ${developer.id}, 'put')"></form>
         </div>
     </div>
     <footer id="page-footer" th:include="fragments/footer :: footer"></footer>

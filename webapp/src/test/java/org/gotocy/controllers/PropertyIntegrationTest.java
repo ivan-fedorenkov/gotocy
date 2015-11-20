@@ -1,4 +1,4 @@
-package org.gotocy.integration;
+package org.gotocy.controllers;
 
 import org.gotocy.Application;
 import org.gotocy.config.Profiles;
@@ -59,7 +59,7 @@ public class PropertyIntegrationTest {
 		Property property = PropertyFactory.INSTANCE.get(p -> p.setOfferStatus(OfferStatus.PROMO));
 
 		// Post the property
-		ResultActions result = mockMvc.perform(fileUpload("/property")
+		ResultActions result = mockMvc.perform(fileUpload("/properties")
 			.param("title", property.getTitle())
 			.param("propertyType", property.getPropertyType().name())
 			.param("propertyStatus", property.getPropertyStatus().name())
@@ -91,7 +91,7 @@ public class PropertyIntegrationTest {
 
 		// Verify the response status and the response page
 		result.andExpect(MockMvcResultMatchers.status().isFound())
-			.andExpect(MockMvcResultMatchers.redirectedUrl("/promo/property/" + createdProperty.getId()));
+			.andExpect(MockMvcResultMatchers.redirectedUrl("/promo/properties/" + createdProperty.getId()));
 
 	}
 

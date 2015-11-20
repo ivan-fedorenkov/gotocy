@@ -10,14 +10,11 @@ import org.gotocy.format.LocationFormatter;
 import org.gotocy.interceptors.HelpersInterceptor;
 import org.gotocy.interceptors.SecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.HttpEncodingProperties;
-import org.springframework.boot.context.web.OrderedCharacterEncodingFilter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.Ordered;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -35,7 +32,6 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 	private MessageSource messageSource;
 	private ApplicationProperties applicationProperties;
 	private AssetsManager assetsManager;
-	private HttpEncodingProperties httpEncodingProperties;
 
 	@Autowired
 	public void setApplicationProperties(ApplicationProperties applicationProperties) {
@@ -45,11 +41,6 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 	@Autowired
 	public void setAssetsManager(AssetsManager assetsManager) {
 		this.assetsManager = assetsManager;
-	}
-
-	@Autowired
-	public void setHttpEncodingProperties(HttpEncodingProperties httpEncodingProperties) {
-		this.httpEncodingProperties = httpEncodingProperties;
 	}
 
 	@Override
@@ -67,32 +58,24 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 	}
 
 	@Bean
-	public Filter localeFilter() {
-		return new LocaleFilter();
-	}
-
-	// TODO: remove after 1.3.0.RC1 and check the regression
-	@Bean
-	public OrderedCharacterEncodingFilter characterEncodingFilter() {
-		OrderedCharacterEncodingFilter filter = new OrderedCharacterEncodingFilter();
-		filter.setEncoding(this.httpEncodingProperties.getCharset().name());
-		filter.setForceEncoding(this.httpEncodingProperties.isForce());
-		filter.setOrder(Ordered.HIGHEST_PRECEDENCE);
-		return filter;
-	}
-
-	@Bean
 	public RequiredDomainObjectAspect requiredDomainObjectAspect() {
 		return new RequiredDomainObjectAspect();
 	}
 
-	// Production beans
+	// Filters (order is important!)
 
 	@Bean
 	@Profile(Profiles.HEROKU_PROD)
 	public Filter urlRewriteFilter() {
 		return new UrlRewriteFilter();
 	}
+
+	@Bean
+	public Filter localeFilter() {
+		return new LocaleFilter();
+	}
+
+	// WebMvcConfigurerAdapter
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {

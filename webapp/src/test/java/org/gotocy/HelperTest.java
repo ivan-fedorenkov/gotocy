@@ -34,30 +34,30 @@ public class HelperTest {
 		// Language is not specified
 
 		LocaleContextHolder.setLocale(Locales.DEFAULT);
-		Assert.assertEquals("/property/1", Helper.path(property));
-		Assert.assertEquals("/complex/2", Helper.path(complex));
-		Assert.assertEquals("/developer/3", Helper.path(developer));
-		Assert.assertEquals("/promo/property/4", Helper.path(promoProperty));
+		Assert.assertEquals("/properties/1", Helper.path(property));
+		Assert.assertEquals("/complexes/2", Helper.path(complex));
+		Assert.assertEquals("/developers/3", Helper.path(developer));
+		Assert.assertEquals("/promo/properties/4", Helper.path(promoProperty));
 
 		LocaleContextHolder.setLocale(Locales.RU);
-		Assert.assertEquals("/ru/property/1", Helper.path(property));
-		Assert.assertEquals("/ru/complex/2", Helper.path(complex));
-		Assert.assertEquals("/ru/developer/3", Helper.path(developer));
-		Assert.assertEquals("/ru/promo/property/4", Helper.path(promoProperty));
+		Assert.assertEquals("/ru/properties/1", Helper.path(property));
+		Assert.assertEquals("/ru/complexes/2", Helper.path(complex));
+		Assert.assertEquals("/ru/developers/3", Helper.path(developer));
+		Assert.assertEquals("/ru/promo/properties/4", Helper.path(promoProperty));
 
 		// Language is specified explicitly
 
 		// Default language, no prefix
 
-		Assert.assertEquals("/property/1", Helper.path(property, "en"));
-		Assert.assertEquals("/complex/2", Helper.path(complex, "en"));
-		Assert.assertEquals("/developer/3", Helper.path(developer, "en"));
-		Assert.assertEquals("/promo/property/4", Helper.path(promoProperty, "en"));
+		Assert.assertEquals("/properties/1", Helper.path(property, "en"));
+		Assert.assertEquals("/complexes/2", Helper.path(complex, "en"));
+		Assert.assertEquals("/developers/3", Helper.path(developer, "en"));
+		Assert.assertEquals("/promo/properties/4", Helper.path(promoProperty, "en"));
 		// Russian language prefix
-		Assert.assertEquals("/ru/property/1", Helper.path(property, "ru"));
-		Assert.assertEquals("/ru/complex/2", Helper.path(complex, "ru"));
-		Assert.assertEquals("/ru/developer/3", Helper.path(developer, "ru"));
-		Assert.assertEquals("/ru/promo/property/4", Helper.path(promoProperty, "ru"));
+		Assert.assertEquals("/ru/properties/1", Helper.path(property, "ru"));
+		Assert.assertEquals("/ru/complexes/2", Helper.path(complex, "ru"));
+		Assert.assertEquals("/ru/developers/3", Helper.path(developer, "ru"));
+		Assert.assertEquals("/ru/promo/properties/4", Helper.path(promoProperty, "ru"));
 	}
 
 	@Test

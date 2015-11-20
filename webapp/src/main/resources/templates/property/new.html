@@ -5,8 +5,8 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="alternate" hreflang="en" th:href="@{${helper.path('/property/new', 'en')}}" href="#" />
-    <link rel="alternate" hreflang="ru" th:href="@{${helper.path('/property/new', 'ru')}}" href="#" />
+    <link rel="alternate" hreflang="en" th:href="@{${helper.path('/properties/new', 'en')}}" href="#" />
+    <link rel="alternate" hreflang="ru" th:href="@{${helper.path('/properties/new', 'ru')}}" href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
@@ -25,7 +25,7 @@
                     <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
                 <div class="user-area">
-                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${'/property/new'})">
+                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${'/properties/new'})">
                         <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
                         <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>
@@ -66,7 +66,7 @@
 
         <div class="container">
             <header><h1 th:text="#{org.gotocy.templates.property.new.add-your-property-capitalized}">Add Your Property</h1></header>
-            <form role="form" id="form-submit" class="form-submit" method="post" th:object="${userPropertyForm}" th:action="@{${helper.path('/property')}}" enctype="multipart/form-data">
+            <form role="form" id="form-submit" class="form-submit" method="post" th:object="${userPropertyForm}" th:action="@{${helper.path('/properties')}}" enctype="multipart/form-data">
 
                 <!--Errors-->
                 <div class="row" th:if="${#fields.hasAnyErrors()}">

@@ -31,12 +31,18 @@ import java.util.Locale;
 @RequestMapping("/promo")
 public class PromoController {
 
-	@Autowired
-	private PropertyRepository propertyRepository;
-	@Autowired
-	private RegistrationRepository registrationRepository;
+	private final PropertyRepository propertyRepository;
+	private final RegistrationRepository registrationRepository;
 
-	@InitBinder
+	@Autowired
+	public PromoController(PropertyRepository propertyRepository,
+			RegistrationRepository registrationRepository)
+	{
+		this.propertyRepository = propertyRepository;
+		this.registrationRepository = registrationRepository;
+	}
+
+	@InitBinder("registrationForm")
 	public void initBinder(WebDataBinder binder) {
 		if (binder.getTarget() != null && RegistrationFormValidator.INSTANCE.supports(binder.getTarget().getClass()))
 			binder.addValidators(RegistrationFormValidator.INSTANCE);
@@ -45,7 +51,7 @@ public class PromoController {
 	/**
 	 * TODO: unit test
 	 */
-	@RequestMapping(value = "/property/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/properties/{id}", method = RequestMethod.GET)
 	public String show(@RequiredDomainObject @PathVariable("id") Property property, Model model, Locale locale) {
 		if (property.getOfferStatus() != OfferStatus.PROMO)
 			return "redirect:" + Helper.path(property);
@@ -62,7 +68,7 @@ public class PromoController {
 	 * TODO: integration test
 	 */
 	@Transactional
-	@RequestMapping(value = "/property/{id}/registration", method = RequestMethod.POST)
+	@RequestMapping(value = "/properties/{id}/registration", method = RequestMethod.POST)
 	public String createRegistration(@RequiredDomainObject @PathVariable("id") Property property,
 		@Valid @ModelAttribute RegistrationForm registrationForm, BindingResult errors,
 		Model model, Locale locale)
