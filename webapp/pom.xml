@@ -59,6 +59,13 @@
 			<version>${com.amazonaws.aws-java-sdk-version.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.gotocy</groupId>
+			<artifactId>test</artifactId>
+			<version>0.1-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 

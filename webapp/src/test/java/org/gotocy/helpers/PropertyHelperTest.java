@@ -1,4 +1,4 @@
-package org.gotocy;
+package org.gotocy.helpers;
 
 import org.gotocy.domain.PropertyType;
 import org.gotocy.helpers.property.PropertyHelper;

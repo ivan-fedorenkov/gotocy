@@ -1,6 +1,5 @@
 package org.gotocy.examples;
 
-import org.gotocy.controllers.HomeController;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;

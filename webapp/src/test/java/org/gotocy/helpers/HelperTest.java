@@ -1,11 +1,10 @@
-package org.gotocy;
+package org.gotocy.helpers;
 
 import org.gotocy.config.Locales;
 import org.gotocy.domain.Complex;
 import org.gotocy.domain.Developer;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
-import org.gotocy.helpers.Helper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;

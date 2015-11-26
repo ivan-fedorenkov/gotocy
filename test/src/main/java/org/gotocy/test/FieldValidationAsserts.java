@@ -1,4 +1,4 @@
-package org.gotocy;
+package org.gotocy.test;
 
 import org.gotocy.domain.validation.ValidationConstraints;
 import org.junit.Assert;

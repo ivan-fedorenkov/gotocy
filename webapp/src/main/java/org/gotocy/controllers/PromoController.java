@@ -4,7 +4,6 @@ import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.*;
 import org.gotocy.forms.RegistrationForm;
 import org.gotocy.forms.validation.RegistrationFormValidator;
-import org.gotocy.forms.validation.UserPropertyFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.repository.PropertyRepository;
 import org.gotocy.repository.RegistrationRepository;
