@@ -1,5 +1,7 @@
 package org.gotocy.beans;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.ImageSize;
@@ -15,15 +17,12 @@ import java.nio.file.StandardOpenOption;
  */
 public class FileSystemAssetsManager implements AssetsManager {
 
+	private static final Log log = LogFactory.getLog(FileSystemAssetsManager.class);
+
 	private final String assetsDirPath;
 
 	public FileSystemAssetsManager(String assetsDirPath) {
 		this.assetsDirPath = assetsDirPath;
-	}
-
-	@Override
-	public String getUrl(String assetKey) {
-		return "/fs_assets?key=" + assetKey;
 	}
 
 	@Override
@@ -37,7 +36,7 @@ public class FileSystemAssetsManager implements AssetsManager {
 		Path imagePath = Paths.get(assetsDirPath, imageKey);
 		if (Files.isReadable(imagePath))
 			return getUrl(imageKey);
-		return getUrl(image.getKey());
+		return getUrl(image);
 	}
 
 	@Override
@@ -47,7 +46,7 @@ public class FileSystemAssetsManager implements AssetsManager {
 			try {
 				asset.setBytes(Files.readAllBytes(assetPath));
 			} catch (IOException ioe) {
-				// TODO: log error
+				log.error("Failed to load asset's underlying object for key: " + asset.getKey(), ioe);
 			}
 		}
 		return asset;
@@ -60,4 +59,9 @@ public class FileSystemAssetsManager implements AssetsManager {
 		Files.write(assetPath, asset.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.WRITE,
 			StandardOpenOption.TRUNCATE_EXISTING);
 	}
+
+	private String getUrl(String assetKey) {
+		return "/fs_assets?key=" + assetKey;
+	}
+
 }

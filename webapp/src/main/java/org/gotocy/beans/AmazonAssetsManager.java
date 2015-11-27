@@ -8,6 +8,8 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.*;
 import com.amazonaws.util.IOUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.gotocy.config.S3Properties;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
@@ -19,11 +21,12 @@ import java.io.InputStream;
 
 /**
  * Assets provider that utilizes Amazon S3 as a backend storage.
- * TODO: handle the Amazon exceptions
  *
  * @author ifedorenkov
  */
 public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager {
+
+	private static final Log log = LogFactory.getLog(AmazonAssetsManager.class);
 
 	private final S3Properties properties;
 
@@ -37,11 +40,6 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 	}
 
 	@Override
-	public String getUrl(String assetKey) {
-		return generatePresignedUrl(assetKey, HttpMethod.GET);
-	}
-
-	@Override
 	public String getUrl(Asset asset) {
 		return getUrl(asset.getKey());
 	}
@@ -50,16 +48,15 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 	public String getImageUrl(Image image, ImageSize size) {
 		String key = image.getKeyForSize(size);
 		// Fall back to original if key can't be found.
-		// TODO: log error
-		return exists(key) ? generatePresignedUrl(key, HttpMethod.GET) : getUrl(image);
+		return exists(key) ? getUrl(key) : getUrl(image);
 	}
 
 	@Override
 	public <T extends Asset> T loadUnderlyingObject(T asset) {
 		try (InputStream in = getObject(properties.getBucket(), asset.getKey()).getObjectContent()) {
 			asset.setBytes(IOUtils.toByteArray(in));
-		} catch (AmazonClientException | IOException ignore) {
-			// TODO: log IOException
+		} catch (AmazonClientException | IOException e) {
+			log.error("Failed to load asset's underlying object for key: " + asset.getKey(), e);
 		}
 		return asset;
 	}
@@ -77,8 +74,9 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 		}
 	}
 
-	private String generatePresignedUrl(String assetKey, HttpMethod method) {
-		return generatePresignedUrl(properties.getBucket(), assetKey, properties.getExpirationDate(), method).toString();
+	public String getUrl(String assetKey) {
+		return generatePresignedUrl(properties.getBucket(), assetKey, properties.getExpirationDate(), HttpMethod.GET)
+			.toString();
 	}
 
 	private boolean exists(String assetKey) {
