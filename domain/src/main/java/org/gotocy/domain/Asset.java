@@ -57,4 +57,11 @@ public abstract class Asset extends BaseEntity {
 	public int hashCode() {
 		return Objects.hash(key);
 	}
+
+	@Override
+	public String toString() {
+		return "Asset{" +
+			"key='" + key + '\'' +
+			'}';
+	}
 }

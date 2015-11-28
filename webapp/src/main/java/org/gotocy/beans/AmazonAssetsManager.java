@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
 
 /**
  * Assets provider that utilizes Amazon S3 as a backend storage.
@@ -43,15 +44,19 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 	}
 
 	@Override
-	public String getUrl(Asset asset) {
-		return getUrl(asset.getKey());
+	public Optional<String> getPublicUrl(Asset asset) {
+		if (exists(asset.getKey())) {
+			return generatePresignedUrl(asset.getKey());
+		} else {
+			logger.error("Failed to generate public url for {}. Underlying object not found.", asset);
+			return Optional.empty();
+		}
 	}
 
 	@Override
-	public String getImageUrl(Image image, ImageSize size) {
-		String key = image.getKeyForSize(size);
-		// Fall back to original if key can't be found.
-		return exists(key) ? getUrl(key) : getUrl(image);
+	public Optional<String> getImagePublicUrl(Image image, ImageSize size) {
+		String imageKey = image.getKeyForSize(size);
+		return exists(imageKey) ? generatePresignedUrl(imageKey) : getPublicUrl(image);
 	}
 
 	@Override
@@ -59,7 +64,7 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 		try (InputStream in = getObject(properties.getBucket(), asset.getKey()).getObjectContent()) {
 			asset.setBytes(IOUtils.toByteArray(in));
 		} catch (AmazonClientException | IOException e) {
-			logger.error("Failed to load asset's underlying object for key '{}'", asset.getKey(), e);
+			logger.error("Failed to load underlying object for {}", asset, e);
 		}
 		return asset;
 	}
@@ -77,9 +82,15 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 		}
 	}
 
-	public String getUrl(String assetKey) {
-		return generatePresignedUrl(properties.getBucket(), assetKey, properties.getExpirationDate(), HttpMethod.GET)
-			.toString();
+	private Optional<String> generatePresignedUrl(String assetKey) {
+		Optional<String> url = Optional.empty();
+		try {
+			url = Optional.of(generatePresignedUrl(properties.getBucket(), assetKey, properties.getExpirationDate(),
+				HttpMethod.GET).toString());
+		} catch (AmazonClientException e) {
+			logger.error("Failed to generate presigned url for the asset key '{}'", assetKey, e);
+		}
+		return url;
 	}
 
 	private boolean exists(String assetKey) {

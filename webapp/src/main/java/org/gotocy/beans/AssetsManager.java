@@ -5,6 +5,7 @@ import org.gotocy.domain.Image;
 import org.gotocy.domain.ImageSize;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * An adapter interface to deal with various backend asset providers.
@@ -14,14 +15,18 @@ import java.io.IOException;
 public interface AssetsManager {
 
 	/**
-	 * Returns {@link Asset} url.
+	 * @param asset which url is to be returned
+	 * @return public url of the given asset
 	 */
-	String getUrl(Asset asset);
+	Optional<String> getPublicUrl(Asset asset);
 
 	/**
-	 * Returns {@link Image} url for specified {@link ImageSize}.
+	 * @param image which url is to be returned
+	 * @param size image size hint, note that it is just a hint and it is not guarantied that the returned
+	 *             url is referencing the image of the specific size
+	 * @return public url of the given image
 	 */
-	String getImageUrl(Image image, ImageSize size);
+	Optional<String> getImagePublicUrl(Image image, ImageSize size);
 
 	/**
 	 * Loads the underlying object by using the specified object key.

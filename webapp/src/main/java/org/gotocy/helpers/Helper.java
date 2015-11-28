@@ -41,7 +41,7 @@ public class Helper {
 	 * Generates url for a given asset, using the configured {@link AssetsManager} instance.
 	 */
 	public String url(Asset asset) {
-		return assetsManager.getUrl(asset);
+		return assetsManager.getPublicUrl(asset).orElse("");
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class Helper {
 	 * size.
 	 */
 	public String imageUrl(Image image, ImageSize size) {
-		return assetsManager.getImageUrl(image, size);
+		return assetsManager.getImagePublicUrl(image, size).orElse("");
 	}
 
 	/**

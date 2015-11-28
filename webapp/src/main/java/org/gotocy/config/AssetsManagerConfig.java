@@ -3,6 +3,7 @@ package org.gotocy.config;
 import org.gotocy.beans.AmazonAssetsManager;
 import org.gotocy.beans.AssetsManager;
 import org.gotocy.beans.FileSystemAssetsManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;

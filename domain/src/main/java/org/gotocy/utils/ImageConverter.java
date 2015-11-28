@@ -56,7 +56,7 @@ public class ImageConverter {
 	 * @return the converted image or {@link Optional#EMPTY} if something went wrong.
 	 */
 	public static Optional<Image> convertToSize(Image sourceImage, ImageSize targetSize) {
-		logger.info("Converting image '{}' to size '{}'", sourceImage.getKey(), targetSize);
+		logger.info("Converting {} to size {}", sourceImage, targetSize);
 		Optional<Image> converted = Optional.empty();
 		try {
 			Path src = Files.createTempFile(TEMP_FILES_PREFIX, TEMP_FILES_SUFFIX);
@@ -70,7 +70,7 @@ public class ImageConverter {
 			convertedImage.setBytes(Files.readAllBytes(dst));
 			converted = Optional.of(convertedImage);
 		} catch (InterruptedException | IM4JavaException | IOException e) {
-			logger.error("Failed to convert '{}' to size '{}'", sourceImage.getKey(), targetSize, e);
+			logger.error("Failed to convert {} to size {}", sourceImage, targetSize, e);
 		}
 		return converted;
 	}

@@ -1,6 +1,5 @@
 package org.gotocy.beans;
 
-import org.apache.commons.logging.LogFactory;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.ImageSize;
@@ -12,6 +11,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Optional;
+import java.util.concurrent.Executor;
 
 /**
  * @author ifedorenkov
@@ -27,17 +28,19 @@ public class FileSystemAssetsManager implements AssetsManager {
 	}
 
 	@Override
-	public String getUrl(Asset asset) {
-		return getUrl(asset.getKey());
+	public Optional<String> getPublicUrl(Asset asset) {
+		if (exists(asset.getKey())) {
+			return getUrl(asset.getKey());
+		} else {
+			logger.error("Failed to generate public url for {}. Underlying object not found.", asset);
+			return Optional.empty();
+		}
 	}
 
 	@Override
-	public String getImageUrl(Image image, ImageSize size) {
+	public Optional<String> getImagePublicUrl(Image image, ImageSize size) {
 		String imageKey = image.getKeyForSize(size);
-		Path imagePath = Paths.get(assetsDirPath, imageKey);
-		if (Files.isReadable(imagePath))
-			return getUrl(imageKey);
-		return getUrl(image);
+		return exists(imageKey) ? getUrl(imageKey) : getPublicUrl(image);
 	}
 
 	@Override
@@ -46,8 +49,8 @@ public class FileSystemAssetsManager implements AssetsManager {
 		if (Files.isReadable(assetPath)) {
 			try {
 				asset.setBytes(Files.readAllBytes(assetPath));
-			} catch (IOException ioe) {
-				logger.error("Failed to load asset's underlying object for key '{}'", asset.getKey(), ioe);
+			} catch (IOException e) {
+				logger.error("Failed to load underlying object for {}", asset, e);
 			}
 		}
 		return asset;
@@ -61,8 +64,12 @@ public class FileSystemAssetsManager implements AssetsManager {
 			StandardOpenOption.TRUNCATE_EXISTING);
 	}
 
-	private String getUrl(String assetKey) {
-		return "/fs_assets?key=" + assetKey;
+	private Optional<String> getUrl(String assetKey) {
+		return Optional.of("/fs_assets?key=" + assetKey);
+	}
+
+	private boolean exists(String assetKey) {
+		return Files.isReadable(Paths.get(assetsDirPath, assetKey));
 	}
 
 }

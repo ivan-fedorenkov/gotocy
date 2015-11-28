@@ -27,9 +27,9 @@ public class Image extends Asset {
 	/**
 	 * Returns an image asset key for the given image size.
 	 */
-	public String getKeyForSize(ImageSize imageSize) {
+	public String getKeyForSize(ImageSize size) {
 		int nextToLastSlash = getKey().lastIndexOf('/') + 1;
-		return getKey().substring(0, nextToLastSlash) + imageSize.name() + '/' + getKey().substring(nextToLastSlash);
+		return getKey().substring(0, nextToLastSlash) + size.name() + '/' + getKey().substring(nextToLastSlash);
 	}
 
 }

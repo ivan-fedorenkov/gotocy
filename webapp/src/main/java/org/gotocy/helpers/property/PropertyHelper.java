@@ -67,9 +67,9 @@ public class PropertyHelper {
 	 */
 	public String representativeImageUrl(Property property) {
 		if (property.getRepresentativeImage() == null) {
-			return assetsManager.getUrl(applicationProperties.getDefaultRepresentativeImage());
+			return assetsManager.getPublicUrl(applicationProperties.getDefaultRepresentativeImage()).orElse("");
 		} else {
-			return assetsManager.getImageUrl(property.getRepresentativeImage(), ImageSize.MEDIUM);
+			return assetsManager.getImagePublicUrl(property.getRepresentativeImage(), ImageSize.MEDIUM).orElse("");
 		}
 	}
 
