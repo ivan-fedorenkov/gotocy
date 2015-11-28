@@ -6,14 +6,17 @@ import com.amazonaws.HttpMethod;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.Region;
+import com.amazonaws.services.s3.model.StorageClass;
 import com.amazonaws.util.IOUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.gotocy.config.S3Properties;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.ImageSize;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -26,7 +29,7 @@ import java.io.InputStream;
  */
 public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager {
 
-	private static final Log log = LogFactory.getLog(AmazonAssetsManager.class);
+	private static final Logger logger = LoggerFactory.getLogger(AmazonAssetsManager.class);
 
 	private final S3Properties properties;
 
@@ -56,7 +59,7 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 		try (InputStream in = getObject(properties.getBucket(), asset.getKey()).getObjectContent()) {
 			asset.setBytes(IOUtils.toByteArray(in));
 		} catch (AmazonClientException | IOException e) {
-			log.error("Failed to load asset's underlying object for key: " + asset.getKey(), e);
+			logger.error("Failed to load asset's underlying object for key '{}'", asset.getKey(), e);
 		}
 		return asset;
 	}

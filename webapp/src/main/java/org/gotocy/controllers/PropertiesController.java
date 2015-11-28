@@ -1,7 +1,5 @@
 package org.gotocy.controllers;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.gotocy.beans.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
@@ -13,6 +11,8 @@ import org.gotocy.forms.UserPropertyForm;
 import org.gotocy.forms.validation.UserPropertyFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.repository.PropertyRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
@@ -43,7 +43,7 @@ import static org.gotocy.repository.PropertyPredicates.*;
 @RequestMapping(value = "/properties")
 public class PropertiesController {
 
-	private static final Log log = LogFactory.getLog(PropertiesController.class);
+	private static final Logger logger = LoggerFactory.getLogger(PropertiesController.class);
 
 	private PropertyRepository repository;
 	private AssetsManager assetsManager;
@@ -138,7 +138,7 @@ public class PropertiesController {
 				property = repository.save(property);
 			} catch (NullPointerException | IOException | DataAccessException e) {
 				// Log error
-				log.error("Failed to upload property's assets.", e);
+				logger.error("Failed to upload property's assets.", e);
 
 				// Clean up created objects
 				try {
@@ -146,7 +146,7 @@ public class PropertiesController {
 					for (Image image : createdImages)
 						assetsManager.deleteUnderlyingObject(image);
 				} catch (DataAccessException | IOException ee) {
-					log.error("Failed to clean up resources.", ee);
+					logger.error("Failed to clean up resources.", ee);
 				}
 				// TODO: show something to user
 				return "property/new";

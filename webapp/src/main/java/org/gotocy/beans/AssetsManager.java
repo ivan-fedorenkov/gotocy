@@ -5,7 +5,6 @@ import org.gotocy.domain.Image;
 import org.gotocy.domain.ImageSize;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * An adapter interface to deal with various backend asset providers.
@@ -36,5 +35,9 @@ public interface AssetsManager {
 	 * @throws IOException in case of any IO errors
 	 */
 	void saveUnderlyingObject(Asset asset) throws IOException;
+
+	default void deleteUnderlyingObject(Asset asset) throws IOException {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 
 }

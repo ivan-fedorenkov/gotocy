@@ -1,13 +1,13 @@
 package org.gotocy.utils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.ImageSize;
 import org.im4java.core.ConvertCmd;
 import org.im4java.core.IM4JavaException;
 import org.im4java.core.IMOperation;
 import org.im4java.core.IMOps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,7 +22,7 @@ import java.util.Optional;
  */
 public class ImageConverter {
 
-	private static final Log log = LogFactory.getLog(ImageConverter.class);
+	private static final Logger logger = LoggerFactory.getLogger(ImageConverter.class);
 
 	private static final String TEMP_FILES_PREFIX = "IMAGE_CONVERTER";
 	private static final String TEMP_FILES_SUFFIX = ".tmp";
@@ -56,7 +56,7 @@ public class ImageConverter {
 	 * @return the converted image or {@link Optional#EMPTY} if something went wrong.
 	 */
 	public static Optional<Image> convertToSize(Image sourceImage, ImageSize targetSize) {
-		log.info("Converting image [" + sourceImage.getKey() + "] to size [" + targetSize + "].");
+		logger.info("Converting image '{}' to size '{}'", sourceImage.getKey(), targetSize);
 		Optional<Image> converted = Optional.empty();
 		try {
 			Path src = Files.createTempFile(TEMP_FILES_PREFIX, TEMP_FILES_SUFFIX);
@@ -70,7 +70,7 @@ public class ImageConverter {
 			convertedImage.setBytes(Files.readAllBytes(dst));
 			converted = Optional.of(convertedImage);
 		} catch (InterruptedException | IM4JavaException | IOException e) {
-			log.error("Failed to convert [" + sourceImage.getKey() + "] to size [" + targetSize + "].", e);
+			logger.error("Failed to convert '{}' to size '{}'", sourceImage.getKey(), targetSize, e);
 		}
 		return converted;
 	}

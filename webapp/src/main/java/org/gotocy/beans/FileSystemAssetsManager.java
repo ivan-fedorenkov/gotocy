@@ -1,10 +1,11 @@
 package org.gotocy.beans;
 
-import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.ImageSize;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,7 +18,7 @@ import java.nio.file.StandardOpenOption;
  */
 public class FileSystemAssetsManager implements AssetsManager {
 
-	private static final Log log = LogFactory.getLog(FileSystemAssetsManager.class);
+	private static final Logger logger = LoggerFactory.getLogger(FileSystemAssetsManager.class);
 
 	private final String assetsDirPath;
 
@@ -46,7 +47,7 @@ public class FileSystemAssetsManager implements AssetsManager {
 			try {
 				asset.setBytes(Files.readAllBytes(assetPath));
 			} catch (IOException ioe) {
-				log.error("Failed to load asset's underlying object for key: " + asset.getKey(), ioe);
+				logger.error("Failed to load asset's underlying object for key '{}'", asset.getKey(), ioe);
 			}
 		}
 		return asset;
