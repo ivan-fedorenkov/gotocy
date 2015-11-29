@@ -31,7 +31,7 @@ public class StandaloneControllerTestExample {
 	public static class ControllerUnderTest {
 		@RequestMapping("/standalone-controller-test-example")
 		public String get() {
-			return "Hello world";
+			return "Hello World!";
 		}
 	}
 
