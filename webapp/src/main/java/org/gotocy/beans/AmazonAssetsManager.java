@@ -6,10 +6,7 @@ import com.amazonaws.HttpMethod;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.Region;
-import com.amazonaws.services.s3.model.StorageClass;
+import com.amazonaws.services.s3.model.*;
 import org.gotocy.config.S3Properties;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
@@ -61,7 +58,7 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 	}
 
 	@Override
-	public <T extends Asset> Optional<T> getFullyLoadedAsset(Supplier<T> factory, String assetKey) {
+	public <T extends Asset> Optional<T> getAsset(Supplier<T> factory, String assetKey) {
 		Optional<T> result = Optional.empty();
 		try (InputStream in = getObject(properties.getBucket(), assetKey).getObjectContent()) {
 			T asset = factory.get();
@@ -74,7 +71,7 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 	}
 
 	@Override
-	public void saveUnderlyingObject(Asset asset) throws IOException {
+	public void saveAsset(Asset asset) throws IOException {
 		ObjectMetadata metadata = new ObjectMetadata();
 		metadata.setContentLength(asset.getSize());
 		metadata.setContentType(asset.getContentType());
@@ -82,6 +79,17 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 			PutObjectRequest putObjectRequest = new PutObjectRequest(properties.getBucket(), asset.getKey(), in, metadata);
 			putObject(putObjectRequest.withStorageClass(StorageClass.Standard));
 		} catch (AmazonClientException e) {
+			logger.error("Failed to save underlying object of {}", asset, e);
+			throw new IOException(e);
+		}
+	}
+
+	@Override
+	public void deleteAsset(Asset asset) throws IOException {
+		try {
+			deleteObject(properties.getBucket(), asset.getKey());
+		} catch (AmazonClientException e) {
+			logger.error("Failed to delete underlying object of {}", asset, e);
 			throw new IOException(e);
 		}
 	}

@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 
 /**
  * An adapter interface to deal with various backend asset providers.
+ * Managers are responsible only for the actual underlying data and are not meant to deal with database layer.
  *
  * @author ifedorenkov
  */
@@ -32,16 +33,23 @@ public interface AssetsManager {
 	/**
 	 * Returns the new asset instance with loaded underlying object.
 	 */
-	<T extends Asset> Optional<T> getFullyLoadedAsset(Supplier<T> factory, String assetKey);
+	<T extends Asset> Optional<T> getAsset(Supplier<T> factory, String assetKey);
 
 	/**
 	 * Saves the underlying object of the given {@link Asset}.
-	 * @param asset which underlying object is to be saved
-	 * @throws IOException in case of any IO errors
+	 * TODO: return true/false instead of exception?
+	 *
+	 * @throws IOException when something goes wrong
 	 */
-	void saveUnderlyingObject(Asset asset) throws IOException;
+	void saveAsset(Asset asset) throws IOException;
 
-	default void deleteUnderlyingObject(Asset asset) throws IOException {
+	/**
+	 * Removes the underlying object of the given {@link Asset}.
+	 * TODO: return true/false instead of exception?
+	 *
+	 * @throws IOException when something goes wrong
+	 */
+	default void deleteAsset(Asset asset) throws IOException {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 

@@ -89,14 +89,14 @@ public class PropertiesController {
 	@RequestMapping(value = "/{id}/pano.xml", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	@ResponseBody
 	public String getPanoXml(@RequiredDomainObject @PathVariable("id") Property property) {
-		return assetsManager.getFullyLoadedAsset(PanoXml::new, property.getPanoXml().getKey())
+		return assetsManager.getAsset(PanoXml::new, property.getPanoXml().getKey())
 			.orElseThrow(NotFoundException::new).decodeToXml();
 	}
 
 	@RequestMapping(value = "/{id}/360_images/{image}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	public byte[] getImage(@PathVariable String id, @PathVariable String image) {
-		return assetsManager.getFullyLoadedAsset(Image::new, "property/" + id + "/360_images/" + image + ".jpg")
+		return assetsManager.getAsset(Image::new, "property/" + id + "/360_images/" + image + ".jpg")
 			.orElseThrow(NotFoundException::new).getBytes();
 	}
 
@@ -131,7 +131,7 @@ public class PropertiesController {
 					String fileName = image.getOriginalFilename().substring(image.getOriginalFilename().lastIndexOf('/') + 1);
 					Image imageAsset = new Image("property/" + property.getId() + "/" + fileName);
 					imageAsset.setBytes(image.getBytes());
-					assetsManager.saveUnderlyingObject(imageAsset);
+					assetsManager.saveAsset(imageAsset);
 					createdImages.add(imageAsset);
 				}
 
@@ -140,18 +140,19 @@ public class PropertiesController {
 				property = repository.save(property);
 			} catch (NullPointerException | IOException | DataAccessException e) {
 				// Log error
-				logger.error("Failed to upload property's assets.", e);
+				logger.error("Failed to attach property's assets.", e);
 
 				// Clean up created objects
 				try {
 					repository.delete(property);
 					for (Image image : createdImages)
-						assetsManager.deleteUnderlyingObject(image);
+						assetsManager.deleteAsset(image);
 				} catch (DataAccessException | IOException ee) {
 					logger.error("Failed to clean up resources.", ee);
 				}
-				// TODO: show something to user
-				return "property/new";
+
+				// Rethrow so that the user would be notified appropriately (this is kind of critical error)
+				throw new RuntimeException(e);
 			}
 		}
 		return "redirect:" + Helper.path(property);

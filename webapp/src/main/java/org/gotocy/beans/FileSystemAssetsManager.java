@@ -44,7 +44,7 @@ public class FileSystemAssetsManager implements AssetsManager {
 	}
 
 	@Override
-	public <T extends Asset> Optional<T> getFullyLoadedAsset(Supplier<T> factory, String assetKey) {
+	public <T extends Asset> Optional<T> getAsset(Supplier<T> factory, String assetKey) {
 		Optional<T> result = Optional.empty();
 		Path assetPath = Paths.get(assetsDirPath, assetKey);
 		if (Files.isReadable(assetPath)) {
@@ -60,11 +60,17 @@ public class FileSystemAssetsManager implements AssetsManager {
 	}
 
 	@Override
-	public void saveUnderlyingObject(Asset asset) throws IOException {
+	public void saveAsset(Asset asset) throws IOException {
 		Path assetPath = Paths.get(assetsDirPath, asset.getKey());
 		Files.createDirectories(assetPath.getParent());
 		Files.write(assetPath, asset.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.WRITE,
 			StandardOpenOption.TRUNCATE_EXISTING);
+	}
+
+	@Override
+	public void deleteAsset(Asset asset) throws IOException {
+		Path assetPath = Paths.get(assetsDirPath, asset.getKey());
+		Files.delete(assetPath);
 	}
 
 	private Optional<String> getUrl(String assetKey) {

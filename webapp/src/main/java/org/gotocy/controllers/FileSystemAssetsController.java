@@ -41,7 +41,7 @@ public class FileSystemAssetsController {
 			throw new NotFoundException();
 		}
 
-		return assetsManager.getFullyLoadedAsset(factory, key).orElseThrow(NotFoundException::new).getBytes();
+		return assetsManager.getAsset(factory, key).orElseThrow(NotFoundException::new).getBytes();
 	}
 
 }
