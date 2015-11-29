@@ -10,18 +10,19 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.Region;
 import com.amazonaws.services.s3.model.StorageClass;
-import com.amazonaws.util.IOUtils;
 import org.gotocy.config.S3Properties;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.ImageSize;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StreamUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Assets provider that utilizes Amazon S3 as a backend storage.
@@ -54,19 +55,22 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 	}
 
 	@Override
-	public Optional<String> getImagePublicUrl(Image image, ImageSize size) {
+	public Optional<String> getPublicUrl(Image image, ImageSize size) {
 		String imageKey = image.getKeyForSize(size);
 		return exists(imageKey) ? generatePresignedUrl(imageKey) : getPublicUrl(image);
 	}
 
 	@Override
-	public <T extends Asset> T loadUnderlyingObject(T asset) {
-		try (InputStream in = getObject(properties.getBucket(), asset.getKey()).getObjectContent()) {
-			asset.setBytes(IOUtils.toByteArray(in));
+	public <T extends Asset> Optional<T> getFullyLoadedAsset(Supplier<T> factory, String assetKey) {
+		Optional<T> result = Optional.empty();
+		try (InputStream in = getObject(properties.getBucket(), assetKey).getObjectContent()) {
+			T asset = factory.get();
+			asset.setBytes(StreamUtils.copyToByteArray(in));
+			result = Optional.of(asset);
 		} catch (AmazonClientException | IOException e) {
-			logger.error("Failed to load underlying object for {}", asset, e);
+			logger.error("Failed to load underlying object for asset key '{}'", assetKey, e);
 		}
-		return asset;
+		return result;
 	}
 
 	@Override
@@ -88,7 +92,7 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 			url = Optional.of(generatePresignedUrl(properties.getBucket(), assetKey, properties.getExpirationDate(),
 				HttpMethod.GET).toString());
 		} catch (AmazonClientException e) {
-			logger.error("Failed to generate presigned url for the asset key '{}'", assetKey, e);
+			logger.error("Failed to generate presigned url for asset key '{}'", assetKey, e);
 		}
 		return url;
 	}

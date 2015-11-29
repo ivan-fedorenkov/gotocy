@@ -27,7 +27,7 @@ public class ImageConverterTest {
 			Optional<Image> actual = ImageConverter.convertToSize(original, imageSize);
 			Assert.assertTrue(actual.isPresent());
 			Assert.assertEquals(expected.getKey(), actual.get().getKey());
-			Assert.assertTrue(actual.get().getBytes().length > 0);
+			Assert.assertTrue(actual.get().getSize() > 0);
 		}
 	}
 

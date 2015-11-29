@@ -3,8 +3,10 @@ package org.gotocy.controllers;
 import org.gotocy.beans.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
+import org.gotocy.controllers.exceptions.NotFoundException;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.OfferStatus;
+import org.gotocy.domain.PanoXml;
 import org.gotocy.domain.Property;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.UserPropertyForm;
@@ -87,15 +89,15 @@ public class PropertiesController {
 	@RequestMapping(value = "/{id}/pano.xml", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	@ResponseBody
 	public String getPanoXml(@RequiredDomainObject @PathVariable("id") Property property) {
-		return assetsManager.loadUnderlyingObject(property.getPanoXml()).decodeToXml();
+		return assetsManager.getFullyLoadedAsset(PanoXml::new, property.getPanoXml().getKey())
+			.orElseThrow(NotFoundException::new).decodeToXml();
 	}
 
 	@RequestMapping(value = "/{id}/360_images/{image}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	public byte[] getImage(@PathVariable String id, @PathVariable String image) {
-		Image imageKey = new Image();
-		imageKey.setKey("property/" + id + "/360_images/" + image + ".jpg");
-		return assetsManager.loadUnderlyingObject(imageKey).getBytes();
+		return assetsManager.getFullyLoadedAsset(Image::new, "property/" + id + "/360_images/" + image + ".jpg")
+			.orElseThrow(NotFoundException::new).getBytes();
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)

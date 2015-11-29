@@ -4,6 +4,8 @@ import org.gotocy.beans.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.*;
 import org.gotocy.helpers.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 
@@ -18,6 +20,8 @@ import java.util.Map;
  * @author ifedorenkov
  */
 public class PropertyHelper {
+
+	private static final Logger logger = LoggerFactory.getLogger(PropertyHelper.class);
 
 	private static final Map<PropertyStatus, String> PROPERTY_STATUS_TO_PRICE_KEY = new HashMap<>();
 
@@ -69,7 +73,7 @@ public class PropertyHelper {
 		if (property.getRepresentativeImage() == null) {
 			return assetsManager.getPublicUrl(applicationProperties.getDefaultRepresentativeImage()).orElse("");
 		} else {
-			return assetsManager.getImagePublicUrl(property.getRepresentativeImage(), ImageSize.MEDIUM).orElse("");
+			return assetsManager.getPublicUrl(property.getRepresentativeImage(), ImageSize.MEDIUM).orElse("");
 		}
 	}
 
@@ -86,7 +90,7 @@ public class PropertyHelper {
 		case LAND:
 			return "land";
 		default:
-			// TODO: log error
+			logger.error("Failed to determine type icon for property type {}", type);
 			return "";
 		}
 	}

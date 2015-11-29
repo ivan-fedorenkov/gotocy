@@ -49,7 +49,7 @@ public class Helper {
 	 * size.
 	 */
 	public String imageUrl(Image image, ImageSize size) {
-		return assetsManager.getImagePublicUrl(image, size).orElse("");
+		return assetsManager.getPublicUrl(image, size).orElse("");
 	}
 
 	/**

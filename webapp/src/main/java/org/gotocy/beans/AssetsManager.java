@@ -6,6 +6,7 @@ import org.gotocy.domain.ImageSize;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * An adapter interface to deal with various backend asset providers.
@@ -26,13 +27,12 @@ public interface AssetsManager {
 	 *             url is referencing the image of the specific size
 	 * @return public url of the given image
 	 */
-	Optional<String> getImagePublicUrl(Image image, ImageSize size);
+	Optional<String> getPublicUrl(Image image, ImageSize size);
 
 	/**
-	 * Loads the underlying object by using the specified object key.
-	 * Returns the same {@link Asset} instance with populated underlying object set.
+	 * Returns the new asset instance with loaded underlying object.
 	 */
-	<T extends Asset> T loadUnderlyingObject(T asset);
+	<T extends Asset> Optional<T> getFullyLoadedAsset(Supplier<T> factory, String assetKey);
 
 	/**
 	 * Saves the underlying object of the given {@link Asset}.

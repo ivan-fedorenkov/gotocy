@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Optional;
-import java.util.concurrent.Executor;
+import java.util.function.Supplier;
 
 /**
  * @author ifedorenkov
@@ -38,22 +38,25 @@ public class FileSystemAssetsManager implements AssetsManager {
 	}
 
 	@Override
-	public Optional<String> getImagePublicUrl(Image image, ImageSize size) {
+	public Optional<String> getPublicUrl(Image image, ImageSize size) {
 		String imageKey = image.getKeyForSize(size);
 		return exists(imageKey) ? getUrl(imageKey) : getPublicUrl(image);
 	}
 
 	@Override
-	public <T extends Asset> T loadUnderlyingObject(T asset) {
-		Path assetPath = Paths.get(assetsDirPath, asset.getKey());
+	public <T extends Asset> Optional<T> getFullyLoadedAsset(Supplier<T> factory, String assetKey) {
+		Optional<T> result = Optional.empty();
+		Path assetPath = Paths.get(assetsDirPath, assetKey);
 		if (Files.isReadable(assetPath)) {
 			try {
+				T asset = factory.get();
 				asset.setBytes(Files.readAllBytes(assetPath));
+				result = Optional.of(asset);
 			} catch (IOException e) {
-				logger.error("Failed to load underlying object for {}", asset, e);
+				logger.error("Failed to load underlying object for asset key '{}'", assetKey, e);
 			}
 		}
-		return asset;
+		return result;
 	}
 
 	@Override

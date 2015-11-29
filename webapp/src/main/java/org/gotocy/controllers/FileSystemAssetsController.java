@@ -2,7 +2,7 @@ package org.gotocy.controllers;
 
 import org.gotocy.beans.AssetsManager;
 import org.gotocy.config.Profiles;
-import org.gotocy.controllers.exceptions.DomainObjectNotFoundException;
+import org.gotocy.controllers.exceptions.NotFoundException;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.PanoXml;
@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.function.Supplier;
 
 /**
  * @author ifedorenkov
@@ -26,19 +28,20 @@ public class FileSystemAssetsController {
 
 	@RequestMapping("/fs_assets")
 	public @ResponseBody byte[] getAsset(@RequestParam String key) {
-		Asset asset;
+
+		Supplier<? extends Asset> factory;
 
 		if (key.endsWith("jpg") || key.endsWith("jpeg")) {
-			asset = new Image(key);
+			factory = Image::new;
 		} else if (key.endsWith("pdf")) {
-			asset = new PdfFile(key);
+			factory = PdfFile::new;
 		} else if (key.endsWith("xml")) {
-			asset = new PanoXml(key);
+			factory = PanoXml::new;
 		} else {
-			throw new DomainObjectNotFoundException();
+			throw new NotFoundException();
 		}
 
-		return assetsManager.loadUnderlyingObject(asset).getBytes();
+		return assetsManager.getFullyLoadedAsset(factory, key).orElseThrow(NotFoundException::new).getBytes();
 	}
 
 }
