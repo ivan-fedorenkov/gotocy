@@ -49,8 +49,6 @@ public interface AssetsManager {
 	 *
 	 * @throws IOException when something goes wrong
 	 */
-	default void deleteAsset(Asset asset) throws IOException {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+	void deleteAsset(Asset asset) throws IOException;
 
 }
