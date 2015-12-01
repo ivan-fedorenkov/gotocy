@@ -27,6 +27,7 @@
 	</parent>
 
 	<modules>
+		<module>test</module>
 		<module>domain</module>
 		<module>webapp</module>
 	</modules>
