@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar webapp/target/*.jar --spring.profiles.active=local-dev --spring.datasource.platform=dev --debug
+web: java -Dserver.port=$PORT -jar webapp/target/*.jar --spring.profiles.active=heroku-prod --spring.datasource.platform=prod --debug
