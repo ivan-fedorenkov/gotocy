@@ -1,6 +1,5 @@
 package org.gotocy.test;
 
-import org.gotocy.domain.validation.ValidationConstraints;
 import org.junit.Assert;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.PropertyAccessorFactory;
@@ -63,12 +62,12 @@ public class FieldValidationAsserts {
 
 	private static void assertHasNotEmptyFieldError(Errors errors, String field) {
 		Assert.assertTrue(errors.hasFieldErrors(field));
-		Assert.assertEquals(ValidationConstraints.NOT_EMPTY, errors.getFieldError(field).getCode());
+		Assert.assertEquals("org.gotocy.validation.constraints.NotEmpty.message", errors.getFieldError(field).getCode());
 	}
 
 	private static void assertHasPositiveIntFieldError(Errors errors, String field) {
 		Assert.assertTrue(errors.hasFieldErrors(field));
-		Assert.assertEquals(ValidationConstraints.POSITIVE_INT, errors.getFieldError(field).getCode());
+		Assert.assertEquals("org.gotocy.validation.constraints.PositiveInt.message", errors.getFieldError(field).getCode());
 	}
 
 	private static void assertHasNoFieldError(Errors errors, String field) {
