@@ -25,7 +25,7 @@
                     <dd th:utext="${field.value}">Chicago, IL 60610</dd>
                     <!--/*/ </th:block> /*/-->
                 </dl>
-                <a th:href="@{${helper.path(p)}}" class="link-arrow" th:text="#{org.gotocy.dictionary.read-more}">Read More</a>
+                <a th:href="@{${helper.path(p)}}" class="link-arrow" th:text="${i18n.t('dictionary.read-more')}">Read More</a>
             </aside>
         </div>
     </div>

@@ -2,7 +2,7 @@ package org.gotocy.format;
 
 import org.gotocy.config.Locales;
 import org.gotocy.domain.Location;
-import org.springframework.context.MessageSource;
+import org.gotocy.i18n.I18n;
 
 import java.text.ParseException;
 import java.util.Locale;
@@ -12,8 +12,8 @@ import java.util.Locale;
  */
 public class LocationFormatter extends EnumsFormatter<Location> {
 
-	public LocationFormatter(MessageSource messageSource) {
-		super(Location.class, messageSource);
+	public LocationFormatter() {
+		super(Location.class);
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class LocationFormatter extends EnumsFormatter<Location> {
 		// Try to obtain location from the string using all the available translations
 		for (Locale locale : Locales.SUPPORTED) {
 			for (Location location : Location.values()) {
-				if (messageSource.getMessage(location, locale).equals(localizedLocation))
+				if (I18n.getMessage(location, locale).equals(localizedLocation))
 					return location;
 			}
 		}

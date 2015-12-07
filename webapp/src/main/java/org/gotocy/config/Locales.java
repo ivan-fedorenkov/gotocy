@@ -11,9 +11,10 @@ public interface Locales {
 
 	Locale EN = Locale.ENGLISH;
 	Locale RU = new Locale("ru");
+	Locale EL = new Locale("el");
 
 	Locale DEFAULT = EN;
 
-	Set<Locale> SUPPORTED = new HashSet<>(Arrays.asList(EN, RU));
+	Set<Locale> SUPPORTED = new HashSet<>(Arrays.asList(EN, RU, EL));
 
 }

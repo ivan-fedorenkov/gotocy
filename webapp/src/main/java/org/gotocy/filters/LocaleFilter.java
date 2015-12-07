@@ -22,6 +22,7 @@ import java.util.Map;
  * Examples and supported languages:
  * get http://xyz/resource - english language (default)
  * get http://xyz/ru/resource - russian language
+ * get http://xyz/el/resource - greek language
  *
  * Determined the language, the filter forwards the request to uri substituting the language path variable.
  * get http://xyz/en/resource forwards to http://xyz/resource
@@ -34,6 +35,7 @@ public class LocaleFilter extends OncePerRequestFilter {
 
 	static {
 		PATH_TO_LOCALE.put("/ru", Locales.RU);
+		PATH_TO_LOCALE.put("/el", Locales.EL);
 	}
 
 	@Override

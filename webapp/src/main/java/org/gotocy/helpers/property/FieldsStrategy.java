@@ -1,7 +1,7 @@
 package org.gotocy.helpers.property;
 
 import org.gotocy.domain.Property;
-import org.springframework.context.MessageSource;
+import org.gotocy.i18n.I18n;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,9 +28,9 @@ public enum FieldsStrategy {
 	/**
 	 * Returns the formatted property fields.
 	 */
-	public List<FormattedField> getFormattedFields(MessageSource ms, Property p) {
+	public List<FormattedField> getFormattedFields(Property p) {
 		return Arrays.stream(fieldsProvider.getFields(p))
-			.map(f -> new FormattedField(f.formatHeadingKey(ms, p), f.formatValue(ms, p)))
+			.map(f -> new FormattedField(f.formatHeadingKey(p), f.formatValue(p)))
 			.collect(toList());
 	}
 

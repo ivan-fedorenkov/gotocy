@@ -7,17 +7,14 @@ import org.gotocy.filters.LocaleFilter;
 import org.gotocy.filters.UrlRewriteFilter;
 import org.gotocy.format.EnumsFormatter;
 import org.gotocy.format.LocationFormatter;
+import org.gotocy.i18n.I18n;
 import org.gotocy.interceptors.HelpersInterceptor;
 import org.gotocy.interceptors.SecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.MessageSourceAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -29,9 +26,9 @@ import javax.servlet.Filter;
  * @author ifedorenkov
  */
 @Configuration
-public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceAware {
+public class WebConfig extends WebMvcConfigurerAdapter {
 
-	private MessageSource messageSource;
+	private I18n i18n;
 	private ApplicationProperties applicationProperties;
 	private AssetsManager assetsManager;
 
@@ -41,13 +38,13 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 	}
 
 	@Autowired
-	public void setAssetsManager(AssetsManager assetsManager) {
-		this.assetsManager = assetsManager;
+	public void setI18n(I18n i18n) {
+		this.i18n = i18n;
 	}
 
-	@Override
-	public void setMessageSource(MessageSource messageSource) {
-		this.messageSource = messageSource;
+	@Autowired
+	public void setAssetsManager(AssetsManager assetsManager) {
+		this.assetsManager = assetsManager;
 	}
 
 	// Beans
@@ -81,17 +78,17 @@ public class WebConfig extends WebMvcConfigurerAdapter implements MessageSourceA
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addFormatter(new LocationFormatter(messageSource));
-		registry.addFormatter(new EnumsFormatter<PropertyType>(PropertyType.class, messageSource) {});
-		registry.addFormatter(new EnumsFormatter<PropertyStatus>(PropertyStatus.class, messageSource) {});
-		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class, messageSource) {});
-		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class, messageSource) {});
-		registry.addFormatter(new EnumsFormatter<BusinessForm>(BusinessForm.class, messageSource) {});
+		registry.addFormatter(new LocationFormatter());
+		registry.addFormatter(new EnumsFormatter<PropertyType>(PropertyType.class) {});
+		registry.addFormatter(new EnumsFormatter<PropertyStatus>(PropertyStatus.class) {});
+		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class) {});
+		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class) {});
+		registry.addFormatter(new EnumsFormatter<BusinessForm>(BusinessForm.class) {});
 	}
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new HelpersInterceptor(applicationProperties, messageSource, assetsManager));
+		registry.addInterceptor(new HelpersInterceptor(applicationProperties, assetsManager, i18n));
 		registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/master/**");
 	}
 

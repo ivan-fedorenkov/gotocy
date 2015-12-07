@@ -12,7 +12,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
-    <title th:text="#{org.gotocy.templates.title(#{org.gotocy.dictionary.home-page})}">Homepage | GoToCy</title>
+    <title th:text="${i18n.t('templates.title', i18n.t('dictionary.home-page'))}">Homepage | GoToCy</title>
 
 </head>
 
@@ -40,7 +40,7 @@
             <header class="navbar" id="top" role="banner">
                 <div class="navbar-header">
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only" th:text="#{org.gotocy.dictionary.toggle-navigation}">Toggle navigation</span>
+                        <span class="sr-only" th:text="${i18n.t('dictionary.toggle-navigation')}">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -51,11 +51,11 @@
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                        <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home-page')}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
                     </ul>
                 </nav><!-- /.navbar collapse-->
                 <div class="add-your-property">
-                    <a href="/parent/webapp/templates/property/new.html" th:href="@{${helper.path('/properties/new')}}" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="#{org.gotocy.dictionary.add-your-property}">Add Your Property</span></a>
+                    <a href="/parent/webapp/templates/property/new.html" th:href="@{${helper.path('/properties/new')}}" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="${i18n.t('dictionary.add-your-property')}">Add Your Property</span></a>
                 </div>
             </header><!-- /.navbar -->
         </div><!-- /.container -->
@@ -101,7 +101,7 @@
          <section id="banner">
             <div class="block has-dark-background background-color-default-darker center text-banner">
                 <div class="container">
-                    <h1 class="no-bottom-margin no-border" th:utext="#{org.gotocy.templates.home.index.banner(@{${helper.path('/properties/new')}})}">Do you want your property do be listed here? <a href="#" class="text-underline">Click Here</a>!</h1>
+                    <h1 class="no-bottom-margin no-border" th:with="url=@{${helper.path('/properties/new')}}" th:utext="${i18n.t('templates.home.index.banner', url)}">Do you want your property do be listed here? <a href="#" class="text-underline">Click Here</a>!</h1>
                 </div>
             </div>
         </section> <!-- /#banner -->
@@ -109,7 +109,7 @@
         <section id="featured-properties" class="block" th:unless="${#lists.isEmpty(featuredProperties)}">
             <div class="container">
                 <header class="section-title">
-                    <h2 th:text="#{org.gotocy.dictionary.featured-properties}">Featured Properties</h2>
+                    <h2 th:text="${i18n.t('dictionary.featured-properties')}">Featured Properties</h2>
                 </header>
                 <div class="row" th:remove="all-but-first">
                     <div class="col-md-3 col-sm-6" th:each="p : ${featuredProperties}">
@@ -259,8 +259,8 @@
         <section id="long-term-properties" class="block" th:unless=${#lists.isEmpty(longTermProperties)}>
             <div class="container">
                 <header class="section-title">
-                    <h2 th:text="#{org.gotocy.dictionary.long-term-rentals-for-you}">Long Term Rentals for You</h2>
-                    <a th:href="@{${helper.path('/properties?propertyStatus=LONG_TERM')}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="#{org.gotocy.dictionary.all-rentals}">All Rentals</a>
+                    <h2 th:text="${i18n.t('dictionary.long-term-rentals-for-you')}">Long Term Rentals for You</h2>
+                    <a th:href="@{${helper.path('/properties?propertyStatus=LONG_TERM')}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="${i18n.t('dictionary.all-rentals')}">All Rentals</a>
                 </header>
                 <div class="row" th:remove="all-but-first">
                     <div class="col-md-3 col-sm-6" th:each="p : ${longTermProperties}">
@@ -410,8 +410,8 @@
         <section id="short-term-properties" class="block" th:unless=${#lists.isEmpty(shortTermProperties)}>
             <div class="container">
                 <header class="section-title">
-                    <h2 th:text="#{org.gotocy.dictionary.short-term-rentals-for-you}">Short Term Rentals for You</h2>
-                    <a th:href="@{${helper.path('/properties?propertyStatus=SHORT_TERM')}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="#{org.gotocy.dictionary.all-rentals}">All Rentals</a>
+                    <h2 th:text="${i18n.t('dictionary.short-term-rentals-for-you')}">Short Term Rentals for You</h2>
+                    <a th:href="@{${helper.path('/properties?propertyStatus=SHORT_TERM')}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="${i18n.t('dictionary.all-rentals')}">All Rentals</a>
                 </header>
                 <div class="row" th:remove="all-but-first">
                     <div class="col-md-3 col-sm-6" th:each="p : ${shortTermProperties}">
@@ -561,8 +561,8 @@
         <section id="sale-properties" class="block" th:unless="${#lists.isEmpty(saleProperties)}">
             <div class="container">
                 <header class="section-title">
-                    <h2 th:text="#{org.gotocy.dictionary.properties-for-you}">Properties for You</h2>
-                    <a th:href="@{${helper.path('/properties?propertyStatus=SALE')}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="#{org.gotocy.dictionary.all-properties}">All Properties</a>
+                    <h2 th:text="${i18n.t('dictionary.properties-for-you')}">Properties for You</h2>
+                    <a th:href="@{${helper.path('/properties?propertyStatus=SALE')}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="${i18n.t('dictionary.all-properties')}">All Properties</a>
                 </header>
                 <div class="row" th:remove="all-but-first">
                     <div class="col-md-3 col-sm-6" th:each="p : ${saleProperties}">

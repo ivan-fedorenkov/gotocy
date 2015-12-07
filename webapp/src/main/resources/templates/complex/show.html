@@ -11,7 +11,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
-    <title th:text="#{org.gotocy.templates.title(*{title})}">Mesoyios Park Residences | GoToCy</title>
+    <title th:text="${i18n.t('templates.title', #object.title)}">Mesoyios Park Residences | GoToCy</title>
 
 </head>
 
@@ -39,7 +39,7 @@
             <header class="navbar" id="top" role="banner">
                 <div class="navbar-header">
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only" th:text="#{org.gotocy.dictionary.toggle-navigation}">Toggle navigation</span>
+                        <span class="sr-only" th:text="${i18n.t('dictionary.toggle-navigation')}">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -50,7 +50,7 @@
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                        <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home-page')}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
                     </ul>
                 </nav><!-- /.navbar collapse-->
                 <!-- <div class="add-your-property">
@@ -65,8 +65,8 @@
         <!-- Breadcrumb -->
         <div class="container">
             <ol class="breadcrumb">
-                <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
-                <li class="active" th:text="#{org.gotocy.dictionary.complex-detail}">Complex Detail</li>
+                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
+                <li class="active" th:text="${i18n.t('dictionary.complex-detail')}">Complex Detail</li>
             </ol>
         </div>
         <!-- end Breadcrumb -->
@@ -96,7 +96,7 @@
                         </section>
 
                         <section id="description" th:unless=${#strings.isEmpty(complex.description)}>
-                            <header><h2 th:text="#{org.gotocy.dictionary.description}">Description</h2></header>
+                            <header><h2 th:text="${i18n.t('dictionary.description')}">Description</h2></header>
                             <div th:utext="${helper.newLinesToParagraphs(complex.description)}">
                                 <p>Not more than 5 minutes drive from Larnaca town centre, Mesoyios
                                 Park Residences is located in an established residential area, 200m
@@ -120,13 +120,13 @@
 
                         <section id="complex-developer" th:unless="*{developer == null}">
                             <div class="well link-well">
-                                <h3 th:text="#{org.gotocy.templates.complex.show.link-to-developer(*{developer.name})}">Project of the Livadhiotis Developers group</h3>
-                                <a class="link-arrow" href="#" th:href="@{${helper.path(complex.developer)}}" th:text="#{org.gotocy.dictionary.read-more}">Read More</a>
+                                <h3 th:text="${i18n.t('templates.complex.show.link-to-developer', #object.developer.name)}">Project of the Livadhiotis Developers group</h3>
+                                <a class="link-arrow" href="#" th:href="@{${helper.path(complex.developer)}}" th:text="${i18n.t('dictionary.read-more')}">Read More</a>
                             </div>
                         </section>
 
                         <section id="complex-specifications" th:unless=${#lists.isEmpty(complex.specifications)}>
-                            <header><h2 th:text="#{org.gotocy.dictionary.specifications}">Specifications</h2></header>
+                            <header><h2 th:text="${i18n.t('dictionary.specifications')}">Specifications</h2></header>
                             <ul class="list-unstyled property-features-list" th:remove="all-but-first">
                                 <li th:each="s : *{specifications}" th:text="${s}">Multiple modern architectural designs to choose from</li>
                                 <li>A selection of three and four bedroom , three bathroom houses</li>
@@ -145,14 +145,14 @@
                         </section><!-- /#property-features -->
 
                         <section id="property-map">
-                            <header><h2 th:text="#{org.gotocy.dictionary.map-location}">Location</h2></header>
+                            <header><h2 th:text="${i18n.t('dictionary.map-location')}">Location</h2></header>
                             <div class="property-detail-map-wrapper">
                                 <div class="property-detail-map" id="property-detail-map"></div>
                             </div>
                         </section><!-- /#property-map -->
 
                         <section id="properties" th:unless="${#lists.isEmpty(complex.properties)}">
-                            <header><h2 th:text="#{org.gotocy.dictionary.properties}">Properties</h2></header>
+                            <header><h2 th:text="${i18n.t('dictionary.properties')}">Properties</h2></header>
                             <div class="masonry-grid" th:include="fragments/properties_masonry_grid_div :: properties_masonry_grid (properties=${complex.properties})">
                                 <div class="property masonry">
                                     <div class="inner" data-scroll-reveal>
@@ -300,7 +300,7 @@
                 <div class="col-md-3 col-sm-3">
                     <section id="sidebar">
                         <aside id="primary-contact">
-                            <header><h3 th:text="#{org.gotocy.dictionary.primary-contact}">Primary Contact</h3></header>
+                            <header><h3 th:text="${i18n.t('dictionary.primary-contact')}">Primary Contact</h3></header>
                             <dl th:replace="fragments/primary_contact_dl :: primary_contact(*{primaryContact})">
                                 <dt>Name:</dt>
                                 <dd>Denis</dd>
@@ -317,17 +317,17 @@
                         </aside><!-- /#primary-contact -->
 
                         <aside id="complex-stats">
-                            <header><h3 th:text="#{org.gotocy.dictionary.stats}">Stats</h3></header>
+                            <header><h3 th:text="${i18n.t('dictionary.stats')}">Stats</h3></header>
                             <dl>
-                                <dt th:text="|#{org.gotocy.dictionary.total-number-of-properties}:|">Total Number of Properties:</dt>
+                                <dt th:text="|${i18n.t('dictionary.total-number-of-properties')}:|">Total Number of Properties:</dt>
                                 <dd th:text="*{propertiesCount}">42</dd>
-                                <dt th:text="|#{org.gotocy.dictionary.number-of-available-properties}:|">Number of Available Properties:</dt>
+                                <dt th:text="|${i18n.t('dictionary.number-of-available-properties')}:|">Number of Available Properties:</dt>
                                 <dd th:text="*{propertiesWithActiveOfferCount}">8</dd>
                             </dl>
                         </aside><!-- /#complex-stats -->
 
                         <aside id="additional-materials" th:unless="${#lists.isEmpty(complex.pdfFiles)}">
-                            <header><h3 th:text="#{org.gotocy.dictionary.additional-materials}">Additional Materials</h3></header>
+                            <header><h3 th:text="${i18n.t('dictionary.additional-materials')}">Additional Materials</h3></header>
                             <!--/*/ <th:block th:each="file : *{pdfFiles}" th:remove="all-but-first"> /*/-->
                             <a href="#" th:href="${helper.url(file)}" class="universal-button">
                                 <figure class="fa fa-file-pdf-o"></figure>

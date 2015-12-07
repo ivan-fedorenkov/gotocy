@@ -1,13 +1,13 @@
 <dl th:fragment="primary_contact(contact)" th:with="c=(${contact == null}? ${gotocy.defaultContact} : ${contact})">
-    <dt th:text="|#{org.gotocy.dictionary.name}:|">Name:</dt>
+    <dt th:text="|${i18n.t('dictionary.name')}:|">Name:</dt>
     <dd th:text="${c.name}">Denis</dd>
 
-    <dt th:unless="${#strings.isEmpty(c.email)}" th:text="|#{org.gotocy.dictionary.email}:|">Email:</dt>
+    <dt th:unless="${#strings.isEmpty(c.email)}" th:text="|${i18n.t('dictionary.email')}:|">Email:</dt>
     <dd th:unless="${#strings.isEmpty(c.email)}" th:text="${c.email}">support@gotocy.eu</dd>
 
-    <dt th:text="|#{org.gotocy.dictionary.phone}:|">Phone:</dt>
+    <dt th:text="|${i18n.t('dictionary.phone')}:|">Phone:</dt>
     <dd th:text="${c.phone}">123-45-67</dd>
 
-    <dt th:text="|#{org.gotocy.dictionary.spoken-languages}:|">Spoken Languages:</dt>
+    <dt th:text="|${i18n.t('dictionary.spoken-languages')}:|">Spoken Languages:</dt>
     <dd th:text="${c.spokenLanguages}">English, Russian</dd>
 </dl>

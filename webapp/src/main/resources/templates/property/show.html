@@ -13,7 +13,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
-    <title th:text="#{org.gotocy.templates.title(*{title})}">Property Detail | GoToCy</title>
+    <title th:text="${i18n.t('templates.title', #object.title)}">Property Detail | GoToCy</title>
 
 </head>
 
@@ -41,7 +41,7 @@
             <header class="navbar" id="top" role="banner">
                 <div class="navbar-header">
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only" th:text="#{org.gotocy.dictionary.toggle-navigation}">Toggle navigation</span>
+                        <span class="sr-only" th:text="${i18n.t('dictionary.toggle-navigation')}">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -52,11 +52,11 @@
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                        <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home-page')}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
                     </ul>
                 </nav><!-- /.navbar collapse-->
                 <div class="add-your-property">
-                    <a href="/parent/webapp/templates/property/new.html" th:href="@{${helper.path('/properties/new')}}" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="#{org.gotocy.dictionary.add-your-property}">Add Your Property</span></a>
+                    <a href="/parent/webapp/templates/property/new.html" th:href="@{${helper.path('/properties/new')}}" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="${i18n.t('dictionary.add-your-property')}">Add Your Property</span></a>
                 </div>
             </header><!-- /.navbar -->
         </div><!-- /.container -->
@@ -67,9 +67,9 @@
         <!-- Breadcrumb -->
         <div class="container">
             <ol class="breadcrumb">
-                <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
-                <li><a th:href="@{${helper.path('/properties')}}" th:text="#{org.gotocy.dictionary.properties}" href="#">Properties Search</a></li>
-                <li class="active" th:text="#{org.gotocy.dictionary.property-detail}">Property Detail</li>
+                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
+                <li><a th:href="@{${helper.path('/properties')}}" th:text="${i18n.t('dictionary.properties')}" href="#">Properties Search</a></li>
+                <li class="active" th:text="${i18n.t('dictionary.property-detail')}">Property Detail</li>
             </ol>
         </div>
         <!-- end Breadcrumb -->
@@ -94,7 +94,7 @@
                                 <div class="grid-item grid-item-w-25 grid-item-sm-hide" th:style="|background-image: url('${helper.imageUrl(property.getImage(2), T(org.gotocy.domain.ImageSize).MEDIUM)}');|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg'); background-size: cover;"></div>
                                 <div class="grid-item grid-item-w-25 grid-item-sm-w-50" th:style="|background-image: url('${helper.imageUrl(property.getImage(3), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-03.jpg');">
                                     <div id="pano-popup-container" class="icon-container" th:if="${property.panoXml != null}">
-                                        <i class="fa fa-street-view"></i><br><span th:text="#{org.gotocy.templates.property.show.click-to-view-pano}">Click to View Pano 360</span>
+                                        <i class="fa fa-street-view"></i><br><span th:text="${i18n.t('templates.property.show.click-to-view-pano')}">Click to View Pano 360</span>
                                         <div id="pano-popup" class="mfp-hide">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-8 col-sm-8 col-lg-offset-3 col-md-offset-2 col-sm-offset-2">
@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="grid-item grid-item-w-25 grid-item-sm-w-50" th:style="|background-image: url('${helper.imageUrl(property.getImage(4), T(org.gotocy.domain.ImageSize).MEDIUM)}')|" style="background-image: url('/parent/webapp/public/assets/img/properties/property-detail-01.jpg');">
                                     <div id="gallery-popup-container" class="icon-container">
-                                        <i class="fa fa-camera"></i><br><span th:text="#{org.gotocy.templates.property.show.click-to-view-gallery}">Click to View Gallery</span>
+                                        <i class="fa fa-camera"></i><br><span th:text="${i18n.t('templates.property.show.click-to-view-gallery')}">Click to View Gallery</span>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
                                 <section id="quick-summary" class="clearfix">
-                                    <header><h2 th:text="#{org.gotocy.dictionary.quick-summary}">Quick Summary</h2></header>
+                                    <header><h2 th:text="${i18n.t('dictionary.quick-summary')}">Quick Summary</h2></header>
                                     <dl th:remove="all-but-first">
                                         <!--/*/ <th:block th:each="field : ${helper.property.formattedFields(property, T(org.gotocy.helpers.property.FieldsStrategy).QUICK_SUMMARY)}"> /*/-->
                                         <dt th:text="|${field.heading}:|">Location:</dt>
@@ -140,14 +140,14 @@
                                 </section><!-- /#quick-summary -->
 
                                 <section id="property-complex" th:unless="${property.complex == null}">
-                                    <div class="well link-well" th:utext="#{org.gotocy.templates.property.show.link-to-complex(${property.complex.title}, ${helper.path(property.complex)})}">
+                                    <div class="well link-well" th:with="url=@{${helper.path(property.complex)}}" th:utext="${i18n.t('templates.property.show.link-to-complex', property.complex.title, url)}">
                                         This property is a part of the <a href="/parent/webapp/templates/complex/show.html">Mesoyios Park Residences</a> project
                                     </div>
                                 </section>
                             </div><!-- /.col-md-4 -->
                             <div class="col-md-8 col-sm-12">
                                 <section id="description" th:unless="${#strings.isEmpty(property.description)}">
-                                    <header><h2 th:text="#{org.gotocy.dictionary.property-description}">Property Description</h2></header>
+                                    <header><h2 th:text="${i18n.t('dictionary.property-description')}">Property Description</h2></header>
                                     <div th:utext="${helper.newLinesToParagraphs(property.description)}">
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
@@ -160,7 +160,7 @@
                                 </section><!-- /#description -->
 
                                 <section id="property-features" th:unless="${#lists.isEmpty(property.features)}">
-                                    <header><h2 th:text="#{org.gotocy.dictionary.property-features}">Property Features</h2></header>
+                                    <header><h2 th:text="${i18n.t('dictionary.property-features')}">Property Features</h2></header>
                                     <ul class="list-unstyled property-features-list" th:remove="all-but-first">
                                         <li th:each="feature : ${property.features}" th:text="${feature}">Sauna</li>
                                         <li>Fireplace or fire pit</li>
@@ -174,7 +174,7 @@
                                 </section><!-- /#property-features -->
 
                                 <section id="property-map">
-                                    <header><h2 th:text="#{org.gotocy.dictionary.map}">Map</h2></header>
+                                    <header><h2 th:text="${i18n.t('dictionary.map')}">Map</h2></header>
                                     <div class="property-detail-map-wrapper">
                                         <div class="property-detail-map" id="property-detail-map"></div>
                                     </div>
@@ -189,7 +189,7 @@
                 <div class="col-md-3 col-sm-3">
                     <section id="sidebar">
                         <aside id="primary-contact">
-                            <header><h3 th:text="#{org.gotocy.dictionary.primary-contact}">Primary Contact</h3></header>
+                            <header><h3 th:text="${i18n.t('dictionary.primary-contact')}">Primary Contact</h3></header>
                             <dl th:replace="fragments/primary_contact_dl :: primary_contact(contact=*{primaryContact})">
                                 <dt>Name:</dt>
                                 <dd>Denis</dd>
@@ -206,7 +206,7 @@
                         </aside><!-- /#primary-contact -->
 
                         <aside id="advertising">
-                            <header><h3 th:text="#{org.gotocy.dictionary.advertising}">Advertising</h3></header>
+                            <header><h3 th:text="${i18n.t('dictionary.advertising')}">Advertising</h3></header>
                             <div class="property small">
                                 <a th:href="@{${helper.path('/gmdeco4u')}}" href="/parent/webapp/templates/commercial/gm_deco_en.html">
                                     <div class="property-image">
@@ -215,13 +215,13 @@
                                 </a>
                                 <div class="info">
                                     <a th:href="@{${helper.path('/gmdeco4u')}}" href="/parent/webapp/templates/commercial/gm_deco_en.html"><h4>G.M. Deco For You</h4></a>
-                                    <figure th:utext="#{org.gotocy.templates.property.show.gm-deco-side-description}">Interior | Exterior Design<br>Our experienced team (20+ years) is in your disposal to help you in</figure>
+                                    <figure th:utext="${i18n.t('templates.property.show.gm-deco-side-description')}">Interior | Exterior Design<br>Our experienced team (20+ years) is in your disposal to help you in</figure>
                                 </div>
                             </div>
                         </aside>
 
                         <aside id="featured-properties" th:unless="${#lists.isEmpty(featuredProperties)}">
-                            <header><h3 th:text="#{org.gotocy.dictionary.featured-properties}">Featured Properties</h3></header>
+                            <header><h3 th:text="${i18n.t('dictionary.featured-properties')}">Featured Properties</h3></header>
                             <div class="property small" th:each="p : ${featuredProperties}" th:with="propertyPath=${helper.path(p)}">
                                 <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html">
                                     <div class="property-image">

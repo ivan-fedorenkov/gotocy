@@ -6,7 +6,7 @@
         location=${propertiesSearchForm.location},
         curPathNoPage = ('/properties?' + ${propertiesSearchForm.paramsForUrl}),
         curPath = ${curPathNoPage} + '&page=' + ${properties.number},
-        title = #{org.gotocy.dictionary.properties-search}">
+        title = ${i18n.t('dictionary.properties-search')}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
-    <title th:text="#{org.gotocy.templates.title(${title})}">Properties Listing | GoToCy</title>
+    <title th:text="${i18n.t('templates.title', title)}">Properties Listing | GoToCy</title>
 
 </head>
 
@@ -45,7 +45,7 @@
             <header class="navbar" id="top" role="banner">
                 <div class="navbar-header">
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only" th:text="#{org.gotocy.dictionary.toggle-navigation}">Toggle navigation</span>
+                        <span class="sr-only" th:text="${i18n.t('dictionary.toggle-navigation')}">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -56,11 +56,11 @@
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                        <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home-page')}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
                     </ul>
                 </nav><!-- /.navbar collapse-->
                 <div class="add-your-property">
-                    <a href="/parent/webapp/templates/property/new.html" th:href="@{${helper.path('/properties/new')}}" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="#{org.gotocy.dictionary.add-your-property}">Add Your Property</span></a>
+                    <a href="/parent/webapp/templates/property/new.html" th:href="@{${helper.path('/properties/new')}}" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="${i18n.t('dictionary.add-your-property')}">Add Your Property</span></a>
                 </div>
             </header><!-- /.navbar -->
         </div><!-- /.container -->
@@ -71,10 +71,10 @@
         <!-- Breadcrumb -->
         <div class="container">
             <ol class="breadcrumb">
-                <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
-                <li th:unless="${propertiesSearchForm.changed}" class="active" th:text="#{org.gotocy.dictionary.properties}">Properties Listing</li>
-                <li th:if="${propertiesSearchForm.changed}"><a th:href="@{${helper.path('/properties')}}" th:text="#{org.gotocy.dictionary.properties}" href="#">Properties Listing</a></li>
-                <li th:if="${propertiesSearchForm.changed}" class="active" th:text="#{org.gotocy.dictionary.search-results}">Search Results</li>
+                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
+                <li th:unless="${propertiesSearchForm.changed}" class="active" th:text="${i18n.t('dictionary.properties')}">Properties Listing</li>
+                <li th:if="${propertiesSearchForm.changed}"><a th:href="@{${helper.path('/properties')}}" th:text="${i18n.t('dictionary.properties')}" href="#">Properties Listing</a></li>
+                <li th:if="${propertiesSearchForm.changed}" class="active" th:text="${i18n.t('dictionary.search-results')}">Search Results</li>
             </ol>
         </div>
         <!-- end Breadcrumb -->
@@ -86,7 +86,7 @@
                     <section id="results">
                         <header><h1 th:text="${title}">Properties Listing</h1></header>
                         <section id="search-filter">
-                            <figure><h3 th:utext="|<i class='fa fa-search'></i>#{org.gotocy.dictionary.search-results}:|">Search Results:</h3>
+                            <figure><h3 th:utext="|<i class='fa fa-search'></i>${i18n.t('dictionary.search-results')}:|">Search Results:</h3>
                                 <span class="search-count" th:text="${properties.totalElements}">28</span>
                             </figure>
                         </section>
@@ -248,23 +248,23 @@
                 <div class="col-md-3 col-sm-3">
                     <section id="sidebar">
                         <aside id="edit-search">
-                            <header><h3 th:text="#{org.gotocy.dictionary.search-criteria}">Search Criteria</h3></header>
+                            <header><h3 th:text="${i18n.t('dictionary.search-criteria')}">Search Criteria</h3></header>
                             <form role="form" id="form-sidebar" class="form-search" th:action="@{${helper.path('/properties')}}" th:method="get" th:object="${propertiesSearchForm}">
                                 <div class="form-group">
                                     <select th:field="*{location}">
-                                        <option value="" th:text="#{org.gotocy.dictionary.location}">Location</option>
+                                        <option value="" th:text="${i18n.t('dictionary.location')}">Location</option>
                                         <option th:each="location : ${T(org.gotocy.domain.Location).values()}" th:value="${location}" th:text="${{location}}">Larnaca</option>
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
                                     <select th:field="*{propertyStatus}">
-                                        <option value="" th:text="#{org.gotocy.dictionary.offer-type}">Offer Type</option>
+                                        <option value="" th:text="${i18n.t('dictionary.offer-type')}">Offer Type</option>
                                         <option th:each="type : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${type}" th:text="${{type}}">Short Term</option>
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
                                     <select th:field="*{propertyType}">
-                                        <option value="" th:text="#{org.gotocy.dictionary.property-type}">Property Type</option>
+                                        <option value="" th:text="${i18n.t('dictionary.property-type')}">Property Type</option>
                                         <option th:each="type : ${T(org.gotocy.domain.PropertyType).values()}" th:value="${type}" th:text="${{type}}">Apartment</option>
                                     </select>
                                 </div><!-- /.form-group -->
@@ -274,7 +274,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-default" th:text="#{org.gotocy.dictionary.search-now}">Search Now</button>
+                                    <button type="submit" class="btn btn-default" th:text="${i18n.t('dictionary.search-now')}">Search Now</button>
                                 </div><!-- /.form-group -->
                             </form><!-- /#form-map -->
                         </aside><!-- /#edit-search -->

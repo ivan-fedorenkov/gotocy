@@ -4,12 +4,10 @@ import org.gotocy.beans.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.*;
 import org.gotocy.helpers.property.PropertyHelper;
-import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
 import static java.util.stream.Collectors.toList;
 
@@ -23,11 +21,9 @@ public class Helper {
 	private final AssetsManager assetsManager;
 	private final PropertyHelper propertyHelper;
 
-	public Helper(MessageSource messageSource, AssetsManager assetsManager,
-		ApplicationProperties applicationProperties)
-	{
+	public Helper(ApplicationProperties applicationProperties, AssetsManager assetsManager) {
 		this.assetsManager = assetsManager;
-		propertyHelper = new PropertyHelper(messageSource, assetsManager, applicationProperties);
+		propertyHelper = new PropertyHelper(applicationProperties, assetsManager);
 	}
 
 	/**
@@ -149,7 +145,16 @@ public class Helper {
 	}
 
 	private static String getPrefixForLanguage(String language) {
-		return Objects.equals(language, "ru") ? "/ru" : "";
+		if (language == null || language.isEmpty())
+			return "";
+		switch (language) {
+		case "ru":
+			return "/ru";
+		case "el":
+			return "/el";
+		default:
+			return "";
+		}
 	}
 
 }

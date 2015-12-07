@@ -11,7 +11,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
-    <title th:text="#{org.gotocy.templates.title(*{title})}">Property Detail | GoToCy</title>
+    <title th:text="${i18n.t('templates.title', #object.title)}">Property Detail | GoToCy</title>
 
 </head>
 
@@ -39,7 +39,7 @@
             <header class="navbar" id="top" role="banner">
                 <div class="navbar-header">
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only" th:text="#{org.gotocy.dictionary.toggle-navigation}">Toggle navigation</span>
+                        <span class="sr-only" th:text="${i18n.t('dictionary.toggle-navigation')}">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -50,11 +50,11 @@
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                        <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home-page')}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
                     </ul>
                 </nav><!-- /.navbar collapse-->
                 <!-- <div class="add-your-property">
-                    <a href="#" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="#{org.gotocy.dictionary.add-your-property}">Add Your Property</span></a>
+                    <a href="#" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="${i18n.t('dictionary.add-your-property')}">Add Your Property</span></a>
                 </div> -->
             </header><!-- /.navbar -->
         </div><!-- /.container -->
@@ -65,9 +65,9 @@
         <!-- Breadcrumb -->
         <div class="container">
             <ol class="breadcrumb">
-                <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
-                <li><a th:href="@{${helper.path('/properties')}}" th:text="#{org.gotocy.dictionary.properties}" href="#">Properties Search</a></li>
-                <li class="active" th:text="#{org.gotocy.dictionary.property-detail}">Property Detail</li>
+                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
+                <li><a th:href="@{${helper.path('/properties')}}" th:text="${i18n.t('dictionary.properties')}" href="#">Properties Search</a></li>
+                <li class="active" th:text="${i18n.t('dictionary.property-detail')}">Property Detail</li>
             </ol>
         </div>
         <!-- end Breadcrumb -->
@@ -180,7 +180,7 @@
                 <div class="col-md-3 col-sm-3">
                     <section id="sidebar">
                         <aside id="primary-contact">
-                            <header><h3 th:text="#{org.gotocy.dictionary.primary-contact}">Primary Contact</h3></header>
+                            <header><h3 th:text="${i18n.t('dictionary.primary-contact')}">Primary Contact</h3></header>
                             <dl th:replace="fragments/primary_contact_dl :: primary_contact(contact=*{primaryContact})">
                                 <dt>Name:</dt>
                                 <dd>Denis</dd>
@@ -197,7 +197,7 @@
                         </aside><!-- /#primary-contact -->
 
                         <aside id="featured-properties" th:unless="${#lists.isEmpty(featuredProperties)}">
-                            <header><h3 th:text="#{org.gotocy.dictionary.featured-properties}">Featured Properties</h3></header>
+                            <header><h3 th:text="${i18n.t('dictionary.featured-properties')}">Featured Properties</h3></header>
                             <div class="property small" th:each="lp : ${featuredProperties}" th:with="propertyPath=${helper.path('/promo/property-1')}">
                                 <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html">
                                     <div class="property-image">

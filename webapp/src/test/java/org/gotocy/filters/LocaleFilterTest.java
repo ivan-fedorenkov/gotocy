@@ -62,6 +62,17 @@ public class LocaleFilterTest {
 	}
 
 	@Test
+	public void testGreekLocale() throws Exception {
+		MockHttpServletRequest request = MockMvcRequestBuilders.get("/el" + TEST_URI).buildRequest(testServletContext);
+		MockHttpServletResponse response = new MockHttpServletResponse();
+
+		filter.doFilter(request, response, filterChain);
+
+		Assert.assertEquals(Locales.EL, request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME));
+		Assert.assertEquals(TEST_URI, response.getForwardedUrl());
+	}
+
+	@Test
 	public void testLocaleSwitch() throws Exception {
 		MockHttpServletRequest request = MockMvcRequestBuilders.get("/ru" + TEST_URI).buildRequest(testServletContext);
 		MockHttpServletResponse response = new MockHttpServletResponse();

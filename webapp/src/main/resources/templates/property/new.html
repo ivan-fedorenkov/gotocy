@@ -11,7 +11,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
-    <title th:text="#{org.gotocy.templates.title(#{org.gotocy.templates.property.new.add-your-property})}">GoToCy</title>
+    <title th:text="${i18n.t('templates.title', i18n.t('templates.property.new.add-your-property'))}">GoToCy</title>
 
 </head>
 
@@ -36,7 +36,7 @@
             <header class="navbar" id="top" role="banner">
                 <div class="navbar-header">
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only" th:text="#{org.gotocy.dictionary.toggle-navigation}">Toggle navigation</span>
+                        <span class="sr-only" th:text="${i18n.t('dictionary.toggle-navigation')}">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -47,7 +47,7 @@
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                        <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home-page')}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
                     </ul>
                 </nav><!-- /.navbar collapse-->
             </header><!-- /.navbar -->
@@ -58,14 +58,14 @@
         <!-- Breadcrumb -->
         <div class="container">
             <ol class="breadcrumb">
-                <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
-                <li class="active" th:text="#{org.gotocy.templates.property.new.add-your-property}">Add your property</li>
+                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
+                <li class="active" th:text="${i18n.t('templates.property.new.add-your-property')}">Add your property</li>
             </ol>
         </div>
         <!-- end Breadcrumb -->
 
         <div class="container">
-            <header><h1 th:text="#{org.gotocy.templates.property.new.add-your-property-capitalized}">Add Your Property</h1></header>
+            <header><h1 th:text="${i18n.t('templates.property.new.add-your-property-capitalized')}">Add Your Property</h1></header>
             <form role="form" id="form-submit" class="form-submit" method="post" th:object="${userPropertyForm}" th:action="@{${helper.path('/properties')}}" enctype="multipart/form-data">
 
                 <!--Errors-->
@@ -83,15 +83,15 @@
                     <div class="block">
                         <div class="col-md-7 col-sm-7">
                             <section id="basic-information">
-                                <header><h2 th:text="#{org.gotocy.dictionary.property-details}">Property Details</h2></header>
+                                <header><h2 th:text="${i18n.t('dictionary.property-details')}">Property Details</h2></header>
 
                                 <div class="form-group">
-                                    <label for="title" th:text="#{org.gotocy.dictionary.title}">Title</label>
+                                    <label for="title" th:text="${i18n.t('dictionary.title')}">Title</label>
                                     <input type="text" class="form-control" id="title" th:field="*{title}" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="propertyType" th:text="#{org.gotocy.dictionary.property-type}">Property Type</label>
+                                    <label for="propertyType" th:text="${i18n.t('dictionary.property-type')}">Property Type</label>
                                     <select id="propertyType" th:field="*{propertyType}" th:remove="all-but-first" required>
                                         <option value="1" th:each="type : ${T(org.gotocy.domain.PropertyType).values()}" th:value="${type}" th:text="${{type}}">Apartment</option>
                                         <option value="2">Condominium</option>
@@ -102,7 +102,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="propertyStatus" th:text="#{org.gotocy.dictionary.offer-type}">Offer Type</label>
+                                    <label for="propertyStatus" th:text="${i18n.t('dictionary.offer-type')}">Offer Type</label>
                                     <select id="propertyStatus" th:field="*{propertyStatus}" th:remove="all-but-first" required>
                                         <option value="1" th:each="status : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${status}" th:text="${{status}}">Sale</option>
                                         <option value="2">Short Term</option>
@@ -112,76 +112,76 @@
 
 
                                 <div class="form-group">
-                                    <label for="plotSize" th:text="#{org.gotocy.dictionary.plot-size}">Plot Size</label>
+                                    <label for="plotSize" th:text="${i18n.t('dictionary.plot-size')}">Plot Size</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="plotSize" th:field="*{plotSize}" pattern="\d+">
-                                        <span class="input-group-addon" th:utext="#{org.gotocy.dictionary.sq-meters}">m<sup>2</sup></span>
+                                        <span class="input-group-addon" th:utext="${i18n.t('dictionary.sq-meters')}">m<sup>2</sup></span>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="coveredArea" class="control-label" th:text="#{org.gotocy.dictionary.covered-area}">Covered Area</label>
+                                    <label for="coveredArea" class="control-label" th:text="${i18n.t('dictionary.covered-area')}">Covered Area</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="coveredArea" th:field="*{coveredArea}" pattern="\d+">
-                                        <span class="input-group-addon" th:utext="#{org.gotocy.dictionary.sq-meters}">m<sup>2</sup></span>
+                                        <span class="input-group-addon" th:utext="${i18n.t('dictionary.sq-meters')}">m<sup>2</sup></span>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="bedrooms" th:text="#{org.gotocy.dictionary.levels}">Level(s)</label>
+                                    <label for="bedrooms" th:text="${i18n.t('dictionary.levels')}">Level(s)</label>
                                     <input type="text" class="form-control" id="levels" th:field="*{levels}" pattern="\d+">
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label for="bedrooms" th:text="#{org.gotocy.dictionary.bedrooms.plural}">Bedrooms</label>
+                                    <label for="bedrooms" th:text="${i18n.t('dictionary.bedrooms.plural')}">Bedrooms</label>
                                     <input type="text" class="form-control" id="bedrooms" th:field="*{bedrooms}" pattern="\d+">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="guests" th:text="#{org.gotocy.dictionary.guests}">Guests</label>
+                                    <label for="guests" th:text="${i18n.t('dictionary.guests')}">Guests</label>
                                     <input type="text" class="form-control" id="guests" th:field="*{guests}" pattern="\d+">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="distanceToSea" th:text="#{org.gotocy.dictionary.distance-to-sea}">To Sea</label>
+                                    <label for="distanceToSea" th:text="${i18n.t('dictionary.distance-to-sea')}">To Sea</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="distanceToSea" th:field="*{distanceToSea}" pattern="\d+">
-                                        <span class="input-group-addon" th:text="#{org.gotocy.dictionary.meters}">m</span>
+                                        <span class="input-group-addon" th:text="${i18n.t('dictionary.meters')}">m</span>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="furnishing" th:text="#{org.gotocy.dictionary.furnishing}">Furnishing</label>
+                                    <label for="furnishing" th:text="${i18n.t('dictionary.furnishing')}">Furnishing</label>
                                     <select id="furnishing" th:field="*{furnishing}">
                                         <option value="1" th:each="furnishing : ${T(org.gotocy.domain.Furnishing).values()}" th:value="${furnishing}" th:text="${{furnishing}}">Semi</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label th:text="#{org.gotocy.dictionary.misc-info}">Misc Info</label>
+                                    <label th:text="${i18n.t('dictionary.misc-info')}">Misc Info</label>
 
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" th:field="*{airConditioner}"><span th:text="#{org.gotocy.dictionary.air-conditioner}">Air Conditioner</span>
+                                            <input type="checkbox" th:field="*{airConditioner}"><span th:text="${i18n.t('dictionary.air-conditioner')}">Air Conditioner</span>
                                         </label>
                                     </div>
 
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" th:field="*{heatingSystem}"><span th:text="#{org.gotocy.dictionary.heating-system}">Heating System</span>
+                                            <input type="checkbox" th:field="*{heatingSystem}"><span th:text="${i18n.t('dictionary.heating-system')}">Heating System</span>
                                         </label>
                                     </div>
 
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" th:field="*{readyToMoveIn}"><span th:text="#{org.gotocy.dictionary.ready-to-move-in}">Ready to Move in</span>
+                                            <input type="checkbox" th:field="*{readyToMoveIn}"><span th:text="${i18n.t('dictionary.ready-to-move-in')}">Ready to Move in</span>
                                         </label>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="description" th:text="#{org.gotocy.dictionary.description}">Description</label>
+                                    <label for="description" th:text="${i18n.t('dictionary.description')}">Description</label>
                                     <textarea class="form-control" id="description" rows="16" th:field="*{description}"></textarea>
                                 </div>
                             </section><!-- /#basic-information -->
@@ -190,9 +190,9 @@
                             <aside class="submit-step">
                                 <figure class="step-number">1</figure>
                                 <div class="description">
-                                    <h4 th:text="#{org.gotocy.templates.property.new.enter-property-details}">Enter Property Details</h4>
-                                    <p th:text="#{org.gotocy.templates.property.new.hint-1-upper}">Type information about your property</p>
-                                    <p th:utext="#{org.gotocy.templates.property.new.hint-1-lower}"><strong>Hint:</strong> Visitors tend to pay more attention on properties with descriptive title</p>
+                                    <h4 th:text="${i18n.t('templates.property.new.enter-property-details')}">Enter Property Details</h4>
+                                    <p th:text="${i18n.t('templates.property.new.hint-1-upper')}">Type information about your property</p>
+                                    <p th:utext="${i18n.t('templates.property.new.hint-1-lower')}"><strong>Hint:</strong> Visitors tend to pay more attention on properties with descriptive title</p>
                                 </div>
                             </aside><!-- /.submit-step -->
                         </div>
@@ -203,12 +203,12 @@
                     <div class="block">
                         <div class="col-md-7 col-sm-7">
                             <section class="block" id="place-on-map">
-                                <header class="section-title"><h2 th:text="#{org.gotocy.dictionary.place-on-map}">Place on Map</h2></header>
+                                <header class="section-title"><h2 th:text="${i18n.t('dictionary.place-on-map')}">Place on Map</h2></header>
                                 <div class="form-group">
-                                    <label for="address-search" th:text="#{org.gotocy.templates.property.new.search-the-address}">Search the Address</label>
+                                    <label for="address-search" th:text="${i18n.t('templates.property.new.search-the-address')}">Search the Address</label>
                                     <input type="text" class="form-control" id="address-search" name="address-search">
                                 </div><!-- /.form-group -->
-                                <label for="submit-map" th:text="#{org.gotocy.templates.property.new.drag-the-marker}">Or drag the marker to property position</label>
+                                <label for="submit-map" th:text="${i18n.t('templates.property.new.drag-the-marker')}">Or drag the marker to property position</label>
                                 <div id="submit-map"></div>
 
                                 <input type="hidden" id="location" th:field="*{{location}}">
@@ -222,8 +222,8 @@
                             <aside class="submit-step">
                                 <figure class="step-number">2</figure>
                                 <div class="description">
-                                    <h4 th:text="#{org.gotocy.templates.property.new.specify-location}">Specify Location</h4>
-                                    <p th:text="#{org.gotocy.templates.property.new.hint-2-upper}">Place the marker in the property's position</p>
+                                    <h4 th:text="${i18n.t('templates.property.new.specify-location')}">Specify Location</h4>
+                                    <p th:text="${i18n.t('templates.property.new.hint-2-upper')}">Place the marker in the property's position</p>
                                 </div>
                             </aside>
                         </div>
@@ -234,11 +234,11 @@
                     <div class="block">
                         <div class="col-md-7 col-sm-7">
                             <section class="block" id="gallery">
-                                <header><h2 th:text="#{org.gotocy.dictionary.gallery}">Gallery</h2></header>
+                                <header><h2 th:text="${i18n.t('dictionary.gallery')}">Gallery</h2></header>
                                 <div class="center">
                                     <div class="form-group">
-                                        <input id="file-upload" type="file" name="images" class="file" multiple="true" data-show-upload="false" data-show-caption="false" data-show-remove="false" data-max-file-count="10" accept="image/jpeg" data-browse-class="btn btn-default" data-browse-label="Browse Images" th:attr="data-browse-label=#{org.gotocy.dictionary.browse-images}">
-                                        <figure class="note" th:utext="#{org.gotocy.templates.property.new.upload-hint}"><strong>Hint:</strong> You can upload all images at once!</figure>
+                                        <input id="file-upload" type="file" name="images" class="file" multiple="true" data-show-upload="false" data-show-caption="false" data-show-remove="false" data-max-file-count="10" accept="image/jpeg" data-browse-class="btn btn-default" data-browse-label="Browse Images" th:attr="data-browse-label=${i18n.t('dictionary.browse-images')}">
+                                        <figure class="note" th:utext="${i18n.t('templates.property.new.upload-hint')}"><strong>Hint:</strong> You can upload all images at once!</figure>
                                     </div>
                                 </div>
                             </section>
@@ -248,8 +248,8 @@
                             <aside class="submit-step">
                                 <figure class="step-number">3</figure>
                                 <div class="description">
-                                    <h4 th:text="#{org.gotocy.templates.property.new.upload-property-pictures}">Upload Property Pictures</h4>
-                                    <p th:text="#{org.gotocy.templates.property.new.hint-3-upper}">The first picture will be used for preview purposes</p>
+                                    <h4 th:text="${i18n.t('templates.property.new.upload-property-pictures')}">Upload Property Pictures</h4>
+                                    <p th:text="${i18n.t('templates.property.new.hint-3-upper')}">The first picture will be used for preview purposes</p>
                                 </div>
                             </aside>
                         </div>
@@ -261,7 +261,7 @@
                         <div class="col-md-7 col-sm-7">
                             <div class="center">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-default large" th:text="#{org.gotocy.dictionary.proceed}">Proceed</button>
+                                    <button type="submit" class="btn btn-default large" th:text="${i18n.t('dictionary.proceed')}">Proceed</button>
                                 </div><!-- /.form-group -->
                             </div>
                         </div>

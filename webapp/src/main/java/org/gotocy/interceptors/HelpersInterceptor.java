@@ -3,7 +3,7 @@ package org.gotocy.interceptors;
 import org.gotocy.beans.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.helpers.Helper;
-import org.springframework.context.MessageSource;
+import org.gotocy.i18n.I18n;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,10 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 public class HelpersInterceptor implements HandlerInterceptor {
 	private final Helper helper;
 	private final ApplicationProperties applicationProperties;
+	private final I18n i18n;
 
-	public HelpersInterceptor(ApplicationProperties applicationProperties, MessageSource messageSource, AssetsManager assetsManager) {
-		helper = new Helper(messageSource, assetsManager, applicationProperties);
+	public HelpersInterceptor(ApplicationProperties applicationProperties, AssetsManager assetsManager, I18n i18n) {
+		helper = new Helper(applicationProperties, assetsManager);
 		this.applicationProperties = applicationProperties;
+		this.i18n = i18n;
 	}
 
 	@Override
@@ -34,6 +36,7 @@ public class HelpersInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		if (modelAndView != null) {
 			modelAndView.addObject("helper", helper);
+			modelAndView.addObject("i18n", i18n);
 			modelAndView.addObject("gotocy", applicationProperties);
 		}
 	}

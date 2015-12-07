@@ -1,6 +1,6 @@
 package org.gotocy.format;
 
-import org.springframework.context.MessageSource;
+import org.gotocy.i18n.I18n;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.format.Formatter;
 
@@ -15,12 +15,10 @@ import java.util.Locale;
  */
 public class EnumsFormatter<T extends Enum<T> & MessageSourceResolvable> implements Formatter<T> {
 
-	protected final MessageSource messageSource;
 	private final Class<T> clazz;
 
-	public EnumsFormatter(Class<T> clazz, MessageSource messageSource) {
+	public EnumsFormatter(Class<T> clazz) {
 		this.clazz = clazz;
-		this.messageSource = messageSource;
 	}
 
 	@Override
@@ -30,7 +28,7 @@ public class EnumsFormatter<T extends Enum<T> & MessageSourceResolvable> impleme
 
 	@Override
 	public String print(T object, Locale locale) {
-		return messageSource.getMessage(object, locale);
+		return I18n.t(object);
 	}
 
 }

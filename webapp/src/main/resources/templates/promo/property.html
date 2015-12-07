@@ -10,7 +10,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
-    <title th:text="#{org.gotocy.templates.title(*{title})}">Property Detail | GoToCy</title>
+    <title th:text="${i18n.t('templates.title', #object.title)}">Property Detail | GoToCy</title>
 
 </head>
 
@@ -38,7 +38,7 @@
             <header class="navbar" id="top" role="banner">
                 <div class="navbar-header">
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only" th:text="#{org.gotocy.dictionary.toggle-navigation}">Toggle navigation</span>
+                        <span class="sr-only" th:text="${i18n.t('dictionary.toggle-navigation')}">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -49,11 +49,11 @@
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home-page}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                        <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home-page')}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
                     </ul>
                 </nav><!-- /.navbar collapse-->
                 <!-- <div class="add-your-property">
-                    <a href="#" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="#{org.gotocy.dictionary.add-your-property}">Add Your Property</span></a>
+                    <a href="#" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="${i18n.t('dictionary.add-your-property')}">Add Your Property</span></a>
                 </div> -->
             </header><!-- /.navbar -->
         </div><!-- /.container -->
@@ -64,9 +64,9 @@
         <!-- Breadcrumb -->
         <div class="container">
             <ol class="breadcrumb">
-                <li><a th:href="@{${helper.path('/')}}" th:text="#{org.gotocy.dictionary.home}" href="#">Home</a></li>
-                <li><a th:href="@{${helper.path('/properties')}}" th:text="#{org.gotocy.dictionary.properties}" href="#">Properties Search</a></li>
-                <li class="active" th:text="#{org.gotocy.dictionary.property-detail}">Property Detail</li>
+                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
+                <li><a th:href="@{${helper.path('/properties')}}" th:text="${i18n.t('dictionary.properties')}" href="#">Properties Search</a></li>
+                <li class="active" th:text="${i18n.t('dictionary.property-detail')}">Property Detail</li>
             </ol>
         </div>
         <!-- end Breadcrumb -->
@@ -179,28 +179,28 @@
                 <div class="col-md-3 col-sm-3">
                     <section id="sidebar">
                         <aside id="registration-offer" th:unless="${relatedRegistration}">
-                            <header><h3 th:text="#{org.gotocy.dictionary.congratulations}">Congratulations</h3></header>
-                            <section th:utext="#{org.gotocy.templates.promo.property.registration-offer-text}">
+                            <header><h3 th:text="${i18n.t('dictionary.congratulations')}">Congratulations</h3></header>
+                            <section th:utext="${i18n.t('templates.promo.property.registration-offer-text')}">
                                 <p>Congrats, your property's page has been successfully created!</p>
                                 <p>You are just a few steps behind offering your property to our huge auditory!</p>
                                 <p>Register now and we will contact you shortly!</p>
                             </section>
                         </aside>
                         <aside id="registration-form" th:unless="${relatedRegistration}">
-                            <header><h3 th:text="#{org.gotocy.templates.promo.property.registration-form-header}">Register Now</h3></header>
+                            <header><h3 th:text="${i18n.t('templates.promo.property.registration-form-header')}">Register Now</h3></header>
                             <form role="form" th:object="${registrationForm}" th:action="@{${helper.path(property) + '/registration'}}" method="post">
                                 <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
-                                    <label class="control-label" for="name" th:text="#{org.gotocy.dictionary.your-name}">Your Name</label>
+                                    <label class="control-label" for="name" th:text="${i18n.t('dictionary.your-name')}">Your Name</label>
                                     <input type="text" class="form-control" id="name" th:field="*{name}" required>
                                 </div>
 
                                 <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? has-error">
-                                    <label class="control-label" for="email" th:text="#{org.gotocy.dictionary.your-email}">Your Email</label>
+                                    <label class="control-label" for="email" th:text="${i18n.t('dictionary.your-email')}">Your Email</label>
                                     <input type="text" class="form-control" id="email" th:field="*{email}" required>
                                 </div>
 
                                 <div class="form-group" th:classappend="${#fields.hasErrors('businessForm')} ? has-error">
-                                    <label class="control-label" for="businessForm" th:text="#{org.gotocy.dictionary.business-form}">Business Form</label>
+                                    <label class="control-label" for="businessForm" th:text="${i18n.t('dictionary.business-form')}">Business Form</label>
                                     <select id="businessForm" th:field="*{businessForm}" th:remove="all-but-first">
                                         <option value="1" th:each="form : ${T(org.gotocy.domain.BusinessForm).values()}" th:value="${form}" th:text="${{form}}">Individual</option>
                                         <option value="2">Agent</option>
@@ -209,7 +209,7 @@
                                 </div>
 
                                 <div class="form-group" th:classappend="${#fields.hasErrors('propertiesCount')} ? has-error">
-                                    <label class="control-label" for="propertiesCount" th:text="#{org.gotocy.dictionary.properties-count}">How many properties do you have?</label>
+                                    <label class="control-label" for="propertiesCount" th:text="${i18n.t('dictionary.properties-count')}">How many properties do you have?</label>
                                     <select id="propertiesCount" th:field="*{propertiesCount}" th:errorclass="has-error">
                                         <option value="1">1+</option>
                                         <option value="3">3+</option>
@@ -220,13 +220,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="submit" id="register-button" class="btn btn-default" th:text="#{org.gotocy.templates.promo.property.registration-form-submit}">Register Now</button>
+                                    <button type="submit" id="register-button" class="btn btn-default" th:text="${i18n.t('templates.promo.property.registration-form-submit')}">Register Now</button>
                                 </div>
                             </form>
                         </aside>
                         <aside id="thank-you" th:if="${relatedRegistration}">
-                            <header><h3 th:text="#{org.gotocy.dictionary.thank-you}">Thank You!</h3></header>
-                            <section th:utext="#{org.gotocy.templates.promo.property.thank-you-text}">
+                            <header><h3 th:text="${i18n.t('dictionary.thank-you')}">Thank You!</h3></header>
+                            <section th:utext="${i18n.t('templates.promo.property.thank-you-text')}">
                                 <p>Your registration request has been sent to our moderator!</p>
                                 <p>We will contact you soon!</p>
                             </section>

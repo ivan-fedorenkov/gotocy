@@ -2,10 +2,8 @@ package org.gotocy.helpers.property;
 
 import org.gotocy.domain.Property;
 import org.gotocy.helpers.Helper;
+import org.gotocy.i18n.I18n;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
-
-import java.util.Objects;
 
 /**
  * Property fields and their view layer representation.
@@ -16,207 +14,199 @@ public enum FieldFormat {
 	LOCATION {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.location";
+			return "dictionary.location";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return ms.getMessage(p.getLocation(), LocaleContextHolder.getLocale());
+		public String formatValue(Property p) {
+			return I18n.t(p.getLocation());
 		}
 	},
 	PROPERTY_TYPE {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.property-type";
+			return "dictionary.property-type";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return ms.getMessage(p.getPropertyType(), LocaleContextHolder.getLocale());
+		public String formatValue(Property p) {
+			return I18n.t(p.getPropertyType());
 		}
 	},
 	RENTAL_TYPE {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.rental";
+			return "dictionary.rental";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return ms.getMessage(p.getPropertyStatus(), LocaleContextHolder.getLocale());
+		public String formatValue(Property p) {
+			return I18n.t(p.getPropertyStatus());
 		}
 	},
 	PRICE {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.price";
+			return "dictionary.price";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return "<span class=\"tag price\">" + PropertyHelper.price(ms, p)  + "</span>";
+		public String formatValue(Property p) {
+			return "<span class=\"tag price\">" + PropertyHelper.price(p)  + "</span>";
 		}
 	},
 	VAT {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.vat";
+			return "dictionary.vat";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return ms.getMessage(
-				p.isVatIncluded() ?
-					"org.gotocy.dictionary.vat-included" : "org.gotocy.dictionary.vat-not-included",
-				new Object[0], LocaleContextHolder.getLocale());
+		public String formatValue(Property p) {
+			return I18n.t(p.isVatIncluded() ? "dictionary.vat-included" : "dictionary.vat-not-included");
 		}
 	},
 	COVERED_AREA {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.covered-area";
+			return "dictionary.covered-area";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return p.getCoveredArea() + " " +
-				ms.getMessage("org.gotocy.dictionary.meters", new Object[0], LocaleContextHolder.getLocale()) +
-				"<sup>2</sup>";
+		public String formatValue(Property p) {
+			return p.getCoveredArea() + " " + I18n.t("dictionary.meters") + "<sup>2</sup>";
 		}
 	},
 	PLOT_SIZE {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.plot-size";
+			return "dictionary.plot-size";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return p.getPlotSize() + " " +
-				ms.getMessage("org.gotocy.dictionary.meters", new Object[0], LocaleContextHolder.getLocale()) +
-				"<sup>2</sup>";
+		public String formatValue(Property p) {
+			return p.getPlotSize() + " " + I18n.t("dictionary.meters") + "<sup>2</sup>";
 		}
 	},
 	LEVELS {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.levels." + p.getPropertyType().name();
+			return "dictionary.levels." + p.getPropertyType().name();
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
+		public String formatValue(Property p) {
 			return Integer.toString(p.getLevels());
 		}
 	},
 	BEDROOMS {
 		@Override
 		public String getHeadingKey(Property p) {
-			return Helper.pluralize("org.gotocy.dictionary.bedrooms", p.getBedrooms());
+			return Helper.pluralize("dictionary.bedrooms", p.getBedrooms());
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
+		public String formatValue(Property p) {
 			return Integer.toString(p.getBedrooms());
 		}
 	},
 	GUESTS {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.guests";
+			return "dictionary.guests";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
+		public String formatValue(Property p) {
 			return Integer.toString(p.getGuests());
 		}
 	},
 	FURNISHING {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.furnishing";
+			return "dictionary.furnishing";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return p.getFurnishing() == null ? "" : ms.getMessage(p.getFurnishing(), LocaleContextHolder.getLocale());
+		public String formatValue(Property p) {
+			return p.getFurnishing() == null ? "" : I18n.t(p.getFurnishing());
 		}
 	},
 	HEATING_SYSTEM {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.heating-system";
+			return "dictionary.heating-system";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return yesNoValue(ms, p.hasHeatingSystem());
+		public String formatValue(Property p) {
+			return yesNoValue(p.hasHeatingSystem());
 		}
 	},
 	AIR_CONDITIONER {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.air-conditioner";
+			return "dictionary.air-conditioner";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return yesNoValue(ms, p.hasAirConditioner());
+		public String formatValue(Property p) {
+			return yesNoValue(p.hasAirConditioner());
 		}
 	},
 	READY_TO_MOVE_IN {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.ready-to-move-in";
+			return "dictionary.ready-to-move-in";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return yesNoValue(ms, p.isReadyToMoveIn());
+		public String formatValue(Property p) {
+			return yesNoValue(p.isReadyToMoveIn());
 		}
 	},
 	DISTANCE_TO_SEA {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.distance-to-sea";
+			return "dictionary.distance-to-sea";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return PropertyHelper.distance(ms, p.getDistanceToSea());
+		public String formatValue(Property p) {
+			return PropertyHelper.distance(p.getDistanceToSea());
 		}
 	},
 	DISTANCE_TO_SEA_SHORT {
 		@Override
 		public String getHeadingKey(Property p) {
-			return "org.gotocy.dictionary.distance-to-sea-short";
+			return "dictionary.distance-to-sea-short";
 		}
 
 		@Override
-		public String formatValue(MessageSource ms, Property p) {
-			return PropertyHelper.distance(ms, p.getDistanceToSea());
+		public String formatValue(Property p) {
+			return PropertyHelper.distance(p.getDistanceToSea());
 		}
 	};
 
 	/**
-	 * Returns the heading key of a field that can be resolved later through a {@link MessageSource}.
+	 * Returns the heading key of a field that can be resolved later through {@link MessageSource}.
 	 */
 	public abstract String getHeadingKey(Property p);
 
 	/**
-	 * Returns the formatted heading using the given message source and thread-bound locale.
+	 * Returns the formatted heading using the given {@link I18n} helper.
 	 */
-	public String formatHeadingKey(MessageSource ms, Property p) {
-		return ms.getMessage(getHeadingKey(p), new Object[0], LocaleContextHolder.getLocale());
+	public String formatHeadingKey(Property p) {
+		return I18n.t(getHeadingKey(p));
 	}
 
 	/**
-	 * Returns the formatted field value using the given message source and thread-bound locale.
+	 * Returns the formatted field value using the given {@link I18n} helper.
 	 */
-	public abstract String formatValue(MessageSource ms, Property p);
+	public abstract String formatValue(Property p);
 
-	protected String yesNoValue(MessageSource ms, boolean condition) {
-		return ms.getMessage(condition ? "org.gotocy.dictionary.yes" : "org.gotocy.dictionary.no",
-			new Object[0], LocaleContextHolder.getLocale());
+	protected String yesNoValue(boolean condition) {
+		return I18n.t(condition ? "dictionary.yes" : "dictionary.no");
 	}
 
 }
