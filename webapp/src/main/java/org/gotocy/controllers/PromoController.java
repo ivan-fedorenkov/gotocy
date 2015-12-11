@@ -8,9 +8,8 @@ import org.gotocy.helpers.Helper;
 import org.gotocy.repository.PropertyRepository;
 import org.gotocy.repository.RegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -103,27 +102,21 @@ public class PromoController {
 
 	@RequestMapping(value = "/index-1", method = RequestMethod.GET)
 	public String getIndex1(Model model, Locale locale,
-		@PageableDefault(size = 40, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
+		@SortDefault(sort = "id", direction = Sort.Direction.DESC) Sort sort)
 	{
-		Iterable<Property> properties = propertyRepository.findAll(publiclyVisible(), pageable);
+		// Yes, fetch all the available publicly visible properties from the database
+		Iterable<Property> properties = propertyRepository.findAll(publiclyVisible(), sort);
 
-		Set<Property> filteredLongTerms = new TreeSet<>(BY_COORDINATES_COMPARATOR);
-		Set<Property> filteredShortTerms = new TreeSet<>(BY_COORDINATES_COMPARATOR);
-		Set<Property> filteredSale = new TreeSet<>(BY_COORDINATES_COMPARATOR);
+		// Properties by status
+		Map<PropertyStatus, Set<Property>> propertiesByStatus = new EnumMap<>(PropertyStatus.class);
+		for (PropertyStatus status : PropertyStatus.values())
+			propertiesByStatus.put(status, new TreeSet<>(BY_COORDINATES_COMPARATOR));
 
+		// Fill the sets of properties, each must contain no more then PROPERTIES_PER_CATEGORY elements
 		for (Property property : properties) {
-			Set<Property> filtered =
-					property.getPropertyStatus() == PropertyStatus.LONG_TERM ? filteredLongTerms :
-							property.getPropertyStatus() == PropertyStatus.SHORT_TERM ? filteredShortTerms : filteredSale;
-
-			if (filtered.add(property)) {
-				if (filteredLongTerms.size() == PROPERTIES_PER_CATEGORY &&
-						filteredShortTerms.size() == PROPERTIES_PER_CATEGORY &&
-						filteredSale.size() == PROPERTIES_PER_CATEGORY)
-				{
-					break;
-				}
-			}
+			Set<Property> filtered = propertiesByStatus.get(property.getPropertyStatus());
+			if (filtered.size() < PROPERTIES_PER_CATEGORY)
+				filtered.add(property);
 		}
 
 		// List of featured properties (commercial)
@@ -134,9 +127,9 @@ public class PromoController {
 			featured.add(p);
 		}
 
-		model.addAttribute("longTermProperties", filteredLongTerms);
-		model.addAttribute("shortTermProperties", filteredShortTerms);
-		model.addAttribute("saleProperties", filteredSale);
+		model.addAttribute("longTermProperties", propertiesByStatus.get(PropertyStatus.LONG_TERM));
+		model.addAttribute("shortTermProperties", propertiesByStatus.get(PropertyStatus.SHORT_TERM));
+		model.addAttribute("saleProperties", propertiesByStatus.get(PropertyStatus.SALE));
 		model.addAttribute("featuredProperties", featured);
 
 		return "promo/index_1";

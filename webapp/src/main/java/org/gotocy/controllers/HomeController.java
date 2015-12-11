@@ -4,19 +4,14 @@ import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyStatus;
 import org.gotocy.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Comparator;
-import java.util.Locale;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
-import static org.gotocy.repository.PropertyPredicates.featured;
 import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
 
 /**
@@ -49,34 +44,33 @@ public class HomeController {
 	 * TODO: dirty hack, still it works fine for now; later this logic would be substituted by property groups and offers
 	 */
 	@RequestMapping("/")
-	public String home(Model model, Locale locale,
-		@PageableDefault(size = 40, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
-	{
-		Iterable<Property> properties = repository.findAll(publiclyVisible(), pageable);
+	public String home(Model model, Locale locale, @SortDefault(sort = "id", direction = Sort.Direction.DESC) Sort sort) {
 
-		Set<Property> filteredLongTerms = new TreeSet<>(BY_COORDINATES_COMPARATOR);
-		Set<Property> filteredShortTerms = new TreeSet<>(BY_COORDINATES_COMPARATOR);
-		Set<Property> filteredSale = new TreeSet<>(BY_COORDINATES_COMPARATOR);
+		// Yes, fetch all the available publicly visible properties from the database
+		Iterable<Property> properties = repository.findAll(publiclyVisible(), sort);
 
+		// Properties by status
+		Map<PropertyStatus, Set<Property>> propertiesByStatus = new EnumMap<>(PropertyStatus.class);
+		for (PropertyStatus status : PropertyStatus.values())
+			propertiesByStatus.put(status, new TreeSet<>(BY_COORDINATES_COMPARATOR));
+
+		// Featured properties
+		Set<Property> featured = new TreeSet<>(BY_COORDINATES_COMPARATOR);
+
+		// Fill the sets of properties, each must contain no more then PROPERTIES_PER_CATEGORY elements
 		for (Property property : properties) {
-			Set<Property> filtered =
-				property.getPropertyStatus() == PropertyStatus.LONG_TERM ? filteredLongTerms :
-				property.getPropertyStatus() == PropertyStatus.SHORT_TERM ? filteredShortTerms : filteredSale;
+			if (featured.size() < PROPERTIES_PER_CATEGORY && property.isFeatured())
+				featured.add(property);
 
-			if (filtered.add(property)) {
-				if (filteredLongTerms.size() == PROPERTIES_PER_CATEGORY &&
-					filteredShortTerms.size() == PROPERTIES_PER_CATEGORY &&
-					filteredSale.size() == PROPERTIES_PER_CATEGORY)
-				{
-					break;
-				}
-			}
+			Set<Property> filtered = propertiesByStatus.get(property.getPropertyStatus());
+			if (filtered.size() < PROPERTIES_PER_CATEGORY)
+				filtered.add(property);
 		}
 
-		model.addAttribute("longTermProperties", filteredLongTerms);
-		model.addAttribute("shortTermProperties", filteredShortTerms);
-		model.addAttribute("saleProperties", filteredSale);
-		model.addAttribute("featuredProperties", repository.findAll(publiclyVisible().and(featured())));
+		model.addAttribute("longTermProperties", propertiesByStatus.get(PropertyStatus.LONG_TERM));
+		model.addAttribute("shortTermProperties", propertiesByStatus.get(PropertyStatus.SHORT_TERM));
+		model.addAttribute("saleProperties", propertiesByStatus.get(PropertyStatus.SALE));
+		model.addAttribute("featuredProperties", featured);
 
 		return "home/index";
 	}
