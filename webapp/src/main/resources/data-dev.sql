@@ -146,25 +146,25 @@ insert into localized_field (version, field_type, field_key, language, string_va
 insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
 
 insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Дровяной камин');
-insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
 insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Кондиционеры во всех комнатах');
-insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
 insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Потолочные вентиляторы');
-insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
 insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Охранная система');
-insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
 insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Гараж с дистанц. управлением');
-insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
 insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Три оливковых дерева');
-insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
 insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Лимонное дерево');
-insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
 insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Мандариновое дерево');
-insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
 insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Ореховое дерево');
-insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
 insert into localized_field (version, field_type, field_key, language, string_value) values (0, 'string', 'feature', 'ru', 'Другие растения');
-insert into property_localized_fields (property_id, localized_fields_id) values (09, select last_insert_id());
+insert into property_localized_fields (property_id, localized_fields_id) values (9, select last_insert_id());
 
 -- 10 (Short term) - a short term offer for property #9
 

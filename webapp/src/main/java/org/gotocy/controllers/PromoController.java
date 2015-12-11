@@ -19,9 +19,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+
+import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
 
 /**
  * @author ifedorenkov
@@ -29,6 +29,19 @@ import java.util.Locale;
 @Controller
 @RequestMapping("/promo")
 public class PromoController {
+
+	private static final int PROPERTIES_PER_CATEGORY = 4;
+
+	private static final Comparator<Property> BY_COORDINATES_COMPARATOR = (o1, o2) -> {
+		if (o1.getLatitude() == o2.getLatitude() && o1.getLongitude() == o2.getLongitude())
+			return 0;
+
+		if (o1.getLatitude() == o2.getLatitude()) {
+			return Double.compare(o1.getLongitude(), o2.getLongitude());
+		} else {
+			return Double.compare(o1.getLatitude(), o2.getLatitude());
+		}
+	};
 
 	private final PropertyRepository propertyRepository;
 	private final RegistrationRepository registrationRepository;
@@ -90,11 +103,28 @@ public class PromoController {
 
 	@RequestMapping(value = "/index-1", method = RequestMethod.GET)
 	public String getIndex1(Model model, Locale locale,
-		@PageableDefault(size = 4, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
+		@PageableDefault(size = 40, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
-		model.addAttribute("longTermProperties", propertyRepository.findByPropertyStatus(PropertyStatus.LONG_TERM, pageable));
-		model.addAttribute("shortTermProperties", propertyRepository.findByPropertyStatus(PropertyStatus.SHORT_TERM, pageable));
-		model.addAttribute("saleProperties", propertyRepository.findByPropertyStatus(PropertyStatus.SALE, pageable));
+		Iterable<Property> properties = propertyRepository.findAll(publiclyVisible(), pageable);
+
+		Set<Property> filteredLongTerms = new TreeSet<>(BY_COORDINATES_COMPARATOR);
+		Set<Property> filteredShortTerms = new TreeSet<>(BY_COORDINATES_COMPARATOR);
+		Set<Property> filteredSale = new TreeSet<>(BY_COORDINATES_COMPARATOR);
+
+		for (Property property : properties) {
+			Set<Property> filtered =
+					property.getPropertyStatus() == PropertyStatus.LONG_TERM ? filteredLongTerms :
+							property.getPropertyStatus() == PropertyStatus.SHORT_TERM ? filteredShortTerms : filteredSale;
+
+			if (filtered.add(property)) {
+				if (filteredLongTerms.size() == PROPERTIES_PER_CATEGORY &&
+						filteredShortTerms.size() == PROPERTIES_PER_CATEGORY &&
+						filteredSale.size() == PROPERTIES_PER_CATEGORY)
+				{
+					break;
+				}
+			}
+		}
 
 		// List of featured properties (commercial)
 		List<Property> featured = new ArrayList<>(3);
@@ -103,6 +133,10 @@ public class PromoController {
 			p.setRepresentativeImage(p.getImages().get(i));
 			featured.add(p);
 		}
+
+		model.addAttribute("longTermProperties", filteredLongTerms);
+		model.addAttribute("shortTermProperties", filteredShortTerms);
+		model.addAttribute("saleProperties", filteredSale);
 		model.addAttribute("featuredProperties", featured);
 
 		return "promo/index_1";
