@@ -20,9 +20,6 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.*;
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
@@ -40,7 +37,11 @@ public class MayfairCrawler extends PropertyCrawler {
 	private final HtmlCleaner htmlCleaner;
 	private final DomSerializer domSerializer;
 
+	private final XPathExpression refNumExpression;
 	private final XPathExpression titleExpression;
+	private final XPathExpression propertyStatusExpression;
+	private final XPathExpression propertyDescriptionExpression;
+	private final XPathExpression featuresExpression;
 	private final XPathExpression priceExpression;
 	private final XPathExpression imagesExpression;
 
@@ -55,7 +56,11 @@ public class MayfairCrawler extends PropertyCrawler {
 		try {
 			XPathFactory xPathFactory = XPathFactory.newInstance();
 			XPath xpath = xPathFactory.newXPath();
-			titleExpression = xpath.compile("*//div[@class='propertytitle']/text()");
+			refNumExpression = xpath.compile("*//div[@id='RightPropertyInfo']/div/div[3]/div[1]/table/tbody/tr/td[2]/span/text()");
+			titleExpression = xpath.compile("*//h1[@class='propertytitle']/text()");
+			propertyStatusExpression = xpath.compile("*//h2[@class='propertystatus'][2]/text()");
+			propertyDescriptionExpression = xpath.compile("*//div[@id='mainColumnContainInside']/div[6]/p/text()");
+			featuresExpression = xpath.compile("*//ul[@id='ProperyInfo']/li");
 			priceExpression = xpath.compile("*//h3[@class='priceonsearch']/text()");
 			imagesExpression = xpath.compile("*//div[@id='theImages']/div/a/img");
 		} catch (XPathExpressionException e) {
@@ -84,20 +89,17 @@ public class MayfairCrawler extends PropertyCrawler {
 				Document htmlDoc = domSerializer.createDOM(tagNode);
 
 				MayfairProperty property = new MayfairProperty();
-				property.setTitle((String) titleExpression.evaluate(htmlDoc, XPathConstants.STRING));
 
-				if (property.getTitle() == null || property.getTitle().isEmpty())
+				property.setRefNumber((String) refNumExpression.evaluate(htmlDoc, XPathConstants.STRING));
+
+				if (property.getRefNumber() == null || property.getRefNumber().trim().isEmpty())
 					return;
 
-				String priceString = (String) priceExpression.evaluate(htmlDoc, XPathConstants.STRING);
-				NumberFormat priceFormat = NumberFormat.getCurrencyInstance();
-				priceFormat.setCurrency(Currency.getInstance("EUR"));
-				try {
-					priceFormat.parse("€ 165,000");
-				} catch (ParseException pe) {
-					pe.printStackTrace();
-				}
-
+				property.setTitle((String) titleExpression.evaluate(htmlDoc, XPathConstants.STRING));
+				property.setPrice(extractPrice((String) priceExpression.evaluate(htmlDoc, XPathConstants.STRING)));
+				property.setPropertyStatus((String) propertyStatusExpression.evaluate(htmlDoc, XPathConstants.STRING));
+				property.setDescription((String) propertyDescriptionExpression.evaluate(htmlDoc, XPathConstants.STRING));
+				property.setFeatures(extractFeatures((NodeList) featuresExpression.evaluate(htmlDoc, XPathConstants.NODESET)));
 
 				NodeList images = (NodeList) imagesExpression.evaluate(htmlDoc, XPathConstants.NODESET);
 				if (images != null && images.getLength() > 0) {
@@ -159,14 +161,29 @@ public class MayfairCrawler extends PropertyCrawler {
 
 	}
 
-	public static void main(String[] args) {
-		NumberFormat priceFormat = NumberFormat.getCurrencyInstance();
-		priceFormat.setCurrency(Currency.getInstance("EUR"));
-		try {
-			priceFormat.parse("€ 165,000");
-		} catch (ParseException pe) {
-			pe.printStackTrace();
+	private static List<String> extractFeatures(NodeList nodes) {
+		if (nodes == null || nodes.getLength() == 0)
+			return Collections.emptyList();
+
+		List<String> features = new ArrayList<>(nodes.getLength());
+		for (int i = 0; i < nodes.getLength(); i++)
+			features.add(nodes.item(i).getTextContent());
+		return features;
+	}
+
+	private static int extractPrice(String priceString) {
+		int price = 0;
+
+		if (priceString == null || priceString.isEmpty())
+			return price;
+
+		for (int i = 0; i < priceString.length(); i++) {
+			char c = priceString.charAt(i);
+			if (c >= '0' && c <= '9')
+				price = price * 10 + (c - '0');
 		}
+
+		return price;
 	}
 
 }

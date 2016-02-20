@@ -40,10 +40,11 @@ public class PropertyCrawlerApplication {
 		RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
 		CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
 
-		IntStream.range(3000, 4000)
+		/*IntStream.range(3000, 4000)
 			.boxed()
 			.map(id -> "http://www.mayfair-cyprus.com/easyconsole.cfm/page/property_viewer/pr_id/" + id)
-			.forEach(controller::addSeed);
+			.forEach(controller::addSeed);*/
+		controller.addSeed("http://www.mayfair-cyprus.com/easyconsole.cfm/page/property_viewer/pr_id/3530");
 		controller.start(factory, properties.getNumOfCrawlers());
 
 		int k = 1;
