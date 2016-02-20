@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>crawl</artifactId>
+	<packaging>jar</packaging>
+	<version>0.16</version>
+	<name>GoToCy crawl module</name>
+
+	<parent>
+		<groupId>org.gotocy</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.16</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>edu.uci.ics</groupId>
+			<artifactId>crawler4j</artifactId>
+			<version>${edu.uci.ics.crawler4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.htmlcleaner</groupId>
+			<artifactId>htmlcleaner</artifactId>
+			<version>${net.sourceforge.htmlcleaner.htmlcleaner.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.gotocy</groupId>
+			<artifactId>domain</artifactId>
+			<version>0.16</version>
+		</dependency>
+
+	</dependencies>
+
+</project>
