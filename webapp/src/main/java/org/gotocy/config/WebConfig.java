@@ -64,7 +64,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	// Filters (order is important!)
 
 	@Bean
-	@Profile(Profiles.HEROKU_PROD)
+	@Profile(Profiles.PROD)
 	public Filter urlRewriteFilter() {
 		return new UrlRewriteFilter();
 	}

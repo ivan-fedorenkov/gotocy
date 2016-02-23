@@ -37,16 +37,17 @@ gotocy:
 ---
 
 spring:
-  profiles: "heroku-prod"
+  profiles: "prod"
 
-heroku:
-  cleardb:
-    max-active: 8
-    max-idle: 8
-    min-idle: 2
-    initial-size: 8
-    validation-query: "SELECT 1 as pool_test"
-    test-while-idle: true
-    test-on-borrow: true
-    test-on-return: true
-    logAbandoned: true
+gotocy:
+  db:
+    pool:
+      max-active: 8
+      max-idle: 8
+      min-idle: 2
+      initial-size: 8
+      validation-query: "SELECT 1 as pool_test"
+      test-while-idle: true
+      test-on-borrow: true
+      test-on-return: true
+      logAbandoned: true
