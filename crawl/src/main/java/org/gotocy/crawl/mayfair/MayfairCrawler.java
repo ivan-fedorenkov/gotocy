@@ -25,11 +25,12 @@ import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
 /**
+ * http://www.mayfair-cyprus.com/
+ *
  * @author ifedorenkov
  */
 public class MayfairCrawler extends PropertyCrawler {
 
-	private static final Pattern FILTER = Pattern.compile(".*(\\.(css|js|gif|jpg|jpeg|png|mp3|mp3|zip|gz))$");
 	private static final Pattern PROPERTY_PAGE = Pattern.compile("^http://www.mayfair-cyprus.com/easyconsole.cfm/page/property_viewer/pr_id/\\d+$");
 	private static final String LARGE_IMAGE_URL_PREFIX = "http://www.mayfair-cyprus.com/assets/image/imagelarge";
 	private static final int MAX_PROPERTIES = 10;

@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.gotocy</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.16</version>
+		<version>0.17.SNAPSHOT</version>
 	</parent>
 
 	<dependencies>
@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>org.gotocy</groupId>
 			<artifactId>domain</artifactId>
-			<version>0.16</version>
+			<version>0.17.SNAPSHOT</version>
 		</dependency>
 
 	</dependencies>

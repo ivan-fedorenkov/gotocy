@@ -1,0 +1,12 @@
+gotocy:
+  crawl:
+    crawlerClass: CyprusRealityCrawler
+    crawlStorageFolder: "C:\\Users\\ifedorenkov\\Documents\\tmp\\crawler"
+    numOfCrawlers: 5
+    seeds:
+      - "http://cyprus-realty.info/"
+    cookies:
+      -
+        domain: ".cyprus-realty.info"
+        name: language
+        value: en
