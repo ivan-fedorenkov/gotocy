@@ -2,9 +2,9 @@ gotocy:
   crawl:
     crawlerClass: CyprusRealityCrawler
     crawlStorageFolder: "C:\\Users\\ifedorenkov\\Documents\\tmp\\crawler"
-    numOfCrawlers: 5
+    numOfCrawlers: 1
     seeds:
-      - "http://cyprus-realty.info/"
+      - "http://cyprus-realty.info/prodazha-nedvizhimosti-na-kipre/villas/15001344/"
     cookies:
       -
         domain: ".cyprus-realty.info"
