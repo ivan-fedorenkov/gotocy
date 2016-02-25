@@ -14,6 +14,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author ifedorenkov
@@ -60,20 +61,50 @@ public class CyprusRealityCrawlerTest {
 		Assert.assertEquals(Furnishing.SEMI, penthouse.getFurnishing());
 		Assert.assertTrue(penthouse.isReadyToMoveIn());
 
-		Assert.assertTrue(penthouse.getFeatures().contains("Air conditioning"));
-		Assert.assertTrue(penthouse.getFeatures().contains("Balcony"));
-		Assert.assertTrue(penthouse.getFeatures().contains("Veranda"));
-		Assert.assertTrue(penthouse.getFeatures().contains("Solar battery"));
-		Assert.assertTrue(penthouse.getFeatures().contains("Equipped kitchen"));
-		Assert.assertTrue(penthouse.getFeatures().contains("Parking"));
-		Assert.assertTrue(penthouse.getFeatures().contains("Storeroom"));
-		Assert.assertTrue(penthouse.getFeatures().contains("BBQ"));
-		Assert.assertTrue(penthouse.getFeatures().contains("Garden"));
+		Assert.assertTrue(penthouse.getFeatures(Locale.ENGLISH).contains("Air conditioning"));
+		Assert.assertTrue(penthouse.getFeatures(Locale.ENGLISH).contains("Balcony"));
+		Assert.assertTrue(penthouse.getFeatures(Locale.ENGLISH).contains("Veranda"));
+		Assert.assertTrue(penthouse.getFeatures(Locale.ENGLISH).contains("Solar battery"));
+		Assert.assertTrue(penthouse.getFeatures(Locale.ENGLISH).contains("Equipped kitchen"));
+		Assert.assertTrue(penthouse.getFeatures(Locale.ENGLISH).contains("Parking"));
+		Assert.assertTrue(penthouse.getFeatures(Locale.ENGLISH).contains("Storeroom"));
+		Assert.assertTrue(penthouse.getFeatures(Locale.ENGLISH).contains("BBQ"));
+		Assert.assertTrue(penthouse.getFeatures(Locale.ENGLISH).contains("Garden"));
 	}
 
 	@Test
 	public void saleVillaTest() throws Exception {
 		Property villa = crawlProperty(SALE_VILLA_URL);
+
+		Assert.assertEquals("Luxury 5 bedroom villa in Limassol, Tourist Area", villa.getTitle());
+		Assert.assertEquals(Location.LIMASSOL, villa.getLocation());
+		Assert.assertEquals("Limassol, Tourist Area", villa.getAddress());
+		Assert.assertEquals(34.712712D, villa.getLatitude(), 0.000001);
+		Assert.assertEquals(33.165498D, villa.getLongitude(), 0.000001);
+		Assert.assertEquals(PropertyType.HOUSE, villa.getPropertyType());
+		Assert.assertEquals(PropertyStatus.SALE, villa.getPropertyStatus());
+		Assert.assertEquals(OfferStatus.ACTIVE, villa.getOfferStatus());
+		Assert.assertEquals(10950000, villa.getPrice());
+		Assert.assertEquals(670, villa.getCoveredArea());
+		Assert.assertEquals(1250, villa.getPlotSize());
+		Assert.assertEquals(0, villa.getLevels());
+		Assert.assertEquals(50, villa.getDistanceToSea());
+		Assert.assertEquals(Furnishing.FULL, villa.getFurnishing());
+		Assert.assertTrue(villa.isReadyToMoveIn());
+
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Air conditioning"));
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Balcony"));
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Security"));
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Veranda"));
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Heat floor"));
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Solar battery"));
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Equipped kitchen"));
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Parking"));
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Storeroom"));
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Garden"));
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Pergola"));
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Sauna"));
+		Assert.assertTrue(villa.getFeatures(Locale.ENGLISH).contains("Jacuzzi"));
 	}
 
 	private static Property crawlProperty(String url) throws Exception {

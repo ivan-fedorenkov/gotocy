@@ -6,6 +6,7 @@ import org.gotocy.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static java.util.stream.Collectors.toList;
 
@@ -129,7 +130,7 @@ public class CyprusRealityProperty extends Property {
 			setCoveredArea(extractSQM(specValue));
 			break;
 		case "Additional features":
-			setFeatures(extractAdditionalFeatures(specValue));
+			setFeatures(extractAdditionalFeatures(specValue), Locale.ENGLISH);
 			break;
 		case "Bathrooms":
 		case "Swimming pool":
