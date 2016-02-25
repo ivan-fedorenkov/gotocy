@@ -93,7 +93,7 @@ public class CyprusRealityProperty extends Property {
 	public void setDescription(String description) {
 		if (description.startsWith("\r\n"))
 			description = description.substring(2).trim();
-		super.setDescription(description);
+		super.setDescription(description, Locale.ENGLISH);
 	}
 
 	public void setReadyToMoveIn(String readyToMoveInString) {
