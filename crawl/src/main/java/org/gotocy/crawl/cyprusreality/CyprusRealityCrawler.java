@@ -25,8 +25,10 @@ import java.util.regex.Pattern;
  */
 public class CyprusRealityCrawler extends PropertyCrawler {
 
-//	private static final Pattern PROPERTY_PAGE = Pattern.compile("^http://cyprus-realty.info/[\\w-]+/[\\w-]+/(\\d+)$");
-private static final Pattern PROPERTY_PAGE = Pattern.compile("^http://cyprus-realty.info/prodazha-nedvizhimosti-na-kipre/[\\w-]+/(\\d+)$");
+	//	private static final Pattern PROPERTY_PAGE = Pattern.compile("^http://cyprus-realty.info/[\\w-]+/[\\w-]+/(\\d+)$");
+	private static final Pattern PROPERTY_PAGE = Pattern.compile("^http://cyprus-realty.info/prodazha-nedvizhimosti-na-kipre/[\\w-]+/(\\d+)$");
+	private static final Pattern LATITUDE_PATTERN = Pattern.compile("var latitude1 = (\\d+\\.\\d+);");
+	private static final Pattern LONGITUDE_PATTERN = Pattern.compile("var longitude1 = (\\d+\\.\\d+);");
 
 	private final HtmlCleaner htmlCleaner;
 	private final DomSerializer domSerializer;
@@ -38,7 +40,7 @@ private static final Pattern PROPERTY_PAGE = Pattern.compile("^http://cyprus-rea
 	private final XPathExpression offerTypeExpression;
 	private final XPathExpression readyToMoveInExpression;
 	private final XPathExpression descriptionExpression;
-	private final XPathExpression featuresRowsExpression;
+	private final XPathExpression specsRowsExpression;
 
 	public CyprusRealityCrawler(Consumer<Property> propertyConsumer) {
 		super(propertyConsumer);
@@ -56,9 +58,10 @@ private static final Pattern PROPERTY_PAGE = Pattern.compile("^http://cyprus-rea
 			offerTypeExpression = xpath.compile("*//div[@id='params']/ul/li[4]/span[1]/text()");
 			readyToMoveInExpression = xpath.compile("*//div[@id='params']/ul/li[5]");
 			descriptionExpression = xpath.compile("*//div[@id='tab-description']/p/text()");
-			featuresRowsExpression = xpath.compile("*//div[@id='tab-attribute']/div/table/tbody/tr");
+			specsRowsExpression = xpath.compile("*//div[@id='tab-attribute']/div/table/tbody/tr");
 		} catch (XPathExpressionException e) {
-			throw new RuntimeException("Can't create a crawler instance.", e);
+			getLogger().error("Failed to create crawler instance. Something went wrong with XPath expressions", e);
+			throw new ExceptionInInitializerError(e);
 		}
 	}
 
@@ -71,6 +74,7 @@ private static final Pattern PROPERTY_PAGE = Pattern.compile("^http://cyprus-rea
 	@Override
 	public void visit(Page page) {
 		WebURL pageWebURL = page.getWebURL();
+		getLogger().debug("Visiting url {}", pageWebURL.getURL());
 
 		Matcher matcher = PROPERTY_PAGE.matcher(pageWebURL.getURL());
 		if (matcher.matches()) {
@@ -86,62 +90,59 @@ private static final Pattern PROPERTY_PAGE = Pattern.compile("^http://cyprus-rea
 				property.setTitle((String) titleExpression.evaluate(dom, XPathConstants.STRING));
 				property.setPropertyType((String) propertyTypeExpression.evaluate(dom, XPathConstants.STRING));
 				property.setLocation((String) locationExpression.evaluate(dom, XPathConstants.STRING));
-				property.setPrice(extractPrice((String) priceExpression.evaluate(dom, XPathConstants.STRING)));
+				property.setPrice((String) priceExpression.evaluate(dom, XPathConstants.STRING));
 				property.setOfferType((String) offerTypeExpression.evaluate(dom, XPathConstants.STRING));
 				Node readyToMoveInNode = (Node) readyToMoveInExpression.evaluate(dom, XPathConstants.NODE);
 				property.setReadyToMoveIn(readyToMoveInNode.getTextContent());
 				property.setDescription((String) descriptionExpression.evaluate(dom, XPathConstants.STRING));
 
-				NodeList featuresNodes = (NodeList) featuresRowsExpression.evaluate(dom, XPathConstants.NODESET);
-				for (int i = 0; i < featuresNodes.getLength(); i++) {
-					Node featureNode = featuresNodes.item(i);
+				NodeList specNodes = (NodeList) specsRowsExpression.evaluate(dom, XPathConstants.NODESET);
+				for (int i = 0; i < specNodes.getLength(); i++) {
+					Node specNode = specNodes.item(i);
 					// td's
-					String featureTitle = "";
-					String featureUnknown = "";
-					String featureValue = "";
-					NodeList featureSubNodes = featureNode.getChildNodes();
+					String specTitle = "";
+					String specUnknown = ""; // unknown useless td
+					String specValue = "";
+					NodeList specSubNodes = specNode.getChildNodes();
 					int processedTds = 0;
-					for (int j = 0; j < featureSubNodes.getLength(); j++) {
-						Node featureSubNode = featureSubNodes.item(j);
-						if ("td".equals(featureSubNode.getNodeName())) {
+					for (int j = 0; j < specSubNodes.getLength(); j++) {
+						Node specSubNode = specSubNodes.item(j);
+						if ("td".equals(specSubNode.getNodeName())) {
 							switch (processedTds) {
 							case 0:
-								featureTitle = featureSubNode.getTextContent();
+								specTitle = specSubNode.getTextContent();
 								break;
 							case 1:
-								featureUnknown = featureSubNode.getTextContent();
+								specUnknown = specSubNode.getTextContent();
 								break;
 							case 2:
-								featureValue = featureSubNode.getTextContent();
+								specValue = specSubNode.getTextContent();
 								break;
 							}
 							processedTds++;
 						}
 					}
-					property.getFeatures().add(featureTitle + featureUnknown + featureValue);
+
+					if (!property.setSpec(specTitle, specUnknown + specValue))
+						getLogger().warn("Unknown property spec '{}' with value '{}'", specTitle, specValue);
 				}
 
-				getPropertyConsumer().accept(property.toProperty());
+				Matcher m = LATITUDE_PATTERN.matcher(html);
+				if (m.find())
+					property.setLatitude(Double.parseDouble(m.group(1)));
+
+				m = LONGITUDE_PATTERN.matcher(html);
+				if (m.find())
+					property.setLongitude(Double.parseDouble(m.group(1)));
+
+
+				if (property.isSuitable())
+					getPropertyConsumer().accept(property);
 
 			} catch (UnsupportedEncodingException | XPathExpressionException | ParserConfigurationException e) {
-				e.printStackTrace();
+				getLogger().error("Failed to parse property (" + pageWebURL.getURL() + ")", e);
 			}
 		}
-	}
-
-	private static int extractPrice(String priceString) {
-		int price = 0;
-
-		if (priceString == null || priceString.isEmpty())
-			return price;
-
-		for (int i = 0; i < priceString.length(); i++) {
-			char c = priceString.charAt(i);
-			if (c >= '0' && c <= '9')
-				price = price * 10 + (c - '0');
-		}
-
-		return price;
 	}
 
 }
