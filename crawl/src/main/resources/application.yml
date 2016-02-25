@@ -4,9 +4,13 @@ gotocy:
     crawlStorageFolder: "C:\\Users\\ifedorenkov\\Documents\\tmp\\crawler"
     numOfCrawlers: 1
     seeds:
-      - "http://cyprus-realty.info/prodazha-nedvizhimosti-na-kipre/villas/15001344/"
+      - "http://cyprus-realty.info/"
     cookies:
       -
         domain: ".cyprus-realty.info"
         name: language
         value: en
+    filter:
+      maxPrice: 1000000
+      propertyStatuses:
+        - "SALE"

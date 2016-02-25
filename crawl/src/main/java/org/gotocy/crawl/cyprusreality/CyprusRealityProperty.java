@@ -90,10 +90,10 @@ public class CyprusRealityProperty extends Property {
 		setPrice(extractNumber(priceString.trim()));
 	}
 
-	public void setDescription(String description) {
+	public void setCrawledDescription(String description) {
 		if (description.startsWith("\r\n"))
 			description = description.substring(2).trim();
-		super.setDescription(description, Locale.ENGLISH);
+		setDescription(description, Locale.ENGLISH);
 	}
 
 	public void setReadyToMoveIn(String readyToMoveInString) {

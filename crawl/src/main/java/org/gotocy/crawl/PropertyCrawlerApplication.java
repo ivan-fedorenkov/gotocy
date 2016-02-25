@@ -38,14 +38,16 @@ public class PropertyCrawlerApplication {
 
 		List<Property> fetchedProperties = new CopyOnWriteArrayList<>();
 		CrawlController.WebCrawlerFactory factory = createCrawlerFactory(property -> {
-			if (properties.getFilter().isPassingFilter(property))
+			if (fetchedProperties.size() <= 10 && properties.getFilter().isPassingFilter(property))
 				fetchedProperties.add(property);
+			if (fetchedProperties.size() > 10 && !controller.isShuttingDown() && !controller.isFinished())
+				controller.shutdown();
 		}, properties.getCrawlerClass());
 
 		properties.getSeeds().forEach(controller::addSeed);
 		controller.start(factory, properties.getNumOfCrawlers());
 
-		try (PrintWriter pw = new PrintWriter(new FileWriter("C:\\Users\\ifedorenkov\\Documents\\tmp\\cyprusreality.txt"))) {
+		try (PrintWriter pw = new PrintWriter(new FileWriter("C:\\Users\\ifedorenkov\\Documents\\tmp\\cyprusreality_new.txt"))) {
 			for (Property property : fetchedProperties) {
 				pw.println("Property: " + property.getTitle());
 				pw.println("Url: " + property.getFeatures().stream().filter(f -> f.startsWith("url")).findFirst().orElse(""));

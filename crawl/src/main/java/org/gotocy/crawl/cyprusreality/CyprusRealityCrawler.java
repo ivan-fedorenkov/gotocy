@@ -94,7 +94,7 @@ public class CyprusRealityCrawler extends PropertyCrawler {
 				property.setOfferType((String) offerTypeExpression.evaluate(dom, XPathConstants.STRING));
 				Node readyToMoveInNode = (Node) readyToMoveInExpression.evaluate(dom, XPathConstants.NODE);
 				property.setReadyToMoveIn(readyToMoveInNode.getTextContent());
-				property.setDescription((String) descriptionExpression.evaluate(dom, XPathConstants.STRING));
+				property.setCrawledDescription((String) descriptionExpression.evaluate(dom, XPathConstants.STRING));
 
 				NodeList specNodes = (NodeList) specsRowsExpression.evaluate(dom, XPathConstants.NODESET);
 				for (int i = 0; i < specNodes.getLength(); i++) {
