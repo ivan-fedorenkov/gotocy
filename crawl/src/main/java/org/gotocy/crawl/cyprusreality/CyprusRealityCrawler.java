@@ -136,7 +136,7 @@ public class CyprusRealityCrawler extends PropertyCrawler {
 					property.setLongitude(Double.parseDouble(m.group(1)));
 
 
-				if (property.isSuitable())
+				if (property.isSupported())
 					getPropertyConsumer().accept(property);
 
 			} catch (UnsupportedEncodingException | XPathExpressionException | ParserConfigurationException e) {

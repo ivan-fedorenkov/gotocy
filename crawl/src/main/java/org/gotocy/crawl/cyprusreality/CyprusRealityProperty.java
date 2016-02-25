@@ -145,9 +145,9 @@ public class CyprusRealityProperty extends Property {
 	}
 
 	/**
-	 * Determines if the given Cyprus Reality property could be mapped to GoToCy property.
+	 * Determines if the given Cyprus Reality property is currently supported.
 	 */
-	public boolean isSuitable() {
+	public boolean isSupported() {
 		return getLocation() != null && getPropertyType() != null && getPropertyStatus() != null &&
 			getPropertyStatus() == PropertyStatus.SALE;
 	}

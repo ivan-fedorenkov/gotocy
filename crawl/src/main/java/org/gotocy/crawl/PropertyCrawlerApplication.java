@@ -29,15 +29,18 @@ public class PropertyCrawlerApplication {
 	public static void main(String[] args) throws Exception {
 		ApplicationContext context = SpringApplication.run(PropertyCrawlerApplication.class, args);
 
-		List<Property> fetchedProperties = new CopyOnWriteArrayList<>();
-
 		CrawlProperties properties = context.getBean(CrawlProperties.class);
-		CrawlController.WebCrawlerFactory factory = createCrawlerFactory(fetchedProperties::add, properties.getCrawlerClass());
 
 		PageFetcher pageFetcher = new CookieAwarePageFetcher(properties);
 		RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
 		RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
 		CrawlController controller = new CrawlController(properties, pageFetcher, robotstxtServer);
+
+		List<Property> fetchedProperties = new CopyOnWriteArrayList<>();
+		CrawlController.WebCrawlerFactory factory = createCrawlerFactory(property -> {
+			if (properties.getFilter().isPassingFilter(property))
+				fetchedProperties.add(property);
+		}, properties.getCrawlerClass());
 
 		properties.getSeeds().forEach(controller::addSeed);
 		controller.start(factory, properties.getNumOfCrawlers());

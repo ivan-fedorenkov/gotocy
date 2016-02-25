@@ -33,6 +33,9 @@ public class CrawlProperties extends CrawlConfig {
 	@NestedConfigurationProperty
 	private List<ClientCookie> cookies = new ArrayList<>();
 
+	@NestedConfigurationProperty
+	private PropertyFilter filter = new PropertyFilter();
+
 	/**
 	 * Delegate for the {@link org.apache.http.impl.cookie.BasicClientCookie} that could be created
 	 * by means of default constructor.
