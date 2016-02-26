@@ -2,7 +2,7 @@ gotocy:
   crawl:
     crawlerClass: CyprusRealityCrawler
     crawlStorageFolder: "C:\\Users\\ifedorenkov\\Documents\\tmp\\crawler"
-    numOfCrawlers: 1
+    numOfCrawlers: 5
     seeds:
       - "http://cyprus-realty.info/"
     cookies:

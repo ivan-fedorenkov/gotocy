@@ -33,7 +33,10 @@ public class CyprusRealityProperty extends Property {
 
 	public void setLocation(String location) {
 		setAddress(location.trim());
-		switch (location.substring(0, location.indexOf(','))) {
+		int commaIndex = location.indexOf(',');
+		if (commaIndex > 0)
+			location = location.substring(0, commaIndex);
+		switch (location) {
 		case "Ayia Napa":
 		case "Protaras":
 			setLocation(Location.FAMAGUSTA);

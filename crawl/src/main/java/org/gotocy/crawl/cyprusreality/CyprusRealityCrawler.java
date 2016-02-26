@@ -11,9 +11,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.*;
-import java.io.UnsupportedEncodingException;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -139,7 +137,7 @@ public class CyprusRealityCrawler extends PropertyCrawler {
 				if (property.isSupported())
 					getPropertyConsumer().accept(property);
 
-			} catch (UnsupportedEncodingException | XPathExpressionException | ParserConfigurationException e) {
+			} catch (Exception e) {
 				getLogger().error("Failed to parse property (" + pageWebURL.getURL() + ")", e);
 			}
 		}
