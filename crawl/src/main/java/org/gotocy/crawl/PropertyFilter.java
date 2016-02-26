@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyStatus;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 import javax.validation.constraints.Min;
 import java.util.ArrayList;
