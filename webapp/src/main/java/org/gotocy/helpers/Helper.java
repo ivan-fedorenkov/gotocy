@@ -1,6 +1,6 @@
 package org.gotocy.helpers;
 
-import org.gotocy.beans.AssetsManager;
+import org.gotocy.service.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.*;
 import org.gotocy.helpers.property.PropertyHelper;

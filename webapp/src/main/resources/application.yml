@@ -51,3 +51,14 @@ gotocy:
       test-on-borrow: true
       test-on-return: true
       logAbandoned: true
+
+---
+
+spring:
+  profiles: "local-dev"
+
+gotocy:
+  webapp:
+    security:
+      login: "admin"
+      password: "password"

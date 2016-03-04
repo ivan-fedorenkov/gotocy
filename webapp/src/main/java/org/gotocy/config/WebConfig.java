@@ -1,6 +1,6 @@
 package org.gotocy.config;
 
-import org.gotocy.beans.AssetsManager;
+import org.gotocy.service.AssetsManager;
 import org.gotocy.controllers.aop.RequiredDomainObjectAspect;
 import org.gotocy.domain.*;
 import org.gotocy.filters.LocaleFilter;

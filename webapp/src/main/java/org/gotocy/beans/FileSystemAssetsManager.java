@@ -3,6 +3,7 @@ package org.gotocy.beans;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.ImageSize;
+import org.gotocy.service.AssetsManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

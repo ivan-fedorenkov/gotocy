@@ -1,6 +1,6 @@
 package org.gotocy.controllers;
 
-import org.gotocy.beans.AssetsManager;
+import org.gotocy.service.AssetsManager;
 import org.gotocy.config.Profiles;
 import org.gotocy.controllers.exceptions.NotFoundException;
 import org.gotocy.domain.Asset;

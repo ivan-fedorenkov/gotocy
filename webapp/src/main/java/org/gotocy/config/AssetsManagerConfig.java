@@ -1,7 +1,7 @@
 package org.gotocy.config;
 
 import org.gotocy.beans.AmazonAssetsManager;
-import org.gotocy.beans.AssetsManager;
+import org.gotocy.service.AssetsManager;
 import org.gotocy.beans.FileSystemAssetsManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

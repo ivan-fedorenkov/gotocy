@@ -1,6 +1,6 @@
 package org.gotocy.controllers;
 
-import org.gotocy.beans.AssetsManager;
+import org.gotocy.service.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.controllers.exceptions.NotFoundException;
@@ -13,6 +13,7 @@ import org.gotocy.forms.UserPropertyForm;
 import org.gotocy.forms.validation.UserPropertyFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.repository.PropertyRepository;
+import org.gotocy.service.PropertyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,19 +46,19 @@ import static org.gotocy.repository.PropertyPredicates.*;
 @RequestMapping(value = "/properties")
 public class PropertiesController {
 
-	private static final Logger logger = LoggerFactory.getLogger(PropertiesController.class);
-
 	private PropertyRepository repository;
 	private AssetsManager assetsManager;
 	private ApplicationProperties applicationProperties;
+	private PropertyService propertyService;
 
 	@Autowired
 	public PropertiesController(PropertyRepository repository, AssetsManager assetsManager,
-			ApplicationProperties applicationProperties)
+		ApplicationProperties applicationProperties, PropertyService propertyService)
 	{
 		this.repository = repository;
 		this.assetsManager = assetsManager;
 		this.applicationProperties = applicationProperties;
+		this.propertyService = propertyService;
 	}
 
 	@InitBinder("userPropertyForm")
@@ -111,9 +112,8 @@ public class PropertiesController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	@Transactional
 	public String createByUser(@Valid @ModelAttribute UserPropertyForm userPropertyForm, BindingResult formErrors,
-		Locale locale)
+		Locale locale) throws IOException
 	{
 		if (formErrors.hasErrors())
 			return "property/new";
@@ -121,40 +121,18 @@ public class PropertiesController {
 		Property property = userPropertyForm.mergeWithProperty(new Property());
 		property.setOfferStatus(OfferStatus.PROMO);
 		property.setDescription(property.getDescription(), locale);
-		property = repository.save(property);
 
-		List<MultipartFile> images = userPropertyForm.getImages();
-		if (!images.isEmpty()) {
-			List<Image> createdImages = new ArrayList<>(images.size());
-			try {
-				for (MultipartFile image : images) {
-					String fileName = image.getOriginalFilename().substring(image.getOriginalFilename().lastIndexOf('/') + 1);
-					Image imageAsset = new Image("property/" + property.getId() + "/" + fileName);
-					imageAsset.setBytes(image.getBytes());
-					assetsManager.saveAsset(imageAsset);
-					createdImages.add(imageAsset);
-				}
-
-				property.setImages(createdImages);
-				property.setRepresentativeImage(createdImages.get(0));
-				property = repository.save(property);
-			} catch (NullPointerException | IOException | DataAccessException e) {
-				// Log error
-				logger.error("Failed to attach property's assets.", e);
-
-				// Clean up created objects
-				try {
-					repository.delete(property);
-					for (Image image : createdImages)
-						assetsManager.deleteAsset(image);
-				} catch (DataAccessException | IOException ee) {
-					logger.error("Failed to clean up resources.", ee);
-				}
-
-				// Rethrow so that the user would be notified appropriately (this is kind of critical error)
-				throw new RuntimeException(e);
+		List<Image> images = new ArrayList<>();
+		if (!userPropertyForm.getImages().isEmpty()) {
+			for (MultipartFile file : userPropertyForm.getImages()) {
+				String fileName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('/') + 1);
+				Image image = new Image(fileName);
+				image.setBytes(file.getBytes());
+				images.add(image);
 			}
 		}
+
+		propertyService.create(property, images);
 		return "redirect:" + Helper.path(property);
 	}
 
