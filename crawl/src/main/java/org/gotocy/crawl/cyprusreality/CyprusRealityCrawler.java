@@ -36,6 +36,7 @@ public class CyprusRealityCrawler extends PropertyCrawler {
 	private final XPathExpression locationExpression;
 	private final XPathExpression priceExpression;
 	private final XPathExpression offerTypeExpression;
+	private final XPathExpression offerStatusExpression;
 	private final XPathExpression readyToMoveInExpression;
 	private final XPathExpression descriptionExpression;
 	private final XPathExpression specsRowsExpression;
@@ -51,10 +52,11 @@ public class CyprusRealityCrawler extends PropertyCrawler {
 			XPath xpath = xPathFactory.newXPath();
 			propertyTypeExpression = xpath.compile("*//ul[@id='breadcrumbs']/li[3]/a/text()");
 			titleExpression = xpath.compile("*//div[@id='content']/div/h1/text()");
-			locationExpression = xpath.compile("*//div[@id='params']/ul/li[3]/span[2]/text()");
-			priceExpression = xpath.compile("*//div[@id='params']/ul/li[6]/span[@class='main-price']/text()");
-			offerTypeExpression = xpath.compile("*//div[@id='params']/ul/li[4]/span[1]/text()");
-			readyToMoveInExpression = xpath.compile("*//div[@id='params']/ul/li[5]");
+			locationExpression = xpath.compile("*//div[@id='params']/ul/li[2]/span/text()");
+			priceExpression = xpath.compile("*//div[@id='params']/ul/li[7]/span[@class='main-price']/text()");
+			offerTypeExpression = xpath.compile("*//div[@id='params']/ul/li[5]/span[1]/text()");
+			offerStatusExpression = xpath.compile("*//div[@id='gallery']/div[@class='product-status-object']/span/text()");
+			readyToMoveInExpression = xpath.compile("*//div[@id='params']/ul/li[6]");
 			descriptionExpression = xpath.compile("*//div[@id='tab-description']/p/text()");
 			specsRowsExpression = xpath.compile("*//div[@id='tab-attribute']/div/table/tbody/tr");
 		} catch (XPathExpressionException e) {
@@ -83,13 +85,14 @@ public class CyprusRealityCrawler extends PropertyCrawler {
 				CyprusRealityProperty property = new CyprusRealityProperty();
 
 				String sourceId = matcher.group(1);
-				property.setSourceId(sourceId);
-				property.setSourceUrl(pageWebURL.getURL());
+				property.setCrawlId(sourceId);
+				property.setCrawlUrl(pageWebURL.getURL());
 				property.setTitle((String) titleExpression.evaluate(dom, XPathConstants.STRING));
 				property.setPropertyType((String) propertyTypeExpression.evaluate(dom, XPathConstants.STRING));
 				property.setLocation((String) locationExpression.evaluate(dom, XPathConstants.STRING));
 				property.setPrice((String) priceExpression.evaluate(dom, XPathConstants.STRING));
 				property.setOfferType((String) offerTypeExpression.evaluate(dom, XPathConstants.STRING));
+				property.setOfferStatus((String) offerStatusExpression.evaluate(dom, XPathConstants.STRING));
 				Node readyToMoveInNode = (Node) readyToMoveInExpression.evaluate(dom, XPathConstants.NODE);
 				property.setReadyToMoveIn(readyToMoveInNode.getTextContent());
 				property.setCrawledDescription((String) descriptionExpression.evaluate(dom, XPathConstants.STRING));

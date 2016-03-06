@@ -22,13 +22,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="crawl" />
         <module name="domain" />
+        <module name="test" />
         <module name="webapp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="crawl" target="1.8" />
       <module name="domain" target="1.8" />
       <module name="parent" target="1.8" />
+      <module name="test" target="1.8" />
       <module name="webapp" target="1.8" />
     </bytecodeTargetLevel>
   </component>

@@ -17,14 +17,14 @@ import static java.util.stream.Collectors.toList;
 @Setter
 public class CyprusRealityProperty extends Property {
 
-	private static final String SQ_M = "m&sup2;";
+	private static final String CRAWL_SOURCE = "cyprus-reality.info";
 
-	private String sourceUrl;
-	private String sourceId;
+	private static final String SQ_M = "m&sup2;";
 
 	public CyprusRealityProperty() {
 		setFurnishing(Furnishing.NONE); // default furnishing
 		setOfferStatus(OfferStatus.ACTIVE); // default offer status
+		setCrawlSource(CRAWL_SOURCE);
 	}
 
 	public void setTitle(String title) {
@@ -38,15 +38,19 @@ public class CyprusRealityProperty extends Property {
 			location = location.substring(0, commaIndex);
 		switch (location) {
 		case "Ayia Napa":
+			setLocation(Location.AYIA_NAPA);
+			break;
 		case "Protaras":
-			setLocation(Location.FAMAGUSTA);
+			setLocation(Location.PROTARAS);
 			break;
 		case "Larnaca":
 			setLocation(Location.LARNACA);
 			break;
 		case "Limassol":
-		case "Troodos":
 			setLocation(Location.LIMASSOL);
+			break;
+		case "Troodos":
+			setLocation(Location.TROODOS);
 			break;
 		case "Nicosia":
 			setLocation(Location.NICOSIA);
@@ -86,6 +90,16 @@ public class CyprusRealityProperty extends Property {
 		case "Long-term rent":
 			setPropertyStatus(PropertyStatus.LONG_TERM);
 			break;
+		}
+	}
+
+	public void setOfferStatus(String offerStatus) {
+		if (offerStatus != null) {
+			switch (offerStatus.trim()) {
+			case "Sold out":
+				setOfferStatus(OfferStatus.SOLD);
+				break;
+			}
 		}
 	}
 
@@ -131,9 +145,17 @@ public class CyprusRealityProperty extends Property {
 			break;
 		case "Covered area":
 			setCoveredArea(extractSQM(specValue));
+			// Some house types don't specify plot size (e.g. townhouse, maisonette),
+			// so set the plot size equal to the the covered area
+			if (getPropertyType() == PropertyType.HOUSE && getPlotSize() == 0)
+				setPlotSize(getCoveredArea());
 			break;
 		case "Additional features":
-			setFeatures(extractAdditionalFeatures(specValue), Locale.ENGLISH);
+			// All Land properties has a single 'Garden' feature which is useless
+			List<String> features = extractAdditionalFeatures(specValue);
+			if (getPropertyType() == PropertyType.LAND)
+				features.removeIf("Garden"::equals);
+			setFeatures(features, Locale.ENGLISH);
 			break;
 		case "Bathrooms":
 		case "Swimming pool":
