@@ -339,11 +339,11 @@ function initPropertySubmitMap(_latitude,_longitude,_zoom){
                     }
                 }
 
-                setLocation(location);
+                setLocation(location, address);
                 setAddress(address);
             } else {
                 // No results found
-                setLocation(null);
+                setLocation(null, null);
                 setAddress(null);
             }
         });
@@ -362,10 +362,26 @@ function initPropertySubmitMap(_latitude,_longitude,_zoom){
         return null;
     }
 
-    function setLocation(location) {
-        if (!location) {
+    function setLocation(location, address) {
+
+        if (!location || location === 'Фамагаста') { // Google maps typo fix; Default location if necessary
             location = 'FAMAGUSTA';
         }
+
+        if (address) {
+            var commaIndex = address.indexOf(',');
+            if (commaIndex > 0) {
+                var locationFromAddress = address.substring(0, commaIndex);
+                if (locationFromAddress === 'Ayia Napa' || locationFromAddress === 'Айя Напа' || locationFromAddress === 'Αγ. Νάπα') {
+                    location = 'AYIA_NAPA';
+                } else if (locationFromAddress === 'Protaras' || locationFromAddress === 'Протарас' || locationFromAddress === 'Πρωταράς') {
+                    location = 'PROTARAS';
+                } else if (locationFromAddress === 'Troodos' || locationFromAddress === 'Троодос' || locationFromAddress === 'Τρόοδος') {
+                    location = 'TROODOS';
+                }
+            }
+        }
+
         locationInput.val(location);
     }
 
