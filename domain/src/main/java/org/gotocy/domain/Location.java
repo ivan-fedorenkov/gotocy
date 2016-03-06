@@ -8,11 +8,14 @@ import org.springframework.context.MessageSourceResolvable;
  * @author ifedorenkov
  */
 public enum Location implements MessageSourceResolvable {
+	AYIA_NAPA,
 	FAMAGUSTA,
-	LIMASSOL,
 	LARNACA,
+	LIMASSOL,
 	NICOSIA,
-	PAPHOS;
+	PAPHOS,
+	PROTARAS,
+	TROODOS;
 
 	@Override
 	public String[] getCodes() {
