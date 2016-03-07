@@ -12,14 +12,13 @@ public interface PropertyService {
 
 	/**
 	 * Creates property object. Saves the given property's images using the configured {@link AssetsManager}.
+	 * Note: pass property's images via field
 	 * Note: the first image will be used as representative.
-	 * Note: do not pass property's images via field, use method parameter instead!
 	 *
 	 * @param property to be created
-	 * @param images to be attached
 	 * @return create instance
 	 * @throws ServiceMethodExecutionException if anything goes wrong
 	 */
-	Property create(Property property, List<Image> images) throws ServiceMethodExecutionException;
+	Property create(Property property) throws ServiceMethodExecutionException;
 
 }

@@ -15,48 +15,75 @@ import static java.util.stream.Collectors.toList;
  */
 @Getter
 @Setter
-public class CyprusRealityProperty extends Property {
+public class CyprusRealityProperty {
 
 	private static final String CRAWL_SOURCE = "cyprus-reality.info";
 
 	private static final String SQ_M = "m&sup2;";
 
+	Property targetProperty;
+
 	public CyprusRealityProperty() {
-		setFurnishing(Furnishing.NONE); // default furnishing
-		setOfferStatus(OfferStatus.ACTIVE); // default offer status
-		setCrawlSource(CRAWL_SOURCE);
+		targetProperty = new Property();
+		targetProperty.setFurnishing(Furnishing.NONE); // default furnishing
+		targetProperty.setOfferStatus(OfferStatus.ACTIVE); // default offer status
+		targetProperty.setCrawlSource(CRAWL_SOURCE);
 	}
 
 	public void setTitle(String title) {
-		super.setTitle(title.trim());
+		targetProperty.setTitle(title.trim());
+	}
+
+	public void setCrawlId(String crawlId) {
+		targetProperty.setCrawlId(crawlId);
+	}
+
+	public void setCrawlUrl(String crawlUrl) {
+		targetProperty.setCrawlUrl(crawlUrl);
+	}
+
+	public void setLatitude(double latitude) {
+		targetProperty.setLatitude(latitude);
+	}
+
+	public void setLongitude(double longitude) {
+		targetProperty.setLongitude(longitude);
+	}
+
+	public void setRepresentativeImage(Image image) {
+		targetProperty.setRepresentativeImage(image);
+	}
+
+	public void setImages(List<Image> images) {
+		targetProperty.setImages(images);
 	}
 
 	public void setLocation(String location) {
-		setAddress(location.trim());
+		targetProperty.setAddress(location.trim());
 		int commaIndex = location.indexOf(',');
 		if (commaIndex > 0)
 			location = location.substring(0, commaIndex);
 		switch (location) {
 		case "Ayia Napa":
-			setLocation(Location.AYIA_NAPA);
+			targetProperty.setLocation(Location.AYIA_NAPA);
 			break;
 		case "Protaras":
-			setLocation(Location.PROTARAS);
+			targetProperty.setLocation(Location.PROTARAS);
 			break;
 		case "Larnaca":
-			setLocation(Location.LARNACA);
+			targetProperty.setLocation(Location.LARNACA);
 			break;
 		case "Limassol":
-			setLocation(Location.LIMASSOL);
+			targetProperty.setLocation(Location.LIMASSOL);
 			break;
 		case "Troodos":
-			setLocation(Location.TROODOS);
+			targetProperty.setLocation(Location.TROODOS);
 			break;
 		case "Nicosia":
-			setLocation(Location.NICOSIA);
+			targetProperty.setLocation(Location.NICOSIA);
 			break;
 		case "Paphos":
-			setLocation(Location.PAPHOS);
+			targetProperty.setLocation(Location.PAPHOS);
 			break;
 		}
 	}
@@ -66,15 +93,15 @@ public class CyprusRealityProperty extends Property {
 		case "Apartaments":
 		case "Penthouse":
 		case "Studio":
-			setPropertyType(PropertyType.APARTMENT);
+			targetProperty.setPropertyType(PropertyType.APARTMENT);
 			break;
 		case "Townhouse":
 		case "Villas":
 		case "Maisonette":
-			setPropertyType(PropertyType.HOUSE);
+			targetProperty.setPropertyType(PropertyType.HOUSE);
 			break;
 		case "Land":
-			setPropertyType(PropertyType.LAND);
+			targetProperty.setPropertyType(PropertyType.LAND);
 			break;
 		}
 	}
@@ -82,13 +109,13 @@ public class CyprusRealityProperty extends Property {
 	public void setOfferType(String offerType) {
 		switch (offerType.trim()) {
 		case "Property for sale":
-			setPropertyStatus(PropertyStatus.SALE);
+			targetProperty.setPropertyStatus(PropertyStatus.SALE);
 			break;
 		case "Short-term rent":
-			setPropertyStatus(PropertyStatus.SHORT_TERM);
+			targetProperty.setPropertyStatus(PropertyStatus.SHORT_TERM);
 			break;
 		case "Long-term rent":
-			setPropertyStatus(PropertyStatus.LONG_TERM);
+			targetProperty.setPropertyStatus(PropertyStatus.LONG_TERM);
 			break;
 		}
 	}
@@ -97,24 +124,24 @@ public class CyprusRealityProperty extends Property {
 		if (offerStatus != null) {
 			switch (offerStatus.trim()) {
 			case "Sold out":
-				setOfferStatus(OfferStatus.SOLD);
+				targetProperty.setOfferStatus(OfferStatus.SOLD);
 				break;
 			}
 		}
 	}
 
 	public void setPrice(String priceString) {
-		setPrice(extractNumber(priceString.trim()));
+		targetProperty.setPrice(extractNumber(priceString.trim()));
 	}
 
 	public void setCrawledDescription(String description) {
 		if (description.startsWith("\r\n"))
 			description = description.substring(2).trim();
-		setDescription(description, Locale.ENGLISH);
+		targetProperty.setDescription(description, Locale.ENGLISH);
 	}
 
 	public void setReadyToMoveIn(String readyToMoveInString) {
-		setReadyToMoveIn("Ready to move".equals(readyToMoveInString.trim()));
+		targetProperty.setReadyToMoveIn("Ready to move".equals(readyToMoveInString.trim()));
 	}
 
 	public boolean setSpec(String specTitle, String specValue) {
@@ -132,30 +159,30 @@ public class CyprusRealityProperty extends Property {
 
 		switch (specTitle) {
 		case "Furniture":
-			setFurnishing(extractFurnishing(specValue));
+			targetProperty.setFurnishing(extractFurnishing(specValue));
 			break;
 		case "To sea":
-			setDistanceToSea(extractNumber(specValue));
+			targetProperty.setDistanceToSea(extractNumber(specValue));
 			break;
 		case "Plot area":
-			setPlotSize(extractSQM(specValue));
+			targetProperty.setPlotSize(extractSQM(specValue));
 			break;
 		case "Bedrooms":
-			setBedrooms(extractBedrooms(specValue));
+			targetProperty.setBedrooms(extractBedrooms(specValue));
 			break;
 		case "Covered area":
-			setCoveredArea(extractSQM(specValue));
+			targetProperty.setCoveredArea(extractSQM(specValue));
 			// Some house types don't specify plot size (e.g. townhouse, maisonette),
 			// so set the plot size equal to the the covered area
-			if (getPropertyType() == PropertyType.HOUSE && getPlotSize() == 0)
-				setPlotSize(getCoveredArea());
+			if (targetProperty.getPropertyType() == PropertyType.HOUSE && targetProperty.getPlotSize() == 0)
+				targetProperty.setPlotSize(targetProperty.getCoveredArea());
 			break;
 		case "Additional features":
 			// All Land properties has a single 'Garden' feature which is useless
 			List<String> features = extractAdditionalFeatures(specValue);
-			if (getPropertyType() == PropertyType.LAND)
+			if (targetProperty.getPropertyType() == PropertyType.LAND)
 				features.removeIf("Garden"::equals);
-			setFeatures(features, Locale.ENGLISH);
+			targetProperty.setFeatures(features, Locale.ENGLISH);
 			break;
 		case "Bathrooms":
 		case "Swimming pool":
@@ -173,8 +200,8 @@ public class CyprusRealityProperty extends Property {
 	 * Determines if the given Cyprus Reality property is currently supported.
 	 */
 	public boolean isSupported() {
-		return getLocation() != null && getPropertyType() != null && getPropertyStatus() != null &&
-			getPropertyStatus() == PropertyStatus.SALE;
+		return targetProperty.getLocation() != null && targetProperty.getPropertyType() != null &&
+			targetProperty.getPropertyStatus() != null && targetProperty.getPropertyStatus() == PropertyStatus.SALE;
 	}
 
 	private static int extractNumber(String numberString) {

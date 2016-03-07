@@ -34,9 +34,13 @@ public class PropertyServiceImpl implements PropertyService {
 
 	@Transactional
 	@Override
-	public Property create(Property property, List<Image> images) {
+	public Property create(Property property) {
 
-		// Ensure that no assets are attached to property
+		// We need property id to create full image's paths, so first of all create a property without assets,
+		// then create assets and update property.
+
+		List<Image> images = new ArrayList<>(property.getImages());
+		Image representativeImage = property.getRepresentativeImage();
 		property.setImages(Collections.emptyList());
 		property.setRepresentativeImage(null);
 
@@ -52,7 +56,7 @@ public class PropertyServiceImpl implements PropertyService {
 				}
 
 				property.setImages(createdImages);
-				property.setRepresentativeImage(createdImages.get(0));
+				property.setRepresentativeImage(representativeImage);
 				property = propertyRepository.save(property);
 			} catch (NullPointerException | IOException | DataAccessException e) {
 				// Log error

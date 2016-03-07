@@ -1,8 +1,11 @@
 package org.gotocy.crawl.cyprusreality;
 
+import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.fetcher.PageFetchResult;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
+import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
+import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 import edu.uci.ics.crawler4j.url.WebURL;
 import org.gotocy.crawl.CookieAwarePageFetcher;
 import org.gotocy.crawl.CrawlProperties;
@@ -45,11 +48,12 @@ public class CyprusRealityCrawlerTest {
 	private static final String SOLD_STUDIO_URL =
 		"http://cyprus-realty.info/prodazha-nedvizhimosti-na-kipre/studio/15000423";
 
-	private static PageFetcher pageFetcher;
+	private static CrawlController crawlController;
 
 	@BeforeClass
-	public static void init() {
+	public static void init() throws Exception {
 		CrawlProperties crawlProperties = new CrawlProperties();
+		crawlProperties.setCrawlStorageFolder("/tmp/crawl");
 		crawlProperties.setCrawlerClass("CyprusRealityCrawler");
 		CrawlProperties.ClientCookie clientCookie = new CrawlProperties.ClientCookie();
 		clientCookie.setDomain(".cyprus-realty.info");
@@ -57,7 +61,10 @@ public class CyprusRealityCrawlerTest {
 		clientCookie.setValue("en");
 		crawlProperties.setCookies(Collections.singletonList(clientCookie));
 
-		pageFetcher = new CookieAwarePageFetcher(crawlProperties);
+		PageFetcher pageFetcher = new CookieAwarePageFetcher(crawlProperties);
+		RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
+		RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
+		crawlController = new CrawlController(crawlProperties, pageFetcher, robotstxtServer);
 	}
 
 	@Test
@@ -338,11 +345,12 @@ public class CyprusRealityCrawlerTest {
 	private static Property crawlProperty(String url) throws Exception {
 		List<Property> result = new ArrayList<>();
 		CyprusRealityCrawler crawler = new CyprusRealityCrawler(result::add);
+		crawler.init(1, crawlController);
 
 		WebURL webURL = new WebURL();
 		webURL.setURL(url);
 
-		PageFetchResult fetchResult = pageFetcher.fetchPage(webURL);
+		PageFetchResult fetchResult = crawler.getMyController().getPageFetcher().fetchPage(webURL);
 		Page page = new Page(webURL);
 		fetchResult.fetchContent(page);
 

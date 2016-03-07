@@ -1,6 +1,5 @@
 package org.gotocy.controllers;
 
-import org.gotocy.service.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.controllers.exceptions.NotFoundException;
@@ -13,18 +12,15 @@ import org.gotocy.forms.UserPropertyForm;
 import org.gotocy.forms.validation.UserPropertyFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.repository.PropertyRepository;
+import org.gotocy.service.AssetsManager;
 import org.gotocy.service.PropertyService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -130,9 +126,12 @@ public class PropertiesController {
 				image.setBytes(file.getBytes());
 				images.add(image);
 			}
+
+			property.setImages(images);
+			property.setRepresentativeImage(images.get(0));
 		}
 
-		propertyService.create(property, images);
+		propertyService.create(property);
 		return "redirect:" + Helper.path(property);
 	}
 
