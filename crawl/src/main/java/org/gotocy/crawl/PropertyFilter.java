@@ -20,6 +20,12 @@ import java.util.List;
 public class PropertyFilter {
 
 	/**
+	 * Min price (exclusive)
+	 */
+	@Min(0)
+	private int minPrice = 0;
+
+	/**
 	 * Max price (exclusive)
 	 */
 	@Min(0)
@@ -39,6 +45,7 @@ public class PropertyFilter {
 	 */
 	public boolean isPassingFilter(Property property) {
 		boolean isPassing = maxPrice == Integer.MAX_VALUE || property.getPrice() < maxPrice;
+		isPassing &= minPrice == 0 || property.getPrice() > minPrice;
 		isPassing &= propertyStatuses.stream().filter(ps -> ps == property.getPropertyStatus()).findAny().isPresent();
 		return isPassing;
 	}

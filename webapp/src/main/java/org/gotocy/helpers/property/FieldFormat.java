@@ -96,7 +96,7 @@ public enum FieldFormat {
 
 		@Override
 		public String formatValue(Property p) {
-			return Integer.toString(p.getLevels());
+			return p.getLevels() > 0 ? String.valueOf(p.getLevels()) : Constants.NA;
 		}
 	},
 	BEDROOMS {
@@ -209,4 +209,7 @@ public enum FieldFormat {
 		return I18n.t(condition ? "dictionary.yes" : "dictionary.no");
 	}
 
+	private static class Constants {
+		public static final String NA = "N/A";
+	}
 }
