@@ -1,5 +1,6 @@
 package org.gotocy.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -15,15 +16,16 @@ import javax.sql.DataSource;
 @Configuration
 public class DatabaseConfig {
 
-	@Bean
-	public DataSourceProperties dataSourceProperties() {
-		return new DataSourceProperties();
+	@Autowired
+	private DataSourceProperties dataSourceProperties;
+
+	public void setDataSourceProperties(DataSourceProperties dataSourceProperties) {
+		this.dataSourceProperties = dataSourceProperties;
 	}
 
 	@Bean
 	@ConfigurationProperties(prefix = "gotocy.db.pool")
 	public DataSource prodDataSource() {
-		DataSourceProperties dataSourceProperties = dataSourceProperties();
 		org.apache.tomcat.jdbc.pool.DataSource dataSource = new org.apache.tomcat.jdbc.pool.DataSource();
 		dataSource.setDriverClassName(dataSourceProperties.getDriverClassName());
 		dataSource.setUrl(dataSourceProperties.getUrl());
