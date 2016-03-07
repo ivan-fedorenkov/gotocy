@@ -230,15 +230,7 @@
                             </div><!-- /js-masonry-->
 
                             <!-- Pagination -->
-                            <div class="center" th:unless="${properties.totalPages < 2}">
-                                <ul class="pagination" th:remove="all-but-first">
-                                    <li th:each="i : ${#numbers.sequence(0, properties.totalPages - 1)}" th:class="${i == properties.number}? 'active'">
-                                        <a href="#" th:href="${curPathNoPage} + '&page=' + ${i}" th:text="${i + 1}">1</a>
-                                    </li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                </ul><!-- /.pagination-->
-                            </div><!-- /.center-->
+                            <nav class="center" th:utext="${helper.pagination(curPathNoPage, properties.number, properties.totalPages)}"></nav>
                         </section><!-- /#properties-->
                     </section><!-- /#results -->
                 </div><!-- /.col-md-9 -->

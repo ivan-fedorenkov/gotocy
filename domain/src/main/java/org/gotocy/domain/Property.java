@@ -109,6 +109,11 @@ public class Property extends BaseEntity {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<LocalizedField> localizedFields = new ArrayList<>();
 
+	// Crawl specific fields
+	private String crawlSource;
+	private String crawlId;
+	private String crawlUrl;
+
 	public Image getImage(int index) {
 		// Ensure that the index is in the images list bounds
 		if (index >= images.size())

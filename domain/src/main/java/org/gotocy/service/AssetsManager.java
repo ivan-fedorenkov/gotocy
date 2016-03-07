@@ -1,4 +1,4 @@
-package org.gotocy.beans;
+package org.gotocy.service;
 
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;

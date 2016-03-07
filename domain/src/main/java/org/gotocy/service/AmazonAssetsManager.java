@@ -1,4 +1,4 @@
-package org.gotocy.beans;
+package org.gotocy.service;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.ClientConfiguration;

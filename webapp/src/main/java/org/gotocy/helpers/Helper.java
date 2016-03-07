@@ -1,6 +1,6 @@
 package org.gotocy.helpers;
 
-import org.gotocy.beans.AssetsManager;
+import org.gotocy.service.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.*;
 import org.gotocy.helpers.property.PropertyHelper;
@@ -155,6 +155,51 @@ public class Helper {
 		default:
 			return "";
 		}
+	}
+
+	/**
+	 * Creates pagination 'ul' as appropriate.
+	 * TODO: unit test
+	 * TODO: rewrite this
+	 */
+	public static String pagination(String path, int currentPage, int totalPages) {
+		StringBuilder pagination = new StringBuilder();
+
+		// This algorithm count pages from '1'
+		currentPage += 1;
+		totalPages += 1;
+
+		if (totalPages > 1) {
+			pagination.append("<ul class='pagination'>");
+			for(int i = 1; i <= totalPages; i++) {
+				if (totalPages > 9) {
+					if ((i == 4) && (currentPage > 5)) {
+						pagination.append("<li class='disabled'><a>...</a></li>");
+						i = currentPage < totalPages ? currentPage - 1 : currentPage - 2;
+					}
+					else {
+						if ((((currentPage > 5) && (i == (currentPage + 2))) || ((currentPage <= 5) && (i == 7))) &&
+							(totalPages > (currentPage + 3)))
+						{
+							pagination.append("<li class='disabled'><a>...</a></li>");
+							i = totalPages - 2;
+						}
+					}
+				}
+
+				if (i == currentPage) {
+					pagination.append("<li class='active'>");
+				} else {
+					pagination.append("<li>");
+				}
+				pagination.append("<a href=\"");
+				pagination.append(path).append("&page=").append(i - 1);
+				pagination.append("\">").append(i).append("</a>");
+				pagination.append("</li>");
+			}
+			pagination.append("</ul>");
+		}
+		return pagination.toString();
 	}
 
 }
