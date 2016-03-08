@@ -25,7 +25,8 @@ public abstract class AbstractAssetsManager implements AssetsManager {
 		if (exists(sizedImage)) {
 			url = getPublicUrl(sizedImage);
 		} else if (exists(image)) {
-			Optional<Image> originalImage = getAsset(() -> image, image.getKey());
+			// TODO: think about resizing
+			/*Optional<Image> originalImage = getAsset(() -> image, image.getKey());
 			if (originalImage.isPresent()) {
 				Optional<Image> resizedImage = ImageConverter.convertToSize(originalImage.get(), size);
 				// Successfully resized
@@ -40,8 +41,8 @@ public abstract class AbstractAssetsManager implements AssetsManager {
 			}
 
 			// Last chance to generate public url if resize failed for some reason
-			if (!url.isPresent())
-				url = getPublicUrl(image);
+			if (!url.isPresent())*/
+			url = getPublicUrl(image);
 		}
 		return url;
 	}
