@@ -20,30 +20,28 @@ public abstract class AbstractAssetsManager implements AssetsManager {
 
 	@Override
 	public Optional<String> getPublicUrl(Image image, ImageSize size) {
+		Optional<String> url = Optional.empty();
 		Image sizedImage = image.getSized(size);
-		Optional<String> url = getPublicUrl(sizedImage);
-		// If url can't be generated for the specified size, most likely the image haven't been resized yet
-		// Resize the original image right now and generate public url for it
-		if (!url.isPresent()) {
-			if (exists(image)) {
-				Optional<Image> originalImage = getAsset(() -> image, image.getKey());
-				if (originalImage.isPresent()) {
-					Optional<Image> resizedImage = ImageConverter.convertToSize(originalImage.get(), size);
-					// Successfully resized
-					if (resizedImage.isPresent()) {
-						try {
-							saveAsset(resizedImage.get());
-							url = getPublicUrl(resizedImage.get());
-						} catch (IOException ioe) {
-							logger.error("Failed to save resized image {}", resizedImage.get());
-						}
+		if (exists(sizedImage)) {
+			url = getPublicUrl(sizedImage);
+		} else if (exists(image)) {
+			Optional<Image> originalImage = getAsset(() -> image, image.getKey());
+			if (originalImage.isPresent()) {
+				Optional<Image> resizedImage = ImageConverter.convertToSize(originalImage.get(), size);
+				// Successfully resized
+				if (resizedImage.isPresent()) {
+					try {
+						saveAsset(resizedImage.get());
+						url = getPublicUrl(resizedImage.get());
+					} catch (IOException ioe) {
+						logger.error("Failed to save resized image {}", resizedImage.get());
 					}
 				}
-
-				// Last chance to generate public url if resize failed for some reason
-				if (!url.isPresent())
-					url = getPublicUrl(image);
 			}
+
+			// Last chance to generate public url if resize failed for some reason
+			if (!url.isPresent())
+				url = getPublicUrl(image);
 		}
 		return url;
 	}
