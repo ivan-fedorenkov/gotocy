@@ -51,4 +51,9 @@ public interface AssetsManager {
 	 */
 	void deleteAsset(Asset asset) throws IOException;
 
+	/**
+	 * Determines if the given asset exists in the underlying storage.
+	 */
+	boolean exists(Asset asset);
+
 }

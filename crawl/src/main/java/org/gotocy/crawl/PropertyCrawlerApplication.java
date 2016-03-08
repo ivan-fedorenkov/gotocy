@@ -38,14 +38,9 @@ public class PropertyCrawlerApplication {
 
 		PropertyService propertyService = context.getBean(PropertyService.class);
 
-		AtomicInteger fetchedProperties = new AtomicInteger();
 		CrawlController.WebCrawlerFactory factory = createCrawlerFactory(property -> {
 			if (properties.getFilter().isPassingFilter(property)) {
-				if (fetchedProperties.incrementAndGet() <= 200) {
-					propertyService.create(property);
-				} else {
-					controller.shutdown();
-				}
+				propertyService.create(property);
 			}
 		}, properties.getCrawlerClass());
 

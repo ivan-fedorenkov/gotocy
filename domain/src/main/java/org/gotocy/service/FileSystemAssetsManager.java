@@ -1,10 +1,6 @@
 package org.gotocy.service;
 
 import org.gotocy.domain.Asset;
-import org.gotocy.domain.Image;
-import org.gotocy.domain.ImageSize;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,9 +13,7 @@ import java.util.function.Supplier;
 /**
  * @author ifedorenkov
  */
-public class FileSystemAssetsManager implements AssetsManager {
-
-	private static final Logger logger = LoggerFactory.getLogger(FileSystemAssetsManager.class);
+public class FileSystemAssetsManager extends AbstractAssetsManager {
 
 	private final String assetsDirPath;
 
@@ -29,18 +23,12 @@ public class FileSystemAssetsManager implements AssetsManager {
 
 	@Override
 	public Optional<String> getPublicUrl(Asset asset) {
-		if (exists(asset.getKey())) {
+		if (exists(asset)) {
 			return getUrl(asset.getKey());
 		} else {
-			logger.error("Failed to generate public url for {}. Underlying object not found.", asset);
+			getLogger().error("Failed to generate public url for {}. Underlying object not found.", asset);
 			return Optional.empty();
 		}
-	}
-
-	@Override
-	public Optional<String> getPublicUrl(Image image, ImageSize size) {
-		String imageKey = image.getKeyForSize(size);
-		return exists(imageKey) ? getUrl(imageKey) : getPublicUrl(image);
 	}
 
 	@Override
@@ -53,7 +41,7 @@ public class FileSystemAssetsManager implements AssetsManager {
 				asset.setBytes(Files.readAllBytes(assetPath));
 				result = Optional.of(asset);
 			} catch (IOException e) {
-				logger.error("Failed to load underlying object for asset key '{}'", assetKey, e);
+				getLogger().error("Failed to load underlying object for asset key '{}'", assetKey, e);
 			}
 		}
 		return result;
@@ -73,12 +61,13 @@ public class FileSystemAssetsManager implements AssetsManager {
 		Files.delete(assetPath);
 	}
 
-	private Optional<String> getUrl(String assetKey) {
-		return Optional.of("/fs_assets?key=" + assetKey);
+	@Override
+	public boolean exists(Asset asset) {
+		return Files.isReadable(Paths.get(assetsDirPath, asset.getKey()));
 	}
 
-	private boolean exists(String assetKey) {
-		return Files.isReadable(Paths.get(assetsDirPath, assetKey));
+	private Optional<String> getUrl(String assetKey) {
+		return Optional.of("/fs_assets?key=" + assetKey);
 	}
 
 }

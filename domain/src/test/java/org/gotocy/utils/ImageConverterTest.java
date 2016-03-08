@@ -23,7 +23,7 @@ public class ImageConverterTest {
 
 		// Check all image sizes so that if someone would add a new size the test should fail
 		for (ImageSize imageSize : ImageSize.values()) {
-			Image expected = new Image(original.getKeyForSize(imageSize));
+			Image expected = original.getSized(imageSize);
 			Optional<Image> actual = ImageConverter.convertToSize(original, imageSize);
 			Assert.assertTrue(actual.isPresent());
 			Assert.assertEquals(expected.getKey(), actual.get().getKey());

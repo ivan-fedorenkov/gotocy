@@ -49,7 +49,7 @@ public class ImageConverter {
 	/**
 	 * Converts the given source {@link Image} to the specified {@link ImageSize} and creates
 	 * a new {@link Image} instance. Underlying bytes of the new image represents the converted image and the
-	 * key is set in accordance with {@link Image#getKeyForSize(ImageSize)} method.
+	 * key is set in accordance with {@link Image#getSized(ImageSize)} method.
 	 *
 	 * @param sourceImage to be converted
 	 * @param targetSize of the resulting image
@@ -66,7 +66,7 @@ public class ImageConverter {
 			ConvertCmd cmd = new ConvertCmd();
 			cmd.run(RESIZE_OPS.get(targetSize), src.toString(), dst.toString());
 
-			Image convertedImage = new Image(sourceImage.getKeyForSize(targetSize));
+			Image convertedImage = sourceImage.getSized(targetSize);
 			convertedImage.setBytes(Files.readAllBytes(dst));
 			converted = Optional.of(convertedImage);
 		} catch (InterruptedException | IM4JavaException | IOException e) {

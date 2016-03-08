@@ -6,13 +6,13 @@ import com.amazonaws.HttpMethod;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.Region;
+import com.amazonaws.services.s3.model.StorageClass;
 import org.gotocy.config.S3Properties;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
-import org.gotocy.domain.ImageSize;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.util.StreamUtils;
 
 import java.io.ByteArrayInputStream;
@@ -22,50 +22,37 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
- * Assets provider that utilizes Amazon S3 as a backend storage.
+ * Assets manager that utilizes Amazon S3 Client as a backend storage provider.
  *
  * @author ifedorenkov
  */
-public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager {
+public class AmazonAssetsManager extends AbstractAssetsManager {
 
-	private static final Logger logger = LoggerFactory.getLogger(AmazonAssetsManager.class);
+	private AmazonS3Client s3Client;
+	private final S3Properties s3Properties;
 
-	private final S3Properties properties;
-
-	public AmazonAssetsManager(S3Properties properties) {
-		super(new BasicAWSCredentials(properties.getAccessKey(), properties.getSecretKey()),
+	public AmazonAssetsManager(S3Properties s3Properties) {
+		s3Client = new AmazonS3Client(new BasicAWSCredentials(s3Properties.getAccessKey(), s3Properties.getSecretKey()),
 			new ClientConfiguration().withProtocol(Protocol.HTTP));
+		s3Client.setRegion(Region.EU_Ireland.toAWSRegion());
 
-		setRegion(Region.EU_Ireland.toAWSRegion());
-
-		this.properties = properties;
+		this.s3Properties = s3Properties;
 	}
 
 	@Override
 	public Optional<String> getPublicUrl(Asset asset) {
-		if (exists(asset.getKey())) {
-			return generatePresignedUrl(asset.getKey());
-		} else {
-			logger.error("Failed to generate public url for {}. Underlying object not found.", asset);
-			return Optional.empty();
-		}
-	}
-
-	@Override
-	public Optional<String> getPublicUrl(Image image, ImageSize size) {
-		String imageKey = image.getKeyForSize(size);
-		return exists(imageKey) ? generatePresignedUrl(imageKey) : getPublicUrl(image);
+		return generatePresignedUrl(asset);
 	}
 
 	@Override
 	public <T extends Asset> Optional<T> getAsset(Supplier<T> factory, String assetKey) {
 		Optional<T> result = Optional.empty();
-		try (InputStream in = getObject(properties.getBucket(), assetKey).getObjectContent()) {
+		try (InputStream in = s3Client.getObject(s3Properties.getBucket(), assetKey).getObjectContent()) {
 			T asset = factory.get();
 			asset.setBytes(StreamUtils.copyToByteArray(in));
 			result = Optional.of(asset);
 		} catch (AmazonClientException | IOException e) {
-			logger.error("Failed to load underlying object for asset key '{}'", assetKey, e);
+			getLogger().error("Failed to load underlying object for asset key '{}'", assetKey, e);
 		}
 		return result;
 	}
@@ -76,10 +63,10 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 		metadata.setContentLength(asset.getSize());
 		metadata.setContentType(asset.getContentType());
 		try (InputStream in = new ByteArrayInputStream(asset.getBytes())) {
-			PutObjectRequest putObjectRequest = new PutObjectRequest(properties.getBucket(), asset.getKey(), in, metadata);
-			putObject(putObjectRequest.withStorageClass(StorageClass.Standard));
+			PutObjectRequest putObjectRequest = new PutObjectRequest(s3Properties.getBucket(), asset.getKey(), in, metadata);
+			s3Client.putObject(putObjectRequest.withStorageClass(getStorageClass(asset)));
 		} catch (AmazonClientException e) {
-			logger.error("Failed to save underlying object of {}", asset, e);
+			getLogger().error("Failed to save underlying object of {}", asset, e);
 			throw new IOException(e);
 		}
 	}
@@ -87,31 +74,47 @@ public class AmazonAssetsManager extends AmazonS3Client implements AssetsManager
 	@Override
 	public void deleteAsset(Asset asset) throws IOException {
 		try {
-			deleteObject(properties.getBucket(), asset.getKey());
+			s3Client.deleteObject(s3Properties.getBucket(), asset.getKey());
 		} catch (AmazonClientException e) {
-			logger.error("Failed to delete underlying object of {}", asset, e);
+			getLogger().error("Failed to delete underlying object of {}", asset, e);
 			throw new IOException(e);
 		}
 	}
 
-	private Optional<String> generatePresignedUrl(String assetKey) {
+	@Override
+	public boolean exists(Asset asset) {
+		// Dirty, yet simple solution
+		try {
+			s3Client.getObjectMetadata(s3Properties.getBucket(), asset.getKey());
+			return true;
+		} catch (AmazonClientException e) {
+			return false;
+		}
+	}
+
+	private Optional<String> generatePresignedUrl(Asset asset) {
 		Optional<String> url = Optional.empty();
 		try {
-			url = Optional.of(generatePresignedUrl(properties.getBucket(), assetKey, properties.getExpirationDate(),
-				HttpMethod.GET).toString());
+			url = Optional.of(s3Client.generatePresignedUrl(s3Properties.getBucket(), asset.getKey(),
+				s3Properties.getExpirationDate(), HttpMethod.GET).toString());
 		} catch (AmazonClientException e) {
-			logger.error("Failed to generate presigned url for asset key '{}'", assetKey, e);
+			getLogger().error("Failed to generate presigned url for asset key '{}'", asset.getKey(), e);
 		}
 		return url;
 	}
 
-	private boolean exists(String assetKey) {
-		// Dirty, yet simple solution
-		try {
-			getObjectMetadata(properties.getBucket(), assetKey);
-			return true;
-		} catch (AmazonClientException e) {
-			return false;
+	/**
+	 * Returns the appropriate default storage class for the given asset.
+	 * Currently only images are supported:
+	 * - resized images should be stored with {@link StorageClass#ReducedRedundancy} class
+	 * - original images should be stored with {@link StorageClass#StandardInfrequentAccess} class
+	 */
+	private static StorageClass getStorageClass(Asset asset) {
+		if (asset instanceof Image) {
+			return asset.getKey().startsWith(Image.RESIZED_IMAGE_KEY_PREFIX) ?
+				StorageClass.ReducedRedundancy : StorageClass.StandardInfrequentAccess;
+		} else {
+			return StorageClass.Standard;
 		}
 	}
 

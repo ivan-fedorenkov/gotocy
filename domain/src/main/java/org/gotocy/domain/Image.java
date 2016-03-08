@@ -2,7 +2,6 @@ package org.gotocy.domain;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import java.util.Objects;
 
 /**
  * @author ifedorenkov
@@ -10,6 +9,8 @@ import java.util.Objects;
 @Entity
 @DiscriminatorValue("image")
 public class Image extends Asset {
+
+	public static final String RESIZED_IMAGE_KEY_PREFIX = "resized_images";
 
 	public Image() {
 	}
@@ -25,11 +26,12 @@ public class Image extends Asset {
 	}
 
 	/**
-	 * Returns an image asset key for the given image size.
+	 * Returns an image asset instance sized to the given {@link ImageSize}.
 	 */
-	public String getKeyForSize(ImageSize size) {
+	public Image getSized(ImageSize size) {
 		int nextToLastSlash = getKey().lastIndexOf('/') + 1;
-		return getKey().substring(0, nextToLastSlash) + size.name() + '/' + getKey().substring(nextToLastSlash);
+		return new Image(RESIZED_IMAGE_KEY_PREFIX + "/" + getKey().substring(0, nextToLastSlash) + size.name() +
+			"/" + getKey().substring(nextToLastSlash));
 	}
 
 }
