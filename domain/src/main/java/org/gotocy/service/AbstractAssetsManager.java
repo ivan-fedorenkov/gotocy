@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /**
  * Abstract base class for asset managers. Implements common logic.
@@ -18,6 +20,8 @@ public abstract class AbstractAssetsManager implements AssetsManager {
 
 	private static final Logger logger = LoggerFactory.getLogger(AssetsManager.class);
 
+	private final Executor executor = Executors.newFixedThreadPool(10);
+
 	@Override
 	public Optional<String> getPublicUrl(Image image, ImageSize size) {
 		Optional<String> url = Optional.empty();
@@ -25,23 +29,24 @@ public abstract class AbstractAssetsManager implements AssetsManager {
 		if (exists(sizedImage)) {
 			url = getPublicUrl(sizedImage);
 		} else if (exists(image)) {
-			Optional<Image> originalImage = getAsset(() -> image, image.getKey());
-			if (originalImage.isPresent()) {
-				Optional<Image> resizedImage = ImageConverter.convertToSize(originalImage.get(), size);
-				// Successfully resized
-				if (resizedImage.isPresent()) {
-					try {
-						saveAsset(resizedImage.get());
-						url = getPublicUrl(resizedImage.get());
-					} catch (IOException ioe) {
-						logger.error("Failed to save resized image {}", resizedImage.get());
+
+			executor.execute(() -> {
+				Optional<Image> originalImage = getAsset(() -> image, image.getKey());
+
+				if (originalImage.isPresent()) {
+					Optional<Image> resizedImage = ImageConverter.convertToSize(originalImage.get(), size);
+					// Successfully resized
+					if (resizedImage.isPresent()) {
+						try {
+							saveAsset(resizedImage.get());
+						} catch (IOException ioe) {
+							logger.error("Failed to save resized image {}", resizedImage.get());
+						}
 					}
 				}
-			}
+			});
 
-			// Last chance to generate public url if resize failed for some reason
-			if (!url.isPresent())
-				url = getPublicUrl(image);
+			url = getPublicUrl(image);
 		}
 		return url;
 	}

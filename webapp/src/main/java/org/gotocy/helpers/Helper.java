@@ -167,7 +167,6 @@ public class Helper {
 
 		// This algorithm count pages from '1'
 		currentPage += 1;
-		totalPages += 1;
 
 		if (totalPages > 1) {
 			pagination.append("<ul class='pagination'>");
