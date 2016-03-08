@@ -20,7 +20,7 @@ public abstract class AbstractAssetsManager implements AssetsManager {
 
 	private static final Logger logger = LoggerFactory.getLogger(AssetsManager.class);
 
-	private final Executor executor = Executors.newFixedThreadPool(10);
+	private final Executor executor = Executors.newSingleThreadExecutor();
 
 	@Override
 	public Optional<String> getPublicUrl(Image image, ImageSize size) {
