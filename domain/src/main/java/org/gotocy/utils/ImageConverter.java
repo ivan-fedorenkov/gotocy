@@ -32,7 +32,7 @@ public class ImageConverter {
 	static {
 		IMOperation resizeBigOp = new IMOperation();
 		resizeBigOp.addImage();
-		resizeBigOp.quality(70d).resize(1920, 1080, "^");
+		resizeBigOp.quality(70d).resize(1920, 1080, ">");
 		resizeBigOp.addImage();
 		RESIZE_OPS.put(ImageSize.BIG, resizeBigOp);
 
