@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Optional;
-import java.util.concurrent.Executor;
 import java.util.function.Supplier;
 
 /**

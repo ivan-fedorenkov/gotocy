@@ -28,7 +28,8 @@ public class Application {
 		cacheManager.setCaches(Arrays.asList(
 			new ConcurrentMapCache("property_cache"),
 			new ConcurrentMapCache("property_featured_cache"),
-			new ConcurrentMapCache("property_recent_cache")
+			new ConcurrentMapCache("property_recent_cache"),
+			new ConcurrentMapCache("asset_exists_cache")
 		));
 		return cacheManager;
 	}

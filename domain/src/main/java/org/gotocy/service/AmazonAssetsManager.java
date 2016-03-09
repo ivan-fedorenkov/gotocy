@@ -13,13 +13,14 @@ import com.amazonaws.services.s3.model.StorageClass;
 import org.gotocy.config.S3Properties;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.StreamUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
-import java.util.concurrent.Executor;
 import java.util.function.Supplier;
 
 /**
@@ -42,7 +43,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 
 	@Override
 	public Optional<String> getPublicUrl(Asset asset) {
-		return generatePresignedUrl(asset);
+		return Optional.of("http://" + s3Properties.getBucket() + "/" + asset.getKey());
 	}
 
 	@Override
@@ -58,6 +59,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 		return result;
 	}
 
+	@CacheEvict(cacheNames = "asset_exists_cache", key="asset.key")
 	@Override
 	public void saveAsset(Asset asset) throws IOException {
 		ObjectMetadata metadata = new ObjectMetadata();
@@ -72,6 +74,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 		}
 	}
 
+	@CacheEvict(cacheNames = "asset_exists_cache", key="#asset.key")
 	@Override
 	public void deleteAsset(Asset asset) throws IOException {
 		try {
@@ -82,6 +85,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 		}
 	}
 
+	@Cacheable(cacheNames = "asset_exists_cache", key="#asset.key")
 	@Override
 	public boolean exists(Asset asset) {
 		// Dirty, yet simple solution
