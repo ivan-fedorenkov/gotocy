@@ -44,18 +44,18 @@ public abstract class AbstractAssetsManager implements AssetsManager, Initializi
 		Optional<String> url = Optional.empty();
 		Image sizedImage = image.getSized(size);
 		if (assetsManager.exists(sizedImage)) {
-			url = getPublicUrl(sizedImage);
+			url = assetsManager.getPublicUrl(sizedImage);
 		} else if (assetsManager.exists(image)) {
 
 			executor.execute(() -> {
-				Optional<Image> originalImage = getAsset(() -> image, image.getKey());
+				Optional<Image> originalImage = assetsManager.getAsset(() -> image, image.getKey());
 
 				if (originalImage.isPresent()) {
 					Optional<Image> resizedImage = ImageConverter.convertToSize(originalImage.get(), size);
 					// Successfully resized
 					if (resizedImage.isPresent()) {
 						try {
-							saveAsset(resizedImage.get());
+							assetsManager.saveAsset(resizedImage.get());
 						} catch (IOException ioe) {
 							logger.error("Failed to save resized image {}", resizedImage.get());
 						}
@@ -63,7 +63,7 @@ public abstract class AbstractAssetsManager implements AssetsManager, Initializi
 				}
 			});
 
-			url = getPublicUrl(image);
+			url = assetsManager.getPublicUrl(image);
 		}
 		return url;
 	}

@@ -43,7 +43,12 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 
 	@Override
 	public Optional<String> getPublicUrl(Asset asset) {
-		return Optional.of("http://" + s3Properties.getBucket() + "/" + asset.getKey());
+		if (asset instanceof Image) {
+			Image image = (Image) asset;
+			if (image.isSized())
+				return Optional.of("http://" + s3Properties.getBucket() + "/" + asset.getKey());
+		}
+		return generatePresignedUrl(asset);
 	}
 
 	@Override
