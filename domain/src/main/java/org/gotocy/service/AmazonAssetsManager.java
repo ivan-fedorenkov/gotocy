@@ -64,7 +64,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 		return result;
 	}
 
-	@CacheEvict(cacheNames = "asset_exists_cache", key="asset.key")
+	@CacheEvict(cacheNames = "asset_exists_cache", key="#asset.key")
 	@Override
 	public void saveAsset(Asset asset) throws IOException {
 		ObjectMetadata metadata = new ObjectMetadata();
