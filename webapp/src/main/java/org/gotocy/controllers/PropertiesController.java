@@ -2,6 +2,7 @@ package org.gotocy.controllers;
 
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
+import org.gotocy.controllers.exceptions.DomainObjectNotFoundException;
 import org.gotocy.controllers.exceptions.NotFoundException;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.OfferStatus;
@@ -30,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -72,13 +74,17 @@ public class PropertiesController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String get(@RequiredDomainObject @PathVariable("id") Property property, Model model, Locale locale) {
+	public String get(@PathVariable Long id, Model model, Locale locale) {
+		Property property = propertyService.findOne(id);
+		if (property == null)
+			throw new DomainObjectNotFoundException();
+
 		if (property.getOfferStatus() == OfferStatus.PROMO)
 			return "redirect:" + Helper.path(property);
 
 		property.initLocalizedFields(locale);
 		model.addAttribute(property);
-		model.addAttribute("featuredProperties", repository.findAll(publiclyVisible().and(featured()).and(ne(property))));
+		model.addAttribute("featuredProperties", propertyService.getFeatured());
 
 		return "property/show";
 	}

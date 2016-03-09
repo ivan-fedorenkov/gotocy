@@ -2,6 +2,9 @@ package org.gotocy.service;
 
 import org.gotocy.domain.Image;
 import org.gotocy.domain.Property;
+import org.gotocy.domain.PropertyStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -20,5 +23,11 @@ public interface PropertyService {
 	 * @throws ServiceMethodExecutionException if anything goes wrong
 	 */
 	Property create(Property property) throws ServiceMethodExecutionException;
+
+	Property findOne(Long id);
+
+	Page<Property> findRecent(PropertyStatus propertyStatus, Pageable pageable);
+
+	Iterable<Property> getFeatured();
 
 }

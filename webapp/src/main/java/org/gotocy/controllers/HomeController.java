@@ -3,8 +3,11 @@ package org.gotocy.controllers;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyStatus;
 import org.gotocy.repository.PropertyRepository;
+import org.gotocy.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.*;
 
+import static org.gotocy.repository.PropertyPredicates.inStatus;
 import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
 
 /**
@@ -34,16 +38,18 @@ public class HomeController {
 	};
 
 	private final PropertyRepository repository;
+	private final PropertyService propertyService;
 
 	@Autowired
-	public HomeController(PropertyRepository repository) {
+	public HomeController(PropertyService propertyService, PropertyRepository repository) {
+		this.propertyService = propertyService;
 		this.repository = repository;
 	}
 
 	/**
 	 * TODO: dirty hack, still it works fine for now; later this logic would be substituted by property groups and offers
 	 */
-	@RequestMapping("/")
+	/*@RequestMapping("/")
 	public String home(Model model, Locale locale, @SortDefault(sort = "id", direction = Sort.Direction.DESC) Sort sort) {
 
 		// Yes, fetch all the available publicly visible properties from the database
@@ -72,6 +78,17 @@ public class HomeController {
 		model.addAttribute("saleProperties", propertiesByStatus.get(PropertyStatus.SALE));
 		model.addAttribute("featuredProperties", featured);
 
+		return "home/index";
+	}*/
+
+	@RequestMapping("/")
+	public String home(Model model, Locale locale,
+		@PageableDefault(size = 4, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
+	{
+		model.addAttribute("featuredProperties", propertyService.getFeatured());
+		model.addAttribute("longTermProperties", propertyService.findRecent(PropertyStatus.LONG_TERM, pageable));
+		model.addAttribute("shortTermProperties", propertyService.findRecent(PropertyStatus.SHORT_TERM, pageable));
+		model.addAttribute("saleProperties", propertyService.findRecent(PropertyStatus.SALE, pageable));
 		return "home/index";
 	}
 
