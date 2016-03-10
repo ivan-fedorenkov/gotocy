@@ -1,5 +1,8 @@
 package org.gotocy.config;
 
+import org.gotocy.dto.PropertyDtoFactory;
+import org.gotocy.helpers.Helper;
+import org.gotocy.helpers.property.PropertyHelper;
 import org.gotocy.service.AssetsManager;
 import org.gotocy.controllers.aop.RequiredDomainObjectAspect;
 import org.gotocy.domain.*;
@@ -50,6 +53,16 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	// Beans
 
 	@Bean
+	public Helper helper() {
+		return new Helper(applicationProperties, assetsManager);
+	}
+
+	@Bean
+	public PropertyDtoFactory propertyDtoFactory() {
+		return new PropertyDtoFactory(helper().getProperty());
+	}
+
+	@Bean
 	public LocaleResolver localeResolver() {
 		SessionLocaleResolver resolver = new SessionLocaleResolver();
 		resolver.setDefaultLocale(Locales.DEFAULT);
@@ -88,7 +101,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new HelpersInterceptor(applicationProperties, assetsManager, i18n));
+		registry.addInterceptor(new HelpersInterceptor(applicationProperties, i18n, helper()));
 		registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/master/**");
 	}
 

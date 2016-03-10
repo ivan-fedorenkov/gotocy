@@ -9,6 +9,8 @@ import org.gotocy.domain.Image;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.PanoXml;
 import org.gotocy.domain.Property;
+import org.gotocy.dto.PropertyDto;
+import org.gotocy.dto.PropertyDtoFactory;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.UserPropertyForm;
 import org.gotocy.forms.validation.UserPropertyFormValidator;
@@ -49,17 +51,18 @@ public class PropertiesController {
 	private AssetsManager assetsManager;
 	private ApplicationProperties applicationProperties;
 	private PropertyService propertyService;
-	private PropertyHelper propertyHelper;
+	private PropertyDtoFactory propertyDtoFactory;
 
 	@Autowired
 	public PropertiesController(PropertyRepository repository, AssetsManager assetsManager,
-		ApplicationProperties applicationProperties, PropertyService propertyService)
+		ApplicationProperties applicationProperties, PropertyService propertyService,
+		PropertyDtoFactory propertyDtoFactory)
 	{
 		this.repository = repository;
 		this.assetsManager = assetsManager;
 		this.applicationProperties = applicationProperties;
 		this.propertyService = propertyService;
-		propertyHelper = new PropertyHelper(applicationProperties, assetsManager);
+		this.propertyDtoFactory = propertyDtoFactory;
 	}
 
 	@InitBinder("userPropertyForm")
@@ -76,35 +79,9 @@ public class PropertiesController {
 		return "property/index";
 	}
 
-	@Getter
-	@Setter
-	public static class PropertyJson {
-		private String title;
-		private double latitude;
-		private double longitude;
-		private String shortAddress;
-		private String typeIcon;
-		private String price;
-		private String propertyUrl;
-		private String representativeImageUrl;
-	}
-
 	@RequestMapping(value = "/properties.json", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<PropertyJson> indexJson(Locale locale) {
-		return repository.findAll().stream()
-			.map(property -> {
-				PropertyJson asJson = new PropertyJson();
-				asJson.setTitle(property.getTitle());
-				asJson.setLatitude(property.getLatitude());
-				asJson.setLongitude(property.getLongitude());
-				asJson.setShortAddress(property.getShortAddress());
-				asJson.setPrice(PropertyHelper.price(property));
-				asJson.setTypeIcon(PropertyHelper.typeIcon(property.getPropertyType()));
-				asJson.setPropertyUrl(Helper.path(property));
-				asJson.setRepresentativeImageUrl(propertyHelper.representativeImageUrl(property));
-				return asJson;
-			})
-			.collect(toList());
+	public @ResponseBody List<PropertyDto> indexJson() {
+		return repository.findAll().stream().map(propertyDtoFactory::create).collect(toList());
 	}
 
 	@RequestMapping(value = "/properties/{id}", method = RequestMethod.GET)

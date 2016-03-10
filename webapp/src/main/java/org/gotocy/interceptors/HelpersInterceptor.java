@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Exposes the {@link org.gotocy.helpers.Helper} object into views under the "helper" key.
  * Exposes the {@link ApplicationProperties} properties into views under the "gotocy" key.
+ * Exposes the {@link I18n} object into view under the "i18n" key.
  *
  * @author ifedorenkov
  */
@@ -21,10 +22,10 @@ public class HelpersInterceptor implements HandlerInterceptor {
 	private final ApplicationProperties applicationProperties;
 	private final I18n i18n;
 
-	public HelpersInterceptor(ApplicationProperties applicationProperties, AssetsManager assetsManager, I18n i18n) {
-		helper = new Helper(applicationProperties, assetsManager);
+	public HelpersInterceptor(ApplicationProperties applicationProperties, I18n i18n, Helper helper) {
 		this.applicationProperties = applicationProperties;
 		this.i18n = i18n;
+		this.helper = helper;
 	}
 
 	@Override
