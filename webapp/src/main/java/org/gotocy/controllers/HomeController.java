@@ -2,6 +2,7 @@ package org.gotocy.controllers;
 
 import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyStatus;
+import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -71,6 +72,8 @@ public class HomeController {
 		model.addAttribute("shortTermProperties", propertiesByStatus.get(PropertyStatus.SHORT_TERM));
 		model.addAttribute("saleProperties", propertiesByStatus.get(PropertyStatus.SALE));
 		model.addAttribute("featuredProperties", featured);
+
+		model.addAttribute("propertiesSearchForm", new PropertiesSearchForm());
 
 		return "home/index";
 	}
