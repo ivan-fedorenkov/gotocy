@@ -64,7 +64,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 		return result;
 	}
 
-	@CacheEvict(cacheNames = "asset_exists_cache", key="#asset.key")
+	@CacheEvict(cacheNames = "AssetsManager.exists", key="#asset.key")
 	@Override
 	public void saveAsset(Asset asset) throws IOException {
 		ObjectMetadata metadata = new ObjectMetadata();
@@ -79,7 +79,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 		}
 	}
 
-	@CacheEvict(cacheNames = "asset_exists_cache", key="#asset.key")
+	@CacheEvict(cacheNames = "AssetsManager.exists", key="#asset.key")
 	@Override
 	public void deleteAsset(Asset asset) throws IOException {
 		try {
@@ -90,7 +90,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 		}
 	}
 
-	@Cacheable(cacheNames = "asset_exists_cache", key="#asset.key")
+	@Cacheable(cacheNames = "AssetsManager.exists", key="#asset.key")
 	@Override
 	public boolean exists(Asset asset) {
 		// Dirty, yet simple solution

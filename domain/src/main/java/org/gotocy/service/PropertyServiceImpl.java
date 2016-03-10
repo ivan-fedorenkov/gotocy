@@ -86,21 +86,18 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Transactional(readOnly = true)
-	@Cacheable(cacheNames = "property_cache")
 	@Override
 	public Property findOne(Long id) {
 		return propertyRepository.findOne(id);
 	}
 
 	@Transactional(readOnly = true)
-	@Cacheable(cacheNames = "property_recent_cache")
 	@Override
 	public Page<Property> findRecent(PropertyStatus propertyStatus, Pageable pageable) {
 		return propertyRepository.findAll(publiclyVisible().and(inStatus(propertyStatus)), pageable);
 	}
 
 	@Transactional(readOnly = true)
-	@Cacheable(cacheNames = "property_featured_cache")
 	@Override
 	public Iterable<Property> getFeatured() {
 		return propertyRepository.findAll(publiclyVisible().and(featured()));

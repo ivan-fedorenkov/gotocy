@@ -10,7 +10,7 @@ import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 
 /**
@@ -25,12 +25,7 @@ public class Application {
 	@Bean
 	public CacheManager cacheManager() {
 		SimpleCacheManager cacheManager = new SimpleCacheManager();
-		cacheManager.setCaches(Arrays.asList(
-			new ConcurrentMapCache("property_cache"),
-			new ConcurrentMapCache("property_featured_cache"),
-			new ConcurrentMapCache("property_recent_cache"),
-			new ConcurrentMapCache("asset_exists_cache")
-		));
+		cacheManager.setCaches(Collections.singletonList(new ConcurrentMapCache("AssetsManager.exists")));
 		return cacheManager;
 	}
 
