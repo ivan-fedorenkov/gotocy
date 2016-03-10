@@ -1,2 +1,11 @@
 User-agent: *
-Disallow: /promo/*
+
+Disallow: /promo
+Disallow: /ru/promo
+Disallow: /el/promo
+
+Disallow: /master
+Disallow: /ru/master
+Disallow: /el/master
+
+Host: www.gotocy.com
