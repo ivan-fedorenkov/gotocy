@@ -1,5 +1,7 @@
 package org.gotocy.controllers;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.controllers.exceptions.NotFoundException;
@@ -7,10 +9,13 @@ import org.gotocy.domain.Image;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.PanoXml;
 import org.gotocy.domain.Property;
+import org.gotocy.dto.PropertyDto;
+import org.gotocy.dto.PropertyDtoFactory;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.UserPropertyForm;
 import org.gotocy.forms.validation.UserPropertyFormValidator;
 import org.gotocy.helpers.Helper;
+import org.gotocy.helpers.property.PropertyHelper;
 import org.gotocy.repository.PropertyRepository;
 import org.gotocy.service.AssetsManager;
 import org.gotocy.service.PropertyService;
@@ -33,28 +38,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static java.util.stream.Collectors.toList;
 import static org.gotocy.repository.PropertyPredicates.*;
 
 /**
  * @author ifedorenkov
  */
 @Controller
-@RequestMapping(value = "/properties")
 public class PropertiesController {
 
 	private PropertyRepository repository;
 	private AssetsManager assetsManager;
 	private ApplicationProperties applicationProperties;
 	private PropertyService propertyService;
+	private PropertyDtoFactory propertyDtoFactory;
 
 	@Autowired
 	public PropertiesController(PropertyRepository repository, AssetsManager assetsManager,
-		ApplicationProperties applicationProperties, PropertyService propertyService)
+		ApplicationProperties applicationProperties, PropertyService propertyService,
+		PropertyDtoFactory propertyDtoFactory)
 	{
 		this.repository = repository;
 		this.assetsManager = assetsManager;
 		this.applicationProperties = applicationProperties;
 		this.propertyService = propertyService;
+		this.propertyDtoFactory = propertyDtoFactory;
 	}
 
 	@InitBinder("userPropertyForm")
@@ -62,7 +70,7 @@ public class PropertiesController {
 		binder.addValidators(UserPropertyFormValidator.INSTANCE);
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/properties", method = RequestMethod.GET)
 	public String index(Model model, @ModelAttribute PropertiesSearchForm form, Locale locale,
 		@PageableDefault(size = 18, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
@@ -71,7 +79,12 @@ public class PropertiesController {
 		return "property/index";
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/properties.json", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<PropertyDto> indexJson() {
+		return repository.findAll().stream().map(propertyDtoFactory::create).collect(toList());
+	}
+
+	@RequestMapping(value = "/properties/{id}", method = RequestMethod.GET)
 	public String get(@RequiredDomainObject @PathVariable("id") Property property, Model model, Locale locale) {
 		if (property.getOfferStatus() == OfferStatus.PROMO)
 			return "redirect:" + Helper.path(property);
@@ -83,21 +96,21 @@ public class PropertiesController {
 		return "property/show";
 	}
 
-	@RequestMapping(value = "/{id}/pano.xml", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
+	@RequestMapping(value = "/properties/{id}/pano.xml", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	@ResponseBody
 	public String getPanoXml(@RequiredDomainObject @PathVariable("id") Property property) {
 		return assetsManager.getAsset(PanoXml::new, property.getPanoXml().getKey())
 			.orElseThrow(NotFoundException::new).decodeToXml();
 	}
 
-	@RequestMapping(value = "/{id}/360_images/{image}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	@RequestMapping(value = "/properties/{id}/360_images/{image}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	public byte[] getImage(@PathVariable String id, @PathVariable String image) {
 		return assetsManager.getAsset(Image::new, "property/" + id + "/360_images/" + image + ".jpg")
 			.orElseThrow(NotFoundException::new).getBytes();
 	}
 
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	@RequestMapping(value = "/properties/new", method = RequestMethod.GET)
 	public String newByUser(Model model) {
 		UserPropertyForm userPropertyForm = new UserPropertyForm();
 		userPropertyForm.setLatitude(applicationProperties.getDefaultLatitude());
@@ -107,7 +120,7 @@ public class PropertiesController {
 		return "property/new";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/properties", method = RequestMethod.POST)
 	public String createByUser(@Valid @ModelAttribute UserPropertyForm userPropertyForm, BindingResult formErrors,
 		Locale locale) throws IOException
 	{

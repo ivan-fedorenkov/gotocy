@@ -60,6 +60,13 @@ public class PropertyHelper {
 	}
 
 	/**
+	 * Prints a given price in a locale specific manner.
+	 */
+	public static String price(int price) {
+		return "€ " + Format.CURRENCY_FORMATTER.print(price, LocaleContextHolder.getLocale());
+	}
+
+	/**
 	 * Returns a fully formatted price of the given property.
 	 * TODO: unit test
 	 */
@@ -102,13 +109,6 @@ public class PropertyHelper {
 			logger.error("Failed to determine type icon for property type {}", type);
 			return "";
 		}
-	}
-
-	/**
-	 * Prints a given price in a locale specific manner.
-	 */
-	private static String price(int price) {
-		return "&euro; " + Format.CURRENCY_FORMATTER.print(price, LocaleContextHolder.getLocale());
 	}
 
 }

@@ -4,7 +4,9 @@ import org.gotocy.service.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.*;
 import org.gotocy.helpers.property.PropertyHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,15 +14,17 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 /**
- * A helper object for the view layer. Contains a number of utility methods, such as price formatting, etc.
+ * A helper object that contains a number of utility methods such as price formatting, etc.
  *
  * @author ifedorenkov
  */
+@Component
 public class Helper {
 
 	private final AssetsManager assetsManager;
 	private final PropertyHelper propertyHelper;
 
+	@Autowired
 	public Helper(ApplicationProperties applicationProperties, AssetsManager assetsManager) {
 		this.assetsManager = assetsManager;
 		propertyHelper = new PropertyHelper(applicationProperties, assetsManager);

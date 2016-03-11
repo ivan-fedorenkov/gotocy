@@ -9,27 +9,35 @@ $.ajaxSetup({
 // Google Map - Homepage
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function createHomepageGoogleMap(_latitude,_longitude){
+function createHomepageGoogleMap(_latitude,_longitude,_properties_url){
     setMapHeight();
     if( document.getElementById('map') != null ){
-        $.getScript("http://assets.gotocy.eu/static/js/locations.js", function(){
+        $.getJSON(_properties_url, function(properties){
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 14,
+                zoom: 10,
                 scrollwheel: false,
+		zoomControl: true,
+		zoomControlOptions: {
+			position: google.maps.ControlPosition.LEFT_TOP
+		},
+		streetViewControl: false,
                 center: new google.maps.LatLng(_latitude, _longitude),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 styles: mapStyles
             });
             var i;
             var newMarkers = [];
-            for (i = 0; i < locations.length; i++) {
+            for (i = 0; i < properties.length; i++) {
+                var property = properties[i];
                 var pictureLabel = document.createElement("img");
-                pictureLabel.src = locations[i][7];
+                pictureLabel.src = 'http://assets.gotocy.eu/static/img/property-types/' + property['typeIcon'] + '.png';
                 var boxText = document.createElement("div");
                 infoboxOptions = {
                     content: boxText,
                     disableAutoPan: false,
-                    //maxWidth: 150,
+                    boxStyle: {
+                        width: "250px"
+                    },
                     pixelOffset: new google.maps.Size(-100, 0),
                     zIndex: null,
                     alignBottom: true,
@@ -40,8 +48,8 @@ function createHomepageGoogleMap(_latitude,_longitude){
                     infoBoxClearance: new google.maps.Size(1, 1)
                 };
                 var marker = new MarkerWithLabel({
-                    title: locations[i][0],
-                    position: new google.maps.LatLng(locations[i][3], locations[i][4]),
+                    title: property['title'],
+                    position: new google.maps.LatLng(property['latitude'], property['longitude']),
                     map: map,
                     icon: 'http://assets.gotocy.eu/static/img/marker.png',
                     labelContent: pictureLabel,
@@ -51,14 +59,14 @@ function createHomepageGoogleMap(_latitude,_longitude){
                 newMarkers.push(marker);
                 boxText.innerHTML =
                     '<div class="infobox-inner">' +
-                        '<a href="' + locations[i][5] + '">' +
+                        '<a href="' + property['propertyUrl'] + '">' +
                         '<div class="infobox-image" style="position: relative">' +
-                        '<img src="' + locations[i][6] + '">' + '<div><span class="infobox-price">' + locations[i][2] + '</span></div>' +
+                        '<img src="' + property['representativeImageUrl'] + '">' + '<div><span class="infobox-price">' + property['price'] + '</span></div>' +
                         '</div>' +
                         '</a>' +
                         '<div class="infobox-description">' +
-                        '<div class="infobox-title"><a href="'+ locations[i][5] +'">' + locations[i][0] + '</a></div>' +
-                        '<div class="infobox-location">' + locations[i][1] + '</div>' +
+                        '<div class="infobox-title"><a href="'+ property['propertyUrl'] +'">' + property['title'] + '</a></div>' +
+                        '<div class="infobox-location">' + property['shortAddress'] + '</div>' +
                         '</div>' +
                         '</div>';
                 //Define the infobox
@@ -87,41 +95,6 @@ function createHomepageGoogleMap(_latitude,_longitude){
             }, 1000);
             $('#map').removeClass('fade-map');
 
-            //  Dynamically show/hide markers --------------------------------------------------------------
-
-            google.maps.event.addListener(map, 'idle', function() {
-
-                for (var i=0; i < locations.length; i++) {
-                    if ( map.getBounds().contains(newMarkers[i].getPosition()) ){
-                        // newMarkers[i].setVisible(true); // <- Uncomment this line to use dynamic displaying of markers
-
-                        //newMarkers[i].setMap(map);
-                        //markerCluster.setMap(map);
-                    } else {
-                        // newMarkers[i].setVisible(false); // <- Uncomment this line to use dynamic displaying of markers
-
-                        //newMarkers[i].setMap(null);
-                        //markerCluster.setMap(null);
-                    }
-                }
-            });
-
-            // Function which set marker to the user position
-            function success(position) {
-                var center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                map.panTo(center);
-                $('#map').removeClass('fade-map');
-            }
-
-        });
-        // Enable Geo Location on button click
-        $('.geo-location').on("click", function() {
-            if (navigator.geolocation) {
-                $('#map').addClass('fade-map');
-                navigator.geolocation.getCurrentPosition(success);
-            } else {
-                error('Geo Location is not supported');
-            }
         });
     }
 }
