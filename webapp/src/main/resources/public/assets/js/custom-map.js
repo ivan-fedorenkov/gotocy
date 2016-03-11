@@ -16,11 +16,11 @@ function createHomepageGoogleMap(_latitude,_longitude,_properties_url){
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 10,
                 scrollwheel: false,
-		zoomControl: true,
-		zoomControlOptions: {
-			position: google.maps.ControlPosition.LEFT_TOP
-		},
-		streetViewControl: false,
+		        zoomControl: true,
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.LEFT_TOP
+                },
+                streetViewControl: false,
                 center: new google.maps.LatLng(_latitude, _longitude),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 styles: mapStyles
