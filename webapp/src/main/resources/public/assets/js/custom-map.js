@@ -61,7 +61,7 @@ function createHomepageGoogleMap(_latitude,_longitude,_properties_url){
                     '<div class="infobox-inner">' +
                         '<a href="' + property['propertyUrl'] + '">' +
                         '<div class="infobox-image" style="position: relative">' +
-                        '<img src="' + property['representativeImageUrl'] + '">' + '<div><span class="infobox-price">' + property['price'] + '</span></div>' +
+                        '<img id="infobox-image-' + i + '" src="http://assets.gotocy.eu/static/img/no-image.jpg" data-src="' + property['representativeImageUrl'] + '">' + '<div><span class="infobox-price">' + property['price'] + '</span></div>' +
                         '</div>' +
                         '</a>' +
                         '<div class="infobox-description">' +
@@ -71,6 +71,16 @@ function createHomepageGoogleMap(_latitude,_longitude,_properties_url){
                         '</div>';
                 //Define the infobox
                 newMarkers[i].infobox = new InfoBox(infoboxOptions);
+                var infoboxReadyListener = google.maps.event.addListener(newMarkers[i].infobox, 'domready', (function(listener, i) {
+                    return function() {
+                        $('#infobox-image-' + i).unveil({
+                            loaded: function() {
+                                google.maps.event.clearInstanceListeners(newMarkers[i].infobox);
+                            }
+                        });    
+                    }               
+                })(infoboxReadyListener, i));
+
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
                         for (h = 0; h < newMarkers.length; h++) {
@@ -98,6 +108,7 @@ function createHomepageGoogleMap(_latitude,_longitude,_properties_url){
         });
     }
 }
+
 
 // Function which set marker to the user position
 function success(position) {
