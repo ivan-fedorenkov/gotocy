@@ -2,11 +2,15 @@ package org.gotocy.service;
 
 import org.gotocy.domain.Image;
 import org.gotocy.domain.Property;
+import org.gotocy.domain.PropertyStatus;
 import org.gotocy.repository.PropertyRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,10 +19,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.gotocy.repository.PropertyPredicates.*;
+
 /**
  * @author ifedorenkov
  */
 @Component
+@Transactional
 public class PropertyServiceImpl implements PropertyService {
 
 	private static final Logger logger = LoggerFactory.getLogger(PropertyService.class);
@@ -32,7 +39,6 @@ public class PropertyServiceImpl implements PropertyService {
 		this.assetsManager = assetsManager;
 	}
 
-	@Transactional
 	@Override
 	public Property create(Property property) {
 
@@ -79,4 +85,21 @@ public class PropertyServiceImpl implements PropertyService {
 		return property;
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public Property findOne(Long id) {
+		return propertyRepository.findOne(id);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public Page<Property> findRecent(PropertyStatus propertyStatus, Pageable pageable) {
+		return propertyRepository.findAll(publiclyVisible().and(inStatus(propertyStatus)), pageable);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public Iterable<Property> getFeatured() {
+		return propertyRepository.findAll(publiclyVisible().and(featured()));
+	}
 }

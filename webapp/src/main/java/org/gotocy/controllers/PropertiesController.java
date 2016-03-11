@@ -1,7 +1,5 @@
 package org.gotocy.controllers;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.controllers.exceptions.NotFoundException;
@@ -15,7 +13,6 @@ import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.UserPropertyForm;
 import org.gotocy.forms.validation.UserPropertyFormValidator;
 import org.gotocy.helpers.Helper;
-import org.gotocy.helpers.property.PropertyHelper;
 import org.gotocy.repository.PropertyRepository;
 import org.gotocy.service.AssetsManager;
 import org.gotocy.service.PropertyService;
@@ -39,7 +36,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static java.util.stream.Collectors.toList;
-import static org.gotocy.repository.PropertyPredicates.*;
+import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
 
 /**
  * @author ifedorenkov
@@ -91,7 +88,7 @@ public class PropertiesController {
 
 		property.initLocalizedFields(locale);
 		model.addAttribute(property);
-		model.addAttribute("featuredProperties", repository.findAll(publiclyVisible().and(featured()).and(ne(property))));
+		model.addAttribute("featuredProperties", propertyService.getFeatured());
 
 		return "property/show";
 	}

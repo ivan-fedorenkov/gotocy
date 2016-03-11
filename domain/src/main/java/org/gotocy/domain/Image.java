@@ -34,4 +34,11 @@ public class Image extends Asset {
 			"/" + getKey().substring(nextToLastSlash));
 	}
 
+	/**
+	 * Determines if this instance represents the sized image.
+	 */
+	public boolean isSized() {
+		return getKey() != null && getKey().startsWith(RESIZED_IMAGE_KEY_PREFIX);
+	}
+
 }
