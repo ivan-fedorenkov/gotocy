@@ -61,7 +61,7 @@ function createHomepageGoogleMap(_latitude,_longitude,_properties_url){
                     '<div class="infobox-inner">' +
                         '<a href="' + property['propertyUrl'] + '">' +
                         '<div class="infobox-image" style="position: relative">' +
-                        '<img id="infobox-image-' + i + '" src="http://assets.gotocy.eu/static/img/no-image.jpg" data-src="' + property['representativeImageUrl'] + '">' + '<div><span class="infobox-price">' + property['price'] + '</span></div>' +
+                        '<img id="infobox-image-' + i + '" src="http://assets.gotocy.eu/static/img/no-image.jpg" data-src-placeholder="http://assets.gotocy.eu/static/img/no-image.jpg" data-src="' + property['representativeImageUrl'] + '">' + '<div><span class="infobox-price">' + property['price'] + '</span></div>' +
                         '</div>' +
                         '</a>' +
                         '<div class="infobox-description">' +
