@@ -71,21 +71,25 @@ function createHomepageGoogleMap(_latitude,_longitude,_properties_url){
                         '</div>';
                 //Define the infobox
                 newMarkers[i].infobox = new InfoBox(infoboxOptions);
-                var infoboxReadyListener = google.maps.event.addListener(newMarkers[i].infobox, 'domready', (function(listener, i) {
-                    return function() {
-                        $('#infobox-image-' + i).unveil({
-                            loaded: function() {
-                                google.maps.event.clearInstanceListeners(newMarkers[i].infobox);
-                            }
-                        });    
-                    }               
-                })(infoboxReadyListener, i));
-
+                var unveiled = {};
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
                         for (h = 0; h < newMarkers.length; h++) {
                             newMarkers[h].infobox.close();
                         }
+
+                        // Lazy image loading
+                        if (!unveiled[i]) {
+                            google.maps.event.addListener(newMarkers[i].infobox, 'domready', function() {
+                                $('#infobox-image-' + i).unveil({
+                                    loaded: function() {
+                                        unveiled[i] = true;
+                                        google.maps.event.clearInstanceListeners(newMarkers[i].infobox);
+                                    }
+                                });
+                            });
+                        }
+
                         newMarkers[i].infobox.open(map, this);
                     }
                 })(marker, i));
