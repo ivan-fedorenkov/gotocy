@@ -49,7 +49,6 @@ function createHomepageGoogleMap(lat, lng){
             var marker = new MarkerWithLabel({
                 title: properties[i]['title'],
                 position: new google.maps.LatLng(properties[i]['latitude'], properties[i]['longitude']),
-                map: map,
                 icon: 'http://assets.gotocy.eu/static/img/marker.png',
                 labelContent: pictureLabel,
                 labelAnchor: new google.maps.Point(50, 0),
