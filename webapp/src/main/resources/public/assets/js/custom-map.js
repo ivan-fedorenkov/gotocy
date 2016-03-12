@@ -9,108 +9,100 @@ $.ajaxSetup({
 // Google Map - Homepage
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function createHomepageGoogleMap(_latitude,_longitude,_properties_url){
+function createHomepageGoogleMap(lat,lng,propertiesUrl){
     setMapHeight();
-    if( document.getElementById('map') != null ){
-        $.getJSON(_properties_url, function(properties){
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 10,
-                scrollwheel: false,
-		        zoomControl: true,
-                zoomControlOptions: {
-                    position: google.maps.ControlPosition.LEFT_TOP
-                },
-                streetViewControl: false,
-                center: new google.maps.LatLng(_latitude, _longitude),
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles: mapStyles
-            });
-            var i;
-            var newMarkers = [];
-            for (i = 0; i < properties.length; i++) {
-                var property = properties[i];
-                var pictureLabel = document.createElement("img");
-                pictureLabel.src = 'http://assets.gotocy.eu/static/img/property-types/' + property['typeIcon'] + '.png';
-                var boxText = document.createElement("div");
-                infoboxOptions = {
-                    content: boxText,
-                    disableAutoPan: false,
-                    boxStyle: {
-                        width: "250px"
-                    },
-                    pixelOffset: new google.maps.Size(-100, 0),
-                    zIndex: null,
-                    alignBottom: true,
-                    boxClass: "infobox-wrapper",
-                    enableEventPropagation: true,
-                    closeBoxMargin: "0px 0px -8px 0px",
-                    closeBoxURL: "http://assets.gotocy.eu/static/img/close-btn.png",
-                    infoBoxClearance: new google.maps.Size(1, 1)
-                };
-                var marker = new MarkerWithLabel({
-                    title: property['title'],
-                    position: new google.maps.LatLng(property['latitude'], property['longitude']),
-                    map: map,
-                    icon: 'http://assets.gotocy.eu/static/img/marker.png',
-                    labelContent: pictureLabel,
-                    labelAnchor: new google.maps.Point(50, 0),
-                    labelClass: "marker-style"
-                });
-                newMarkers.push(marker);
-                boxText.innerHTML =
-                    '<div class="infobox-inner">' +
-                        '<a href="' + property['propertyUrl'] + '">' +
-                        '<div class="infobox-image" style="position: relative">' +
-                        '<img id="infobox-image-' + i + '" src="http://assets.gotocy.eu/static/img/no-image.jpg" data-src-placeholder="http://assets.gotocy.eu/static/img/no-image.jpg" data-src="' + property['representativeImageUrl'] + '">' + '<div><span class="infobox-price">' + property['price'] + '</span></div>' +
-                        '</div>' +
-                        '</a>' +
-                        '<div class="infobox-description">' +
-                        '<div class="infobox-title"><a href="'+ property['propertyUrl'] +'">' + property['title'] + '</a></div>' +
-                        '<div class="infobox-location">' + property['shortAddress'] + '</div>' +
-                        '</div>' +
-                        '</div>';
-                //Define the infobox
-                newMarkers[i].infobox = new InfoBox(infoboxOptions);
-                var unveiled = {};
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                    return function() {
-                        for (h = 0; h < newMarkers.length; h++) {
-                            newMarkers[h].infobox.close();
-                        }
 
-                        // Lazy image loading
-                        if (!unveiled[i]) {
-                            google.maps.event.addListener(newMarkers[i].infobox, 'domready', function() {
-                                $('#infobox-image-' + i).unveil({
-                                    loaded: function() {
-                                        unveiled[i] = true;
-                                        google.maps.event.clearInstanceListeners(newMarkers[i].infobox);
-                                    }
-                                });
-                            });
-                        }
-
-                        newMarkers[i].infobox.open(map, this);
-                    }
-                })(marker, i));
-
-            }
-            var clusterStyles = [
-                {
-                    url: 'http://assets.gotocy.eu/static/img/cluster.png',
-                    height: 37,
-                    width: 37
-                }
-            ];
-            var markerCluster = new MarkerClusterer(map, newMarkers, {styles: clusterStyles, maxZoom: 15});
-            $('body').addClass('loaded');
-            setTimeout(function() {
-                $('body').removeClass('has-fullscreen-map');
-            }, 1000);
-            $('#map').removeClass('fade-map');
-
+    $.getJSON(propertiesUrl, function(properties) {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            scrollwheel: false,
+            zoomControl: true,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.LEFT_TOP
+            },
+            streetViewControl: false,
+            center: new google.maps.LatLng(lat, lng),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            styles: mapStyles
         });
-    }
+
+        var infoboxOptions = {
+            disableAutoPan: false,
+            boxStyle: {
+                width: "250px"
+            },
+            pixelOffset: new google.maps.Size(-100, 0),
+            zIndex: null,
+            alignBottom: true,
+            boxClass: "infobox-wrapper",
+            enableEventPropagation: true,
+            closeBoxMargin: "0px 0px -8px 0px",
+            closeBoxURL: "http://assets.gotocy.eu/static/img/close-btn.png",
+            infoBoxClearance: new google.maps.Size(1, 1)
+        };
+
+        var markers = [];
+        for (var i = 0; i < properties.length; i++) {
+            var property = properties[i];
+            var pictureLabel = document.createElement("img");
+            pictureLabel.src = 'http://assets.gotocy.eu/static/img/property-types/' + property['typeIcon'] + '.png';
+
+            var marker = new MarkerWithLabel({
+                title: property['title'],
+                position: new google.maps.LatLng(property['latitude'], property['longitude']),
+                map: map,
+                icon: 'http://assets.gotocy.eu/static/img/marker.png',
+                labelContent: pictureLabel,
+                labelAnchor: new google.maps.Point(50, 0),
+                labelClass: "marker-style"
+            });
+            markers.push(marker);
+
+            google.maps.event.addListener(marker, 'click', function() {
+                if (!this.infobox) {
+                    var box = document.createElement("div");
+                    $(box).html(
+                        '<div class="infobox-inner">' +
+                            '<a href="' + property['propertyUrl'] + '">' +
+                                '<div class="infobox-image" style="position: relative">' +
+                                    '<img src="' + property['representativeImageUrl'] + '">' + '<div><span class="infobox-price">' + property['price'] + '</span></div>' +
+                                '</div>' +
+                            '</a>' +
+                            '<div class="infobox-description">' +
+                                '<div class="infobox-title"><a href="'+ property['propertyUrl'] +'">' + property['title'] + '</a></div>' +
+                                '<div class="infobox-location">' + property['shortAddress'] + '</div>' +
+                            '</div>' +
+                        '</div>'
+                    );
+                    marker.infobox = new InfoBox($.extend({content: box}, infoboxOptions));
+                }
+
+                for (var j = 0; j < markers.length; j++) {
+                    if (markers[j].infobox) {
+                        markers[j].infobox.close();
+                    }
+                }
+
+                marker.infobox.open(map, this);
+            });
+        }
+
+        var clusterStyles = [
+            {
+                url: 'http://assets.gotocy.eu/static/img/cluster.png',
+                height: 37,
+                width: 37
+            }
+        ];
+        var markerCluster = new MarkerClusterer(map, markers, {styles: clusterStyles, maxZoom: 15});
+        $('body').addClass('loaded');
+        setTimeout(function() {
+            $('body').removeClass('has-fullscreen-map');
+        }, 1000);
+        $('#map').removeClass('fade-map');
+
+    });
+
 }
 
 
