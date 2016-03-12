@@ -9,10 +9,10 @@ $.ajaxSetup({
 // Google Map - Homepage
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function createHomepageGoogleMap(lat,lng,propertiesUrl){
+function createHomepageGoogleMap(lat, lng){
     setMapHeight();
 
-    $.getJSON(propertiesUrl, function(properties) {
+    $.getJSON('properties.json', function(properties) {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 10,
             scrollwheel: false,
@@ -43,13 +43,12 @@ function createHomepageGoogleMap(lat,lng,propertiesUrl){
 
         var markers = [];
         for (var i = 0; i < properties.length; i++) {
-            var property = properties[i];
             var pictureLabel = document.createElement("img");
-            pictureLabel.src = 'http://assets.gotocy.eu/static/img/property-types/' + property['typeIcon'] + '.png';
+            pictureLabel.src = 'http://assets.gotocy.eu/static/img/property-types/' + properties[i]['typeIcon'] + '.png';
 
             var marker = new MarkerWithLabel({
-                title: property['title'],
-                position: new google.maps.LatLng(property['latitude'], property['longitude']),
+                title: properties[i]['title'],
+                position: new google.maps.LatLng(properties[i]['latitude'], properties[i]['longitude']),
                 map: map,
                 icon: 'http://assets.gotocy.eu/static/img/marker.png',
                 labelContent: pictureLabel,
@@ -58,33 +57,35 @@ function createHomepageGoogleMap(lat,lng,propertiesUrl){
             });
             markers.push(marker);
 
-            google.maps.event.addListener(marker, 'click', function() {
-                if (!this.infobox) {
-                    var box = document.createElement("div");
-                    $(box).html(
-                        '<div class="infobox-inner">' +
-                            '<a href="' + property['propertyUrl'] + '">' +
-                                '<div class="infobox-image" style="position: relative">' +
-                                    '<img src="' + property['representativeImageUrl'] + '">' + '<div><span class="infobox-price">' + property['price'] + '</span></div>' +
+            google.maps.event.addListener(marker, 'click', (function(i) {
+                return function() {
+                    if (!markers[i].infobox) {
+                        var box = document.createElement("div");
+                        $(box).html(
+                            '<div class="infobox-inner">' +
+                                '<a href="' + properties[i]['propertyUrl'] + '">' +
+                                    '<div class="infobox-image" style="position: relative">' +
+                                        '<img src="' + properties[i]['representativeImageUrl'] + '">' + '<div><span class="infobox-price">' + properties[i]['price'] + '</span></div>' +
+                                    '</div>' +
+                                '</a>' +
+                                '<div class="infobox-description">' +
+                                    '<div class="infobox-title"><a href="'+ properties[i]['propertyUrl'] +'">' + properties[i]['title'] + '</a></div>' +
+                                    '<div class="infobox-location">' + properties[i]['shortAddress'] + '</div>' +
                                 '</div>' +
-                            '</a>' +
-                            '<div class="infobox-description">' +
-                                '<div class="infobox-title"><a href="'+ property['propertyUrl'] +'">' + property['title'] + '</a></div>' +
-                                '<div class="infobox-location">' + property['shortAddress'] + '</div>' +
-                            '</div>' +
-                        '</div>'
-                    );
-                    marker.infobox = new InfoBox($.extend({content: box}, infoboxOptions));
-                }
-
-                for (var j = 0; j < markers.length; j++) {
-                    if (markers[j].infobox) {
-                        markers[j].infobox.close();
+                            '</div>'
+                        );
+                        markers[i].infobox = new InfoBox($.extend({content: box}, infoboxOptions));
                     }
-                }
 
-                marker.infobox.open(map, this);
-            });
+                    for (var j = 0; j < markers.length; j++) {
+                        if (markers[j].infobox) {
+                            markers[j].infobox.close();
+                        }
+                    }
+
+                    markers[i].infobox.open(map, this);
+                }
+            })(i));
         }
 
         var clusterStyles = [
@@ -105,11 +106,6 @@ function createHomepageGoogleMap(lat,lng,propertiesUrl){
 
 }
 
-
-// Function which set marker to the user position
-function success(position) {
-    createHomepageGoogleMap(position.coords.latitude, position.coords.longitude);
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Google Map - Property Detail

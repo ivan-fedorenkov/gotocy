@@ -50,12 +50,6 @@ public class PropertiesController {
 	private PropertyService propertyService;
 	private PropertyDtoFactory propertyDtoFactory;
 
-	/**
-	 * This field caches the computed json properties. See {@link #indexJson()}.
-	 * Note: never updates!
-	 */
-	private volatile List<PropertyDto> cachedJsonProperties;
-
 	@Autowired
 	public PropertiesController(PropertyRepository repository, AssetsManager assetsManager,
 		ApplicationProperties applicationProperties, PropertyService propertyService,
@@ -84,9 +78,7 @@ public class PropertiesController {
 
 	@RequestMapping(value = "/properties.json", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<PropertyDto> indexJson() {
-		if (cachedJsonProperties == null)
-			cachedJsonProperties = repository.findAll().stream().map(propertyDtoFactory::create).collect(toList());
-		return cachedJsonProperties;
+		return repository.findAll().stream().map(propertyDtoFactory::create).collect(toList());
 	}
 
 	@RequestMapping(value = "/properties/{id}", method = RequestMethod.GET)

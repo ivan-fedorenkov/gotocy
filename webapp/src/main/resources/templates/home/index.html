@@ -815,8 +815,7 @@
 /*<![CDATA[*/
     var latitude = /*[[${gotocy.defaultLatitude}]]*/ '34.7071301';
     var longitude = /*[[${gotocy.defaultLongitude}]]*/ '33.022617399999945';
-    var propertiesUrl = /*[[@{${helper.path('/properties.json', #locale.language)}}]]*/ 'http://assets.gotocy.eu/static/js/locations.js';
-    google.maps.event.addDomListener(window, 'load', createHomepageGoogleMap(latitude, longitude, propertiesUrl));
+    google.maps.event.addDomListener(window, 'load', createHomepageGoogleMap(latitude, longitude));
 /*]]>*/
 </script>
 
