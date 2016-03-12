@@ -14,7 +14,7 @@ function createHomepageGoogleMap(lat, lng){
 
     $.getJSON('properties.json', function(properties) {
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 10,
+            zoom: 9,
             scrollwheel: false,
             zoomControl: true,
             zoomControlOptions: {

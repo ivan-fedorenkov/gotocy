@@ -71,75 +71,39 @@
         <div class="search-box-inner">
             <div class="container">
                 <div class="search-box map">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#search-form-sale" data-toggle="tab" th:text="${i18n.t('org.gotocy.domain.PropertyStatus.SALE')}">Sale</a></li>
-                        <li><a href="#search-form-short-term" data-toggle="tab" th:text="${i18n.t('org.gotocy.domain.PropertyStatus.SHORT_TERM')}">Short Term</a></li>
-                        <li><a href="#search-form-long-term" data-toggle="tab" th:text="${i18n.t('org.gotocy.domain.PropertyStatus.LONG_TERM')}">Long Term</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active" id="search-form-sale">
-                            <form role="form" id="form-map-sale" class="form-map form-search clearfix" th:action="@{${helper.path('/properties')}}" th:method="get" th:object="${propertiesSearchForm}">
-                                <input type="hidden" name="propertyStatus" value="SALE" />
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-4">
-                                        <div class="form-group">
-                                            <select th:field="*{location}">
-                                                <option value="" th:text="${i18n.t('dictionary.location')}">Location</option>
-                                                <option th:each="location : ${T(org.gotocy.domain.Location).values()}" th:value="${location}" th:text="${{location}}">Larnaca</option>
-                                            </select>
-                                        </div><!-- /.form-group -->
-                                    </div>
-                                    <div class="col-md-3 col-sm-4">
-                                        <div class="form-group">
-                                            <select th:field="*{propertyType}">
-                                                <option value="" th:text="${i18n.t('dictionary.property-type')}">Property Type</option>
-                                                <option th:each="type : ${T(org.gotocy.domain.PropertyType).values()}" th:value="${type}" th:text="${{type}}">Apartment</option>
-                                            </select>
-                                        </div><!-- /.form-group -->
-                                    </div>
-                                    <div class="col-md-3 col-sm-4">
-                                        <div class="form-group">
-                                            <select th:field="*{priceFrom}">
-                                                <option value="100" th:text="${i18n.t('dictionary.price')}">Price</option>
-                                                <option value="100000" th:text="|${helper.property.price(100000)}+|">&euro;100.000 +</option>
-                                                <option value="250000" th:text="|${helper.property.price(250000)}+|">&euro;250.000 +</option>
-                                                <option value="500000" th:text="|${helper.property.price(500000)}+|">&euro;500.000 +</option>
-                                                <option value="750000" th:text="|${helper.property.price(750000)}+|">&euro;750.000 +</option>
-                                                <option value="1000000" th:text="|${helper.property.price(1000000)}+|">&euro;1.000.000 +</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-4">
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-default" th:text="${i18n.t('dictionary.search-now')}">Search Now</button>
-                                        </div><!-- /.form-group -->
-                                    </div>
-                                </div>
-                            </form><!-- /#form-map -->
-                        </div><!-- /#search-form-rent -->
-                        <div class="tab-pane fade" id="search-form-short-term">
-                            <form role="form" id="form-map-short-term" class="form-map form-search clearfix">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-4">
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-default" th:text="${i18n.t('dictionary.search-now')}">Search Now</button>
-                                        </div><!-- /.form-group -->
-                                    </div>
-                                </div>
-                            </form><!-- /#form-map -->
-                        </div><!-- /#search-form-short-term -->
-                        <div class="tab-pane fade" id="search-form-long-term">
-                            <form role="form" id="form-map-long-term" class="form-map form-search clearfix">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-4">
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-default" th:text="${i18n.t('dictionary.search-now')}">Search Now</button>
-                                        </div><!-- /.form-group -->
-                                    </div>
-                                </div>
-                            </form><!-- /#form-map -->
-                        </div><!-- /#search-form-long-term -->
-                    </div><!-- /.tab-content -->
+                    <form role="form" id="form-map-sale" class="form-map form-search clearfix" th:action="@{${helper.path('/properties')}}" th:method="get" th:object="${propertiesSearchForm}">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4">
+                                <div class="form-group">
+                                    <select th:field="*{location}">
+                                        <option value="" th:text="${i18n.t('dictionary.location')}">Location</option>
+                                        <option th:each="location : ${T(org.gotocy.domain.Location).values()}" th:value="${location}" th:text="${{location}}">Larnaca</option>
+                                    </select>
+                                </div><!-- /.form-group -->
+                            </div>
+                            <div class="col-md-3 col-sm-4">
+                                <div class="form-group">
+                                    <select th:field="*{propertyStatus}">
+                                        <option value="" th:text="${i18n.t('dictionary.offer-type')}">Offer Type</option>
+                                        <option th:each="type : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${type}" th:text="${{type}}">Short Term</option>
+                                    </select>
+                                </div><!-- /.form-group -->
+                            </div>
+                            <div class="col-md-3 col-sm-4">
+                                <div class="form-group">
+                                    <select th:field="*{propertyType}">
+                                        <option value="" th:text="${i18n.t('dictionary.property-type')}">Property Type</option>
+                                        <option th:each="type : ${T(org.gotocy.domain.PropertyType).values()}" th:value="${type}" th:text="${{type}}">Apartment</option>
+                                    </select>
+                                </div><!-- /.form-group -->
+                            </div>
+                            <div class="col-md-3 col-sm-4">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default" th:text="${i18n.t('dictionary.search-now')}">Search Now</button>
+                                </div><!-- /.form-group -->
+                            </div>
+                        </div>
+                    </form><!-- /#form-map -->
                 </div><!-- /.search-box -->
             </div><!-- /.container -->
         </div><!-- /.search-box-inner -->
