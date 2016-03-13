@@ -2818,10 +2818,12 @@ ul.list-links {
     width: 10px; }
 
 #map {
-  background: transparent url(http://assets.gotocy.eu/static/img/AjaxLoader.gif) no-repeat center center;
   width: 100%;
-  height: 700px; }
+  background: transparent url(http://assets.gotocy.eu/static/img/AjaxLoader.gif) no-repeat center center; }
 
+@media screen and (max-width: 767px) {
+  #map {
+    display: none; } }
 #contact-map {
   height: 300px;
   width: 100%; }

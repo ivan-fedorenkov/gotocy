@@ -10,8 +10,6 @@ $.ajaxSetup({
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function createHomepageGoogleMap(lat, lng){
-    setMapHeight();
-
     $.getJSON('properties.json', function(properties) {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 9,
@@ -95,14 +93,13 @@ function createHomepageGoogleMap(lat, lng){
             }
         ];
         var markerCluster = new MarkerClusterer(map, markers, {styles: clusterStyles, maxZoom: 15});
+
         $('body').addClass('loaded');
-        setTimeout(function() {
-            $('body').removeClass('has-fullscreen-map');
-        }, 1000);
-        $('#map').removeClass('fade-map');
-
+            setTimeout(function() {
+                $('body').removeClass('has-fullscreen-map');
+            }, 1000);
+            $('#map').removeClass('fade-map');
     });
-
 }
 
 
