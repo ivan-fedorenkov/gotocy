@@ -839,8 +839,8 @@
 
     function createStatic() {
         staticMapCreated = true;
-        // 2.56 = 768 / 300
-        $('#map').css('height', $(window).width() / 2.56);
+        // 2.13 = 1280 / 600 (768x300 scale 2)
+        $('#map').css('height', $(window).width() / 2.13);
         var $mapImage = $(document.createElement('img'));
         $mapImage.attr('src', 'http://maps.googleapis.com/maps/api/staticmap?center=34.97351552254917,33.133228140624965&zoom=8&size=768x300&scale=2&style=feature:water|element:all|hue:0xd7ebef|saturation:-5|lightness:54|visibility:on&style=feature:landscape|element:all|hue:0xeceae6|saturation:-49|lightness:22|visibility:on&style=feature:poi.ark|element:all|hue:0xdddbd7|saturation:-81|lightness:34|visibility:on&style=feature:poi.medical|element:all|hue:0xdddbd7|saturation:-80|lightness:-2|visibility:on&style=feature:poi.school|element:all|hue:0xc8c6c3|saturation:-91|lightness:-7|visibility:on&style=feature:landscape.natural|element:all|hue:0xc8c6c3|saturation:-71|lightness:-18|visibility:on&style=feature:road.highway|element:all|hue:0xdddbd7|saturation:-92|lightness:60|visibility:on&style=feature:poi|element:all|hue:0xdddbd7|saturation:-81|lightness:34|visibility:on&style=feature:road.arterial|element:all|hue:0xdddbd7|saturation:-81|lightness:34|visibility:on&style=feature:transit|element:geometry|hue:0xc8c6c3|saturation:4|lightness:10|visibility:on&key=AIzaSyDHd0r7iRvEzgEwPscSKbRmU6eIoL8LcUs');
         $mapImage.addClass('img-responsive');
