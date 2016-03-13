@@ -2,7 +2,7 @@
     <figure class="ribbon" th:if="${p.offerStatus != T(org.gotocy.domain.OfferStatus).ACTIVE}" th:classappend="${p.offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{p.offerStatus}}"></figure>
     <a th:href="@{${helper.path(p)}}">
         <div class="property-image">
-            <img alt="" th:src="${helper.property.representativeImageUrl(p)}">
+            <img alt="" th:src="${helper.property.representativeImageUrl(p)}" data-src-placeholder="http://assets.gotocy.eu/static/img/no-image.jpg">
         </div>
         <div class="overlay">
             <div class="info">
