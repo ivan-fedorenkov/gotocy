@@ -29,8 +29,6 @@ HomeIndexPage.prototype.init = function() {
 };
 
 HomeIndexPage.prototype.manageMaps = function() {
-    console.log('manageMaps()');
-
     // Quick path - dynamic map already created, no need to change anything
     if (this.dynamicMapCreated) {
         return;
@@ -178,4 +176,4 @@ HomeIndexPage.prototype.appendScript = function(src) {
     script.src = src;
     script.async = false;
     $(document.body).append(script);
-}
+};

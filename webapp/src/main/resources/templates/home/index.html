@@ -796,6 +796,16 @@
     $(document).ready(function() {
         page.init();
     });
+
+
+    function appendScript(src) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = src;
+        script.async = false;
+        $(document.body).append(script);
+    }
+
 /*]]>*/
 </script>
 
