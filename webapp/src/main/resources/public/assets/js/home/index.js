@@ -52,7 +52,7 @@ HomeIndexPage.prototype.manageMaps = function() {
 HomeIndexPage.prototype.createDynamic = function() {
     this.dynamicMapCreated = true;
     $('#map').css('height', this.dynamicMapHeight+'px');
-    appendScript('http://maps.google.com/maps/api/js?sensor=false&callback=HomeIndexPage.createHomepageGoogleMap');
+    this.appendScript('http://maps.google.com/maps/api/js?sensor=false&callback=HomeIndexPage.createHomepageGoogleMap');
 };
 
 HomeIndexPage.createHomepageGoogleMap = function() {
