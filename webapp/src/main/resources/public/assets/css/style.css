@@ -3595,13 +3595,15 @@ form label.error {
 .search-box-wrapper {
   z-index: 100; }
 
+@media screen and (min-width: 768px) {
+  .search-box {
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0; } }
 .search-box {
-  -moz-transition: 0.4s;
-  -o-transition: 0.4s;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
   padding-right: 15px;
   position: absolute;
   width: 100%;
