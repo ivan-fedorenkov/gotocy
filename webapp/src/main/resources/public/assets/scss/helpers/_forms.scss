@@ -177,13 +177,7 @@ form {
 
 .search-box-wrapper { z-index: 100; }
 
-@media screen and (min-width: 768px) {
-    .search-box {
-        @include transition(.4s); @include opacity(0);
-    }
-}
-
-.search-box { padding-right: 15px; position: absolute; width: 100%; z-index: 1;
+.search-box { padding-right: 15px; position: absolute; width: 100%; z-index: 1; @include opacity(1);
   &.show-search-box { @include opacity(1); }
   h2 { border: none; padding-bottom: 0; }
   .btn { width: 100%; }

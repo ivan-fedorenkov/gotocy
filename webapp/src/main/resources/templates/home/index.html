@@ -14,19 +14,6 @@
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
     <title th:text="${i18n.t('templates.title', i18n.t('dictionary.home-page'))}">Homepage | GoToCy</title>
-
-    <style>
-        @media screen and (max-width: 767px) {
-            .search-box-wrapper {
-                padding: 20px 0 0 0;
-            }
-
-            .search-box-wrapper .form-group {
-                margin-bottom: 20px;
-            }
-        }
-    </style>
-
 </head>
 
 <body class="map-google horizontal-search-float" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
@@ -788,13 +775,11 @@
 
 <script th:inline="javascript">
 /*<![CDATA[*/
-    new HomeIndexPage(
-        /*[[${gotocy.defaultLatitude}]]*/ 34.97351552254917,
-        /*[[${gotocy.defaultLongitude}]]*/ 33.133228140624965
-    );
-
     $(document).ready(function() {
-        HomeIndexPage.init();
+        HomeIndexPage.init(
+            /*[[${gotocy.defaultLatitude}]]*/ 34.97351552254917,
+            /*[[${gotocy.defaultLongitude}]]*/ 33.133228140624965
+        );
     });
 /*]]>*/
 </script>

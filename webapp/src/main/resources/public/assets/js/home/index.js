@@ -2,8 +2,9 @@
  * Requires: utils
  * Dynamically includes: google maps, application maps
  */
+var HomeIndexPage = {}
 
-function HomeIndexPage(lat, lng) {
+HomeIndexPage.init = function(lat, lng) {
     HomeIndexPage.staticMapCreated = false;
     HomeIndexPage.dynamicMapCreated = false;
     HomeIndexPage.dynamicMapHeight = 700;
@@ -15,15 +16,9 @@ function HomeIndexPage(lat, lng) {
     HomeIndexPage.lng = function() {
         return lng;
     }
-}
 
-HomeIndexPage.init = function() {
     HomeIndexPage.manageMaps();
-    $(window).on('resize', (function(page) {
-        return function() {
-            page.manageMaps.call(page);
-        };
-    })(this));
+    $(window).on('resize', HomeIndexPage.manageMaps);
 };
 
 HomeIndexPage.manageMaps = function() {
