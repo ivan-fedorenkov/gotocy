@@ -1,13 +1,12 @@
 /**
- * Requires: google maps, custom-map.js
+ * Requires: utils
+ * Dynamically includes: google maps, application maps
  */
 
-
 function HomeIndexPage(lat, lng) {
-    this.staticMapCreated = false;
-    this.dynamicMapCreated = false;
-
-    // Yes Carl, global!
+    HomeIndexPage.staticMapCreated = false;
+    HomeIndexPage.dynamicMapCreated = false;
+    HomeIndexPage.dynamicMapHeight = 700;
 
     HomeIndexPage.lat = function() {
         return lat;
@@ -18,10 +17,8 @@ function HomeIndexPage(lat, lng) {
     }
 }
 
-HomeIndexPage.dynamicMapHeight = 700;
-
-HomeIndexPage.prototype.init = function() {
-    this.manageMaps();
+HomeIndexPage.init = function() {
+    HomeIndexPage.manageMaps();
     $(window).on('resize', (function(page) {
         return function() {
             page.manageMaps.call(page);
@@ -29,9 +26,9 @@ HomeIndexPage.prototype.init = function() {
     })(this));
 };
 
-HomeIndexPage.prototype.manageMaps = function() {
+HomeIndexPage.manageMaps = function() {
     // Quick path - dynamic map already created, no need to change anything
-    if (this.dynamicMapCreated) {
+    if (HomeIndexPage.dynamicMapCreated) {
         return;
     }
 
@@ -39,25 +36,25 @@ HomeIndexPage.prototype.manageMaps = function() {
     if (width >= 768) {
         // Create the appropriate map if necessary and center the search box
         if (width < 992) {
-            if (!this.staticMapCreated) {
-                this.createStatic();
-                this.centerSearchBox();
+            if (!HomeIndexPage.staticMapCreated) {
+                HomeIndexPage.createStatic();
+                HomeIndexPage.centerSearchBox();
             }
         } else {
-            this.createDynamic();
-            this.centerSearchBox();
+            HomeIndexPage.createDynamic();
+            HomeIndexPage.centerSearchBox();
         }
     }
 };
 
-HomeIndexPage.prototype.createDynamic = function() {
-    this.dynamicMapCreated = true;
+HomeIndexPage.createDynamic = function() {
+    HomeIndexPage.dynamicMapCreated = true;
     $('#map').css('height', HomeIndexPage.dynamicMapHeight+'px');
-    appendScript('http://maps.google.com/maps/api/js?sensor=false&callback=HomeIndexPage.createHomepageGoogleMap');
+    Utils.appendScript('http://maps.google.com/maps/api/js?sensor=false&callback=HomeIndexPage.createHomepageGoogleMap');
 }
 
 HomeIndexPage.createHomepageGoogleMap = function() {
-    appendScript(getPath('assets/js/application-maps.min.js'));
+    Utils.appendScript(Utils.getPath('/assets/js/application-maps.min.js'));
     $.getJSON('properties.json', function(properties) {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 9,
@@ -150,7 +147,7 @@ HomeIndexPage.createHomepageGoogleMap = function() {
     });
 }
 
-HomeIndexPage.prototype.createStatic = function() {
+HomeIndexPage.createStatic = function() {
     staticMapCreated = true;
     // 2.13 = 1280 / 600 (768x300 scale 2)
     var mapHeight = $(window).width() / 2.13;
@@ -164,18 +161,10 @@ HomeIndexPage.prototype.createStatic = function() {
     $('#map').html($mapImage);
 };
 
-HomeIndexPage.prototype.centerSearchBox = function() {
+HomeIndexPage.centerSearchBox = function() {
     var mapHeight = $('#map').height();
     var navigationHeight = $('.navigation').height();
     var contentHeight = $('.search-box').height();
     var top = mapHeight === HomeIndexPage.dynamicMapHeight ? mapHeight + navigationHeight - contentHeight * 2 : mapHeight * 0.7 + navigationHeight;
     $('.search-box-wrapper').css('top', top);
-};
-
-function appendScript(src) {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = src;
-    script.async = false;
-    $(document.body).append(script);
 };
