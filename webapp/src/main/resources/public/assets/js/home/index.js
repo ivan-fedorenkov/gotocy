@@ -1,6 +1,7 @@
 /**
- * Requires: custom-map.js
+ * Requires: google maps, custom-map.js
  */
+
 
 function HomeIndexPage(lat, lng) {
     this.staticMapCreated = false;
@@ -17,7 +18,7 @@ function HomeIndexPage(lat, lng) {
     }
 }
 
-HomeIndexPage.prototype.dynamicMapHeight = 700;
+HomeIndexPage.dynamicMapHeight = 700;
 
 HomeIndexPage.prototype.init = function() {
     this.manageMaps();
@@ -51,11 +52,12 @@ HomeIndexPage.prototype.manageMaps = function() {
 
 HomeIndexPage.prototype.createDynamic = function() {
     this.dynamicMapCreated = true;
-    $('#map').css('height', this.dynamicMapHeight+'px');
-    this.appendScript('http://maps.google.com/maps/api/js?sensor=false&callback=HomeIndexPage.createHomepageGoogleMap');
-};
+    $('#map').css('height', HomeIndexPage.dynamicMapHeight+'px');
+    appendScript('http://maps.google.com/maps/api/js?sensor=false&callback=HomeIndexPage.createHomepageGoogleMap');
+}
 
 HomeIndexPage.createHomepageGoogleMap = function() {
+    appendScript(getPath('assets/js/application-maps.min.js'));
     $.getJSON('properties.json', function(properties) {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 9,
@@ -166,11 +168,11 @@ HomeIndexPage.prototype.centerSearchBox = function() {
     var mapHeight = $('#map').height();
     var navigationHeight = $('.navigation').height();
     var contentHeight = $('.search-box').height();
-    var top = mapHeight === this.dynamicMapHeight ? mapHeight + navigationHeight - contentHeight * 2 : mapHeight * 0.7 + navigationHeight;
+    var top = mapHeight === HomeIndexPage.dynamicMapHeight ? mapHeight + navigationHeight - contentHeight * 2 : mapHeight * 0.7 + navigationHeight;
     $('.search-box-wrapper').css('top', top);
 };
 
-HomeIndexPage.prototype.appendScript = function(src) {
+function appendScript(src) {
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = src;
