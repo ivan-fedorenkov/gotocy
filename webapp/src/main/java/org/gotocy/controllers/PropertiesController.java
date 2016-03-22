@@ -29,6 +29,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class PropertiesController {
 	}
 
 	@RequestMapping(value = "/properties", method = RequestMethod.GET)
-	public String index(Model model, @ModelAttribute PropertiesSearchForm form, Locale locale,
+	public String index(HttpServletRequest request, Model model, @ModelAttribute PropertiesSearchForm form, Locale locale,
 		@PageableDefault(size = 18, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
 		Page<Property> properties = repository.findAll(publiclyVisible().and(form.toPredicate()), pageable);
