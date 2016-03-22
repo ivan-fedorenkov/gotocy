@@ -20,7 +20,7 @@ public class SeoLocationFormatter implements Formatter<Location> {
 	public static final String RU_FAMAGUSTA = "v-famaguste";
 	public static final String RU_LARNACA = "v-larnake";
 	public static final String RU_LIMASSOL = "v-limassole";
-	public static final String RU_NICOSIA = "v-nokisii";
+	public static final String RU_NICOSIA = "v-nikosii";
 	public static final String RU_PAPHOS = "v-pafose";
 	public static final String RU_PROTARAS = "v-protarase";
 	public static final String RU_TROODOS = "v-troodose";

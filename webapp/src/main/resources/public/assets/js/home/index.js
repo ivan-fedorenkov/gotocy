@@ -2,7 +2,8 @@
  * Requires: utils
  * Dynamically includes: google maps, application maps
  */
-var HomeIndexPage = {}
+
+var HomeIndexPage = {};
 
 HomeIndexPage.init = function(lat, lng) {
     HomeIndexPage.staticMapCreated = false;

@@ -22,10 +22,66 @@ Utils.getPath = function(path) {
     return path;
 };
 
-Utils.getPropertySearchSeoPath = function(language, location, propertyStatus, propertyType) {
-    var path = '/';
+/**
+ * Returns the properties search path.
+ */
+Utils.getPropertySearchPath = function(language, location, propertyStatus, propertyType) {
+    var path = (language === 'en' ? '/' : language === 'ru' ? '/ru/' : '/el/');
     if (language === 'ru') {
+        switch (propertyStatus) {
+        case 'SALE':
+            path += 'prodazha-';
+            break;
+        case 'SHORT_TERM':
+            path += 'kratkosrochnaya-arenda-';
+            break;
+        case 'LONG_TERM':
+            path += 'dolgosrochnaya-arenda-';
+            break;
+        }
 
+        switch (propertyType) {
+        case 'HOUSE':
+            path += (propertyStatus ? 'kottedzhei-' : 'kottedzhi-');
+            break;
+        case 'APARTMENT':
+            path += (propertyStatus ? 'apartamentov-' : 'apartamenti-');
+            break;
+        case 'LAND':
+            path += (propertyStatus ? 'zemli-' : 'zemlya-');
+            break;
+        default:
+            path += (propertyStatus ? 'nedvizhimosti-' : 'nedvizhimost-');
+        }
+
+        switch (location) {
+        case 'AYIA_NAPA':
+            path += 'v-ayia-nape';
+            break;
+        case 'FAMAGUSTA':
+            path += 'v-famaguste';
+            break;
+        case 'LARNACA':
+            path += 'v-larnake';
+            break;
+        case 'LIMASSOL':
+            path += 'v-limassole';
+            break;
+        case 'NICOSIA':
+            path += 'v-nikosii';
+            break;
+        case 'PAPHOS':
+            path += 'v-pafose';
+            break;
+        case 'PROTARAS':
+            path += 'v-protarase';
+            break;
+        case 'TROODOS':
+            path += 'v-troodose';
+            break;
+        default:
+            path += 'na-kipre';
+        }
     } else {
         switch (propertyType) {
         case 'HOUSE':
@@ -81,7 +137,6 @@ Utils.getPropertySearchSeoPath = function(language, location, propertyStatus, pr
         default:
             path += 'in-cyprus';
         }
-
-        return path;
     }
+    return path;
 };
