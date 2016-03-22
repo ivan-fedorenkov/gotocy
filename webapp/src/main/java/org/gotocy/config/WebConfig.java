@@ -1,18 +1,18 @@
 package org.gotocy.config;
 
-import org.gotocy.dto.PropertyDtoFactory;
-import org.gotocy.helpers.Helper;
-import org.gotocy.helpers.property.PropertyHelper;
-import org.gotocy.service.AssetsManager;
 import org.gotocy.controllers.aop.RequiredDomainObjectAspect;
 import org.gotocy.domain.*;
+import org.gotocy.dto.PropertyDtoFactory;
 import org.gotocy.filters.LocaleFilter;
 import org.gotocy.filters.UrlRewriteFilter;
 import org.gotocy.format.EnumsFormatter;
 import org.gotocy.format.LocationFormatter;
+import org.gotocy.format.seo.SeoPropertySearchFormUrlFormatter;
+import org.gotocy.helpers.Helper;
 import org.gotocy.i18n.I18n;
 import org.gotocy.interceptors.HelpersInterceptor;
 import org.gotocy.interceptors.SecurityInterceptor;
+import org.gotocy.service.AssetsManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -97,6 +97,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class) {});
 		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class) {});
 		registry.addFormatter(new EnumsFormatter<BusinessForm>(BusinessForm.class) {});
+		registry.addFormatter(new SeoPropertySearchFormUrlFormatter());
 	}
 
 	@Override

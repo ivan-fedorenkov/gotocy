@@ -29,7 +29,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,11 +68,24 @@ public class PropertiesController {
 	}
 
 	@RequestMapping(value = "/properties", method = RequestMethod.GET)
-	public String index(HttpServletRequest request, Model model, @ModelAttribute PropertiesSearchForm form, Locale locale,
+	public String index(Model model, @ModelAttribute PropertiesSearchForm form,
 		@PageableDefault(size = 18, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
 		Page<Property> properties = repository.findAll(publiclyVisible().and(form.toPredicate()), pageable);
 		model.addAttribute("properties", properties);
+		return "property/index";
+	}
+
+	@RequestMapping(
+		value = "/{formUri:(?:properties-|houses-|apartments-|land-|prodazha-|kratkosrochnaya-arenda-|dolgosrochnaya-arenda-)[\\w-]+}",
+		method = RequestMethod.GET
+	)
+	public String indexSeo(Model model, @PathVariable("formUri") PropertiesSearchForm form,
+		@PageableDefault(size = 18, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
+	{
+		Page<Property> properties = repository.findAll(publiclyVisible().and(form.toPredicate()), pageable);
+		model.addAttribute("properties", properties);
+		model.addAttribute(form);
 		return "property/index";
 	}
 

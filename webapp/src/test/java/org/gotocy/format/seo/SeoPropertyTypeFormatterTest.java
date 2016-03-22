@@ -2,6 +2,7 @@ package org.gotocy.format.seo;
 
 import org.gotocy.config.Locales;
 import org.gotocy.domain.PropertyType;
+import org.gotocy.format.Declension;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -32,17 +33,19 @@ public class SeoPropertyTypeFormatterTest {
 
 		for (PropertyType propertyType : propertyTypes) {
 			for (Locale locale : Locales.SUPPORTED) {
-				String printedPropertyType = formatter.print(propertyType, locale);
-				Assert.assertNotNull(printedPropertyType);
-				Assert.assertEquals(propertyType, formatter.parse(printedPropertyType, locale));
-				Assert.assertEquals(printedPropertyType, formatter.print(propertyType, locale));
+				for (Declension declension : Declension.values()) {
+					String printedPropertyType = formatter.print(propertyType, declension, locale);
+					Assert.assertNotNull(printedPropertyType);
+					Assert.assertEquals(propertyType, formatter.parse(printedPropertyType, locale));
+					Assert.assertEquals(printedPropertyType, formatter.print(propertyType, declension, locale));
+				}
 			}
 		}
 	}
 
 	@Test(expected = ParseException.class)
 	public void localeMismatchRuStr() throws ParseException {
-		formatter.parse("nedvizhimosti", Locales.EN);
+		formatter.parse("nedvizhimost", Locales.EN);
 	}
 
 	@Test(expected = ParseException.class)

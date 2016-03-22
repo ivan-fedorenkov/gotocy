@@ -4,7 +4,7 @@
       th:with="propertyStatus=${propertiesSearchForm.propertyStatus},
         propertyType=${propertiesSearchForm.propertyStatus},
         location=${propertiesSearchForm.location},
-        curPathNoPage = ('/properties?' + ${propertiesSearchForm.paramsForUrl}),
+        curPathNoPage = ${{propertiesSearchForm.paramsForUrl}},
         curPath = ${curPathNoPage} + '&page=' + ${properties.number},
         title = ${i18n.t('dictionary.properties-search')}">
 <head>
@@ -323,6 +323,25 @@
 <script type="text/javascript" src="http://assets.gotocy.eu/static/js/ie.js"></script>
 <![endif]-->
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#form-sidebar').submit(function() {
+            var $location = $('#location');
+            var location = $location.val();
+            $location.prop('disabled', true);
+
+            var $propertyStatus = $('#propertyStatus');
+            var propertyStatus = $propertyStatus.val();
+            $propertyStatus.prop('disabled', true);
+
+            var $propertyType = $('#propertyType');
+            var propertyType = $propertyType.val();
+            $propertyType.prop('disabled', true);
+
+            $(this).attr('action', Utils.getPropertySearchSeoPath('en', location, propertyStatus, propertyType));
+        });
+    });
+</script>
 
 </body>
 </html>
