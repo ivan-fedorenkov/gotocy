@@ -5,9 +5,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="alternate" hreflang="en" th:href="@{${helper.path('/gmdeco4u', 'en')}}" href="#" />
-    <link rel="alternate" hreflang="el" th:href="@{${helper.path('/gmdeco4u', 'el')}}" href="#" />
-    <link rel="alternate" hreflang="ru" th:href="@{${helper.path('/gmdeco4u', 'ru')}}" href="#" />
+    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path('/gmdeco4u', locale)}}" hreflang="en"  href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">

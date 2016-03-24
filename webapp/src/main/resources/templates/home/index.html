@@ -7,8 +7,7 @@
     <meta name='yandex-verification' content='73291a8411d284b4' />
     <meta name='yandex-verification' content='7c82bf03f50a3323' />
 
-    <link rel="alternate" hreflang="en" th:href="@{${helper.path('/', 'en')}}" href="#" />
-    <link rel="alternate" hreflang="ru" th:href="@{${helper.path('/', 'ru')}}" href="#" />
+    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path('/', locale)}}" hreflang="en"  href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
