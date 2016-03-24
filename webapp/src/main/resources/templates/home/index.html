@@ -7,8 +7,9 @@
     <meta name='yandex-verification' content='73291a8411d284b4' />
     <meta name='yandex-verification' content='7c82bf03f50a3323' />
 
-    <link rel="alternate" hreflang="en" th:href="@{${helper.path('/', 'en')}}" href="#" />
-    <link rel="alternate" hreflang="ru" th:href="@{${helper.path('/', 'ru')}}" href="#" />
+    <link rel="alternate" hreflang="en" th:href="@{${helper.path('/', T(org.gotocy.config.Locales).EN)}}" href="#" />
+    <link rel="alternate" hreflang="el" th:href="@{${helper.path('/', T(org.gotocy.config.Locales).EL)}}" href="#" />
+    <link rel="alternate" hreflang="ru" th:href="@{${helper.path('/', T(org.gotocy.config.Locales).RU)}}" href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
@@ -72,7 +73,7 @@
         <div class="search-box-inner">
             <div class="container">
                 <div class="search-box map">
-                    <form role="form" id="form-map-sale" class="form-map form-search clearfix" th:action="@{${helper.path('/properties')}}" th:method="get" th:object="${propertiesSearchForm}">
+                    <form role="form" id="properties-search-form" class="form-map form-search clearfix" th:action="@{${helper.path('/properties')}}" th:method="get" th:object="${propertiesSearchForm}">
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
@@ -275,7 +276,7 @@
             <div class="container">
                 <header class="section-title">
                     <h2 th:text="${i18n.t('dictionary.long-term-rentals-for-you')}">Long Term Rentals for You</h2>
-                    <a th:href="@{${helper.path('/properties?propertyStatus=LONG_TERM')}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="${i18n.t('dictionary.all-rentals')}">All Rentals</a>
+                    <a th:href="@{${helper.path(longTermPropertiesForm)}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="${i18n.t('dictionary.all-rentals')}">All Rentals</a>
                 </header>
                 <div class="row" th:remove="all-but-first">
                     <div class="col-md-3 col-sm-6" th:each="p : ${longTermProperties}">
@@ -426,7 +427,7 @@
             <div class="container">
                 <header class="section-title">
                     <h2 th:text="${i18n.t('dictionary.short-term-rentals-for-you')}">Short Term Rentals for You</h2>
-                    <a th:href="@{${helper.path('/properties?propertyStatus=SHORT_TERM')}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="${i18n.t('dictionary.all-rentals')}">All Rentals</a>
+                    <a th:href="@{${helper.path(shortTermPropertiesForm)}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="${i18n.t('dictionary.all-rentals')}">All Rentals</a>
                 </header>
                 <div class="row" th:remove="all-but-first">
                     <div class="col-md-3 col-sm-6" th:each="p : ${shortTermProperties}">
@@ -577,7 +578,7 @@
             <div class="container">
                 <header class="section-title">
                     <h2 th:text="${i18n.t('dictionary.properties-for-you')}">Properties for You</h2>
-                    <a th:href="@{${helper.path('/properties?propertyStatus=SALE')}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="${i18n.t('dictionary.all-properties')}">All Properties</a>
+                    <a th:href="@{${helper.path(salePropertiesForm)}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="${i18n.t('dictionary.all-properties')}">All Properties</a>
                 </header>
                 <div class="row" th:remove="all-but-first">
                     <div class="col-md-3 col-sm-6" th:each="p : ${saleProperties}">
@@ -777,6 +778,7 @@
 /*<![CDATA[*/
     $(document).ready(function() {
         HomeIndexPage.init(
+            /*[[${#locale.language}]]*/ 'en',
             /*[[${gotocy.defaultLatitude}]]*/ 34.97351552254917,
             /*[[${gotocy.defaultLongitude}]]*/ 33.133228140624965
         );

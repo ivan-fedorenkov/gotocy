@@ -18,6 +18,6 @@ PropertyIndexPage.init = function(language) {
         var propertyType = $propertyType.val();
         $propertyType.prop('disabled', true);
 
-        $(this).attr('action', Utils.getPropertySearchSeoPath(language, location, propertyStatus, propertyType));
+        $(this).attr('action', Utils.getPropertySearchPath(language, location, propertyStatus, propertyType));
     });
-}
+};

@@ -87,6 +87,19 @@ public class HomeController {
 		model.addAttribute("shortTermProperties", propertyService.findRecent(PropertyStatus.SHORT_TERM, pageable));
 		model.addAttribute("saleProperties", propertyService.findRecent(PropertyStatus.SALE, pageable));
 		model.addAttribute("propertiesSearchForm", new PropertiesSearchForm());
+
+		PropertiesSearchForm shortTermPropertiesForm = new PropertiesSearchForm();
+		shortTermPropertiesForm.setPropertyStatus(PropertyStatus.SHORT_TERM);
+		model.addAttribute("shortTermPropertiesForm", shortTermPropertiesForm);
+
+		PropertiesSearchForm longTermPropertiesForm = new PropertiesSearchForm();
+		longTermPropertiesForm.setPropertyStatus(PropertyStatus.LONG_TERM);
+		model.addAttribute("longTermPropertiesForm", longTermPropertiesForm);
+
+		PropertiesSearchForm salePropertiesForm = new PropertiesSearchForm();
+		salePropertiesForm.setPropertyStatus(PropertyStatus.SALE);
+		model.addAttribute("salePropertiesForm", salePropertiesForm);
+
 		return "home/index";
 	}
 

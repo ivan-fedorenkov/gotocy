@@ -5,7 +5,7 @@
 
 var HomeIndexPage = {};
 
-HomeIndexPage.init = function(lat, lng) {
+HomeIndexPage.init = function(language, lat, lng) {
     HomeIndexPage.staticMapCreated = false;
     HomeIndexPage.dynamicMapCreated = false;
     HomeIndexPage.dynamicMapHeight = 700;
@@ -20,6 +20,22 @@ HomeIndexPage.init = function(lat, lng) {
 
     HomeIndexPage.manageMaps();
     $(window).on('resize', HomeIndexPage.manageMaps);
+
+    $('#properties-search-form').submit(function() {
+        var $location = $('#location');
+        var location = $('#location').val();
+        $location.prop('disabled', true);
+
+        var $propertyStatus = $('#propertyStatus');
+        var propertyStatus = $('#propertyStatus').val();
+        $propertyStatus.prop('disabled', true);
+
+        var $propertyType = $('#propertyType');
+        var propertyType = $('#propertyType').val();
+        $propertyType.prop('disabled', true);
+
+        $(this).attr('action', Utils.getPropertySearchPath(language, location, propertyStatus, propertyType));
+    });
 };
 
 HomeIndexPage.manageMaps = function() {

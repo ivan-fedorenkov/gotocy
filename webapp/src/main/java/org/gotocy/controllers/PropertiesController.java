@@ -28,6 +28,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -44,11 +45,11 @@ import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
 @Controller
 public class PropertiesController {
 
-	private PropertyRepository repository;
-	private AssetsManager assetsManager;
-	private ApplicationProperties applicationProperties;
-	private PropertyService propertyService;
-	private PropertyDtoFactory propertyDtoFactory;
+	private final PropertyRepository repository;
+	private final AssetsManager assetsManager;
+	private final ApplicationProperties applicationProperties;
+	private final PropertyService propertyService;
+	private final PropertyDtoFactory propertyDtoFactory;
 
 	@Autowired
 	public PropertiesController(PropertyRepository repository, AssetsManager assetsManager,
@@ -68,16 +69,17 @@ public class PropertiesController {
 	}
 
 	@RequestMapping(value = "/properties", method = RequestMethod.GET)
-	public String index(Model model, @ModelAttribute PropertiesSearchForm form,
+	public String index(@ModelAttribute PropertiesSearchForm form, Locale locale,
 		@PageableDefault(size = 18, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
-		Page<Property> properties = repository.findAll(publiclyVisible().and(form.toPredicate()), pageable);
-		model.addAttribute("properties", properties);
-		return "property/index";
+		UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromPath(Helper.path(form, locale));
+		if (pageable.getPageNumber() > 0)
+			uriBuilder.queryParam("page", pageable.getPageNumber());
+		return "redirect:" + uriBuilder.toUriString();
 	}
 
 	@RequestMapping(
-		value = "/{formUri:(?:properties-|houses-|apartments-|land-|prodazha-|kratkosrochnaya-arenda-|dolgosrochnaya-arenda-)[\\w-]+}",
+		value = "/{formUri:(?:properties-|houses-|apartments-|land-|prodazha-|kratkosrochnaya-arenda-|dolgosrochnaya-arenda-|nedvizhimost-|apartamenti-|kottedzhi-|zemlya-)[\\w-]+}",
 		method = RequestMethod.GET
 	)
 	public String indexSeo(Model model, @PathVariable("formUri") PropertiesSearchForm form,

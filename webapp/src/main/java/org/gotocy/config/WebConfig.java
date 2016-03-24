@@ -7,7 +7,7 @@ import org.gotocy.filters.LocaleFilter;
 import org.gotocy.filters.UrlRewriteFilter;
 import org.gotocy.format.EnumsFormatter;
 import org.gotocy.format.LocationFormatter;
-import org.gotocy.format.seo.SeoPropertySearchFormUrlFormatter;
+import org.gotocy.format.seo.SeoPropertySearchFormUriFormatter;
 import org.gotocy.helpers.Helper;
 import org.gotocy.i18n.I18n;
 import org.gotocy.interceptors.HelpersInterceptor;
@@ -97,7 +97,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class) {});
 		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class) {});
 		registry.addFormatter(new EnumsFormatter<BusinessForm>(BusinessForm.class) {});
-		registry.addFormatter(new SeoPropertySearchFormUrlFormatter());
+		registry.addFormatter(new SeoPropertySearchFormUriFormatter());
 	}
 
 	@Override

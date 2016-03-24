@@ -1,5 +1,8 @@
 package org.gotocy.helpers;
 
+import org.gotocy.config.Locales;
+import org.gotocy.forms.PropertiesSearchForm;
+import org.gotocy.helpers.propertysearch.PropertySearchFormHelper;
 import org.gotocy.service.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.*;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import static java.util.stream.Collectors.toList;
 
@@ -61,46 +65,33 @@ public class Helper {
 	}
 
 	/**
-	 * Returns path of a given entity object using the current (thread local) locale prefix.
+	 * Returns path of the given object using the current (thread local) locale.
 	 * Unit test: HelperTest#entityPathTest
 	 */
-	public static <T extends BaseEntity> String path(T entity) {
-		return path(entity, LocaleContextHolder.getLocale().getLanguage());
+	public static String path(Object object) {
+		return path(object, LocaleContextHolder.getLocale());
 	}
 
 	/**
-	 * Returns path of of a given entity object using the given language.
-	 * The language should follow {@link java.util.Locale} rules.
+	 * Returns path of the given object using the given locale.
 	 * Unit test: HelperTest#entityPathTest
 	 */
-	public static <T extends BaseEntity> String path(T entity, String language) {
+	public static String path(Object object, Locale locale) {
 		String path;
-		if (entity instanceof Property) {
-			path = (((Property) entity).getOfferStatus() == OfferStatus.PROMO ? "/promo" : "") + "/properties/" + entity.getId();
-		} else if (entity instanceof Complex) {
-			path = "/complexes/" + entity.getId();
-		} else if (entity instanceof Developer) {
-			path = "/developers/" + entity.getId();
+		if (object instanceof Property) {
+			path = PropertyHelper.path((Property) object, locale);
+		} else if (object instanceof Complex) {
+			path = "/complexes/" + ((Complex) object).getId();
+		} else if (object instanceof Developer) {
+			path = "/developers/" + ((Developer) object).getId();
+		} else if (object instanceof PropertiesSearchForm) {
+			path = PropertySearchFormHelper.path((PropertiesSearchForm) object, locale);
+		} else if (object instanceof String) {
+			path = (String) object;
 		} else {
-			path = "/" + entity.getClass().getSimpleName().toLowerCase() + "/" + entity.getId();
+			throw new IllegalArgumentException("Unsupported object type: " + object.getClass());
 		}
-		return getPrefixForLanguage(language) + path;
-	}
-
-	/**
-	 * Returns localized version of the given path using the current (thread local) locale prefix.
-	 * Unit test: HelperTest#stringPathTest
-	 */
-	public static String path(String path) {
-		return path(path, LocaleContextHolder.getLocale().getLanguage());
-	}
-
-	/**
-	 * Returns localized version of the given path.
-	 * Unit test: HelperTest#stringPathTest
-	 */
-	public static String path(String path, String language) {
-		return getPrefixForLanguage(language) + path;
+		return getPrefixForLocale(locale) + path;
 	}
 
 	/**
@@ -148,15 +139,12 @@ public class Helper {
 		return number > 1 ? code + ".plural" : code;
 	}
 
-	private static String getPrefixForLanguage(String language) {
-		if (language == null || language.isEmpty())
-			return "";
-		switch (language) {
-		case "ru":
+	private static String getPrefixForLocale(Locale locale) {
+		if (Locales.RU.equals(locale)) {
 			return "/ru";
-		case "el":
+		} else if (Locales.EL.equals(locale)) {
 			return "/el";
-		default:
+		} else {
 			return "";
 		}
 	}

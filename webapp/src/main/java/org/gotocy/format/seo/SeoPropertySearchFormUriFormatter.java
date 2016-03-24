@@ -21,16 +21,15 @@ import static java.util.stream.Collectors.joining;
  *
  * @author ifedorenkov
  */
-public class SeoPropertySearchFormUrlFormatter implements Formatter<PropertiesSearchForm> {
+public class SeoPropertySearchFormUriFormatter implements Formatter<PropertiesSearchForm> {
 
-
-	public static final Pattern RU_FORM_PARAMS_PATTERN = Pattern.compile(
+	private static final Pattern RU_FORM_PARAMS_PATTERN = Pattern.compile(
 		"(" + Arrays.stream(SeoPropertyStatusFormatter.RU_STATUSES).map(status -> status + "-").collect(joining("|")) + ")?" +
 		"(" + Arrays.stream(SeoPropertyTypeFormatter.RU_TYPES).collect(joining("|")) + ")" +
 		"-(" + Arrays.stream(SeoLocationFormatter.RU_LOCATIONS).collect(joining("|")) + ")"
 	);
 
-	public static final Pattern FORM_PARAMS_PATTERN = Pattern.compile(
+	private static final Pattern FORM_PARAMS_PATTERN = Pattern.compile(
 		"(" + Arrays.stream(SeoPropertyTypeFormatter.TYPES).collect(joining("|")) + ")" +
 		"(" + Arrays.stream(SeoPropertyStatusFormatter.STATUSES).map(status -> "-" + status).collect(joining("|")) + ")?" +
 		"-(" + Arrays.stream(SeoLocationFormatter.LOCATIONS).collect(joining("|")) + ")"
@@ -90,7 +89,7 @@ public class SeoPropertySearchFormUrlFormatter implements Formatter<PropertiesSe
 	}
 
 	public static void main(String[] args) {
-		SeoPropertySearchFormUrlFormatter formatter = new SeoPropertySearchFormUrlFormatter();
+		SeoPropertySearchFormUriFormatter formatter = new SeoPropertySearchFormUriFormatter();
 
 		List<PropertyType> propertyTypes = new ArrayList<>();
 		propertyTypes.add(null);

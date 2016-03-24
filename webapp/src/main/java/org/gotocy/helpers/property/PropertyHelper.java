@@ -1,10 +1,7 @@
 package org.gotocy.helpers.property;
 
 import org.gotocy.config.ApplicationProperties;
-import org.gotocy.domain.ImageSize;
-import org.gotocy.domain.Property;
-import org.gotocy.domain.PropertyStatus;
-import org.gotocy.domain.PropertyType;
+import org.gotocy.domain.*;
 import org.gotocy.format.CurrencyFormatter;
 import org.gotocy.format.DistanceFormatter;
 import org.gotocy.i18n.I18n;
@@ -19,7 +16,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * A number of property related helper methods for the view layer.
+ * A number of property related helper methods.
  *
  * @author ifedorenkov
  */
@@ -64,6 +61,14 @@ public class PropertyHelper {
 		} else {
 			return assetsManager.getPublicUrl(property.getRepresentativeImage(), ImageSize.MEDIUM).orElse("");
 		}
+	}
+
+	/**
+	 * Returns the appropriate path for the given {@link Property} object in the given {@link Locale}.
+	 * TODO: unit test
+	 */
+	public static String path(Property property, Locale locale) {
+		return (property.getOfferStatus() == OfferStatus.PROMO ? "/promo" : "") + "/properties/" + property.getId();
 	}
 
 	/**

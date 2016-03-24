@@ -4,15 +4,16 @@
       th:with="propertyStatus=${propertiesSearchForm.propertyStatus},
         propertyType=${propertiesSearchForm.propertyStatus},
         location=${propertiesSearchForm.location},
-        curPathNoPage = ${{propertiesSearchForm}},
-        curPath = ${curPathNoPage} + '&page=' + ${properties.number},
+        curPathNoPage = ${helper.path(propertiesSearchForm)},
+        curPath = ${curPathNoPage} + '?page=' + ${properties.number},
         title = ${i18n.t('dictionary.properties-search')}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="alternate" hreflang="en" th:href="@{${helper.path(curPath, 'en')}}" href="#" />
-    <link rel="alternate" hreflang="ru" th:href="@{${helper.path(curPath, 'ru')}}" href="#" />
+    <link rel="alternate" hreflang="en" th:href="@{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EN)}}" href="#" />
+    <link rel="alternate" hreflang="el" th:href="@{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EL)}}" href="#" />
+    <link rel="alternate" hreflang="ru" th:href="@{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).RU)}}" href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
@@ -34,7 +35,7 @@
                     <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
                 <div class="user-area">
-                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${curPath})">
+                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${propertiesSearchForm})">
                         <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
                         <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>

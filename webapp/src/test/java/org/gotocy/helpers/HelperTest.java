@@ -30,6 +30,8 @@ public class HelperTest {
 		promoProperty.setId(4L);
 		promoProperty.setOfferStatus(OfferStatus.PROMO);
 
+		String anyStringPath = "/any/string/path";
+
 		// Language is not specified
 
 		LocaleContextHolder.setLocale(Locales.DEFAULT);
@@ -37,40 +39,31 @@ public class HelperTest {
 		Assert.assertEquals("/complexes/2", Helper.path(complex));
 		Assert.assertEquals("/developers/3", Helper.path(developer));
 		Assert.assertEquals("/promo/properties/4", Helper.path(promoProperty));
+		Assert.assertEquals("/any/string/path", Helper.path(anyStringPath));
 
 		LocaleContextHolder.setLocale(Locales.RU);
 		Assert.assertEquals("/ru/properties/1", Helper.path(property));
 		Assert.assertEquals("/ru/complexes/2", Helper.path(complex));
 		Assert.assertEquals("/ru/developers/3", Helper.path(developer));
 		Assert.assertEquals("/ru/promo/properties/4", Helper.path(promoProperty));
+		Assert.assertEquals("/ru/any/string/path", Helper.path(anyStringPath));
 
 		// Language is specified explicitly
 
 		// Default language, no prefix
 
-		Assert.assertEquals("/properties/1", Helper.path(property, "en"));
-		Assert.assertEquals("/complexes/2", Helper.path(complex, "en"));
-		Assert.assertEquals("/developers/3", Helper.path(developer, "en"));
-		Assert.assertEquals("/promo/properties/4", Helper.path(promoProperty, "en"));
+		Assert.assertEquals("/properties/1", Helper.path(property, Locales.EN));
+		Assert.assertEquals("/complexes/2", Helper.path(complex, Locales.EN));
+		Assert.assertEquals("/developers/3", Helper.path(developer, Locales.EN));
+		Assert.assertEquals("/promo/properties/4", Helper.path(promoProperty, Locales.EN));
+		Assert.assertEquals("/any/string/path", Helper.path(anyStringPath, Locales.EN));
+
 		// Russian language prefix
-		Assert.assertEquals("/ru/properties/1", Helper.path(property, "ru"));
-		Assert.assertEquals("/ru/complexes/2", Helper.path(complex, "ru"));
-		Assert.assertEquals("/ru/developers/3", Helper.path(developer, "ru"));
-		Assert.assertEquals("/ru/promo/properties/4", Helper.path(promoProperty, "ru"));
-	}
-
-	@Test
-	public void stringPathTest() {
-		// Language is not specified
-		LocaleContextHolder.setLocale(Locales.DEFAULT);
-		Assert.assertEquals("/some-path", Helper.path("/some-path"));
-
-		LocaleContextHolder.setLocale(Locales.RU);
-		Assert.assertEquals("/ru/some-path", Helper.path("/some-path"));
-
-		// Language is specified explicitly
-		Assert.assertEquals("/some-path", Helper.path("/some-path", "en"));
-		Assert.assertEquals("/ru/some-path", Helper.path("/some-path", "ru"));
+		Assert.assertEquals("/ru/properties/1", Helper.path(property, Locales.RU));
+		Assert.assertEquals("/ru/complexes/2", Helper.path(complex, Locales.RU));
+		Assert.assertEquals("/ru/developers/3", Helper.path(developer, Locales.RU));
+		Assert.assertEquals("/ru/promo/properties/4", Helper.path(promoProperty, Locales.RU));
+		Assert.assertEquals("/ru/any/string/path", Helper.path(anyStringPath, Locales.RU));
 	}
 
 	@Test
