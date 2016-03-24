@@ -1,10 +1,14 @@
 package org.gotocy.helpers.property;
 
-import org.gotocy.service.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
-import org.gotocy.domain.*;
-import org.gotocy.helpers.Format;
+import org.gotocy.domain.ImageSize;
+import org.gotocy.domain.Property;
+import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.PropertyType;
+import org.gotocy.format.CurrencyFormatter;
+import org.gotocy.format.DistanceFormatter;
 import org.gotocy.i18n.I18n;
+import org.gotocy.service.AssetsManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -22,6 +26,9 @@ import java.util.Map;
 public class PropertyHelper {
 
 	private static final Logger logger = LoggerFactory.getLogger(PropertyHelper.class);
+
+	private static final DistanceFormatter DISTANCE_FORMATTER = new DistanceFormatter();
+	private static final CurrencyFormatter CURRENCY_FORMATTER = new CurrencyFormatter();
 
 	private static final Map<PropertyStatus, String> PROPERTY_STATUS_TO_PRICE_KEY = new HashMap<>();
 
@@ -63,7 +70,7 @@ public class PropertyHelper {
 	 * Prints a given price in a locale specific manner.
 	 */
 	public static String price(int price) {
-		return "€ " + Format.CURRENCY_FORMATTER.print(price, LocaleContextHolder.getLocale());
+		return "€ " + CURRENCY_FORMATTER.print(price, LocaleContextHolder.getLocale());
 	}
 
 	/**
@@ -71,8 +78,7 @@ public class PropertyHelper {
 	 * TODO: unit test
 	 */
 	public static String price(Property property) {
-		return I18n.t(PROPERTY_STATUS_TO_PRICE_KEY.get(property.getPropertyStatus()),
-				price(property.getPrice()));
+		return I18n.t(PROPERTY_STATUS_TO_PRICE_KEY.get(property.getPropertyStatus()), price(property.getPrice()));
 	}
 
 	/**
@@ -90,7 +96,7 @@ public class PropertyHelper {
 			number = meters / 1000d;
 			ending = I18n.t("dictionary.kilometers");
 		}
-		return Format.DISTANCE_FORMATTER.print(number, locale) + " " + ending;
+		return DISTANCE_FORMATTER.print(number, locale) + " " + ending;
 	}
 
 	/**
