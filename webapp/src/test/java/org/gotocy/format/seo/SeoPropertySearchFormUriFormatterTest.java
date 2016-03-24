@@ -52,7 +52,6 @@ public class SeoPropertySearchFormUriFormatterTest {
 	public static Collection<Object[]> params() {
 		List<Object[]> params = new ArrayList<>();
 
-		SeoPropertySearchFormUriFormatter formatter = new SeoPropertySearchFormUriFormatter();
 		List<PropertyType> propertyTypes = new ArrayList<>();
 		propertyTypes.add(null);
 		propertyTypes.addAll(Arrays.asList(PropertyType.values()));
