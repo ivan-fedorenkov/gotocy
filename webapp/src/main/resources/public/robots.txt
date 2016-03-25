@@ -8,4 +8,6 @@ Disallow: /master
 Disallow: /ru/master
 Disallow: /el/master
 
+Clean-param: price&priceFrom&priceTo /properties
+
 Host: www.gotocy.com
