@@ -83,7 +83,7 @@ public class PropertiesController {
 
 	@RequestMapping(value = "/properties/{id}", method = RequestMethod.GET)
 	public String get(@RequiredDomainObject @PathVariable("id") Property property, Model model, Locale locale) {
-		if (property.getOfferStatus() == OfferStatus.PROMO)
+		if (property.isPromo())
 			return "redirect:" + Helper.path(property);
 
 		property.initLocalizedFields(locale);

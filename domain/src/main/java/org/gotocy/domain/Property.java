@@ -173,4 +173,11 @@ public class Property extends BaseEntity {
 		return localizedFieldsManager;
 	}
 
+	/**
+	 * Determines if this property should be treated as promo.
+	 */
+	public boolean isPromo() {
+		return offerStatus == OfferStatus.PROMO || crawlSource != null;
+	}
+
 }

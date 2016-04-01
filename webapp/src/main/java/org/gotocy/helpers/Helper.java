@@ -76,7 +76,10 @@ public class Helper {
 	public static <T extends BaseEntity> String path(T entity, String language) {
 		String path;
 		if (entity instanceof Property) {
-			path = (((Property) entity).getOfferStatus() == OfferStatus.PROMO ? "/promo" : "") + "/properties/" + entity.getId();
+			Property property = (Property) entity;
+			path = "/properties/" + property.getId();
+			if (property.isPromo())
+				path = "/promo" + path;
 		} else if (entity instanceof Complex) {
 			path = "/complexes/" + entity.getId();
 		} else if (entity instanceof Developer) {
