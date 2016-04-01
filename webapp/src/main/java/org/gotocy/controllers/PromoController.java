@@ -7,6 +7,7 @@ import org.gotocy.forms.validation.RegistrationFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.repository.PropertyRepository;
 import org.gotocy.repository.RegistrationRepository;
+import org.gotocy.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
@@ -42,13 +43,15 @@ public class PromoController {
 		}
 	};
 
+	private final PropertyService propertyService;
 	private final PropertyRepository propertyRepository;
 	private final RegistrationRepository registrationRepository;
 
 	@Autowired
-	public PromoController(PropertyRepository propertyRepository,
-			RegistrationRepository registrationRepository)
+	public PromoController(PropertyService propertyService, PropertyRepository propertyRepository,
+		RegistrationRepository registrationRepository)
 	{
+		this.propertyService = propertyService;
 		this.propertyRepository = propertyRepository;
 		this.registrationRepository = registrationRepository;
 	}
@@ -69,8 +72,14 @@ public class PromoController {
 
 		property.initLocalizedFields(locale);
 		model.addAttribute(property);
-		model.addAttribute(new RegistrationForm());
-		model.addAttribute("relatedRegistration", registrationRepository.findByRelatedProperty(property));
+		model.addAttribute("featuredProperties", propertyService.getFeatured());
+
+		boolean shouldShowRegistrationStuff = property.getOfferStatus() == OfferStatus.PROMO;
+		model.addAttribute("shouldShowRegistrationStuff", shouldShowRegistrationStuff);
+		if (shouldShowRegistrationStuff) {
+			model.addAttribute("relatedRegistration", registrationRepository.findByRelatedProperty(property));
+			model.addAttribute(new RegistrationForm());
+		}
 
 		return "promo/property";
 	}

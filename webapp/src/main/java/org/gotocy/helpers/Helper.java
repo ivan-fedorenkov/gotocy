@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import static java.util.stream.Collectors.toList;
 
@@ -104,6 +105,14 @@ public class Helper {
 	 */
 	public static String path(String path, String language) {
 		return getPrefixForLanguage(language) + path;
+	}
+
+	public static String path(String path, Locale locale) {
+		return path(path, locale.getLanguage());
+	}
+
+	public static <T extends BaseEntity> String path(T entity, Locale locale) {
+		return path(entity, locale.getLanguage());
 	}
 
 	/**
