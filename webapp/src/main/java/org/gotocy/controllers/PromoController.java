@@ -64,7 +64,7 @@ public class PromoController {
 	 */
 	@RequestMapping(value = "/properties/{id}", method = RequestMethod.GET)
 	public String show(@RequiredDomainObject @PathVariable("id") Property property, Model model, Locale locale) {
-		if (property.getOfferStatus() != OfferStatus.PROMO)
+		if (!property.isPromo())
 			return "redirect:" + Helper.path(property);
 
 		property.initLocalizedFields(locale);
@@ -84,7 +84,7 @@ public class PromoController {
 		@Valid @ModelAttribute RegistrationForm registrationForm, BindingResult errors,
 		Model model, Locale locale)
 	{
-		if (property.getOfferStatus() != OfferStatus.PROMO)
+		if (!property.isPromo())
 			return "redirect:" + Helper.path(property);
 
 		property.initLocalizedFields(locale);
