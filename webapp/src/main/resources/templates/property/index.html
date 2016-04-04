@@ -16,7 +16,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
-    <title th:text="${i18n.t('templates.title', title)}">Properties Listing | GoToCy</title>
+    <title th:text="${i18n.t('templates.title', i18n.t(propertiesSearchForm))}">Properties Listing | GoToCy</title>
 
 </head>
 
@@ -83,7 +83,7 @@
                 <!-- Results -->
                 <div class="col-md-9 col-sm-9">
                     <section id="results">
-                        <header><h1 th:text="${title}">Properties Listing</h1></header>
+                        <header><h1 th:text="${i18n.t(propertiesSearchForm)}">Properties Listing</h1></header>
                         <section id="search-filter">
                             <figure><h3 th:utext="|<i class='fa fa-search'></i>${i18n.t('dictionary.search-results')}|">Search Results</h3>
                                 <!--<span class="search-count" th:text="${properties.totalElements}">28</span>-->

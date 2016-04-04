@@ -5,16 +5,22 @@ import com.mysema.query.types.Predicate;
 import org.gotocy.domain.Location;
 import org.gotocy.domain.PropertyStatus;
 import org.gotocy.domain.PropertyType;
+import org.gotocy.i18n.I18n;
+import org.springframework.context.MessageSourceResolvable;
+
+import java.util.StringJoiner;
 
 import static org.gotocy.domain.QProperty.property;
 
 /**
  * @author ifedorenkov
  */
-public class PropertiesSearchForm {
+public class PropertiesSearchForm implements MessageSourceResolvable {
 
 	private static final int MIN_PRICE = 100;
 	private static final int MAX_PRICE = 5000000;
+	private static final String MESSAGES_PREFIX = "org.gotocy.domain.PropertiesSearchForm";
+	private static final String EMPTY_FORM_SUFFIX = "empty";
 
 	private final BooleanBuilder builder = new BooleanBuilder();
 
@@ -114,6 +120,31 @@ public class PropertiesSearchForm {
 				priceTo = MAX_PRICE;
 			}
 		}
+	}
+
+	// MessageSourceResolvable
+
+	@Override
+	public String[] getCodes() {
+		StringJoiner sj = new StringJoiner("_");
+		sj.setEmptyValue(EMPTY_FORM_SUFFIX);
+		if (location != null)
+			sj.add(location.name());
+		if (propertyStatus != null)
+			sj.add(propertyStatus.name());
+		if (propertyType != null)
+			sj.add(propertyType.name());
+		return new String[] {MESSAGES_PREFIX + "." + sj.toString()};
+	}
+
+	@Override
+	public Object[] getArguments() {
+		return new Object[0];
+	}
+
+	@Override
+	public String getDefaultMessage() {
+		return null;
 	}
 
 }
