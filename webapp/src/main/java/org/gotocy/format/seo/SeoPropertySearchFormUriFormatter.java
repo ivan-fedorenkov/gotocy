@@ -88,35 +88,4 @@ public class SeoPropertySearchFormUriFormatter implements Formatter<PropertiesSe
 		return uriJoiner.toString();
 	}
 
-	public static void main(String[] args) {
-		SeoPropertySearchFormUriFormatter formatter = new SeoPropertySearchFormUriFormatter();
-
-		List<PropertyType> propertyTypes = new ArrayList<>();
-		propertyTypes.add(null);
-		propertyTypes.addAll(Arrays.asList(PropertyType.values()));
-
-		List<PropertyStatus> propertyStatuses = new ArrayList<>();
-		propertyStatuses.add(null);
-		propertyStatuses.addAll(Arrays.asList(PropertyStatus.values()));
-
-		List<Location> locations = new ArrayList<>();
-		locations.add(null);
-		locations.add(Location.LARNACA);
-
-		List<Locale> locales = Arrays.asList(Locales.EN, Locales.RU);
-		for (Locale locale : locales) {
-			for (PropertyType propertyType : propertyTypes) {
-				for (PropertyStatus propertyStatus : propertyStatuses) {
-					for (Location location : locations) {
-						PropertiesSearchForm form = new PropertiesSearchForm();
-						form.setPropertyType(propertyType);
-						form.setPropertyStatus(propertyStatus);
-						form.setLocation(location);
-						System.out.println(formatter.print(form, locale));
-					}
-				}
-			}
-		}
-	}
-
 }
