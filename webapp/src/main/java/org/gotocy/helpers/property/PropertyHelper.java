@@ -68,7 +68,7 @@ public class PropertyHelper {
 	 * TODO: unit test
 	 */
 	public static String path(Property property, Locale locale) {
-		return (property.getOfferStatus() == OfferStatus.PROMO ? "/promo" : "") + "/properties/" + property.getId();
+		return (property.isPromo() ? "/promo" : "") + "/properties/" + property.getId();
 	}
 
 	/**

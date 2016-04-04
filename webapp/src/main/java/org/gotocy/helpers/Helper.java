@@ -1,5 +1,8 @@
 package org.gotocy.helpers;
 
+import org.gotocy.config.Locales;
+import org.gotocy.forms.PropertiesSearchForm;
+import org.gotocy.helpers.propertysearch.PropertySearchFormHelper;
 import org.gotocy.service.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.*;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import static java.util.stream.Collectors.toList;
 
