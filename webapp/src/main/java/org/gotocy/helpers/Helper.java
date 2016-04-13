@@ -184,7 +184,7 @@ public class Helper {
 					pagination.append("<li>");
 				}
 				pagination.append("<a href=\"");
-				pagination.append(path).append("&page=").append(i - 1);
+				pagination.append(path).append(path.contains("?") ? '&' : '?').append("page=").append(i - 1);
 				pagination.append("\">").append(i).append("</a>");
 				pagination.append("</li>");
 			}
