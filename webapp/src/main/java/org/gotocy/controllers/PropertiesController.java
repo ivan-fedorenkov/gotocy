@@ -79,7 +79,7 @@ public class PropertiesController {
 	}
 
 	@RequestMapping(
-		value = "/{formUri:(?:properties-|houses-|apartments-|land-|prodazha-|otdih-na-kipre-|arenda-|nedvizhimost-|apartamenti-|kottedzhi-|zemlya-)[\\w-]+}",
+		value = "/{formUri:(?:properties-|houses-|apartments-|land-|prodazha-|otdih-na-kipre-|arenda-|nedvizhimost-|apartamenti-|doma-|zemlya-)[\\w-]+}",
 		method = RequestMethod.GET
 	)
 	public String indexSeo(Model model, @PathVariable("formUri") PropertiesSearchForm form,
