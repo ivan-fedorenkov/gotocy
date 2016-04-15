@@ -42,14 +42,14 @@
                     </article>
                 </div><!-- /.col-sm-3 -->
                 <div class="col-md-3 col-sm-3">
-                    <article>
+                    <article th:inline="text">
                         <h3 th:text="${i18n.t('dictionary.contact')}">Contact</h3>
                         <address>
                             <strong>Your Company</strong><br>
                             4877 Spruce Drive<br>
                             West Newton, PA 15089
                         </address>
-                        +1 (734) 123-4567<br>
+                        [[${gotocy.phone}]]<br>
                         <a href="#" th:href="|mailto:${gotocy.email}|" th:text="${gotocy.email}">support@gotocy.com</a>
                     </article>
                 </div><!-- /.col-sm-3 -->
