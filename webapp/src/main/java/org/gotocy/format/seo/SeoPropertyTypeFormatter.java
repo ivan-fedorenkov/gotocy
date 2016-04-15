@@ -20,8 +20,8 @@ public class SeoPropertyTypeFormatter implements Formatter<PropertyType>, Declen
 	public static final String RU_NO_TYPE_NOMINATIVE = "nedvizhimost";
 	public static final String RU_NO_TYPE_ACCUSATIVE = "nedvizhimosti";
 
-	public static final String RU_HOUSES_NOMINATIVE = "kottedzhi";
-	public static final String RU_HOUSES_ACCUSATIVE = "kottedzhei";
+	public static final String RU_HOUSES_NOMINATIVE = "doma";
+	public static final String RU_HOUSES_ACCUSATIVE = "domov";
 
 	public static final String RU_APARTMENTS_NOMINATIVE = "apartamenti";
 	public static final String RU_APARTMENTS_ACCUSATIVE = "apartamentov";

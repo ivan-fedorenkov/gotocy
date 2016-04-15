@@ -1,17 +1,11 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}"
-      th:with="propertyStatus=${propertiesSearchForm.propertyStatus},
-        propertyType=${propertiesSearchForm.propertyStatus},
-        location=${propertiesSearchForm.location},
-        curPathNoPage = ${helper.path(propertiesSearchForm)},
-        curPath = ${curPathNoPage} + '?page=' + ${properties.number},
-        title = ${i18n.t('dictionary.properties-search')}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path(propertiesSearchForm, locale)}}" hreflang="en"  href="#" />
+    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="${properties.number > 1}? @{${helper.path(propertiesSearchForm, locale)}(page=${properties.number})} : @{${helper.path(propertiesSearchForm, locale)}}" hreflang="en"  href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
@@ -33,9 +27,10 @@
                     <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
                 <div class="user-area">
-                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${propertiesSearchForm})">
-                        <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
-                        <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+                    <div class="language-bar">
+                        <a th:href="${properties.number > 1}? @{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EN)}(page=${properties.number})} : @{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EN)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).EN}? 'active'" class="active"><img th:src="'http://assets.gotocy.eu/static/img/flags/gb.png'" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
+                        <a th:href="${properties.number > 1}? @{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EL)}(page=${properties.number})} : @{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EL)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).EL}? 'active'"><img th:src="'http://assets.gotocy.eu/static/img/flags/gr.png'" src="/parent/webapp/public/assets/img/flags/gr.png" alt=""></a>
+                        <a th:href="${properties.number > 1}? @{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).RU)}(page=${properties.number})} : @{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).RU)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).RU}? 'active'"><img th:src="'http://assets.gotocy.eu/static/img/flags/ru.png'" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -71,8 +66,8 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
-                <li th:unless="${propertiesSearchForm.changed}" class="active" th:text="${i18n.t('dictionary.properties')}">Properties Listing</li>
-                <li th:if="${propertiesSearchForm.changed}"><a th:href="@{${helper.path('/properties')}}" th:text="${i18n.t('dictionary.properties')}" href="#">Properties Listing</a></li>
+                <li th:unless="${propertiesSearchForm.changed}" class="active" th:text="${i18n.t(T(org.gotocy.forms.PropertiesSearchForm).EMPTY_FORM)}">Properties Listing</li>
+                <li th:if="${propertiesSearchForm.changed}"><a th:href="@{${helper.path(T(org.gotocy.forms.PropertiesSearchForm).EMPTY_FORM)}}" th:text="${i18n.t(T(org.gotocy.forms.PropertiesSearchForm).EMPTY_FORM)}" href="#">Properties Listing</a></li>
                 <li th:if="${propertiesSearchForm.changed}" class="active" th:text="${i18n.t('dictionary.search-results')}">Search Results</li>
             </ol>
         </div>
@@ -229,7 +224,7 @@
                             </div><!-- /js-masonry-->
 
                             <!-- Pagination -->
-                            <nav class="center" th:utext="${helper.pagination(curPathNoPage, properties.number, properties.totalPages)}"></nav>
+                            <nav class="center" th:utext="${helper.pagination(properties, helper.path(propertiesSearchForm))}"></nav>
                         </section><!-- /#properties-->
                     </section><!-- /#results -->
                 </div><!-- /.col-md-9 -->

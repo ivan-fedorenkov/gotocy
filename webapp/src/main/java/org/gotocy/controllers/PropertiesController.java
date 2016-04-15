@@ -79,12 +79,17 @@ public class PropertiesController {
 	}
 
 	@RequestMapping(
-		value = "/{formUri:(?:properties-|houses-|apartments-|land-|prodazha-|kratkosrochnaya-arenda-|dolgosrochnaya-arenda-|nedvizhimost-|apartamenti-|kottedzhi-|zemlya-)[\\w-]+}",
+		value = "/{formUri:(?:properties-|houses-|apartments-|land-|prodazha-|otdih-na-kipre-|arenda-|nedvizhimost-|apartamenti-|kottedzhi-|zemlya-)[\\w-]+}",
 		method = RequestMethod.GET
 	)
 	public String indexSeo(Model model, @PathVariable("formUri") PropertiesSearchForm form,
+		@RequestParam(required = false) String price,
 		@PageableDefault(size = 18, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
 	{
+		// Price is not being automatically set into the form in this case (resolved through @PathVariable)
+		// TODO: investigate this later
+		form.setPrice(price);
+
 		Page<Property> properties = repository.findAll(publiclyVisible().and(form.toPredicate()), pageable);
 		model.addAttribute("properties", properties);
 		model.addAttribute(form);

@@ -5,7 +5,6 @@ import com.mysema.query.types.Predicate;
 import org.gotocy.domain.Location;
 import org.gotocy.domain.PropertyStatus;
 import org.gotocy.domain.PropertyType;
-import org.gotocy.i18n.I18n;
 import org.springframework.context.MessageSourceResolvable;
 
 import java.util.StringJoiner;
@@ -16,6 +15,11 @@ import static org.gotocy.domain.QProperty.property;
  * @author ifedorenkov
  */
 public class PropertiesSearchForm implements MessageSourceResolvable {
+
+	public static final PropertiesSearchForm EMPTY_FORM = new PropertiesSearchForm();
+	public static final PropertiesSearchForm SALE_FORM = new PropertiesSearchForm(PropertyStatus.SALE);
+	public static final PropertiesSearchForm SHORT_TERM_FORM = new PropertiesSearchForm(PropertyStatus.SHORT_TERM);
+	public static final PropertiesSearchForm LONG_TERM_FORM = new PropertiesSearchForm(PropertyStatus.LONG_TERM);
 
 	private static final int MIN_PRICE = 100;
 	private static final int MAX_PRICE = 5000000;
@@ -30,19 +34,14 @@ public class PropertiesSearchForm implements MessageSourceResolvable {
 	private int priceFrom = MIN_PRICE;
 	private int priceTo = MAX_PRICE;
 
+	public PropertiesSearchForm() {}
+
+	public PropertiesSearchForm(PropertyStatus propertyStatus) {
+		this.propertyStatus = propertyStatus;
+	}
 
 	public Predicate toPredicate() {
 		return builder.getValue();
-	}
-
-	/**
-	 * Returns the url params that are constructed from the form fields.
-	 */
-	public String getParamsForUrl() {
-		return "propertyStatus=" + (propertyStatus == null ? "" : propertyStatus.name()) +
-			"&propertyType=" + (propertyType == null ? "" : propertyType.name()) +
-			"&location=" + (location == null ? "" : location.name()) +
-			"&price=" + (priceFrom == MIN_PRICE && priceTo == MAX_PRICE ? "" : priceFrom + ";" + priceTo);
 	}
 
 	/**
@@ -51,6 +50,13 @@ public class PropertiesSearchForm implements MessageSourceResolvable {
 	public boolean isChanged() {
 		return location != null || propertyStatus != null || propertyType != null || priceFrom != MIN_PRICE ||
 			priceTo != MAX_PRICE;
+	}
+
+	/**
+	 * Returns true if price was changed.
+	 */
+	public boolean isPriceChanged() {
+		return priceFrom != MIN_PRICE || priceTo != MAX_PRICE;
 	}
 
 	public void setLocation(Location location) {

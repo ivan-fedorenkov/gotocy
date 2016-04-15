@@ -9,6 +9,7 @@ import org.gotocy.domain.*;
 import org.gotocy.helpers.property.PropertyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -151,11 +152,15 @@ public class Helper {
 
 	/**
 	 * Creates pagination 'ul' as appropriate.
+	 * number, totalPages
 	 * TODO: unit test
 	 * TODO: rewrite this
 	 */
-	public static String pagination(String path, int currentPage, int totalPages) {
+	public static String pagination(Page<?> page, String path) {
 		StringBuilder pagination = new StringBuilder();
+
+		int currentPage = page.getNumber();
+		int totalPages = page.getTotalPages();
 
 		// This algorithm count pages from '1'
 		currentPage += 1;
@@ -183,8 +188,9 @@ public class Helper {
 				} else {
 					pagination.append("<li>");
 				}
-				pagination.append("<a href=\"");
-				pagination.append(path).append(path.contains("?") ? '&' : '?').append("page=").append(i - 1);
+				pagination.append("<a href=\"").append(path);
+				if (i > 1)
+					pagination.append(path.contains("?") ? '&' : '?').append("page=").append(i - 1);
 				pagination.append("\">").append(i).append("</a>");
 				pagination.append("</li>");
 			}

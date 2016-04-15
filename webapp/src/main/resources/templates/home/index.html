@@ -273,7 +273,7 @@
         <section id="long-term-properties" class="block" th:unless=${#lists.isEmpty(longTermProperties)}>
             <div class="container">
                 <header class="section-title">
-                    <h2 th:text="${i18n.t('dictionary.long-term-rentals-for-you')}">Long Term Rentals for You</h2>
+                    <h2 th:text="${i18n.t(T(org.gotocy.forms.PropertiesSearchForm).LONG_TERM_FORM)}">Long Term Rentals for You</h2>
                     <a th:href="@{${helper.path(longTermPropertiesForm)}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="${i18n.t('dictionary.all-rentals')}">All Rentals</a>
                 </header>
                 <div class="row" th:remove="all-but-first">
@@ -424,7 +424,7 @@
         <section id="short-term-properties" class="block" th:unless=${#lists.isEmpty(shortTermProperties)}>
             <div class="container">
                 <header class="section-title">
-                    <h2 th:text="${i18n.t('dictionary.short-term-rentals-for-you')}">Short Term Rentals for You</h2>
+                    <h2 th:text="${i18n.t(T(org.gotocy.forms.PropertiesSearchForm).SHORT_TERM_FORM)}">Short Term Rentals for You</h2>
                     <a th:href="@{${helper.path(shortTermPropertiesForm)}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="${i18n.t('dictionary.all-rentals')}">All Rentals</a>
                 </header>
                 <div class="row" th:remove="all-but-first">
@@ -575,7 +575,7 @@
         <section id="sale-properties" class="block" th:unless="${#lists.isEmpty(saleProperties)}">
             <div class="container">
                 <header class="section-title">
-                    <h2 th:text="${i18n.t('dictionary.properties-for-you')}">Properties for You</h2>
+                    <h2 th:text="${i18n.t(T(org.gotocy.forms.PropertiesSearchForm).SALE_FORM)}">Properties for You</h2>
                     <a th:href="@{${helper.path(salePropertiesForm)}}" href="/parent/webapp/templates/property/index.html" class="link-arrow" th:text="${i18n.t('dictionary.all-properties')}">All Properties</a>
                 </header>
                 <div class="row" th:remove="all-but-first">
