@@ -8,6 +8,7 @@ import org.gotocy.domain.Property;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  * @author ifedorenkov
@@ -64,6 +65,22 @@ public class HelperTest {
 		Assert.assertEquals("/ru/developers/3", Helper.path(developer, Locales.RU));
 		Assert.assertEquals("/ru/promo/properties/4", Helper.path(promoProperty, Locales.RU));
 		Assert.assertEquals("/ru/any/string/path", Helper.path(anyStringPath, Locales.RU));
+	}
+
+	@Test
+	public void appendPageTest() {
+		String anyPath = "/any-path";
+		String anyPathWithParam = "/any-path?param=value";
+		int firstPage = 0;
+		int secondPage = 1;
+
+		Assert.assertEquals("/any-path", Helper.appendPage(anyPath, firstPage));
+		Assert.assertEquals(UriComponentsBuilder.fromPath("/any-path").queryParam("page", "1").toUriString(),
+			Helper.appendPage(anyPath, secondPage));
+		Assert.assertEquals(UriComponentsBuilder.fromPath("/any-path").queryParam("param", "value").toUriString(),
+			Helper.appendPage(anyPathWithParam, firstPage));
+		Assert.assertEquals(UriComponentsBuilder.fromPath("/any-path").queryParam("param", "value")
+			.queryParam("page", "1").toUriString(), Helper.appendPage(anyPathWithParam, secondPage));
 	}
 
 	@Test

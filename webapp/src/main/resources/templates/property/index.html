@@ -5,7 +5,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="${properties.number > 1}? @{${helper.path(propertiesSearchForm, locale)}(page=${properties.number})} : @{${helper.path(propertiesSearchForm, locale)}}" hreflang="en"  href="#" />
+    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.appendPage(helper.path(propertiesSearchForm, locale), properties.number)}}" hreflang="en"  href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
@@ -28,9 +28,9 @@
                 </div>
                 <div class="user-area">
                     <div class="language-bar">
-                        <a th:href="${properties.number > 1}? @{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EN)}(page=${properties.number})} : @{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EN)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).EN}? 'active'" class="active"><img th:src="'http://assets.gotocy.eu/static/img/flags/gb.png'" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
-                        <a th:href="${properties.number > 1}? @{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EL)}(page=${properties.number})} : @{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EL)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).EL}? 'active'"><img th:src="'http://assets.gotocy.eu/static/img/flags/gr.png'" src="/parent/webapp/public/assets/img/flags/gr.png" alt=""></a>
-                        <a th:href="${properties.number > 1}? @{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).RU)}(page=${properties.number})} : @{${helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).RU)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).RU}? 'active'"><img th:src="'http://assets.gotocy.eu/static/img/flags/ru.png'" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+                        <a th:href="@{${helper.appendPage(helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EN), properties.number)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).EN}? 'active'" class="active"><img th:src="'http://assets.gotocy.eu/static/img/flags/gb.png'" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
+                        <a th:href="@{${helper.appendPage(helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EL), properties.number)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).EL}? 'active'"><img th:src="'http://assets.gotocy.eu/static/img/flags/gr.png'" src="/parent/webapp/public/assets/img/flags/gr.png" alt=""></a>
+                        <a th:href="@{${helper.appendPage(helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).RU), properties.number)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).RU}? 'active'"><img th:src="'http://assets.gotocy.eu/static/img/flags/ru.png'" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -224,7 +224,7 @@
                             </div><!-- /js-masonry-->
 
                             <!-- Pagination -->
-                            <nav class="center" th:utext="${helper.pagination(properties, helper.path(propertiesSearchForm))}"></nav>
+                            <nav class="center" th:utext="${helper.pagination(properties, propertiesSearchForm)}"></nav>
                         </section><!-- /#properties-->
                     </section><!-- /#results -->
                 </div><!-- /.col-md-9 -->

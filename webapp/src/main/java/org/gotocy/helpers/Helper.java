@@ -1,12 +1,12 @@
 package org.gotocy.helpers;
 
+import org.gotocy.config.ApplicationProperties;
 import org.gotocy.config.Locales;
+import org.gotocy.domain.*;
 import org.gotocy.forms.PropertiesSearchForm;
+import org.gotocy.helpers.property.PropertyHelper;
 import org.gotocy.helpers.propertysearch.PropertySearchFormHelper;
 import org.gotocy.service.AssetsManager;
-import org.gotocy.config.ApplicationProperties;
-import org.gotocy.domain.*;
-import org.gotocy.helpers.property.PropertyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
@@ -96,6 +96,18 @@ public class Helper {
 	}
 
 	/**
+	 * Appends the page query param if necessary.
+	 *
+	 * @param uri that should be appended by the page query param
+	 * @param page page number indexed from 0
+	 *
+	 * Unit test: HelperTest#appendPageTest
+	 */
+	public static String appendPage(String uri, int page) {
+		return uri + (page > 0 ? uri.contains("?") ? "&" : "?" : "") + (page > 0 ? "page=" + page : "");
+	}
+
+	/**
 	 * Encloses all the text subparts separated by the new line character into the p tags.
 	 * Unit test: HelperTest#newLinesToParagraphs
 	 */
@@ -152,11 +164,15 @@ public class Helper {
 
 	/**
 	 * Creates pagination 'ul' as appropriate.
-	 * number, totalPages
+	 *
+	 * @param page instance of {@link Page}
+	 * @param object entity who's path is to be used for pagination construction
+	 *
+	 *
 	 * TODO: unit test
 	 * TODO: rewrite this
 	 */
-	public static String pagination(Page<?> page, String path) {
+	public static String pagination(Page<?> page, Object object) {
 		StringBuilder pagination = new StringBuilder();
 
 		int currentPage = page.getNumber();
@@ -188,11 +204,8 @@ public class Helper {
 				} else {
 					pagination.append("<li>");
 				}
-				pagination.append("<a href=\"").append(path);
-				if (i > 1)
-					pagination.append(path.contains("?") ? '&' : '?').append("page=").append(i - 1);
-				pagination.append("\">").append(i).append("</a>");
-				pagination.append("</li>");
+				pagination.append("<a href=\"").append(appendPage(path(object), i - 1)).append("\">").append(i)
+					.append("</a>").append("</li>");
 			}
 			pagination.append("</ul>");
 		}
