@@ -22,13 +22,13 @@ multipart:
 
 gotocy:
   webapp:
-    email: "support@gotocy.eu"
+    email: "support@gotocy.com"
     phone: "+357 99 166265"
     defaultLatitude: "34.97351552254917"
     defaultLongitude: "33.133228140624965"
     defaultContact:
       name: Anna
-      email: anna@gotocy.eu
+      email: "anna@gotocy.com"
       phone: "+357 99 166265"
       spokenLanguages: "Greek, Eng, Rus"
     defaultRepresentativeImage:
