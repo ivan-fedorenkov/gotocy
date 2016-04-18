@@ -1,0 +1,156 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
+
+    <title>Pages Management | GoToCy</title>
+</head>
+
+<body class="page-sub-page" id="page-top">
+<!-- Wrapper -->
+<div class="wrapper">
+    <!-- Navigation -->
+    <div class="navigation">
+        <div class="secondary-navigation">
+            <div class="container">
+                <div class="contact" th:include="fragments/contact_div :: contact">
+                    <figure><strong>Phone:</strong>+1 810-991-3842</figure>
+                    <figure><strong>Email:</strong>zoner@example.com</figure>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <header class="navbar" id="top" role="banner">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="sr-only" th:text="${i18n.t('dictionary.toggle-navigation')}">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand nav" id="brand">
+                        <a th:href="@{${helper.path('/')}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
+                    </div>
+                </div>
+                <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home-page')}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
+                    </ul>
+                </nav><!-- /.navbar collapse-->
+            </header><!-- /.navbar -->
+        </div><!-- /.container -->
+    </div><!-- /.navigation -->
+    <!-- end Navigation -->
+
+    <!-- Page Content -->
+    <div id="page-content">
+        <!-- Breadcrumb -->
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
+                <li class="active">Pages Management</li>
+            </ol>
+        </div>
+        <!-- end Breadcrumb -->
+
+        <div class="container">
+            <div class="row">
+                <!-- Content -->
+                <div class="col-md-9 col-sm-9">
+                    <section id="content">
+                        <header>
+                            <h1>Pages Management</h1>
+                        </header>
+
+                        <section>
+                            <a th:href="@{/master/pages/new}" class="btn btn-default" href="new.html">Create Page</a>
+                        </section>
+
+                        <section>
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>URL</th>
+                                        <th>Title</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="page : ${pages}">
+                                        <td>
+                                            <i th:class="${page.visible}? 'fa fa-eye' : 'fa fa-eye-slash'" class="fa fa-eye" aria-hidden="true"></i>
+                                            <a th:href="@{'/' + ${page.url}}" th:text="|/${page.url}|" target="_blank" href="#">/some-web-page</a>
+                                        </td>
+                                        <td th:text="${page.title}">
+                                            Some web page title
+                                        </td>
+                                        <td>
+                                            <a href="edit.html" class="btn btn-xs">edit</a>
+                                            <a href="" class="btn btn-danger btn-xs">delete</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    </section>
+                </div><!-- /.col-md-9 -->
+                <!-- end Content -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div>
+    <!-- end Page Content -->
+
+    <!-- Page Footer -->
+    <footer id="page-footer" th:include="fragments/footer :: footer">
+        <div class="inner">
+            <aside id="footer-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3">
+                            <article>
+                                <h3>About Us</h3>
+                                <p>Vel fermentum ipsum. Suspendisse quis molestie odio. Interdum et malesuada fames ac ante ipsum
+                                    primis in faucibus. Quisque aliquet a metus in aliquet. Praesent ut turpis posuere, commodo odio
+                                    id, ornare tortor
+                                </p>
+                            </article>
+                        </div><!-- /.col-sm-3 -->
+                        <div class="col-md-3 col-sm-3">
+                            <article>
+                                <h3>Contact</h3>
+                                <address>
+                                    <strong>Your Company</strong><br>
+                                    4877 Spruce Drive<br>
+                                    West Newton, PA 15089
+                                </address>
+                                +1 (734) 123-4567<br>
+                                <a href="#">hello@example.com</a>
+                            </article>
+                        </div><!-- /.col-sm-3 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </aside><!-- /#footer-main -->
+            <aside id="footer-copyright">
+                <div class="container">
+                    <span>Copyright © 2015. All Rights Reserved.</span>
+                    <span class="pull-right"><a href="#page-top" class="roll">Go to top</a></span>
+                </div>
+            </aside>
+        </div><!-- /.inner -->
+    </footer>
+    <!-- end Page Footer -->
+</div>
+
+<script type="text/javascript" th:src="@{/assets/js/application.min.js}" src="/parent/webapp/public/assets/js/application.min.js"></script>
+
+<!--[if gt IE 8]>
+<script type="text/javascript" src="http://assets.gotocy.eu/static/js/ie.js"></script>
+<![endif]-->
+
+</body>
+</html>

@@ -1,10 +1,10 @@
-package org.gotocy.controllers;
+package org.gotocy.integration;
 
 import org.gotocy.Application;
 import org.gotocy.config.Profiles;
 import org.gotocy.config.SecurityProperties;
-import org.gotocy.domain.Developer;
-import org.gotocy.test.factory.DeveloperFactory;
+import org.gotocy.domain.Complex;
+import org.gotocy.test.factory.ComplexFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @WebIntegrationTest(randomPort = true)
 @ActiveProfiles(Profiles.TEST)
 @Transactional
-public class DeveloperIntegrationTest {
+public class ComplexIntegrationTest {
 
 	@Autowired
 	private WebApplicationContext wac;
@@ -43,11 +43,13 @@ public class DeveloperIntegrationTest {
 
 	@Test
 	public void complexCreation() throws Exception {
-		Developer developer = DeveloperFactory.INSTANCE.get();
+		Complex complex = ComplexFactory.INSTANCE.get();
 
-		mockMvc.perform(post("/master/developers")
+		mockMvc.perform(post("/master/complexes")
 			.sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE)
-			.param("name", developer.getName()))
+			.param("title", complex.getTitle())
+			.param("address", complex.getAddress())
+			.param("coordinates", complex.getCoordinates()))
 			.andDo(print()).andExpect(MockMvcResultMatchers.status().isOk());
 	}
 

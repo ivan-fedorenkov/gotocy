@@ -51,9 +51,9 @@
                         <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home-page')}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
                     </ul>
                 </nav><!-- /.navbar collapse-->
-                <!-- <div class="add-your-property">
-                    <a href="#" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" >Add Your Property</span></a>
-                </div> -->
+                <div class="add-your-property">
+                    <a href="/parent/webapp/templates/property/new.html" th:href="@{${helper.path('/properties/new')}}" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="${i18n.t('dictionary.add-your-property')}">Add Your Property</span></a>
+                </div>
             </header><!-- /.navbar -->
         </div><!-- /.container -->
     </div><!-- /.navigation -->

@@ -1,4 +1,4 @@
-package org.gotocy.controllers;
+package org.gotocy.integration;
 
 import org.gotocy.Application;
 import org.gotocy.config.Profiles;
