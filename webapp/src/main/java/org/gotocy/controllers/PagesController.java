@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Locale;
+
 /**
  * @author ifedorenkov
  */
@@ -24,7 +26,7 @@ public class PagesController {
 	}
 
 	@RequestMapping(value = "/{url:[\\d\\w_-]+}")
-	public String show(Model model, @PathVariable String url) {
+	public String show(Model model, @PathVariable String url, Locale locale) {
 		Page page = pageRepository.findByUrl(url);
 
 		if (page == null)
@@ -32,6 +34,7 @@ public class PagesController {
 		if (!page.isVisible())
 			throw new AccessDeniedException();
 
+		page.initLocalizedFields(locale);
 		model.addAttribute(page);
 		return "page/show";
 	}

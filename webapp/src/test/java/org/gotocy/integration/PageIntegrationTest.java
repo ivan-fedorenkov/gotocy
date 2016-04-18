@@ -1,6 +1,7 @@
 package org.gotocy.integration;
 
 import org.gotocy.Application;
+import org.gotocy.config.Locales;
 import org.gotocy.config.Profiles;
 import org.gotocy.config.SecurityProperties;
 import org.gotocy.domain.Page;
@@ -51,6 +52,7 @@ public class PageIntegrationTest {
 	@Test
 	public void visiblePageShouldBeAccessible() throws Exception {
 		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true));
+		page.initLocalizedFieldsFromTransients(Locales.DEFAULT);
 		pageRepository.save(page);
 		mockMvc.perform(get("/" + page.getUrl())).andExpect(status().isOk());
 	}
@@ -58,6 +60,7 @@ public class PageIntegrationTest {
 	@Test
 	public void invisiblePageShouldNotBeAccessible() throws Exception {
 		Page page = PageFactory.INSTANCE.get();
+		page.initLocalizedFieldsFromTransients(Locales.DEFAULT);
 		pageRepository.save(page);
 		mockMvc.perform(get("/" + page.getUrl())).andExpect(status().isForbidden());
 	}
@@ -96,6 +99,7 @@ public class PageIntegrationTest {
 	@Test
 	public void pageUpdateByAdminTest() throws Exception {
 		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true));
+		page.initLocalizedFieldsFromTransients(Locales.DEFAULT);
 		pageRepository.save(page);
 
 		// Verify that user can access the page before update

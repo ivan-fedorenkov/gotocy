@@ -59,6 +59,21 @@ public abstract class LocalizedFieldsManager {
 		}
 	}
 
+	protected void updateStringField(String key, String value, Locale locale) {
+		Optional<LocalizedField> field = getField(key, locale);
+
+		if (value == null || value.isEmpty()) {
+			if (field.isPresent())
+				getFields().remove(field.get());
+		} else {
+			if (field.isPresent()) {
+				field.get().setValue(value);
+			} else {
+				getFields().add(new LocalizedStringField(key, value, locale.getLanguage()));
+			}
+		}
+	}
+
 	protected void updateStringFields(String key, List<String> values, Locale locale) {
 		List<LocalizedField> existingFields = getFieldList(key, locale);
 		List<LocalizedField> updatedFields = values.stream()

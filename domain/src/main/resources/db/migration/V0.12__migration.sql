@@ -2,12 +2,16 @@ CREATE TABLE `page`(
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `version` INTEGER NOT NULL,
 
-    `title` VARCHAR(512) NOT NULL,
-    `html` TEXT NOT NULL,
     `visible` BIT NOT NULL DEFAULT FALSE,
-    `url` VARCHAR(256) NOT NULL,
 
     PRIMARY KEY (`id`)
 );
 
-CREATE UNIQUE INDEX page_url_index_unique ON `page` (`url`);
+CREATE TABLE `page_localized_fields`(
+    `page_id` BIGINT NOT NULL,
+    `localized_fields_id` BIGINT NOT NULL,
+
+    CONSTRAINT fk_page_localized_fields_page_id FOREIGN KEY (`page_id`) REFERENCES `page` (`id`),
+    CONSTRAINT fk_page_localized_fields_localized_field_id FOREIGN KEY (`localized_fields_id`) REFERENCES `localized_field` (`id`),
+    PRIMARY KEY (`page_id`, `localized_fields_id`)
+);
