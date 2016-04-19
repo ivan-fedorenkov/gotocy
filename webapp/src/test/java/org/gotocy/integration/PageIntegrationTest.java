@@ -70,6 +70,23 @@ public class PageIntegrationTest {
 		mockMvc.perform(get("/non-existing-page-url")).andExpect(status().isNotFound());
 	}
 
+	@Test
+	public void urlNotMatchingLocale() throws Exception {
+		String enUrl = "some-url";
+		String ruUrl = "kakayia-to-ssilka";
+
+		Page page = PageFactory.INSTANCE.get(p -> {
+			p.setVisible(true);
+			p.setUrl(enUrl, Locales.EN);
+			p.setUrl(ruUrl, Locales.RU);
+		});
+
+		pageRepository.save(page);
+
+		mockMvc.perform(get("/" + page.getUrl(Locales.RU).get()))
+			.andExpect(redirectedUrl("/" + page.getUrl(Locales.EN).get()));
+	}
+
 
 	@Test
 	public void pageCreationByAdminTest() throws Exception {

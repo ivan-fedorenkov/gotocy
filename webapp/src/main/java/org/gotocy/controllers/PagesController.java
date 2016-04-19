@@ -35,6 +35,11 @@ public class PagesController {
 			throw new AccessDeniedException();
 
 		page.initLocalizedFields(locale);
+
+		// Requested url was found but in different locale, redirect to the appropriate url
+		if (!page.getUrl().equals(url))
+			return "redirect:/" + page.getUrl();
+
 		model.addAttribute(page);
 		return "page/show";
 	}
