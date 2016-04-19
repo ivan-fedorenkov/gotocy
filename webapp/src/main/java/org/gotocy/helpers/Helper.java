@@ -4,12 +4,12 @@ import org.gotocy.config.ApplicationProperties;
 import org.gotocy.config.Locales;
 import org.gotocy.domain.*;
 import org.gotocy.forms.PropertiesSearchForm;
+import org.gotocy.helpers.page.PageHelper;
 import org.gotocy.helpers.property.PropertyHelper;
 import org.gotocy.helpers.propertysearch.PropertySearchFormHelper;
 import org.gotocy.service.AssetsManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -87,6 +87,8 @@ public class Helper {
 			path = "/developers/" + ((Developer) object).getId();
 		} else if (object instanceof PropertiesSearchForm) {
 			path = PropertySearchFormHelper.path((PropertiesSearchForm) object, locale);
+		} else if (object instanceof Page) {
+			path = PageHelper.path((Page) object, locale);
 		} else if (object instanceof String) {
 			path = (String) object;
 		} else {
@@ -172,7 +174,7 @@ public class Helper {
 	 * TODO: unit test
 	 * TODO: rewrite this
 	 */
-	public static String pagination(Page<?> page, Object object) {
+	public static String pagination(org.springframework.data.domain.Page<?> page, Object object) {
 		StringBuilder pagination = new StringBuilder();
 
 		int currentPage = page.getNumber();

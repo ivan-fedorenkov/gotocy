@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * An instance of static web page.
@@ -55,6 +56,10 @@ public class Page extends BaseEntity {
 	public void setUrl(String url, Locale locale) {
 		setUrl(url);
 		getLocalizedFieldsManager().setUrl(url, locale);
+	}
+
+	public Optional<String> getUrl(Locale locale) {
+		return getLocalizedFieldsManager().getUrl(locale);
 	}
 
 	public void setTitle(String title, Locale locale) {

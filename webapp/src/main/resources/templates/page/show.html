@@ -5,10 +5,12 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path(page, locale)}}" hreflang="en"  href="#" />
+
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
-    <title th:text="${i18n.t('templates.title', #object.title)}">Page Title | GoToCy</title>
+    <title th:text="${i18n.t('templates.title', page.title)}">Page Title | GoToCy</title>
 
 </head>
 
@@ -24,7 +26,7 @@
                     <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
                 <div class="user-area">
-                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar('/' + ${#object.url})">
+                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${page})">
                         <a href="#" class="active"><img th:src="@{/assets/img/flags/gb.png}" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
                         <a href="#"><img th:src="@{/assets/img/flags/ru.png}" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>
