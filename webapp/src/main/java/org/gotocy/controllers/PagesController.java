@@ -3,6 +3,7 @@ package org.gotocy.controllers;
 import org.gotocy.controllers.exceptions.AccessDeniedException;
 import org.gotocy.controllers.exceptions.DomainObjectNotFoundException;
 import org.gotocy.domain.Page;
+import org.gotocy.domain.i18n.LocalizedPage;
 import org.gotocy.repository.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,13 +35,16 @@ public class PagesController {
 		if (!page.isVisible())
 			throw new AccessDeniedException();
 
-		page.initLocalizedFields(locale);
+		LocalizedPage localizedPage = page.localize(locale);
+
+		if (!localizedPage.isFullyTranslated())
+			throw new DomainObjectNotFoundException();
 
 		// Requested url was found but in different locale, redirect to the appropriate url
-		if (!page.getUrl().equals(url))
-			return "redirect:/" + page.getUrl();
+		if (!localizedPage.getUrl().equals(url))
+			return "redirect:/" + localizedPage.getUrl();
 
-		model.addAttribute(page);
+		model.addAttribute("page", localizedPage);
 		return "page/show";
 	}
 

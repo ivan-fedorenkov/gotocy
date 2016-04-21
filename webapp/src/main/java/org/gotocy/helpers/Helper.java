@@ -3,11 +3,14 @@ package org.gotocy.helpers;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.config.Locales;
 import org.gotocy.domain.*;
+import org.gotocy.domain.i18n.LocalizedPage;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.helpers.page.PageHelper;
 import org.gotocy.helpers.property.PropertyHelper;
 import org.gotocy.helpers.propertysearch.PropertySearchFormHelper;
 import org.gotocy.service.AssetsManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
@@ -26,13 +29,17 @@ import static java.util.stream.Collectors.toList;
 @Component
 public class Helper {
 
+	private static final Logger logger = LoggerFactory.getLogger(Helper.class);
+
 	private final AssetsManager assetsManager;
 	private final PropertyHelper propertyHelper;
+	private final PageHelper pageHelper;
 
 	@Autowired
 	public Helper(ApplicationProperties applicationProperties, AssetsManager assetsManager) {
 		this.assetsManager = assetsManager;
 		propertyHelper = new PropertyHelper(applicationProperties, assetsManager);
+		pageHelper = new PageHelper();
 	}
 
 	/**
@@ -40,6 +47,10 @@ public class Helper {
 	 */
 	public PropertyHelper getProperty() {
 		return propertyHelper;
+	}
+
+	public PageHelper getPage() {
+		return pageHelper;
 	}
 
 	/**
@@ -88,7 +99,9 @@ public class Helper {
 		} else if (object instanceof PropertiesSearchForm) {
 			path = PropertySearchFormHelper.path((PropertiesSearchForm) object, locale);
 		} else if (object instanceof Page) {
-			path = PageHelper.path((Page) object, locale);
+			path = PageHelper.path((Page) object, locale).orElse("/");
+		} else if (object instanceof LocalizedPage) {
+			path = PageHelper.path((LocalizedPage) object, locale).orElse("/");
 		} else if (object instanceof String) {
 			path = (String) object;
 		} else {
@@ -212,6 +225,24 @@ public class Helper {
 			pagination.append("</ul>");
 		}
 		return pagination.toString();
+	}
+
+	/**
+	 * Returns flag url for the given {@link Locale}.
+	 * TODO: unit test
+	 */
+	public static String flagUrlForLocale(Locale locale) {
+		String flagCode = null;
+		if (Locales.EN.equals(locale)) {
+			flagCode = "gb";
+		} else if (Locales.EL.equals(locale)) {
+			flagCode = "gr";
+		} else if (Locales.RU.equals(locale)) {
+			flagCode = "ru";
+		} else {
+			logger.error("Requested flag url for unsupported language {}" + locale.getLanguage());
+		}
+		return "http://assets.gotocy.eu/static/img/flags/" + flagCode + ".png";
 	}
 
 }

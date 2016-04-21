@@ -1,11 +1,11 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}" th:object="${page}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}" th:object="${page}" th:with="supportedLocales=${helper.page.supportedLocales(page.original)}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path(page, locale)}}" hreflang="en"  href="#" />
+    <link th:unless="${#lists.size(supportedLocales) == 1}" th:each="locale : ${supportedLocales}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path(page.original, locale)}}" hreflang="en"  href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
@@ -15,6 +15,7 @@
 </head>
 
 <body class="page-sub-page" id="page-top">
+<div th:replace="fragments/metrics_div :: ya"></div>
 <!-- Wrapper -->
 <div class="wrapper">
     <!-- Navigation -->
@@ -26,7 +27,7 @@
                     <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
                 <div class="user-area">
-                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${page})">
+                    <div class="language-bar" th:unless="${#lists.size(supportedLocales) == 1}" th:include="fragments/language_bar_div :: language_bar_for_locales(${page.original}, ${supportedLocales})">
                         <a href="#" class="active"><img th:src="@{/assets/img/flags/gb.png}" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
                         <a href="#"><img th:src="@{/assets/img/flags/ru.png}" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>

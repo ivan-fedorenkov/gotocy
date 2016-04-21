@@ -22,6 +22,12 @@
                     <figure><strong>Phone:</strong>+1 810-991-3842</figure>
                     <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
+                <div class="user-area">
+                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${'/master/pages'})">
+                        <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
+                        <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container">
@@ -68,7 +74,7 @@
                         </header>
 
                         <section>
-                            <a th:href="@{/master/pages/new}" class="btn btn-default" href="new.html">Create Page</a>
+                            <a th:href="@{${helper.path('/master/pages/new')}}" class="btn btn-default" href="new.html">Create Page</a>
                         </section>
 
                         <section>
@@ -84,14 +90,14 @@
                                     <tr th:each="page : ${pages}">
                                         <td>
                                             <i th:class="${page.visible}? 'fa fa-eye' : 'fa fa-eye-slash'" class="fa fa-eye" aria-hidden="true"></i>
-                                            <a th:href="@{'/' + ${page.url}}" th:text="|/${page.url}|" target="_blank" href="#">/some-web-page</a>
+                                            <a th:href="@{${helper.path(page)}}" th:text="@{${helper.path(page)}}" target="_blank" href="#">/some-web-page</a>
                                         </td>
                                         <td th:text="${page.title}">
                                             Some web page title
                                         </td>
                                         <td>
-                                            <a href="edit.html" class="btn btn-xs">edit</a>
-                                            <a href="" class="btn btn-danger btn-xs">delete</a>
+                                            <a th:href="@{${helper.path('/master/pages/' + page.id + '/edit')}}" href="edit.html" class="btn btn-xs">edit</a>
+                                            <!--<a href="" class="btn btn-danger btn-xs">delete</a>-->
                                         </td>
                                     </tr>
                                 </tbody>

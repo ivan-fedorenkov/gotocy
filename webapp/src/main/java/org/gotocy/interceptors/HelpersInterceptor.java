@@ -1,6 +1,5 @@
 package org.gotocy.interceptors;
 
-import org.gotocy.service.AssetsManager;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.helpers.Helper;
 import org.gotocy.i18n.I18n;

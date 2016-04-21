@@ -5,6 +5,8 @@ import org.gotocy.config.Locales;
 import org.gotocy.config.Profiles;
 import org.gotocy.config.SecurityProperties;
 import org.gotocy.domain.Page;
+import org.gotocy.domain.i18n.LocalizedPage;
+import org.gotocy.forms.master.PageForm;
 import org.gotocy.repository.PageRepository;
 import org.gotocy.test.factory.PageFactory;
 import org.junit.Assert;
@@ -20,7 +22,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -51,18 +52,16 @@ public class PageIntegrationTest {
 
 	@Test
 	public void visiblePageShouldBeAccessible() throws Exception {
-		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true));
-		page.initLocalizedFieldsFromTransients(Locales.DEFAULT);
+		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.DEFAULT);
 		pageRepository.save(page);
-		mockMvc.perform(get("/" + page.getUrl())).andExpect(status().isOk());
+		mockMvc.perform(get("/" + page.localize(Locales.DEFAULT).getUrl())).andExpect(status().isOk());
 	}
 
 	@Test
 	public void invisiblePageShouldNotBeAccessible() throws Exception {
-		Page page = PageFactory.INSTANCE.get();
-		page.initLocalizedFieldsFromTransients(Locales.DEFAULT);
+		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(false), Locales.DEFAULT);
 		pageRepository.save(page);
-		mockMvc.perform(get("/" + page.getUrl())).andExpect(status().isForbidden());
+		mockMvc.perform(get("/" + page.localize(Locales.DEFAULT).getUrl())).andExpect(status().isForbidden());
 	}
 
 	@Test
@@ -71,35 +70,37 @@ public class PageIntegrationTest {
 	}
 
 	@Test
-	public void urlNotMatchingLocale() throws Exception {
-		String enUrl = "some-url";
-		String ruUrl = "kakayia-to-ssilka";
-
-		Page page = PageFactory.INSTANCE.get(p -> {
-			p.setVisible(true);
-			p.setUrl(enUrl, Locales.EN);
-			p.setUrl(ruUrl, Locales.RU);
-		});
-
+	public void nonSupportedLanguageShouldNotBeAccessible() throws Exception {
+		// Russian locale for existing page translation and English locale for non-existing page translation,
+		// because I can't figure out quickly how to apply LocaleFilter correctly
+		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.RU);
 		pageRepository.save(page);
+		mockMvc.perform(get("/" + page.localize(Locales.RU).getUrl())).andExpect(status().isNotFound());
+	}
 
-		mockMvc.perform(get("/" + page.getUrl(Locales.RU).get()))
-			.andExpect(redirectedUrl("/" + page.getUrl(Locales.EN).get()));
+	@Test
+	public void urlNotMatchingLocale() throws Exception {
+		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.EN, Locales.RU);
+		LocalizedPage enPage = PageFactory.INSTANCE.getLocalized(page, Locales.EN, lp -> lp.setUrl("some-url"));
+		LocalizedPage ruPage = PageFactory.INSTANCE.getLocalized(page, Locales.RU, lp -> lp.setUrl("kakayia-to-ssilka"));
+		pageRepository.save(page);
+		mockMvc.perform(get("/" + ruPage.getUrl())).andExpect(redirectedUrl("/" + enPage.getUrl()));
 	}
 
 
 	@Test
 	public void pageCreationByAdminTest() throws Exception {
-		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true));
+		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.DEFAULT);
+		PageForm pageForm = new PageForm(page, Locales.DEFAULT);
 
 		// Create page and verify the redirect
 		mockMvc
 			.perform(post("/master/pages")
 				.sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE)
-				.param("title", page.getTitle())
-				.param("html", page.getHtml())
-				.param("visible", String.valueOf(page.isVisible()))
-				.param("url", page.getUrl()))
+				.param("title", pageForm.getTitle())
+				.param("html", pageForm.getHtml())
+				.param("visible", String.valueOf(pageForm.isVisible()))
+				.param("url", pageForm.getUrl()))
 			.andExpect(redirectedUrlPattern("/master/pages/*")); // Redirect to created page
 
 
@@ -107,22 +108,20 @@ public class PageIntegrationTest {
 		mockMvc
 			.perform(get("/master/pages").sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE))
 			.andExpect(status().isOk())
-			.andExpect(content().string(containsString(page.getTitle())));
+			.andExpect(content().string(containsString(pageForm.getTitle())));
 
 		// Verify that created page is available for users
-		mockMvc.perform(get("/" + page.getUrl())).andExpect(status().isOk());
+		mockMvc.perform(get("/" + pageForm.getUrl())).andExpect(status().isOk());
 	}
 
 	@Test
 	public void pageUpdateByAdminTest() throws Exception {
-		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true));
-		page.initLocalizedFieldsFromTransients(Locales.DEFAULT);
+		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.DEFAULT);
 		pageRepository.save(page);
 
 		// Verify that user can access the page before update
 
-		mockMvc.perform(get(UriComponentsBuilder.fromPath("/{url}").buildAndExpand(page.getUrl()).toUri()))
-			.andExpect(status().isOk());
+		mockMvc.perform(get("/" + page.localize(Locales.DEFAULT).getUrl())).andExpect(status().isOk());
 
 		String updatedTitle = "updated title";
 		String updatedHtml = "updated html";
@@ -130,24 +129,23 @@ public class PageIntegrationTest {
 
 		// Update the page and verify redirect
 		mockMvc
-			.perform(put(UriComponentsBuilder.fromPath("/master/pages/{url}").buildAndExpand(page.getUrl()).toUri())
+			.perform(put("/master/pages/" + page.getId())
 				.sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE)
 				.param("title", updatedTitle)
 				.param("html", updatedHtml)
 				.param("url", updatedUrl)
 				.param("visible", String.valueOf(false)))
-			.andExpect(redirectedUrl(UriComponentsBuilder.fromPath("/master/pages/{url}")
-				.buildAndExpand(updatedUrl).toString()));
+			.andExpect(redirectedUrl("/master/pages/" + page.getId()));
 
 		// Verify updated fields
 		Page updatedPage = pageRepository.findByUrl(updatedUrl);
-		Assert.assertEquals(updatedTitle, updatedPage.getTitle());
-		Assert.assertEquals(updatedHtml, updatedPage.getHtml());
+		LocalizedPage updatedLocalizedPage = updatedPage.localize(Locales.DEFAULT);
+		Assert.assertEquals(updatedTitle, updatedLocalizedPage.getTitle());
+		Assert.assertEquals(updatedHtml, updatedLocalizedPage.getHtml());
 		Assert.assertFalse(updatedPage.isVisible());
 
 		// Verify that user can not access the page after update
-		mockMvc.perform(get(UriComponentsBuilder.fromPath("/{url}").buildAndExpand(page.getUrl()).toUri()))
-			.andExpect(status().isForbidden());
+		mockMvc.perform(get("/" + updatedLocalizedPage.getUrl())).andExpect(status().isForbidden());
 	}
 
 }

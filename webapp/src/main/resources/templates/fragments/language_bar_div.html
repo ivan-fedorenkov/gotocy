@@ -1,5 +1,7 @@
 <div class="language-bar" th:fragment="language_bar(pathObject)">
-    <a th:href="@{${helper.path(pathObject, T(org.gotocy.config.Locales).EN)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).EN}? 'active'" class="active"><img th:src="'http://assets.gotocy.eu/static/img/flags/gb.png'" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
-    <a th:href="@{${helper.path(pathObject, T(org.gotocy.config.Locales).EL)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).EL}? 'active'"><img th:src="'http://assets.gotocy.eu/static/img/flags/gr.png'" src="/parent/webapp/public/assets/img/flags/gr.png" alt=""></a>
-    <a th:href="@{${helper.path(pathObject, T(org.gotocy.config.Locales).RU)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).RU}? 'active'"><img th:src="'http://assets.gotocy.eu/static/img/flags/ru.png'" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+    <a th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" th:href="@{${helper.path(pathObject, locale)}}" href="#" th:class="${#locale == locale}? 'active'" class="active"><img th:src="${helper.flagUrlForLocale(locale)}" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
+</div>
+
+<div class="language-bar" th:fragment="language_bar_for_locales(pathObject, locales)">
+    <a th:each="locale : ${locales}" th:href="@{${helper.path(pathObject, locale)}}" href="#" th:class="${#locale == locale}? 'active'" class="active"><img th:src="${helper.flagUrlForLocale(locale)}" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
 </div>

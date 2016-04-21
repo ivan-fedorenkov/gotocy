@@ -22,6 +22,12 @@
                     <figure><strong>Phone:</strong>+1 810-991-3842</figure>
                     <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
+                <div class="user-area">
+                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${'/master/pages/' + page.id + '/edit'})">
+                        <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
+                        <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container">
@@ -69,7 +75,7 @@
                         </header>
 
                         <section>
-                            <form role="form" class="form-submit" th:action="@{/master/pages/{url}(url=*{url})}" th:method="put" th:object="${page}">
+                            <form role="form" class="form-submit" th:action="@{${helper.path('/master/pages/' + page.id)}}" th:method="put" th:object="${pageForm}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">

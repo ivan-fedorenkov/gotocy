@@ -10,8 +10,10 @@ import org.gotocy.format.LocationFormatter;
 import org.gotocy.format.seo.SeoPropertySearchFormUriFormatter;
 import org.gotocy.helpers.Helper;
 import org.gotocy.i18n.I18n;
+import org.gotocy.interceptors.CmsInterceptor;
 import org.gotocy.interceptors.HelpersInterceptor;
 import org.gotocy.interceptors.SecurityInterceptor;
+import org.gotocy.repository.PageRepository;
 import org.gotocy.service.AssetsManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -34,6 +36,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	private I18n i18n;
 	private ApplicationProperties applicationProperties;
 	private AssetsManager assetsManager;
+	private PageRepository pageRepository;
 
 	@Autowired
 	public void setApplicationProperties(ApplicationProperties applicationProperties) {
@@ -48,6 +51,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Autowired
 	public void setAssetsManager(AssetsManager assetsManager) {
 		this.assetsManager = assetsManager;
+	}
+
+	@Autowired
+	public void setPageRepository(PageRepository pageRepository) {
+		this.pageRepository = pageRepository;
 	}
 
 	// Beans
@@ -103,6 +111,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new HelpersInterceptor(applicationProperties, i18n, helper()));
+		registry.addInterceptor(new CmsInterceptor(applicationProperties, pageRepository));
 		registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/master/**");
 	}
 

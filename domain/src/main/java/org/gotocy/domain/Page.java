@@ -2,17 +2,15 @@ package org.gotocy.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.gotocy.domain.i18n.Localized;
 import org.gotocy.domain.i18n.LocalizedField;
-import org.gotocy.domain.i18n.PageLocalizedFieldsManager;
+import org.gotocy.domain.i18n.LocalizedPage;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * An instance of static web page.
@@ -29,55 +27,18 @@ import java.util.Optional;
 )
 @Getter
 @Setter
-public class Page extends BaseEntity {
+public class Page extends BaseEntity implements Localized<Page, LocalizedPage> {
 
 	private boolean visible;
+
+	// Localized
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<LocalizedField> localizedFields = new ArrayList<>();
 
-	// Localized fields
-
-	private transient PageLocalizedFieldsManager localizedFieldsManager;
-	private transient String url;
-	private transient String title;
-	private transient String html;
-
-	public void initLocalizedFields(Locale locale) {
-		getLocalizedFieldsManager().setFields(locale);
-	}
-
-	public void initLocalizedFieldsFromTransients(Locale locale) {
-		setUrl(getUrl(), locale);
-		setTitle(getTitle(), locale);
-		setHtml(getHtml(), locale);
-	}
-
-	public void setUrl(String url, Locale locale) {
-		setUrl(url);
-		getLocalizedFieldsManager().setUrl(url, locale);
-	}
-
-	public Optional<String> getUrl(Locale locale) {
-		return getLocalizedFieldsManager().getUrl(locale);
-	}
-
-	public void setTitle(String title, Locale locale) {
-		setTitle(title);
-		getLocalizedFieldsManager().setTitle(title, locale);
-	}
-
-	public void setHtml(String html, Locale locale) {
-		setHtml(html);
-		getLocalizedFieldsManager().setHtml(html, locale);
-	}
-
-	// Private stuff
-
-	private PageLocalizedFieldsManager getLocalizedFieldsManager() {
-		if (localizedFieldsManager == null)
-			localizedFieldsManager = new PageLocalizedFieldsManager(this);
-		return localizedFieldsManager;
+	@Override
+	public LocalizedPage localize(Locale locale) {
+		return new LocalizedPage(this, locale);
 	}
 
 }

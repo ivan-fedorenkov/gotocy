@@ -42,6 +42,8 @@ public class ApplicationProperties {
 	@Autowired
 	private Environment environment;
 
+	private String footerPageUrl = "footer-page";
+
 	/**
 	 * @return the first spring active profile or an empty string if there are no active profiles.
 	 */
