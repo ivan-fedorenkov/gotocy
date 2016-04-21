@@ -4,9 +4,11 @@ import org.gotocy.config.Locales;
 import org.gotocy.domain.Page;
 import org.gotocy.domain.i18n.LocalizedPage;
 import org.gotocy.helpers.page.PageHelper;
+import org.gotocy.repository.PageRepository;
 import org.gotocy.test.factory.PageFactory;
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.Locale;
 import java.util.Optional;
@@ -15,6 +17,25 @@ import java.util.Optional;
  * @author ifedorenkov
  */
 public class PageHelperTest {
+
+	@Test
+	public void getTest() {
+		// Existing page
+		Page page = PageFactory.INSTANCE.get(Locales.EN);
+		LocalizedPage localizedPage = page.localize(Locales.EN);
+
+		// Non existing page
+		String nonExistingPageUrl = "non-existing-page-url";
+
+		PageRepository pageRepository = Mockito.mock(PageRepository.class);
+		Mockito.when(pageRepository.findByUrl(localizedPage.getUrl())).thenReturn(page);
+		Mockito.when(pageRepository.findByUrl(nonExistingPageUrl)).thenReturn(null);
+
+		PageHelper pageHelper = new PageHelper(pageRepository);
+		Assert.assertEquals(localizedPage.getHtml(), pageHelper.get(localizedPage.getUrl(), Locales.EN));
+		Assert.assertEquals("", pageHelper.get(localizedPage.getUrl(), Locales.RU));
+		Assert.assertEquals("", pageHelper.get(nonExistingPageUrl, Locales.DEFAULT));
+	}
 
 	@Test
 	public void pathTest() {

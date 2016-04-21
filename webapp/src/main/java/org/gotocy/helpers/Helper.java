@@ -8,6 +8,7 @@ import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.helpers.page.PageHelper;
 import org.gotocy.helpers.property.PropertyHelper;
 import org.gotocy.helpers.propertysearch.PropertySearchFormHelper;
+import org.gotocy.repository.PageRepository;
 import org.gotocy.service.AssetsManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,10 +37,12 @@ public class Helper {
 	private final PageHelper pageHelper;
 
 	@Autowired
-	public Helper(ApplicationProperties applicationProperties, AssetsManager assetsManager) {
+	public Helper(ApplicationProperties applicationProperties, AssetsManager assetsManager,
+		PageRepository pageRepository)
+	{
 		this.assetsManager = assetsManager;
 		propertyHelper = new PropertyHelper(applicationProperties, assetsManager);
-		pageHelper = new PageHelper();
+		pageHelper = new PageHelper(pageRepository);
 	}
 
 	/**

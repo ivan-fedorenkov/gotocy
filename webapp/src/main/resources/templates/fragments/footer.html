@@ -1,3 +1,3 @@
 <footer id="page-footer" th:fragment="footer" th:with="footerPage=${__${T(org.gotocy.interceptors.CmsInterceptor).FOOTER_PAGE_REQUEST_ATTR"}__}>
-<div class="inner" th:if="${footerPage != null}" th:utext="${footerPage.html}"></div>
+<div class="inner" th:utext="${helper.page.get('footer', #locale)}"></div>
 </footer>

@@ -50,7 +50,7 @@ public class MasterPagesController {
 		if (page == null)
 			throw new DomainObjectNotFoundException();
 		model.addAttribute("page", page.localize(locale));
-		return "page/show";
+		return "master/page/show";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)

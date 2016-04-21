@@ -10,7 +10,6 @@ import org.gotocy.format.LocationFormatter;
 import org.gotocy.format.seo.SeoPropertySearchFormUriFormatter;
 import org.gotocy.helpers.Helper;
 import org.gotocy.i18n.I18n;
-import org.gotocy.interceptors.CmsInterceptor;
 import org.gotocy.interceptors.HelpersInterceptor;
 import org.gotocy.interceptors.SecurityInterceptor;
 import org.gotocy.repository.PageRepository;
@@ -62,7 +61,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public Helper helper() {
-		return new Helper(applicationProperties, assetsManager);
+		return new Helper(applicationProperties, assetsManager, pageRepository);
 	}
 
 	@Bean
@@ -111,7 +110,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new HelpersInterceptor(applicationProperties, i18n, helper()));
-		registry.addInterceptor(new CmsInterceptor(applicationProperties, pageRepository));
 		registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/master/**");
 	}
 

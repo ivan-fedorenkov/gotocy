@@ -15,7 +15,6 @@
 </head>
 
 <body class="page-sub-page" id="page-top">
-<div th:replace="fragments/metrics_div :: ya"></div>
 <!-- Wrapper -->
 <div class="wrapper">
     <!-- Navigation -->
@@ -27,7 +26,7 @@
                     <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
                 <div class="user-area">
-                    <div class="language-bar" th:unless="${#lists.size(supportedLocales) == 1}" th:include="fragments/language_bar_div :: language_bar_for_locales(${page.original}, ${supportedLocales})">
+                    <div class="language-bar" th:unless="${#lists.size(supportedLocales) == 1}" th:include="fragments/language_bar_div :: language_bar_for_locales(${helper.path('/master/pages/' + page.id)}, ${supportedLocales})">
                         <a href="#" class="active"><img th:src="@{/assets/img/flags/gb.png}" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
                         <a href="#"><img th:src="@{/assets/img/flags/ru.png}" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>
@@ -65,7 +64,8 @@
         <!-- Breadcrumb -->
         <div class="container">
             <ol class="breadcrumb">
-                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
+                <li><a th:href="@{${helper.path('/')}}" href="#">Home</a></li>
+                <li><a th:href="@{${helper.path('/master/pages')}}" href="index.html">Pages Management</a></li>
                 <li class="active" th:text="*{title}">Page Title</li>
             </ol>
         </div>
@@ -75,12 +75,12 @@
             <div class="row">
                 <!-- Content -->
                 <div class="col-md-9 col-sm-9">
-                    <section id="content" th:fragment="page_content(page)">
+                    <section id="content" th:include="page/show :: page_content (${page})">
                         <header>
-                            <h1 th:text="${page.title}">Page Title</h1>
+                            <h1>Page Title</h1>
                         </header>
 
-                        <section th:utext="${page.html}"><p>Some text</p></section>
+                        <section><p>Some text</p></section>
                     </section>
                 </div><!-- /.col-md-9 -->
                 <!-- end Content -->

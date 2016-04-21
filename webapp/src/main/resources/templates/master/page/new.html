@@ -58,8 +58,8 @@
         <!-- Breadcrumb -->
         <div class="container">
             <ol class="breadcrumb">
-                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
-                <li><a th:href="@{/master/pages}" href="index.html">Pages Management</a></li>
+                <li><a th:href="@{${helper.path('/')}}" href="#">Home</a></li>
+                <li><a th:href="@{${helper.path('/master/pages')}}" href="index.html">Pages Management</a></li>
                 <li class="active">New Page</li>
             </ol>
         </div>
