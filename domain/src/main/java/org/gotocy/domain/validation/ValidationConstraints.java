@@ -11,4 +11,9 @@ public interface ValidationConstraints {
 	String MAX = "org.gotocy.validation.constraints.Max.message";
 	String MAX_SIZE = "org.gotocy.validation.constraints.MaxSize.message";
 	String CONTENT_TYPE = "org.gotocy.validation.constraints.ContentType.message";
+
+	/**
+	 * TODO: i18n
+	 */
+	String NON_UNIQUE = "org.gotocy.validation.constraints.NonUnique.message";
 }

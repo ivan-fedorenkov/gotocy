@@ -33,6 +33,10 @@ public class PageFactory extends BaseFactory<Page> {
 		return page;
 	}
 
+	public LocalizedPage getLocalized(Locale locale, Consumer<LocalizedPage> entityPreparer) {
+		return getLocalized(get(), locale, entityPreparer);
+	}
+
 	public LocalizedPage getLocalized(Page page, Locale locale) {
 		return getLocalized(page, locale, lp -> {});
 	}

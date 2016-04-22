@@ -3,16 +3,18 @@ package org.gotocy.controllers.master;
 import org.gotocy.controllers.exceptions.DomainObjectNotFoundException;
 import org.gotocy.domain.Page;
 import org.gotocy.domain.i18n.LocalizedPage;
-import org.gotocy.forms.master.PageForm;
+import org.gotocy.forms.PageForm;
+import org.gotocy.forms.validation.PageFormValidator;
+import org.gotocy.forms.validation.RegistrationFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.repository.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Locale;
@@ -27,10 +29,18 @@ import static java.util.stream.Collectors.toList;
 public class MasterPagesController {
 
 	private final PageRepository pageRepository;
+	private final PageFormValidator pageFormValidator;
 
 	@Autowired
 	public MasterPagesController(PageRepository pageRepository) {
 		this.pageRepository = pageRepository;
+		pageFormValidator = new PageFormValidator(pageRepository);
+	}
+
+	@InitBinder("pageForm")
+	public void initBinder(WebDataBinder binder) {
+		if (binder.getTarget() != null && pageFormValidator.supports(binder.getTarget().getClass()))
+			binder.addValidators(pageFormValidator);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -60,7 +70,9 @@ public class MasterPagesController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(@ModelAttribute PageForm pageForm, Locale locale) {
+	public String create(@Validated @ModelAttribute PageForm pageForm, BindingResult pageFormErrors, Locale locale) {
+		if (pageFormErrors.hasErrors())
+			return "master/page/new";
 		Page page = pageForm.mergeWithPage(new Page(), locale);
 		pageRepository.save(page);
 		return "redirect:" + Helper.path("/master/pages/" + page.getId());
@@ -77,10 +89,18 @@ public class MasterPagesController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public String update(@ModelAttribute PageForm pageForm, @PathVariable Long id, Locale locale) {
+	public String update(Model model, @Validated @ModelAttribute PageForm pageForm, BindingResult pageFormErrors,
+		@PathVariable Long id, Locale locale)
+	{
 		Page page = pageRepository.findOne(id);
 		if (page == null)
 			throw new DomainObjectNotFoundException();
+
+		if (pageFormErrors.hasErrors()) {
+			model.addAttribute("page", page.localize(locale));
+			return "master/page/edit";
+		}
+
 		page = pageForm.mergeWithPage(page, locale);
 		pageRepository.save(page);
 		return "redirect:" + Helper.path("/master/pages/" + page.getId());

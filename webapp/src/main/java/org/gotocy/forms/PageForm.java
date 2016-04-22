@@ -1,4 +1,4 @@
-package org.gotocy.forms.master;
+package org.gotocy.forms;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +14,7 @@ import java.util.Locale;
 @Setter
 public class PageForm {
 
+	private Long id;
 	private String url;
 	private String title;
 	private String html;
@@ -24,6 +25,7 @@ public class PageForm {
 
 	public PageForm(Page page, Locale locale) {
 		LocalizedPage localizedPage = page.localize(locale);
+		id = localizedPage.getId();
 		url = localizedPage.getUrl();
 		title = localizedPage.getTitle();
 		html = localizedPage.getHtml();

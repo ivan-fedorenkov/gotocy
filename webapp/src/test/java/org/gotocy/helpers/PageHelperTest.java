@@ -21,14 +21,13 @@ public class PageHelperTest {
 	@Test
 	public void getTest() {
 		// Existing page
-		Page page = PageFactory.INSTANCE.get(Locales.EN);
-		LocalizedPage localizedPage = page.localize(Locales.EN);
+		LocalizedPage localizedPage = PageFactory.INSTANCE.getLocalized(Locales.EN, lp -> {});
 
 		// Non existing page
 		String nonExistingPageUrl = "non-existing-page-url";
 
 		PageRepository pageRepository = Mockito.mock(PageRepository.class);
-		Mockito.when(pageRepository.findByUrl(localizedPage.getUrl())).thenReturn(page);
+		Mockito.when(pageRepository.findByUrl(localizedPage.getUrl())).thenReturn(localizedPage.getOriginal());
 		Mockito.when(pageRepository.findByUrl(nonExistingPageUrl)).thenReturn(null);
 
 		PageHelper pageHelper = new PageHelper(pageRepository);
