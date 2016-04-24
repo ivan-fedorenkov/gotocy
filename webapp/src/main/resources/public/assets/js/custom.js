@@ -66,7 +66,7 @@ $(document).ready(function($) {
     $("#form-contact-submit").bind("click", function (event) {
         $("#form-contact").validate({
             submitHandler: function () {
-                $.post("http://assets.gotocy.eu/static/php/contact.php", $("#form-contact").serialize(), function (response) {
+                $.post("http://assets.gotocy.com/static/php/contact.php", $("#form-contact").serialize(), function (response) {
                     $('#form-status').html(response);
                     $('#form-contact-submit').attr('disabled', 'true');
                 });
@@ -145,7 +145,7 @@ $(document).ready(function($) {
     var ratingOverall = $('.rating-overall');
     if (ratingOverall.length > 0) {
         ratingOverall.raty({
-            path: 'http://assets.gotocy.eu/static/img',
+            path: 'http://assets.gotocy.com/static/img',
             readOnly: true,
             score: function () {
                 return $(this).attr('data-score');
@@ -155,7 +155,7 @@ $(document).ready(function($) {
     var ratingIndividual = $('.rating-individual');
     if (ratingIndividual.length > 0) {
         ratingIndividual.raty({
-            path: 'http://assets.gotocy.eu/static/img',
+            path: 'http://assets.gotocy.com/static/img',
             readOnly: true,
             score: function () {
                 return $(this).attr('data-score');
@@ -165,7 +165,7 @@ $(document).ready(function($) {
     var ratingUser = $('.rating-user');
     if (ratingUser.length > 0) {
         $('.rating-user .inner').raty({
-            path: 'http://assets.gotocy.eu/static/img',
+            path: 'http://assets.gotocy.com/static/img',
             starOff: 'big-star-off.png',
             starOn: 'big-star-on.png',
             width: 150,
@@ -392,7 +392,7 @@ function initializePano(panoConfigUrl) {
         // create the panorama player with the container
         player = new pano2vrPlayer('pano');
         // add the skin object
-        skin = new pano2vrSkin(player, 'http://assets.gotocy.eu/static/pano2vr/');
+        skin = new pano2vrSkin(player, 'http://assets.gotocy.com/static/pano2vr/');
         // load the configuration
         player.readConfigUrl(panoConfigUrl);
         // hide the URL bar on the iPhone

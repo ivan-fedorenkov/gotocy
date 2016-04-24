@@ -14,7 +14,7 @@ cd $ID
 
 echo
 echo "Fetching the images from S3..."
-aws s3 cp s3://assets.gotocy.eu/property/$ID/ . --recursive --exclude "*" --include "*.jpg"
+aws s3 cp s3://assets.gotocy.com/property/$ID/ . --recursive --exclude "*" --include "*.jpg"
 echo
 echo "OK"
 
@@ -40,7 +40,7 @@ echo "OK"
 
 echo
 echo "Uploading images to S3..."
-aws s3 cp MEDIUM/ s3://assets.gotocy.eu/property/$ID/MEDIUM/ --recursive --storage-class REDUCED_REDUNDANCY
-aws s3 cp BIG/ s3://assets.gotocy.eu/property/$ID/BIG/ --recursive --storage-class REDUCED_REDUNDANCY
+aws s3 cp MEDIUM/ s3://assets.gotocy.com/property/$ID/MEDIUM/ --recursive --storage-class REDUCED_REDUNDANCY
+aws s3 cp BIG/ s3://assets.gotocy.com/property/$ID/BIG/ --recursive --storage-class REDUCED_REDUNDANCY
 echo
 echo "OK"

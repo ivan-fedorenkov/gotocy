@@ -5,7 +5,7 @@
                 <div class="property-image">
                     <figure class="tag status" th:text="${{p.propertyStatus}}" th:if="${param.propertyStatus == null}">Sale</figure>
                     <figure class="ribbon" th:unless="${active}" th:classappend="${offerStatus == T(org.gotocy.domain.OfferStatus).BOOKED}? 'ribbon-booked' : 'ribbon-sold'" th:text="${{offerStatus}}">Sold</figure>
-                    <figure class="type" th:if="${active}" th:title="${{propertyType}}"><img th:src="|http://assets.gotocy.eu/static/img/property-types/${helper.property.typeIcon(propertyType)}.png|" alt=""></figure>
+                    <figure class="type" th:if="${active}" th:title="${{propertyType}}"><img th:src="|http://assets.gotocy.com/static/img/property-types/${helper.property.typeIcon(propertyType)}.png|" alt=""></figure>
                     <div class="overlay" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}">
                         <div class="info">
                             <div class="tag price" th:utext="${helper.property.price(p)}">$ 11,000</div>

@@ -2819,11 +2819,8 @@ ul.list-links {
 
 #map {
   width: 100%;
-  background: transparent url(http://assets.gotocy.eu/static/img/AjaxLoader.gif) no-repeat center center; }
+  background: transparent url(http://assets.gotocy.com/static/img/AjaxLoader.gif) no-repeat center center; }
 
-@media screen and (max-width: 767px) {
-  #map {
-    display: none; } }
 #contact-map {
   height: 300px;
   width: 100%; }
@@ -3595,19 +3592,13 @@ form label.error {
 .search-box-wrapper {
   z-index: 100; }
 
-@media screen and (min-width: 768px) {
-  .search-box {
-    -moz-transition: 0.4s;
-    -o-transition: 0.4s;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    opacity: 0; } }
 .search-box {
   padding-right: 15px;
   position: absolute;
   width: 100%;
-  z-index: 1; }
+  z-index: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1; }
   .search-box.show-search-box {
     filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
     opacity: 1; }
@@ -4445,7 +4436,15 @@ body, html {
 @media (min-width: 768px) {
   .property.masonry img.extended-3 {
     height: 270px;
-    width: 120%; } }
+    width: 120%; }
+
+  .search-box {
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0; } }
 @media (max-width: 767px) {
   .agency .agency-image {
     display: block;
@@ -4626,28 +4625,7 @@ body, html {
     display: none; }
 
   #map {
-    margin-top: 0 !important; }
-    #map:after {
-      -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
-      -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
-      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
-      text-shadow: none;
-      -webkit-font-smoothing: antialiased;
-      font-family: 'fontawesome';
-      speak: none;
-      font-weight: normal;
-      font-variant: normal;
-      line-height: 1;
-      text-transform: none;
-      color: #2a2a2a;
-      font-size: 18px;
-      position: absolute;
-      bottom: 30px;
-      background-color: #fff;
-      content: "\f07d";
-      padding: 12px 16px;
-      right: 15px;
-      z-index: 1; }
+    display: none; }
 
   .member {
     margin-bottom: 40px !important;
@@ -4870,7 +4848,7 @@ body, html {
 
   .search-box-wrapper {
     background-color: #073855;
-    padding: 20px 0;
+    padding: 20px 0 0 0;
     position: relative;
     top: 0 !important; }
     .search-box-wrapper h2 {
@@ -4917,6 +4895,8 @@ body, html {
             right: 0;
             margin: auto;
             bottom: -5px; }
+    .search-box-wrapper .form-group {
+      margin-bottom: 20px; }
 
   .section-title .link-arrow {
     position: relative;

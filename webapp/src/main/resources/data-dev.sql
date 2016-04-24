@@ -1,4 +1,4 @@
-insert into contact (id, version, name, email, phone, spoken_languages) values (1, 0, 'Denis', 'support@gotocy.eu', '+357 96 740485', 'Eng, Rus');
+insert into contact (id, version, name, email, phone, spoken_languages) values (1, 0, 'Denis', 'support@gotocy.com', '+357 96 740485', 'Eng, Rus');
 insert into contact (id, version, name, email, phone, spoken_languages) values (2, 0, 'Demetris', '', '+357 99483998', 'Greek, Eng, Rus');
 insert into contact (id, version, name, email, phone, spoken_languages) values (3, 0, 'Alexandros Trisveis', 'alextrisvei@hotmail.com', '+357 99627112', 'Greek, Eng');
 insert into contact (id, version, name, email, phone, spoken_languages) values (4, 0, 'George', 'georgiosg2@yahoo.com', '+357 99388318', 'Greek, Eng');

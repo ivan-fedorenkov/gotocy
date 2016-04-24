@@ -92,19 +92,19 @@ HomeIndexPage.createHomepageGoogleMap = function() {
             boxClass: "infobox-wrapper",
             enableEventPropagation: true,
             closeBoxMargin: "0px 0px -8px 0px",
-            closeBoxURL: "http://assets.gotocy.eu/static/img/close-btn.png",
+            closeBoxURL: "http://assets.gotocy.com/static/img/close-btn.png",
             infoBoxClearance: new google.maps.Size(1, 1)
         };
 
         var markers = [];
         for (var i = 0; i < properties.length; i++) {
             var pictureLabel = document.createElement("img");
-            pictureLabel.src = 'http://assets.gotocy.eu/static/img/property-types/' + properties[i]['typeIcon'] + '.png';
+            pictureLabel.src = 'http://assets.gotocy.com/static/img/property-types/' + properties[i]['typeIcon'] + '.png';
 
             var marker = new MarkerWithLabel({
                 title: properties[i]['title'],
                 position: new google.maps.LatLng(properties[i]['latitude'], properties[i]['longitude']),
-                icon: 'http://assets.gotocy.eu/static/img/marker.png',
+                icon: 'http://assets.gotocy.com/static/img/marker.png',
                 labelContent: pictureLabel,
                 labelAnchor: new google.maps.Point(50, 0),
                 labelClass: "marker-style"
@@ -144,7 +144,7 @@ HomeIndexPage.createHomepageGoogleMap = function() {
 
         var clusterStyles = [
             {
-                url: 'http://assets.gotocy.eu/static/img/cluster.png',
+                url: 'http://assets.gotocy.com/static/img/cluster.png',
                 height: 37,
                 width: 37
             }

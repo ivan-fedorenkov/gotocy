@@ -3,7 +3,7 @@
     <dd th:text="${c.name}">Denis</dd>
 
     <dt th:unless="${#strings.isEmpty(c.email)}" th:text="|${i18n.t('dictionary.email')}:|">Email:</dt>
-    <dd th:unless="${#strings.isEmpty(c.email)}" th:text="${c.email}">support@gotocy.eu</dd>
+    <dd th:unless="${#strings.isEmpty(c.email)}" th:text="${c.email}">support@gotocy.com</dd>
 
     <dt th:text="|${i18n.t('dictionary.phone')}:|">Phone:</dt>
     <dd th:text="${c.phone}">123-45-67</dd>

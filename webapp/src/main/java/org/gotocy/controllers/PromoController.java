@@ -203,7 +203,7 @@ public class PromoController {
 		Contact contact = new Contact();
 		contact.setName("Denis");
 		contact.setPhone("+357 96 740485");
-		contact.setEmail("support@gotocy.eu");
+		contact.setEmail("support@gotocy.com");
 		contact.setSpokenLanguages("Eng, Rus");
 		p.setPrimaryContact(contact);
 

@@ -45,7 +45,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand nav" id="brand">
-                        <a th:href="@{${helper.path('/')}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.eu/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
+                        <a th:href="@{${helper.path('/')}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.com/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
                     </div>
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
@@ -186,7 +186,7 @@
                                 <dd>Denis</dd>
 
                                 <dt>Email:</dt>
-                                <dd>support@gotocy.eu</dd>
+                                <dd>support@gotocy.com</dd>
 
                                 <dt>Phone:</dt>
                                 <dd>123-45-67</dd>
@@ -258,7 +258,7 @@
 /*<![CDATA[*/
     var latitude = /*[[*{latitude}]]*/ '34.7071301';
     var longitude = /*[[*{longitude}]]*/ '33.022617399999945';
-    var markerPictureUrl = /*[[|http://assets.gotocy.eu/static/img/property-types/${helper.property.typeIcon(property.propertyType)}.png|]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
+    var markerPictureUrl = /*[[|http://assets.gotocy.com/static/img/property-types/${helper.property.typeIcon(property.propertyType)}.png|]]*/ '/parent/webapp/public/assets/img/property-types/apartment.png';
     var panoConfigUrl = /*[[${hasPano}? ${helper.path(property)} + '/pano.xml' : '']]*/ '';
     var images = /*[[${helper.imageUrls(property.images)}]]*/ '';
 /*]]>*/
@@ -269,7 +269,7 @@
 <script type="text/javascript" th:src="@{/assets/js/application-maps.min.js}" src="/parent/webapp/public/assets/js/application-maps.min.js"></script>
 
 <!--[if gt IE 8]>
-<script type="text/javascript" src="http://assets.gotocy.eu/static/js/ie.js"></script>
+<script type="text/javascript" src="http://assets.gotocy.com/static/js/ie.js"></script>
 <![endif]-->
 
 <script type="text/javascript">

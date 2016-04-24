@@ -49,7 +49,7 @@ function initMap(latitude, longitude, markerPictureSrc) {
     var marker = new MarkerWithLabel({
         position: markerPosition,
         map: map,
-        icon: 'http://assets.gotocy.eu/static/img/marker.png',
+        icon: 'http://assets.gotocy.com/static/img/marker.png',
         labelContent: pictureLabel,
         labelAnchor: new google.maps.Point(50, 0),
         labelClass: "marker-style"
@@ -136,7 +136,7 @@ function initPropertySubmitMap(_latitude,_longitude,_zoom){
     var marker = new MarkerWithLabel({
         position: mapCenter,
         map: map,
-        icon: 'http://assets.gotocy.eu/static/img/marker.png',
+        icon: 'http://assets.gotocy.com/static/img/marker.png',
         labelAnchor: new google.maps.Point(50, 0),
         draggable: true
     });

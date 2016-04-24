@@ -245,7 +245,7 @@ public class Helper {
 		} else {
 			logger.error("Requested flag url for unsupported language {}" + locale.getLanguage());
 		}
-		return "http://assets.gotocy.eu/static/img/flags/" + flagCode + ".png";
+		return "http://assets.gotocy.com/static/img/flags/" + flagCode + ".png";
 	}
 
 }
