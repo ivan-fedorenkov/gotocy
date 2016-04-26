@@ -7,6 +7,7 @@ import org.gotocy.domain.Image;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
@@ -27,11 +28,9 @@ public class ApplicationProperties {
 	@NotEmpty
 	private String phone;
 
-	@NotNull
-	private Double defaultLatitude;
+	private double defaultLatitude;
 
-	@NotNull
-	private Double defaultLongitude;
+	private double defaultLongitude;
 
 	private Contact defaultContact = new Contact();
 
@@ -42,12 +41,31 @@ public class ApplicationProperties {
 	@Autowired
 	private Environment environment;
 
+	@NestedConfigurationProperty
+	private final UserPropertyForm userPropertyForm = new UserPropertyForm();
+
 	/**
 	 * @return the first spring active profile or an empty string if there are no active profiles.
 	 */
 	public String getFirstActiveProfile() {
 		String[] activeProfiles = environment.getActiveProfiles();
 		return activeProfiles.length > 0 ? activeProfiles[0] : "";
+	}
+
+	@Getter
+	@Setter
+	public static class UserPropertyForm {
+
+		/**
+		 * Max file size in Kb.
+		 */
+		private int maxFileSize = 3100;
+
+		/**
+		 * Max file count.
+		 */
+		private int maxFileCount = 10;
+
 	}
 
 }

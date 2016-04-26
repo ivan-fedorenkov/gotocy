@@ -23,6 +23,9 @@ public class UserPropertyFormValidator implements Validator {
 
 	public static final UserPropertyFormValidator INSTANCE = new UserPropertyFormValidator();
 
+	/**
+	 * TODO: obtain this properties from the {@link org.gotocy.config.ApplicationProperties.UserPropertyForm}
+	 */
 	public static final int MAX_ALLOWED_IMAGES = 10;
 	public static final int MAX_ALLOWED_SIZE_MB = 3;
 	public static final long MAX_ALLOWED_SIZE = MAX_ALLOWED_SIZE_MB * 1024 * 1024; // in bytes
