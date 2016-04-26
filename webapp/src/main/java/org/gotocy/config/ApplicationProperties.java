@@ -59,12 +59,19 @@ public class ApplicationProperties {
 		/**
 		 * Max file size in Kb.
 		 */
-		private int maxFileSize = 3100;
+		private int maxFileSize = 3072;
 
 		/**
 		 * Max file count.
 		 */
 		private int maxFileCount = 10;
+
+		/**
+		 * Returns max file size in Mb.
+		 */
+		public int getMaxFileSizeMb() {
+			return maxFileSize / 1024;
+		}
 
 	}
 

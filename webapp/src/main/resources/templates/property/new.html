@@ -238,7 +238,7 @@
                                 <div class="center">
                                     <div class="form-group">
                                         <input id="images-upload" type="file" name="images" class="file" multiple="true" accept="image/jpeg">
-                                        <figure class="note" th:utext="${i18n.t('templates.property.new.upload-hint', gotocy.userPropertyForm.maxFileCount, gotocy.userPropertyForm.maxFileSize)}"><strong>Hint:</strong> You can upload all images at once!</figure>
+                                        <figure class="note" th:utext="${i18n.t('templates.property.new.upload-hint', gotocy.userPropertyForm.maxFileCount, gotocy.userPropertyForm.maxFileSizeMb)}"><strong>Hint:</strong> You can upload all images at once!</figure>
                                     </div>
                                 </div>
                             </section>
@@ -368,8 +368,8 @@
     var _longitude = /*[[${userPropertyForm.longitude}]]*/ '33.022617399999945';
 
     PropertyNewPage.init(
-        /*[[${gotocy.userPropertyForm.maxFileCount}}]]*/ 10,
-        /*[[${gotocy.userPropertyForm.maxFileSize}}]]*/ 3000,
+        /*[[${gotocy.userPropertyForm.maxFileCount}]]*/ 10,
+        /*[[${gotocy.userPropertyForm.maxFileSize}]]*/ 3000,
         /*[[${#locale.language}]]*/ 'en',
         /*[[${i18n.t('dictionary.browse-images')}]]*/ 'Browse Images'
     );
