@@ -28,6 +28,9 @@ public class S3Properties {
 	@NotEmpty
 	private String bucket;
 
+	@NotEmpty
+	private String region;
+
 	public Date getExpirationDate() {
 		return new Date(System.currentTimeMillis() + EXPIRATION_TIME);
 	}

@@ -5,10 +5,10 @@ import com.amazonaws.ClientConfiguration;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.RegionUtils;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.Region;
 import com.amazonaws.services.s3.model.StorageClass;
 import org.gotocy.config.S3Properties;
 import org.gotocy.domain.Asset;
@@ -36,8 +36,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 	public AmazonAssetsManager(S3Properties s3Properties) {
 		s3Client = new AmazonS3Client(new BasicAWSCredentials(s3Properties.getAccessKey(), s3Properties.getSecretKey()),
 			new ClientConfiguration().withProtocol(Protocol.HTTP));
-		s3Client.setRegion(Region.EU_Ireland.toAWSRegion());
-
+		s3Client.setRegion(RegionUtils.getRegion(s3Properties.getRegion()));
 		this.s3Properties = s3Properties;
 	}
 
