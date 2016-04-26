@@ -120,10 +120,7 @@ public class PropertiesController {
 			.orElseThrow(NotFoundException::new).decodeToXml();
 	}
 
-	@RequestMapping(value = {
-		"/properties/{id}/360_images/{image}",
-		"/property/{id}/360_images/{image}"
-	}, method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	@RequestMapping(value = "/properties/{id}/360_images/{image}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	public byte[] getImage(@PathVariable String id, @PathVariable String image) {
 		return assetsManager.getAsset(Image::new, "property/" + id + "/360_images/" + image + ".jpg")
