@@ -1,5 +1,6 @@
 package org.gotocy.forms.validation;
 
+import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.validation.PropertyValidator;
 import org.gotocy.domain.validation.ValidationConstraints;
@@ -13,7 +14,6 @@ import java.util.List;
 /**
  * Validator of the user property form. Basically it just delegates all the validation logic
  * to the {@link org.gotocy.domain.validation.PropertyValidator}.
- * Singleton, thread safe.
  *
  * TODO: unit test
  *
@@ -21,20 +21,17 @@ import java.util.List;
  */
 public class UserPropertyFormValidator implements Validator {
 
-	public static final UserPropertyFormValidator INSTANCE = new UserPropertyFormValidator();
-
-	/**
-	 * TODO: obtain this properties from the {@link org.gotocy.config.ApplicationProperties.UserPropertyForm}
-	 */
-	public static final int MAX_ALLOWED_IMAGES = 10;
-	public static final int MAX_ALLOWED_SIZE_MB = 3;
-	public static final long MAX_ALLOWED_SIZE = MAX_ALLOWED_SIZE_MB * 1024 * 1024; // in bytes
-
 	public static final String ALLOWED_IMAGE_CONTENT_TYPE = "image/jpeg";
 	public static final String ALLOWED_IMAGE_CONTENT_TYPE_USER_FRIENDLY = "jpeg";
 
+	private final int maxAllowedImages;
+	private final int maxAllowedFileSize;
+	private final int maxAllowedFileSizeMb;
 
-	private UserPropertyFormValidator() {
+	public UserPropertyFormValidator(ApplicationProperties applicationProperties) {
+		maxAllowedImages = applicationProperties.getUserPropertyForm().getMaxFileCount();
+		maxAllowedFileSize = applicationProperties.getUserPropertyForm().getMaxFileSize() * 1024; // bytes
+		maxAllowedFileSizeMb = applicationProperties.getUserPropertyForm().getMaxFileSize() / 1024; // mbytes
 	}
 
 	@Override
@@ -49,8 +46,8 @@ public class UserPropertyFormValidator implements Validator {
 
 		List<MultipartFile> images = form.getImages();
 		if (!images.isEmpty()) {
-			if (images.size() > MAX_ALLOWED_IMAGES)
-				errors.rejectValue("images", ValidationConstraints.MAX_SIZE, new Object[]{MAX_ALLOWED_IMAGES}, null);
+			if (images.size() > maxAllowedImages)
+				errors.rejectValue("images", ValidationConstraints.MAX_SIZE, new Object[]{maxAllowedImages}, null);
 			for (MultipartFile image : images) {
 				if (!ALLOWED_IMAGE_CONTENT_TYPE.equalsIgnoreCase(image.getContentType())) {
 					// if any of images violates the supported content type then reject all of them
@@ -59,9 +56,9 @@ public class UserPropertyFormValidator implements Validator {
 					break;
 				}
 
-				if (image.getSize() > MAX_ALLOWED_SIZE) {
+				if (image.getSize() > maxAllowedFileSize) {
 					// if any of images exceeds the maximum size then reject all of them
-					errors.rejectValue("images", ValidationConstraints.MAX, new Object[]{MAX_ALLOWED_SIZE_MB}, null);
+					errors.rejectValue("images", ValidationConstraints.MAX, new Object[]{maxAllowedFileSizeMb}, null);
 					break;
 				}
 			}

@@ -50,6 +50,7 @@ public class PropertiesController {
 	private final ApplicationProperties applicationProperties;
 	private final PropertyService propertyService;
 	private final PropertyDtoFactory propertyDtoFactory;
+	private final UserPropertyFormValidator userPropertyFormValidator;
 
 	@Autowired
 	public PropertiesController(PropertyRepository repository, AssetsManager assetsManager,
@@ -61,11 +62,12 @@ public class PropertiesController {
 		this.applicationProperties = applicationProperties;
 		this.propertyService = propertyService;
 		this.propertyDtoFactory = propertyDtoFactory;
+		userPropertyFormValidator = new UserPropertyFormValidator(applicationProperties);
 	}
 
 	@InitBinder("userPropertyForm")
 	public void initBinder(WebDataBinder binder) {
-		binder.addValidators(UserPropertyFormValidator.INSTANCE);
+		binder.addValidators(userPropertyFormValidator);
 	}
 
 	@RequestMapping(value = "/properties", method = RequestMethod.GET)
