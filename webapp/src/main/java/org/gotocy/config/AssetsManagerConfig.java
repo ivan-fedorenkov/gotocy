@@ -28,7 +28,7 @@ public class AssetsManagerConfig {
 	@Bean
 	@Profile(Profiles.LOCAL_DEV)
 	public AssetsManager devAssetsManager() {
-		return new FileSystemAssetsManager("C:\\Users\\ifedorenkov\\Documents\\tmp\\gtc");
+		return new FileSystemAssetsManager("/home/killer/tmp/gtc_assets");
 	}
 
 	@Bean

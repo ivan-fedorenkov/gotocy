@@ -29,7 +29,7 @@ public class AssetsManagerConfig {
 	@Profile("local-dev")
 	@Bean
 	public AssetsManager localDevAssetsManager() {
-		return new FileSystemAssetsManager("C:\\Users\\ifedorenkov\\Documents\\tmp\\gtc");
+		return new FileSystemAssetsManager("/home/killer/tmp/gtc_assets");
 	}
 
 

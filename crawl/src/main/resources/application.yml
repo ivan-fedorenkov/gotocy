@@ -1,17 +1,16 @@
 gotocy:
   crawl:
-    crawlerClass: CyprusRealityCrawler
+    crawlerClass: GiovaniCrawler
     crawlStorageFolder: "/home/killer/tmp/crawler"
     numOfCrawlers: 5
     seeds:
-      - "http://cyprus-realty.info/"
-    cookies:
-      -
-        domain: ".cyprus-realty.info"
-        name: language
-        value: en
+      - "http://giovani.com.cy/properties/"
+      - "http://giovani.com.cy/properties/page/2/"
+      - "http://giovani.com.cy/properties/page/3/"
+      - "http://giovani.com.cy/properties/page/4/"
+      - "http://giovani.com.cy/properties/page/5/"
+      - "http://giovani.com.cy/properties/page/6/"
+      - "http://giovani.com.cy/properties/page/7/"
     filter:
-      minPrice: 1000
-      maxPrice: 1000000
       propertyStatuses:
         - "SALE"

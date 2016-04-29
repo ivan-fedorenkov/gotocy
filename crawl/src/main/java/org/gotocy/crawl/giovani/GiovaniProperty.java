@@ -18,7 +18,7 @@ import static java.util.stream.Collectors.joining;
 public class GiovaniProperty extends CrawledProperty {
 
 	private static final String CRAWL_SOURCE = "http://giovani.com.cy";
-	private static final Pattern TITLE_PATTERN = Pattern.compile("^(?:GDR\\d+ – )?([\\w\\s\\d]+).*$");
+	private static final Pattern TITLE_PATTERN = Pattern.compile("^(?:GDR?\\d+ – )?([\\w\\s\\d]+).*$");
 
 	private final Property targetProperty;
 
