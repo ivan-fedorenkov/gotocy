@@ -29,7 +29,7 @@ echo "OK"
 
 echo
 echo "Uploading images to S3..."
-aws s3 cp . s3://assets.gotocy.com/property/$ID/ --storage-class STANDARD_IA --recursive --exclude "*" --include "*.jpg"
+aws --region eu-central-1 s3 cp . s3://assets.gotocy.com/property/$ID/ --recursive --exclude "*" --include "*.jpg"
 echo
 echo "OK"
 

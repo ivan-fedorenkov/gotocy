@@ -89,7 +89,13 @@ form {
 .form-submit {
   .file-input { border: 2px solid $color-grey-light; padding: 15px; position: relative; width: 100%;
     .file-preview { @include border-radius(0px); border: none; padding: 0; margin-bottom: 20px;
-      .close { position: absolute; right: 10px; top: 5px; }
+      .close {
+        position: absolute; right: 10px; top: 5px;
+        // Hide close button of error messages (GTC-105)
+        &.kv-error-close {
+          display: none;
+        }
+      }
       .file-preview-frame { @include box-shadow(0px 1px 1px rgba(0,0,0,.2)); border: none; height: inherit;
         .file-preview-image { height: 100px; }
       }
