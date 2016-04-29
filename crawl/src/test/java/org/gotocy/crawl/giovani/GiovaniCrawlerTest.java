@@ -35,6 +35,9 @@ public class GiovaniCrawlerTest {
 	private static final String SALE_NEW_VILLA_WITHOUT_PRICE_URL =
 		"http://giovani.com.cy/property/3-bedroom-smart-homes-in-kapparis-protaras-gd00192/";
 
+	private static final String SOLD_APARTMENT_WITH_NON_STANDARD_TITLE =
+		"http://giovani.com.cy/property/gdr017-1-bedroom-ground-floor-apartment-in-kapparis/";
+
 	private static CrawlController crawlController;
 
 	@BeforeClass
@@ -88,6 +91,23 @@ public class GiovaniCrawlerTest {
 		Assert.assertEquals(146, villa.getPlotSize());
 		Assert.assertEquals(96, villa.getCoveredArea());
 		Assert.assertEquals(2, villa.getBedrooms());
+	}
+
+	@Test
+	public void testSoldApartmentWithNonStandardTitle() throws Exception {
+		Property villa = crawlProperty(SOLD_APARTMENT_WITH_NON_STANDARD_TITLE).get(0);
+		Assert.assertEquals("1 Bedroom Ground Floor Apartment In Kapparis", villa.getTitle());
+		Assert.assertEquals(35.05267905030267, villa.getLatitude(), 0.000001);
+		Assert.assertEquals(33.99892363323988, villa.getLongitude(), 0.000001);
+		Assert.assertEquals(0, villa.getPrice());
+		Assert.assertEquals(PropertyStatus.SALE, villa.getPropertyStatus());
+		Assert.assertEquals(OfferStatus.SOLD, villa.getOfferStatus());
+		Assert.assertFalse(villa.isVatIncluded());
+		Assert.assertFalse(villa.isReadyToMoveIn());
+		Assert.assertEquals(Furnishing.NONE, villa.getFurnishing());
+		Assert.assertEquals(0, villa.getPlotSize());
+		Assert.assertEquals(50, villa.getCoveredArea());
+		Assert.assertEquals(1, villa.getBedrooms());
 	}
 
 	@Test

@@ -3,10 +3,14 @@ package org.gotocy.crawl.giovani;
 import org.gotocy.crawl.CrawledProperty;
 import org.gotocy.domain.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.joining;
 
 /**
  * @author ifedorenkov
@@ -14,7 +18,7 @@ import java.util.regex.Pattern;
 public class GiovaniProperty extends CrawledProperty {
 
 	private static final String CRAWL_SOURCE = "http://giovani.com.cy";
-	private static final Pattern TITLE_PATTERN = Pattern.compile("^([\\w\\s\\d]+).*$");
+	private static final Pattern TITLE_PATTERN = Pattern.compile("^(?:GDR\\d+ – )?([\\w\\s\\d]+).*$");
 
 	private final Property targetProperty;
 
@@ -47,8 +51,14 @@ public class GiovaniProperty extends CrawledProperty {
 
 	public void setTitle(String title) {
 		Matcher m = TITLE_PATTERN.matcher(title);
-		if (m.matches())
-			targetProperty.setTitle(m.group(1).trim());
+		if (m.matches()) {
+			title = Arrays.stream(m.group(1).split(" "))
+				.map(String::trim)
+				.map(String::toLowerCase)
+				.map(t -> Character.toUpperCase(t.charAt(0)) + t.substring(1))
+				.collect(joining(" "));
+			targetProperty.setTitle(title);
+		}
 	}
 
 	public void setLatitude(double latitude) {
@@ -80,6 +90,8 @@ public class GiovaniProperty extends CrawledProperty {
 		if (sold != null && !sold.trim().isEmpty()) {
 			targetProperty.setOfferStatus(OfferStatus.SOLD);
 			targetProperty.setReadyToMoveIn(false);
+			targetProperty.setPrice(0);
+			targetProperty.setVatIncluded(false);
 		}
 	}
 
