@@ -33,10 +33,8 @@ public class PropertyCrawlerApplication {
 	public static void main(String[] args) throws Exception {
 		ApplicationContext context = SpringApplication.run(PropertyCrawlerApplication.class, args);
 		CrawlProperties properties = context.getBean(CrawlProperties.class);
-		properties.setProxyHost("192.168.0.102");
-		properties.setProxyPort(8118);
-		properties.setConnectionTimeout(60000);
-		properties.setSocketTimeout(60000);
+		properties.setConnectionTimeout(30000);
+		properties.setSocketTimeout(30000);
 		PageFetcher pageFetcher = new PageFetcher(properties);
 		RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
 		RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
