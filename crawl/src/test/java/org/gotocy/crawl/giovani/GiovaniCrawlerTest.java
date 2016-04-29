@@ -53,7 +53,7 @@ public class GiovaniCrawlerTest {
 	@Test
 	public void testSaleNewVillaDetached() throws Exception {
 		Property villa = crawlProperty(SALE_NEW_VILLA_DETACHED_URL).get(0);
-		Assert.assertEquals("3 Bedroom Detached Villa For Sale in Ayia Triada Protaras", villa.getTitle());
+		Assert.assertEquals("3 Bedroom Detached Villa for Sale in Ayia Triada Protaras", villa.getTitle());
 		Assert.assertEquals(35.043414851659364, villa.getLatitude(), 0.000001);
 		Assert.assertEquals(34.024990827478064, villa.getLongitude(), 0.000001);
 		Assert.assertEquals(374000, villa.getPrice());
@@ -80,7 +80,7 @@ public class GiovaniCrawlerTest {
 	@Test
 	public void testSoldSemiDetachedVilla() throws Exception {
 		Property villa = crawlProperty(SOLD_SEMI_DETACHED_VILLA_URL).get(0);
-		Assert.assertEquals("2 Bedroom Villa For Sale in Ayia Triada Protaras", villa.getTitle());
+		Assert.assertEquals("2 Bedroom Villa for Sale in Ayia Triada Protaras", villa.getTitle());
 		Assert.assertEquals(35.04442938348003, villa.getLatitude(), 0.000001);
 		Assert.assertEquals(34.02507126331329, villa.getLongitude(), 0.000001);
 		Assert.assertEquals(0, villa.getPrice());
@@ -96,7 +96,7 @@ public class GiovaniCrawlerTest {
 	@Test
 	public void testSoldApartmentWithNonStandardTitle() throws Exception {
 		Property villa = crawlProperty(SOLD_APARTMENT_WITH_NON_STANDARD_TITLE).get(0);
-		Assert.assertEquals("1 Bedroom Ground Floor Apartment In Kapparis", villa.getTitle());
+		Assert.assertEquals("1 Bedroom Ground Floor Apartment in Kapparis", villa.getTitle());
 		Assert.assertEquals(35.05267905030267, villa.getLatitude(), 0.000001);
 		Assert.assertEquals(33.99892363323988, villa.getLongitude(), 0.000001);
 		Assert.assertEquals(0, villa.getPrice());

@@ -3,12 +3,9 @@ package org.gotocy.crawl.giovani;
 import org.gotocy.crawl.CrawledProperty;
 import org.gotocy.domain.*;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
 
@@ -19,6 +16,7 @@ public class GiovaniProperty extends CrawledProperty {
 
 	private static final String CRAWL_SOURCE = "http://giovani.com.cy";
 	private static final Pattern TITLE_PATTERN = Pattern.compile("^(?:GDR?\\d+ – )?([\\w\\s\\d]+).*$");
+	private static final Set<String> TITLE_PREPOSITIONS = new HashSet<>(Arrays.asList("in", "for"));
 
 	private final Property targetProperty;
 
@@ -55,7 +53,7 @@ public class GiovaniProperty extends CrawledProperty {
 			title = Arrays.stream(m.group(1).split(" "))
 				.map(String::trim)
 				.map(String::toLowerCase)
-				.map(t -> Character.toUpperCase(t.charAt(0)) + t.substring(1))
+				.map(t -> TITLE_PREPOSITIONS.contains(t) ? t : Character.toUpperCase(t.charAt(0)) + t.substring(1))
 				.collect(joining(" "));
 			targetProperty.setTitle(title);
 		}
