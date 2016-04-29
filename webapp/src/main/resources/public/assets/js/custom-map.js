@@ -250,7 +250,11 @@ function initPropertySubmitMap(_latitude,_longitude,_zoom){
                     location = 'AYIA_NAPA';
                 } else if (locationFromAddress === 'Protaras' || locationFromAddress === 'Протарас' || locationFromAddress === 'Πρωταράς') {
                     location = 'PROTARAS';
+                } else if (locationFromAddress === 'Paralimni' || locationFromAddress === 'Паралимни' || locationFromAddress === 'Παραλίμνι') {
+                    location = 'PROTARAS';
                 } else if (locationFromAddress === 'Troodos' || locationFromAddress === 'Троодос' || locationFromAddress === 'Τρόοδος') {
+                    location = 'TROODOS';
+                } else if (locationFromAddress === 'Pano Platres' || locationFromAddress === 'Πάνω Πλάτρες, Κύπρος') {
                     location = 'TROODOS';
                 }
             }

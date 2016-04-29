@@ -2,6 +2,7 @@ package org.gotocy.crawl.cyprusreality;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.gotocy.crawl.CrawledProperty;
 import org.gotocy.domain.*;
 
 import java.util.Arrays;
@@ -15,11 +16,9 @@ import static java.util.stream.Collectors.toList;
  */
 @Getter
 @Setter
-public class CyprusRealityProperty {
+public class CyprusRealityProperty extends CrawledProperty {
 
 	private static final String CRAWL_SOURCE = "cyprus-reality.info";
-
-	private static final String SQ_M = "m&sup2;";
 
 	Property targetProperty;
 
@@ -28,6 +27,17 @@ public class CyprusRealityProperty {
 		targetProperty.setFurnishing(Furnishing.NONE); // default furnishing
 		targetProperty.setOfferStatus(OfferStatus.ACTIVE); // default offer status
 		targetProperty.setCrawlSource(CRAWL_SOURCE);
+	}
+
+	@Override
+	public boolean isSupported() {
+		return targetProperty.getLocation() != null && targetProperty.getPropertyType() != null &&
+			targetProperty.getPropertyStatus() != null && targetProperty.getPropertyStatus() == PropertyStatus.SALE;
+	}
+
+	@Override
+	public Property toProperty() {
+		return targetProperty;
 	}
 
 	public void setTitle(String title) {
@@ -194,35 +204,6 @@ public class CyprusRealityProperty {
 			return false;
 		}
 		return true;
-	}
-
-	/**
-	 * Determines if the given Cyprus Reality property is currently supported.
-	 */
-	public boolean isSupported() {
-		return targetProperty.getLocation() != null && targetProperty.getPropertyType() != null &&
-			targetProperty.getPropertyStatus() != null && targetProperty.getPropertyStatus() == PropertyStatus.SALE;
-	}
-
-	private static int extractNumber(String numberString) {
-		int number = 0;
-
-		if (numberString == null || numberString.isEmpty())
-			return number;
-
-		for (int i = 0; i < numberString.length(); i++) {
-			char c = numberString.charAt(i);
-			if (c >= '0' && c <= '9')
-				number = number * 10 + (c - '0');
-		}
-
-		return number;
-	}
-
-	private static int extractSQM(String sqm) {
-		if (sqm.endsWith(SQ_M))
-			sqm = sqm.substring(0, sqm.length() - SQ_M.length()).trim();
-		return extractNumber(sqm);
 	}
 
 	private static int extractBedrooms(String bedroomsString) {

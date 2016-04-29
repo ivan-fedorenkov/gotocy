@@ -136,23 +136,10 @@ public class CyprusRealityCrawler extends PropertyCrawler {
 				}
 
 				NodeList imagesNodes = (NodeList) imagesExpression.evaluate(dom, XPathConstants.NODESET);
-				if (imagesNodes != null && imagesNodes.getLength() > 0) {
-					List<String> imageUrls = new ArrayList<>(specNodes.getLength());
-					for (int i = 0; i < specNodes.getLength(); i++) {
-						Node imageNode = imagesNodes.item(i);
-						if (imageNode != null) {
-							Node imageHref = imageNode.getAttributes().getNamedItem("href");
-							if (imageHref != null) {
-								imageUrls.add(imageHref.getNodeValue());
-							}
-						}
-					}
-
-					List<Image> downloadedImages = downloadImages(pageWebURL, imageUrls);
-					if (!downloadedImages.isEmpty()) {
-						property.setRepresentativeImage(downloadedImages.get(0));
-						property.setImages(downloadedImages);
-					}
+				List<Image> downloadedImages = downloadImages(pageWebURL, extractImageUrls(imagesNodes, "href"));
+				if (!downloadedImages.isEmpty()) {
+					property.setRepresentativeImage(downloadedImages.get(0));
+					property.setImages(downloadedImages);
 				}
 
 				Matcher m = LATITUDE_PATTERN.matcher(html);
@@ -165,7 +152,7 @@ public class CyprusRealityCrawler extends PropertyCrawler {
 
 
 				if (property.isSupported())
-					getPropertyConsumer().accept(property.getTargetProperty());
+					getPropertyConsumer().accept(property.toProperty());
 
 			} catch (Exception e) {
 				getLogger().error("Failed to parse property (" + pageWebURL.getURL() + ")", e);

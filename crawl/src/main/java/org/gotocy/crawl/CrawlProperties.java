@@ -36,6 +36,9 @@ public class CrawlProperties extends CrawlConfig {
 	@NestedConfigurationProperty
 	private PropertyFilter filter = new PropertyFilter();
 
+	@NotEmpty
+	private String googleMapsApiKey;
+
 	/**
 	 * Delegate for the {@link org.apache.http.impl.cookie.BasicClientCookie} that could be created
 	 * by means of default constructor.

@@ -6,12 +6,18 @@ import edu.uci.ics.crawler4j.url.WebURL;
 import lombok.Getter;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.Property;
+import org.htmlcleaner.DomSerializer;
+import org.htmlcleaner.HtmlCleaner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StreamUtils;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
+import javax.xml.xpath.XPathConstants;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
@@ -34,6 +40,29 @@ public abstract class PropertyCrawler extends WebCrawler {
 
 	protected Logger getLogger() {
 		return logger;
+	}
+
+	/**
+	 * Extracts image urls by iterating over the provided nodes using the specified image url attribute name.
+	 *
+	 * @param imagesNodes nodes with image urls in some attribute
+	 * @param urlAttributeName name of attribute with image url
+	 * @return list of image urls
+	 */
+	protected List<String> extractImageUrls(NodeList imagesNodes, String urlAttributeName) {
+		List<String> imageUrls = new ArrayList<>();
+		if (imagesNodes != null && imagesNodes.getLength() > 0) {
+			for (int i = 0; i < imagesNodes.getLength(); i++) {
+				Node imageNode = imagesNodes.item(i);
+				if (imageNode != null) {
+					Node imageHref = imageNode.getAttributes().getNamedItem(urlAttributeName);
+					if (imageHref != null) {
+						imageUrls.add(imageHref.getNodeValue());
+					}
+				}
+			}
+		}
+		return imageUrls;
 	}
 
 	/**
