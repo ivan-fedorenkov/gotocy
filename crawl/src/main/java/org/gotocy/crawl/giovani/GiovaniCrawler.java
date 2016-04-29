@@ -129,12 +129,12 @@ public class GiovaniCrawler extends PropertyCrawler {
 				if (!features.isEmpty())
 					property.setFeatures(features);
 
-				/*NodeList imagesNodes = (NodeList) imagesExpression.evaluate(dom, XPathConstants.NODESET);
+				NodeList imagesNodes = (NodeList) imagesExpression.evaluate(dom, XPathConstants.NODESET);
 				List<Image> downloadedImages = downloadImages(pageWebURL, extractImageUrls(imagesNodes, "href"));
 				if (!downloadedImages.isEmpty()) {
 					property.setRepresentativeImage(downloadedImages.get(0));
 					property.setImages(downloadedImages);
-				}*/
+				}
 
 				if (property.isSupported())
 					getPropertyConsumer().accept(property.toProperty());
