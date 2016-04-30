@@ -52,6 +52,7 @@ public class GiovaniProperty extends CrawledProperty {
 		if (m.matches()) {
 			title = Arrays.stream(m.group(1).split(" "))
 				.map(String::trim)
+				.filter(t -> !t.isEmpty())
 				.map(String::toLowerCase)
 				.map(t -> TITLE_PREPOSITIONS.contains(t) ? t : Character.toUpperCase(t.charAt(0)) + t.substring(1))
 				.collect(joining(" "));

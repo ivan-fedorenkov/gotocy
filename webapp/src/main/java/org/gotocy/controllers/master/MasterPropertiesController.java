@@ -2,10 +2,9 @@ package org.gotocy.controllers.master;
 
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
-import org.gotocy.domain.Complex;
-import org.gotocy.domain.Contact;
-import org.gotocy.domain.Developer;
-import org.gotocy.domain.Property;
+import org.gotocy.domain.*;
+import org.gotocy.dto.PropertyDto;
+import org.gotocy.dto.PropertyDtoFactory;
 import org.gotocy.forms.PropertyForm;
 import org.gotocy.repository.ComplexRepository;
 import org.gotocy.repository.ContactRepository;
@@ -20,11 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
+
 /**
  * @author ifedorenkov
  */
 @Controller
-@RequestMapping(value = "/master/properties")
 public class MasterPropertiesController {
 
 	private final ApplicationProperties applicationProperties;
@@ -33,20 +35,33 @@ public class MasterPropertiesController {
 	private final DeveloperRepository developerRepository;
 	private final ComplexRepository complexRepository;
 	private final ContactRepository contactRepository;
+	private final PropertyDtoFactory propertyDtoFactory;
 
 	@Autowired
 	public MasterPropertiesController(ApplicationProperties applicationProperties,
 		PropertyRepository propertyRepository, DeveloperRepository developerRepository,
-		ComplexRepository complexRepository, ContactRepository contactRepository)
+		ComplexRepository complexRepository, ContactRepository contactRepository,
+		PropertyDtoFactory propertyDtoFactory)
 	{
 		this.applicationProperties = applicationProperties;
 		this.propertyRepository = propertyRepository;
 		this.developerRepository = developerRepository;
 		this.complexRepository = complexRepository;
 		this.contactRepository = contactRepository;
+		this.propertyDtoFactory = propertyDtoFactory;
 	}
 
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	@RequestMapping(value = "/master/properties.json", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody
+	List<PropertyDto> indexJson() {
+		return propertyRepository.findAll().stream()
+			.filter(p -> p.getOfferStatus() == OfferStatus.ACTIVE)
+			.filter(p -> p.getPrice() > 0)
+			.map(propertyDtoFactory::create)
+			.collect(toList());
+	}
+
+	@RequestMapping(value = "/master/properties/new", method = RequestMethod.GET)
 	public String _new(Model model) {
 		model.addAttribute("developers", developerRepository.findAll());
 		model.addAttribute("complexes", complexRepository.findAll());
@@ -60,7 +75,7 @@ public class MasterPropertiesController {
 		return "master/property/new";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/master/properties", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
 	public Property create(PropertyForm propertyForm) {
@@ -74,7 +89,7 @@ public class MasterPropertiesController {
 		return propertyRepository.save(property);
 	}
 
-	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/master/properties/{id}/edit", method = RequestMethod.GET)
 	public String edit(@RequiredDomainObject @PathVariable("id") Property property, Model model) {
 		model.addAttribute(property);
 		model.addAttribute(new PropertyForm(property));
@@ -86,7 +101,7 @@ public class MasterPropertiesController {
 	}
 
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/master/properties/{id}", method = RequestMethod.PUT)
 	@ResponseBody
 	@Transactional
 	public Property update(@RequiredDomainObject @PathVariable("id") Property property, PropertyForm propertyForm) {

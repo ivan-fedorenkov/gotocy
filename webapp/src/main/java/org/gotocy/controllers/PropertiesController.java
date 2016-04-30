@@ -7,8 +7,6 @@ import org.gotocy.domain.Image;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.PanoXml;
 import org.gotocy.domain.Property;
-import org.gotocy.dto.PropertyDto;
-import org.gotocy.dto.PropertyDtoFactory;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.UserPropertyForm;
 import org.gotocy.forms.validation.UserPropertyFormValidator;
@@ -36,7 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static java.util.stream.Collectors.toList;
 import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
 
 /**
@@ -49,19 +46,16 @@ public class PropertiesController {
 	private final AssetsManager assetsManager;
 	private final ApplicationProperties applicationProperties;
 	private final PropertyService propertyService;
-	private final PropertyDtoFactory propertyDtoFactory;
 	private final UserPropertyFormValidator userPropertyFormValidator;
 
 	@Autowired
 	public PropertiesController(PropertyRepository repository, AssetsManager assetsManager,
-		ApplicationProperties applicationProperties, PropertyService propertyService,
-		PropertyDtoFactory propertyDtoFactory)
+		ApplicationProperties applicationProperties, PropertyService propertyService)
 	{
 		this.repository = repository;
 		this.assetsManager = assetsManager;
 		this.applicationProperties = applicationProperties;
 		this.propertyService = propertyService;
-		this.propertyDtoFactory = propertyDtoFactory;
 		userPropertyFormValidator = new UserPropertyFormValidator(applicationProperties);
 	}
 
@@ -96,11 +90,6 @@ public class PropertiesController {
 		model.addAttribute("properties", properties);
 		model.addAttribute(form);
 		return "property/index";
-	}
-
-	@RequestMapping(value = "/properties.json", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<PropertyDto> indexJson() {
-		return repository.findAll().stream().map(propertyDtoFactory::create).collect(toList());
 	}
 
 	@RequestMapping(value = "/properties/{id}", method = RequestMethod.GET)

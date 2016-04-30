@@ -35,8 +35,11 @@ public class GiovaniCrawlerTest {
 	private static final String SALE_NEW_VILLA_WITHOUT_PRICE_URL =
 		"http://giovani.com.cy/property/3-bedroom-smart-homes-in-kapparis-protaras-gd00192/";
 
-	private static final String SOLD_APARTMENT_WITH_NON_STANDARD_TITLE =
+	private static final String SOLD_APARTMENT_WITH_NON_STANDARD_TITLE_URL =
 		"http://giovani.com.cy/property/gdr017-1-bedroom-ground-floor-apartment-in-kapparis/";
+
+	private static final String PROPERTY_WITH_DOUBLE_SPACE_IN_TITLE_URL =
+		"http://giovani.com.cy/property/4-bedroom-detached-villa-in-agia-triada-protaras/";
 
 	private static CrawlController crawlController;
 
@@ -52,19 +55,19 @@ public class GiovaniCrawlerTest {
 
 	@Test
 	public void testSaleNewVillaDetached() throws Exception {
-		Property villa = crawlProperty(SALE_NEW_VILLA_DETACHED_URL).get(0);
-		Assert.assertEquals("3 Bedroom Detached Villa for Sale in Ayia Triada Protaras", villa.getTitle());
-		Assert.assertEquals(35.043414851659364, villa.getLatitude(), 0.000001);
-		Assert.assertEquals(34.024990827478064, villa.getLongitude(), 0.000001);
-		Assert.assertEquals(374000, villa.getPrice());
-		Assert.assertEquals(PropertyStatus.SALE, villa.getPropertyStatus());
-		Assert.assertEquals(OfferStatus.ACTIVE, villa.getOfferStatus());
-		Assert.assertFalse(villa.isVatIncluded());
-		Assert.assertTrue(villa.isReadyToMoveIn());
-		Assert.assertEquals(Furnishing.NONE, villa.getFurnishing());
-		Assert.assertEquals(248, villa.getPlotSize());
-		Assert.assertEquals(126, villa.getCoveredArea());
-		Assert.assertEquals(3, villa.getBedrooms());
+		Property property = crawlProperty(SALE_NEW_VILLA_DETACHED_URL).get(0);
+		Assert.assertEquals("3 Bedroom Detached Villa for Sale in Ayia Triada Protaras", property.getTitle());
+		Assert.assertEquals(35.043414851659364, property.getLatitude(), 0.000001);
+		Assert.assertEquals(34.024990827478064, property.getLongitude(), 0.000001);
+		Assert.assertEquals(374000, property.getPrice());
+		Assert.assertEquals(PropertyStatus.SALE, property.getPropertyStatus());
+		Assert.assertEquals(OfferStatus.ACTIVE, property.getOfferStatus());
+		Assert.assertFalse(property.isVatIncluded());
+		Assert.assertTrue(property.isReadyToMoveIn());
+		Assert.assertEquals(Furnishing.NONE, property.getFurnishing());
+		Assert.assertEquals(248, property.getPlotSize());
+		Assert.assertEquals(126, property.getCoveredArea());
+		Assert.assertEquals(3, property.getBedrooms());
 
 		Assert.assertEquals(Arrays.asList(
 			"Double glazing",
@@ -74,46 +77,52 @@ public class GiovaniCrawlerTest {
 			"Pressurised Water System",
 			"Provision for Air-conditioning",
 			"Walking distance to the beach"
-		), villa.getFeatures(Locale.ENGLISH));
+		), property.getFeatures(Locale.ENGLISH));
 	}
 
 	@Test
 	public void testSoldSemiDetachedVilla() throws Exception {
-		Property villa = crawlProperty(SOLD_SEMI_DETACHED_VILLA_URL).get(0);
-		Assert.assertEquals("2 Bedroom Villa for Sale in Ayia Triada Protaras", villa.getTitle());
-		Assert.assertEquals(35.04442938348003, villa.getLatitude(), 0.000001);
-		Assert.assertEquals(34.02507126331329, villa.getLongitude(), 0.000001);
-		Assert.assertEquals(0, villa.getPrice());
-		Assert.assertEquals(PropertyStatus.SALE, villa.getPropertyStatus());
-		Assert.assertEquals(OfferStatus.SOLD, villa.getOfferStatus());
-		Assert.assertFalse(villa.isReadyToMoveIn());
-		Assert.assertEquals(Furnishing.NONE, villa.getFurnishing());
-		Assert.assertEquals(146, villa.getPlotSize());
-		Assert.assertEquals(96, villa.getCoveredArea());
-		Assert.assertEquals(2, villa.getBedrooms());
+		Property property = crawlProperty(SOLD_SEMI_DETACHED_VILLA_URL).get(0);
+		Assert.assertEquals("2 Bedroom Villa for Sale in Ayia Triada Protaras", property.getTitle());
+		Assert.assertEquals(35.04442938348003, property.getLatitude(), 0.000001);
+		Assert.assertEquals(34.02507126331329, property.getLongitude(), 0.000001);
+		Assert.assertEquals(0, property.getPrice());
+		Assert.assertEquals(PropertyStatus.SALE, property.getPropertyStatus());
+		Assert.assertEquals(OfferStatus.SOLD, property.getOfferStatus());
+		Assert.assertFalse(property.isReadyToMoveIn());
+		Assert.assertEquals(Furnishing.NONE, property.getFurnishing());
+		Assert.assertEquals(146, property.getPlotSize());
+		Assert.assertEquals(96, property.getCoveredArea());
+		Assert.assertEquals(2, property.getBedrooms());
 	}
 
 	@Test
 	public void testSoldApartmentWithNonStandardTitle() throws Exception {
-		Property villa = crawlProperty(SOLD_APARTMENT_WITH_NON_STANDARD_TITLE).get(0);
-		Assert.assertEquals("1 Bedroom Ground Floor Apartment in Kapparis", villa.getTitle());
-		Assert.assertEquals(35.05267905030267, villa.getLatitude(), 0.000001);
-		Assert.assertEquals(33.99892363323988, villa.getLongitude(), 0.000001);
-		Assert.assertEquals(0, villa.getPrice());
-		Assert.assertEquals(PropertyStatus.SALE, villa.getPropertyStatus());
-		Assert.assertEquals(OfferStatus.SOLD, villa.getOfferStatus());
-		Assert.assertFalse(villa.isVatIncluded());
-		Assert.assertFalse(villa.isReadyToMoveIn());
-		Assert.assertEquals(Furnishing.NONE, villa.getFurnishing());
-		Assert.assertEquals(0, villa.getPlotSize());
-		Assert.assertEquals(50, villa.getCoveredArea());
-		Assert.assertEquals(1, villa.getBedrooms());
+		Property property = crawlProperty(SOLD_APARTMENT_WITH_NON_STANDARD_TITLE_URL).get(0);
+		Assert.assertEquals("1 Bedroom Ground Floor Apartment in Kapparis", property.getTitle());
+		Assert.assertEquals(35.05267905030267, property.getLatitude(), 0.000001);
+		Assert.assertEquals(33.99892363323988, property.getLongitude(), 0.000001);
+		Assert.assertEquals(0, property.getPrice());
+		Assert.assertEquals(PropertyStatus.SALE, property.getPropertyStatus());
+		Assert.assertEquals(OfferStatus.SOLD, property.getOfferStatus());
+		Assert.assertFalse(property.isVatIncluded());
+		Assert.assertFalse(property.isReadyToMoveIn());
+		Assert.assertEquals(Furnishing.NONE, property.getFurnishing());
+		Assert.assertEquals(0, property.getPlotSize());
+		Assert.assertEquals(50, property.getCoveredArea());
+		Assert.assertEquals(1, property.getBedrooms());
 	}
 
 	@Test
 	public void saleNewVillaDetachedTest() throws Exception {
 		Assert.assertTrue("Should not crawl properties without price.",
 			crawlProperty(SALE_NEW_VILLA_WITHOUT_PRICE_URL).isEmpty());
+	}
+
+	@Test
+	public void testPropertyWithDoubleSpaceInTitle() throws Exception {
+		Property property = crawlProperty(PROPERTY_WITH_DOUBLE_SPACE_IN_TITLE_URL).get(0);
+		Assert.assertEquals("4 Bedroom Detached Villa in Agia Triada Protaras", property.getTitle());
 	}
 
 	private static List<Property> crawlProperty(String url) throws Exception {
