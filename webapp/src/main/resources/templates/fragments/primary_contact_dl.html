@@ -5,9 +5,9 @@
     <dt th:unless="${#strings.isEmpty(c.email)}" th:text="|${i18n.t('dictionary.email')}:|">Email:</dt>
     <dd th:unless="${#strings.isEmpty(c.email)}" th:text="${c.email}">support@gotocy.com</dd>
 
-    <dt th:text="|${i18n.t('dictionary.phone')}:|">Phone:</dt>
-    <dd th:text="${c.phone}">123-45-67</dd>
+    <dt th:unless="${#strings.isEmpty(c.phone)}" th:text="|${i18n.t('dictionary.phone')}:|">Phone:</dt>
+    <dd th:unless="${#strings.isEmpty(c.phone)}" th:text="${c.phone}">123-45-67</dd>
 
-    <dt th:text="|${i18n.t('dictionary.spoken-languages')}:|">Spoken Languages:</dt>
-    <dd th:text="${c.spokenLanguages}">English, Russian</dd>
+    <dt th:unless="${#strings.isEmpty(c.spokenLanguages)}" th:text="|${i18n.t('dictionary.spoken-languages')}:|">Spoken Languages:</dt>
+    <dd th:unless="${#strings.isEmpty(c.spokenLanguages)}" th:text="${c.spokenLanguages}">English, Russian</dd>
 </dl>
