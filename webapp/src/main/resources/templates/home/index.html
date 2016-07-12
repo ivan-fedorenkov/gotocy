@@ -112,7 +112,7 @@
 
     <!-- Page Content -->
     <div id="page-content">
-         <section id="banner">
+        <section id="banner">
             <div class="block has-dark-background background-color-default-darker center text-banner">
                 <div class="container">
                     <h1 class="no-bottom-margin no-border" th:with="url=@{${helper.path('/properties/new')}}" th:utext="${i18n.t('templates.home.index.banner', url)}">Do you want your property do be listed here? <a href="#" class="text-underline">Click Here</a>!</h1>
@@ -420,6 +420,25 @@
                 </div><!-- /.row-->
             </div><!-- /.container -->
         </section><!-- /#long-term-properties -->
+
+        <section id="google-ad" class="block" th:if="${gotocy.firstActiveProfile == T(org.gotocy.config.Profiles).PROD}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- MainPage -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-5640895382386017"
+                             data-ad-slot="5698644087"
+                             data-ad-format="auto"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="short-term-properties" class="block" th:unless=${#lists.isEmpty(shortTermProperties)}>
             <div class="container">
