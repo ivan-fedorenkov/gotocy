@@ -16,7 +16,6 @@ import javax.validation.constraints.NotNull;
 /**
  * @author ifedorenkov
  */
-@Component
 @ConfigurationProperties(prefix = "gotocy.webapp")
 @Getter
 @Setter

@@ -100,7 +100,6 @@ public class PropertyIntegrationTest {
 	public void propertyCreationByAdmin() throws Exception {
 		Property property = PropertyFactory.INSTANCE.get(p -> p.setPrimaryContact(ContactFactory.INSTANCE.get()));
 		mockMvc.perform(post("/master/properties")
-			.sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE)
 			.param("title", property.getTitle())
 			.param("propertyType", property.getPropertyType().name())
 			.param("propertyStatus", property.getPropertyStatus().name())

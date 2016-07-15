@@ -3,7 +3,6 @@ package org.gotocy.integration;
 import org.gotocy.Application;
 import org.gotocy.config.Locales;
 import org.gotocy.config.Profiles;
-import org.gotocy.config.SecurityProperties;
 import org.gotocy.domain.Page;
 import org.gotocy.domain.i18n.LocalizedPage;
 import org.gotocy.forms.PageForm;
@@ -96,7 +95,6 @@ public class PageIntegrationTest {
 		// Create page and verify the redirect
 		mockMvc
 			.perform(post("/master/pages")
-				.sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE)
 				.param("title", pageForm.getTitle())
 				.param("html", pageForm.getHtml())
 				.param("visible", String.valueOf(pageForm.isVisible()))
@@ -106,7 +104,7 @@ public class PageIntegrationTest {
 
 		// Verify that created page is listed in the pages index
 		mockMvc
-			.perform(get("/master/pages").sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE))
+			.perform(get("/master/pages"))
 			.andExpect(status().isOk())
 			.andExpect(content().string(containsString(pageForm.getTitle())));
 
@@ -130,7 +128,6 @@ public class PageIntegrationTest {
 		// Update the page and verify redirect
 		mockMvc
 			.perform(put("/master/pages/" + page.getId())
-				.sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE)
 				.param("title", updatedTitle)
 				.param("html", updatedHtml)
 				.param("url", updatedUrl)
@@ -159,7 +156,6 @@ public class PageIntegrationTest {
 
 		// Detect that new object wasn't created by view name (at least)
 		mockMvc.perform(post("/master/pages")
-				.sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE)
 				.param("url", duplicateUrl.getUrl())
 				.param("title", duplicateUrl.getTitle())
 				.param("html", duplicateUrl.getHtml())
@@ -187,7 +183,6 @@ public class PageIntegrationTest {
 		pageRepository.save(anotherExisting.getOriginal());
 		// Detect that new object wasn't created by view name (at least)
 		mockMvc.perform(put("/master/pages/" + existing.getId())
-			.sessionAttr(SecurityProperties.SESSION_KEY, Boolean.TRUE)
 			.param("url", anotherExisting.getUrl())
 			.param("title", existing.getTitle())
 			.param("html", existing.getHtml())

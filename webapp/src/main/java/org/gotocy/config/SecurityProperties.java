@@ -1,14 +1,15 @@
 package org.gotocy.config;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 /**
  * @author ifedorenkov
  */
-@Component
 @ConfigurationProperties(prefix = "gotocy.webapp.security")
+@Getter
+@Setter
 public class SecurityProperties {
 
 	public static final String SESSION_KEY = "authorized";
@@ -16,20 +17,4 @@ public class SecurityProperties {
 	private String login;
 	private String password;
 
-	public String getPassword() {
-
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
 }

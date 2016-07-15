@@ -11,7 +11,6 @@ import org.gotocy.format.seo.SeoPropertySearchFormUriFormatter;
 import org.gotocy.helpers.Helper;
 import org.gotocy.i18n.I18n;
 import org.gotocy.interceptors.HelpersInterceptor;
-import org.gotocy.interceptors.SecurityInterceptor;
 import org.gotocy.repository.PageRepository;
 import org.gotocy.service.AssetsManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -30,6 +30,7 @@ import javax.servlet.Filter;
  * @author ifedorenkov
  */
 @Configuration
+@EnableWebSecurity
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	private I18n i18n;
@@ -110,7 +111,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new HelpersInterceptor(applicationProperties, i18n, helper()));
-		registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/master/**");
 	}
 
 }

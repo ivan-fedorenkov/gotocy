@@ -1,7 +1,12 @@
 package org.gotocy;
 
+import org.gotocy.config.ApplicationProperties;
+import org.gotocy.config.SecurityProperties;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.SecurityFilterAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -17,7 +22,8 @@ import java.util.Collections;
  * @author ifedorenkov
  */
 @SpringBootApplication
-@EnableConfigurationProperties
+@EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class, SecurityFilterAutoConfiguration.class})
+@EnableConfigurationProperties(value = ApplicationProperties.class)
 @EnableAspectJAutoProxy
 @EnableCaching
 public class Application {
