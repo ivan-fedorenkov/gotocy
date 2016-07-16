@@ -12,8 +12,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 public class SecurityProperties {
 
-	public static final String SESSION_KEY = "authorized";
-
 	private String login;
 	private String password;
 

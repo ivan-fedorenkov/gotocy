@@ -20,7 +20,7 @@ public class SecurityConfig  {
 	private static void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.antMatchers("/master/**").hasRole("MASTER")
+			.antMatchers("/master/**").hasRole(Roles.MASTER)
 			.antMatchers("/**").permitAll()
 			.and().formLogin()
 			.loginPage("/session/new")
@@ -31,8 +31,9 @@ public class SecurityConfig  {
 	@Configuration
 	@EnableWebSecurity
 	public static class ProductionSecurityConfig extends WebSecurityConfigurerAdapter {
+
 		@Bean
-		public SecurityProperties securityProperties() {
+		SecurityProperties securityProperties() {
 			return new SecurityProperties();
 		}
 
@@ -47,7 +48,17 @@ public class SecurityConfig  {
 				.inMemoryAuthentication()
 				.withUser(securityProperties().getLogin())
 				.password(securityProperties().getPassword())
-				.roles("MASTER");
+				.roles(Roles.MASTER);
+		}
+	}
+
+	@Profile(Profiles.TEST)
+	@Configuration
+	@EnableWebSecurity
+	public static class TestSecurityConfig extends WebSecurityConfigurerAdapter {
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+			SecurityConfig.configure(http);
 		}
 	}
 
@@ -62,16 +73,5 @@ public class SecurityConfig  {
 				.anyRequest().permitAll();
 		}
 	}
-
-	@Profile(Profiles.TEST)
-	@Configuration
-	@EnableWebSecurity
-	public static class TestSecurityConfig extends WebSecurityConfigurerAdapter {
-		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			SecurityConfig.configure(http);
-		}
-	}
-
 
 }

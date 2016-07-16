@@ -2,6 +2,7 @@ package org.gotocy.integration;
 
 import org.gotocy.Application;
 import org.gotocy.config.Profiles;
+import org.gotocy.config.Roles;
 import org.gotocy.config.SecurityProperties;
 import org.gotocy.domain.Contact;
 import org.gotocy.domain.OfferStatus;
@@ -16,6 +17,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -27,31 +29,17 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 /**
  * @author ifedorenkov
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@WebIntegrationTest(randomPort = true, value = "debug")
-@ActiveProfiles(Profiles.TEST)
-@Transactional
-public class PropertyIntegrationTest {
+public class PropertyIntegrationTest extends IntegrationTestBase {
 
 	@Autowired
 	private PropertyRepository propertyRepository;
-
-	@Autowired
-	private WebApplicationContext wac;
-
-	private MockMvc mockMvc;
-
-	@Before
-	public void setUp() throws Exception {
-		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-	}
 
 	@Test
 	public void propertyCreation() throws Exception {
@@ -59,7 +47,7 @@ public class PropertyIntegrationTest {
 		Property property = PropertyFactory.INSTANCE.get(p -> p.setOfferStatus(OfferStatus.PROMO));
 
 		// Post the property
-		ResultActions result = mockMvc.perform(fileUpload("/properties")
+		ResultActions result = mockMvc.perform(fileUpload("/properties").with(csrf())
 			.param("title", property.getTitle())
 			.param("propertyType", property.getPropertyType().name())
 			.param("propertyStatus", property.getPropertyStatus().name())
@@ -97,9 +85,10 @@ public class PropertyIntegrationTest {
 
 
 	@Test
+	@WithMockUser(roles = Roles.MASTER)
 	public void propertyCreationByAdmin() throws Exception {
 		Property property = PropertyFactory.INSTANCE.get(p -> p.setPrimaryContact(ContactFactory.INSTANCE.get()));
-		mockMvc.perform(post("/master/properties")
+		mockMvc.perform(post("/master/properties").with(csrf())
 			.param("title", property.getTitle())
 			.param("propertyType", property.getPropertyType().name())
 			.param("propertyStatus", property.getPropertyStatus().name())

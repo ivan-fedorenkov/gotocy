@@ -1,53 +1,29 @@
 package org.gotocy.integration;
 
-import org.gotocy.Application;
 import org.gotocy.config.Locales;
-import org.gotocy.config.Profiles;
+import org.gotocy.config.Roles;
 import org.gotocy.domain.Page;
 import org.gotocy.domain.i18n.LocalizedPage;
 import org.gotocy.forms.PageForm;
 import org.gotocy.repository.PageRepository;
 import org.gotocy.test.factory.PageFactory;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * @author ifedorenkov
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@WebIntegrationTest(randomPort = true, value = "debug")
-@ActiveProfiles(Profiles.TEST)
-@Transactional
-public class PageIntegrationTest {
+public class PageIntegrationTest extends IntegrationTestBase {
 
 	@Autowired
 	private PageRepository pageRepository;
-
-	@Autowired
-	private WebApplicationContext wac;
-
-	private MockMvc mockMvc;
-
-	@Before
-	public void setUp() throws Exception {
-		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-	}
 
 	@Test
 	public void visiblePageShouldBeAccessible() throws Exception {
@@ -88,13 +64,14 @@ public class PageIntegrationTest {
 
 
 	@Test
+	@WithMockUser(roles = Roles.MASTER)
 	public void pageCreationByAdminTest() throws Exception {
 		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.DEFAULT);
 		PageForm pageForm = new PageForm(page, Locales.DEFAULT);
 
 		// Create page and verify the redirect
 		mockMvc
-			.perform(post("/master/pages")
+			.perform(post("/master/pages").with(csrf())
 				.param("title", pageForm.getTitle())
 				.param("html", pageForm.getHtml())
 				.param("visible", String.valueOf(pageForm.isVisible()))
@@ -113,6 +90,7 @@ public class PageIntegrationTest {
 	}
 
 	@Test
+	@WithMockUser(roles = Roles.MASTER)
 	public void pageUpdateByAdminTest() throws Exception {
 		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.DEFAULT);
 		pageRepository.save(page);
@@ -127,7 +105,7 @@ public class PageIntegrationTest {
 
 		// Update the page and verify redirect
 		mockMvc
-			.perform(put("/master/pages/" + page.getId())
+			.perform(put("/master/pages/" + page.getId()).with(csrf())
 				.param("title", updatedTitle)
 				.param("html", updatedHtml)
 				.param("url", updatedUrl)
@@ -146,6 +124,7 @@ public class PageIntegrationTest {
 	}
 
 	@Test
+	@WithMockUser(roles = Roles.MASTER)
 	public void testAttemptToCreatePageWithExistingUrl() throws Exception {
 		Page existing = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.DEFAULT);
 		pageRepository.save(existing);
@@ -155,7 +134,7 @@ public class PageIntegrationTest {
 		});
 
 		// Detect that new object wasn't created by view name (at least)
-		mockMvc.perform(post("/master/pages")
+		mockMvc.perform(post("/master/pages").with(csrf())
 				.param("url", duplicateUrl.getUrl())
 				.param("title", duplicateUrl.getTitle())
 				.param("html", duplicateUrl.getHtml())
@@ -167,6 +146,7 @@ public class PageIntegrationTest {
 	}
 
 	@Test
+	@WithMockUser(roles = Roles.MASTER)
 	public void testAttemptToUpdatePageWithExistingUrl() throws Exception {
 		String existingUrl = "existing-url";
 		LocalizedPage existing = PageFactory.INSTANCE.getLocalized(Locales.DEFAULT, lp -> {
@@ -182,7 +162,7 @@ public class PageIntegrationTest {
 		});
 		pageRepository.save(anotherExisting.getOriginal());
 		// Detect that new object wasn't created by view name (at least)
-		mockMvc.perform(put("/master/pages/" + existing.getId())
+		mockMvc.perform(put("/master/pages/" + existing.getId()).with(csrf())
 			.param("url", anotherExisting.getUrl())
 			.param("title", existing.getTitle())
 			.param("html", existing.getHtml())
