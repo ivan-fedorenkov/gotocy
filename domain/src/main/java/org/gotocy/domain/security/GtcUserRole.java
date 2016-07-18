@@ -6,6 +6,7 @@ import org.gotocy.domain.BaseEntity;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.util.Objects;
 
 /**
@@ -17,6 +18,9 @@ import java.util.Objects;
 @Getter
 @Setter
 public class GtcUserRole extends BaseEntity implements GrantedAuthority {
+
+	@ManyToOne(optional = false)
+	private GtcUser gtcUser;
 
 	private String role;
 

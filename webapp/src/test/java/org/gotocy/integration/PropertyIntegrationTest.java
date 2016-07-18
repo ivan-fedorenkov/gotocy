@@ -1,9 +1,6 @@
 package org.gotocy.integration;
 
-import org.gotocy.Application;
-import org.gotocy.config.Profiles;
 import org.gotocy.config.Roles;
-import org.gotocy.config.SecurityProperties;
 import org.gotocy.domain.Contact;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
@@ -11,21 +8,11 @@ import org.gotocy.repository.PropertyRepository;
 import org.gotocy.test.factory.ContactFactory;
 import org.gotocy.test.factory.PropertyFactory;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 

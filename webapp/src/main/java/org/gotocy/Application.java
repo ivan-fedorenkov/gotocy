@@ -1,7 +1,6 @@
 package org.gotocy;
 
 import org.gotocy.config.ApplicationProperties;
-import org.gotocy.config.SecurityProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

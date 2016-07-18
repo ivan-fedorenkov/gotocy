@@ -24,7 +24,7 @@ public class GtcUser extends BaseEntity {
 	private String password;
 	private boolean enabled;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "gtcUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<GtcUserRole> roles;
 
 }

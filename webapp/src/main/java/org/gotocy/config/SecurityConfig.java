@@ -1,5 +1,8 @@
 package org.gotocy.config;
 
+import org.gotocy.repository.GtcUserRepository;
+import org.gotocy.service.UserDetailsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -7,6 +10,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * @author ifedorenkov
@@ -32,9 +38,21 @@ public class SecurityConfig  {
 	@EnableWebSecurity
 	public static class ProductionSecurityConfig extends WebSecurityConfigurerAdapter {
 
+		private GtcUserRepository userRepository;
+
+		@Autowired
+		public void setUserRepository(GtcUserRepository userRepository) {
+			this.userRepository = userRepository;
+		}
+
 		@Bean
-		SecurityProperties securityProperties() {
-			return new SecurityProperties();
+		public UserDetailsService userDetailsService() {
+			return new UserDetailsServiceImpl(userRepository);
+		}
+
+		@Bean
+		public PasswordEncoder passwordEncoder() {
+			return new BCryptPasswordEncoder();
 		}
 
 		@Override
@@ -44,11 +62,7 @@ public class SecurityConfig  {
 
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-			auth
-				.inMemoryAuthentication()
-				.withUser(securityProperties().getLogin())
-				.password(securityProperties().getPassword())
-				.roles(Roles.MASTER);
+			auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
 		}
 	}
 
