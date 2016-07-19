@@ -2,9 +2,10 @@ CREATE TABLE `gtc_user`(
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `version` INTEGER NOT NULL,
 
-    `username` VARCHAR(256) NOT NULL,
+    `email` VARCHAR(256) NOT NULL,
     `password` VARCHAR(256) NOT NULL,
     `enabled` BIT NOT NULL DEFAULT FALSE,
+    `registration_date` BIGINT NOT NULL,
 
     PRIMARY KEY (`id`)
 );

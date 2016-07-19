@@ -24,6 +24,13 @@ public class GtcUserRole extends BaseEntity implements GrantedAuthority {
 
 	private String role;
 
+	public GtcUserRole() {
+	}
+
+	public GtcUserRole(String role) {
+		this.role = role;
+	}
+
 	@Override
 	public String getAuthority() {
 		return getRole();
@@ -33,21 +40,18 @@ public class GtcUserRole extends BaseEntity implements GrantedAuthority {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		if (!super.equals(o)) return false;
 		GtcUserRole userRole = (GtcUserRole) o;
 		return Objects.equals(role, userRole.role);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(super.hashCode(), role);
+		return Objects.hash(role);
 	}
 
 	@Override
 	public String toString() {
-		return "UserRole{" +
-			"role='" + role + '\'' +
-			"} " + super.toString();
+		return "GtcUserRole{role='" + role + "'}";
 	}
 
 }

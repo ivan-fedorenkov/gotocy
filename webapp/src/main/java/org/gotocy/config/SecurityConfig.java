@@ -1,8 +1,10 @@
 package org.gotocy.config;
 
-import org.gotocy.repository.GtcUserRepository;
 import org.gotocy.service.UserDetailsServiceImpl;
+import org.gotocy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.MessageSourceAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -20,6 +22,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecurityConfig  {
 
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 	/**
 	 * Configure the production and the test security paths.
 	 */
@@ -36,24 +43,32 @@ public class SecurityConfig  {
 	@Profile(Profiles.PROD)
 	@Configuration
 	@EnableWebSecurity
-	public static class ProductionSecurityConfig extends WebSecurityConfigurerAdapter {
+	public static class ProductionSecurityConfig extends WebSecurityConfigurerAdapter implements MessageSourceAware {
 
-		private GtcUserRepository userRepository;
+		private UserService userService;
+		private PasswordEncoder passwordEncoder;
+		private MessageSource messageSource;
 
 		@Autowired
-		public void setUserRepository(GtcUserRepository userRepository) {
-			this.userRepository = userRepository;
+		public void setUserService(UserService userService) {
+			this.userService = userService;
+		}
+
+		@Override
+		public void setMessageSource(MessageSource messageSource) {
+			this.messageSource = messageSource;
+		}
+
+		@Autowired
+		public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+			this.passwordEncoder = passwordEncoder;
 		}
 
 		@Bean
 		public UserDetailsService userDetailsService() {
-			return new UserDetailsServiceImpl(userRepository);
+			return new UserDetailsServiceImpl(messageSource, userService);
 		}
 
-		@Bean
-		public PasswordEncoder passwordEncoder() {
-			return new BCryptPasswordEncoder();
-		}
 
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
@@ -62,7 +77,7 @@ public class SecurityConfig  {
 
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-			auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+			auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder);
 		}
 	}
 

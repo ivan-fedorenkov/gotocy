@@ -8,5 +8,6 @@ package org.gotocy.config;
 public interface Roles {
 
 	String MASTER = "MASTER";
+	String USER = "USER";
 
 }
