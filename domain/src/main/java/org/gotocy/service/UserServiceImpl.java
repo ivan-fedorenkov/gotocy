@@ -1,6 +1,8 @@
 package org.gotocy.service;
 
+import org.gotocy.domain.Contact;
 import org.gotocy.domain.security.GtcUser;
+import org.gotocy.repository.ContactRepository;
 import org.gotocy.repository.GtcUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,26 +16,33 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 
 	private final PasswordEncoder passwordEncoder;
+	private final ContactRepository contactRepository;
 	private final GtcUserRepository userRepository;
 
 	@Autowired
-	public UserServiceImpl(PasswordEncoder passwordEncoder, GtcUserRepository userRepository) {
+	public UserServiceImpl(PasswordEncoder passwordEncoder, ContactRepository contactRepository,
+		GtcUserRepository userRepository)
+	{
 		this.passwordEncoder = passwordEncoder;
+		this.contactRepository = contactRepository;
 		this.userRepository = userRepository;
 	}
 
 	@Override
 	@Transactional
-	public GtcUser findByEmail(String email) {
-		return userRepository.findByEmail(email);
+	public GtcUser findByUsername(String email) {
+		return userRepository.findByUsername(email);
 	}
 
 	@Override
 	@Transactional
-	public GtcUser register(GtcUser user) {
+	public GtcUser register(GtcUser user, Contact contact) {
+		// Save user contact
+		contact = contactRepository.save(contact);
+		// Save user
+		user.setContact(contact);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setRegistrationDate(System.currentTimeMillis());
-		user.setEnabled(true);
 		return userRepository.save(user);
 	}
 

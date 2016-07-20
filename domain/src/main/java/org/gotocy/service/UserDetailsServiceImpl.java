@@ -1,6 +1,8 @@
 package org.gotocy.service;
 
 import org.gotocy.domain.security.GtcUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -18,6 +20,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+	private static final Logger logger = LoggerFactory.getLogger(UserDetailsService.class);
+
 	private final MessageSource messageSource;
 	private final UserService userService;
 
@@ -29,13 +33,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		GtcUser user = userService.findByEmail(username);
+		GtcUser user = userService.findByUsername(username);
 		if (user == null) {
+			logger.warn("An attempt was made to load user details of non existing user: {}", username);
 			throw new UsernameNotFoundException(messageSource.getMessage(
-				"org.gotocy.service.UserDetailsService.userNotFound", new Object[]{username},
+				"org.gotocy.service.UserDetailsService.UserNotFound.message", new Object[]{username},
 				"User {0} not found", LocaleContextHolder.getLocale()));
 		}
-		return new User(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, user.getRoles());
+		return new User(user.getUsername(), user.getPassword(), user.getRoles());
 	}
 
 }

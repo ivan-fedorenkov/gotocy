@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface GtcUserRepository extends JpaRepository<GtcUser, Long> {
 
-	GtcUser findByEmail(String email);
+	GtcUser findByUsername(String username);
 
 }

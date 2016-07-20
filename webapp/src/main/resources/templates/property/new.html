@@ -71,11 +71,9 @@
                 <!--Errors-->
                 <div class="row" th:if="${#fields.hasAnyErrors()}">
                     <div class="col-md-7 col-sm-7">
-                        <div class="error-messages">
-                            <ul>
-                                <li th:each="error : ${#fields.detailedErrors()}" th:text="${error.message}">Some error</li>
-                            </ul>
-                        </div>
+                        <ul class="error-messages">
+                            <li th:each="error : ${#fields.detailedErrors()}" th:text="${error.message}">Some error</li>
+                        </ul>
                     </div>
                 </div>
 

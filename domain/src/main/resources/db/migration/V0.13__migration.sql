@@ -2,11 +2,12 @@ CREATE TABLE `gtc_user`(
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `version` INTEGER NOT NULL,
 
-    `email` VARCHAR(256) NOT NULL,
+    `username` VARCHAR(256) NOT NULL,
     `password` VARCHAR(256) NOT NULL,
-    `enabled` BIT NOT NULL DEFAULT FALSE,
     `registration_date` BIGINT NOT NULL,
+    `contact_id` BIGINT NOT NULL,
 
+    CONSTRAINT fk_gtc_user_contact_id FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`),
     PRIMARY KEY (`id`)
 );
 

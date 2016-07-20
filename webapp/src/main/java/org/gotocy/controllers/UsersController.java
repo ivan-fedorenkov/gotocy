@@ -24,19 +24,19 @@ import java.util.Collections;
 @Controller
 public class UsersController {
 
-	private static final UserRegistrationFormValidator VALIDATOR = UserRegistrationFormValidator.INSTANCE;
-
 	private final UserService userService;
+	private final UserRegistrationFormValidator formValidator;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		if (binder.getTarget() != null && VALIDATOR.supports(binder.getTarget().getClass()))
-			binder.addValidators(VALIDATOR);
+		if (binder.getTarget() != null && formValidator.supports(binder.getTarget().getClass()))
+			binder.addValidators(formValidator);
 	}
 
 	@Autowired
-	public UsersController(UserService userService) {
+	public UsersController(UserService userService, UserRegistrationFormValidator formValidator) {
 		this.userService = userService;
+		this.formValidator = formValidator;
 	}
 
 	@RequestMapping(value = "/user/new", method = RequestMethod.GET)
@@ -50,12 +50,12 @@ public class UsersController {
 		if (errors.hasErrors()) {
 			// Clean up passwords
 			form.setPassword("");
-			form.setRepeatPassword("");
+			form.setConfirmPassword("");
 			return "user/new";
 		}
 		// Enforce the Roles.USER role
 		form.setRoles(Collections.singleton(Roles.USER));
-		GtcUser registeredUser = userService.register(form.toUser());
+		GtcUser registeredUser = userService.register(form.toUser(), form.toUserContacts());
 		model.addAttribute(registeredUser);
 		return "redirect:/";
 	}
