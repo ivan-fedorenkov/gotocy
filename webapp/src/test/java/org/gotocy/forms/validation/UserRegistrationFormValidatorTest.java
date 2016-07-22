@@ -1,6 +1,6 @@
 package org.gotocy.forms.validation;
 
-import org.gotocy.domain.security.GtcUser;
+import org.gotocy.domain.GtcUser;
 import org.gotocy.domain.validation.ValidationConstraints;
 import org.gotocy.forms.UserRegistrationForm;
 import org.gotocy.service.UserService;

@@ -3,11 +3,11 @@ package org.gotocy.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
- * Just a contact on the website. Could be an owner of a property, complex, etc.
+ * A peace of contact details. Could be an email address, a phone, a link to social network profile, etc.
  *
  * @author ifedorenkov
  */
@@ -16,24 +16,45 @@ import java.util.Objects;
 @Setter
 public class Contact extends BaseEntity {
 
+	@ManyToOne
+	private GtcUser user;
+
+	@Column(name = "contact_type")
+	@Enumerated(EnumType.STRING)
+	private ContactType type;
+
+	@Column(name = "contact_value")
+	private String value;
+
+	// Legacy
 	private String name;
 	private String email;
 	private String phone;
 	private String spokenLanguages;
 
+	public Contact() {
+	}
+
+	public Contact(ContactType type, String value) {
+		this.type = type;
+		this.value = value;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof Contact)) return false;
+		if (o == null || getClass() != o.getClass()) return false;
 		Contact contact = (Contact) o;
-		return Objects.equals(getName(), contact.getName()) &&
-			Objects.equals(getEmail(), contact.getEmail()) &&
-			Objects.equals(getPhone(), contact.getPhone()) &&
-			Objects.equals(getSpokenLanguages(), contact.getSpokenLanguages());
+		return type == contact.type &&
+			Objects.equals(value, contact.value) &&
+			Objects.equals(name, contact.name) &&
+			Objects.equals(email, contact.email) &&
+			Objects.equals(phone, contact.phone) &&
+			Objects.equals(spokenLanguages, contact.spokenLanguages);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getName(), getEmail(), getPhone(), getSpokenLanguages());
+		return Objects.hash(type, value, name, email, phone, spokenLanguages);
 	}
 }

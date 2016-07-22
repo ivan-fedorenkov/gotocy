@@ -204,7 +204,7 @@
                             </dl>                            
                         </aside><!-- /#primary-contact -->
 
-                        <aside id="advertising">
+                        <aside id="advertising" th:if="${gotocy.firstActiveProfile == T(org.gotocy.config.Profiles).PROD}">
                             <header><h3 th:text="${i18n.t('dictionary.advertising')}">Advertising</h3></header>
                             <div>
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

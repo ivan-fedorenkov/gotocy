@@ -1,6 +1,6 @@
 package org.gotocy.repository;
 
-import org.gotocy.domain.security.GtcUser;
+import org.gotocy.domain.GtcUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

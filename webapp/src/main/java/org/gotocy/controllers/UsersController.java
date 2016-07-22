@@ -1,7 +1,7 @@
 package org.gotocy.controllers;
 
 import org.gotocy.config.Roles;
-import org.gotocy.domain.security.GtcUser;
+import org.gotocy.domain.GtcUser;
 import org.gotocy.forms.UserRegistrationForm;
 import org.gotocy.forms.validation.UserRegistrationFormValidator;
 import org.gotocy.helpers.Helper;
@@ -56,7 +56,7 @@ public class UsersController {
 		}
 		// Enforce the Roles.USER role
 		form.setRoles(Collections.singleton(Roles.USER));
-		GtcUser registeredUser = userService.register(form.toUser(), form.toUserContacts());
+		GtcUser registeredUser = userService.register(form.toUser());
 		model.addAttribute(registeredUser);
 		return "redirect:" + Helper.path("/");
 	}

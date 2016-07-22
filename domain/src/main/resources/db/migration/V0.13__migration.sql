@@ -5,9 +5,7 @@ CREATE TABLE `gtc_user`(
     `username` VARCHAR(256) NOT NULL,
     `password` VARCHAR(256) NOT NULL,
     `registration_date` BIGINT NOT NULL,
-    `contact_id` BIGINT NOT NULL,
 
-    CONSTRAINT fk_gtc_user_contact_id FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`),
     PRIMARY KEY (`id`)
 );
 
@@ -21,3 +19,8 @@ CREATE TABLE `gtc_user_role`(
     CONSTRAINT fk_gtc_user_role_user_id FOREIGN KEY (`gtc_user_id`) REFERENCES `gtc_user` (`id`),
     PRIMARY KEY (`id`)
 );
+
+ALTER TABLE `contact` ADD COLUMN `contact_type` VARCHAR(64) DEFAULT 'LEGACY';
+ALTER TABLE `contact` ADD COLUMN `contact_value` VARCHAR(256);
+ALTER TABLE `contact` ADD COLUMN `user_id` BIGINT;
+ALTER TABLE `contact` ADD CONSTRAINT `fk_contact_user_id` FOREIGN KEY (`user_id`) REFERENCES `gtc_user` (`id`);

@@ -3,10 +3,12 @@ package org.gotocy.forms;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.Contact;
-import org.gotocy.domain.security.GtcUser;
-import org.gotocy.domain.security.GtcUserRole;
+import org.gotocy.domain.ContactType;
+import org.gotocy.domain.GtcUser;
+import org.gotocy.domain.GtcUserRole;
 import org.gotocy.forms.validation.UserRegistrationFormValidator;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -31,19 +33,16 @@ public class UserRegistrationForm {
 		GtcUser user = new GtcUser();
 		user.setUsername(email);
 		user.setPassword(password);
+		user.setContacts(Arrays.asList(
+			new Contact(ContactType.NAME, name),
+			new Contact(ContactType.EMAIL, email)
+		));
 
 		if (roles == null)
 			roles = Collections.emptySet();
 		user.setRoles(roles.stream().map(GtcUserRole::new).collect(Collectors.toSet()));
 
 		return user;
-	}
-
-	public Contact toUserContacts() {
-		Contact userContacts = new Contact();
-		userContacts.setName(name);
-		userContacts.setEmail(email);
-		return userContacts;
 	}
 
 }

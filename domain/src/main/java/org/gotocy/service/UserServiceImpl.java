@@ -1,8 +1,6 @@
 package org.gotocy.service;
 
-import org.gotocy.domain.Contact;
-import org.gotocy.domain.security.GtcUser;
-import org.gotocy.repository.ContactRepository;
+import org.gotocy.domain.GtcUser;
 import org.gotocy.repository.GtcUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,15 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 
 	private final PasswordEncoder passwordEncoder;
-	private final ContactRepository contactRepository;
 	private final GtcUserRepository userRepository;
 
 	@Autowired
-	public UserServiceImpl(PasswordEncoder passwordEncoder, ContactRepository contactRepository,
-		GtcUserRepository userRepository)
-	{
+	public UserServiceImpl(PasswordEncoder passwordEncoder, GtcUserRepository userRepository) {
 		this.passwordEncoder = passwordEncoder;
-		this.contactRepository = contactRepository;
 		this.userRepository = userRepository;
 	}
 
@@ -36,11 +30,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public GtcUser register(GtcUser user, Contact contact) {
-		// Save user contact
-		contact = contactRepository.save(contact);
-		// Save user
-		user.setContact(contact);
+	public GtcUser register(GtcUser user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setRegistrationDate(System.currentTimeMillis());
 		return userRepository.save(user);

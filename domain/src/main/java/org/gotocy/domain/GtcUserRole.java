@@ -1,8 +1,7 @@
-package org.gotocy.domain.security;
+package org.gotocy.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.gotocy.domain.BaseEntity;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;

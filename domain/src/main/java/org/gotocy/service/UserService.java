@@ -1,10 +1,10 @@
 package org.gotocy.service;
 
 import org.gotocy.domain.Contact;
-import org.gotocy.domain.security.GtcUser;
+import org.gotocy.domain.GtcUser;
 
 /**
- * A service that is responsible for operations on {@link org.gotocy.domain.security.GtcUser} entities.
+ * A service that is responsible for operations on {@link GtcUser} entities.
  *
  * @author ifedorenkov
  */
@@ -22,9 +22,8 @@ public interface UserService {
 	 * Registers the given user entity.
 	 *
 	 * @param user to be registered
-	 * @param contact details of this user
 	 * @return registered user
 	 */
-	GtcUser register(GtcUser user, Contact contact);
+	GtcUser register(GtcUser user);
 
 }
