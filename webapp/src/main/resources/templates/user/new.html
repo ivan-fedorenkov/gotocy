@@ -5,14 +5,16 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path('/user/new', locale)}}" hreflang="en"  href="#" />
+
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
-    <title>GoToCy</title>
+    <title th:text="${i18n.t('templates.title', i18n.t('dictionary.sign-up'))}">Property Detail | GoToCy</title>
 
 </head>
 
-<body class="page-sub-page page-sign-in page-account" id="page-top">
+<body class="page-sub-page page-sign-up page-account" id="page-top">
 <div class="wrapper">
     <div class="navigation">
         <div class="secondary-navigation">
@@ -22,7 +24,7 @@
                     <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
                 <div class="user-area">
-                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar(${curPath})">
+                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar('/user/new')">
                         <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
                         <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>
@@ -55,14 +57,14 @@
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="#" th:href="@{/}">Home</a></li>
-                <li class="active">Sign Up</li>
+                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
+                <li class="active" th:text="${i18n.t('dictionary.sign-up')}">Sign Up</li>
             </ol>
         </div>
 
         <div class="container">
-            <header><h1>Sign Up</h1></header>
-            <form role="form" id="form-create-account" th:object="${userRegistrationForm}" th:action="@{/user}" th:method="post" >
+            <header><h1 th:text="${i18n.t('dictionary.sign-up')}">Sign Up</h1></header>
+            <form role="form" id="form-sign-up" th:object="${userRegistrationForm}" th:action="@{${helper.path('/user')}}" th:method="post" >
 
                 <div class="row" th:if="${#fields.hasAnyErrors()}">
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
@@ -75,23 +77,23 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
                         <div class="form-group">
-                            <label for="name">Full Name</label>
+                            <label for="name" th:text="${i18n.t('dictionary.your-name')}">Your Name</label>
                             <input type="text" class="form-control" id="name" name="name" th:field="*{name}" required>
                         </div><!-- /.form-group -->
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="email" th:text="${i18n.t('dictionary.your-email')}">Your Email</label>
                             <input type="text" class="form-control" id="email" name="email" th:field="*{email}" required>
                         </div><!-- /.form-group -->
                         <div class="form-group">
-                            <label for="password">Password</label>
+                            <label for="password" th:text="${i18n.t('dictionary.password')}">Password</label>
                             <input type="password" class="form-control" id="password" th:field="*{password}" required>
                         </div><!-- /.form-group -->
                         <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
+                            <label for="confirmPassword" th:text="${i18n.t('dictionary.confirm-password')}">Confirm Password</label>
                             <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}" required>
                         </div><!-- /.form-group -->
                         <div class="form-group clearfix">
-                            <button type="submit" class="btn btn-default pull-right" id="account-submit">Sign up</button>
+                            <button type="submit" class="btn btn-default pull-right" id="account-submit" th:text="${i18n.t('dictionary.sign-up')}">Sign Up</button>
                         </div><!-- /.form-group -->
                     </div>
                 </div><!-- /.row -->

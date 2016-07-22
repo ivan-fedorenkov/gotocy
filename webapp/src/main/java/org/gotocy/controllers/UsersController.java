@@ -4,6 +4,7 @@ import org.gotocy.config.Roles;
 import org.gotocy.domain.security.GtcUser;
 import org.gotocy.forms.UserRegistrationForm;
 import org.gotocy.forms.validation.UserRegistrationFormValidator;
+import org.gotocy.helpers.Helper;
 import org.gotocy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,7 +58,7 @@ public class UsersController {
 		form.setRoles(Collections.singleton(Roles.USER));
 		GtcUser registeredUser = userService.register(form.toUser(), form.toUserContacts());
 		model.addAttribute(registeredUser);
-		return "redirect:/";
+		return "redirect:" + Helper.path("/");
 	}
 
 }

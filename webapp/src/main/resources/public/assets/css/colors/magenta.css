@@ -191,12 +191,12 @@ ul.list-links li a:hover {
 .page-sub-page.page-submit .submit-pricing {
   margin-bottom: 0;
 }
-.page-sub-page.page-create-account .radio {
+.page-sub-page.page-sign-up .radio {
   display: inline-block;
   margin-right: 50px;
   margin-bottom: 30px;
 }
-.page-sub-page.page-create-account h3 {
+.page-sub-page.page-sign-up h3 {
   margin-top: 0;
 }
 .page-sub-page.page-create-agency #page-content form > section {
