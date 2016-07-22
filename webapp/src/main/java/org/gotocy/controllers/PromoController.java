@@ -200,12 +200,12 @@ public class PromoController {
 			p.getImages().add(img);
 		}
 
-		Contact contact = new Contact();
-		contact.setName("Denis");
-		contact.setPhone("+357 96 740485");
-		contact.setEmail("support@gotocy.com");
-		contact.setSpokenLanguages("Eng, Rus");
-		p.setPrimaryContact(contact);
+
+		Set<Contact> contacts = new HashSet<>();
+		contacts.add(new Contact(ContactType.NAME, "Denis"));
+		contacts.add(new Contact(ContactType.EMAIL, "support@gotocy.com"));
+		contacts.add(new Contact(ContactType.SPOKEN_LANGUAGES, "Eng, Rus"));
+		p.setContacts(contacts);
 
 		return p;
 	}

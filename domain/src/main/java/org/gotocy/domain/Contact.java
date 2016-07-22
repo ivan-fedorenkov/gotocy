@@ -16,9 +16,6 @@ import java.util.Objects;
 @Setter
 public class Contact extends BaseEntity {
 
-	@ManyToOne
-	private GtcUser user;
-
 	@Column(name = "contact_type")
 	@Enumerated(EnumType.STRING)
 	private ContactType type;

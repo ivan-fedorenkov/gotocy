@@ -27,7 +27,7 @@ public class GtcUser extends BaseEntity {
 	@OneToMany(mappedBy = "gtcUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<GtcUserRole> roles = new HashSet<>();
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Contact> contacts = new HashSet<>();
 
 	public void setRoles(Set<GtcUserRole> roles) {
@@ -36,7 +36,6 @@ public class GtcUser extends BaseEntity {
 	}
 
 	public void setContacts(List<Contact> contacts) {
-		contacts.forEach(contact -> contact.setUser(this));
 		CollectionUtils.updateCollection(this.contacts, contacts);
 	}
 

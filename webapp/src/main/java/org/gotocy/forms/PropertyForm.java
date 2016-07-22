@@ -5,10 +5,7 @@ import lombok.Setter;
 import org.gotocy.config.Locales;
 import org.gotocy.domain.*;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.joining;
@@ -26,6 +23,7 @@ public class PropertyForm {
 
 	private static final Pattern STRING_SEPARATOR = Pattern.compile("[\n\r]+");
 	private static final String STRINGS_JOINER = "\n";
+	private static final Contact EMPTY_CONTACT = new Contact();
 
 	// Developer
 	private long developerId;
@@ -89,13 +87,12 @@ public class PropertyForm {
 		developerId = property.getDeveloper() == null ? 0 : property.getDeveloper().getId();
 		complexId = property.getComplex() == null ? 0 : property.getComplex().getId();
 
-		if (property.getPrimaryContact() != null) {
-			contactId = property.getPrimaryContact().getId();
-			contactName = property.getPrimaryContact().getName();
-			contactPhone = property.getPrimaryContact().getPhone();
-			contactEmail = property.getPrimaryContact().getEmail();
-			contactSpokenLanguages = property.getPrimaryContact().getSpokenLanguages();
-		}
+		// TODO: allow to specify more then one contact per type
+		Map<ContactType, Contact> contactsByType = property.getContactsByType();
+		contactName = contactsByType.getOrDefault(ContactType.NAME, EMPTY_CONTACT).getValue();
+		contactEmail = contactsByType.getOrDefault(ContactType.EMAIL, EMPTY_CONTACT).getValue();
+		contactPhone = contactsByType.getOrDefault(ContactType.PHONE, EMPTY_CONTACT).getValue();
+		contactSpokenLanguages = contactsByType.getOrDefault(ContactType.SPOKEN_LANGUAGES, EMPTY_CONTACT).getValue();
 
 		title = property.getTitle();
 		address = property.getAddress();
@@ -138,14 +135,6 @@ public class PropertyForm {
 
 	}
 
-	public Contact mergeWithContact(Contact contact) {
-		contact.setName(contactName);
-		contact.setPhone(contactPhone);
-		contact.setEmail(contactEmail);
-		contact.setSpokenLanguages(contactSpokenLanguages);
-		return contact;
-	}
-
 	public Property mergeWithProperty(Property property) {
 		property.setTitle(title);
 		property.setAddress(address);
@@ -169,6 +158,8 @@ public class PropertyForm {
 		property.setFeatured(featured);
 		property.setLatitude(latitude);
 		property.setLongitude(longitude);
+		// TODO: allow to specify more then one contact per type
+		property.setContacts(contactName, contactEmail, contactPhone, contactSpokenLanguages);
 
 		property.setDescription(enDescription, Locales.EN);
 		property.setDescription(ruDescription, Locales.RU);

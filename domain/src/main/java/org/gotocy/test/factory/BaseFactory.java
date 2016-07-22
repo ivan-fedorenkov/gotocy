@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 /**
  * @author ifedorenkov
  */
-public abstract class BaseFactory<T extends BaseEntity> implements Supplier<T> {
+public abstract class BaseFactory<T> implements Supplier<T> {
 
 	protected static final String ANY_STRING = "any_string";
 	protected static final String ANY_EMAIL = "test@test.test";

@@ -181,18 +181,11 @@
                     <section id="sidebar">
                         <aside id="primary-contact">
                             <header><h3 th:text="${i18n.t('dictionary.primary-contact')}">Primary Contact</h3></header>
-                            <dl th:replace="fragments/primary_contact_dl :: primary_contact(contact=*{primaryContact})">
-                                <dt>Name:</dt>
-                                <dd>Denis</dd>
-
-                                <dt>Email:</dt>
-                                <dd>support@gotocy.com</dd>
-
-                                <dt>Phone:</dt>
-                                <dd>123-45-67</dd>
-
-                                <dt>Spoken Languages:</dt>
-                                <dd>English, Russian</dd>
+                            <dl>
+                                <!--/*/ <th:block th:each="contact : *{contacts}"> /*/-->
+                                <dt th:text="|${i18n.t(contact.type)}:|">Name:</dt>
+                                <dd th:text="${contact.value}">Denis</dd>
+                                <!--/*/ </th:block> /*/-->
                             </dl>
                         </aside><!-- /#primary-contact -->
 

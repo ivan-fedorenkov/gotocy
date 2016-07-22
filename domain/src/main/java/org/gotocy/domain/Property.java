@@ -8,9 +8,10 @@ import org.gotocy.domain.i18n.PropertyLocalizedFieldsManager;
 import org.gotocy.utils.CollectionUtils;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+import java.util.function.Function;
+
+import static java.util.stream.Collectors.toMap;
 
 /**
  * TODO: optimize #setRepresentativeImage #setPanoXml
@@ -46,7 +47,15 @@ public class Property extends BaseEntity {
 	private Complex complex;
 
 	@ManyToOne
+	private GtcUser owner;
+
+	@ManyToOne
 	private Contact primaryContact;
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Contact> contacts = new HashSet<>();
+
+	private boolean displayOverriddenContacts;
 
 	@Enumerated(EnumType.STRING)
 	private Location location;
@@ -123,6 +132,44 @@ public class Property extends BaseEntity {
 
 	public void setImages(List<Image> images) {
 		CollectionUtils.updateCollection(this.images, images);
+	}
+
+	public void setContacts(Set<Contact> contacts) {
+		CollectionUtils.updateCollection(this.contacts, contacts);
+	}
+
+	/**
+	 * Returns the appropriate set of property's contacts which is the {@link #contacts} if {@link #owner} is
+	 * not set or {@link #displayOverriddenContacts} is set to true. Otherwise, returns {@link #owner#getContacts()}.
+	 */
+	public Set<Contact> getContacts() {
+		return displayOverriddenContacts || owner == null ? contacts : owner.getContacts();
+	}
+
+	/**
+	 * Create a map of {@link ContactType} to {@link Contact}. Currently we are preserving only the first
+	 * contact of each type.
+	 *
+	 */
+	public Map<ContactType, Contact> getContactsByType() {
+		return contacts.stream().collect(toMap(Contact::getType, Function.identity(),
+			(c1, c2) -> c1));
+	}
+
+	/**
+	 * A convenient method of setting contacts from the legacy forms.
+	 */
+	public void setContacts(String name, String email, String phone, String spokenLanguages) {
+		Set<Contact> contacts = new HashSet<>();
+		if (name != null && !name.trim().isEmpty())
+			contacts.add(new Contact(ContactType.NAME, name));
+		if (email != null && !email.trim().isEmpty())
+			contacts.add(new Contact(ContactType.EMAIL, email));
+		if (phone != null && !phone.trim().isEmpty())
+			contacts.add(new Contact(ContactType.PHONE, phone));
+		if (spokenLanguages != null && !spokenLanguages.trim().isEmpty())
+			contacts.add(new Contact(ContactType.SPOKEN_LANGUAGES, spokenLanguages));
+		setContacts(contacts);
 	}
 
 	// Localized fields

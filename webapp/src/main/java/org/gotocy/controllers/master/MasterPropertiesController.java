@@ -79,11 +79,7 @@ public class MasterPropertiesController {
 	@ResponseBody
 	@Transactional
 	public Property create(PropertyForm propertyForm) {
-		Contact contact = getOrCreateContact(propertyForm.getContactId());
-		contact = propertyForm.mergeWithContact(contact);
-
 		Property property = propertyForm.mergeWithProperty(new Property());
-		property.setPrimaryContact(contact);
 		property.setComplex(getComplex(propertyForm.getComplexId()));
 		property.setDeveloper(getDeveloper(propertyForm.getDeveloperId()));
 		return propertyRepository.save(property);
@@ -105,11 +101,7 @@ public class MasterPropertiesController {
 	@ResponseBody
 	@Transactional
 	public Property update(@RequiredDomainObject @PathVariable("id") Property property, PropertyForm propertyForm) {
-		Contact contact = getOrCreateContact(propertyForm.getContactId());
-		contact = propertyForm.mergeWithContact(contact);
-
 		property = propertyForm.mergeWithProperty(property);
-		property.setPrimaryContact(contact);
 		property.setComplex(getComplex(propertyForm.getComplexId()));
 		property.setDeveloper(getDeveloper(propertyForm.getDeveloperId()));
 		return propertyRepository.save(property);
@@ -123,8 +115,4 @@ public class MasterPropertiesController {
 		return developerId > 0 ? developerRepository.findOne(developerId) : null;
 	}
 
-	private Contact getOrCreateContact(long contactId) {
-		return contactId > 0 ? contactRepository.findOne(contactId) : contactRepository.save(new Contact());
-	}
-	
 }
