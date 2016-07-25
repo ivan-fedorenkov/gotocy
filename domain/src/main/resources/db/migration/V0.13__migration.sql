@@ -6,6 +6,11 @@ CREATE TABLE `gtc_user`(
     `password` VARCHAR(256) NOT NULL,
     `registration_date` BIGINT NOT NULL,
 
+    `name` VARCHAR(256),
+    `email` VARCHAR(256),
+    `phone` VARCHAR(256),
+    `spoken_languages` VARCHAR(256),
+
     PRIMARY KEY (`id`)
 );
 
@@ -20,27 +25,42 @@ CREATE TABLE `gtc_user_role`(
     PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `contact` ADD COLUMN `contact_type` VARCHAR(64) DEFAULT 'LEGACY';
-ALTER TABLE `contact` ADD COLUMN `contact_value` VARCHAR(256);
-
-CREATE TABLE `gtc_user_contacts`(
-    `gtc_user_id` BIGINT NOT NULL,
-    `contacts_id` BIGINT NOT NULL,
-
-    CONSTRAINT `fk_gtc_user_contacts_gtc_user_id` FOREIGN KEY (`gtc_user_id`) REFERENCES `gtc_user` (`id`),
-    CONSTRAINT `fk_gtc_user_contacts_contacts_id` FOREIGN KEY (`contacts_id`) REFERENCES `contact` (`id`),
-    PRIMARY KEY (`gtc_user_id`, `contacts_id`)
-);
-
-CREATE TABLE `property_contacts`(
-    `property_id` BIGINT NOT NULL,
-    `contacts_id` BIGINT NOT NULL,
-
-    CONSTRAINT `fk_property_contacts_property_id` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`),
-    CONSTRAINT `fk_property_contacts_contacts_id` FOREIGN KEY (`contacts_id`) REFERENCES `contact` (`id`),
-    PRIMARY KEY (`property_id`, `contacts_id`)
-);
+-- Update property contacts
 
 ALTER TABLE `property` ADD COLUMN `owner_id` BIGINT;
-ALTER TABLE `property` ADD COLUMN `display_overridden_contacts` BIT NOT NULL DEFAULT TRUE;
-ALTER TABLE `property` ADD CONSTRAINT `fk_property_owner_id` FOREIGN KEY (`owner_id`) REFERENCES `gtc_user` (`id`);
+ALTER TABLE `property` ADD COLUMN `contacts_display_option` VARCHAR(64) DEFAULT 'OWNER';
+ALTER TABLE `property` ADD COLUMN `overridden_contacts_name` VARCHAR(256);
+ALTER TABLE `property` ADD COLUMN `overridden_contacts_email` VARCHAR(256);
+ALTER TABLE `property` ADD COLUMN `overridden_contacts_phone` VARCHAR(256);
+ALTER TABLE `property` ADD COLUMN `overridden_contacts_spoken_languages` VARCHAR(256);
+
+UPDATE `property` p SET
+    p.`overridden_contacts_name` = (SELECT c.name FROM `contact` c WHERE c.id = p.primary_contact_id),
+    p.`overridden_contacts_email` = (SELECT c.email FROM `contact` c WHERE c.id = p.primary_contact_id),
+    p.`overridden_contacts_phone` = (SELECT c.phone FROM `contact` c WHERE c.id = p.primary_contact_id),
+    p.`overridden_contacts_spoken_languages` = (SELECT c.spoken_languages FROM `contact` c WHERE c.id = p.primary_contact_id);
+
+UPDATE `property` SET `contacts_display_option` = 'SYSTEM_DEFAULT' WHERE
+    `overridden_contacts_name` IS NULL AND
+    `overridden_contacts_email` IS NULL AND
+    `overridden_contacts_phone` IS NULL AND
+    `overridden_contacts_spoken_languages` IS NULL;
+
+ALTER TABLE `property` DROP CONSTRAINT `fk_property_primary_contact_id`;
+ALTER TABLE `property` DROP COLUMN `primary_contact_id`;
+
+-- Update complex contacts
+
+ALTER TABLE `complex` ADD COLUMN `contacts_name` VARCHAR(256);
+ALTER TABLE `complex` ADD COLUMN `contacts_email` VARCHAR(256);
+ALTER TABLE `complex` ADD COLUMN `contacts_phone` VARCHAR(256);
+ALTER TABLE `complex` ADD COLUMN `contacts_spoken_languages` VARCHAR(256);
+
+UPDATE `complex` cplx SET
+    cplx.`contacts_name` = (SELECT c.name FROM `contact` c WHERE c.id = cplx.primary_contact_id),
+    cplx.`contacts_email` = (SELECT c.email FROM `contact` c WHERE c.id = cplx.primary_contact_id),
+    cplx.`contacts_phone` = (SELECT c.phone FROM `contact` c WHERE c.id = cplx.primary_contact_id),
+    cplx.`contacts_spoken_languages` = (SELECT c.spoken_languages FROM `contact` c WHERE c.id = cplx.primary_contact_id);
+
+ALTER TABLE `complex` DROP CONSTRAINT `fk_complex_primary_contact_id`;
+ALTER TABLE `complex` DROP COLUMN `primary_contact_id`;

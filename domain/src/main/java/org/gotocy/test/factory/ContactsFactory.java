@@ -1,17 +1,13 @@
 package org.gotocy.test.factory;
 
-import org.gotocy.domain.Contact;
-import org.gotocy.domain.ContactType;
-
-import java.util.HashSet;
-import java.util.Set;
+import org.gotocy.domain.Contacts;
 
 /**
- * A factory class of the {@link org.gotocy.domain.Contact} entities.
+ * A factory class of the {@link org.gotocy.domain.Contacts} entities.
  *
  * @author ifedorenkov
  */
-public class ContactsFactory extends BaseFactory<Set<Contact>> {
+public class ContactsFactory extends BaseFactory<Contacts> {
 
 	public static final ContactsFactory INSTANCE = new ContactsFactory();
 
@@ -19,12 +15,12 @@ public class ContactsFactory extends BaseFactory<Set<Contact>> {
 	}
 
 	@Override
-	public Set<Contact> get() {
-		Set<Contact> contacts = new HashSet<>();
-		contacts.add(new Contact(ContactType.NAME, ANY_STRING));
-		contacts.add(new Contact(ContactType.EMAIL, ANY_EMAIL));
-		contacts.add(new Contact(ContactType.PHONE, ANY_STRING));
-		contacts.add(new Contact(ContactType.SPOKEN_LANGUAGES, ANY_STRING));
+	public Contacts get() {
+		Contacts contacts = new Contacts();
+		contacts.setName(ANY_STRING);
+		contacts.setEmail(ANY_EMAIL);
+		contacts.setPhone(ANY_STRING);
+		contacts.setSpokenLanguages(ANY_STRING);
 		return contacts;
 	}
 

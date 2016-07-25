@@ -68,6 +68,11 @@ public class PropertyValidatorTest {
 		forEachTypeAndStatus(p -> shouldNotBeNull(p, "offerStatus", PropertyValidatorTest::validateProperty));
 	}
 
+	@Test
+	public void contactsDisplayOptionValidation() {
+		forEachTypeAndStatus(p -> shouldNotBeNull(p, "contactsDisplayOption", PropertyValidatorTest::validateProperty));
+	}
+
 	// More complex checks that are type-dependent
 
 	@Test

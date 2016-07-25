@@ -200,12 +200,12 @@ public class PromoController {
 			p.getImages().add(img);
 		}
 
-
-		Set<Contact> contacts = new HashSet<>();
-		contacts.add(new Contact(ContactType.NAME, "Denis"));
-		contacts.add(new Contact(ContactType.EMAIL, "support@gotocy.com"));
-		contacts.add(new Contact(ContactType.SPOKEN_LANGUAGES, "Eng, Rus"));
-		p.setContacts(contacts);
+		Contacts propertyContacts = new Contacts();
+		propertyContacts.setName("Denis");
+		propertyContacts.setEmail("support@gotocy.com");
+		propertyContacts.setSpokenLanguages("Eng, Rus");
+		p.setContactsDisplayOption(PropertyContactsDisplayOption.OVERRIDDEN);
+		p.setOverriddenContacts(propertyContacts);
 
 		return p;
 	}

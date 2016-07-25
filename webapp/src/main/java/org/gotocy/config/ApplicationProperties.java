@@ -2,14 +2,13 @@ package org.gotocy.config;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.gotocy.domain.Contact;
+import org.gotocy.domain.Contacts;
 import org.gotocy.domain.Image;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
 
@@ -31,7 +30,7 @@ public class ApplicationProperties {
 
 	private double defaultLongitude;
 
-	private Contact defaultContact = new Contact();
+	private Contacts defaultContact = new Contacts();
 
 	@NotNull
 	private Image defaultRepresentativeImage;

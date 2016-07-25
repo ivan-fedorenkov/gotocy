@@ -7,11 +7,14 @@
                         <header><h2>Primary Contact</h2></header>
 
                         <div class="form-group">
-                            <label for="contactId">Contact</label>
-                            <select id="contactId" th:field="*{contactId}">
-                                <option value="0">Create new...</option>
-                                <option value="1" th:each="contact : ${contacts}" th:value="${contact.id}" th:text="${contact.name}">Denis</option>
-                            </select>
+                            <div class="radio" th:each="displayOption : ${T(org.gotocy.domain.PropertyContactsDisplayOption).values()}">
+                                <label>
+                                    <input type="radio" th:field="*{contactsDisplayOption}" th:value="${displayOption}">
+                                    <!--/*/ <th:block th:text="${i18n.t(displayOption)}"> /*/-->
+                                    System Default
+                                    <!--/*/ </th:block> /*/-->
+                                </label>
+                            </div>
                         </div>
 
                         <div class="form-group">

@@ -1,10 +1,10 @@
 package org.gotocy.integration;
 
 import org.gotocy.config.Roles;
-import org.gotocy.domain.Contact;
-import org.gotocy.domain.ContactType;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
+import org.gotocy.domain.PropertyContactsDisplayOption;
+import org.gotocy.forms.PropertyForm;
 import org.gotocy.repository.PropertyRepository;
 import org.gotocy.test.factory.ContactsFactory;
 import org.gotocy.test.factory.PropertyFactory;
@@ -16,11 +16,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -36,7 +32,11 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 	@Test
 	public void propertyCreation() throws Exception {
 		// Prepare property that should be created
-		Property property = PropertyFactory.INSTANCE.get(p -> p.setOfferStatus(OfferStatus.PROMO));
+		Property property = PropertyFactory.INSTANCE.get(p -> {
+			p.setOfferStatus(OfferStatus.PROMO);
+			// By default, property should have the OWNER contacts display option
+			p.setContactsDisplayOption(PropertyContactsDisplayOption.OWNER);
+		});
 
 		// Post the property
 		ResultActions result = mockMvc.perform(fileUpload("/properties").with(csrf())
@@ -65,24 +65,24 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 		Property createdProperty = properties.get(0);
 		assertPropertiesEquals(property, createdProperty);
 
-		// Verify that no contacts have been created
-		Assert.assertThat(property.getContacts(), hasSize(0));
-
 		// Verify fields that must be set disregard to what a user typed in
 		Assert.assertEquals(OfferStatus.PROMO, createdProperty.getOfferStatus());
 
 		// Verify the response status and the response page
 		result.andExpect(MockMvcResultMatchers.status().isFound())
 			.andExpect(MockMvcResultMatchers.redirectedUrl("/promo/properties/" + createdProperty.getId()));
-
 	}
 
 
 	@Test
 	@WithMockUser(roles = Roles.MASTER)
 	public void propertyCreationByAdmin() throws Exception {
-		Property property = PropertyFactory.INSTANCE.get(p -> p.setContacts(ContactsFactory.INSTANCE.get()));
-		Map<ContactType, Contact> propertyContacts = property.getContactsByType();
+		// A property with overridden contacts
+		Property property = PropertyFactory.INSTANCE.get(p -> {
+			p.setContactsDisplayOption(PropertyContactsDisplayOption.OVERRIDDEN);
+			p.setOverriddenContacts(ContactsFactory.INSTANCE.get());
+		});
+
 		mockMvc.perform(post("/master/properties").with(csrf())
 			.param("title", property.getTitle())
 			.param("propertyType", property.getPropertyType().name())
@@ -99,17 +99,17 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 			.param("airConditioner", String.valueOf(property.hasAirConditioner()))
 			.param("heatingSystem", String.valueOf(property.hasHeatingSystem()))
 			.param("vatIncluded", String.valueOf(property.isVatIncluded()))
-			.param("contactName", propertyContacts.get(ContactType.NAME).getValue())
-			.param("contactEmail", propertyContacts.get(ContactType.EMAIL).getValue())
-			.param("contactPhone", propertyContacts.get(ContactType.PHONE).getValue())
-			.param("contactSpokenLanguages", propertyContacts.get(ContactType.SPOKEN_LANGUAGES).getValue()))
+			.param("contactsDisplayOption", PropertyContactsDisplayOption.OVERRIDDEN.name())
+			.param("contactName", property.getOverriddenContacts().getName())
+			.param("contactEmail", property.getOverriddenContacts().getEmail())
+			.param("contactPhone", property.getOverriddenContacts().getPhone())
+			.param("contactSpokenLanguages", property.getOverriddenContacts().getSpokenLanguages()))
 			.andExpect(MockMvcResultMatchers.status().isOk());
 
 		List<Property> properties = propertyRepository.findAll();
 		Assert.assertEquals(1, properties.size());
 		Property createdProperty = properties.get(0);
 		assertPropertiesEquals(property, createdProperty);
-		assertContactsAreEqual(property.getContacts(), createdProperty.getContacts());
 	}
 
 	private static void assertPropertiesEquals(Property expected, Property actual) {
@@ -128,12 +128,8 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 		Assert.assertEquals(expected.hasAirConditioner(), actual.hasAirConditioner());
 		Assert.assertEquals(expected.hasHeatingSystem(), actual.hasHeatingSystem());
 		Assert.assertEquals(expected.isVatIncluded(), actual.isVatIncluded());
-	}
-
-
-	private static void assertContactsAreEqual(Set<Contact> expected, Set<Contact> actual) {
-		Assert.assertThat(actual, hasSize(expected.size()));
-		Assert.assertThat(actual, containsInAnyOrder(expected.toArray()));
+		Assert.assertEquals(expected.getContactsDisplayOption(), actual.getContactsDisplayOption());
+		Assert.assertEquals(expected.getContacts(), actual.getContacts());
 	}
 
 }

@@ -8,10 +8,10 @@ import org.gotocy.domain.i18n.PropertyLocalizedFieldsManager;
 import org.gotocy.utils.CollectionUtils;
 
 import javax.persistence.*;
-import java.util.*;
-import java.util.function.Function;
-
-import static java.util.stream.Collectors.toMap;
+import javax.validation.OverridesAttribute;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * TODO: optimize #setRepresentativeImage #setPanoXml
@@ -23,13 +23,11 @@ import static java.util.stream.Collectors.toMap;
 	attributeNodes = {
 		@NamedAttributeNode(value = "complex", subgraph = "complex"),
 		@NamedAttributeNode("developer"),
-		@NamedAttributeNode("primaryContact"),
 		@NamedAttributeNode("panoXml"),
 		@NamedAttributeNode("representativeImage"),
 	},
 	subgraphs = {
 		@NamedSubgraph(name = "complex", attributeNodes = {
-			@NamedAttributeNode("primaryContact"),
 			@NamedAttributeNode("representativeImage")
 		})
 	}
@@ -49,13 +47,17 @@ public class Property extends BaseEntity {
 	@ManyToOne
 	private GtcUser owner;
 
-	@ManyToOne
-	private Contact primaryContact;
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name = "name", column = @Column(name = "overridden_contacts_name")),
+		@AttributeOverride(name = "email", column = @Column(name = "overridden_contacts_email")),
+		@AttributeOverride(name = "phone", column = @Column(name = "overridden_contacts_phone")),
+		@AttributeOverride(name = "spokenLanguages", column = @Column(name = "overridden_contacts_spoken_languages"))
+	})
+	private Contacts overriddenContacts;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Contact> contacts = new HashSet<>();
-
-	private boolean displayOverriddenContacts;
+	@Enumerated(EnumType.STRING)
+	private PropertyContactsDisplayOption contactsDisplayOption;
 
 	@Enumerated(EnumType.STRING)
 	private Location location;
@@ -134,42 +136,18 @@ public class Property extends BaseEntity {
 		CollectionUtils.updateCollection(this.images, images);
 	}
 
-	public void setContacts(Set<Contact> contacts) {
-		CollectionUtils.updateCollection(this.contacts, contacts);
-	}
-
 	/**
-	 * Returns the appropriate set of property's contacts which is the {@link #contacts} if {@link #owner} is
-	 * not set or {@link #displayOverriddenContacts} is set to true. Otherwise, returns {@link #owner#getContacts()}.
+	 * Returns the appropriate property's contacts.
 	 */
-	public Set<Contact> getContacts() {
-		return displayOverriddenContacts || owner == null ? contacts : owner.getContacts();
-	}
-
-	/**
-	 * Create a map of {@link ContactType} to {@link Contact}. Currently we are preserving only the first
-	 * contact of each type.
-	 *
-	 */
-	public Map<ContactType, Contact> getContactsByType() {
-		return contacts.stream().collect(toMap(Contact::getType, Function.identity(),
-			(c1, c2) -> c1));
-	}
-
-	/**
-	 * A convenient method of setting contacts from the legacy forms.
-	 */
-	public void setContacts(String name, String email, String phone, String spokenLanguages) {
-		Set<Contact> contacts = new HashSet<>();
-		if (name != null && !name.trim().isEmpty())
-			contacts.add(new Contact(ContactType.NAME, name));
-		if (email != null && !email.trim().isEmpty())
-			contacts.add(new Contact(ContactType.EMAIL, email));
-		if (phone != null && !phone.trim().isEmpty())
-			contacts.add(new Contact(ContactType.PHONE, phone));
-		if (spokenLanguages != null && !spokenLanguages.trim().isEmpty())
-			contacts.add(new Contact(ContactType.SPOKEN_LANGUAGES, spokenLanguages));
-		setContacts(contacts);
+	public Contacts getContacts() {
+		switch (contactsDisplayOption) {
+		case OVERRIDDEN:
+			return overriddenContacts;
+		case OWNER:
+			return owner == null ? overriddenContacts : owner.getContacts();
+		default:
+			return null;
+		}
 	}
 
 	// Localized fields

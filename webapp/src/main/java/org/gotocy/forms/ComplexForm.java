@@ -31,7 +31,6 @@ public class ComplexForm {
 	private long developerId;
 
 	// Primary Contact
-	private long contactId;
 	private String contactName;
 	private String contactPhone;
 	private String contactEmail;
@@ -62,12 +61,12 @@ public class ComplexForm {
 	public ComplexForm(Complex complex) {
 		developerId = complex.getDeveloper() == null ? 0 : complex.getDeveloper().getId();
 
-		if (complex.getPrimaryContact() != null) {
-			contactId = complex.getPrimaryContact().getId();
-			contactName = complex.getPrimaryContact().getName();
-			contactPhone = complex.getPrimaryContact().getPhone();
-			contactEmail = complex.getPrimaryContact().getEmail();
-			contactSpokenLanguages = complex.getPrimaryContact().getSpokenLanguages();
+		Contacts complexContacts = complex.getContacts();
+		if (complexContacts != null) {
+			contactName = complexContacts.getName();
+			contactPhone = complexContacts.getPhone();
+			contactEmail = complexContacts.getEmail();
+			contactSpokenLanguages = complexContacts.getSpokenLanguages();
 		}
 
 		title = complex.getTitle();
@@ -88,19 +87,19 @@ public class ComplexForm {
 			representativeImageKey = complex.getRepresentativeImage().getKey();
 	}
 
-	public Contact mergeWithContact(Contact contact) {
-		contact.setName(contactName);
-		contact.setPhone(contactPhone);
-		contact.setEmail(contactEmail);
-		contact.setSpokenLanguages(contactSpokenLanguages);
-		return contact;
-	}
-
 	public Complex mergeWithComplex(Complex complex) {
 		complex.setTitle(title);
 		complex.setLocation(location);
 		complex.setAddress(address);
 		complex.setCoordinates(coordinates);
+
+		Contacts complexContacts = complex.getContacts();
+		if (complexContacts == null)
+			complexContacts = new Contacts();
+		complexContacts.setName(contactName);
+		complexContacts.setEmail(contactEmail);
+		complexContacts.setPhone(contactPhone);
+		complexContacts.setSpokenLanguages(contactSpokenLanguages);
 
 		complex.setDescription(enDescription, Locales.EN);
 		complex.setDescription(ruDescription, Locales.RU);

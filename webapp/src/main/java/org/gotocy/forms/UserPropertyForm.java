@@ -95,6 +95,13 @@ public class UserPropertyForm {
 		property.setReadyToMoveIn(readyToMoveIn);
 		property.setLatitude(latitude);
 		property.setLongitude(longitude);
+
+		// Preserve the contacts display option or set to OWNER
+		PropertyContactsDisplayOption contactsDisplayOption = property.getContactsDisplayOption();
+		if (contactsDisplayOption == null)
+			contactsDisplayOption = PropertyContactsDisplayOption.OWNER;
+		property.setContactsDisplayOption(contactsDisplayOption);
+
 		return property;
 	}
 

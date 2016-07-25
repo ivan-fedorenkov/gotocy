@@ -36,6 +36,7 @@ public class PropertyFactory extends BaseFactory<Property> {
 		property.setAirConditioner(ANY_BOOLEAN);
 		property.setDistanceToSea(ANY_INT);
 		property.setHeatingSystem(ANY_BOOLEAN);
+		property.setContactsDisplayOption(PropertyContactsDisplayOption.OVERRIDDEN);
 		return property;
 	}
 

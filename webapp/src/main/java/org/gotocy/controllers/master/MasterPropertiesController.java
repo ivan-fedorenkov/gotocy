@@ -2,12 +2,14 @@ package org.gotocy.controllers.master;
 
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
-import org.gotocy.domain.*;
+import org.gotocy.domain.Complex;
+import org.gotocy.domain.Developer;
+import org.gotocy.domain.OfferStatus;
+import org.gotocy.domain.Property;
 import org.gotocy.dto.PropertyDto;
 import org.gotocy.dto.PropertyDtoFactory;
 import org.gotocy.forms.PropertyForm;
 import org.gotocy.repository.ComplexRepository;
-import org.gotocy.repository.ContactRepository;
 import org.gotocy.repository.DeveloperRepository;
 import org.gotocy.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,20 +36,17 @@ public class MasterPropertiesController {
 	private final PropertyRepository propertyRepository;
 	private final DeveloperRepository developerRepository;
 	private final ComplexRepository complexRepository;
-	private final ContactRepository contactRepository;
 	private final PropertyDtoFactory propertyDtoFactory;
 
 	@Autowired
 	public MasterPropertiesController(ApplicationProperties applicationProperties,
 		PropertyRepository propertyRepository, DeveloperRepository developerRepository,
-		ComplexRepository complexRepository, ContactRepository contactRepository,
-		PropertyDtoFactory propertyDtoFactory)
+		ComplexRepository complexRepository, PropertyDtoFactory propertyDtoFactory)
 	{
 		this.applicationProperties = applicationProperties;
 		this.propertyRepository = propertyRepository;
 		this.developerRepository = developerRepository;
 		this.complexRepository = complexRepository;
-		this.contactRepository = contactRepository;
 		this.propertyDtoFactory = propertyDtoFactory;
 	}
 
@@ -65,7 +64,6 @@ public class MasterPropertiesController {
 	public String _new(Model model) {
 		model.addAttribute("developers", developerRepository.findAll());
 		model.addAttribute("complexes", complexRepository.findAll());
-		model.addAttribute("contacts", contactRepository.findAll());
 
 		PropertyForm propertyForm = new PropertyForm();
 		propertyForm.setLatitude(applicationProperties.getDefaultLatitude());
@@ -91,7 +89,6 @@ public class MasterPropertiesController {
 		model.addAttribute(new PropertyForm(property));
 		model.addAttribute("developers", developerRepository.findAll());
 		model.addAttribute("complexes", complexRepository.findAll());
-		model.addAttribute("contacts", contactRepository.findAll());
 
 		return "master/property/edit";
 	}

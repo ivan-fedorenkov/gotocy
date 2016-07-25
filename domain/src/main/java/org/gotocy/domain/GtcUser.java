@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.utils.CollectionUtils;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.*;
 
 /**
@@ -24,19 +21,16 @@ public class GtcUser extends BaseEntity {
 	private String password;
 	private long registrationDate;
 
+	@Embedded
+	private Contacts contacts;
+
 	@OneToMany(mappedBy = "gtcUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<GtcUserRole> roles = new HashSet<>();
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Contact> contacts = new HashSet<>();
 
 	public void setRoles(Set<GtcUserRole> roles) {
 		roles.forEach(role -> role.setGtcUser(this));
 		CollectionUtils.updateCollection(this.roles, roles);
-	}
-
-	public void setContacts(List<Contact> contacts) {
-		CollectionUtils.updateCollection(this.contacts, contacts);
 	}
 
 	@Override

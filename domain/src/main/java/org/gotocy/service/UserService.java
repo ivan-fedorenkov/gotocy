@@ -1,6 +1,5 @@
 package org.gotocy.service;
 
-import org.gotocy.domain.Contact;
 import org.gotocy.domain.GtcUser;
 
 /**

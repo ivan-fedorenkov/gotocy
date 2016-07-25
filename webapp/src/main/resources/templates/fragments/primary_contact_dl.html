@@ -1,6 +1,6 @@
 <dl th:fragment="primary_contact(contact)" th:with="c=(${contact == null}? ${gotocy.defaultContact} : ${contact})">
-    <dt th:text="|${i18n.t('dictionary.name')}:|">Name:</dt>
-    <dd th:text="${c.name}">Denis</dd>
+    <dt th:unless=${#strings.isEmpty(c.name)} th:text="|${i18n.t('dictionary.name')}:|">Name:</dt>
+    <dd th:unless=${#strings.isEmpty(c.name)} th:text="${c.name}">Denis</dd>
 
     <dt th:unless="${#strings.isEmpty(c.email)}" th:text="|${i18n.t('dictionary.email')}:|">Email:</dt>
     <dd th:unless="${#strings.isEmpty(c.email)}" th:text="${c.email}">support@gotocy.com</dd>

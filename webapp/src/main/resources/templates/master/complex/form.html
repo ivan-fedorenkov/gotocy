@@ -7,14 +7,6 @@
                         <header><h2>Primary Contact</h2></header>
 
                         <div class="form-group">
-                            <label for="contactId">Contact</label>
-                            <select id="contactId" th:field="*{contactId}">
-                                <option value="-1">Create new...</option>
-                                <option value="1" th:each="contact : ${contacts}" th:value="${contact.id}" th:text="${contact.name}">Denis</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
                             <label for="contactName">Name</label>
                             <input type="text" class="form-control" id="contactName" th:field="*{contactName}">
                         </div>

@@ -290,24 +290,6 @@ $(document).ready(function($) {
         });
     }
 
-// Property form / Primary Contact
-
-    var contacts = $('#contacts');
-    if (contacts.length > 0) {
-        var _contactsMap = {'-1': {name: '', phone: '', email: '', languages: ''}};
-        _contacts.forEach(function(contact) {
-            _contactsMap[contact.id] = contact;
-        });
-        $('#contactId').change(function() {
-            var contact = _contactsMap[$(this).val()];
-
-            $('#contactName').val(contact.name);
-            $('#contactPhone').val(contact.phone);
-            $('#contactEmail').val(contact.email);
-            $('#contactSpokenLanguages').val(contact.spokenLanguages);
-        });
-    }
-
 //  iCheck
 
     if ($('.checkbox').length > 0) {

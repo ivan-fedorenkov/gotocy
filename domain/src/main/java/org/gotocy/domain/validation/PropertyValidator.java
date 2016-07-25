@@ -46,6 +46,7 @@ public class PropertyValidator implements Validator {
 		ValidationUtils.rejectIfNull(errors, "propertyType", property.getPropertyType());
 		ValidationUtils.rejectIfNull(errors, "propertyStatus", property.getPropertyStatus());
 		ValidationUtils.rejectIfNull(errors, "offerStatus", property.getOfferStatus());
+		ValidationUtils.rejectIfNull(errors, "contactsDisplayOption", property.getContactsDisplayOption());
 
 		if (ACTIVE_OFFER.test(property))
 			ValidationUtils.rejectIfNegativeOrZero(errors, "price", property.getPrice());

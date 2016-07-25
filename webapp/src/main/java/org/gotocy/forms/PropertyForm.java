@@ -23,7 +23,6 @@ public class PropertyForm {
 
 	private static final Pattern STRING_SEPARATOR = Pattern.compile("[\n\r]+");
 	private static final String STRINGS_JOINER = "\n";
-	private static final Contact EMPTY_CONTACT = new Contact();
 
 	// Developer
 	private long developerId;
@@ -31,8 +30,8 @@ public class PropertyForm {
 	// Complex
 	private long complexId;
 
-	// Primary Contact
-	private long contactId;
+	// Property's contacts
+	private PropertyContactsDisplayOption contactsDisplayOption;
 	private String contactName;
 	private String contactPhone;
 	private String contactEmail;
@@ -81,18 +80,12 @@ public class PropertyForm {
 		propertyStatus = PropertyStatus.LONG_TERM;
 		offerStatus = OfferStatus.PROMO;
 		furnishing = Furnishing.NONE;
+		contactsDisplayOption = PropertyContactsDisplayOption.OVERRIDDEN;
 	}
 
 	public PropertyForm(Property property) {
 		developerId = property.getDeveloper() == null ? 0 : property.getDeveloper().getId();
 		complexId = property.getComplex() == null ? 0 : property.getComplex().getId();
-
-		// TODO: allow to specify more then one contact per type
-		Map<ContactType, Contact> contactsByType = property.getContactsByType();
-		contactName = contactsByType.getOrDefault(ContactType.NAME, EMPTY_CONTACT).getValue();
-		contactEmail = contactsByType.getOrDefault(ContactType.EMAIL, EMPTY_CONTACT).getValue();
-		contactPhone = contactsByType.getOrDefault(ContactType.PHONE, EMPTY_CONTACT).getValue();
-		contactSpokenLanguages = contactsByType.getOrDefault(ContactType.SPOKEN_LANGUAGES, EMPTY_CONTACT).getValue();
 
 		title = property.getTitle();
 		address = property.getAddress();
@@ -116,6 +109,15 @@ public class PropertyForm {
 		featured = property.isFeatured();
 		latitude = property.getLatitude();
 		longitude = property.getLongitude();
+
+		contactsDisplayOption = property.getContactsDisplayOption();
+		Contacts overriddenContacts = property.getOverriddenContacts();
+		if (overriddenContacts != null) {
+			contactName = overriddenContacts.getName();
+			contactEmail = overriddenContacts.getEmail();
+			contactPhone = overriddenContacts.getPhone();
+			contactSpokenLanguages = overriddenContacts.getSpokenLanguages();
+		}
 
 		enDescription = property.getDescription(Locales.EN);
 		enFeatures = property.getFeatures(Locales.EN).stream().collect(joining(STRINGS_JOINER));
@@ -158,8 +160,16 @@ public class PropertyForm {
 		property.setFeatured(featured);
 		property.setLatitude(latitude);
 		property.setLongitude(longitude);
-		// TODO: allow to specify more then one contact per type
-		property.setContacts(contactName, contactEmail, contactPhone, contactSpokenLanguages);
+		property.setContactsDisplayOption(contactsDisplayOption);
+
+		Contacts overriddenContacts = property.getOverriddenContacts();
+		if (overriddenContacts == null)
+			overriddenContacts = new Contacts();
+		overriddenContacts.setName(contactName);
+		overriddenContacts.setEmail(contactEmail);
+		overriddenContacts.setPhone(contactPhone);
+		overriddenContacts.setSpokenLanguages(contactSpokenLanguages);
+		property.setOverriddenContacts(overriddenContacts);
 
 		property.setDescription(enDescription, Locales.EN);
 		property.setDescription(ruDescription, Locales.RU);

@@ -2,10 +2,7 @@ package org.gotocy.forms;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.gotocy.domain.Contact;
-import org.gotocy.domain.ContactType;
-import org.gotocy.domain.GtcUser;
-import org.gotocy.domain.GtcUserRole;
+import org.gotocy.domain.*;
 import org.gotocy.forms.validation.UserRegistrationFormValidator;
 
 import java.util.Arrays;
@@ -33,10 +30,11 @@ public class UserRegistrationForm {
 		GtcUser user = new GtcUser();
 		user.setUsername(email);
 		user.setPassword(password);
-		user.setContacts(Arrays.asList(
-			new Contact(ContactType.NAME, name),
-			new Contact(ContactType.EMAIL, email)
-		));
+
+		Contacts userContacts = new Contacts();
+		userContacts.setName(name);
+		userContacts.setEmail(email);
+		user.setContacts(userContacts);
 
 		if (roles == null)
 			roles = Collections.emptySet();

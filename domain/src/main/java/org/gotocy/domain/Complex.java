@@ -22,7 +22,6 @@ import java.util.Locale;
 @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 @Entity
 @NamedEntityGraph(name = "Complex.withRequiredAssociations", attributeNodes = {
-	@NamedAttributeNode("primaryContact"),
 	@NamedAttributeNode("representativeImage")
 })
 @Getter
@@ -33,8 +32,14 @@ public class Complex extends BaseEntity {
 	@ManyToOne
 	private Developer developer;
 
-	@ManyToOne
-	private Contact primaryContact;
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name = "name", column = @Column(name = "contacts_name")),
+		@AttributeOverride(name = "email", column = @Column(name = "contacts_email")),
+		@AttributeOverride(name = "phone", column = @Column(name = "contacts_phone")),
+		@AttributeOverride(name = "spokenLanguages", column = @Column(name = "contacts_spoken_languages"))
+	})
+	private Contacts contacts;
 
 	@Enumerated(EnumType.STRING)
 	private Location location;
