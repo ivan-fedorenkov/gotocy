@@ -30,7 +30,7 @@ public class RegistrationIntegrationTest extends IntegrationTestBase {
 		String email = "anymail@example.com";
 		String password = "password";
 
-		mockMvc.perform(post("/user").with(csrf())
+		mockMvc.perform(post("/users").with(csrf())
 			.param("name", name)
 			.param("email", email)
 			.param("password", password)

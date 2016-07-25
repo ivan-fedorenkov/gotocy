@@ -40,13 +40,13 @@ public class UsersController {
 		this.formValidator = formValidator;
 	}
 
-	@RequestMapping(value = "/user/new", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/new", method = RequestMethod.GET)
 	public String _new(Model model) {
 		model.addAttribute(new UserRegistrationForm());
 		return "user/new";
 	}
 
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	@RequestMapping(value = "/users", method = RequestMethod.POST)
 	public String create(Model model, @ModelAttribute @Valid UserRegistrationForm form, BindingResult errors) {
 		if (errors.hasErrors()) {
 			// Clean up passwords
