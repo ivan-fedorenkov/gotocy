@@ -1,11 +1,11 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}" th:with="curPath='/user/new'">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}" th:with="curPath='/users/new'">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path('/user/new', locale)}}" hreflang="en"  href="#" />
+    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path('/users/new', locale)}}" hreflang="en"  href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
@@ -24,7 +24,7 @@
                     <figure><strong>Email:</strong>zoner@example.com</figure>
                 </div>
                 <div class="user-area">
-                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar('/user/new')">
+                    <div class="language-bar" th:include="fragments/language_bar_div :: language_bar('/users/new')">
                         <a href="#" class="active"><img src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
                         <a href="#"><img src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
                     </div>
@@ -64,7 +64,7 @@
 
         <div class="container">
             <header><h1 th:text="${i18n.t('dictionary.sign-up')}">Sign Up</h1></header>
-            <form role="form" id="form-sign-up" th:object="${userRegistrationForm}" th:action="@{${helper.path('/user')}}" th:method="post" >
+            <form role="form" id="form-sign-up" th:object="${userRegistrationForm}" th:action="@{${helper.path('/users')}}" th:method="post" >
 
                 <div class="row" th:if="${#fields.hasAnyErrors()}">
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
