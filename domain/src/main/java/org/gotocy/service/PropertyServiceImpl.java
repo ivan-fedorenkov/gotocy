@@ -1,20 +1,28 @@
 package org.gotocy.service;
 
+import ch.qos.logback.core.util.Duration;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.SecretKey;
 import org.gotocy.repository.PropertyRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.keygen.KeyGenerators;
+import org.springframework.security.crypto.keygen.StringKeyGenerator;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,11 +40,13 @@ public class PropertyServiceImpl implements PropertyService {
 
 	private final AssetsManager assetsManager;
 	private final PropertyRepository propertyRepository;
+	private final StringKeyGenerator keyGenerator;
 
 	@Autowired
 	public PropertyServiceImpl(AssetsManager assetsManager, PropertyRepository propertyRepository) {
 		this.propertyRepository = propertyRepository;
 		this.assetsManager = assetsManager;
+		this.keyGenerator = KeyGenerators.string();
 	}
 
 	@Override
@@ -83,6 +93,15 @@ public class PropertyServiceImpl implements PropertyService {
 		}
 
 		return property;
+	}
+
+	@Override
+	public SecretKey generateRegistrationSecret() {
+		SecretKey key = new SecretKey();
+		key.setKey(keyGenerator.generateKey());
+		// Key should be valid for one week
+		key.setEol(ZonedDateTime.now().plusWeeks(1).toInstant().toEpochMilli());
+		return key;
 	}
 
 	@Transactional(readOnly = true)

@@ -1,0 +1,41 @@
+<form role="form" id="form-sign-up">
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+            <ul class="error-messages" th:fragment="formErrors">
+                <li th:each="error : ${#fields.detailedErrors()}" th:text="${error.message}">Some error</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+            <!--/*/ <th:block th:fragment="formFields"> /*/-->
+            <div class="form-group">
+                <label for="name" th:text="${i18n.t('dictionary.your-name')}">Your Name</label>
+                <input type="text" class="form-control" id="name" name="name" th:field="*{name}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email" th:text="${i18n.t('dictionary.your-email')}">Your Email</label>
+                <input type="text" class="form-control" id="email" name="email" th:field="*{email}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password" th:text="${i18n.t('dictionary.password')}">Password</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword" th:text="${i18n.t('dictionary.confirm-password')}">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}" required>
+            </div>
+            <div class="form-group clearfix">
+                <input type="hidden" th:field="*{relPropertyId}"/>
+                <input type="hidden" th:field="*{relPropertySecret}"/>
+
+                <button type="submit" class="btn btn-default pull-right" id="account-submit" th:text="${i18n.t('dictionary.register-now')}">Sign Up</button>
+            </div>
+            <!--/*/ <th:block> /*/-->
+        </div>
+    </div>
+</form>

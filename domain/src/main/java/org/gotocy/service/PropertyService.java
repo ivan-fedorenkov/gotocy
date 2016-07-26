@@ -3,6 +3,7 @@ package org.gotocy.service;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.SecretKey;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -23,6 +24,11 @@ public interface PropertyService {
 	 * @throws ServiceMethodExecutionException if anything goes wrong
 	 */
 	Property create(Property property) throws ServiceMethodExecutionException;
+
+	/**
+	 * Generates secret key that could be used for registration purposes.
+	 */
+	SecretKey generateRegistrationSecret();
 
 	Property findOne(Long id);
 

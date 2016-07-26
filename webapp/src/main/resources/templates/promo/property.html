@@ -187,7 +187,7 @@
                 <!-- sidebar -->
                 <div class="col-md-3 col-sm-3">
                     <section id="sidebar">
-                        <aside id="registration-offer" th:if="${shouldShowRegistrationStuff && relatedRegistration == null}">
+                        <aside id="registration-offer">
                             <header><h3 th:text="${i18n.t('dictionary.congratulations')}">Congratulations</h3></header>
                             <section th:utext="${i18n.t('templates.promo.property.registration-offer-text')}">
                                 <p>Congrats, your property's page has been successfully created!</p>
@@ -195,31 +195,32 @@
                                 <p>Register now and we will contact you shortly!</p>
                             </section>
                         </aside>
-                        <aside id="registration-form" th:if="${shouldShowRegistrationStuff && relatedRegistration == null}">
+                        <aside id="registration-form">
                             <header><h3 th:text="${i18n.t('templates.promo.property.registration-form-header')}">Register Now</h3></header>
-                            <form role="form" th:object="${registrationForm}" th:action="@{${helper.path(property) + '/registration'}}" method="post">
-                                <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
-                                    <label class="control-label" for="name" th:text="${i18n.t('dictionary.your-name')}">Your Name</label>
-                                    <input type="text" class="form-control" id="name" th:field="*{name}" required>
+                            <form role="form" th:object="${userRegistrationForm}" th:action="@{${helper.path('/users')}}" th:method="post">
+                                <!--/*/ <th:block th:replace="user/form :: formFields"> /*/-->
+                                <div class="form-group">
+                                    <label class="control-label" for="name">Your Name</label>
+                                    <input type="text" class="form-control" id="name" required>
                                 </div>
 
-                                <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? has-error">
-                                    <label class="control-label" for="email" th:text="${i18n.t('dictionary.your-email')}">Your Email</label>
-                                    <input type="text" class="form-control" id="email" th:field="*{email}" required>
+                                <div class="form-group">
+                                    <label class="control-label" for="email">Your Email</label>
+                                    <input type="text" class="form-control" id="email" required>
                                 </div>
 
-                                <div class="form-group" th:classappend="${#fields.hasErrors('businessForm')} ? has-error">
-                                    <label class="control-label" for="businessForm" th:text="${i18n.t('dictionary.business-form')}">Business Form</label>
-                                    <select id="businessForm" th:field="*{businessForm}" th:remove="all-but-first">
-                                        <option value="1" th:each="form : ${T(org.gotocy.domain.BusinessForm).values()}" th:value="${form}" th:text="${{form}}">Individual</option>
+                                <div class="form-group">
+                                    <label class="control-label" for="businessForm">Business Form</label>
+                                    <select id="businessForm">
+                                        <option value="1">Individual</option>
                                         <option value="2">Agent</option>
                                         <option value="3">Developer</option>
                                     </select>
                                 </div>
 
-                                <div class="form-group" th:classappend="${#fields.hasErrors('propertiesCount')} ? has-error">
-                                    <label class="control-label" for="propertiesCount" th:text="${i18n.t('dictionary.properties-count')}">How many properties do you have?</label>
-                                    <select id="propertiesCount" th:field="*{propertiesCount}" th:errorclass="has-error">
+                                <div class="form-group">
+                                    <label class="control-label" for="propertiesCount">How many properties do you have?</label>
+                                    <select id="propertiesCount">
                                         <option value="1">1+</option>
                                         <option value="3">3+</option>
                                         <option value="5">5+</option>
@@ -229,65 +230,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="submit" id="register-button" class="btn btn-default" th:text="${i18n.t('dictionary.register-now')}">Register Now</button>
+                                    <button type="submit" id="register-button" class="btn btn-default">Register Now</button>
                                 </div>
+                                <!--/*/ </th:block> /*/-->
                             </form>
                         </aside>
-                        <aside id="thank-you" th:if="${shouldShowRegistrationStuff && relatedRegistration != null}">
-                            <header><h3 th:text="${i18n.t('dictionary.thank-you')}">Thank You!</h3></header>
-                            <section th:utext="${i18n.t('templates.promo.property.thank-you-text')}">
-                                <p>Your registration request has been sent to our moderator!</p>
-                                <p>We will contact you soon!</p>
-                            </section>
-                        </aside>
-
-                        <aside id="primary-contact" th:unless="${shouldShowRegistrationStuff}">
-                            <header><h3 th:text="${i18n.t('dictionary.primary-contact')}">Primary Contact</h3></header>
-                            <dl th:replace="fragments/primary_contact_dl :: primary_contact(contact=*{contacts})">
-                                <dt>Name:</dt>
-                                <dd>Denis</dd>
-
-                                <dt>Email:</dt>
-                                <dd>support@gotocy.com</dd>
-
-                                <dt>Phone:</dt>
-                                <dd>123-45-67</dd>
-
-                                <dt>Spoken Languages:</dt>
-                                <dd>English, Russian</dd>
-                            </dl>
-                        </aside><!-- /#primary-contact -->
-
-                        <aside id="advertising" th:unless="${shouldShowRegistrationStuff}">
-                            <header><h3 th:text="${i18n.t('dictionary.advertising')}">Advertising</h3></header>
-                            <div class="property small">
-                                <a th:href="@{${helper.path('/gmdeco4u')}}" href="/parent/webapp/templates/commercial/gm_deco_en.html">
-                                    <div class="property-image">
-                                        <img alt="G.M. Deco" src="http://assets.gotocy.com/commercial/gm_deco/logo_side.jpg">
-                                    </div>
-                                </a>
-                                <div class="info">
-                                    <a th:href="@{${helper.path('/gmdeco4u')}}" href="/parent/webapp/templates/commercial/gm_deco_en.html"><h4>G.M. Deco For You</h4></a>
-                                    <figure th:utext="${i18n.t('templates.property.show.gm-deco-side-description')}">Interior | Exterior Design<br>Our experienced team (20+ years) is in your disposal to help you in</figure>
-                                </div>
-                            </div>
-                        </aside>
-
-                        <aside id="featured-properties" th:unless="${shouldShowRegistrationStuff || #lists.isEmpty(featuredProperties)}">
-                            <header><h3 th:text="${i18n.t('dictionary.featured-properties')}">Featured Properties</h3></header>
-                            <div class="property small" th:each="p : ${featuredProperties}" th:with="propertyPath=${helper.path(p)}">
-                                <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html">
-                                    <div class="property-image">
-                                        <img alt="" th:src="${helper.property.representativeImageUrl(p)}" src="/parent/webapp/public/assets/img/properties/property-06.jpg">
-                                    </div>
-                                </a>
-                                <div class="info">
-                                    <a th:href="@{${propertyPath}}" href="/parent/webapp/templates/property/show.html"><h4 th:text="${p.title}">2186 Rinehart Road</h4></a>
-                                    <figure th:text="${p.shortAddress}">Doral, FL 33178 </figure>
-                                    <div class="tag price" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:utext="${helper.property.price(p)}">$ 72,000</div>
-                                </div>
-                            </div><!-- /.property -->
-                        </aside><!-- /#similar-properties -->
                     </section><!-- /#sidebar -->
                 </div><!-- /.col-md-3 -->
                 <!-- end Sidebar -->

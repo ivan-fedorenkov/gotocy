@@ -2,7 +2,7 @@ package org.gotocy.controllers;
 
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.*;
-import org.gotocy.forms.RegistrationForm;
+import org.gotocy.forms.UserRegistrationForm;
 import org.gotocy.forms.validation.RegistrationFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.repository.PropertyRepository;
@@ -12,13 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.validation.Valid;
 import java.util.*;
 
 import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
@@ -72,41 +72,9 @@ public class PromoController {
 
 		property.initLocalizedFields(locale);
 		model.addAttribute(property);
-		model.addAttribute("featuredProperties", propertyService.getFeatured());
-
-		boolean shouldShowRegistrationStuff = property.getOfferStatus() == OfferStatus.PROMO;
-		model.addAttribute("shouldShowRegistrationStuff", shouldShowRegistrationStuff);
-		if (shouldShowRegistrationStuff) {
-			model.addAttribute("relatedRegistration", registrationRepository.findByRelatedProperty(property));
-			model.addAttribute(new RegistrationForm());
-		}
+		model.addAttribute(new UserRegistrationForm());
 
 		return "promo/property";
-	}
-
-	/**
-	 * TODO: integration test
-	 */
-	@Transactional
-	@RequestMapping(value = "/properties/{id}/registration", method = RequestMethod.POST)
-	public String createRegistration(@RequiredDomainObject @PathVariable("id") Property property,
-		@Valid @ModelAttribute RegistrationForm registrationForm, BindingResult errors,
-		Model model, Locale locale)
-	{
-		if (!property.isPromo())
-			return "redirect:" + Helper.path(property);
-
-		property.initLocalizedFields(locale);
-		model.addAttribute(property);
-
-		if (errors.hasErrors())
-			return "promo/property";
-
-		Registration registration = registrationForm.mergeWithRegistration(new Registration());
-		registration.setRelatedProperty(property);
-		registrationRepository.save(registration);
-
-		return "redirect:" + Helper.path(property);
 	}
 
 	@RequestMapping(value = "/index-1", method = RequestMethod.GET)

@@ -3,10 +3,7 @@ package org.gotocy.controllers;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.controllers.exceptions.NotFoundException;
-import org.gotocy.domain.Image;
-import org.gotocy.domain.OfferStatus;
-import org.gotocy.domain.PanoXml;
-import org.gotocy.domain.Property;
+import org.gotocy.domain.*;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.UserPropertyForm;
 import org.gotocy.forms.validation.UserPropertyFormValidator;
@@ -138,6 +135,7 @@ public class PropertiesController {
 		Property property = userPropertyForm.mergeWithProperty(new Property());
 		property.setOfferStatus(OfferStatus.PROMO);
 		property.setDescription(property.getDescription(), locale);
+		property.setRegistrationKey(propertyService.generateRegistrationSecret());
 
 		List<Image> images = new ArrayList<>();
 		if (!userPropertyForm.getImages().isEmpty()) {
@@ -153,6 +151,8 @@ public class PropertiesController {
 		}
 
 		propertyService.create(property);
+
+
 		return "redirect:" + Helper.path(property);
 	}
 

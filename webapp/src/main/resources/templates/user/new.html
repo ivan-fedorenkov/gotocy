@@ -64,37 +64,37 @@
 
         <div class="container">
             <header><h1 th:text="${i18n.t('dictionary.sign-up')}">Sign Up</h1></header>
-            <form role="form" id="form-sign-up" th:object="${userRegistrationForm}" th:action="@{${helper.path('/users')}}" th:method="post" >
+            <form role="form" id="form-sign-up" th:object="${userRegistrationForm}" th:action="@{${helper.path('/users')}}" th:method="post">
 
                 <div class="row" th:if="${#fields.hasAnyErrors()}">
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                        <ul class="error-messages">
-                            <li th:each="error : ${#fields.detailedErrors()}" th:text="${error.message}">Some error</li>
+                        <ul class="error-messages" th:replace="user/form :: formErrors">
+                            <li>Some error</li>
                         </ul>
                     </div>
-                </div><!-- /.row -->
+                </div>
 
                 <div class="row">
-                    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+                    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3" th:include="user/form :: formFields">
                         <div class="form-group">
-                            <label for="name" th:text="${i18n.t('dictionary.your-name')}">Your Name</label>
-                            <input type="text" class="form-control" id="name" name="name" th:field="*{name}" required>
-                        </div><!-- /.form-group -->
+                            <label for="name">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
                         <div class="form-group">
-                            <label for="email" th:text="${i18n.t('dictionary.your-email')}">Your Email</label>
-                            <input type="text" class="form-control" id="email" name="email" th:field="*{email}" required>
-                        </div><!-- /.form-group -->
+                            <label for="email">Your Email</label>
+                            <input type="text" class="form-control" id="email" name="email" required>
+                        </div>
                         <div class="form-group">
-                            <label for="password" th:text="${i18n.t('dictionary.password')}">Password</label>
-                            <input type="password" class="form-control" id="password" th:field="*{password}" required>
-                        </div><!-- /.form-group -->
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
                         <div class="form-group">
-                            <label for="confirmPassword" th:text="${i18n.t('dictionary.confirm-password')}">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}" required>
-                        </div><!-- /.form-group -->
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
                         <div class="form-group clearfix">
-                            <button type="submit" class="btn btn-default pull-right" id="account-submit" th:text="${i18n.t('dictionary.register-now')}">Sign Up</button>
-                        </div><!-- /.form-group -->
+                            <button type="submit" class="btn btn-default pull-right" id="account-submit">Sign Up</button>
+                        </div>
                     </div>
                 </div><!-- /.row -->
             </form>

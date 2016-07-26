@@ -4,7 +4,6 @@ import org.gotocy.config.Roles;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyContactsDisplayOption;
-import org.gotocy.forms.PropertyForm;
 import org.gotocy.repository.PropertyRepository;
 import org.gotocy.test.factory.ContactsFactory;
 import org.gotocy.test.factory.PropertyFactory;
@@ -67,6 +66,9 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 
 		// Verify fields that must be set disregard to what a user typed in
 		Assert.assertEquals(OfferStatus.PROMO, createdProperty.getOfferStatus());
+
+		// Verify fields that should be generated for registration purposes
+		Assert.assertNotNull(createdProperty.getRegistrationKey());
 
 		// Verify the response status and the response page
 		result.andExpect(MockMvcResultMatchers.status().isFound())

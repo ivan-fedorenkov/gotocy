@@ -124,6 +124,14 @@ public class Property extends BaseEntity {
 	private String crawlId;
 	private String crawlUrl;
 
+	// Registration specific field
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name = "key", column = @Column(name = "registration_key")),
+		@AttributeOverride(name = "eol", column = @Column(name = "registration_key_eol"))
+	})
+	private SecretKey registrationKey;
+
 	public Image getImage(int index) {
 		// Ensure that the index is in the images list bounds
 		if (index >= images.size())

@@ -64,3 +64,8 @@ UPDATE `complex` cplx SET
 
 ALTER TABLE `complex` DROP CONSTRAINT `fk_complex_primary_contact_id`;
 ALTER TABLE `complex` DROP COLUMN `primary_contact_id`;
+
+-- Property registration secret
+
+ALTER TABLE `property` ADD COLUMN `registration_key` VARCHAR(256);
+ALTER TABLE `property` ADD COLUMN `registration_key_eol` BIGINT;

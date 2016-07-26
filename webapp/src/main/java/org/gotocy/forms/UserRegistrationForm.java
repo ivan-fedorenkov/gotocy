@@ -26,6 +26,19 @@ public class UserRegistrationForm {
 	private String confirmPassword;
 	private Set<String> roles;
 
+	private Long relPropertyId;
+	private String relPropertySecret;
+
+	public UserRegistrationForm() {
+	}
+
+	public UserRegistrationForm(Property property) {
+		if (property.getRegistrationKey() != null) {
+			relPropertyId = property.getId();
+			relPropertySecret = property.getRegistrationKey().getKey();
+		}
+	}
+
 	public GtcUser toUser() {
 		GtcUser user = new GtcUser();
 		user.setUsername(email);
