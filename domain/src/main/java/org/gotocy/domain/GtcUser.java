@@ -24,13 +24,16 @@ public class GtcUser extends BaseEntity {
 	@Embedded
 	private Contacts contacts;
 
-	@OneToMany(mappedBy = "gtcUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "gtcUser", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<GtcUserRole> roles = new HashSet<>();
-
 
 	public void setRoles(Set<GtcUserRole> roles) {
 		roles.forEach(role -> role.setGtcUser(this));
 		CollectionUtils.updateCollection(this.roles, roles);
+	}
+
+	public Contacts getContacts() {
+		return contacts == null ? Contacts.EMPTY : contacts;
 	}
 
 	@Override

@@ -16,6 +16,8 @@ import java.util.Objects;
 @Setter
 public class Contacts {
 
+	public static final Contacts EMPTY = new EmptyContacts();
+
 	private String name;
 	private String email;
 	private String phone;
@@ -35,6 +37,24 @@ public class Contacts {
 	@Override
 	public int hashCode() {
 		return Objects.hash(name, email, phone, spokenLanguages);
+	}
+
+	private static class EmptyContacts extends Contacts {
+		@Override
+		public void setName(String name) {
+		}
+
+		@Override
+		public void setEmail(String email) {
+		}
+
+		@Override
+		public void setPhone(String phone) {
+		}
+
+		@Override
+		public void setSpokenLanguages(String spokenLanguages) {
+		}
 	}
 
 }

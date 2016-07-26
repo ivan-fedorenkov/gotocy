@@ -8,7 +8,6 @@ import org.gotocy.domain.i18n.PropertyLocalizedFieldsManager;
 import org.gotocy.utils.CollectionUtils;
 
 import javax.persistence.*;
-import javax.validation.OverridesAttribute;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -142,9 +141,9 @@ public class Property extends BaseEntity {
 	public Contacts getContacts() {
 		switch (contactsDisplayOption) {
 		case OVERRIDDEN:
-			return overriddenContacts;
+			return overriddenContacts == null ? Contacts.EMPTY : overriddenContacts;
 		case OWNER:
-			return owner == null ? overriddenContacts : owner.getContacts();
+			return owner == null ? Contacts.EMPTY : owner.getContacts();
 		default:
 			return null;
 		}

@@ -87,6 +87,10 @@ public class Complex extends BaseEntity {
 		CollectionUtils.updateCollection(this.pdfFiles, pdfFiles);
 	}
 
+	public Contacts getContacts() {
+		return contacts == null ? Contacts.EMPTY : contacts;
+	}
+
 	// Localized fields
 
 	private transient ComplexLocalizedFieldsManager localizedFieldsManager;
