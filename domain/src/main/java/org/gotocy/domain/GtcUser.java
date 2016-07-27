@@ -4,8 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.utils.CollectionUtils;
 
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * This is the object which represents database state of a user.
@@ -19,7 +25,7 @@ public class GtcUser extends BaseEntity {
 
 	private String username;
 	private String password;
-	private long registrationDate;
+	private LocalDate registrationDate;
 
 	@Embedded
 	private Contacts contacts;

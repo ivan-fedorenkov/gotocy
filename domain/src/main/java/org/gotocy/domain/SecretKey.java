@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Embeddable;
-import java.time.Instant;
-import java.time.temporal.TemporalUnit;
+import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * An embeddable secret key.
@@ -23,15 +23,15 @@ public class SecretKey {
 	private String key;
 
 	/**
-	 * Key end of life time (millis)
+	 * Key end of life date
 	 */
-	private long eol;
+	private LocalDate eol;
 
 	/**
-	 * Determines if the secret key has expired.
+	 * Verifies that the given key matches this key and this key hasn't expired.
 	 */
-	public boolean isExpired() {
-		return System.currentTimeMillis() > eol;
+	public boolean verifyKey(String key) {
+		return Objects.equals(this.key, key) && LocalDate.now().isBefore(eol);
 	}
 
 }

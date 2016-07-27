@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,8 +33,6 @@ import static org.gotocy.repository.PropertyPredicates.*;
 public class PropertyServiceImpl implements PropertyService {
 
 	private static final Logger logger = LoggerFactory.getLogger(PropertyService.class);
-
-	private static final long WEEK = 1000L * 60 * 60 * 24 * 7;
 
 	private final AssetsManager assetsManager;
 	private final PropertyRepository propertyRepository;
@@ -100,7 +99,7 @@ public class PropertyServiceImpl implements PropertyService {
 		SecretKey key = new SecretKey();
 		key.setKey(keyGenerator.generateKey());
 		// Key should be valid for one week
-		key.setEol(System.currentTimeMillis() + WEEK);
+		key.setEol(LocalDate.now().plusWeeks(1));
 		return key;
 	}
 

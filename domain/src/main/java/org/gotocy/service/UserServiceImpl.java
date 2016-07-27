@@ -7,6 +7,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+
 /**
  * @author ifedorenkov
  */
@@ -32,7 +34,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public GtcUser register(GtcUser user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		user.setRegistrationDate(System.currentTimeMillis());
+		user.setRegistrationDate(LocalDate.now());
 		return userRepository.save(user);
 	}
 
