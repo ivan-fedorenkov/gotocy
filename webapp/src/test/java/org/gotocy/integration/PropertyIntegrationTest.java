@@ -8,17 +8,18 @@ import org.gotocy.repository.PropertyRepository;
 import org.gotocy.test.factory.ContactsFactory;
 import org.gotocy.test.factory.PropertyFactory;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * @author ifedorenkov
@@ -27,6 +28,18 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 
 	@Autowired
 	private PropertyRepository propertyRepository;
+
+	@Test
+	@Ignore
+	public void accessToInactiveProperty() throws Exception {
+		Property property = PropertyFactory.INSTANCE.get(p -> {
+			p.setOfferStatus(OfferStatus.INACTIVE);
+		});
+		property = propertyRepository.save(property);
+
+		mockMvc.perform(get("/properties/" + property.getId()))
+			.andExpect(status().isNotFound());
+	}
 
 	@Test
 	public void propertyCreation() throws Exception {
@@ -71,8 +84,8 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 		Assert.assertNotNull(createdProperty.getRegistrationKey());
 
 		// Verify the response status and the response page
-		result.andExpect(MockMvcResultMatchers.status().isFound())
-			.andExpect(MockMvcResultMatchers.redirectedUrl("/promo/properties/" + createdProperty.getId()));
+		result.andExpect(status().isFound())
+			.andExpect(redirectedUrl("/promo/properties/" + createdProperty.getId()));
 	}
 
 
@@ -106,7 +119,7 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 			.param("contactEmail", property.getOverriddenContacts().getEmail())
 			.param("contactPhone", property.getOverriddenContacts().getPhone())
 			.param("contactSpokenLanguages", property.getOverriddenContacts().getSpokenLanguages()))
-			.andExpect(MockMvcResultMatchers.status().isOk());
+			.andExpect(status().isOk());
 
 		List<Property> properties = propertyRepository.findAll();
 		Assert.assertEquals(1, properties.size());
