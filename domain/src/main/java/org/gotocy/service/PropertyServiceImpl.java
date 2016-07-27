@@ -1,6 +1,5 @@
 package org.gotocy.service;
 
-import ch.qos.logback.core.util.Duration;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyStatus;
@@ -12,17 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.codec.Hex;
+import org.springframework.security.crypto.keygen.BytesKeyGenerator;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.security.crypto.keygen.StringKeyGenerator;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,10 +29,11 @@ import static org.gotocy.repository.PropertyPredicates.*;
  * @author ifedorenkov
  */
 @Component
-@Transactional
 public class PropertyServiceImpl implements PropertyService {
 
 	private static final Logger logger = LoggerFactory.getLogger(PropertyService.class);
+
+	private static final long WEEK = 1000L * 60 * 60 * 24 * 7;
 
 	private final AssetsManager assetsManager;
 	private final PropertyRepository propertyRepository;
@@ -46,10 +43,13 @@ public class PropertyServiceImpl implements PropertyService {
 	public PropertyServiceImpl(AssetsManager assetsManager, PropertyRepository propertyRepository) {
 		this.propertyRepository = propertyRepository;
 		this.assetsManager = assetsManager;
-		this.keyGenerator = KeyGenerators.string();
+
+		BytesKeyGenerator bytesKeyGenerator = KeyGenerators.secureRandom(28);
+		this.keyGenerator = () -> new String(Hex.encode(bytesKeyGenerator.generateKey()));
 	}
 
 	@Override
+	@Transactional
 	public Property create(Property property) {
 
 		// We need property id to create full image's paths, so first of all create a property without assets,
@@ -100,24 +100,24 @@ public class PropertyServiceImpl implements PropertyService {
 		SecretKey key = new SecretKey();
 		key.setKey(keyGenerator.generateKey());
 		// Key should be valid for one week
-		key.setEol(ZonedDateTime.now().plusWeeks(1).toInstant().toEpochMilli());
+		key.setEol(System.currentTimeMillis() + WEEK);
 		return key;
 	}
 
-	@Transactional(readOnly = true)
 	@Override
+	@Transactional(readOnly = true)
 	public Property findOne(Long id) {
 		return propertyRepository.findOne(id);
 	}
 
-	@Transactional(readOnly = true)
 	@Override
+	@Transactional(readOnly = true)
 	public Page<Property> findRecent(PropertyStatus propertyStatus, Pageable pageable) {
 		return propertyRepository.findAll(publiclyVisible().and(inStatus(propertyStatus)), pageable);
 	}
 
-	@Transactional(readOnly = true)
 	@Override
+	@Transactional(readOnly = true)
 	public Iterable<Property> getFeatured() {
 		return propertyRepository.findAll(publiclyVisible().and(featured()));
 	}
