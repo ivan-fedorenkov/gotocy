@@ -4,6 +4,8 @@ import org.gotocy.config.Roles;
 import org.gotocy.domain.*;
 import org.gotocy.repository.GtcUserRepository;
 import org.gotocy.service.PropertyService;
+import org.gotocy.test.factory.ContactsFactory;
+import org.gotocy.test.factory.GtcUserFactory;
 import org.gotocy.test.factory.PropertyFactory;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,6 +13,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.time.LocalDate;
 import java.util.Collections;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -35,15 +38,13 @@ public class UserRegistrationIntegrationTest extends IntegrationTestBase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		String email = "anymail@example.com";
-		registeringUser = new GtcUser();
-		registeringUser.setUsername(email);
-		registeringUser.setPassword("password");
-		Contacts userContacts = new Contacts();
-		userContacts.setName("any name");
-		userContacts.setEmail(email);
-		registeringUser.setContacts(userContacts);
-		registeringUser.setRoles(Collections.singleton(new GtcUserRole(Roles.USER)));
+		registeringUser = GtcUserFactory.INSTANCE.get(user -> {
+			user.setContacts(ContactsFactory.INSTANCE.get(contacts -> {
+				contacts.setPhone(null);
+				contacts.setSpokenLanguages(null);
+			}));
+			user.setRoles(Collections.singleton(new GtcUserRole(Roles.USER)));
+		});
 	}
 
 	@Test
@@ -57,6 +58,7 @@ public class UserRegistrationIntegrationTest extends IntegrationTestBase {
 
 		GtcUser registeredUser = userRepository.findByUsername(registeringUser.getUsername());
 
+		Assert.assertEquals(LocalDate.now(), registeredUser.getRegistrationDate());
 		Assert.assertEquals(registeringUser.getUsername(), registeredUser.getUsername());
 		Assert.assertTrue(passwordEncoder.matches(registeringUser.getPassword(), registeredUser.getPassword()));
 		Assert.assertEquals(registeringUser.getContacts(), registeredUser.getContacts());
@@ -82,6 +84,7 @@ public class UserRegistrationIntegrationTest extends IntegrationTestBase {
 			.andExpect(status().is3xxRedirection());
 
 		GtcUser registeredUser = userRepository.findByUsername(registeringUser.getUsername());
+		Assert.assertEquals(LocalDate.now(), registeredUser.getRegistrationDate());
 		Assert.assertEquals(registeringUser.getUsername(), registeredUser.getUsername());
 		Assert.assertTrue(passwordEncoder.matches(registeringUser.getPassword(), registeredUser.getPassword()));
 		Assert.assertEquals(registeringUser.getContacts(), registeredUser.getContacts());

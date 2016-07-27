@@ -69,10 +69,12 @@ public class UserServiceImpl implements UserService {
 							relProperty.setOfferStatus(OfferStatus.INACTIVE);
 						propertyRepository.save(relProperty);
 					} else {
-						logger.warn("Failed to set user {} as the owner. Registration key mismatch.");
+						logger.warn("Failed to set user {} as the owner. Registration key mismatch.",
+							user.getUsername());
 					}
 				} else {
-					logger.warn("Failed to set user {} as the owner. Registration key has expired.");
+					logger.warn("Failed to set user {} as the owner of a property #{}. Registration key has expired.",
+						user.getUsername(), relPropertyId);
 				}
 			} else {
 				logger.warn("Failed to set user {} as the owner. Property #{} not found.", user.getUsername(),
