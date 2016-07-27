@@ -3,7 +3,10 @@ package org.gotocy.controllers;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.controllers.exceptions.NotFoundException;
-import org.gotocy.domain.*;
+import org.gotocy.domain.Image;
+import org.gotocy.domain.OfferStatus;
+import org.gotocy.domain.PanoXml;
+import org.gotocy.domain.Property;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.UserPropertyForm;
 import org.gotocy.forms.validation.UserPropertyFormValidator;
@@ -43,22 +46,24 @@ public class PropertiesController {
 	private final AssetsManager assetsManager;
 	private final ApplicationProperties applicationProperties;
 	private final PropertyService propertyService;
-	private final UserPropertyFormValidator userPropertyFormValidator;
+	private final UserPropertyFormValidator propertyFormValidator;
 
 	@Autowired
 	public PropertiesController(PropertyRepository repository, AssetsManager assetsManager,
-		ApplicationProperties applicationProperties, PropertyService propertyService)
+		ApplicationProperties applicationProperties, PropertyService propertyService,
+		UserPropertyFormValidator propertyFormValidator)
 	{
 		this.repository = repository;
 		this.assetsManager = assetsManager;
 		this.applicationProperties = applicationProperties;
 		this.propertyService = propertyService;
-		userPropertyFormValidator = new UserPropertyFormValidator(applicationProperties);
+		this.propertyFormValidator = propertyFormValidator;
 	}
 
 	@InitBinder("userPropertyForm")
 	public void initBinder(WebDataBinder binder) {
-		binder.addValidators(userPropertyFormValidator);
+		if (binder.getTarget() != null && propertyFormValidator.supports(binder.getTarget().getClass()))
+			binder.addValidators(propertyFormValidator);
 	}
 
 	@RequestMapping(value = "/properties", method = RequestMethod.GET)

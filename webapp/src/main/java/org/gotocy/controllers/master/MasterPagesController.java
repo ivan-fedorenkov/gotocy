@@ -5,7 +5,6 @@ import org.gotocy.domain.Page;
 import org.gotocy.domain.i18n.LocalizedPage;
 import org.gotocy.forms.PageForm;
 import org.gotocy.forms.validation.PageFormValidator;
-import org.gotocy.forms.validation.RegistrationFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.repository.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +31,9 @@ public class MasterPagesController {
 	private final PageFormValidator pageFormValidator;
 
 	@Autowired
-	public MasterPagesController(PageRepository pageRepository) {
+	public MasterPagesController(PageRepository pageRepository, PageFormValidator pageFormValidator) {
 		this.pageRepository = pageRepository;
-		pageFormValidator = new PageFormValidator(pageRepository);
+		this.pageFormValidator = pageFormValidator;
 	}
 
 	@InitBinder("pageForm")

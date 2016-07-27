@@ -5,6 +5,8 @@ import org.gotocy.domain.Property;
 import org.gotocy.domain.validation.PropertyValidator;
 import org.gotocy.domain.validation.ValidationConstraints;
 import org.gotocy.forms.UserPropertyForm;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +21,7 @@ import java.util.List;
  *
  * @author ifedorenkov
  */
+@Component
 public class UserPropertyFormValidator implements Validator {
 
 	public static final String ALLOWED_IMAGE_CONTENT_TYPE = "image/jpeg";
@@ -28,6 +31,7 @@ public class UserPropertyFormValidator implements Validator {
 	private final int maxAllowedFileSize;
 	private final int maxAllowedFileSizeMb;
 
+	@Autowired
 	public UserPropertyFormValidator(ApplicationProperties applicationProperties) {
 		maxAllowedImages = applicationProperties.getUserPropertyForm().getMaxFileCount();
 		maxAllowedFileSize = applicationProperties.getUserPropertyForm().getMaxFileSize() * 1024; // bytes

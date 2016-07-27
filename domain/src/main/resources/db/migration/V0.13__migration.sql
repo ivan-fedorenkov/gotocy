@@ -69,3 +69,7 @@ ALTER TABLE `complex` DROP COLUMN `primary_contact_id`;
 
 ALTER TABLE `property` ADD COLUMN `registration_key` VARCHAR(256);
 ALTER TABLE `property` ADD COLUMN `registration_key_eol` BIGINT;
+
+-- Remove registrations table
+
+DROP TABLE `registration`;

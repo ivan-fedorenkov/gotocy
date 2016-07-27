@@ -4,6 +4,8 @@ import org.gotocy.domain.Page;
 import org.gotocy.domain.validation.ValidationConstraints;
 import org.gotocy.forms.PageForm;
 import org.gotocy.repository.PageRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -14,10 +16,12 @@ import org.springframework.validation.Validator;
  *
  * @author ifedorenkov
  */
+@Component
 public class PageFormValidator implements Validator {
 
 	private final PageRepository pageRepository;
 
+	@Autowired
 	public PageFormValidator(PageRepository pageRepository) {
 		this.pageRepository = pageRepository;
 	}
