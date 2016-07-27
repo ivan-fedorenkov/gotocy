@@ -132,6 +132,15 @@ public class Property extends BaseEntity {
 	})
 	private SecretKey registrationKey;
 
+	/**
+	 * Sets the registered user as owner of this property.
+	 * Resets registration key.
+	 */
+	public void setRegisteredOwner(GtcUser owner) {
+		this.owner = owner;
+		this.registrationKey = null;
+	}
+
 	public Image getImage(int index) {
 		// Ensure that the index is in the images list bounds
 		if (index >= images.size())

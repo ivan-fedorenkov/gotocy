@@ -1,6 +1,7 @@
 package org.gotocy.service;
 
 import org.gotocy.domain.GtcUser;
+import org.gotocy.domain.Property;
 
 /**
  * A service that is responsible for operations on {@link GtcUser} entities.
@@ -21,8 +22,18 @@ public interface UserService {
 	 * Registers the given user entity.
 	 *
 	 * @param user to be registered
-	 * @return registered user
+	 * @return registered user.
 	 */
 	GtcUser register(GtcUser user);
+
+	/**
+	 * Registers the given user entity.
+	 *
+	 * @param user to be registered
+	 * @param relPropertyId related property identifier (e.g. from the promo page)
+	 * @param relPropertySecret secret registration code of the property
+	 * @return registered user
+	 */
+	GtcUser register(GtcUser user, Long relPropertyId, String relPropertySecret);
 
 }

@@ -28,10 +28,10 @@ public class SecretKey {
 	private LocalDate eol;
 
 	/**
-	 * Verifies that the given key matches this key and this key hasn't expired.
+	 * Determines if this key has expired.
 	 */
-	public boolean verifyKey(String key) {
-		return Objects.equals(this.key, key) && LocalDate.now().isBefore(eol);
+	public boolean isExpired() {
+		return LocalDate.now().isAfter(eol);
 	}
 
 }

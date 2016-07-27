@@ -8,7 +8,7 @@ import org.springframework.context.MessageSourceResolvable;
  * @author ifedorenkov
  */
 public enum OfferStatus implements MessageSourceResolvable {
-	ACTIVE, BOOKED, SOLD, RENTED, PROMO;
+	ACTIVE, BOOKED, SOLD, RENTED, PROMO, INACTIVE;
 
 	@Override
 	public String[] getCodes() {

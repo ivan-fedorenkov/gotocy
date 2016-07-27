@@ -41,8 +41,7 @@ public class UsersController {
 	}
 
 	@RequestMapping(value = "/users/new", method = RequestMethod.GET)
-	public String _new(Model model) {
-		model.addAttribute(new UserRegistrationForm());
+	public String _new(@ModelAttribute UserRegistrationForm form) {
 		return "user/new";
 	}
 
@@ -56,7 +55,8 @@ public class UsersController {
 		}
 		// Enforce the Roles.USER role
 		form.setRoles(Collections.singleton(Roles.USER));
-		GtcUser registeredUser = userService.register(form.toUser());
+		GtcUser registeredUser = userService.register(form.toUser(), form.getRelPropertyId(),
+			form.getRelPropertySecret());
 		model.addAttribute(registeredUser);
 		return "redirect:" + Helper.path("/");
 	}
