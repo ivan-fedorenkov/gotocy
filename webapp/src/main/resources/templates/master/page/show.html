@@ -18,45 +18,7 @@
 <!-- Wrapper -->
 <div class="wrapper">
     <!-- Navigation -->
-    <div class="navigation">
-        <div class="secondary-navigation">
-            <div class="container">
-                <div class="contact" th:include="fragments/contact_div :: contact">
-                    <figure><strong>Phone:</strong>+1 810-991-3842</figure>
-                    <figure><strong>Email:</strong>zoner@example.com</figure>
-                </div>
-                <div class="user-area">
-                    <div class="language-bar" th:unless="${#lists.size(supportedLocales) == 1}" th:include="fragments/language_bar_div :: language_bar_for_locales(${helper.path('/master/pages/' + page.id)}, ${supportedLocales})">
-                        <a href="#" class="active"><img th:src="@{/assets/img/flags/gb.png}" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
-                        <a href="#"><img th:src="@{/assets/img/flags/ru.png}" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <header class="navbar" id="top" role="banner">
-                <div class="navbar-header">
-                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only" th:text="${i18n.t('dictionary.toggle-navigation')}">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand nav" id="brand">
-                        <a th:href="@{${helper.path('/')}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.com/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
-                    </div>
-                </div>
-                <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-                    <ul class="nav navbar-nav">
-                        <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home-page')}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
-                    </ul>
-                </nav><!-- /.navbar collapse-->
-                <div class="add-your-property">
-                    <a href="/parent/webapp/templates/property/new.html" th:href="@{${helper.path('/properties/new')}}" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="${i18n.t('dictionary.add-your-property')}">Add Your Property</span></a>
-                </div>
-            </header><!-- /.navbar -->
-        </div><!-- /.container -->
-    </div><!-- /.navigation -->
+    <div class="navigation" th:replace="fragments/navigation_div :: navigation_for_master('/master/pages/' + ${page.id})"></div>
     <!-- end Navigation -->
 
     <!-- Page Content -->

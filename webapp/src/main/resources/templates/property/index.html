@@ -22,44 +22,23 @@
     <div class="navigation">
         <div class="secondary-navigation">
             <div class="container">
-                <div class="contact" th:include="fragments/contact_div :: contact">
-                    <figure><strong>Phone:</strong>+1 810-991-3842</figure>
-                    <figure><strong>Email:</strong>zoner@example.com</figure>
-                </div>
+                <div class="contact" th:replace="fragments/navigation_div :: contacts"></div>
                 <div class="user-area">
+                    <div class="actions" th:replace="fragments/navigation_div :: user_area_actions"></div>
                     <div class="language-bar">
                         <a th:href="@{${helper.appendPage(helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EN), properties.number)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).EN}? 'active'" class="active"><img th:src="'http://assets.gotocy.com/static/img/flags/gb.png'" src="/parent/webapp/public/assets/img/flags/gb.png" alt=""></a>
-                        <a th:href="@{${helper.appendPage(helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EL), properties.number)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).EL}? 'active'"><img th:src="'http://assets.gotocy.com/static/img/flags/gr.png'" src="/parent/webapp/public/assets/img/flags/gr.png" alt=""></a>
                         <a th:href="@{${helper.appendPage(helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).RU), properties.number)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).RU}? 'active'"><img th:src="'http://assets.gotocy.com/static/img/flags/ru.png'" src="/parent/webapp/public/assets/img/flags/ru.png" alt=""></a>
+                        <a th:href="@{${helper.appendPage(helper.path(propertiesSearchForm, T(org.gotocy.config.Locales).EL), properties.number)}}" href="#" th:class="${#locale == T(org.gotocy.config.Locales).EL}? 'active'"><img th:src="'http://assets.gotocy.com/static/img/flags/gr.png'" src="/parent/webapp/public/assets/img/flags/gr.png" alt=""></a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container">
-            <header class="navbar" id="top" role="banner">
-                <div class="navbar-header">
-                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only" th:text="${i18n.t('dictionary.toggle-navigation')}">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand nav" id="brand">
-                        <a th:href="@{${helper.path('/')}}" href="/parent/webapp/templates/home/index.html"><img th:src="'http://assets.gotocy.com/static/img/logo.png'" src="/parent/webapp/public/assets/img/logo.png" alt="brand"></a>
-                    </div>
-                </div>
-                <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-                    <ul class="nav navbar-nav">
-                        <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home-page')}" href="/parent/webapp/templates/home/index.html">Homepage</a></li>
-                    </ul>
-                </nav><!-- /.navbar collapse-->
-                <div class="add-your-property">
-                    <a href="/parent/webapp/templates/property/new.html" th:href="@{${helper.path('/properties/new')}}" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="${i18n.t('dictionary.add-your-property')}">Add Your Property</span></a>
-                </div>
-            </header><!-- /.navbar -->
-        </div><!-- /.container -->
-    </div><!-- /.navigation -->
+            <div class="navbar" id="top" role="banner" th:replace="fragments/navigation_div :: navbar(${true})"></div>
+        </div>
+    </div>
     <!-- end Navigation -->
+
     <!-- Page Content -->
     <div id="page-content">
         <!-- Breadcrumb -->

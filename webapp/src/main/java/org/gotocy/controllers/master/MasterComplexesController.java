@@ -64,8 +64,8 @@ public class MasterComplexesController {
 		return complexRepository.save(complex);
 	}
 
-	private Developer getDeveloper(long developerId) {
-		return developerId > 0 ? developerRepository.findOne(developerId) : null;
+	private Developer getDeveloper(Long developerId) {
+		return developerId != null ? developerRepository.findOne(developerId) : null;
 	}
 
 }

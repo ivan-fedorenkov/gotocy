@@ -28,7 +28,7 @@ public class ComplexForm {
 	private static final String STRINGS_JOINER = "\n";
 
 	// Developer
-	private long developerId;
+	private Long developerId;
 
 	// Primary Contact
 	private String contactName;
@@ -59,7 +59,7 @@ public class ComplexForm {
 	}
 
 	public ComplexForm(Complex complex) {
-		developerId = complex.getDeveloper() == null ? 0 : complex.getDeveloper().getId();
+		developerId = complex.getDeveloper() == null ? null : complex.getDeveloper().getId();
 
 		Contacts complexContacts = complex.getContacts();
 		if (complexContacts != null) {

@@ -1,0 +1,62 @@
+<div class="navigation" th:fragment="navigation_for_master(pathObject)">
+    <div th:replace="fragments/navigation_div :: secondary_navigation(${T(org.gotocy.config.Locales).EN}, ${pathObject})"></div>
+    <div class="container">
+        <div th:replace="fragments/navigation_div :: navbar(${false})"></div>
+    </div>
+</div>
+
+<div class="navigation" th:fragment="navigation_for_locales(locales, pathObject, showAddPropertyButton)">
+    <div th:replace="fragments/navigation_div :: secondary_navigation(${locales}, ${pathObject})"></div>
+    <div class="container">
+        <div th:replace="fragments/navigation_div :: navbar(${showAddPropertyButton})"></div>
+    </div>
+</div>
+
+<div class="navigation" th:fragment="navigation(pathObject, showAddPropertyButton)">
+    <div th:replace="fragments/navigation_div :: secondary_navigation(${T(org.gotocy.config.Locales).SUPPORTED}, ${pathObject})"></div>
+    <div class="container">
+        <div th:replace="fragments/navigation_div :: navbar(${showAddPropertyButton})"></div>
+    </div>
+</div>
+
+<div class="secondary-navigation" th:fragment="secondary_navigation(locales, pathObject)">
+    <div class="container">
+        <div class="contact" th:fragment="contacts">
+            <figure th:utext="|<strong>${i18n.t('dictionary.phone')}:</strong> ${gotocy.phone}|"><strong>Phone:</strong>+1 810-991-3842</figure>
+            <figure th:utext="|<strong>${i18n.t('dictionary.email')}:</strong> ${gotocy.email}|"><strong>Email:</strong>zoner@example.com</figure>
+        </div>
+        <div class="user-area">
+            <div class="actions" th:fragment="user_area_actions" th:with="authenticated=${#authorization.expression('hasRole(''ROLE_USER'')')}">
+                <a th:unless="${authenticated}" th:href="@{${helper.path('/users/new')}}" class="promoted"><strong th:text="${i18n.t('dictionary.sign-up')}">Sign Up</strong></a>
+                <a th:unless="${authenticated}" th:href="@{${helper.path('/session/new')}}" th:text="${i18n.t('dictionary.sign-in')}">Sign In</a>
+                <span th:if="${authenticated}" th:text="${i18n.t('templates.fragments.navigation_div.hello', #authentication.name)}">Hello, support@gotocy.com!</span>
+                <a th:if="${authenticated}" href="#" class="promoted"><strong th:text="${i18n.t('dictionary.my-profile')}">My Profile</strong></a>
+            </div>
+            <div class="language-bar" th:unless="${#lists.size(locales) == 1}">
+                <a th:each="locale : ${locales}" th:href="@{${helper.path(pathObject, locale)}}" th:class="${#locale == locale}? 'active'"><img th:src="${helper.flagUrlForLocale(locale)}"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="navbar" id="top" role="banner" th:fragment="navbar(showAddPropertyButton)">
+    <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+            <span class="sr-only" th:text="${i18n.t('dictionary.toggle-navigation')}">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div id="brand" class="navbar-brand nav">
+            <a th:href="@{${helper.path('/')}}"><img th:src="'http://assets.gotocy.com/static/img/logo.png'" alt="brand"></a>
+        </div>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home-page')}">Homepage</a></li>
+        </ul>
+    </nav>
+    <div class="add-your-property" th:if="${showAddPropertyButton}">
+        <a th:href="@{${helper.path('/properties/new')}}" class="btn btn-default"><i class="fa fa-plus"></i><span class="text" th:text="${i18n.t('dictionary.add-your-property')}">Add Your Property</span></a>
+    </div>
+</div>
