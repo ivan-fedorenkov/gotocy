@@ -64,12 +64,12 @@
 
                                         <div class="form-group">
                                             <label for="name" th:text="${i18n.t('dictionary.name')}">Name</label>
-                                            <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
+                                            <input type="text" class="form-control" id="name" name="name" th:field="*{name}" required>
                                         </div><!-- /.form-group -->
 
                                         <div class="form-group">
                                             <label for="email" th:text="${i18n.t('dictionary.email')}">Email</label>
-                                            <input type="text" class="form-control" id="email" name="email" th:field="*{email}">
+                                            <input type="text" class="form-control" id="email" name="email" th:field="*{email}" required>
                                         </div><!-- /.form-group -->
 
                                         <div class="form-group">
