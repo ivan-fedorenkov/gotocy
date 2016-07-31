@@ -1,4 +1,6 @@
-insert into gtc_user (id, version, registration_date, username, password, name, email, phone, spoken_languages) values (1, 0, 0, 'denis', '', 'Denis', 'support@gotocy.com', '+357 96 740485', 'Eng, Rus');
+insert into gtc_user (id, version, registration_date, username, password, name, email, phone, spoken_languages) values (1, 0, 0, 'user', '$2a$10$Ngiz5wy9SG223ZIDWDyuEOg7WsS6NDbRdxViMS9DM1poZDxwSpqge', 'Denis', 'support@gotocy.com', '+357 96 740485', 'Eng, Rus');
+insert into gtc_user_role (id, version, role, gtc_user_id) values (1, 0, 'ROLE_USER', 1);
+insert into gtc_user_role (id, version, role, gtc_user_id) values (2, 0, 'ROLE_MASTER', 1);
 
 -- 5 [Sale] LAR 801/1
 

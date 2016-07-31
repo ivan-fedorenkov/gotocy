@@ -1,7 +1,6 @@
 package org.gotocy.service;
 
 import org.gotocy.domain.GtcUser;
-import org.gotocy.domain.Property;
 
 /**
  * A service that is responsible for operations on {@link GtcUser} entities.
@@ -36,4 +35,11 @@ public interface UserService {
 	 */
 	GtcUser register(GtcUser user, Long relPropertyId, String relPropertySecret);
 
+	/**
+	 * Updates the given user.
+	 *
+	 * @param user to be updated
+	 * @return updated user
+	 */
+	GtcUser update(GtcUser user);
 }

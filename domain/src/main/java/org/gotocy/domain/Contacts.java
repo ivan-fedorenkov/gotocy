@@ -4,7 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Embeddable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Embeddable contact details of domain entities.
@@ -18,10 +23,23 @@ public class Contacts {
 
 	public static final Contacts EMPTY = new EmptyContacts();
 
+	private static final String SEPARATOR = ";";
+
 	private String name;
 	private String email;
 	private String phone;
 	private String spokenLanguages;
+
+	public List<String> getSpokenLanguagesList() {
+		return Arrays.stream(spokenLanguages.split(";")).collect(toList());
+	}
+
+	public void setSpokenLanguagesList(List<String> spokenLanguagesList) {
+		spokenLanguages = spokenLanguagesList.stream()
+			.map(String::trim)
+			.filter(s -> !s.isEmpty())
+			.collect(joining(SEPARATOR));
+	}
 
 	@Override
 	public boolean equals(Object o) {

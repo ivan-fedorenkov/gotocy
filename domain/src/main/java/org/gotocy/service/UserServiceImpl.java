@@ -85,4 +85,10 @@ public class UserServiceImpl implements UserService {
 		return registeredUser;
 	}
 
+	@Override
+	@Transactional
+	public GtcUser update(GtcUser user) {
+		return userRepository.save(user);
+	}
+
 }

@@ -435,6 +435,10 @@ ul.list-links {
     .account-profile section#contact label, .account-profile section#agency label {
       display: block;
       line-height: 38px; }
+      .account-profile section#contact label.checkbox-inline, .account-profile section#agency label.checkbox-inline {
+        display: inline-block;
+        margin-top: 10px;
+        line-height: 1.42857143; }
     .account-profile section#social .input-group {
       width: 100%; }
       .account-profile section#social .input-group .input-group-addon {
