@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Embeddable;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,11 +32,12 @@ public class Contacts {
 	private String spokenLanguages;
 
 	public List<String> getSpokenLanguagesList() {
-		return Arrays.stream(spokenLanguages.split(";")).collect(toList());
+		return spokenLanguages == null ? Collections.emptyList() :
+			Arrays.stream(spokenLanguages.split(";")).collect(toList());
 	}
 
 	public void setSpokenLanguagesList(List<String> spokenLanguagesList) {
-		spokenLanguages = spokenLanguagesList.stream()
+		spokenLanguages = spokenLanguagesList == null ? null : spokenLanguagesList.stream()
 			.map(String::trim)
 			.filter(s -> !s.isEmpty())
 			.collect(joining(SEPARATOR));

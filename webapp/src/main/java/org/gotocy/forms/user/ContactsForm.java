@@ -15,17 +15,17 @@ import java.util.List;
  */
 @Getter
 @Setter
-public class ProfileForm {
+public class ContactsForm {
 
 	private String name;
 	private String email;
 	private String phone;
 	private List<String> spokenLanguages;
 
-	public ProfileForm() {
+	public ContactsForm() {
 	}
 
-	public ProfileForm(GtcUser user) {
+	public ContactsForm(GtcUser user) {
 		if (user.getContacts() != null) {
 			Contacts userContacts = user.getContacts();
 			name = userContacts.getName();
@@ -42,7 +42,7 @@ public class ProfileForm {
 		userContacts.setName(name);
 		userContacts.setEmail(email);
 		userContacts.setPhone(phone);
-		userContacts.setSpokenLanguagesList(getSpokenLanguages());
+		userContacts.setSpokenLanguagesList(spokenLanguages);
 		user.setContacts(userContacts);
 		return user;
 	}
