@@ -1,5 +1,6 @@
 package org.gotocy.config;
 
+import org.gotocy.helpers.Helper;
 import org.gotocy.service.UserDetailsServiceImpl;
 import org.gotocy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * @author ifedorenkov
@@ -33,11 +36,19 @@ public class SecurityConfig  {
 	private static void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.antMatchers("/master/**").hasRole(Roles.MASTER)
+			.antMatchers(anyLocale("/master/**")).hasRole(Roles.MASTER)
+			.antMatchers(anyLocale("/user/**")).hasRole(Roles.USER)
 			.antMatchers("/**").permitAll()
 			.and().formLogin()
 			.loginPage("/session/new")
 			.loginProcessingUrl("/session");
+	}
+
+	private static String[] anyLocale(String path) {
+		return Locales.SUPPORTED.stream()
+			.map(locale -> Helper.path(path, locale))
+			.collect(toList())
+			.toArray(new String[Locales.SUPPORTED.size()]);
 	}
 
 	@Profile(Profiles.PROD)
@@ -94,12 +105,40 @@ public class SecurityConfig  {
 	@Profile({Profiles.LOCAL_DEV, Profiles.HEROKU_DEV})
 	@Configuration
 	@EnableWebSecurity
-	public static class DevelopmentSecurityConfig extends WebSecurityConfigurerAdapter {
+	public static class DevelopmentSecurityConfig extends WebSecurityConfigurerAdapter implements MessageSourceAware {
+		private UserService userService;
+		private PasswordEncoder passwordEncoder;
+		private MessageSource messageSource;
+
+		@Autowired
+		public void setUserService(UserService userService) {
+			this.userService = userService;
+		}
+
+		@Override
+		public void setMessageSource(MessageSource messageSource) {
+			this.messageSource = messageSource;
+		}
+
+		@Autowired
+		public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+			this.passwordEncoder = passwordEncoder;
+		}
+
+		@Bean
+		public UserDetailsService userDetailsService() {
+			return new UserDetailsServiceImpl(messageSource, userService);
+		}
+
+
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http
-				.authorizeRequests()
-				.anyRequest().permitAll();
+			SecurityConfig.configure(http);
+		}
+
+		@Override
+		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+			auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder);
 		}
 	}
 

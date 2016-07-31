@@ -84,6 +84,8 @@ form {
   label.error { background-color: red; bottom: -30px; color: #fff;  font-size: 12px; left: 0;  padding: 5px; position: absolute; z-index: 2;
     &:before { border-style: solid; border-width: 0 3.5px 5px 3.5px; border-color: transparent transparent red transparent; content: ""; height: 0px; left: 5px; position: absolute; top: -5px; width: 0px; }
   }
+
+  button[type='submit'] { margin-top: 20px; }
 }
 
 .form-submit {
@@ -125,7 +127,7 @@ form {
   .dropdown-menu { @include border-radius(0px);  border: none; margin-top: 3px; padding: 0; padding-left: 0 !important;
     &.selectpicker { background-color: #fff !important; }
     li {
-      &:first-child, &.selected {
+      /*&:first-child, */&.selected {
         a { background-color: transparent; color: #9c9c9c; padding-left: 15px;
           &:hover { background-color: transparent; padding-left: 15px; }
         }
