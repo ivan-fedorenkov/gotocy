@@ -8,7 +8,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
 
-    <title>GoToCy</title>
+    <title th:text="${i18n.t('templates.title', i18n.t('dictionary.sign-in'))}">Sign In | GoToCy</title>
 
 </head>
 
@@ -22,26 +22,26 @@
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="#" th:href="@{/}">Home</a></li>
-                <li class="active">Sign In</li>
+                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
+                <li class="active" th:text="${i18n.t('dictionary.sign-in')}">Sign In</li>
             </ol>
         </div>
 
         <div class="container">
-            <header><h1>Sign In</h1></header>
+            <header><h1 th:text="${i18n.t('dictionary.sign-in')}">Sign In</h1></header>
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
                     <form role="form" id="form-create-account" th:action="@{/session}" method="post" >
                         <div class="form-group">
-                            <label for="username">Username:</label>
+                            <label for="username" th:text="${i18n.t('dictionary.email')}">Email</label>
                             <input type="text" class="form-control" id="username" name="username" required>
                         </div><!-- /.form-group -->
                         <div class="form-group">
-                            <label for="password">Password:</label>
+                            <label for="password" th:text="${i18n.t('dictionary.password')}">Password</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div><!-- /.form-group -->
                         <div class="form-group clearfix">
-                            <button type="submit" class="btn pull-right btn-default" id="account-submit">Sign to My Account</button>
+                            <button type="submit" class="btn pull-right btn-default" id="account-submit" th:text="${i18n.t('dictionary.sign-in')}">Sign to My Account</button>
                         </div><!-- /.form-group -->
                     </form>
                 </div>
