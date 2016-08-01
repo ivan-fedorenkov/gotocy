@@ -2,7 +2,7 @@ package org.gotocy.service;
 
 import org.gotocy.domain.Asset;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,9 +15,13 @@ import java.util.function.Supplier;
  */
 public class FileSystemAssetsManager extends AbstractAssetsManager {
 
+	private static final int BUFFER_SIZE = 2048;
+
+	private final String assetsClassPathRoot;
 	private final String assetsDirPath;
 
-	public FileSystemAssetsManager(String assetsDirPath) {
+	public FileSystemAssetsManager(String assetsClassPathRoot, String assetsDirPath) {
+		this.assetsClassPathRoot = assetsClassPathRoot;
 		this.assetsDirPath = assetsDirPath;
 	}
 
@@ -35,14 +39,31 @@ public class FileSystemAssetsManager extends AbstractAssetsManager {
 	public <T extends Asset> Optional<T> getAsset(Supplier<T> factory, String assetKey) {
 		Optional<T> result = Optional.empty();
 		Path assetPath = Paths.get(assetsDirPath, assetKey);
-		if (Files.isReadable(assetPath)) {
-			try {
-				T asset = factory.get();
-				asset.setBytes(Files.readAllBytes(assetPath));
-				result = Optional.of(asset);
-			} catch (IOException e) {
-				getLogger().error("Failed to load underlying object for asset key '{}'", assetKey, e);
+		try {
+			if (Files.isReadable(assetPath)) {
+				try {
+					T asset = factory.get();
+					asset.setBytes(Files.readAllBytes(assetPath));
+					result = Optional.of(asset);
+				} catch (IOException e) {
+					getLogger().error("Failed to load underlying object for asset key '{}'", assetKey, e);
+				}
+			} else {
+				try (BufferedInputStream bis =
+						 new BufferedInputStream(getClass().getResourceAsStream(assetsClassPathRoot + assetKey));
+					 ByteArrayOutputStream bos = new ByteArrayOutputStream())
+				{
+					byte[] buffer = new byte[BUFFER_SIZE];
+					int bytesRead;
+					while ((bytesRead = bis.read(buffer)) != -1)
+						bos.write(buffer, 0, bytesRead);
+					T asset = factory.get();
+					asset.setBytes(bos.toByteArray());
+					result = Optional.of(asset);
+				}
 			}
+		} catch (IOException ioe) {
+			getLogger().error("Failed to load underlying object for asset key '{}'", assetKey, ioe);
 		}
 		return result;
 	}
@@ -57,13 +78,20 @@ public class FileSystemAssetsManager extends AbstractAssetsManager {
 
 	@Override
 	public void deleteAsset(Asset asset) throws IOException {
-		Path assetPath = Paths.get(assetsDirPath, asset.getKey());
+		Path assetPath = Paths.get(assetsClassPathRoot, asset.getKey());
 		Files.delete(assetPath);
 	}
 
 	@Override
 	public boolean exists(Asset asset) {
-		return Files.isReadable(Paths.get(assetsDirPath, asset.getKey()));
+		boolean exists = Files.isReadable(Paths.get(assetsDirPath, asset.getKey()));
+		if (!exists) {
+			try (InputStream is = getClass().getResourceAsStream(assetsClassPathRoot + asset.getKey())) {
+				exists = is != null;
+			} catch (IOException ignore) {
+			}
+		}
+		return exists;
 	}
 
 	private Optional<String> getUrl(String assetKey) {
