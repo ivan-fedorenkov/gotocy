@@ -54,7 +54,7 @@ public class UsersController {
 			return "user/new";
 		}
 		// Enforce the Roles.USER role
-		form.setRoles(Collections.singleton(Roles.USER));
+		form.setRoles(Collections.singleton(Roles.ROLE_USER));
 		GtcUser registeredUser = userService.register(form.toUser(), form.getRelPropertyId(),
 			form.getRelPropertySecret());
 		model.addAttribute(registeredUser);

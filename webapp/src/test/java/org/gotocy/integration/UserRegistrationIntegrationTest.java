@@ -43,7 +43,7 @@ public class UserRegistrationIntegrationTest extends IntegrationTestBase {
 				contacts.setPhone(null);
 				contacts.setSpokenLanguages(null);
 			}));
-			user.setRoles(Collections.singleton(new GtcUserRole(Roles.USER)));
+			user.setRoles(Collections.singleton(new GtcUserRole(Roles.ROLE_USER)));
 		});
 	}
 

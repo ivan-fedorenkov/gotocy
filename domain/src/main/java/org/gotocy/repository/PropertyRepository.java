@@ -2,6 +2,8 @@ package org.gotocy.repository;
 
 import com.mysema.query.types.Predicate;
 import org.gotocy.domain.Property;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,5 +16,8 @@ public interface PropertyRepository extends JpaRepository<Property, Long>, Query
 
 	@EntityGraph(value = "Property.withAssociations", type = EntityGraph.EntityGraphType.FETCH)
 	Iterable<Property> findAll(Predicate predicate, Sort sort);
+
+	@EntityGraph(value = "Property.withAssociations", type = EntityGraph.EntityGraphType.FETCH)
+	Page<Property> findAll(Predicate predicate, Pageable pageable);
 
 }

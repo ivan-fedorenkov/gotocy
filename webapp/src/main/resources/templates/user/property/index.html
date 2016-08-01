@@ -72,7 +72,7 @@
                                                 <div class="inner">
                                                     <a href="#"><h2 th:text="${p.title}">Property title</h2></a>
                                                     <figure th:text="${p.shortAddress}">Larnaca, Cyprus</figure>
-                                                    <div class="tag price" th:text="${helper.property.price(p)}">$ 38,000</div>
+                                                    <div class="tag price" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:text="${helper.property.price(p)}">$ 38,000</div>
                                                 </div>
                                             </td>
                                             <td>

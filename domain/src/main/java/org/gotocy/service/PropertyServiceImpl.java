@@ -1,5 +1,6 @@
 package org.gotocy.service;
 
+import com.mysema.query.types.Predicate;
 import org.gotocy.domain.*;
 import org.gotocy.repository.PropertyRepository;
 import org.slf4j.Logger;
@@ -109,19 +110,20 @@ public class PropertyServiceImpl implements PropertyService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Property> findRecent(PropertyStatus propertyStatus, Pageable pageable) {
-		return propertyRepository.findAll(publiclyVisible().and(inStatus(propertyStatus)), pageable);
+	public Iterable<Property> find(Predicate predicate, Sort sort) {
+		return propertyRepository.findAll(predicate, sort);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Property> findPubliclyVisible(Predicate predicate, Pageable pageable) {
+		return propertyRepository.findAll(publiclyVisible().and(predicate), pageable);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public Iterable<Property> getFeatured() {
 		return propertyRepository.findAll(publiclyVisible().and(featured()));
-	}
-
-	@Override
-	public Iterable<Property> findByUser(GtcUser user) {
-		return propertyRepository.findAll(ofUser(user), new Sort("title"));
 	}
 
 }

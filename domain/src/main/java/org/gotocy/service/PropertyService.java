@@ -1,10 +1,11 @@
 package org.gotocy.service;
 
-import org.gotocy.domain.*;
+import com.mysema.query.types.Predicate;
+import org.gotocy.domain.Property;
+import org.gotocy.domain.SecretKey;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
+import org.springframework.data.domain.Sort;
 
 /**
  * @author ifedorenkov
@@ -29,10 +30,10 @@ public interface PropertyService {
 
 	Property findOne(Long id);
 
-	Page<Property> findRecent(PropertyStatus propertyStatus, Pageable pageable);
+	Iterable<Property> find(Predicate predicate, Sort sort);
+
+	Page<Property> findPubliclyVisible(Predicate predicate, Pageable pageable);
 
 	Iterable<Property> getFeatured();
-
-	Iterable<Property> findByUser(GtcUser user);
 
 }

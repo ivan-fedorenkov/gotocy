@@ -232,7 +232,7 @@
             </div><!-- /.container -->
         </section><!-- /#featured-properties -->
 
-        <section id="long-term-properties" class="block" th:unless=${#lists.isEmpty(longTermProperties)}>
+        <section id="long-term-properties" class="block" th:if=${longTermProperties.hasContent()}>
             <div class="container">
                 <header class="section-title">
                     <h2 th:text="${i18n.t(T(org.gotocy.forms.PropertiesSearchForm).LONG_TERM_FORM)}">Long Term Rentals for You</h2>
@@ -402,7 +402,7 @@
             </div>
         </section>
 
-        <section id="short-term-properties" class="block" th:unless=${#lists.isEmpty(shortTermProperties)}>
+        <section id="short-term-properties" class="block" th:if=${shortTermProperties.hasContent()}>
             <div class="container">
                 <header class="section-title">
                     <h2 th:text="${i18n.t(T(org.gotocy.forms.PropertiesSearchForm).SHORT_TERM_FORM)}">Short Term Rentals for You</h2>
@@ -553,7 +553,7 @@
             </div><!-- /.container -->
         </section><!-- /#short-term-properties -->
 
-        <section id="sale-properties" class="block" th:unless="${#lists.isEmpty(saleProperties)}">
+        <section id="sale-properties" class="block" th:if=${saleProperties.hasContent()}>
             <div class="container">
                 <header class="section-title">
                     <h2 th:text="${i18n.t(T(org.gotocy.forms.PropertiesSearchForm).SALE_FORM)}">Properties for You</h2>

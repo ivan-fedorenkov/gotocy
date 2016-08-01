@@ -29,6 +29,7 @@ public class PromoController {
 		property.initLocalizedFields(locale);
 		model.addAttribute(property);
 		model.addAttribute(new UserRegistrationForm(property));
+		model.addAttribute("shouldShowRegistrationStuff", property.getOfferStatus() == OfferStatus.PROMO);
 
 		return "promo/property";
 	}

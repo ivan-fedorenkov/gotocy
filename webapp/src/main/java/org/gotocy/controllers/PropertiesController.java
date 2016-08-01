@@ -11,7 +11,6 @@ import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.forms.UserPropertyForm;
 import org.gotocy.forms.validation.UserPropertyFormValidator;
 import org.gotocy.helpers.Helper;
-import org.gotocy.repository.PropertyRepository;
 import org.gotocy.service.AssetsManager;
 import org.gotocy.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,26 +33,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
-
 /**
  * @author ifedorenkov
  */
 @Controller
 public class PropertiesController {
 
-	private final PropertyRepository repository;
 	private final AssetsManager assetsManager;
 	private final ApplicationProperties applicationProperties;
 	private final PropertyService propertyService;
 	private final UserPropertyFormValidator propertyFormValidator;
 
 	@Autowired
-	public PropertiesController(PropertyRepository repository, AssetsManager assetsManager,
-		ApplicationProperties applicationProperties, PropertyService propertyService,
-		UserPropertyFormValidator propertyFormValidator)
+	public PropertiesController(AssetsManager assetsManager, ApplicationProperties applicationProperties,
+		PropertyService propertyService, UserPropertyFormValidator propertyFormValidator)
 	{
-		this.repository = repository;
 		this.assetsManager = assetsManager;
 		this.applicationProperties = applicationProperties;
 		this.propertyService = propertyService;
@@ -88,7 +82,7 @@ public class PropertiesController {
 		// TODO: investigate this later
 		form.setPrice(price);
 
-		Page<Property> properties = repository.findAll(publiclyVisible().and(form.toPredicate()), pageable);
+		Page<Property> properties = propertyService.findPubliclyVisible(form.toPredicate(), pageable);
 		model.addAttribute("properties", properties);
 		model.addAttribute(form);
 		return "property/index";

@@ -1,5 +1,6 @@
 package org.gotocy.repository;
 
+import com.mysema.query.types.ExpressionUtils;
 import com.mysema.query.types.expr.BooleanExpression;
 import org.gotocy.domain.GtcUser;
 import org.gotocy.domain.OfferStatus;
@@ -21,7 +22,8 @@ public class PropertyPredicates {
 	}
 
 	public static BooleanExpression publiclyVisible() {
-		return property.offerStatus.ne(OfferStatus.PROMO);
+		return property.offerStatus.ne(OfferStatus.PROMO)
+			.and(property.offerStatus.ne(OfferStatus.INACTIVE));
 	}
 
 	public static BooleanExpression featured() {
