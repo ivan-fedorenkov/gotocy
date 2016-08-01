@@ -27,8 +27,8 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 public abstract class IntegrationTestBase {
 
 	@Autowired
-	WebApplicationContext wac;
-	MockMvc mockMvc;
+	protected WebApplicationContext wac;
+	protected MockMvc mockMvc;
 
 	@Before
 	public void setUp() throws Exception {

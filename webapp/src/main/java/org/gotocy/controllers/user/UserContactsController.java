@@ -7,7 +7,6 @@ import org.gotocy.helpers.Helper;
 import org.gotocy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,13 +22,14 @@ import javax.validation.Valid;
  * @author ifedorenkov
  */
 @Controller
-public class UserContactsController extends AbstractUserController {
+public class UserContactsController {
 
+	private final UserService userService;
 	private final ContactsFormValidator formValidator;
 
 	@Autowired
 	public UserContactsController(UserService userService, ContactsFormValidator formValidator) {
-		super(userService);
+		this.userService = userService;
 		this.formValidator = formValidator;
 	}
 
@@ -40,12 +40,12 @@ public class UserContactsController extends AbstractUserController {
 	}
 
 	@RequestMapping(value = "/user/contacts", method = RequestMethod.PUT)
-	public String update(Model model, @AuthenticationPrincipal UserDetails userDetails,
+	public String update(Model model, @AuthenticationPrincipal GtcUser user,
 		@Valid @ModelAttribute ContactsForm contactsForm, BindingResult formErrors)
 	{
 		if (formErrors.hasErrors())
 			return "user/profile/show";
-		GtcUser user = contactsForm.mergeWithGtcUser(resolveGtcUser(userDetails));
+		contactsForm.mergeWithGtcUser(user);
 		userService.update(user);
 		return "redirect:" + Helper.path("/user/profile");
 	}

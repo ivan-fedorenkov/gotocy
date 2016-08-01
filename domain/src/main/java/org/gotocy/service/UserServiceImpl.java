@@ -39,8 +39,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public GtcUser findByUsername(String email) {
-		return userRepository.findByUsername(email);
+	public GtcUser findByUsername(String username) {
+		return userRepository.findByUsername(username);
 	}
 
 	@Override
@@ -88,7 +88,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public GtcUser update(GtcUser user) {
-		return userRepository.save(user);
+		GtcUser existing = userRepository.findOne(user.getId());
+		if (existing == null) {
+			logger.error("An attempt was made to update the non-existent user #{} {}", user.getId(), user.getUsername());
+			throw new ServiceMethodExecutionException();
+		}
+		existing.setRoles(user.getRoles());
+		existing.setContacts(user.getContacts());
+		return userRepository.save(existing);
 	}
 
 }

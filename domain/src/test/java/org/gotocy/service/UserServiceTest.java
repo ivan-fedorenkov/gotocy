@@ -12,6 +12,7 @@ import org.gotocy.test.factory.PropertyFactory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -28,12 +29,13 @@ import static org.mockito.Mockito.when;
 public class UserServiceTest {
 
 	private PropertyRepository propertyRepository;
+	private GtcUserRepository userRepository;
 	private UserService userService;
 
 	@Before
 	public void setUp() {
 		PasswordEncoder passwordEncoder = NoOpPasswordEncoder.getInstance();
-		GtcUserRepository userRepository = mock(GtcUserRepository.class);
+		userRepository = mock(GtcUserRepository.class);
 		when(userRepository.save(any(GtcUser.class))).then(returnsFirstArg());
 		propertyRepository = mock(PropertyRepository.class);
 		userService = new UserServiceImpl(passwordEncoder, userRepository, propertyRepository);
@@ -90,6 +92,38 @@ public class UserServiceTest {
 		Assert.assertEquals(LocalDate.now(), registeredUser.getRegistrationDate());
 		Assert.assertNull(relProperty.getOwner());
 		Assert.assertEquals(originalStatus, relProperty.getOfferStatus());
+	}
+
+	/**
+	 * {@link UserService#update(GtcUser)} most not touch credentials fields.
+	 */
+	@Test
+	public void testAttemptToUpdateCredentialsData() {
+		// Pretend there is some user
+		GtcUser existing = GtcUserFactory.INSTANCE.get(user -> {
+			user.setId(1);
+			user.setRegistrationDate(LocalDate.now().minusMonths(1));
+			user.setContacts(ContactsFactory.INSTANCE.get());
+		});
+		Mockito.when(userRepository.findOne(existing.getId())).thenReturn(existing);
+		String existingUsername = existing.getUsername();
+		String existingPassword = existing.getPassword();
+		LocalDate existingRegistrationDate = existing.getRegistrationDate();
+
+		// Try to update username and password
+		GtcUser updating = new GtcUser();
+		updating.setId(existing.getId());
+		updating.setUsername("something else");
+		updating.setPassword(null);
+		updating.setContacts(existing.getContacts());
+		updating.setRoles(existing.getRoles());
+		updating.setRegistrationDate(LocalDate.now());
+		GtcUser updated = userService.update(updating);
+
+		// Should silently discard changes
+		Assert.assertEquals(existingUsername, updated.getUsername());
+		Assert.assertEquals(existingPassword, updated.getPassword());
+		Assert.assertEquals(existingRegistrationDate, updated.getRegistrationDate());
 	}
 
 	private Property mockExistingProperty() {

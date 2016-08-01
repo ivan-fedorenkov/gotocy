@@ -36,7 +36,7 @@ public interface UserService {
 	GtcUser register(GtcUser user, Long relPropertyId, String relPropertySecret);
 
 	/**
-	 * Updates the given user.
+	 * Updates the given user. Must not update credentials data (username, password).
 	 *
 	 * @param user to be updated
 	 * @return updated user

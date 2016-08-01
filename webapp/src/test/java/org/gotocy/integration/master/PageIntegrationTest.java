@@ -1,16 +1,17 @@
-package org.gotocy.integration;
+package org.gotocy.integration.master;
 
 import org.gotocy.config.Locales;
 import org.gotocy.config.Roles;
 import org.gotocy.domain.Page;
 import org.gotocy.domain.i18n.LocalizedPage;
 import org.gotocy.forms.PageForm;
+import org.gotocy.integration.IntegrationTestBase;
+import org.gotocy.integration.config.WithGtcUser;
 import org.gotocy.repository.PageRepository;
 import org.gotocy.test.factory.PageFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -64,7 +65,7 @@ public class PageIntegrationTest extends IntegrationTestBase {
 
 
 	@Test
-	@WithMockUser(roles = Roles.MASTER)
+	@WithGtcUser(roles = Roles.MASTER)
 	public void pageCreationByAdminTest() throws Exception {
 		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.DEFAULT);
 		PageForm pageForm = new PageForm(page, Locales.DEFAULT);
@@ -90,7 +91,7 @@ public class PageIntegrationTest extends IntegrationTestBase {
 	}
 
 	@Test
-	@WithMockUser(roles = Roles.MASTER)
+	@WithGtcUser(roles = Roles.MASTER)
 	public void pageUpdateByAdminTest() throws Exception {
 		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.DEFAULT);
 		pageRepository.save(page);
@@ -124,7 +125,7 @@ public class PageIntegrationTest extends IntegrationTestBase {
 	}
 
 	@Test
-	@WithMockUser(roles = Roles.MASTER)
+	@WithGtcUser(roles = Roles.MASTER)
 	public void testAttemptToCreatePageWithExistingUrl() throws Exception {
 		Page existing = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.DEFAULT);
 		pageRepository.save(existing);
@@ -146,7 +147,7 @@ public class PageIntegrationTest extends IntegrationTestBase {
 	}
 
 	@Test
-	@WithMockUser(roles = Roles.MASTER)
+	@WithGtcUser(roles = Roles.MASTER)
 	public void testAttemptToUpdatePageWithExistingUrl() throws Exception {
 		String existingUrl = "existing-url";
 		LocalizedPage existing = PageFactory.INSTANCE.getLocalized(Locales.DEFAULT, lp -> {

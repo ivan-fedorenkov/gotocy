@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		GtcUser user = userService.findByUsername(username);
 		if (user == null) {
@@ -42,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				"org.gotocy.service.UserDetailsService.UserNotFound.message", new Object[]{username},
 				"User {0} not found", LocaleContextHolder.getLocale()));
 		}
-		return new User(user.getUsername(), user.getPassword(), user.getRoles());
+		return user;
 	}
 
 }

@@ -3,9 +3,13 @@ package org.gotocy.domain;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.utils.CollectionUtils;
+import org.springframework.security.core.CredentialsContainer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -18,7 +22,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-public class GtcUser extends BaseEntity {
+public class GtcUser extends BaseEntity implements UserDetails, CredentialsContainer {
 
 	private String username;
 	private String password;
@@ -27,7 +31,7 @@ public class GtcUser extends BaseEntity {
 	@Embedded
 	private Contacts contacts;
 
-	@OneToMany(mappedBy = "gtcUser", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "gtcUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<GtcUserRole> roles = new HashSet<>();
 
 	public void setRoles(Set<GtcUserRole> roles) {
@@ -37,6 +41,36 @@ public class GtcUser extends BaseEntity {
 
 	public Contacts getContacts() {
 		return contacts == null ? Contacts.EMPTY : contacts;
+	}
+
+	@Override
+	public void eraseCredentials() {
+		password = null;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return roles;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 
 	@Override
