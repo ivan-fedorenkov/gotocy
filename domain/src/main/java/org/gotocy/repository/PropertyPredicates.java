@@ -1,6 +1,7 @@
 package org.gotocy.repository;
 
 import com.mysema.query.types.expr.BooleanExpression;
+import org.gotocy.domain.GtcUser;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyStatus;
@@ -29,6 +30,10 @@ public class PropertyPredicates {
 
 	public static BooleanExpression ne(Property p) {
 		return property.ne(p);
+	}
+
+	public static BooleanExpression ofUser(GtcUser user) {
+		return property.owner.eq(user);
 	}
 
 }

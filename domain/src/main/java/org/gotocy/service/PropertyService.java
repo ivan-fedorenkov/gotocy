@@ -1,9 +1,6 @@
 package org.gotocy.service;
 
-import org.gotocy.domain.Image;
-import org.gotocy.domain.Property;
-import org.gotocy.domain.PropertyStatus;
-import org.gotocy.domain.SecretKey;
+import org.gotocy.domain.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -35,5 +32,7 @@ public interface PropertyService {
 	Page<Property> findRecent(PropertyStatus propertyStatus, Pageable pageable);
 
 	Iterable<Property> getFeatured();
+
+	Iterable<Property> findByUser(GtcUser user);
 
 }

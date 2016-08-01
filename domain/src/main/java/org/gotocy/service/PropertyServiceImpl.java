@@ -1,9 +1,6 @@
 package org.gotocy.service;
 
-import org.gotocy.domain.Image;
-import org.gotocy.domain.Property;
-import org.gotocy.domain.PropertyStatus;
-import org.gotocy.domain.SecretKey;
+import org.gotocy.domain.*;
 import org.gotocy.repository.PropertyRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.codec.Hex;
 import org.springframework.security.crypto.keygen.BytesKeyGenerator;
 import org.springframework.security.crypto.keygen.KeyGenerators;
@@ -120,4 +118,10 @@ public class PropertyServiceImpl implements PropertyService {
 	public Iterable<Property> getFeatured() {
 		return propertyRepository.findAll(publiclyVisible().and(featured()));
 	}
+
+	@Override
+	public Iterable<Property> findByUser(GtcUser user) {
+		return propertyRepository.findAll(ofUser(user), new Sort("title"));
+	}
+
 }

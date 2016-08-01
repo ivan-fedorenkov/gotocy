@@ -1,0 +1,107 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}" th:with="curPath='/user/properties'">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path('/user/properties', locale)}}" hreflang="en"  href="#" />
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
+
+    <title th:text="${i18n.t('templates.title', i18n.t('dictionary.my-properties'))}">My Properties | GoToCy</title>
+
+</head>
+
+<body class="page-sub-page page-profile page-account" id="page-top">
+<!-- Wrapper -->
+<div class="wrapper">
+    <!-- Navigation -->
+    <div class="navigation" th:include="fragments/navigation_div :: navigation('/user/properties', ${false})"></div>
+    <!-- end Navigation -->
+
+    <!-- Page Content -->
+    <div id="page-content">
+        <!-- Breadcrumb -->
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
+                <li class="active" th:text="${i18n.t('dictionary.my-properties')}">My Properties</li>
+            </ol>
+        </div>
+        <!-- end Breadcrumb -->
+
+        <div class="container">
+            <div class="row">
+                <!-- sidebar -->
+                <div class="col-md-3 col-sm-2">
+                    <section id="sidebar">
+                        <header><h3 th:text="${i18n.t('dictionary.navigation')}">Navigation</h3></header>
+                        <aside>
+                            <ul class="sidebar-navigation">
+                                <li><a href="#" th:href="${helper.path('/user/profile')}"><i class="fa fa-user"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
+                                <li class="active"><a href="#" th:href="${helper.path('/user/properties')}"><i class="fa fa-home"></i><span th:text="${i18n.t('dictionary.my-properties')}">My Properties</span></a></li>
+                            </ul>
+                        </aside>
+                    </section><!-- /#sidebar -->
+                </div><!-- /.col-md-3 -->
+                <!-- end Sidebar -->
+
+                <!-- My Properties -->
+                <div class="col-md-9 col-sm-10">
+                    <section id="properties">
+                        <header><h1 th:text="${i18n.t('dictionary.my-properties')}">My Properties</h1></header>
+                        <div class="my-properties">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th th:text="${i18n.t('dictionary.property')}">Property</th>
+                                        <th></th>
+                                        <th th:text="${i18n.t('dictionary.date-added')}">Date Added</th>
+                                        <th th:text="${i18n.t('dictionary.actions')}">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="p : ${properties}">
+                                            <td class="image">
+                                                <a href="#"><img alt="" th:src="@{${helper.property.representativeImageUrl(p)}}"></a>
+                                            </td>
+                                            <td>
+                                                <div class="inner">
+                                                    <a href="#"><h2 th:text="${p.title}">Property title</h2></a>
+                                                    <figure th:text="${p.shortAddress}">Larnaca, Cyprus</figure>
+                                                    <div class="tag price" th:text="${helper.property.price(p)}">$ 38,000</div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                TBD (Date)
+                                            </td>
+                                            <td class="actions">
+                                                <a href="#" class="edit"><i class="fa fa-pencil"></i><!--/*/ <th:block th:text="${i18n.t('dictionary.edit')}"> /*/-->Edit<!--/*/ </th:block> /*/--></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><!-- /.table-responsive -->
+                        </div><!-- /.my-properties -->
+                    </section><!-- /#properties -->
+                </div><!-- /.col-md-9 -->
+                <!-- end My Properties -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div>
+    <!-- end Page Content -->
+
+    <footer id="page-footer" th:include="fragments/footer :: footer"></footer>
+</div>
+
+<script type="text/javascript" th:src="@{/assets/js/application.min.js}" src="/parent/webapp/public/assets/js/application.min.js"></script>
+
+<!--[if gt IE 8]>
+<script type="text/javascript" src="http://assets.gotocy.com/static/js/ie.js"></script>
+<![endif]-->
+
+</body>
+</html>
