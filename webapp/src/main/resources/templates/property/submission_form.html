@@ -1,0 +1,214 @@
+<form th:fragment="form(path)" role="form" id="form-submit" class="form-submit" method="post" th:object="${propertySubmissionForm}" th:action="@{${helper.path(path)}}" enctype="multipart/form-data">
+
+    <!--Errors-->
+    <div class="row" th:if="${#fields.hasAnyErrors()}">
+        <div class="col-md-7 col-sm-7">
+            <ul class="error-messages">
+                <li th:each="error : ${#fields.detailedErrors()}" th:text="${error.message}">Some error</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="block">
+            <div class="col-md-7 col-sm-7">
+                <section id="basic-information">
+                    <header><h2 th:text="${i18n.t('dictionary.property-details')}">Property Details</h2></header>
+
+                    <div class="form-group">
+                        <label for="title" th:text="${i18n.t('dictionary.title')}">Title</label>
+                        <input type="text" class="form-control" id="title" th:field="*{title}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="propertyType" th:text="${i18n.t('dictionary.property-type')}">Property Type</label>
+                        <select id="propertyType" th:field="*{propertyType}" th:remove="all-but-first" required>
+                            <option value="1" th:each="type : ${T(org.gotocy.domain.PropertyType).values()}" th:value="${type}" th:text="${{type}}">Apartment</option>
+                            <option value="2">Condominium</option>
+                            <option value="3">Cottage</option>
+                            <option value="4">Flat</option>
+                            <option value="5">House</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="propertyStatus" th:text="${i18n.t('dictionary.offer-type')}">Offer Type</label>
+                        <select id="propertyStatus" th:field="*{propertyStatus}" th:remove="all-but-first" required>
+                            <option value="1" th:each="status : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${status}" th:text="${{status}}">Sale</option>
+                            <option value="2">Short Term</option>
+                            <option value="3">Long Term</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="plotSize" th:text="${i18n.t('dictionary.plot-size')}">Plot Size</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="plotSize" th:field="*{plotSize}" pattern="\d+">
+                            <span class="input-group-addon" th:utext="${i18n.t('dictionary.sq-meters')}">m<sup>2</sup></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coveredArea" class="control-label" th:text="${i18n.t('dictionary.covered-area')}">Covered Area</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="coveredArea" th:field="*{coveredArea}" pattern="\d+">
+                            <span class="input-group-addon" th:utext="${i18n.t('dictionary.sq-meters')}">m<sup>2</sup></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bedrooms" th:text="${i18n.t('dictionary.levels')}">Level(s)</label>
+                        <input type="text" class="form-control" id="levels" th:field="*{levels}" pattern="\d+">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="bedrooms" th:text="${i18n.t('dictionary.bedrooms.plural')}">Bedrooms</label>
+                        <input type="text" class="form-control" id="bedrooms" th:field="*{bedrooms}" pattern="\d+">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guests" th:text="${i18n.t('dictionary.guests')}">Guests</label>
+                        <input type="text" class="form-control" id="guests" th:field="*{guests}" pattern="\d+">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="distanceToSea" th:text="${i18n.t('dictionary.distance-to-sea')}">To Sea</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="distanceToSea" th:field="*{distanceToSea}" pattern="\d+">
+                            <span class="input-group-addon" th:text="${i18n.t('dictionary.meters')}">m</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="furnishing" th:text="${i18n.t('dictionary.furnishing')}">Furnishing</label>
+                        <select id="furnishing" th:field="*{furnishing}">
+                            <option value="1" th:each="furnishing : ${T(org.gotocy.domain.Furnishing).values()}" th:value="${furnishing}" th:text="${{furnishing}}">Semi</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label th:text="${i18n.t('dictionary.misc-info')}">Misc Info</label>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" th:field="*{airConditioner}"><span th:text="${i18n.t('dictionary.air-conditioner')}">Air Conditioner</span>
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" th:field="*{heatingSystem}"><span th:text="${i18n.t('dictionary.heating-system')}">Heating System</span>
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" th:field="*{readyToMoveIn}"><span th:text="${i18n.t('dictionary.ready-to-move-in')}">Ready to Move in</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description" th:text="${i18n.t('dictionary.description')}">Description</label>
+                        <textarea class="form-control" id="description" rows="16" th:field="*{description}"></textarea>
+                    </div>
+                </section><!-- /#basic-information -->
+            </div>
+            <div class="col-md-3 col-md-offset-1 col-sm-4">
+                <aside class="submit-step">
+                    <figure class="step-number">1</figure>
+                    <div class="description">
+                        <h4 th:text="${i18n.t('templates.property.new.enter-property-details')}">Enter Property Details</h4>
+                        <p th:text="${i18n.t('templates.property.new.hint-1-upper')}">Type information about your property</p>
+                        <p th:utext="${i18n.t('templates.property.new.hint-1-lower')}"><strong>Hint:</strong> Visitors tend to pay more attention on properties with descriptive title</p>
+                    </div>
+                </aside><!-- /.submit-step -->
+            </div>
+        </div><!-- /.block -->
+    </div><!-- /.row -->
+
+    <div class="row">
+        <div class="block">
+            <div class="col-md-7 col-sm-7">
+                <section class="block" id="place-on-map">
+                    <header class="section-title"><h2 th:text="${i18n.t('dictionary.place-on-map')}">Place on Map</h2></header>
+                    <div class="form-group">
+                        <label for="address-search" th:text="${i18n.t('templates.property.new.search-the-address')}">Search the Address</label>
+                        <input type="text" class="form-control" id="address-search" name="address-search">
+                    </div><!-- /.form-group -->
+                    <label for="submit-map" th:text="${i18n.t('templates.property.new.drag-the-marker')}">Or drag the marker to property position</label>
+                    <div id="submit-map"></div>
+
+                    <input type="hidden" id="location" th:field="*{{location}}">
+                    <input type="hidden" id="address" th:field="*{address}">
+                    <input type="hidden" id="latitude" th:field="*{latitude}">
+                    <input type="hidden" id="longitude" th:field="*{longitude}">
+                </section>
+            </div>
+
+            <div class="col-md-3 col-md-offset-1 col-sm-4">
+                <aside class="submit-step">
+                    <figure class="step-number">2</figure>
+                    <div class="description">
+                        <h4 th:text="${i18n.t('templates.property.new.specify-location')}">Specify Location</h4>
+                        <p th:text="${i18n.t('templates.property.new.hint-2-upper')}">Place the marker in the property's position</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="block">
+            <div class="col-md-7 col-sm-7">
+                <section class="block" id="gallery">
+                    <header><h2 th:text="${i18n.t('dictionary.gallery')}">Gallery</h2></header>
+                    <div class="center">
+                        <div class="form-group">
+                            <input id="images-upload" type="file" name="images" class="file" multiple="true" accept="image/jpeg">
+                            <figure class="note" th:utext="${i18n.t('templates.property.new.upload-hint', gotocy.propertySubmissionFormProperties.maxFileCount, gotocy.propertySubmissionFormProperties.maxFileSizeMb)}"><strong>Hint:</strong> You can upload all images at once!</figure>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-md-3 col-md-offset-1 col-sm-4">
+                <aside class="submit-step">
+                    <figure class="step-number">3</figure>
+                    <div class="description">
+                        <h4 th:text="${i18n.t('templates.property.new.upload-property-pictures')}">Upload Property Pictures</h4>
+                        <p th:text="${i18n.t('templates.property.new.hint-3-upper')}">The first picture will be used for preview purposes</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="block">
+            <div class="col-md-7 col-sm-7">
+                <div class="center">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default large" th:text="${i18n.t('dictionary.proceed')}">Proceed</button>
+                    </div><!-- /.form-group -->
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script th:inline="javascript" th:fragment="required_scripts">
+    var _latitude = /*[[${propertySubmissionForm.latitude}]]*/ '34.7071301';
+    var _longitude = /*[[${propertySubmissionForm.longitude}]]*/ '33.022617399999945';
+
+    PropertyNewPage.init(
+        /*[[${gotocy.propertySubmissionFormProperties.maxFileCount}]]*/ 10,
+        /*[[${gotocy.propertySubmissionFormProperties.maxFileSize}]]*/ 3000,
+        /*[[${#locale.language}]]*/ 'en',
+        /*[[${i18n.t('dictionary.browse-images')}]]*/ 'Browse Images'
+    );
+
+    google.maps.event.addDomListener(window, 'load', initPropertySubmitMap(_latitude, _longitude, 8));
+</script>

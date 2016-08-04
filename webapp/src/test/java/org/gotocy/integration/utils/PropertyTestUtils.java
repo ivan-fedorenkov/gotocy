@@ -2,6 +2,7 @@ package org.gotocy.integration.utils;
 
 import org.gotocy.domain.Property;
 import org.gotocy.forms.PropertySubmissionForm;
+import org.junit.Assert;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
 
 /**
@@ -36,6 +37,29 @@ public class PropertyTestUtils {
 			request.setParameter("vatIncluded", String.valueOf(property.isVatIncluded()));
 			return request;
 		};
+	}
+
+	/**
+	 * Assertion of properties equality.
+	 */
+	public static void assertPropertiesEquals(Property expected, Property actual) {
+		Assert.assertEquals(expected.getTitle(), actual.getTitle());
+		Assert.assertEquals(expected.getPropertyType(), actual.getPropertyType());
+		Assert.assertEquals(expected.getPropertyStatus(), actual.getPropertyStatus());
+		Assert.assertEquals(expected.getOfferStatus(), actual.getOfferStatus());
+		Assert.assertEquals(expected.getAddress(), actual.getAddress());
+		Assert.assertEquals(expected.getShortAddress(), actual.getShortAddress());
+		Assert.assertEquals(expected.getPrice(), actual.getPrice());
+		Assert.assertEquals(expected.getLatitude(), actual.getLatitude(), 0d);
+		Assert.assertEquals(expected.getLongitude(), actual.getLongitude(), 0d);
+		Assert.assertEquals(expected.getBedrooms(), actual.getBedrooms());
+		Assert.assertEquals(expected.getFurnishing(), actual.getFurnishing());
+		Assert.assertEquals(expected.isReadyToMoveIn(), actual.isReadyToMoveIn());
+		Assert.assertEquals(expected.hasAirConditioner(), actual.hasAirConditioner());
+		Assert.assertEquals(expected.hasHeatingSystem(), actual.hasHeatingSystem());
+		Assert.assertEquals(expected.isVatIncluded(), actual.isVatIncluded());
+		Assert.assertEquals(expected.getContactsDisplayOption(), actual.getContactsDisplayOption());
+		Assert.assertEquals(expected.getContacts(), actual.getContacts());
 	}
 
 }

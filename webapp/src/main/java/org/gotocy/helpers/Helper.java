@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.StringJoiner;
 
 import static java.util.stream.Collectors.toList;
 
@@ -80,11 +81,10 @@ public class Helper {
 	}
 
 	/**
-	 * Returns path of the given object using the current (thread local) locale.
-	 * Unit test: HelperTest#entityPathTest
+	 * TODO: javadoc
 	 */
-	public static String path(Object object) {
-		return path(object, LocaleContextHolder.getLocale());
+	public static String path(Object... objects) {
+		return path(objects, LocaleContextHolder.getLocale());
 	}
 
 	/**
@@ -92,23 +92,33 @@ public class Helper {
 	 * Unit test: HelperTest#entityPathTest
 	 */
 	public static String path(Object object, Locale locale) {
-		String path;
-		if (object instanceof Property) {
-			path = PropertyHelper.path((Property) object, locale);
-		} else if (object instanceof Complex) {
-			path = "/complexes/" + ((Complex) object).getId();
-		} else if (object instanceof Developer) {
-			path = "/developers/" + ((Developer) object).getId();
-		} else if (object instanceof PropertiesSearchForm) {
-			path = PropertySearchFormHelper.path((PropertiesSearchForm) object, locale);
-		} else if (object instanceof Page) {
-			path = PageHelper.path((Page) object, locale).orElse("/");
-		} else if (object instanceof LocalizedPage) {
-			path = PageHelper.path((LocalizedPage) object, locale).orElse("/");
-		} else if (object instanceof String) {
-			path = (String) object;
-		} else {
-			throw new IllegalArgumentException("Unsupported object type: " + object.getClass());
+		return path(new Object[] {object}, locale);
+	}
+
+	/**
+	 * TODO: javadoc
+	 * TODO: unit test
+	 */
+	public static String path(Object[] objects, Locale locale) {
+		StringJoiner path = new StringJoiner("/");
+		for (Object object : objects) {
+			if (object instanceof Property) {
+				path.add(PropertyHelper.path((Property) object, locale));
+			} else if (object instanceof Complex) {
+				path.add("/complexes/" + ((Complex) object).getId());
+			} else if (object instanceof Developer) {
+				path.add("/developers/" + ((Developer) object).getId());
+			} else if (object instanceof PropertiesSearchForm) {
+				path.add(PropertySearchFormHelper.path((PropertiesSearchForm) object, locale));
+			} else if (object instanceof Page) {
+				path.add(PageHelper.path((Page) object, locale).orElse("/"));
+			} else if (object instanceof LocalizedPage) {
+				path.add(PageHelper.path((LocalizedPage) object, locale).orElse("/"));
+			} else if (object instanceof String) {
+				path.add((String) object);
+			} else {
+				throw new IllegalArgumentException("Unsupported object type: " + object.getClass());
+			}
 		}
 		return getPrefixForLocale(locale) + path;
 	}

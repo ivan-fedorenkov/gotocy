@@ -15,6 +15,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 
 import java.util.List;
 
+import static org.gotocy.integration.utils.PropertyTestUtils.assertPropertiesEquals;
 import static org.gotocy.integration.utils.PropertyTestUtils.populatedPropertySubmissionForm;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -106,26 +107,6 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 		Assert.assertEquals(1, properties.size());
 		Property createdProperty = properties.get(0);
 		assertPropertiesEquals(property, createdProperty);
-	}
-
-	private static void assertPropertiesEquals(Property expected, Property actual) {
-		Assert.assertEquals(expected.getTitle(), actual.getTitle());
-		Assert.assertEquals(expected.getPropertyType(), actual.getPropertyType());
-		Assert.assertEquals(expected.getPropertyStatus(), actual.getPropertyStatus());
-		Assert.assertEquals(expected.getOfferStatus(), actual.getOfferStatus());
-		Assert.assertEquals(expected.getAddress(), actual.getAddress());
-		Assert.assertEquals(expected.getShortAddress(), actual.getShortAddress());
-		Assert.assertEquals(expected.getPrice(), actual.getPrice());
-		Assert.assertEquals(expected.getLatitude(), actual.getLatitude(), 0d);
-		Assert.assertEquals(expected.getLongitude(), actual.getLongitude(), 0d);
-		Assert.assertEquals(expected.getBedrooms(), actual.getBedrooms());
-		Assert.assertEquals(expected.getFurnishing(), actual.getFurnishing());
-		Assert.assertEquals(expected.isReadyToMoveIn(), actual.isReadyToMoveIn());
-		Assert.assertEquals(expected.hasAirConditioner(), actual.hasAirConditioner());
-		Assert.assertEquals(expected.hasHeatingSystem(), actual.hasHeatingSystem());
-		Assert.assertEquals(expected.isVatIncluded(), actual.isVatIncluded());
-		Assert.assertEquals(expected.getContactsDisplayOption(), actual.getContactsDisplayOption());
-		Assert.assertEquals(expected.getContacts(), actual.getContacts());
 	}
 
 }
