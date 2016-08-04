@@ -6,20 +6,16 @@ import edu.uci.ics.crawler4j.url.WebURL;
 import lombok.Getter;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.Property;
-import org.htmlcleaner.DomSerializer;
-import org.htmlcleaner.HtmlCleaner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StreamUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.xml.xpath.XPathConstants;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 import java.util.regex.Pattern;
 
 /**
@@ -32,9 +28,9 @@ public abstract class PropertyCrawler extends WebCrawler {
 
 	protected static final Pattern FILTER = Pattern.compile(".*(\\.(css|js|gif|jpg|jpeg|png|mp3|mp3|zip|gz))$");
 
-	private final Consumer<Property> propertyConsumer;
+	private final BiConsumer<Property, List<Image>> propertyConsumer;
 
-	public PropertyCrawler(Consumer<Property> propertyConsumer) {
+	public PropertyCrawler(BiConsumer<Property, List<Image>> propertyConsumer) {
 		this.propertyConsumer = propertyConsumer;
 	}
 

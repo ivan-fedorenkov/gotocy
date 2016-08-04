@@ -28,7 +28,7 @@ public class UpdateContactsIntegrationTest extends IntegrationTestBase {
 		String updatedPhone = "updated phone";
 		String updatedSpokenLanguages = "en;ru";
 
-		mockMvc.perform(put("/user/contacts").with(csrf())
+		mvc.perform(put("/user/contacts").with(csrf())
 			.param("name", updatedName)
 			.param("email", updatedEmail)
 			.param("phone", updatedPhone)

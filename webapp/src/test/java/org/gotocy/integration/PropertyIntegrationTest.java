@@ -12,13 +12,13 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.List;
 
+import static org.gotocy.integration.utils.PropertyTestUtils.populatedPropertySubmissionForm;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -37,7 +37,7 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 		});
 		property = propertyRepository.save(property);
 
-		mockMvc.perform(get("/properties/" + property.getId()))
+		mvc.perform(get("/properties/" + property.getId()))
 			.andExpect(status().isNotFound());
 	}
 
@@ -51,25 +51,10 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 		});
 
 		// Post the property
-		ResultActions result = mockMvc.perform(fileUpload("/properties").with(csrf())
-			.param("title", property.getTitle())
-			.param("propertyType", property.getPropertyType().name())
-			.param("propertyStatus", property.getPropertyStatus().name())
-			.param("location", property.getLocation().name())
-			.param("address", property.getAddress())
-			.param("shortAddress", property.getShortAddress())
-			.param("price", String.valueOf(property.getPrice()))
-			.param("latitude", String.valueOf(property.getLatitude()))
-			.param("longitude", String.valueOf(property.getLongitude()))
-			.param("coveredArea", String.valueOf(property.getCoveredArea()))
-			.param("plotSize", String.valueOf(property.getPlotSize()))
-			.param("levels", String.valueOf(property.getLevels()))
-			.param("bedrooms", String.valueOf(property.getBedrooms()))
-			.param("furnishing", property.getFurnishing().name())
-			.param("readyToMoveIn", String.valueOf(property.isReadyToMoveIn()))
-			.param("airConditioner", String.valueOf(property.hasAirConditioner()))
-			.param("heatingSystem", String.valueOf(property.hasHeatingSystem()))
-			.param("vatIncluded", String.valueOf(property.isVatIncluded())));
+		mvc.perform(fileUpload("/properties")
+			.with(csrf())
+			.with(populatedPropertySubmissionForm(property)))
+			.andExpect(redirectedUrlPattern("/promo/properties/?"));
 
 		// Verify that the property has been created
 		List<Property> properties = propertyRepository.findAll();
@@ -82,10 +67,6 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 
 		// Verify fields that should be generated for registration purposes
 		Assert.assertNotNull(createdProperty.getRegistrationKey());
-
-		// Verify the response status and the response page
-		result.andExpect(status().isFound())
-			.andExpect(redirectedUrl("/promo/properties/" + createdProperty.getId()));
 	}
 
 
@@ -98,7 +79,7 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 			p.setOverriddenContacts(ContactsFactory.INSTANCE.get());
 		});
 
-		mockMvc.perform(post("/master/properties").with(csrf())
+		mvc.perform(post("/master/properties").with(csrf())
 			.param("title", property.getTitle())
 			.param("propertyType", property.getPropertyType().name())
 			.param("propertyStatus", property.getPropertyStatus().name())

@@ -8,7 +8,7 @@ import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
 import org.gotocy.dto.PropertyDto;
 import org.gotocy.dto.PropertyDtoFactory;
-import org.gotocy.forms.PropertyForm;
+import org.gotocy.forms.master.PropertyForm;
 import org.gotocy.repository.ComplexRepository;
 import org.gotocy.repository.DeveloperRepository;
 import org.gotocy.repository.PropertyRepository;

@@ -49,7 +49,7 @@ public class UserRegistrationIntegrationTest extends IntegrationTestBase {
 
 	@Test
 	public void registrationThroughForm() throws Exception {
-		mockMvc.perform(post("/users").with(csrf())
+		mvc.perform(post("/users").with(csrf())
 			.param("name", registeringUser.getContacts().getName())
 			.param("email", registeringUser.getContacts().getEmail())
 			.param("password", registeringUser.getPassword())
@@ -74,7 +74,7 @@ public class UserRegistrationIntegrationTest extends IntegrationTestBase {
 		});
 		promo = propertyService.create(promo);
 
-		mockMvc.perform(post("/users").with(csrf())
+		mvc.perform(post("/users").with(csrf())
 			.param("name", registeringUser.getContacts().getName())
 			.param("email", registeringUser.getContacts().getEmail())
 			.param("password", registeringUser.getPassword())

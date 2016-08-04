@@ -7,6 +7,7 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 import org.gotocy.crawl.cyprusreality.CyprusRealityCrawler;
 import org.gotocy.crawl.giovani.GiovaniCrawler;
 import org.gotocy.crawl.mayfair.MayfairCrawler;
+import org.gotocy.domain.Image;
 import org.gotocy.domain.Property;
 import org.gotocy.service.PropertyService;
 import org.gotocy.utils.googlegeo.FromLatLngResponse;
@@ -20,7 +21,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.List;
+import java.util.function.BiConsumer;
 
 /**
  * @author ifedorenkov
@@ -39,9 +41,9 @@ public class PropertyCrawlerApplication {
 		CrawlController controller = new CrawlController(properties, pageFetcher, robotstxtServer);
 		PropertyService propertyService = context.getBean(PropertyService.class);
 
-		CrawlController.WebCrawlerFactory factory = createCrawlerFactory(property -> {
+		CrawlController.WebCrawlerFactory factory = createCrawlerFactory((property, images) -> {
 			if (properties.getFilter().isPassingFilter(property)) {
-				propertyService.create(property);
+				propertyService.createWithAttachments(property, images);
 			}
 		}, properties);
 
@@ -49,7 +51,7 @@ public class PropertyCrawlerApplication {
 		controller.start(factory, properties.getNumOfCrawlers());
 	}
 
-	private static CrawlController.WebCrawlerFactory createCrawlerFactory(Consumer<Property> consumer,
+	private static CrawlController.WebCrawlerFactory createCrawlerFactory(BiConsumer<Property, List<Image>> consumer,
 		CrawlProperties properties)
 	{
 		switch (properties.getCrawlerClass()) {
@@ -65,7 +67,7 @@ public class PropertyCrawlerApplication {
 		}
 	}
 
-	private static class PropertyLocationResolver implements Consumer<Property> {
+	private static class PropertyLocationResolver implements BiConsumer<Property, List<Image>> {
 		private static final Logger logger = LoggerFactory.getLogger(PropertyLocationResolver.class);
 
 		private final String googleMapsApiKey;
@@ -75,7 +77,7 @@ public class PropertyCrawlerApplication {
 		}
 
 		@Override
-		public void accept(Property property) {
+		public void accept(Property property, List<Image> images) {
 			try {
 				FromLatLngResponse geocodeResponse = GoogleGeocode.backGeocodeRequest(
 					property.getLatitude(), property.getLongitude(), googleMapsApiKey);

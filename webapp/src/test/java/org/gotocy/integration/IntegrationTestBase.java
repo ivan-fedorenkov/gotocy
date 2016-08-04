@@ -28,11 +28,11 @@ public abstract class IntegrationTestBase {
 
 	@Autowired
 	protected WebApplicationContext wac;
-	protected MockMvc mockMvc;
+	protected MockMvc mvc;
 
 	@Before
 	public void setUp() throws Exception {
-		mockMvc = MockMvcBuilders.webAppContextSetup(wac).apply(springSecurity()).build();
+		mvc = MockMvcBuilders.webAppContextSetup(wac).apply(springSecurity()).build();
 	}
 
 }

@@ -1,4 +1,4 @@
-package org.gotocy.forms;
+package org.gotocy.forms.master;
 
 import lombok.Getter;
 import lombok.Setter;

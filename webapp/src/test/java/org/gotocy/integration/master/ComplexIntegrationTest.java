@@ -22,7 +22,7 @@ public class ComplexIntegrationTest extends IntegrationTestBase {
 	public void complexCreation() throws Exception {
 		Complex complex = ComplexFactory.INSTANCE.get();
 
-		mockMvc.perform(post("/master/complexes").with(csrf())
+		mvc.perform(post("/master/complexes").with(csrf())
 			.param("title", complex.getTitle())
 			.param("address", complex.getAddress())
 			.param("coordinates", complex.getCoordinates()))

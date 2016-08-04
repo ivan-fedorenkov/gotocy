@@ -33,7 +33,7 @@
 
         <div class="container">
             <header><h1 th:text="${i18n.t('templates.property.new.add-your-property-capitalized')}">Add Your Property</h1></header>
-            <form role="form" id="form-submit" class="form-submit" method="post" th:object="${userPropertyForm}" th:action="@{${helper.path('/properties')}}" enctype="multipart/form-data">
+            <form role="form" id="form-submit" class="form-submit" method="post" th:object="${propertySubmissionForm}" th:action="@{${helper.path('/properties')}}" enctype="multipart/form-data">
 
                 <!--Errors-->
                 <div class="row" th:if="${#fields.hasAnyErrors()}">
@@ -203,7 +203,7 @@
                                 <div class="center">
                                     <div class="form-group">
                                         <input id="images-upload" type="file" name="images" class="file" multiple="true" accept="image/jpeg">
-                                        <figure class="note" th:utext="${i18n.t('templates.property.new.upload-hint', gotocy.userPropertyForm.maxFileCount, gotocy.userPropertyForm.maxFileSizeMb)}"><strong>Hint:</strong> You can upload all images at once!</figure>
+                                        <figure class="note" th:utext="${i18n.t('templates.property.new.upload-hint', gotocy.propertySubmissionFormProperties.maxFileCount, gotocy.propertySubmissionFormProperties.maxFileSizeMb)}"><strong>Hint:</strong> You can upload all images at once!</figure>
                                     </div>
                                 </div>
                             </section>
@@ -329,12 +329,12 @@
 <![endif]-->
 
 <script th:inline="javascript">
-    var _latitude = /*[[${userPropertyForm.latitude}]]*/ '34.7071301';
-    var _longitude = /*[[${userPropertyForm.longitude}]]*/ '33.022617399999945';
+    var _latitude = /*[[${propertySubmissionForm.latitude}]]*/ '34.7071301';
+    var _longitude = /*[[${propertySubmissionForm.longitude}]]*/ '33.022617399999945';
 
     PropertyNewPage.init(
-        /*[[${gotocy.userPropertyForm.maxFileCount}]]*/ 10,
-        /*[[${gotocy.userPropertyForm.maxFileSize}]]*/ 3000,
+        /*[[${gotocy.propertySubmissionFormProperties.maxFileCount}]]*/ 10,
+        /*[[${gotocy.propertySubmissionFormProperties.maxFileSize}]]*/ 3000,
         /*[[${#locale.language}]]*/ 'en',
         /*[[${i18n.t('dictionary.browse-images')}]]*/ 'Browse Images'
     );

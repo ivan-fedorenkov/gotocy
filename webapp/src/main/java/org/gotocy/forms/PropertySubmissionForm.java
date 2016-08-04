@@ -5,7 +5,9 @@ import lombok.Setter;
 import org.gotocy.domain.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ import java.util.List;
  */
 @Getter
 @Setter
-public class UserPropertyForm {
+public class PropertySubmissionForm {
 
 	private String title;
 	private String address;
@@ -41,7 +43,7 @@ public class UserPropertyForm {
 
 	private List<MultipartFile> images = new ArrayList<>();
 
-	public UserPropertyForm() {
+	public PropertySubmissionForm() {
 		location = Location.FAMAGUSTA;
 		propertyType = PropertyType.APARTMENT;
 		propertyStatus = PropertyStatus.SALE;
@@ -49,7 +51,7 @@ public class UserPropertyForm {
 		furnishing = Furnishing.NONE;
 	}
 
-	public UserPropertyForm(Property property) {
+	public PropertySubmissionForm(Property property) {
 		title = property.getTitle();
 		address = property.getAddress();
 		location = property.getLocation();
@@ -96,13 +98,29 @@ public class UserPropertyForm {
 		property.setLatitude(latitude);
 		property.setLongitude(longitude);
 
-		// Preserve the contacts display option or set to OWNER
+		// Preserve the contacts display option or set to OWNER (default)
 		PropertyContactsDisplayOption contactsDisplayOption = property.getContactsDisplayOption();
 		if (contactsDisplayOption == null)
 			contactsDisplayOption = PropertyContactsDisplayOption.OWNER;
 		property.setContactsDisplayOption(contactsDisplayOption);
 
 		return property;
+	}
+
+	/**
+	 * Returns a list of {@link Image} created from the attached {@link #images}.
+	 */
+	public List<Image> mapFilesToImages() throws IOException {
+		if (images.isEmpty())
+			return Collections.emptyList();
+
+		List<Image> result = new ArrayList<>(images.size());
+		for (MultipartFile file : images) {
+			Image image = new Image(file.getOriginalFilename());
+			image.setBytes(file.getBytes());
+			result.add(image);
+		}
+		return result;
 	}
 
 	public void setImages(List<MultipartFile> images) {

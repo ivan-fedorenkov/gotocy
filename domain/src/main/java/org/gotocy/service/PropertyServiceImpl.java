@@ -1,29 +1,26 @@
 package org.gotocy.service;
 
 import com.mysema.query.types.Predicate;
-import org.gotocy.domain.*;
+import org.gotocy.domain.Image;
+import org.gotocy.domain.Property;
+import org.gotocy.domain.SecretKey;
 import org.gotocy.repository.PropertyRepository;
+import org.gotocy.utils.StringKeyGeneratorImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.crypto.codec.Hex;
-import org.springframework.security.crypto.keygen.BytesKeyGenerator;
-import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.security.crypto.keygen.StringKeyGenerator;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Collection;
 
-import static org.gotocy.repository.PropertyPredicates.*;
+import static org.gotocy.repository.PropertyPredicates.featured;
+import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
 
 /**
  * @author ifedorenkov
@@ -33,64 +30,44 @@ public class PropertyServiceImpl implements PropertyService {
 
 	private static final Logger logger = LoggerFactory.getLogger(PropertyService.class);
 
-	private final AssetsManager assetsManager;
+	private static final int REGISTRATION_KEY_LENGTH = 28;
+
+	private final AssetsService assetsService;
 	private final PropertyRepository propertyRepository;
 	private final StringKeyGenerator keyGenerator;
 
 	@Autowired
-	public PropertyServiceImpl(AssetsManager assetsManager, PropertyRepository propertyRepository) {
+	public PropertyServiceImpl(AssetsService assetsService, PropertyRepository propertyRepository) {
 		this.propertyRepository = propertyRepository;
-		this.assetsManager = assetsManager;
-
-		BytesKeyGenerator bytesKeyGenerator = KeyGenerators.secureRandom(28);
-		this.keyGenerator = () -> new String(Hex.encode(bytesKeyGenerator.generateKey()));
+		this.assetsService = assetsService;
+		keyGenerator = new StringKeyGeneratorImpl(REGISTRATION_KEY_LENGTH);
 	}
 
 	@Override
 	@Transactional
 	public Property create(Property property) {
+		return propertyRepository.save(property);
+	}
 
-		// We need property id to create full image's paths, so first of all create a property without assets,
-		// then create assets and update property.
-
-		List<Image> images = new ArrayList<>(property.getImages());
-		Image representativeImage = property.getRepresentativeImage();
-		property.setImages(Collections.emptyList());
-		property.setRepresentativeImage(null);
-
-		property = propertyRepository.save(property);
-
-		if (!images.isEmpty()) {
-			List<Image> createdImages = new ArrayList<>(images.size());
-			try {
-				for (Image image : images) {
-					image.setKey("property/" + property.getId() + "/" + image.getKey());
-					assetsManager.saveAsset(image);
-					createdImages.add(image);
-				}
-
-				property.setImages(createdImages);
-				property.setRepresentativeImage(representativeImage);
-				property = propertyRepository.save(property);
-			} catch (NullPointerException | IOException | DataAccessException e) {
-				// Log error
-				logger.error("Failed to attach property's assets.", e);
-
-				// Clean up created objects
-				try {
-					propertyRepository.delete(property);
-					for (Image image : createdImages)
-						assetsManager.deleteAsset(image);
-				} catch (DataAccessException | IOException ee) {
-					logger.error("Failed to clean up resources.", ee);
-				}
-
-				// Rethrow so that the user would be notified appropriately (this is kind of critical error)
-				throw new ServiceMethodExecutionException(e);
-			}
-		}
-
+	@Override
+	@Transactional
+	public Property createWithAttachments(Property property, Collection<Image> images) {
+		property = create(property);
+		property = attachImages(property, images);
 		return property;
+	}
+
+	@Override
+	@Transactional
+	public Property attachImages(Property property, Collection<Image> images)
+		throws ServiceMethodExecutionException
+	{
+		Collection<Image> createdImages = assetsService.createAssets("property/" + property.getId(), images, true);
+		property.getImages().addAll(createdImages);
+		// If the property is missing representative image then use the first created image as representative
+		if (property.getRepresentativeImage() == null && !property.getImages().isEmpty())
+			property.setRepresentativeImage(property.getImage(0));
+		return propertyRepository.save(property);
 	}
 
 	@Override

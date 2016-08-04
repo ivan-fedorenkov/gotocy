@@ -21,7 +21,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.*;
 import java.io.IOException;
 import java.util.*;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 import java.util.regex.Pattern;
 
 /**
@@ -48,7 +48,7 @@ public class MayfairCrawler extends PropertyCrawler {
 
 	private int i = 0;
 
-	public MayfairCrawler(Consumer<Property> consumer) {
+	public MayfairCrawler(BiConsumer<Property, List<Image>> consumer) {
 		super(consumer);
 
 		htmlCleaner = new HtmlCleaner();

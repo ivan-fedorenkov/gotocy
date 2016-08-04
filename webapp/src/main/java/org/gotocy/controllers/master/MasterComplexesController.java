@@ -3,7 +3,7 @@ package org.gotocy.controllers.master;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.Complex;
 import org.gotocy.domain.Developer;
-import org.gotocy.forms.ComplexForm;
+import org.gotocy.forms.master.ComplexForm;
 import org.gotocy.repository.ComplexRepository;
 import org.gotocy.repository.DeveloperRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -127,7 +127,7 @@ public class GiovaniCrawlerTest {
 
 	private static List<Property> crawlProperty(String url) throws Exception {
 		List<Property> result = new ArrayList<>();
-		GiovaniCrawler crawler = new GiovaniCrawler(result::add);
+		GiovaniCrawler crawler = new GiovaniCrawler((property, images) -> result.add(property));
 		crawler.init(1, crawlController);
 
 		WebURL webURL = new WebURL();

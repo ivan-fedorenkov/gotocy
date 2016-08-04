@@ -21,7 +21,7 @@ public class DeveloperIntegrationTest extends IntegrationTestBase {
 	public void complexCreation() throws Exception {
 		Developer developer = DeveloperFactory.INSTANCE.get();
 
-		mockMvc.perform(post("/master/developers").with(csrf())
+		mvc.perform(post("/master/developers").with(csrf())
 			.param("name", developer.getName()))
 			.andExpect(status().isOk());
 	}

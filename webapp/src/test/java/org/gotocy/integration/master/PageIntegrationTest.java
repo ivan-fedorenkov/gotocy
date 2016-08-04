@@ -4,7 +4,7 @@ import org.gotocy.config.Locales;
 import org.gotocy.config.Roles;
 import org.gotocy.domain.Page;
 import org.gotocy.domain.i18n.LocalizedPage;
-import org.gotocy.forms.PageForm;
+import org.gotocy.forms.master.PageForm;
 import org.gotocy.integration.IntegrationTestBase;
 import org.gotocy.integration.config.WithGtcUser;
 import org.gotocy.repository.PageRepository;
@@ -30,19 +30,19 @@ public class PageIntegrationTest extends IntegrationTestBase {
 	public void visiblePageShouldBeAccessible() throws Exception {
 		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.DEFAULT);
 		pageRepository.save(page);
-		mockMvc.perform(get("/" + page.localize(Locales.DEFAULT).getUrl())).andExpect(status().isOk());
+		mvc.perform(get("/" + page.localize(Locales.DEFAULT).getUrl())).andExpect(status().isOk());
 	}
 
 	@Test
 	public void invisiblePageShouldNotBeAccessible() throws Exception {
 		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(false), Locales.DEFAULT);
 		pageRepository.save(page);
-		mockMvc.perform(get("/" + page.localize(Locales.DEFAULT).getUrl())).andExpect(status().isForbidden());
+		mvc.perform(get("/" + page.localize(Locales.DEFAULT).getUrl())).andExpect(status().isForbidden());
 	}
 
 	@Test
 	public void nonExistingPageShouldNotBeAccessible() throws Exception {
-		mockMvc.perform(get("/non-existing-page-url")).andExpect(status().isNotFound());
+		mvc.perform(get("/non-existing-page-url")).andExpect(status().isNotFound());
 	}
 
 	@Test
@@ -51,7 +51,7 @@ public class PageIntegrationTest extends IntegrationTestBase {
 		// because I can't figure out quickly how to apply LocaleFilter correctly
 		Page page = PageFactory.INSTANCE.get(p -> p.setVisible(true), Locales.RU);
 		pageRepository.save(page);
-		mockMvc.perform(get("/" + page.localize(Locales.RU).getUrl())).andExpect(status().isNotFound());
+		mvc.perform(get("/" + page.localize(Locales.RU).getUrl())).andExpect(status().isNotFound());
 	}
 
 	@Test
@@ -60,7 +60,7 @@ public class PageIntegrationTest extends IntegrationTestBase {
 		LocalizedPage enPage = PageFactory.INSTANCE.getLocalized(page, Locales.EN, lp -> lp.setUrl("some-url"));
 		LocalizedPage ruPage = PageFactory.INSTANCE.getLocalized(page, Locales.RU, lp -> lp.setUrl("kakayia-to-ssilka"));
 		pageRepository.save(page);
-		mockMvc.perform(get("/" + ruPage.getUrl())).andExpect(redirectedUrl("/" + enPage.getUrl()));
+		mvc.perform(get("/" + ruPage.getUrl())).andExpect(redirectedUrl("/" + enPage.getUrl()));
 	}
 
 
@@ -71,7 +71,7 @@ public class PageIntegrationTest extends IntegrationTestBase {
 		PageForm pageForm = new PageForm(page, Locales.DEFAULT);
 
 		// Create page and verify the redirect
-		mockMvc
+		mvc
 			.perform(post("/master/pages").with(csrf())
 				.param("title", pageForm.getTitle())
 				.param("html", pageForm.getHtml())
@@ -81,13 +81,13 @@ public class PageIntegrationTest extends IntegrationTestBase {
 
 
 		// Verify that created page is listed in the pages index
-		mockMvc
+		mvc
 			.perform(get("/master/pages"))
 			.andExpect(status().isOk())
 			.andExpect(content().string(containsString(pageForm.getTitle())));
 
 		// Verify that created page is available for users
-		mockMvc.perform(get("/" + pageForm.getUrl())).andExpect(status().isOk());
+		mvc.perform(get("/" + pageForm.getUrl())).andExpect(status().isOk());
 	}
 
 	@Test
@@ -98,14 +98,14 @@ public class PageIntegrationTest extends IntegrationTestBase {
 
 		// Verify that user can access the page before update
 
-		mockMvc.perform(get("/" + page.localize(Locales.DEFAULT).getUrl())).andExpect(status().isOk());
+		mvc.perform(get("/" + page.localize(Locales.DEFAULT).getUrl())).andExpect(status().isOk());
 
 		String updatedTitle = "updated title";
 		String updatedHtml = "updated html";
 		String updatedUrl = "updated-url";
 
 		// Update the page and verify redirect
-		mockMvc
+		mvc
 			.perform(put("/master/pages/" + page.getId()).with(csrf())
 				.param("title", updatedTitle)
 				.param("html", updatedHtml)
@@ -121,7 +121,7 @@ public class PageIntegrationTest extends IntegrationTestBase {
 		Assert.assertFalse(updatedPage.isVisible());
 
 		// Verify that user can not access the page after update
-		mockMvc.perform(get("/" + updatedLocalizedPage.getUrl())).andExpect(status().isForbidden());
+		mvc.perform(get("/" + updatedLocalizedPage.getUrl())).andExpect(status().isForbidden());
 	}
 
 	@Test
@@ -135,7 +135,7 @@ public class PageIntegrationTest extends IntegrationTestBase {
 		});
 
 		// Detect that new object wasn't created by view name (at least)
-		mockMvc.perform(post("/master/pages").with(csrf())
+		mvc.perform(post("/master/pages").with(csrf())
 				.param("url", duplicateUrl.getUrl())
 				.param("title", duplicateUrl.getTitle())
 				.param("html", duplicateUrl.getHtml())
@@ -143,7 +143,7 @@ public class PageIntegrationTest extends IntegrationTestBase {
 			.andExpect(view().name("master/page/new"));
 
 		// Verify that existing page is still accessible
-		mockMvc.perform(get("/" + existing.localize(Locales.DEFAULT).getUrl())).andExpect(status().isOk());
+		mvc.perform(get("/" + existing.localize(Locales.DEFAULT).getUrl())).andExpect(status().isOk());
 	}
 
 	@Test
@@ -163,7 +163,7 @@ public class PageIntegrationTest extends IntegrationTestBase {
 		});
 		pageRepository.save(anotherExisting.getOriginal());
 		// Detect that new object wasn't created by view name (at least)
-		mockMvc.perform(put("/master/pages/" + existing.getId()).with(csrf())
+		mvc.perform(put("/master/pages/" + existing.getId()).with(csrf())
 			.param("url", anotherExisting.getUrl())
 			.param("title", existing.getTitle())
 			.param("html", existing.getHtml())
@@ -171,8 +171,8 @@ public class PageIntegrationTest extends IntegrationTestBase {
 			.andExpect(view().name("master/page/edit"));
 
 		// Verify that both pages are still accessible
-		mockMvc.perform(get("/" + existing.getUrl())).andExpect(status().isOk());
-		mockMvc.perform(get("/" + anotherExisting.getUrl())).andExpect(status().isOk());
+		mvc.perform(get("/" + existing.getUrl())).andExpect(status().isOk());
+		mvc.perform(get("/" + anotherExisting.getUrl())).andExpect(status().isOk());
 	}
 
 }

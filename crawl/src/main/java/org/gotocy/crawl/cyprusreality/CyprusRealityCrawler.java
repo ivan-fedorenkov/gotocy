@@ -13,9 +13,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.xpath.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,7 +44,7 @@ public class CyprusRealityCrawler extends PropertyCrawler {
 	private final XPathExpression specsRowsExpression;
 	private final XPathExpression imagesExpression;
 
-	public CyprusRealityCrawler(Consumer<Property> propertyConsumer) {
+	public CyprusRealityCrawler(BiConsumer<Property, List<Image>> propertyConsumer) {
 		super(propertyConsumer);
 
 		htmlCleaner = new HtmlCleaner();
@@ -137,10 +136,6 @@ public class CyprusRealityCrawler extends PropertyCrawler {
 
 				NodeList imagesNodes = (NodeList) imagesExpression.evaluate(dom, XPathConstants.NODESET);
 				List<Image> downloadedImages = downloadImages(pageWebURL, extractImageUrls(imagesNodes, "href"));
-				if (!downloadedImages.isEmpty()) {
-					property.setRepresentativeImage(downloadedImages.get(0));
-					property.setImages(downloadedImages);
-				}
 
 				Matcher m = LATITUDE_PATTERN.matcher(html);
 				if (m.find())
@@ -150,9 +145,8 @@ public class CyprusRealityCrawler extends PropertyCrawler {
 				if (m.find())
 					property.setLongitude(Double.parseDouble(m.group(1)));
 
-
 				if (property.isSupported())
-					getPropertyConsumer().accept(property.toProperty());
+					getPropertyConsumer().accept(property.toProperty(), downloadedImages);
 
 			} catch (Exception e) {
 				getLogger().error("Failed to parse property (" + pageWebURL.getURL() + ")", e);

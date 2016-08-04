@@ -8,8 +8,8 @@ import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.PanoXml;
 import org.gotocy.domain.Property;
 import org.gotocy.forms.PropertiesSearchForm;
-import org.gotocy.forms.UserPropertyForm;
-import org.gotocy.forms.validation.UserPropertyFormValidator;
+import org.gotocy.forms.PropertySubmissionForm;
+import org.gotocy.forms.validation.PropertySubmissionFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.service.AssetsManager;
 import org.gotocy.service.PropertyService;
@@ -24,12 +24,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,22 +40,22 @@ public class PropertiesController {
 	private final AssetsManager assetsManager;
 	private final ApplicationProperties applicationProperties;
 	private final PropertyService propertyService;
-	private final UserPropertyFormValidator propertyFormValidator;
+	private final PropertySubmissionFormValidator formValidator;
 
 	@Autowired
 	public PropertiesController(AssetsManager assetsManager, ApplicationProperties applicationProperties,
-		PropertyService propertyService, UserPropertyFormValidator propertyFormValidator)
+		PropertyService propertyService, PropertySubmissionFormValidator formValidator)
 	{
 		this.assetsManager = assetsManager;
 		this.applicationProperties = applicationProperties;
 		this.propertyService = propertyService;
-		this.propertyFormValidator = propertyFormValidator;
+		this.formValidator = formValidator;
 	}
 
-	@InitBinder("userPropertyForm")
+	@InitBinder("propertySubmissionForm")
 	public void initBinder(WebDataBinder binder) {
-		if (binder.getTarget() != null && propertyFormValidator.supports(binder.getTarget().getClass()))
-			binder.addValidators(propertyFormValidator);
+		if (binder.getTarget() != null && formValidator.supports(binder.getTarget().getClass()))
+			binder.addValidators(formValidator);
 	}
 
 	@RequestMapping(value = "/properties", method = RequestMethod.GET)
@@ -116,43 +114,29 @@ public class PropertiesController {
 
 	@RequestMapping(value = "/properties/new", method = RequestMethod.GET)
 	public String newByUser(Model model) {
-		UserPropertyForm userPropertyForm = new UserPropertyForm();
-		userPropertyForm.setLatitude(applicationProperties.getDefaultLatitude());
-		userPropertyForm.setLongitude(applicationProperties.getDefaultLongitude());
-		model.addAttribute(userPropertyForm);
+		PropertySubmissionForm propertySubmissionForm = new PropertySubmissionForm();
+		propertySubmissionForm.setLatitude(applicationProperties.getDefaultLatitude());
+		propertySubmissionForm.setLongitude(applicationProperties.getDefaultLongitude());
+		model.addAttribute(propertySubmissionForm);
 
 		return "property/new";
 	}
 
 	@RequestMapping(value = "/properties", method = RequestMethod.POST)
-	public String createByUser(@Valid @ModelAttribute UserPropertyForm userPropertyForm, BindingResult formErrors,
-		Locale locale) throws IOException
+	public String createByUser(@Valid @ModelAttribute PropertySubmissionForm propertySubmissionForm,
+		BindingResult formErrors, Locale locale) throws IOException
 	{
 		if (formErrors.hasErrors())
 			return "property/new";
 
-		Property property = userPropertyForm.mergeWithProperty(new Property());
+		Property property = propertySubmissionForm.mergeWithProperty(new Property());
 		property.setOfferStatus(OfferStatus.PROMO);
 		property.setDescription(property.getDescription(), locale);
 		property.setRegistrationKey(propertyService.generateRegistrationSecret());
+		List<Image> images = propertySubmissionForm.mapFilesToImages();
+		Property createdProperty = propertyService.createWithAttachments(property, images);
 
-		List<Image> images = new ArrayList<>();
-		if (!userPropertyForm.getImages().isEmpty()) {
-			for (MultipartFile file : userPropertyForm.getImages()) {
-				String fileName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('/') + 1);
-				Image image = new Image(fileName);
-				image.setBytes(file.getBytes());
-				images.add(image);
-			}
-
-			property.setImages(images);
-			property.setRepresentativeImage(images.get(0));
-		}
-
-		propertyService.create(property);
-
-
-		return "redirect:" + Helper.path(property);
+		return "redirect:" + Helper.path(createdProperty);
 	}
 
 }

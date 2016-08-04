@@ -40,7 +40,8 @@ public class ApplicationProperties {
 	private Environment environment;
 
 	@NestedConfigurationProperty
-	private final UserPropertyForm userPropertyForm = new UserPropertyForm();
+	private final PropertySubmissionFormProperties propertySubmissionFormProperties =
+		new PropertySubmissionFormProperties();
 
 	/**
 	 * @return the first spring active profile or an empty string if there are no active profiles.
@@ -52,7 +53,7 @@ public class ApplicationProperties {
 
 	@Getter
 	@Setter
-	public static class UserPropertyForm {
+	public static class PropertySubmissionFormProperties {
 
 		/**
 		 * Max file size in Kb.

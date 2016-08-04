@@ -15,7 +15,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.xpath.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,7 +44,7 @@ public class GiovaniCrawler extends PropertyCrawler {
 	private final XPathExpression soldFlagExpression;
 	private final XPathExpression imagesExpression;
 
-	public GiovaniCrawler(Consumer<Property> propertyConsumer) {
+	public GiovaniCrawler(BiConsumer<Property, List<Image>> propertyConsumer) {
 		super(propertyConsumer);
 
 		htmlCleaner = new HtmlCleaner();
@@ -131,13 +131,9 @@ public class GiovaniCrawler extends PropertyCrawler {
 
 				NodeList imagesNodes = (NodeList) imagesExpression.evaluate(dom, XPathConstants.NODESET);
 				List<Image> downloadedImages = downloadImages(pageWebURL, extractImageUrls(imagesNodes, "href"));
-				if (!downloadedImages.isEmpty()) {
-					property.setRepresentativeImage(downloadedImages.get(0));
-					property.setImages(downloadedImages);
-				}
 
 				if (property.isSupported())
-					getPropertyConsumer().accept(property.toProperty());
+					getPropertyConsumer().accept(property.toProperty(), downloadedImages);
 
 			} catch (Exception e) {
 				getLogger().error("Failed to parse property (" + pageWebURL.getURL() + ")", e);

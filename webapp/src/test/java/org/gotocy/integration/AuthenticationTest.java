@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,14 +20,14 @@ public class AuthenticationTest extends IntegrationTestBase {
 
 	@Test
 	public void deniedAccessToSecuredPath() throws Exception {
-		mockMvc.perform(get(SECURED_RESOURCE_URL))
+		mvc.perform(get(SECURED_RESOURCE_URL))
 			.andExpect(redirectedUrlPattern("**/session/new"));
 	}
 
 	@Test
 	@WithMockUser(roles = Roles.MASTER)
 	public void grantedAccessToSecuredPath() throws Exception {
-		mockMvc.perform(get(SECURED_RESOURCE_URL))
+		mvc.perform(get(SECURED_RESOURCE_URL))
 			.andExpect(status().isOk());
 	}
 

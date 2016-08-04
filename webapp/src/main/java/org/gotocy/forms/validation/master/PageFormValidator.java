@@ -1,8 +1,8 @@
-package org.gotocy.forms.validation;
+package org.gotocy.forms.validation.master;
 
 import org.gotocy.domain.Page;
 import org.gotocy.domain.validation.ValidationConstraints;
-import org.gotocy.forms.PageForm;
+import org.gotocy.forms.master.PageForm;
 import org.gotocy.repository.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

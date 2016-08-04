@@ -344,7 +344,7 @@ public class CyprusRealityCrawlerTest {
 
 	private static Property crawlProperty(String url) throws Exception {
 		List<Property> result = new ArrayList<>();
-		CyprusRealityCrawler crawler = new CyprusRealityCrawler(result::add);
+		CyprusRealityCrawler crawler = new CyprusRealityCrawler((property, images) -> result.add(property));
 		crawler.init(1, crawlController);
 
 		WebURL webURL = new WebURL();

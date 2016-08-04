@@ -4,7 +4,7 @@ import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.validation.PropertyValidator;
 import org.gotocy.domain.validation.ValidationConstraints;
-import org.gotocy.forms.UserPropertyForm;
+import org.gotocy.forms.PropertySubmissionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -22,7 +22,7 @@ import java.util.List;
  * @author ifedorenkov
  */
 @Component
-public class UserPropertyFormValidator implements Validator {
+public class PropertySubmissionFormValidator implements Validator {
 
 	public static final String ALLOWED_IMAGE_CONTENT_TYPE = "image/jpeg";
 	public static final String ALLOWED_IMAGE_CONTENT_TYPE_USER_FRIENDLY = "jpeg";
@@ -32,20 +32,20 @@ public class UserPropertyFormValidator implements Validator {
 	private final int maxAllowedFileSizeMb;
 
 	@Autowired
-	public UserPropertyFormValidator(ApplicationProperties applicationProperties) {
-		maxAllowedImages = applicationProperties.getUserPropertyForm().getMaxFileCount();
-		maxAllowedFileSize = applicationProperties.getUserPropertyForm().getMaxFileSize() * 1024; // bytes
-		maxAllowedFileSizeMb = applicationProperties.getUserPropertyForm().getMaxFileSize() / 1024; // mbytes
+	public PropertySubmissionFormValidator(ApplicationProperties applicationProperties) {
+		maxAllowedImages = applicationProperties.getPropertySubmissionFormProperties().getMaxFileCount();
+		maxAllowedFileSize = applicationProperties.getPropertySubmissionFormProperties().getMaxFileSize() * 1024; // bytes
+		maxAllowedFileSizeMb = applicationProperties.getPropertySubmissionFormProperties().getMaxFileSize() / 1024; // mbytes
 	}
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return UserPropertyForm.class.isAssignableFrom(clazz);
+		return PropertySubmissionForm.class.isAssignableFrom(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		UserPropertyForm form = (UserPropertyForm) target;
+		PropertySubmissionForm form = (PropertySubmissionForm) target;
 		PropertyValidator.INSTANCE.validate(form.mergeWithProperty(new Property()), errors);
 
 		List<MultipartFile> images = form.getImages();

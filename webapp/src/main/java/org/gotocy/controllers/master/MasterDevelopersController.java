@@ -2,7 +2,7 @@ package org.gotocy.controllers.master;
 
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.Developer;
-import org.gotocy.forms.DeveloperForm;
+import org.gotocy.forms.master.DeveloperForm;
 import org.gotocy.repository.DeveloperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
