@@ -100,27 +100,27 @@ public class Helper {
 	 * TODO: unit test
 	 */
 	public static String path(Object[] objects, Locale locale) {
-		StringJoiner path = new StringJoiner("/");
+		StringBuilder path = new StringBuilder(getPrefixForLocale(locale));
 		for (Object object : objects) {
 			if (object instanceof Property) {
-				path.add(PropertyHelper.path((Property) object, locale));
+				path.append(PropertyHelper.path((Property) object, locale));
 			} else if (object instanceof Complex) {
-				path.add("/complexes/" + ((Complex) object).getId());
+				path.append("/complexes/").append(((Complex) object).getId());
 			} else if (object instanceof Developer) {
-				path.add("/developers/" + ((Developer) object).getId());
+				path.append("/developers/").append(((Developer) object).getId());
 			} else if (object instanceof PropertiesSearchForm) {
-				path.add(PropertySearchFormHelper.path((PropertiesSearchForm) object, locale));
+				path.append(PropertySearchFormHelper.path((PropertiesSearchForm) object, locale));
 			} else if (object instanceof Page) {
-				path.add(PageHelper.path((Page) object, locale).orElse("/"));
+				path.append(PageHelper.path((Page) object, locale).orElse("/"));
 			} else if (object instanceof LocalizedPage) {
-				path.add(PageHelper.path((LocalizedPage) object, locale).orElse("/"));
+				path.append(PageHelper.path((LocalizedPage) object, locale).orElse("/"));
 			} else if (object instanceof String) {
-				path.add((String) object);
+				path.append((String) object);
 			} else {
 				throw new IllegalArgumentException("Unsupported object type: " + object.getClass());
 			}
 		}
-		return getPrefixForLocale(locale) + path;
+		return path.toString();
 	}
 
 	/**

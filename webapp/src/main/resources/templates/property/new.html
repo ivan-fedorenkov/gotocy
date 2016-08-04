@@ -33,7 +33,7 @@
 
         <div class="container">
             <header><h1 th:text="${i18n.t('templates.property.new.add-your-property-capitalized')}">Add Your Property</h1></header>
-            <form th:replace="property/submission_form :: form('/properties')"></form>
+            <form th:replace="property/submission_form :: form(${helper.path('/properties')})"></form>
         </div><!-- /.container -->
     </div>
     <!-- end Page Content -->
@@ -50,8 +50,8 @@
 <![endif]-->
 
 <script th:inline="javascript">
-    var _latitude = /*[[${propertySubmissionForm.latitude}]]*/ '34.7071301';
-    var _longitude = /*[[${propertySubmissionForm.longitude}]]*/ '33.022617399999945';
+    var _latitude = /*[[${gotocy.defaultLatitude}]]*/ '34.7071301';
+    var _longitude = /*[[${gotocy.defaultLongitude}]]*/ '33.022617399999945';
 
     PropertyNewPage.init(
         /*[[${gotocy.propertySubmissionFormProperties.maxFileCount}]]*/ 10,

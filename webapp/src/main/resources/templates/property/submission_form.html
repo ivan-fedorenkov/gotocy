@@ -198,17 +198,3 @@
         </div>
     </div>
 </form>
-
-<script th:inline="javascript" th:fragment="required_scripts">
-    var _latitude = /*[[${propertySubmissionForm.latitude}]]*/ '34.7071301';
-    var _longitude = /*[[${propertySubmissionForm.longitude}]]*/ '33.022617399999945';
-
-    PropertyNewPage.init(
-        /*[[${gotocy.propertySubmissionFormProperties.maxFileCount}]]*/ 10,
-        /*[[${gotocy.propertySubmissionFormProperties.maxFileSize}]]*/ 3000,
-        /*[[${#locale.language}]]*/ 'en',
-        /*[[${i18n.t('dictionary.browse-images')}]]*/ 'Browse Images'
-    );
-
-    google.maps.event.addDomListener(window, 'load', initPropertySubmitMap(_latitude, _longitude, 8));
-</script>
