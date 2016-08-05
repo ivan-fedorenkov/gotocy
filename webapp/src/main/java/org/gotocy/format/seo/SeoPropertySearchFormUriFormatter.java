@@ -1,7 +1,7 @@
 package org.gotocy.format.seo;
 
 import org.gotocy.config.Locales;
-import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.OfferType;
 import org.gotocy.format.Declension;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.springframework.format.Formatter;
@@ -19,7 +19,7 @@ import static java.util.stream.Collectors.joining;
 import static org.gotocy.format.seo.SeoLocationFormatter.LOCATIONS;
 import static org.gotocy.format.seo.SeoLocationFormatter.RU_LOCATIONS;
 import static org.gotocy.format.seo.SeoLocationFormatter.RU_NO_LOCATION;
-import static org.gotocy.format.seo.SeoPropertyStatusFormatter.*;
+import static org.gotocy.format.seo.SeoOfferTypeFormatter.*;
 import static org.gotocy.format.seo.SeoPropertyTypeFormatter.RU_TYPES;
 import static org.gotocy.format.seo.SeoPropertyTypeFormatter.TYPES;
 
@@ -64,7 +64,7 @@ public class SeoPropertySearchFormUriFormatter implements Formatter<PropertiesSe
 		"-(" + Arrays.stream(LOCATIONS).collect(joining("|")) + ")"
 	);
 
-	private static final SeoPropertyStatusFormatter PROPERTY_STATUS_FORMATTER = new SeoPropertyStatusFormatter();
+	private static final SeoOfferTypeFormatter OFFER_TYPE_FORMATTER = new SeoOfferTypeFormatter();
 	private static final SeoPropertyTypeFormatter PROPERTY_TYPE_FORMATTER = new SeoPropertyTypeFormatter();
 	private static final SeoLocationFormatter LOCATION_FORMATTER = new SeoLocationFormatter();
 
@@ -74,22 +74,22 @@ public class SeoPropertySearchFormUriFormatter implements Formatter<PropertiesSe
 		PropertiesSearchForm form = new PropertiesSearchForm();
 		if (locale == Locales.RU) {
 			if ((m = RU_FORM_PARAMS_PATTERN.matcher(uri)).matches()) {
-				String propertyStatusStr = m.group(1);
-				if (propertyStatusStr != null) {
-					propertyStatusStr = propertyStatusStr.substring(0, propertyStatusStr.length() - 1);
-					form.setPropertyStatus(PROPERTY_STATUS_FORMATTER.parse(propertyStatusStr, locale));
+				String offerTypeStr = m.group(1);
+				if (offerTypeStr != null) {
+					offerTypeStr = offerTypeStr.substring(0, offerTypeStr.length() - 1);
+					form.setOfferType(OFFER_TYPE_FORMATTER.parse(offerTypeStr, locale));
 				}
 				form.setPropertyType(PROPERTY_TYPE_FORMATTER.parse(m.group(2), locale));
 				form.setLocation(LOCATION_FORMATTER.parse(m.group(3), locale));
 			} else if ((m = RU_SHORT_TERM_FORM_PARAMS_PATTERN.matcher(uri)).matches()) {
-				form.setPropertyStatus(PropertyStatus.SHORT_TERM);
+				form.setOfferType(OfferType.SHORT_TERM);
 				String locationStr = m.group(1);
 				if (locationStr != null) {
 					form.setLocation(LOCATION_FORMATTER.parse(m.group(1).substring(1), locale));
 				}
 				form.setPropertyType(PROPERTY_TYPE_FORMATTER.parse(m.group(2), locale));
 			} else if ((m = RU_LONG_TERM_FORM_PARAMS_PATTERN.matcher(uri)).matches()) {
-				form.setPropertyStatus(PropertyStatus.LONG_TERM);
+				form.setOfferType(OfferType.LONG_TERM);
 				form.setPropertyType(PROPERTY_TYPE_FORMATTER.parse(m.group(1), locale));
 				form.setLocation(LOCATION_FORMATTER.parse(m.group(2), locale));
 			} else {
@@ -98,10 +98,10 @@ public class SeoPropertySearchFormUriFormatter implements Formatter<PropertiesSe
 		} else {
 			if ((m = FORM_PARAMS_PATTERN.matcher(uri)).matches()) {
 				form.setPropertyType(PROPERTY_TYPE_FORMATTER.parse(m.group(1), locale));
-				String propertyStatusStr = m.group(2);
-				if (propertyStatusStr != null) {
-					propertyStatusStr = propertyStatusStr.substring(1);
-					form.setPropertyStatus(PROPERTY_STATUS_FORMATTER.parse(propertyStatusStr, locale));
+				String offerTypeStr = m.group(2);
+				if (offerTypeStr != null) {
+					offerTypeStr = offerTypeStr.substring(1);
+					form.setOfferType(OFFER_TYPE_FORMATTER.parse(offerTypeStr, locale));
 				}
 				form.setLocation(LOCATION_FORMATTER.parse(m.group(3), locale));
 			} else {
@@ -115,30 +115,30 @@ public class SeoPropertySearchFormUriFormatter implements Formatter<PropertiesSe
 	public String print(PropertiesSearchForm form, Locale locale) {
 		StringJoiner uriJoiner = new StringJoiner("-");
 		if (locale == Locales.RU) {
-			if (form.getPropertyStatus() == PropertyStatus.SHORT_TERM) {
+			if (form.getOfferType() == OfferType.SHORT_TERM) {
 				uriJoiner.add(RU_SHORT_TERM_PREFIX);
 				if (form.getLocation() != null) {
 					uriJoiner.add(RU_NO_LOCATION);
 				}
 				uriJoiner.add(LOCATION_FORMATTER.print(form.getLocation(), locale));
 				uriJoiner.add(PROPERTY_TYPE_FORMATTER.print(form.getPropertyType(), Declension.NOMINATIVE, locale));
-			} else if (form.getPropertyStatus() == PropertyStatus.LONG_TERM) {
+			} else if (form.getOfferType() == OfferType.LONG_TERM) {
 				uriJoiner.add(RU_LONG_TERM_PREFIX);
 				uriJoiner.add(PROPERTY_TYPE_FORMATTER.print(form.getPropertyType(), Declension.ACCUSATIVE, locale));
 				uriJoiner.add(LOCATION_FORMATTER.print(form.getLocation(), locale));
 			} else {
-				if (form.getPropertyStatus() == null) {
+				if (form.getOfferType() == null) {
 					uriJoiner.add(PROPERTY_TYPE_FORMATTER.print(form.getPropertyType(), Declension.NOMINATIVE, locale));
 				} else {
-					uriJoiner.add(PROPERTY_STATUS_FORMATTER.print(form.getPropertyStatus(), locale));
+					uriJoiner.add(OFFER_TYPE_FORMATTER.print(form.getOfferType(), locale));
 					uriJoiner.add(PROPERTY_TYPE_FORMATTER.print(form.getPropertyType(), Declension.ACCUSATIVE, locale));
 				}
 				uriJoiner.add(LOCATION_FORMATTER.print(form.getLocation(), locale));
 			}
 		} else {
 			uriJoiner.add(PROPERTY_TYPE_FORMATTER.print(form.getPropertyType(), locale));
-			if (form.getPropertyStatus() != null) {
-				uriJoiner.add(PROPERTY_STATUS_FORMATTER.print(form.getPropertyStatus(), locale));
+			if (form.getOfferType() != null) {
+				uriJoiner.add(OFFER_TYPE_FORMATTER.print(form.getOfferType(), locale));
 			}
 			uriJoiner.add(LOCATION_FORMATTER.print(form.getLocation(), locale));
 		}

@@ -25,7 +25,7 @@ Utils.getPath = function(path) {
 /**
  * Returns the properties search path.
  */
-Utils.getPropertySearchPath = function(language, location, propertyStatus, propertyType) {
+Utils.getPropertySearchPath = function(language, location, offerType, propertyType) {
 
     var languageKey = language === 'ru' ? 'ru' : 'default';
 
@@ -33,8 +33,8 @@ Utils.getPropertySearchPath = function(language, location, propertyStatus, prope
     if (location) {
         urlKey.push(location);
     }
-    if (propertyStatus) {
-        urlKey.push(propertyStatus);
+    if (offerType) {
+        urlKey.push(offerType);
     }
     if (propertyType) {
         urlKey.push(propertyType);

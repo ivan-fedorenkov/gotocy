@@ -10,14 +10,14 @@ PropertyIndexPage.init = function(language) {
         var location = $location.val();
         $location.prop('disabled', true);
 
-        var $propertyStatus = $('#propertyStatus');
-        var propertyStatus = $propertyStatus.val();
-        $propertyStatus.prop('disabled', true);
+        var $offerType = $('#offerType');
+        var offerType = $offerType.val();
+        $offerType.prop('disabled', true);
 
         var $propertyType = $('#propertyType');
         var propertyType = $propertyType.val();
         $propertyType.prop('disabled', true);
 
-        $(this).attr('action', Utils.getPropertySearchPath(language, location, propertyStatus, propertyType));
+        $(this).attr('action', Utils.getPropertySearchPath(language, location, offerType, propertyType));
     });
 };

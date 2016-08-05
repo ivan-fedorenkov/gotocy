@@ -41,7 +41,7 @@ public enum FieldFormat {
 
 		@Override
 		public String formatValue(Property p) {
-			return I18n.t(p.getPropertyStatus());
+			return I18n.t(p.getOfferType());
 		}
 	},
 	PRICE {

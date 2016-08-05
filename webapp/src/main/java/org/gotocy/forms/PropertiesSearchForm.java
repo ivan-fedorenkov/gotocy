@@ -3,7 +3,7 @@ package org.gotocy.forms;
 import com.mysema.query.BooleanBuilder;
 import com.mysema.query.types.Predicate;
 import org.gotocy.domain.Location;
-import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.OfferType;
 import org.gotocy.domain.PropertyType;
 import org.springframework.context.MessageSourceResolvable;
 
@@ -17,9 +17,9 @@ import static org.gotocy.domain.QProperty.property;
 public class PropertiesSearchForm implements MessageSourceResolvable {
 
 	public static final PropertiesSearchForm EMPTY_FORM = new PropertiesSearchForm();
-	public static final PropertiesSearchForm SALE_FORM = new PropertiesSearchForm(PropertyStatus.SALE);
-	public static final PropertiesSearchForm SHORT_TERM_FORM = new PropertiesSearchForm(PropertyStatus.SHORT_TERM);
-	public static final PropertiesSearchForm LONG_TERM_FORM = new PropertiesSearchForm(PropertyStatus.LONG_TERM);
+	public static final PropertiesSearchForm SALE_FORM = new PropertiesSearchForm(OfferType.SALE);
+	public static final PropertiesSearchForm SHORT_TERM_FORM = new PropertiesSearchForm(OfferType.SHORT_TERM);
+	public static final PropertiesSearchForm LONG_TERM_FORM = new PropertiesSearchForm(OfferType.LONG_TERM);
 
 	private static final int MIN_PRICE = 100;
 	private static final int MAX_PRICE = 5000000;
@@ -29,15 +29,15 @@ public class PropertiesSearchForm implements MessageSourceResolvable {
 	private final BooleanBuilder builder = new BooleanBuilder();
 
 	private Location location;
-	private PropertyStatus propertyStatus;
+	private OfferType offerType;
 	private PropertyType propertyType;
 	private int priceFrom = MIN_PRICE;
 	private int priceTo = MAX_PRICE;
 
 	public PropertiesSearchForm() {}
 
-	public PropertiesSearchForm(PropertyStatus propertyStatus) {
-		this.propertyStatus = propertyStatus;
+	public PropertiesSearchForm(OfferType offerType) {
+		this.offerType = offerType;
 	}
 
 	public Predicate toPredicate() {
@@ -48,7 +48,7 @@ public class PropertiesSearchForm implements MessageSourceResolvable {
 	 * Returns true of any of the form parameters was changed.
 	 */
 	public boolean isChanged() {
-		return location != null || propertyStatus != null || propertyType != null || priceFrom != MIN_PRICE ||
+		return location != null || offerType != null || propertyType != null || priceFrom != MIN_PRICE ||
 			priceTo != MAX_PRICE;
 	}
 
@@ -70,15 +70,15 @@ public class PropertiesSearchForm implements MessageSourceResolvable {
 		return location;
 	}
 
-	public void setPropertyStatus(PropertyStatus propertyStatus) {
-		if (propertyStatus != null) {
-			this.propertyStatus = propertyStatus;
-			builder.and(property.propertyStatus.eq(propertyStatus));
+	public void setOfferType(OfferType offerType) {
+		if (offerType != null) {
+			this.offerType = offerType;
+			builder.and(property.offerType.eq(offerType));
 		}
 	}
 
-	public PropertyStatus getPropertyStatus() {
-		return propertyStatus;
+	public OfferType getOfferType() {
+		return offerType;
 	}
 
 	public void setPropertyType(PropertyType propertyType) {
@@ -136,8 +136,8 @@ public class PropertiesSearchForm implements MessageSourceResolvable {
 		sj.setEmptyValue(EMPTY_FORM_SUFFIX);
 		if (location != null)
 			sj.add(location.name());
-		if (propertyStatus != null)
-			sj.add(propertyStatus.name());
+		if (offerType != null)
+			sj.add(offerType.name());
 		if (propertyType != null)
 			sj.add(propertyType.name());
 		return new String[] {MESSAGES_PREFIX + "." + sj.toString()};

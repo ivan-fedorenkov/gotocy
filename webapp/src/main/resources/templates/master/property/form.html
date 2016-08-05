@@ -75,9 +75,9 @@
                                         <div class="row">
                                             <div class="col-md-4 col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="propertyStatus">Offer Type</label>
-                                                    <select id="propertyStatus" th:field="*{propertyStatus}" th:remove="all-but-first" required>
-                                                        <option value="1" th:each="status : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${status}" th:text="${{status}}">Long Term Rent</option>
+                                                    <label for="offerType">Offer Type</label>
+                                                    <select id="offerType" th:field="*{offerType}" th:remove="all-but-first" required>
+                                                        <option value="1" th:each="status : ${T(org.gotocy.domain.OfferType).values()}" th:value="${status}" th:text="${{status}}">Long Term Rent</option>
                                                         <option value="2">Short Term Rent</option>
                                                     </select>
                                                 </div><!-- /.form-group -->

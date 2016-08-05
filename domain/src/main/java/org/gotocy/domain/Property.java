@@ -75,7 +75,7 @@ public class Property extends BaseEntity {
 	private PropertyType propertyType;
 
 	@Enumerated(EnumType.STRING)
-	private PropertyStatus propertyStatus;
+	private OfferType offerType;
 
 	@Enumerated(EnumType.STRING)
 	private OfferStatus offerStatus;

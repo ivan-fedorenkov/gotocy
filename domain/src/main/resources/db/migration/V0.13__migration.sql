@@ -73,3 +73,7 @@ ALTER TABLE `property` ADD COLUMN `registration_key_eol` BIGINT;
 -- Remove registrations table
 
 DROP TABLE `registration`;
+
+-- Property offer type
+
+ALTER TABLE `property` CHANGE COLUMN `property_status` `offer_type` VARCHAR(16) NOT NULL;

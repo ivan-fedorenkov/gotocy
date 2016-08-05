@@ -11,7 +11,7 @@ import org.gotocy.crawl.CrawlProperties;
 import org.gotocy.domain.Furnishing;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
-import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.OfferType;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -60,7 +60,7 @@ public class GiovaniCrawlerTest {
 		Assert.assertEquals(35.043414851659364, property.getLatitude(), 0.000001);
 		Assert.assertEquals(34.024990827478064, property.getLongitude(), 0.000001);
 		Assert.assertEquals(374000, property.getPrice());
-		Assert.assertEquals(PropertyStatus.SALE, property.getPropertyStatus());
+		Assert.assertEquals(OfferType.SALE, property.getOfferType());
 		Assert.assertEquals(OfferStatus.ACTIVE, property.getOfferStatus());
 		Assert.assertFalse(property.isVatIncluded());
 		Assert.assertTrue(property.isReadyToMoveIn());
@@ -87,7 +87,7 @@ public class GiovaniCrawlerTest {
 		Assert.assertEquals(35.04442938348003, property.getLatitude(), 0.000001);
 		Assert.assertEquals(34.02507126331329, property.getLongitude(), 0.000001);
 		Assert.assertEquals(0, property.getPrice());
-		Assert.assertEquals(PropertyStatus.SALE, property.getPropertyStatus());
+		Assert.assertEquals(OfferType.SALE, property.getOfferType());
 		Assert.assertEquals(OfferStatus.SOLD, property.getOfferStatus());
 		Assert.assertFalse(property.isReadyToMoveIn());
 		Assert.assertEquals(Furnishing.NONE, property.getFurnishing());
@@ -103,7 +103,7 @@ public class GiovaniCrawlerTest {
 		Assert.assertEquals(35.05267905030267, property.getLatitude(), 0.000001);
 		Assert.assertEquals(33.99892363323988, property.getLongitude(), 0.000001);
 		Assert.assertEquals(0, property.getPrice());
-		Assert.assertEquals(PropertyStatus.SALE, property.getPropertyStatus());
+		Assert.assertEquals(OfferType.SALE, property.getOfferType());
 		Assert.assertEquals(OfferStatus.SOLD, property.getOfferStatus());
 		Assert.assertFalse(property.isVatIncluded());
 		Assert.assertFalse(property.isReadyToMoveIn());

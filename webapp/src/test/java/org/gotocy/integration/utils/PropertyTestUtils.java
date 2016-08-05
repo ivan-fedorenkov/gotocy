@@ -19,7 +19,7 @@ public class PropertyTestUtils {
 		return request -> {
 			request.setParameter("title", property.getTitle());
 			request.setParameter("propertyType", property.getPropertyType().name());
-			request.setParameter("propertyStatus", property.getPropertyStatus().name());
+			request.setParameter("offerType", property.getOfferType().name());
 			request.setParameter("location", property.getLocation().name());
 			request.setParameter("address", property.getAddress());
 			request.setParameter("shortAddress", property.getShortAddress());
@@ -45,7 +45,7 @@ public class PropertyTestUtils {
 	public static void assertPropertiesEquals(Property expected, Property actual) {
 		Assert.assertEquals(expected.getTitle(), actual.getTitle());
 		Assert.assertEquals(expected.getPropertyType(), actual.getPropertyType());
-		Assert.assertEquals(expected.getPropertyStatus(), actual.getPropertyStatus());
+		Assert.assertEquals(expected.getOfferType(), actual.getOfferType());
 		Assert.assertEquals(expected.getOfferStatus(), actual.getOfferStatus());
 		Assert.assertEquals(expected.getAddress(), actual.getAddress());
 		Assert.assertEquals(expected.getShortAddress(), actual.getShortAddress());

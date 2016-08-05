@@ -14,7 +14,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (64, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (65, 0, 'property/5/DSC_3791.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (66, 0, 'property/5/DSC_3796.jpg', 'image');
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, distance_to_sea, bedrooms, representative_image_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, offer_type, price, covered_area, plot_size, distance_to_sea, bedrooms, representative_image_id, owner_id)
   values (5, 0, 'LAR 801/1', 'Oroklini, Larnaca', 'Oroklini, Larnaca', 'LARNACA', '34.972661', '33.645909', 'APARTMENT', 'SALE', 338000, 105, 177, 1500, 3, 66, 1);
 
 insert into property_images (property_id, images_id) values (5, 58);
@@ -53,7 +53,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (68, 0, 'propert
 insert into asset (id, version, `asset_key`, asset_type) values (69, 0, 'property/6/DSC_3539.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (70, 0, 'property/6/DSC_3545.jpg', 'image');
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, covered_area, plot_size, distance_to_sea, bedrooms, ready_to_move_in, representative_image_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, offer_type, price, covered_area, plot_size, distance_to_sea, bedrooms, ready_to_move_in, representative_image_id, owner_id)
   values (6, 0, 'LAR 802', 'Athenon street, Larnaca', 'Athenon street, Larnaca', 'LARNACA', '34.914313', '33.637733', 'APARTMENT', 'SALE', 572000, 78, 82, 50, 2, true, 70, 1);
 
 insert into property_images (property_id, images_id) values (6, 67);
@@ -101,7 +101,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (108, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (109, 0, 'property/9/pano.xml', 'pano_xml');
 
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, covered_area, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, offer_type, price, bedrooms, covered_area, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id)
   values (9, 0, 'Demetris Residence', '18 Agiou Amvrosiou street Krasas area 7100 Aradippou Larnaca Cyprus', '18 Agiou Amvrosiou st, Larnaca', 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'LONG_TERM', 1000, 4, 0, true, 'FULL', 93, 109, 1);
 
 insert into property_images (property_id, images_id) values (9, 92);
@@ -166,7 +166,7 @@ insert into property_localized_fields (property_id, localized_fields_id) values 
 
 -- 10 (Short term) - a short term offer for property #9
 
-insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, property_status, price, bedrooms, guests, covered_area, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
+insert into property (id, version, title, address, short_address, location, latitude, longitude, property_type, offer_type, price, bedrooms, guests, covered_area, air_conditioner, distance_to_sea, representative_image_id, pano_xml_id, owner_id)
   values (10, 0, 'Demetris Residence', '18 Agiou Amvrosiou street Krasas area 7100 Aradippou Larnaca Cyprus', '18 Agiou Amvrosiou st, Larnaca', 'LARNACA', '34.904490', '33.587985', 'HOUSE', 'SHORT_TERM', 100, 4, 8, 0, true, 4500, 93, 109, 1);
 
 insert into property_images (property_id, images_id) values (10, 92);
@@ -251,7 +251,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (182, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (183, 0, 'property/14/DSC_0320.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (184, 0, 'property/14/DSC_0322.jpg', 'image');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id)
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, offer_type, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id)
   values (14, 0, 'Alex Residence #105', 'LARNACA', '34.920028', '33.631734', '4 Agiou Spyridonos street, 6015, Larnaca, Cyprus', '4 Agiou Spyridonos st, Larnaca', 'APARTMENT', 'SHORT_TERM', 90, 0, 0, 2, 4, 500, TRUE, FALSE, FALSE, NULL, 169, NULL, 1);
 
 insert into localized_field (version, field_type, field_key, language, text_value) values (0, 'text', 'description', 'en', 'A brand new, never occupied, two bedroom duplex with a shared swimming pool on the roof. This beautiful flat consists two double bedrooms, fully equipped kitchen, fully furnished. Located just a few minutes from Phinikoudes (Palm trees) beach and town center. The modern design of the building gives the flat a unique/special vibe.The guests can enjoy their vacations in this quiet spot of the town center while they can enjoy the great beach, restaurants, and shops within walking distance from the duplex.A great get away for couples, families or group of friends.
@@ -390,7 +390,7 @@ insert into asset (id, version, `asset_key`, asset_type) values (307, 0, 'proper
 insert into asset (id, version, `asset_key`, asset_type) values (308, 0, 'property/20/IMG_0534.jpg', 'image');
 insert into asset (id, version, `asset_key`, asset_type) values (309, 0, 'property/20/pano.xml', 'pano_xml');
 
-insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, property_status, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id)
+insert into property (id, version, title, location, latitude, longitude, address, short_address, property_type, offer_type, price, covered_area, plot_size, bedrooms, guests, distance_to_sea, air_conditioner, ready_to_move_in, heating_system, furnishing, representative_image_id, pano_xml_id, owner_id)
   values (20, 0, 'Dimitraki Koumantari Residence', 'LARNACA', '34.940275', '33.590204', 'Demetri Koumandari Str. No.1, 7103, Aradippou, Larnaca', 'Demetri Koumandari Str.1, Larnaca', 'HOUSE', 'LONG_TERM', 850, 0, 0, 4, 10, 4700, TRUE, TRUE, TRUE, 'FULL', 300, 309, 1);
 
 

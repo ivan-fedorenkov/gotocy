@@ -101,7 +101,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addFormatter(new LocationFormatter());
 		registry.addFormatter(new EnumsFormatter<PropertyType>(PropertyType.class) {});
-		registry.addFormatter(new EnumsFormatter<PropertyStatus>(PropertyStatus.class) {});
+		registry.addFormatter(new EnumsFormatter<OfferType>(OfferType.class) {});
 		registry.addFormatter(new EnumsFormatter<OfferStatus>(OfferStatus.class) {});
 		registry.addFormatter(new EnumsFormatter<Furnishing>(Furnishing.class) {});
 		registry.addFormatter(new EnumsFormatter<BusinessForm>(BusinessForm.class) {});

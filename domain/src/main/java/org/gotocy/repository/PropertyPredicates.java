@@ -1,11 +1,10 @@
 package org.gotocy.repository;
 
-import com.mysema.query.types.ExpressionUtils;
 import com.mysema.query.types.expr.BooleanExpression;
 import org.gotocy.domain.GtcUser;
 import org.gotocy.domain.OfferStatus;
+import org.gotocy.domain.OfferType;
 import org.gotocy.domain.Property;
-import org.gotocy.domain.PropertyStatus;
 
 import static org.gotocy.domain.QProperty.property;
 
@@ -17,8 +16,8 @@ public class PropertyPredicates {
 	private PropertyPredicates() {
 	}
 
-	public static BooleanExpression inStatus(PropertyStatus propertyStatus) {
-		return property.propertyStatus.eq(propertyStatus);
+	public static BooleanExpression withOfferType(OfferType offerType) {
+		return property.offerType.eq(offerType);
 	}
 
 	public static BooleanExpression publiclyVisible() {

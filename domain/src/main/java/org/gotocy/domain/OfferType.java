@@ -7,12 +7,12 @@ import org.springframework.context.MessageSourceResolvable;
  *
  * @author ifedorenkov
  */
-public enum PropertyStatus implements MessageSourceResolvable {
+public enum OfferType implements MessageSourceResolvable {
 	LONG_TERM, SHORT_TERM, SALE;
 
 	@Override
 	public String[] getCodes() {
-		return new String[] {"org.gotocy.domain.PropertyStatus." + name()};
+		return new String[] {"org.gotocy.domain.OfferType." + name()};
 	}
 
 	@Override

@@ -1,8 +1,8 @@
 package org.gotocy.validation;
 
 import org.gotocy.domain.OfferStatus;
+import org.gotocy.domain.OfferType;
 import org.gotocy.domain.Property;
-import org.gotocy.domain.PropertyStatus;
 import org.gotocy.domain.PropertyType;
 import org.gotocy.domain.validation.PropertyValidator;
 import org.gotocy.test.factory.PropertyFactory;
@@ -23,7 +23,7 @@ import static org.gotocy.test.FieldValidationAsserts.*;
 public class PropertyValidatorTest {
 
 	private static final Set<PropertyType> ALL_PROPERTY_TYPES = EnumSet.allOf(PropertyType.class);
-	private static final Set<PropertyStatus> ALL_PROPERTY_STATUSES = EnumSet.allOf(PropertyStatus.class);
+	private static final Set<OfferType> ALL_PROPERTY_STATUSES = EnumSet.allOf(OfferType.class);
 	private static final Set<OfferStatus> ALL_OFFER_STATUSES = EnumSet.allOf(OfferStatus.class);
 
 	@Test
@@ -59,8 +59,8 @@ public class PropertyValidatorTest {
 	}
 
 	@Test
-	public void propertyStatusValidation() {
-		forEachTypeAndStatus(p -> shouldNotBeNull(p, "propertyStatus", PropertyValidatorTest::validateProperty));
+	public void offerTypeValidation() {
+		forEachTypeAndStatus(p -> shouldNotBeNull(p, "offerType", PropertyValidatorTest::validateProperty));
 	}
 
 	@Test
@@ -90,7 +90,7 @@ public class PropertyValidatorTest {
 	public void coveredAreaValidation() {
 		forEach(
 			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
-			EnumSet.of(PropertyStatus.SALE),
+			EnumSet.of(OfferType.SALE),
 			ALL_OFFER_STATUSES,
 			PropertyFactory.INSTANCE, 
 			p -> shouldBePositiveInt(p, "coveredArea", PropertyValidatorTest::validateProperty)
@@ -101,7 +101,7 @@ public class PropertyValidatorTest {
 	public void plotSizeValidation() {
 		forEach(
 			EnumSet.of(PropertyType.HOUSE, PropertyType.LAND),
-			EnumSet.of(PropertyStatus.SALE),
+			EnumSet.of(OfferType.SALE),
 			ALL_OFFER_STATUSES,
 			PropertyFactory.INSTANCE, 
 			p -> shouldBePositiveInt(p, "plotSize", PropertyValidatorTest::validateProperty)
@@ -123,7 +123,7 @@ public class PropertyValidatorTest {
 	public void levelsValidation() {
 		forEach(
 			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
-			EnumSet.of(PropertyStatus.SALE),
+			EnumSet.of(OfferType.SALE),
 			ALL_OFFER_STATUSES,
 			PropertyFactory.INSTANCE, 
 			p -> shouldBePositiveInt(p, "levels", PropertyValidatorTest::validateProperty)
@@ -134,7 +134,7 @@ public class PropertyValidatorTest {
 	public void guestsValidation() {
 		forEach(
 			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
-			EnumSet.of(PropertyStatus.SHORT_TERM),
+			EnumSet.of(OfferType.SHORT_TERM),
 			ALL_OFFER_STATUSES,
 			PropertyFactory.INSTANCE, 
 			p -> shouldBePositiveInt(p, "guests", PropertyValidatorTest::validateProperty)
@@ -145,7 +145,7 @@ public class PropertyValidatorTest {
 	public void distanceToSeaValidation() {
 		forEach(
 			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
-			EnumSet.of(PropertyStatus.SHORT_TERM),
+			EnumSet.of(OfferType.SHORT_TERM),
 			ALL_OFFER_STATUSES,
 			PropertyFactory.INSTANCE, 
 			p -> shouldBePositiveInt(p, "distanceToSea", PropertyValidatorTest::validateProperty)
@@ -156,7 +156,7 @@ public class PropertyValidatorTest {
 	public void furnishingValidation() {
 		forEach(
 			EnumSet.of(PropertyType.APARTMENT, PropertyType.HOUSE),
-			EnumSet.of(PropertyStatus.LONG_TERM),
+			EnumSet.of(OfferType.LONG_TERM),
 			ALL_OFFER_STATUSES,
 			PropertyFactory.INSTANCE,
 			p -> shouldNotBeNull(p, "furnishing", PropertyValidatorTest::validateProperty)
@@ -169,15 +169,15 @@ public class PropertyValidatorTest {
 		return errors;
 	}
 
-	private static void forEach(Set<PropertyType> propertyTypes, Set<PropertyStatus> propertyStatuses,
+	private static void forEach(Set<PropertyType> propertyTypes, Set<OfferType> offerTypes,
 		Set<OfferStatus> offerStatuses, PropertyFactory factory, Consumer<Property> test)
 	{
 		for (PropertyType propertyType : propertyTypes) {
-			for (PropertyStatus propertyStatus : propertyStatuses) {
+			for (OfferType offerType : offerTypes) {
 				for (OfferStatus offerStatus : offerStatuses) {
 					Property property = factory.get();
 					property.setPropertyType(propertyType);
-					property.setPropertyStatus(propertyStatus);
+					property.setOfferType(offerType);
 					property.setOfferStatus(offerStatus);
 
 					test.accept(property);

@@ -109,7 +109,7 @@ class QuickSummaryFieldsProvider implements FieldsProvider {
 	};
 
 	public FieldFormat[] getFields(Property property) {
-		switch (property.getPropertyStatus()) {
+		switch (property.getOfferType()) {
 		case LONG_TERM:
 			return INACTIVE_OFFER.test(property) ? RENTED_LONG_TERM : LONG_TERM;
 		case SHORT_TERM:

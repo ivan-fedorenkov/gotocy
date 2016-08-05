@@ -23,7 +23,7 @@ public class PropertyFactory extends BaseFactory<Property> {
 		property.setLatitude(ANY_DOUBLE);
 		property.setLongitude(ANY_DOUBLE);
 		property.setPropertyType(PropertyType.HOUSE);
-		property.setPropertyStatus(PropertyStatus.SALE);
+		property.setOfferType(OfferType.SALE);
 		property.setOfferStatus(OfferStatus.SOLD);
 		property.setVatIncluded(ANY_BOOLEAN);
 		property.setCoveredArea(ANY_INT);

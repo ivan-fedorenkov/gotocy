@@ -1,7 +1,7 @@
 package org.gotocy.format.seo;
 
 import org.gotocy.config.Locales;
-import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.OfferType;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,23 +12,23 @@ import java.util.Locale;
 /**
  * @author ifedorenkov
  */
-public class SeoPropertyStatusFormatterTest {
+public class SeoOfferTypeFormatterTest {
 
-	private static SeoPropertyStatusFormatter formatter;
+	private static SeoOfferTypeFormatter formatter;
 
 	@BeforeClass
 	public static void setup() {
-		formatter = new SeoPropertyStatusFormatter();
+		formatter = new SeoOfferTypeFormatter();
 	}
 
 	@Test
 	public void testAllStatuses() throws ParseException {
-		for (PropertyStatus propertyStatus : PropertyStatus.values()) {
+		for (OfferType offerType : OfferType.values()) {
 			for (Locale locale : Locales.SUPPORTED) {
-				String printedStatus = formatter.print(propertyStatus, locale);
+				String printedStatus = formatter.print(offerType, locale);
 				Assert.assertNotNull(printedStatus);
-				Assert.assertEquals(propertyStatus, formatter.parse(printedStatus, locale));
-				Assert.assertEquals(printedStatus, formatter.print(propertyStatus, locale));
+				Assert.assertEquals(offerType, formatter.parse(printedStatus, locale));
+				Assert.assertEquals(printedStatus, formatter.print(offerType, locale));
 			}
 		}
 	}

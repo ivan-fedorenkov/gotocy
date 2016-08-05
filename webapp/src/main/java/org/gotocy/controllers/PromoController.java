@@ -66,7 +66,7 @@ public class PromoController {
 		p.setLocation(Location.LARNACA);
 		p.setLatitude(34.940275);
 		p.setLongitude(33.590204);
-		p.setPropertyStatus(PropertyStatus.LONG_TERM);
+		p.setOfferType(OfferType.LONG_TERM);
 		p.setPropertyType(PropertyType.HOUSE);
 		p.setOfferStatus(OfferStatus.PROMO);
 		p.setReadyToMoveIn(Boolean.TRUE);

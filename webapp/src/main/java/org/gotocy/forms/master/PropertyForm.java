@@ -43,7 +43,7 @@ public class PropertyForm {
 	private String shortAddress;
 	private Location location;
 	private PropertyType propertyType;
-	private PropertyStatus propertyStatus;
+	private OfferType offerType;
 	private OfferStatus offerStatus;
 	private int price;
 	private int coveredArea;
@@ -77,7 +77,7 @@ public class PropertyForm {
 	public PropertyForm() {
 		location = Location.FAMAGUSTA;
 		propertyType = PropertyType.APARTMENT;
-		propertyStatus = PropertyStatus.LONG_TERM;
+		offerType = OfferType.LONG_TERM;
 		offerStatus = OfferStatus.PROMO;
 		furnishing = Furnishing.NONE;
 		contactsDisplayOption = PropertyContactsDisplayOption.OVERRIDDEN;
@@ -92,7 +92,7 @@ public class PropertyForm {
 		shortAddress = property.getShortAddress();
 		location = property.getLocation();
 		propertyType = property.getPropertyType();
-		propertyStatus = property.getPropertyStatus();
+		offerType = property.getOfferType();
 		offerStatus = property.getOfferStatus();
 		price = property.getPrice();
 		coveredArea = property.getCoveredArea();
@@ -143,7 +143,7 @@ public class PropertyForm {
 		property.setShortAddress(shortAddress);
 		property.setLocation(location);
 		property.setPropertyType(propertyType);
-		property.setPropertyStatus(propertyStatus);
+		property.setOfferType(offerType);
 		property.setOfferStatus(offerStatus);
 		property.setPrice(price);
 		property.setCoveredArea(coveredArea);

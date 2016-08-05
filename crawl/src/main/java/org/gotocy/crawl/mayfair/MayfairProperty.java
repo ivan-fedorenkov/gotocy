@@ -21,7 +21,7 @@ public class MayfairProperty {
 
 	private String propertyType;
 
-	private String propertyStatus;
+	private String offerType;
 
 	/**
 	 *	VAT info or rental period

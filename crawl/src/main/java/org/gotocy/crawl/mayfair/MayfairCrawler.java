@@ -40,7 +40,7 @@ public class MayfairCrawler extends PropertyCrawler {
 
 	private final XPathExpression refNumExpression;
 	private final XPathExpression titleExpression;
-	private final XPathExpression propertyStatusExpression;
+	private final XPathExpression offerTypeExpression;
 	private final XPathExpression propertyDescriptionExpression;
 	private final XPathExpression featuresExpression;
 	private final XPathExpression priceExpression;
@@ -59,7 +59,7 @@ public class MayfairCrawler extends PropertyCrawler {
 			XPath xpath = xPathFactory.newXPath();
 			refNumExpression = xpath.compile("*//div[@id='RightPropertyInfo']/div/div[3]/div[1]/table/tbody/tr/td[2]/span/text()");
 			titleExpression = xpath.compile("*//h1[@class='propertytitle']/text()");
-			propertyStatusExpression = xpath.compile("*//h2[@class='propertystatus'][2]/text()");
+			offerTypeExpression = xpath.compile("*//h2[@class='propertystatus'][2]/text()");
 			propertyDescriptionExpression = xpath.compile("*//div[@id='mainColumnContainInside']/div[6]/p/text()");
 			featuresExpression = xpath.compile("*//ul[@id='ProperyInfo']/li");
 			priceExpression = xpath.compile("*//h3[@class='priceonsearch']/text()");
@@ -98,7 +98,7 @@ public class MayfairCrawler extends PropertyCrawler {
 
 				property.setTitle((String) titleExpression.evaluate(htmlDoc, XPathConstants.STRING));
 				property.setPrice(extractPrice((String) priceExpression.evaluate(htmlDoc, XPathConstants.STRING)));
-				property.setPropertyStatus((String) propertyStatusExpression.evaluate(htmlDoc, XPathConstants.STRING));
+				property.setOfferType((String) offerTypeExpression.evaluate(htmlDoc, XPathConstants.STRING));
 				property.setDescription((String) propertyDescriptionExpression.evaluate(htmlDoc, XPathConstants.STRING));
 				property.setFeatures(extractFeatures((NodeList) featuresExpression.evaluate(htmlDoc, XPathConstants.NODESET)));
 

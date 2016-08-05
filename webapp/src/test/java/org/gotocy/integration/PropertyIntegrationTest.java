@@ -83,7 +83,7 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 		mvc.perform(post("/master/properties").with(csrf())
 			.param("title", property.getTitle())
 			.param("propertyType", property.getPropertyType().name())
-			.param("propertyStatus", property.getPropertyStatus().name())
+			.param("offerType", property.getOfferType().name())
 			.param("offerStatus", property.getOfferStatus().name())
 			.param("address", property.getAddress())
 			.param("shortAddress", property.getShortAddress())

@@ -81,7 +81,7 @@ public class CyprusRealityCrawlerTest {
 		Assert.assertEquals(34.701648D, penthouse.getLatitude(), 0.000001);
 		Assert.assertEquals(33.104186D, penthouse.getLongitude(), 0.000001);
 		Assert.assertEquals(PropertyType.APARTMENT, penthouse.getPropertyType());
-		Assert.assertEquals(PropertyStatus.SALE, penthouse.getPropertyStatus());
+		Assert.assertEquals(OfferType.SALE, penthouse.getOfferType());
 		Assert.assertEquals(OfferStatus.ACTIVE, penthouse.getOfferStatus());
 		Assert.assertEquals(350000, penthouse.getPrice());
 		Assert.assertEquals(80, penthouse.getCoveredArea());
@@ -120,7 +120,7 @@ public class CyprusRealityCrawlerTest {
 		Assert.assertEquals(34.701718D, penthouse.getLatitude(), 0.000001);
 		Assert.assertEquals(33.011420D, penthouse.getLongitude(), 0.000001);
 		Assert.assertEquals(PropertyType.APARTMENT, penthouse.getPropertyType());
-		Assert.assertEquals(PropertyStatus.SALE, penthouse.getPropertyStatus());
+		Assert.assertEquals(OfferType.SALE, penthouse.getOfferType());
 		Assert.assertEquals(OfferStatus.ACTIVE, penthouse.getOfferStatus());
 		Assert.assertEquals(320000, penthouse.getPrice());
 		Assert.assertEquals(138, penthouse.getCoveredArea());
@@ -155,7 +155,7 @@ public class CyprusRealityCrawlerTest {
 		Assert.assertEquals(34.712712D, villa.getLatitude(), 0.000001);
 		Assert.assertEquals(33.165498D, villa.getLongitude(), 0.000001);
 		Assert.assertEquals(PropertyType.HOUSE, villa.getPropertyType());
-		Assert.assertEquals(PropertyStatus.SALE, villa.getPropertyStatus());
+		Assert.assertEquals(OfferType.SALE, villa.getOfferType());
 		Assert.assertEquals(OfferStatus.ACTIVE, villa.getOfferStatus());
 		Assert.assertEquals(10950000, villa.getPrice());
 		Assert.assertEquals(670, villa.getCoveredArea());
@@ -195,7 +195,7 @@ public class CyprusRealityCrawlerTest {
 		Assert.assertEquals(34.879655D, townHouse.getLatitude(), 0.000001);
 		Assert.assertEquals(32.369204D, townHouse.getLongitude(), 0.000001);
 		Assert.assertEquals(PropertyType.HOUSE, townHouse.getPropertyType());
-		Assert.assertEquals(PropertyStatus.SALE, townHouse.getPropertyStatus());
+		Assert.assertEquals(OfferType.SALE, townHouse.getOfferType());
 		Assert.assertEquals(OfferStatus.ACTIVE, townHouse.getOfferStatus());
 		Assert.assertEquals(175000, townHouse.getPrice());
 		Assert.assertEquals(85, townHouse.getCoveredArea());
@@ -230,7 +230,7 @@ public class CyprusRealityCrawlerTest {
 		Assert.assertEquals(34.884100D, studio.getLatitude(), 0.000001);
 		Assert.assertEquals(32.384225D, studio.getLongitude(), 0.000001);
 		Assert.assertEquals(PropertyType.APARTMENT, studio.getPropertyType());
-		Assert.assertEquals(PropertyStatus.SALE, studio.getPropertyStatus());
+		Assert.assertEquals(OfferType.SALE, studio.getOfferType());
 		Assert.assertEquals(OfferStatus.ACTIVE, studio.getOfferStatus());
 		Assert.assertEquals(68000, studio.getPrice());
 		Assert.assertEquals(33, studio.getCoveredArea());
@@ -262,7 +262,7 @@ public class CyprusRealityCrawlerTest {
 		Assert.assertEquals(35.065337D, studio.getLatitude(), 0.000001);
 		Assert.assertEquals(32.489941D, studio.getLongitude(), 0.000001);
 		Assert.assertEquals(PropertyType.LAND, studio.getPropertyType());
-		Assert.assertEquals(PropertyStatus.SALE, studio.getPropertyStatus());
+		Assert.assertEquals(OfferType.SALE, studio.getOfferType());
 		Assert.assertEquals(OfferStatus.ACTIVE, studio.getOfferStatus());
 		Assert.assertEquals(189000, studio.getPrice());
 		Assert.assertEquals(0, studio.getCoveredArea());
@@ -290,7 +290,7 @@ public class CyprusRealityCrawlerTest {
 		Assert.assertEquals(34.762084D, maisonette.getLatitude(), 0.000001);
 		Assert.assertEquals(32.459430D, maisonette.getLongitude(), 0.000001);
 		Assert.assertEquals(PropertyType.HOUSE, maisonette.getPropertyType());
-		Assert.assertEquals(PropertyStatus.SALE, maisonette.getPropertyStatus());
+		Assert.assertEquals(OfferType.SALE, maisonette.getOfferType());
 		Assert.assertEquals(OfferStatus.ACTIVE, maisonette.getOfferStatus());
 		Assert.assertEquals(167500, maisonette.getPrice());
 		Assert.assertEquals(124, maisonette.getCoveredArea());
@@ -323,7 +323,7 @@ public class CyprusRealityCrawlerTest {
 		Assert.assertEquals(34.700522D, studio.getLatitude(), 0.000001);
 		Assert.assertEquals(33.100304D, studio.getLongitude(), 0.000001);
 		Assert.assertEquals(PropertyType.APARTMENT, studio.getPropertyType());
-		Assert.assertEquals(PropertyStatus.SALE, studio.getPropertyStatus());
+		Assert.assertEquals(OfferType.SALE, studio.getOfferType());
 		Assert.assertEquals(OfferStatus.SOLD, studio.getOfferStatus());
 		Assert.assertEquals(60000, studio.getPrice());
 		Assert.assertEquals(35, studio.getCoveredArea());

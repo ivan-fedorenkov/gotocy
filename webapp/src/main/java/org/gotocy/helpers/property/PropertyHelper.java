@@ -27,12 +27,12 @@ public class PropertyHelper {
 	private static final DistanceFormatter DISTANCE_FORMATTER = new DistanceFormatter();
 	private static final CurrencyFormatter CURRENCY_FORMATTER = new CurrencyFormatter();
 
-	private static final Map<PropertyStatus, String> PROPERTY_STATUS_TO_PRICE_KEY = new HashMap<>();
+	private static final Map<OfferType, String> OFFER_TYPE_TO_PRICE_KEY = new HashMap<>();
 
 	static {
-		for (PropertyStatus status : PropertyStatus.values()) {
-			PROPERTY_STATUS_TO_PRICE_KEY.put(status, "org.gotocy.domain.property." +
-				status.name().toLowerCase().replaceAll("_", "-") + "-price");
+		for (OfferType type : OfferType.values()) {
+			OFFER_TYPE_TO_PRICE_KEY.put(type, "org.gotocy.domain.property." +
+				type.name().toLowerCase().replaceAll("_", "-") + "-price");
 		}
 	}
 
@@ -83,7 +83,7 @@ public class PropertyHelper {
 	 * TODO: unit test
 	 */
 	public static String price(Property property) {
-		return I18n.t(PROPERTY_STATUS_TO_PRICE_KEY.get(property.getPropertyStatus()), price(property.getPrice()));
+		return I18n.t(OFFER_TYPE_TO_PRICE_KEY.get(property.getOfferType()), price(property.getPrice()));
 	}
 
 	/**

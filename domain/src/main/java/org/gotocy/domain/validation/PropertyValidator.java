@@ -2,7 +2,7 @@ package org.gotocy.domain.validation;
 
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
-import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.OfferType;
 import org.gotocy.domain.PropertyType;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -20,9 +20,9 @@ public class PropertyValidator implements Validator {
 
 	private static final Predicate<Property> ACTIVE_OFFER = p -> p.getOfferStatus() == OfferStatus.ACTIVE;
 
-	private static final Predicate<Property> SALE = p -> p.getPropertyStatus() == PropertyStatus.SALE;
-	private static final Predicate<Property> LONG_TERM = p -> p.getPropertyStatus() == PropertyStatus.LONG_TERM;
-	private static final Predicate<Property> SHORT_TERM = p -> p.getPropertyStatus() == PropertyStatus.SHORT_TERM;
+	private static final Predicate<Property> SALE = p -> p.getOfferType() == OfferType.SALE;
+	private static final Predicate<Property> LONG_TERM = p -> p.getOfferType() == OfferType.LONG_TERM;
+	private static final Predicate<Property> SHORT_TERM = p -> p.getOfferType() == OfferType.SHORT_TERM;
 
 	private static final Predicate<Property> HOUSE = p -> p.getPropertyType() == PropertyType.HOUSE;
 	private static final Predicate<Property> APARTMENT = p -> p.getPropertyType() == PropertyType.APARTMENT;
@@ -44,7 +44,7 @@ public class PropertyValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", property.getAddress());
 		ValidationUtils.rejectIfNull(errors, "location", property.getLocation());
 		ValidationUtils.rejectIfNull(errors, "propertyType", property.getPropertyType());
-		ValidationUtils.rejectIfNull(errors, "propertyStatus", property.getPropertyStatus());
+		ValidationUtils.rejectIfNull(errors, "offerType", property.getOfferType());
 		ValidationUtils.rejectIfNull(errors, "offerStatus", property.getOfferStatus());
 		ValidationUtils.rejectIfNull(errors, "contactsDisplayOption", property.getContactsDisplayOption());
 

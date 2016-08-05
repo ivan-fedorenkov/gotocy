@@ -3,7 +3,7 @@ package org.gotocy.crawl;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.Property;
-import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.OfferType;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Min;
@@ -32,10 +32,10 @@ public class PropertyFilter {
 	private int maxPrice = Integer.MAX_VALUE;
 
 	/**
-	 * Allowed property statuses
+	 * Allowed offer types
 	 */
 	@NotEmpty
-	private List<PropertyStatus> propertyStatuses = new ArrayList<>();
+	private List<OfferType> offerTypes = new ArrayList<>();
 
 	/**
 	 * Determines if the given property passes the filter.
@@ -46,7 +46,7 @@ public class PropertyFilter {
 	public boolean isPassingFilter(Property property) {
 		boolean isPassing = maxPrice == Integer.MAX_VALUE || property.getPrice() < maxPrice;
 		isPassing &= minPrice == 0 || property.getPrice() > minPrice;
-		isPassing &= propertyStatuses.stream().filter(ps -> ps == property.getPropertyStatus()).findAny().isPresent();
+		isPassing &= offerTypes.stream().filter(ps -> ps == property.getOfferType()).findAny().isPresent();
 		return isPassing;
 	}
 

@@ -23,7 +23,7 @@ public class GiovaniProperty extends CrawledProperty {
 	public GiovaniProperty() {
 		targetProperty = new Property();
 		targetProperty.setCrawlSource(CRAWL_SOURCE);
-		targetProperty.setPropertyStatus(PropertyStatus.SALE);
+		targetProperty.setOfferType(OfferType.SALE);
 		targetProperty.setOfferStatus(OfferStatus.ACTIVE);
 		targetProperty.setFurnishing(Furnishing.NONE);
 		targetProperty.setReadyToMoveIn(true);

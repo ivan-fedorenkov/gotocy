@@ -2,7 +2,6 @@ package org.gotocy.helpers.property;
 
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
-import org.springframework.context.MessageSource;
 
 /**
  * Listing summary fields provider.
@@ -72,7 +71,7 @@ class ListingSummaryFieldsProvider implements FieldsProvider {
 
 	@Override
 	public FieldFormat[] getFields(Property property) {
-		switch (property.getPropertyStatus()) {
+		switch (property.getOfferType()) {
 		case LONG_TERM:
 			return ListingSummaryFieldsProvider.LONG_TERM;
 		case SHORT_TERM:

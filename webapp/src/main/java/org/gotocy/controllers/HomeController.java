@@ -1,6 +1,6 @@
 package org.gotocy.controllers;
 
-import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.OfferType;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.gotocy.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +10,10 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.thymeleaf.util.ListUtils;
 
 import java.util.Locale;
 
-import static org.gotocy.repository.PropertyPredicates.inStatus;
+import static org.gotocy.repository.PropertyPredicates.withOfferType;
 
 /**
  * @author ifedorenkov
@@ -35,11 +34,11 @@ public class HomeController {
 	{
 		model.addAttribute("featuredProperties", propertyService.getFeatured());
 		model.addAttribute("longTermProperties", propertyService.findPubliclyVisible(
-			inStatus(PropertyStatus.LONG_TERM), pageable));
+			withOfferType(OfferType.LONG_TERM), pageable));
 		model.addAttribute("shortTermProperties", propertyService.findPubliclyVisible(
-			inStatus(PropertyStatus.SHORT_TERM), pageable));
+			withOfferType(OfferType.SHORT_TERM), pageable));
 		model.addAttribute("saleProperties", propertyService.findPubliclyVisible(
-			inStatus(PropertyStatus.SALE), pageable));
+			withOfferType(OfferType.SALE), pageable));
 		model.addAttribute("propertiesSearchForm", new PropertiesSearchForm());
 
 		model.addAttribute("shortTermPropertiesForm", PropertiesSearchForm.SHORT_TERM_FORM);

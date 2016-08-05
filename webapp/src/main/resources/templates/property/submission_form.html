@@ -32,9 +32,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="propertyStatus" th:text="${i18n.t('dictionary.offer-type')}">Offer Type</label>
-                        <select id="propertyStatus" th:field="*{propertyStatus}" th:remove="all-but-first" required>
-                            <option value="1" th:each="status : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${status}" th:text="${{status}}">Sale</option>
+                        <label for="offerType" th:text="${i18n.t('dictionary.offer-type')}">Offer Type</label>
+                        <select id="offerType" th:field="*{offerType}" th:remove="all-but-first" required>
+                            <option value="1" th:each="type : ${T(org.gotocy.domain.OfferType).values()}" th:value="${type}" th:text="${{type}}">Sale</option>
                             <option value="2">Short Term</option>
                             <option value="3">Long Term</option>
                         </select>

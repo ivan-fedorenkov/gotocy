@@ -2,7 +2,7 @@ package org.gotocy.format.seo;
 
 import org.gotocy.config.Locales;
 import org.gotocy.domain.Location;
-import org.gotocy.domain.PropertyStatus;
+import org.gotocy.domain.OfferType;
 import org.gotocy.domain.PropertyType;
 import org.gotocy.forms.PropertiesSearchForm;
 import org.junit.Assert;
@@ -42,7 +42,7 @@ public class SeoPropertySearchFormUriFormatterTest {
 
 		PropertiesSearchForm parsedForm = formatter.parse(printedUri, locale);
 		Assert.assertEquals(parsedForm.getPropertyType(), propertiesSearchForm.getPropertyType());
-		Assert.assertEquals(parsedForm.getPropertyStatus(), propertiesSearchForm.getPropertyStatus());
+		Assert.assertEquals(parsedForm.getOfferType(), propertiesSearchForm.getOfferType());
 		Assert.assertEquals(parsedForm.getLocation(), propertiesSearchForm.getLocation());
 
 		Assert.assertEquals(printedUri, formatter.print(parsedForm, locale));
@@ -56,9 +56,9 @@ public class SeoPropertySearchFormUriFormatterTest {
 		propertyTypes.add(null);
 		propertyTypes.addAll(Arrays.asList(PropertyType.values()));
 
-		List<PropertyStatus> propertyStatuses = new ArrayList<>();
-		propertyStatuses.add(null);
-		propertyStatuses.addAll(Arrays.asList(PropertyStatus.values()));
+		List<OfferType> offerTypes = new ArrayList<>();
+		offerTypes.add(null);
+		offerTypes.addAll(Arrays.asList(OfferType.values()));
 
 		List<Location> locations = new ArrayList<>();
 		locations.add(null);
@@ -68,11 +68,11 @@ public class SeoPropertySearchFormUriFormatterTest {
 
 		for (Locale locale : locales) {
 			for (PropertyType propertyType : propertyTypes) {
-				for (PropertyStatus propertyStatus : propertyStatuses) {
+				for (OfferType offerType : offerTypes) {
 					for (Location location : locations) {
 						PropertiesSearchForm form = new PropertiesSearchForm();
 						form.setPropertyType(propertyType);
-						form.setPropertyStatus(propertyStatus);
+						form.setOfferType(offerType);
 						form.setLocation(location);
 						params.add(new Object[] {form, locale});
 					}

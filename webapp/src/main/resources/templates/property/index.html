@@ -67,9 +67,9 @@
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
-                                    <select th:field="*{propertyStatus}">
+                                    <select th:field="*{offerType}">
                                         <option value="" th:text="${i18n.t('dictionary.offer-type')}">Offer Type</option>
-                                        <option th:each="type : ${T(org.gotocy.domain.PropertyStatus).values()}" th:value="${type}" th:text="${{type}}">Short Term</option>
+                                        <option th:each="type : ${T(org.gotocy.domain.OfferType).values()}" th:value="${type}" th:text="${{type}}">Short Term</option>
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">

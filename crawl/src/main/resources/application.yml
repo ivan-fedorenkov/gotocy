@@ -12,5 +12,5 @@ gotocy:
       - "http://giovani.com.cy/properties/page/6/"
       - "http://giovani.com.cy/properties/page/7/"
     filter:
-      propertyStatuses:
+      offerTypes:
         - "SALE"

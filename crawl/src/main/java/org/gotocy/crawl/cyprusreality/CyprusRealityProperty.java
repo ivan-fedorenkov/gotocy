@@ -32,7 +32,7 @@ public class CyprusRealityProperty extends CrawledProperty {
 	@Override
 	public boolean isSupported() {
 		return targetProperty.getLocation() != null && targetProperty.getPropertyType() != null &&
-			targetProperty.getPropertyStatus() != null && targetProperty.getPropertyStatus() == PropertyStatus.SALE;
+			targetProperty.getOfferType() != null && targetProperty.getOfferType() == OfferType.SALE;
 	}
 
 	@Override
@@ -119,13 +119,13 @@ public class CyprusRealityProperty extends CrawledProperty {
 	public void setOfferType(String offerType) {
 		switch (offerType.trim()) {
 		case "Property for sale":
-			targetProperty.setPropertyStatus(PropertyStatus.SALE);
+			targetProperty.setOfferType(OfferType.SALE);
 			break;
 		case "Short-term rent":
-			targetProperty.setPropertyStatus(PropertyStatus.SHORT_TERM);
+			targetProperty.setOfferType(OfferType.SHORT_TERM);
 			break;
 		case "Long-term rent":
-			targetProperty.setPropertyStatus(PropertyStatus.LONG_TERM);
+			targetProperty.setOfferType(OfferType.LONG_TERM);
 			break;
 		}
 	}

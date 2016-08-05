@@ -1,7 +1,6 @@
 package org.gotocy.helpers.property;
 
 import org.gotocy.domain.Property;
-import org.springframework.context.MessageSource;
 
 /**
  * Additional info fields provider.
@@ -40,11 +39,11 @@ class AdditionalInfoFieldsProvider implements FieldsProvider {
 
 	@Override
 	public FieldFormat[] getFields(Property property) {
-		switch (property.getPropertyStatus()) {
+		switch (property.getOfferType()) {
 		case LONG_TERM:
-			return AdditionalInfoFieldsProvider.LONG_TERM;
+			return LONG_TERM;
 		case SHORT_TERM:
-			return AdditionalInfoFieldsProvider.SHORT_TERM;
+			return SHORT_TERM;
 		case SALE:
 			switch (property.getPropertyType()) {
 			case HOUSE:
