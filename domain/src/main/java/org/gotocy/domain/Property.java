@@ -1,6 +1,5 @@
 package org.gotocy.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.i18n.LocalizedField;
@@ -11,6 +10,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * TODO: optimize #setRepresentativeImage #setPanoXml
@@ -35,11 +35,9 @@ import java.util.Locale;
 @Setter
 public class Property extends BaseEntity {
 
-	@JsonBackReference
 	@ManyToOne
 	private Developer developer;
 
-	@JsonBackReference
 	@ManyToOne
 	private Complex complex;
 
@@ -219,6 +217,13 @@ public class Property extends BaseEntity {
 	 */
 	public boolean isPromo() {
 		return offerStatus == OfferStatus.PROMO || crawlSource != null;
+	}
+
+	/**
+	 * Determines if this property can be edited by user.
+	 */
+	public boolean isEditableBy(GtcUser user) {
+		return Objects.equals(owner.getUsername(), user.getUsername());
 	}
 
 }

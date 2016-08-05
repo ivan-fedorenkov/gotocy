@@ -1,7 +1,5 @@
 package org.gotocy.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.i18n.ComplexLocalizedFieldsManager;
@@ -28,7 +26,6 @@ import java.util.Locale;
 @Setter
 public class Complex extends BaseEntity {
 
-	@JsonBackReference
 	@ManyToOne
 	private Developer developer;
 
@@ -61,7 +58,6 @@ public class Complex extends BaseEntity {
 	private List<LocalizedField> localizedFields = new ArrayList<>();
 
 	@OneToMany(mappedBy = "complex")
-	@JsonManagedReference
 	private List<Property> properties = new ArrayList<>();
 
 	public int getPropertiesCount() {

@@ -2,6 +2,8 @@ package org.gotocy.helpers;
 
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.config.Locales;
+import org.gotocy.config.Paths;
+import org.gotocy.config.Roles;
 import org.gotocy.domain.*;
 import org.gotocy.domain.i18n.LocalizedPage;
 import org.gotocy.forms.PropertiesSearchForm;
@@ -14,12 +16,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
-import java.util.StringJoiner;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -121,6 +121,16 @@ public class Helper {
 			}
 		}
 		return path.toString();
+	}
+
+	/**
+	 * TODO: javadoc
+	 * TODO: unit test
+	 */
+	public static String editPath(Object... objects) {
+		objects = Arrays.copyOf(objects, objects.length + 1);
+		objects[objects.length - 1] = "/edit";
+		return path(objects);
 	}
 
 	/**
@@ -256,6 +266,14 @@ public class Helper {
 			logger.error("Requested flag url for unsupported language {}" + locale.getLanguage());
 		}
 		return "http://assets.gotocy.com/static/img/flags/" + flagCode + ".png";
+	}
+
+	/**
+	 * TODO: javadoc
+	 * TODO: unit test
+	 */
+	public static Object[] toArray(Object... objects) {
+		return objects;
 	}
 
 }

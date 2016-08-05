@@ -1,9 +1,11 @@
 package org.gotocy.controllers.master;
 
+import org.gotocy.config.Paths;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.Complex;
 import org.gotocy.domain.Developer;
 import org.gotocy.forms.master.ComplexForm;
+import org.gotocy.helpers.Helper;
 import org.gotocy.repository.ComplexRepository;
 import org.gotocy.repository.DeveloperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author ifedorenkov
@@ -39,12 +40,12 @@ public class MasterComplexesController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	@ResponseBody
 	@Transactional
-	public Complex create(ComplexForm complexForm) {
+	public String create(ComplexForm complexForm) {
 		Complex complex = complexForm.mergeWithComplex(new Complex());
 		complex.setDeveloper(getDeveloper(complexForm.getDeveloperId()));
-		return complexRepository.save(complex);
+		complex = complexRepository.save(complex);
+		return "redirect:" + Helper.editPath(Paths.MASTER, complex);
 	}
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
@@ -56,12 +57,12 @@ public class MasterComplexesController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@ResponseBody
 	@Transactional
-	public Complex update(@RequiredDomainObject @PathVariable("id") Complex complex, ComplexForm complexForm) {
+	public String update(@RequiredDomainObject @PathVariable("id") Complex complex, ComplexForm complexForm) {
 		complex = complexForm.mergeWithComplex(complex);
 		complex.setDeveloper(getDeveloper(complexForm.getDeveloperId()));
-		return complexRepository.save(complex);
+		complex = complexRepository.save(complex);
+		return "redirect:" + Helper.editPath(Paths.MASTER, complex);
 	}
 
 	private Developer getDeveloper(Long developerId) {

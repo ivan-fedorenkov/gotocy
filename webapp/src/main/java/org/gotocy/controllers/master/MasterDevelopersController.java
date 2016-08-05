@@ -1,8 +1,10 @@
 package org.gotocy.controllers.master;
 
+import org.gotocy.config.Paths;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.Developer;
 import org.gotocy.forms.master.DeveloperForm;
+import org.gotocy.helpers.Helper;
 import org.gotocy.repository.DeveloperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author ifedorenkov
@@ -34,10 +35,10 @@ public class MasterDevelopersController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	@ResponseBody
 	@Transactional
-	public Developer create(DeveloperForm developerForm) {
-		return developerRepository.save(developerForm.mergeWithDeveloper(new Developer()));
+	public String create(DeveloperForm developerForm) {
+		Developer developer = developerRepository.save(developerForm.mergeWithDeveloper(new Developer()));
+		return "redirect:" + Helper.editPath(Paths.MASTER, developer);
 	}
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
@@ -48,10 +49,10 @@ public class MasterDevelopersController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@ResponseBody
 	@Transactional
-	public Developer update(@RequiredDomainObject @PathVariable("id") Developer developer, DeveloperForm developerForm) {
-		return developerRepository.save(developerForm.mergeWithDeveloper(developer));
+	public String update(@RequiredDomainObject @PathVariable("id") Developer developer, DeveloperForm developerForm) {
+		developer = developerRepository.save(developerForm.mergeWithDeveloper(developer));
+		return "redirect:" + Helper.editPath(Paths.MASTER, developer);
 	}
 
 }

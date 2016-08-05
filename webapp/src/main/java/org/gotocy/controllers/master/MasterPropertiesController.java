@@ -1,6 +1,7 @@
 package org.gotocy.controllers.master;
 
 import org.gotocy.config.ApplicationProperties;
+import org.gotocy.config.Paths;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.Complex;
 import org.gotocy.domain.Developer;
@@ -9,6 +10,7 @@ import org.gotocy.domain.Property;
 import org.gotocy.dto.PropertyDto;
 import org.gotocy.dto.PropertyDtoFactory;
 import org.gotocy.forms.master.PropertyForm;
+import org.gotocy.helpers.Helper;
 import org.gotocy.repository.ComplexRepository;
 import org.gotocy.repository.DeveloperRepository;
 import org.gotocy.repository.PropertyRepository;
@@ -74,13 +76,13 @@ public class MasterPropertiesController {
 	}
 
 	@RequestMapping(value = "/master/properties", method = RequestMethod.POST)
-	@ResponseBody
 	@Transactional
-	public Property create(PropertyForm propertyForm) {
+	public String create(PropertyForm propertyForm) {
 		Property property = propertyForm.mergeWithProperty(new Property());
 		property.setComplex(getComplex(propertyForm.getComplexId()));
 		property.setDeveloper(getDeveloper(propertyForm.getDeveloperId()));
-		return propertyRepository.save(property);
+		property = propertyRepository.save(property);
+		return "redirect:" + Helper.editPath(Paths.MASTER, property);
 	}
 
 	@RequestMapping(value = "/master/properties/{id}/edit", method = RequestMethod.GET)
@@ -89,19 +91,18 @@ public class MasterPropertiesController {
 		model.addAttribute(new PropertyForm(property));
 		model.addAttribute("developers", developerRepository.findAll());
 		model.addAttribute("complexes", complexRepository.findAll());
-
 		return "master/property/edit";
 	}
 
 
 	@RequestMapping(value = "/master/properties/{id}", method = RequestMethod.PUT)
-	@ResponseBody
 	@Transactional
-	public Property update(@RequiredDomainObject @PathVariable("id") Property property, PropertyForm propertyForm) {
+	public String update(@RequiredDomainObject @PathVariable("id") Property property, PropertyForm propertyForm) {
 		property = propertyForm.mergeWithProperty(property);
 		property.setComplex(getComplex(propertyForm.getComplexId()));
 		property.setDeveloper(getDeveloper(propertyForm.getDeveloperId()));
-		return propertyRepository.save(property);
+		property = propertyRepository.save(property);
+		return "redirect:" + Helper.editPath(Paths.MASTER, property);
 	}
 
 	private Complex getComplex(long complexId) {

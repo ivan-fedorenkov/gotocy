@@ -37,8 +37,8 @@
                 <!-- sidebar -->
                 <div class="col-md-3 col-sm-2">
                     <section id="sidebar">
-                        <header><h3 th:text="${i18n.t('dictionary.navigation')}">Navigation</h3></header>
                         <aside>
+                            <header><h3 th:text="${i18n.t('dictionary.navigation')}">Navigation</h3></header>
                             <ul class="sidebar-navigation">
                                 <li class="active"><a href="#" th:href="${helper.path('/user/profile')}"><i class="fa fa-user"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
                                 <li><a href="#" th:href="${helper.path('/user/properties')}"><i class="fa fa-home"></i><span th:text="${i18n.t('dictionary.my-properties')}">My Properties</span></a></li>

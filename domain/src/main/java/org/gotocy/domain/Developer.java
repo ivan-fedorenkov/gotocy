@@ -1,6 +1,5 @@
 package org.gotocy.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.i18n.DeveloperLocalizedFieldsManager;
@@ -28,11 +27,9 @@ public class Developer extends BaseEntity {
 	private String name;
 
 	@OneToMany(mappedBy = "developer")
-	@JsonManagedReference
 	private List<Complex> complexes = new ArrayList<>();
 
 	@OneToMany(mappedBy = "developer")
-	@JsonManagedReference
 	private List<Property> properties = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

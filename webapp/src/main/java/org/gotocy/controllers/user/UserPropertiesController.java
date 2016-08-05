@@ -1,6 +1,8 @@
 package org.gotocy.controllers.user;
 
 import org.gotocy.config.Paths;
+import org.gotocy.controllers.aop.RequiredDomainObject;
+import org.gotocy.controllers.exceptions.AccessDeniedException;
 import org.gotocy.domain.GtcUser;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.OfferStatus;
@@ -17,10 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -58,6 +57,19 @@ public class UserPropertiesController {
 		Iterable<Property> properties = propertyService.find(ofUser(user), sort);
 		model.addAttribute("properties", properties);
 		return "user/property/index";
+	}
+
+	@RequestMapping(value = "/user/properties/{id}", method = RequestMethod.GET)
+	public String get(Model model, @RequiredDomainObject @PathVariable("id") Property property,
+		@AuthenticationPrincipal GtcUser user, Locale locale)
+	{
+		if (!property.isEditableBy(user))
+			throw new AccessDeniedException();
+
+		property.initLocalizedFields(locale);
+		model.addAttribute(property);
+
+		return "user/property/show";
 	}
 
 	@RequestMapping(value = "/user/properties/new", method = RequestMethod.GET)

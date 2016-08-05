@@ -8,5 +8,6 @@ package org.gotocy.config;
 public interface Paths {
 
 	String USER = "/user";
+	String MASTER = "/master";
 
 }
