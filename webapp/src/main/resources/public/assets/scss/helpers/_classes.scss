@@ -1,3 +1,5 @@
+@import "compass/utilities/general/clearfix";
+
 .page-sub-page {
   #page-content {
     &:after { @include page-content-gradient; content: ""; left: 0; height: 110px; position: absolute; top: 0; width: 100%; z-index: -1; }
@@ -169,6 +171,13 @@
     label { line-height: 0 !important; }
     .icheckbox { margin-right: 0; }
   }
+}
+
+.actions-bar {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    @include clearfix;
+    width: 100%;
 }
 
 // Add your property button (on the map)

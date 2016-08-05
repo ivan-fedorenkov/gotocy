@@ -52,7 +52,10 @@
                 <div class="col-md-9 col-sm-10">
                     <section id="properties">
                         <header><h1 th:text="${i18n.t('dictionary.my-properties')}">My Properties</h1></header>
-                        <div class="my-properties">
+                        <section class="actions-bar">
+                            <a href="#" th:href="@{${helper.path('/user/properties/new')}}" class="btn btn-default pull-right" th:text="${i18n.t('dictionary.new-property')}">New Property</a>
+                        </section>
+                        <section class="my-properties">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -85,7 +88,7 @@
                                     </tbody>
                                 </table>
                             </div><!-- /.table-responsive -->
-                        </div><!-- /.my-properties -->
+                        </section><!-- /.my-properties -->
                     </section><!-- /#properties -->
                 </div><!-- /.col-md-9 -->
                 <!-- end My Properties -->

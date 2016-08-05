@@ -31,7 +31,7 @@
 
         <div class="container">
             <header><h1 th:text="${i18n.t('dictionary.sign-up')}">Sign Up</h1></header>
-            <form role="form" id="form-sign-up" th:object="${userRegistrationForm}" th:action="@{${helper.path('/users')}}" th:method="post">
+            <form role="form" id="form-sign-up" class="form-labeled" th:object="${userRegistrationForm}" th:action="@{${helper.path('/users')}}" th:method="post">
 
                 <div class="row" th:if="${#fields.hasAnyErrors()}">
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">

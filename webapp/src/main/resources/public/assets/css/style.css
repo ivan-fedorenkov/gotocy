@@ -464,6 +464,13 @@ ul.list-links {
     .account-profile .switch .icheckbox {
       margin-right: 0; }
 
+.actions-bar {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  overflow: hidden;
+  *zoom: 1;
+  width: 100%; }
+
 .geo-location-wrapper {
   position: relative;
   z-index: 1;
@@ -3382,7 +3389,7 @@ form label.error {
     position: absolute;
     top: -5px;
     width: 0px; }
-form button[type='submit'] {
+form.form-labeled button[type='submit'] {
   margin-top: 20px; }
 
 .form-submit .file-input {
