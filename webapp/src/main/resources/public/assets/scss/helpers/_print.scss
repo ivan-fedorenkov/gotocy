@@ -2,7 +2,7 @@
   #page-footer, .breadcrumb { display: none; }
   .page-property-detail {
     body, html { height: 100%; width: 100%; padding: 0; }
-    #sidebar, #page-footer, .thick, .actions, .navigation, .breadcrumb { display: none; }
+    .sidebar, #page-footer, .thick, .actions, .navigation, .breadcrumb { display: none; }
     #property-detail { }
   }
   .page-invoice {

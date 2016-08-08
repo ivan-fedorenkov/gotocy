@@ -223,7 +223,7 @@ dl {
   }
 }
 
-#sidebar {
+.sidebar {
   .sidebar-navigation { padding-left: inherit; padding-right: 0;
     li { border-left: 3px solid transparent; padding-left: 10px; padding-right: 0; border-right: 0px solid transparent;
       &:hover { border-color: $color-default; padding-left: inherit; padding-right: 5px; border-right: 0px solid transparent;

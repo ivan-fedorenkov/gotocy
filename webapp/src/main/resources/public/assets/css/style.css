@@ -2231,51 +2231,51 @@ ul.error-messages {
     color: #1396e2;
     font-size: 24px; }
 
-#sidebar aside {
+.sidebar aside {
   margin-bottom: 50px; }
-#sidebar h3 {
+.sidebar h3 {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
   margin-top: 21px;
   padding-bottom: 15px; }
-#sidebar form .btn {
+.sidebar form .btn {
   width: 100%; }
-#sidebar ul {
+.sidebar ul {
   padding-left: 15px; }
-  #sidebar ul.list-links li {
+  .sidebar ul.list-links li {
     color: #1396e2; }
-#sidebar .sidebar-navigation {
+.sidebar .sidebar-navigation {
   list-style: none;
   padding-left: 0; }
-  #sidebar .sidebar-navigation li.active a {
+  .sidebar .sidebar-navigation li.active a {
     -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
     background-color: #f3f3f3;
     border-color: #073855;
     padding-left: 10px; }
-    #sidebar .sidebar-navigation li.active a:after {
+    .sidebar .sidebar-navigation li.active a:after {
       filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
       opacity: 1;
       border-color: transparent transparent transparent #073855; }
-    #sidebar .sidebar-navigation li.active a:hover {
+    .sidebar .sidebar-navigation li.active a:hover {
       padding-left: 10px; }
-  #sidebar .sidebar-navigation li.active i {
+  .sidebar .sidebar-navigation li.active i {
     display: inline-block; }
-  #sidebar .sidebar-navigation > li {
+  .sidebar .sidebar-navigation > li {
     -moz-transition: 0.4s;
     -o-transition: 0.4s;
     -webkit-transition: 0.4s;
     transition: 0.4s;
     margin-bottom: 5px;
     position: relative; }
-    #sidebar .sidebar-navigation > li a {
+    .sidebar .sidebar-navigation > li a {
       border-right: 3px solid transparent;
       color: #2a2a2a;
       display: block;
       padding: 10px 0 10px 10px;
       position: relative; }
-      #sidebar .sidebar-navigation > li a:after {
+      .sidebar .sidebar-navigation > li a:after {
         -moz-transition: 0.4s;
         -o-transition: 0.4s;
         -webkit-transition: 0.4s;
@@ -2291,36 +2291,36 @@ ul.error-messages {
         top: 1px;
         bottom: 0;
         margin: auto; }
-      #sidebar .sidebar-navigation > li a:hover {
+      .sidebar .sidebar-navigation > li a:hover {
         border-color: #1396e2;
         padding-left: 15px; }
-        #sidebar .sidebar-navigation > li a:hover:after {
+        .sidebar .sidebar-navigation > li a:hover:after {
           filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
           opacity: 1;
           border-color: transparent transparent transparent #1396e2; }
-    #sidebar .sidebar-navigation > li i {
+    .sidebar .sidebar-navigation > li i {
       color: #1396e2;
       margin-right: 8px; }
-    #sidebar .sidebar-navigation > li ul {
+    .sidebar .sidebar-navigation > li ul {
       padding-left: 30px;
       list-style: none; }
-      #sidebar .sidebar-navigation > li ul > li {
+      .sidebar .sidebar-navigation > li ul > li {
         border-bottom: 1px solid #f3f3f3;
         position: relative; }
-        #sidebar .sidebar-navigation > li ul > li:before {
+        .sidebar .sidebar-navigation > li ul > li:before {
           content: "•";
           color: #1396e2;
           font-size: 24px;
           position: absolute;
           left: -5px;
           top: 2px; }
-        #sidebar .sidebar-navigation > li ul > li ul {
+        .sidebar .sidebar-navigation > li ul > li ul {
           padding-left: 10px; }
-          #sidebar .sidebar-navigation > li ul > li ul li {
+          .sidebar .sidebar-navigation > li ul > li ul li {
             filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
             opacity: 0.6;
             border-bottom: none; }
-            #sidebar .sidebar-navigation > li ul > li ul li:before {
+            .sidebar .sidebar-navigation > li ul > li ul li:before {
               display: none; }
 
 #slider {
@@ -4983,7 +4983,7 @@ body, html {
     height: 100%;
     width: 100%;
     padding: 0; }
-  .page-property-detail #sidebar, .page-property-detail #page-footer, .page-property-detail .thick, .page-property-detail .actions, .page-property-detail .navigation, .page-property-detail .breadcrumb {
+  .page-property-detail .sidebar, .page-property-detail #page-footer, .page-property-detail .thick, .page-property-detail .actions, .page-property-detail .navigation, .page-property-detail .breadcrumb {
     display: none; }
 
   .page-invoice .navigation {

@@ -56,7 +56,7 @@
             <div class="row">
                 <!-- sidebar -->
                 <div class="col-md-3 col-sm-12 col-md-push-9">
-                    <section id="sidebar">
+                    <section class="sidebar">
                         <aside id="edit-search">
                             <header><h3 th:text="${i18n.t('dictionary.search-criteria')}">Search Criteria</h3></header>
                             <form role="form" id="form-sidebar" class="form-search" th:action="@{${helper.path('/properties')}}" th:method="get" th:object="${propertiesSearchForm}">

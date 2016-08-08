@@ -36,19 +36,19 @@
             <div class="row">
                 <!-- sidebar -->
                 <div class="col-md-3 col-sm-2">
-                    <section id="sidebar">
+                    <section class="sidebar">
                         <aside>
                             <header><h3 th:text="${i18n.t('dictionary.navigation')}">Navigation</h3></header>
                             <ul class="sidebar-navigation">
-                                <li><a href="#" th:href="${helper.path('/user/profile')}"><i class="fa fa-user"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
-                                <li class="active"><a href="#" th:href="${helper.path('/user/properties')}"><i class="fa fa-home"></i><span th:text="${i18n.t('dictionary.my-properties')}">My Properties</span></a></li>
+                                <li><a href="#" th:href="${helper.path('/user/profile')}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
+                                <li class="active"><a href="#" th:href="${helper.path('/user/properties')}"><i class="fa fa-home fa-fw"></i><span th:text="${i18n.t('dictionary.my-properties')}">My Properties</span></a></li>
                             </ul>
                         </aside>
 
                         <aside>
                             <header><h3 th:text="${i18n.t('dictionary.actions')}">Actions</h3></header>
                             <ul class="sidebar-navigation">
-                                <li><a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, '/properties/new')}"><i class="fa fa-plus"></i><span th:text="${i18n.t('dictionary.add-new-property')}">Add New Property</span></a></li>
+                                <li><a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, '/properties/new')}"><i class="fa fa-plus fa-fw"></i><span th:text="${i18n.t('dictionary.add-new-property')}">Add New Property</span></a></li>
                             </ul>
                         </aside>
                     </section><!-- /#sidebar -->

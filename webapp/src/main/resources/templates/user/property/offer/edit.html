@@ -1,0 +1,151 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US"
+      th:lang="${#locale.language}"
+      th:object="${property}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.editPath(helper.toArray(T(org.gotocy.config.Paths).USER, property, '/offers'), locale)}}" hreflang="en" href="#" />
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
+
+    <title th:text="${i18n.t('templates.title', i18n.t('dictionary.edit-property'))}">Manage Offers | GoToCy</title>
+
+</head>
+
+<body class="page-sub-page page-property-detail" id="page-top">
+<div th:replace="fragments/metrics_div :: ya"></div>
+<!-- Wrapper -->
+<div class="wrapper">
+    <!-- Navigation -->
+    <div class="navigation" th:include="fragments/navigation_div :: navigation(${helper.toArray(T(org.gotocy.config.Paths).USER, property, '/offers', T(org.gotocy.config.Paths).EDIT)}, ${false})"></div>
+    <!-- end Navigation -->
+
+    <!-- Page Content -->
+    <div id="page-content">
+        <!-- Breadcrumb -->
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a th:href="@{${helper.path('/')}}" th:text="${i18n.t('dictionary.home')}" href="#">Home</a></li>
+                <li><a th:href="@{${helper.path('/user/properties')}}" th:text="${i18n.t('dictionary.my-properties')}">My Properties</a></li>
+                <li><a th:href="@{${helper.path(T(org.gotocy.config.Paths).USER, property)}}" th:text="${property.title}">Some Property</a></li>
+                <li class="active" th:text="${i18n.t('dictionary.manage-offers')}">Manage Offers</li>
+            </ol>
+        </div>
+        <!-- end Breadcrumb -->
+
+        <div class="container">
+            <div class="row">
+                <!-- sidebar -->
+                <div class="col-md-3 col-sm-2">
+                    <section class="sidebar">
+                        <aside>
+                            <header><h3 th:text="${i18n.t('dictionary.navigation')}">Navigation</h3></header>
+                            <ul class="sidebar-navigation">
+                                <li><a href="#" th:href="${helper.path('/user/profile')}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
+                                <li><a href="#" th:href="${helper.path('/user/properties')}"><i class="fa fa-home fa-fw"></i><span th:text="${i18n.t('dictionary.my-properties')}">My Properties</span></a></li>
+                            </ul>
+                        </aside>
+
+                        <aside>
+                            <header><h3 th:text="${i18n.t('dictionary.actions')}">Actions</h3></header>
+                            <ul class="sidebar-navigation">
+                                <li><a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, property)}"><i class="fa fa-arrow-left fa-fw"></i><span th:text="${i18n.t('dictionary.back-to-property')}">Back to Property</span></a></li>
+                                <li><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, property)}"><i class="fa fa-pencil fa-fw"></i><span th:text="${i18n.t('dictionary.edit-property')}">Edit Property</span></a></li>
+                                <li><a href="#"><i class="fa fa-picture-o fa-fw"></i><span th:text="${i18n.t('dictionary.manage-gallery')}">Manage Gallery</span></a></li>
+                            </ul>
+                        </aside>
+                    </section><!-- /#sidebar -->
+                </div><!-- /.col-md-3 -->
+                <!-- end Sidebar -->
+
+                <!-- Property Edit Content -->
+                <div class="col-md-6 col-sm-10">
+                    <section id="user-property-edit">
+                        <header><h1 th:text="${i18n.t('dictionary.manage-offers')}">Manage Offers</h1></header>
+                        <form role="form" id="form-user-property-offers-edit" class="form-submit" th:method="put" th:object="${offersForm}" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property, '/offers')}">
+                            <!--Errors-->
+                            <ul class="error-messages" th:if="${#fields.hasAnyErrors()}">
+                                <li th:each="error : ${#fields.detailedErrors()}" th:text="${error.message}">Some error</li>
+                            </ul>
+
+                            <section id="offers" class="block">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="offerType" th:text="${i18n.t('dictionary.offer-type')}">Offer Type</label>
+                                            <select id="offerType" th:field="*{offerType}" th:remove="all-but-first" required>
+                                                <option value="1" th:each="type : ${T(org.gotocy.domain.OfferType).values()}" th:value="${type}" th:text="${{type}}">Sale</option>
+                                                <option value="2">Short Term</option>
+                                                <option value="3">Long Term</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="offerStatus" th:text="${i18n.t('dictionary.offer-status')}">Offer Status</label>
+                                            <select id="offerStatus" th:field="*{offerStatus}" th:remove="all-but-first" required>
+                                                <option value="1" th:each="status : ${T(org.gotocy.domain.OfferStatus).values()}" th:value="${status}" th:text="${{status}}">Active</option>
+                                                <option value="2">Sold</option>
+                                                <option value="3">Booked</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="price" th:text="${i18n.t('dictionary.price')}">Price</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">&euro;</span>
+                                                <input type="text" class="form-control" id="price" th:field="*{price}" pattern="\d*" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section><!-- /#offers -->
+
+                            <section class="block">
+                                <div class="center">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-default large" th:text="${i18n.t('dictionary.save-updates')}">Save Updates</button>
+                                    </div><!-- /.form-group -->
+                                </div>
+                            </section>
+                        </form>
+                    </section>
+                </div><!-- /.col-md-9 -->
+                <!-- end Property Edit Content -->
+
+                <!-- sidebar -->
+                <div class="col-md-3 col-sm-10 col-md-offset-0 col-sm-offset-2">
+                    <section class="sidebar">
+                        <aside id="questions">
+                            <header><h3><i class='fa fa-life-ring'></i> <!--/*/ <th:block th:text="${i18n.t('dictionary.need-help-q')}"> /*/-->Need Help?<!--/*/ </th:block /*/--></h3></header>
+                            <section>
+                                <p>If you have any questions please write to us and we will help you!</p>
+                            </section>
+                        </aside><!-- /#primary-contact -->
+                    </section>
+                </div>
+                <!-- end Sidebar -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div>
+    <!-- end Page Content -->
+
+    <footer id="page-footer" th:include="fragments/footer :: footer"></footer>
+</div>
+
+<script type="text/javascript" th:src="@{/assets/js/application.min.js}" src="/parent/webapp/public/assets/js/static-application.min.js"></script>
+
+<!--[if gt IE 8]>
+<script type="text/javascript" src="http://assets.gotocy.com/static/js/ie.js"></script>
+<![endif]-->
+
+</body>
+</html>

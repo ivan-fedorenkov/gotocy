@@ -96,6 +96,9 @@ public class UserPropertiesController {
 		return "redirect:" + Helper.path(Paths.USER, createdProperty);
 	}
 
+	/**
+	 * TODO: do not forget that form should be a model attribute
+	 */
 	@RequestMapping(value = "/user/properties/{id}/edit", method = RequestMethod.GET)
 	public String edit(Model model, @RequiredDomainObject @PathVariable("id") Property property,
 		@AuthenticationPrincipal GtcUser user, Locale locale)
