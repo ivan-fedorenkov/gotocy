@@ -44,6 +44,13 @@
                                 <li class="active"><a href="#" th:href="${helper.path('/user/properties')}"><i class="fa fa-home"></i><span th:text="${i18n.t('dictionary.my-properties')}">My Properties</span></a></li>
                             </ul>
                         </aside>
+
+                        <aside>
+                            <header><h3 th:text="${i18n.t('dictionary.actions')}">Actions</h3></header>
+                            <ul class="sidebar-navigation">
+                                <li><a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, '/properties/new')}"><i class="fa fa-plus"></i><span th:text="${i18n.t('dictionary.add-new-property')}">Add New Property</span></a></li>
+                            </ul>
+                        </aside>
                     </section><!-- /#sidebar -->
                 </div><!-- /.col-md-3 -->
                 <!-- end Sidebar -->
@@ -52,9 +59,9 @@
                 <div class="col-md-9 col-sm-10">
                     <section id="properties">
                         <header><h1 th:text="${i18n.t('dictionary.my-properties')}">My Properties</h1></header>
-                        <section class="actions-bar">
+                        <!--<section class="actions-bar">
                             <a href="#" th:href="@{${helper.path('/user/properties/new')}}" class="btn btn-default pull-right" th:text="${i18n.t('dictionary.new-property')}">New Property</a>
-                        </section>
+                        </section>-->
                         <section class="my-properties">
                             <div class="table-responsive">
                                 <table class="table">
