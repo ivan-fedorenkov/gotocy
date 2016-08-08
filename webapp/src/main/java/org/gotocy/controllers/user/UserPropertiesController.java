@@ -8,6 +8,7 @@ import org.gotocy.domain.Image;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
 import org.gotocy.forms.PropertySubmissionForm;
+import org.gotocy.forms.user.PropertyForm;
 import org.gotocy.forms.validation.PropertySubmissionFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.service.PropertyService;
@@ -93,6 +94,19 @@ public class UserPropertiesController {
 		Property createdProperty = propertyService.createWithAttachments(property, images);
 
 		return "redirect:" + Helper.path(Paths.USER, createdProperty);
+	}
+
+	@RequestMapping(value = "/user/properties/{id}/edit", method = RequestMethod.GET)
+	public String edit(Model model, @RequiredDomainObject @PathVariable("id") Property property,
+		@AuthenticationPrincipal GtcUser user, Locale locale)
+	{
+		if (!property.isEditableBy(user))
+			throw new AccessDeniedException();
+
+		property.initLocalizedFields(locale);
+		model.addAttribute(property);
+		model.addAttribute(new PropertyForm(property));
+		return "user/property/edit";
 	}
 
 }

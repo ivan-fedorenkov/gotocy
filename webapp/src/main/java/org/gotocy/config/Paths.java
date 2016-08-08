@@ -9,5 +9,6 @@ public interface Paths {
 
 	String USER = "/user";
 	String MASTER = "/master";
+	String EDIT = "/edit";
 
 }

@@ -1,4 +1,4 @@
-package org.gotocy.forms;
+package org.gotocy.forms.user;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,14 +11,13 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * User form for property submissions.
- * TODO: remove fields: offer status, price
+ * User form for property related activities.
  *
  * @author ifedorenkov
  */
 @Getter
 @Setter
-public class PropertySubmissionForm {
+public class PropertyForm {
 
 	private String title;
 	private String address;
@@ -44,7 +43,7 @@ public class PropertySubmissionForm {
 
 	private List<MultipartFile> images = new ArrayList<>();
 
-	public PropertySubmissionForm() {
+	public PropertyForm() {
 		location = Location.FAMAGUSTA;
 		propertyType = PropertyType.APARTMENT;
 		offerType = OfferType.SALE;
@@ -52,7 +51,7 @@ public class PropertySubmissionForm {
 		furnishing = Furnishing.NONE;
 	}
 
-	public PropertySubmissionForm(Property property) {
+	public PropertyForm(Property property) {
 		title = property.getTitle();
 		address = property.getAddress();
 		location = property.getLocation();

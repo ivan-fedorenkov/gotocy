@@ -3,7 +3,6 @@ package org.gotocy.helpers;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.config.Locales;
 import org.gotocy.config.Paths;
-import org.gotocy.config.Roles;
 import org.gotocy.domain.*;
 import org.gotocy.domain.i18n.LocalizedPage;
 import org.gotocy.forms.PropertiesSearchForm;
@@ -16,10 +15,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
 
 import static java.util.stream.Collectors.toList;
 
@@ -92,7 +93,7 @@ public class Helper {
 	 * Unit test: HelperTest#entityPathTest
 	 */
 	public static String path(Object object, Locale locale) {
-		return path(new Object[] {object}, locale);
+		return path(toArray(object), locale);
 	}
 
 	/**
@@ -128,8 +129,16 @@ public class Helper {
 	 * TODO: unit test
 	 */
 	public static String editPath(Object... objects) {
+		return editPath(objects, LocaleContextHolder.getLocale());
+	}
+
+	/**
+	 * TODO: javadoc
+	 * TODO: unit test
+	 */
+	public static String editPath(Object[] objects, Locale locale) {
 		objects = Arrays.copyOf(objects, objects.length + 1);
-		objects[objects.length - 1] = "/edit";
+		objects[objects.length - 1] = Paths.EDIT;
 		return path(objects);
 	}
 
