@@ -96,9 +96,6 @@ public class UserPropertiesController {
 		return "redirect:" + Helper.path(Paths.USER, createdProperty);
 	}
 
-	/**
-	 * TODO: do not forget that form should be a model attribute
-	 */
 	@RequestMapping(value = "/user/properties/{id}/edit", method = RequestMethod.GET)
 	public String edit(Model model, @RequiredDomainObject @PathVariable("id") Property property,
 		@AuthenticationPrincipal GtcUser user, Locale locale)
@@ -110,6 +107,24 @@ public class UserPropertiesController {
 		model.addAttribute(property);
 		model.addAttribute(new PropertyForm(property));
 		return "user/property/edit";
+	}
+
+	@RequestMapping(value = "/user/properties/{id}", method = RequestMethod.PUT)
+	public String update(Model model, @Valid @ModelAttribute PropertyForm form, BindingResult formErrors,
+		@RequiredDomainObject @PathVariable("id") Property property,
+		@AuthenticationPrincipal GtcUser user, Locale locale)
+	{
+		if (!property.isEditableBy(user))
+			throw new AccessDeniedException();
+
+		property.initLocalizedFields(locale);
+		model.addAttribute(property);
+
+		if (formErrors.hasErrors())
+			return "user/property/edit";
+		
+		propertyService.update(form.mergeWithProperty(property));
+		return "redirect:" + Helper.path(Paths.USER, property);
 	}
 
 }

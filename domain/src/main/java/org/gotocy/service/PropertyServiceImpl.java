@@ -59,6 +59,12 @@ public class PropertyServiceImpl implements PropertyService {
 
 	@Override
 	@Transactional
+	public Property update(Property property) {
+		return propertyRepository.save(property);
+	}
+
+	@Override
+	@Transactional
 	public Property attachImages(Property property, Collection<Image> images)
 		throws ServiceMethodExecutionException
 	{

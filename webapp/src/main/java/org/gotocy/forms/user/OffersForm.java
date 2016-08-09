@@ -7,6 +7,8 @@ import org.gotocy.domain.OfferType;
 import org.gotocy.domain.Property;
 
 /**
+ * Form that allows users to edit property's offers.
+ *
  * @author ifedorenkov
  */
 @Getter
@@ -27,6 +29,13 @@ public class OffersForm {
 		offerType = property.getOfferType();
 		offerStatus = property.getOfferStatus();
 		price = property.getPrice();
+	}
+
+	public Property mergeWithProperty(Property property) {
+		property.setOfferType(offerType);
+		property.setOfferStatus(offerStatus);
+		property.setPrice(price);
+		return property;
 	}
 
 }

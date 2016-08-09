@@ -54,6 +54,7 @@
                             <header><h3 th:text="${i18n.t('dictionary.actions')}">Actions</h3></header>
                             <ul class="sidebar-navigation">
                                 <li><a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, property)}"><i class="fa fa-arrow-left fa-fw"></i><span th:text="${i18n.t('dictionary.back-to-property')}">Back to Property</span></a></li>
+                                <li class="active"><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, property)}"><i class="fa fa-pencil fa-fw"></i><span th:text="${i18n.t('dictionary.edit-property')}">Edit Property</span></a></li>
                                 <li><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, property, '/offers')}"><i class="fa fa-eur fa-fw"></i><span th:text="${i18n.t('dictionary.manage-offers')}">Manage Offers</span></a></li>
                                 <li><a href="#"><i class="fa fa-picture-o fa-fw"></i><span th:text="${i18n.t('dictionary.manage-gallery')}">Manage Gallery</span></a></li>
                             </ul>
@@ -65,7 +66,7 @@
                 <!-- Property Edit Content -->
                 <div class="col-md-6 col-sm-10">
                     <section id="user-property-edit">
-                        <header><h1 th:text="${i18n.t('dictionary.edit-property')}">Edit Property</h1></header>
+                        <header><h1 th:text="${i18n.t('dictionary.edit-property-title', property.title)}">Edit Property Title</h1></header>
                         <form role="form" id="form-user-property-edit" class="form-submit" th:method="put" th:object="${propertyForm}" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property)}">
                             <!--Errors-->
                             <ul class="error-messages" th:if="${#fields.hasAnyErrors()}">
@@ -178,44 +179,6 @@
                                 <input type="hidden" id="latitude" th:field="*{latitude}">
                                 <input type="hidden" id="longitude" th:field="*{longitude}">
                             </section><!-- /#place-on-map -->
-
-                            <section id="offer-details" class="block">
-                                <header><h2 th:text="${i18n.t('dictionary.offer-details')}">Offer Details</h2></header>
-
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="offerType" th:text="${i18n.t('dictionary.offer-type')}">Offer Type</label>
-                                            <select id="offerType" th:field="*{offerType}" th:remove="all-but-first" required>
-                                                <option value="1" th:each="type : ${T(org.gotocy.domain.OfferType).values()}" th:value="${type}" th:text="${{type}}">Sale</option>
-                                                <option value="2">Short Term</option>
-                                                <option value="3">Long Term</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="offerStatus" th:text="${i18n.t('dictionary.offer-status')}">Offer Status</label>
-                                            <select id="offerStatus" th:field="*{offerStatus}" th:remove="all-but-first" required>
-                                                <option value="1" th:each="status : ${T(org.gotocy.domain.OfferStatus).values()}" th:value="${status}" th:text="${{status}}">Active</option>
-                                                <option value="2">Sold</option>
-                                                <option value="3">Booked</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="price" th:text="${i18n.t('dictionary.price')}">Price</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">&euro;</span>
-                                                <input type="text" class="form-control" id="price" th:field="*{price}" pattern="\d*" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section><!-- /#offer-details -->
 
                             <section class="block">
                                 <div class="center">

@@ -36,6 +36,14 @@ public interface PropertyService {
 		throws ServiceMethodExecutionException;
 
 	/**
+	 * Updates the given property.
+	 *
+	 * @param property to be updated
+	 * @return updated property
+	 */
+	Property update(Property property);
+
+	/**
 	 * Attaches provided images to the given property.
 	 *
 	 * @param property whose assets should be attached

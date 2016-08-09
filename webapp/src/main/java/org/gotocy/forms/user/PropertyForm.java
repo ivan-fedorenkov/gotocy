@@ -3,12 +3,6 @@ package org.gotocy.forms.user;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * User form for property related activities.
@@ -23,10 +17,7 @@ public class PropertyForm {
 	private String address;
 	private Location location;
 	private PropertyType propertyType;
-	private OfferType offerType;
-	private OfferStatus offerStatus;
 	private String description;
-	private int price;
 	private int coveredArea;
 	private int plotSize;
 	private int bedrooms;
@@ -41,13 +32,9 @@ public class PropertyForm {
 	private double latitude;
 	private double longitude;
 
-	private List<MultipartFile> images = new ArrayList<>();
-
 	public PropertyForm() {
 		location = Location.FAMAGUSTA;
 		propertyType = PropertyType.APARTMENT;
-		offerType = OfferType.SALE;
-		offerStatus = OfferStatus.PROMO;
 		furnishing = Furnishing.NONE;
 	}
 
@@ -56,10 +43,7 @@ public class PropertyForm {
 		address = property.getAddress();
 		location = property.getLocation();
 		propertyType = property.getPropertyType();
-		offerType = property.getOfferType();
-		offerStatus = property.getOfferStatus();
 		description = property.getDescription();
-		price = property.getPrice();
 		coveredArea = property.getCoveredArea();
 		plotSize = property.getPlotSize();
 		bedrooms = property.getBedrooms();
@@ -80,10 +64,7 @@ public class PropertyForm {
 		property.setAddress(address);
 		property.setLocation(location);
 		property.setPropertyType(propertyType);
-		property.setOfferType(offerType);
-		property.setOfferStatus(offerStatus);
 		property.setDescription(description);
-		property.setPrice(price);
 		property.setCoveredArea(coveredArea);
 		property.setPlotSize(plotSize);
 		property.setBedrooms(bedrooms);
@@ -105,27 +86,6 @@ public class PropertyForm {
 		property.setContactsDisplayOption(contactsDisplayOption);
 
 		return property;
-	}
-
-	/**
-	 * Returns a list of {@link Image} created from the attached {@link #images}.
-	 */
-	public List<Image> mapFilesToImages() throws IOException {
-		if (images.isEmpty())
-			return Collections.emptyList();
-
-		List<Image> result = new ArrayList<>(images.size());
-		for (MultipartFile file : images) {
-			Image image = new Image(file.getOriginalFilename());
-			image.setBytes(file.getBytes());
-			result.add(image);
-		}
-		return result;
-	}
-
-	public void setImages(List<MultipartFile> images) {
-		images.removeIf(MultipartFile::isEmpty);
-		this.images.addAll(images);
 	}
 
 }
