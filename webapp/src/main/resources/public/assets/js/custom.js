@@ -314,6 +314,13 @@ $(document).ready(function($) {
         );
     }
 
+    if ($('ul.language-switch-list').length > 0) {
+        $('ul.language-switch-list a').click(function() {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    }
+
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

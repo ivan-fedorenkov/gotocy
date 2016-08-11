@@ -160,8 +160,23 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="description" th:text="${i18n.t('dictionary.description')}">Description</label>
-                                    <textarea class="form-control" id="description" rows="16" th:field="*{description}"></textarea>
+                                    <label th:text="${i18n.t('dictionary.description')}">Description</label>
+                                    <ul class="language-switch-list" role="tablist">
+                                        <li role="presentation" class="active"><a role="tab" data-target="#enDescriptionTab" data-toggle="tab"><img alt="English" src="http://assets.gotocy.com/static/img/flags/gb.png"></a></li>
+                                        <li role="presentation"><a role="tab" data-target="#ruDescriptionTab" data-toggle="tab"><img alt="Russian" src="http://assets.gotocy.com/static/img/flags/ru.png"></a></li>
+                                        <li role="presentation"><a role="tab" data-target="#elDescriptionTab" data-toggle="tab"><img alt="Greek" src="http://assets.gotocy.com/static/img/flags/gr.png"></a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="enDescriptionTab">
+                                            <textarea class="form-control" id="enDescription" rows="16" th:field="*{enDescription}"></textarea>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="ruDescriptionTab">
+                                            <textarea class="form-control" id="ruDescription" rows="16" th:field="*{ruDescription}"></textarea>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="elDescriptionTab">
+                                            <textarea class="form-control" id="elDescription" rows="16" th:field="*{elDescription}"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </section><!-- /#basic-information -->
 
@@ -232,16 +247,9 @@
 <script type="text/javascript" src="http://assets.gotocy.com/static/js/ie.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
-    var _latitude = /*[[${gotocy.defaultLatitude}]]*/ '34.7071301';
-    var _longitude = /*[[${gotocy.defaultLongitude}]]*/ '33.022617399999945';
-
-    PropertyNewPage.init(
-        /*[[${gotocy.propertySubmissionFormProperties.maxFileCount}]]*/ 10,
-        /*[[${gotocy.propertySubmissionFormProperties.maxFileSize}]]*/ 3000,
-        /*[[${#locale.language}]]*/ 'en',
-        /*[[${i18n.t('dictionary.browse-images')}]]*/ 'Browse Images'
-    );
+<script type="text/javascript" th:inline="javascript">
+    var _latitude = /*[[${propertyForm.latitude}]]*/ '34.7071301';
+    var _longitude = /*[[${propertyForm.longitude}]]*/ '33.022617399999945';
 
     google.maps.event.addDomListener(window, 'load', initPropertySubmitMap(_latitude, _longitude, 8));
 </script>

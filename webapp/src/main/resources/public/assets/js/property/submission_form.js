@@ -3,9 +3,9 @@
  * Dynamically includes: fileinput_locale_<language>.js
  */
 
-var PropertyNewPage = {};
+var PropertySubmissionForm = {};
 
-PropertyNewPage.init = function(maxFileCount, maxFileSize, language, browseLabel) {
+PropertySubmissionForm.init = function(maxFileCount, maxFileSize, language, browseLabel) {
     if (language !== 'en') {
         Utils.appendScript(Utils.getPath('/assets/js/fileinput_locale_' + language + '.js'));
     }

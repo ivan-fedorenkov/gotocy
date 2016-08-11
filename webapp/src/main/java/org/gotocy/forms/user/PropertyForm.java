@@ -2,6 +2,7 @@ package org.gotocy.forms.user;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.gotocy.config.Locales;
 import org.gotocy.domain.*;
 
 /**
@@ -17,7 +18,6 @@ public class PropertyForm {
 	private String address;
 	private Location location;
 	private PropertyType propertyType;
-	private String description;
 	private int coveredArea;
 	private int plotSize;
 	private int bedrooms;
@@ -32,6 +32,10 @@ public class PropertyForm {
 	private double latitude;
 	private double longitude;
 
+	private String enDescription;
+	private String ruDescription;
+	private String elDescription;
+
 	public PropertyForm() {
 		location = Location.FAMAGUSTA;
 		propertyType = PropertyType.APARTMENT;
@@ -43,7 +47,6 @@ public class PropertyForm {
 		address = property.getAddress();
 		location = property.getLocation();
 		propertyType = property.getPropertyType();
-		description = property.getDescription();
 		coveredArea = property.getCoveredArea();
 		plotSize = property.getPlotSize();
 		bedrooms = property.getBedrooms();
@@ -57,6 +60,10 @@ public class PropertyForm {
 		readyToMoveIn = property.isReadyToMoveIn();
 		latitude = property.getLatitude();
 		longitude = property.getLongitude();
+
+		enDescription = property.getDescription(Locales.EN);
+		ruDescription = property.getDescription(Locales.RU);
+		elDescription = property.getDescription(Locales.EL);
 	}
 
 	public Property mergeWithProperty(Property property) {
@@ -64,7 +71,6 @@ public class PropertyForm {
 		property.setAddress(address);
 		property.setLocation(location);
 		property.setPropertyType(propertyType);
-		property.setDescription(description);
 		property.setCoveredArea(coveredArea);
 		property.setPlotSize(plotSize);
 		property.setBedrooms(bedrooms);
@@ -78,6 +84,10 @@ public class PropertyForm {
 		property.setReadyToMoveIn(readyToMoveIn);
 		property.setLatitude(latitude);
 		property.setLongitude(longitude);
+
+		property.setDescription(enDescription, Locales.EN);
+		property.setDescription(ruDescription, Locales.RU);
+		property.setDescription(elDescription, Locales.EL);
 
 		// Preserve the contacts display option or set to OWNER (default)
 		PropertyContactsDisplayOption contactsDisplayOption = property.getContactsDisplayOption();
