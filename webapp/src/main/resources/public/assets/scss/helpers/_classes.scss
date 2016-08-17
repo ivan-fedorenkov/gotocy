@@ -650,7 +650,7 @@ ul.language-switch-list {
 
 // My Properties
 
-.my-properties {
+.my-properties, #user-property-images-table-section {
   table { width: 100%;
     h2 { border: none; font-size: 18px; font-weight: bold; margin: 0 0 5px 0; padding: 0; }
     thead { @include shadow;
