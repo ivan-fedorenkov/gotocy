@@ -7,7 +7,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.editPath(helper.toArray(T(org.gotocy.config.Paths).USER, property, '/assets'), locale)}}" hreflang="en" href="#" />
+    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.editPath(helper.toArray(T(org.gotocy.config.Paths).USER, property, '/images'), locale)}}" hreflang="en" href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
 <!-- Wrapper -->
 <div class="wrapper">
     <!-- Navigation -->
-    <div class="navigation" th:include="fragments/navigation_div :: navigation(${helper.toArray(T(org.gotocy.config.Paths).USER, property, '/assets', T(org.gotocy.config.Paths).EDIT)}, ${false})"></div>
+    <div class="navigation" th:include="fragments/navigation_div :: navigation(${helper.toArray(T(org.gotocy.config.Paths).USER, property, '/images', T(org.gotocy.config.Paths).EDIT)}, ${false})"></div>
     <!-- end Navigation -->
 
     <!-- Page Content -->
@@ -65,34 +65,27 @@
 
                 <!-- Property Gallery Edit Content -->
                 <div class="col-md-6 col-sm-10">
-                    <section id="user-property-assets-edit">
+                    <section id="user-property-images-edit">
                         <header><h1 th:text="${i18n.t('dictionary.gallery-of-property-title', property.title)}">Gallery of Property Title</h1></header>
-                        <section id="user-property-images-table-section" class="block">
-                            <form role="form" id="form-user-property-assets-edit" class="form-submit" th:method="put" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property, '/assets')}">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>Image</th>
-                                        <th th:text="${i18n.t('dictionary.title')}">Title</th>
-                                        <th th:text="${i18n.t('dictionary.actions')}">Actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="sortable-images">
-                                    <tr th:each="image : ${property.images}">
-                                        <td class="image">
-                                            <img alt="" th:src="${helper.imageUrl(image, T(org.gotocy.domain.ImageSize).MEDIUM)}"></a>
-                                        </td>
-                                        <td>
-                                            <input type="text">
-                                        </td>
-                                        <td class="actions">
-                                            <a href="#" class="delete"><i class="fa fa-trash"></i> Delete</a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div><!-- /.table-responsive -->
+
+                        <section class="block">
+                            <form role="form" id="form-user-property-images-edit" class="form-submit" th:method="put" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property, '/images')}">
+                                <section id="images-editor" class="row">
+                                    <div class="image col-md-4 col-sm-6 col-xs-12" th:each="image : ${property.images}">
+                                        <a th:href="${helper.imageUrl(image, T(org.gotocy.domain.ImageSize).BIG)}"><img class="img-responsive" alt="" th:src="${helper.imageUrl(image, T(org.gotocy.domain.ImageSize).MEDIUM)}"></a>
+                                        <figure class="image-remove">
+                                            <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button>
+                                        </figure>
+                                    </div>
+                                </section>
+
+                                <section class="block">
+                                    <div class="center">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-default large" th:text="${i18n.t('dictionary.save-updates')}">Save Updates</button>
+                                        </div><!-- /.form-group -->
+                                    </div>
+                                </section>
                             </form>
                         </section>
                     </section>
@@ -129,8 +122,8 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#sortable-images").sortable();
-        $("#sortable-images").disableSelection();
+        $("#images-editor").sortable();
+        $("#images-editor").disableSelection();
     });
 </script>
 

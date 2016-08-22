@@ -528,6 +528,28 @@ ul.error-messages {
   I
 ****/
 
+#images-editor {
+    .image {
+        margin-top: 15px; margin-bottom: 15px;
+        
+        .image-remove {
+            position: absolute;
+            top: 5px;
+            right: 25px;
+
+            button {
+                line-height: 1;
+            }
+
+            display: none;
+        }
+
+        &:hover {
+            .image-remove { display: initial; }
+        }
+    }
+}
+
 .invoice { width: 100%;
   aside { display: inline-block; width: 49%; }
   address { line-height: 24px; margin: 20px 0;}
@@ -650,7 +672,7 @@ ul.language-switch-list {
 
 // My Properties
 
-.my-properties, #user-property-images-table-section {
+.my-properties {
   table { width: 100%;
     h2 { border: none; font-size: 18px; font-weight: bold; margin: 0 0 5px 0; padding: 0; }
     thead { @include shadow;

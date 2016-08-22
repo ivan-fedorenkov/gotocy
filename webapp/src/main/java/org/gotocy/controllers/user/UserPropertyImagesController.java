@@ -17,9 +17,9 @@ import java.util.Locale;
  * @author ifedorenkov
  */
 @Controller
-public class UserPropertyAssetsController {
+public class UserPropertyImagesController {
 
-	@RequestMapping(value = "/user/properties/{id}/assets/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/properties/{id}/images/edit", method = RequestMethod.GET)
 	public String edit(Model model, @RequiredDomainObject @PathVariable("id") Property property,
 		@AuthenticationPrincipal GtcUser user, Locale locale)
 	{
@@ -28,7 +28,7 @@ public class UserPropertyAssetsController {
 
 		property.initLocalizedFields(locale);
 		model.addAttribute(property);
-		return "user/property/asset/edit";
+		return "user/property/image/edit";
 	}
 
 }
