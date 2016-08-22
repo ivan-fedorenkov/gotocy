@@ -69,12 +69,17 @@
                         <header><h1 th:text="${i18n.t('dictionary.gallery-of-property-title', property.title)}">Gallery of Property Title</h1></header>
 
                         <section class="block">
-                            <form role="form" id="form-user-property-images-edit" class="form-submit" th:method="put" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property, '/images')}">
+                            <form role="form" id="form-user-property-images-edit" class="form-submit" th:object="imagesForm" th:method="put" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property, '/images')}">
                                 <section id="images-editor" class="row">
                                     <div class="image col-md-4 col-sm-6 col-xs-12" th:each="image : ${property.images}">
-                                        <a th:href="${helper.imageUrl(image, T(org.gotocy.domain.ImageSize).BIG)}"><img class="img-responsive" alt="" th:src="${helper.imageUrl(image, T(org.gotocy.domain.ImageSize).MEDIUM)}"></a>
+                                        <a class="image-popup" th:href="${helper.imageUrl(image, T(org.gotocy.domain.ImageSize).BIG)}"><img class="img-responsive" alt="" th:src="${helper.imageUrl(image, T(org.gotocy.domain.ImageSize).MEDIUM)}"></a>
+
+                                        <figure class="image-select">
+                                            <button class="btn btn-xs"><i class="fa fa-check-circle-o"></i></button>
+                                        </figure>
+
                                         <figure class="image-remove">
-                                            <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button>
+                                            <a th:href="@{${helper.path(T(org.gotocy.config.Paths).USER, property, image)}(_method=${'DELETE'})}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                                         </figure>
                                     </div>
                                 </section>
@@ -122,8 +127,33 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#images-editor").sortable();
-        $("#images-editor").disableSelection();
+        /*$("#images-editor").sortable();
+        $("#images-editor").disableSelection();*/
+
+        $(".image-remove a").click(function(e) {
+            var $image = $(this).parent(".image-remove").parent(".image");
+            $image.toggleClass("removed");
+            $image.removeClass("selected");
+            $image.children(".image-select").children("button").removeClass("btn-success");
+            e.preventDefault();
+        });
+
+        $(".image-select button").click(function(e) {
+            $(this).toggleClass("btn-success");
+            $(this).parent(".image-select").parent(".image").toggleClass("selected");
+            e.preventDefault();
+        });
+
+        $("#images-editor").magnificPopup({
+            delegate: 'a.image-popup',
+            type: 'image',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0,1]
+            },
+            overflowY: 'scroll'
+        });
     });
 </script>
 

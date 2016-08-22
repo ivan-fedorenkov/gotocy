@@ -1257,14 +1257,28 @@ ul.error-messages {
 #images-editor .image {
   margin-top: 15px;
   margin-bottom: 15px; }
-  #images-editor .image .image-remove {
-    position: absolute;
-    top: 5px;
-    right: 25px;
+  #images-editor .image figure {
     display: none; }
-    #images-editor .image .image-remove button {
+    #images-editor .image figure a, #images-editor .image figure button {
       line-height: 1; }
-  #images-editor .image:hover .image-remove {
+    #images-editor .image figure.image-remove {
+      position: absolute;
+      top: 10px;
+      right: 25px; }
+    #images-editor .image figure.image-select {
+      position: absolute;
+      top: 10px;
+      left: 25px; }
+  #images-editor .image:hover figure {
+    display: initial; }
+  #images-editor .image.selected figure.image-select {
+    display: initial; }
+  #images-editor .image.removed img {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    opacity: 0.5; }
+  #images-editor .image.removed figure.image-select {
+    display: none; }
+  #images-editor .image.removed figure.image-remove {
     display: initial; }
 
 .invoice {

@@ -115,6 +115,8 @@ public class Helper {
 				path.append(PageHelper.path((Page) object, locale).orElse("/"));
 			} else if (object instanceof LocalizedPage) {
 				path.append(PageHelper.path((LocalizedPage) object, locale).orElse("/"));
+			} else if (object instanceof Image) {
+				path.append("/images/").append(((Image) object).getId());
 			} else if (object instanceof String) {
 				path.append((String) object);
 			} else {

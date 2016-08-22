@@ -1,4 +1,5 @@
 @import "compass/utilities/general/clearfix";
+@import "compass/css3/opacity";
 
 .page-sub-page {
   #page-content {
@@ -530,22 +531,51 @@ ul.error-messages {
 
 #images-editor {
     .image {
-        margin-top: 15px; margin-bottom: 15px;
-        
-        .image-remove {
-            position: absolute;
-            top: 5px;
-            right: 25px;
+        margin-top: 15px;
+        margin-bottom: 15px;
 
-            button {
+        figure {
+            a, button {
                 line-height: 1;
             }
-
             display: none;
+
+            &.image-remove {
+                position: absolute;
+                top: 10px;
+                right: 25px;
+            }
+
+            &.image-select {
+                position: absolute;
+                top: 10px;
+                left: 25px;
+            }
         }
 
         &:hover {
-            .image-remove { display: initial; }
+            figure { display: initial; }
+        }
+
+        &.selected {
+            figure.image-select {
+                display: initial;
+            }
+        }
+
+        &.removed {
+            img {
+                @include opacity(0.5);
+            }
+
+            figure {
+                &.image-select {
+                    display: none;
+                }
+                &.image-remove {
+                    display: initial;
+                }
+            }
         }
     }
 }

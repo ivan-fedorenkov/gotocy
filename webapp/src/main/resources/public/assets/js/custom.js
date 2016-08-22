@@ -290,20 +290,6 @@ $(document).ready(function($) {
         });
     }
 
-    var imagesEditor = $('#images-editor');
-    if (imagesEditor.length > 0) {
-        imagesEditor.magnificPopup({
-            delegate: 'a',
-            type: 'image',
-            gallery: {
-                enabled: true,
-                navigateByImgClick: true,
-                preload: [0,1]
-            },
-            overflowY: 'scroll'
-        });
-    }
-
 //  iCheck
 
     if ($('.checkbox').length > 0) {
