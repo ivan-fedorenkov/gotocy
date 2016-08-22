@@ -69,17 +69,20 @@
                         <header><h1 th:text="${i18n.t('dictionary.gallery-of-property-title', property.title)}">Gallery of Property Title</h1></header>
 
                         <section class="block">
-                            <form role="form" id="form-user-property-images-edit" class="form-submit" th:object="imagesForm" th:method="put" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property, '/images')}">
+                            <form role="form" id="form-user-property-images-edit" class="form-submit" th:object="${imagesEditorForm}" th:method="put" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property, '/images')}">
                                 <section id="images-editor" class="row">
-                                    <div class="image col-md-4 col-sm-6 col-xs-12" th:each="image : ${property.images}">
-                                        <a class="image-popup" th:href="${helper.imageUrl(image, T(org.gotocy.domain.ImageSize).BIG)}"><img class="img-responsive" alt="" th:src="${helper.imageUrl(image, T(org.gotocy.domain.ImageSize).MEDIUM)}"></a>
+                                    <div th:id="image[__${stat.index}__]" class="image col-md-4 col-sm-6 col-xs-12" th:each="state, stat : *{imagesState}">
+                                        <input type="hidden" th:field="*{imagesState[__${stat.index}__].image.id}">
+                                        <input type="hidden" th:field="*{imagesState[__${stat.index}__].removed}">
+
+                                        <a class="image-popup" th:href="${helper.imageUrl(state.image, T(org.gotocy.domain.ImageSize).BIG)}"><img class="img-responsive" alt="" th:src="${helper.imageUrl(state.image, T(org.gotocy.domain.ImageSize).MEDIUM)}"></a>
 
                                         <figure class="image-select">
                                             <button class="btn btn-xs"><i class="fa fa-check-circle-o"></i></button>
                                         </figure>
 
                                         <figure class="image-remove">
-                                            <a th:href="@{${helper.path(T(org.gotocy.config.Paths).USER, property, image)}(_method=${'DELETE'})}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                                            <a th:href="@{${helper.path(T(org.gotocy.config.Paths).USER, property, state.image)}(_method=${'DELETE'})}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                                         </figure>
                                     </div>
                                 </section>
@@ -135,6 +138,12 @@
             $image.toggleClass("removed");
             $image.removeClass("selected");
             $image.children(".image-select").children("button").removeClass("btn-success");
+
+            var imageId = $image.attr("id");
+            var imageIdVal = imageId.substring(6, imageId.length - 1);
+            var $inputRemove = $image.children("#imagesState" + imageIdVal + "\\.removed");
+            $inputRemove.val($inputRemove.val() == "false" ? "true" : "false");
+
             e.preventDefault();
         });
 
