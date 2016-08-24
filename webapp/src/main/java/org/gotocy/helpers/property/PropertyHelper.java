@@ -1,11 +1,14 @@
 package org.gotocy.helpers.property;
 
 import org.gotocy.config.ApplicationProperties;
-import org.gotocy.domain.*;
+import org.gotocy.domain.ImageSize;
+import org.gotocy.domain.OfferType;
+import org.gotocy.domain.Property;
+import org.gotocy.domain.PropertyType;
 import org.gotocy.format.CurrencyFormatter;
 import org.gotocy.format.DistanceFormatter;
 import org.gotocy.i18n.I18n;
-import org.gotocy.service.AssetsManager;
+import org.gotocy.service.AssetsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -36,11 +39,11 @@ public class PropertyHelper {
 		}
 	}
 
-	private final AssetsManager assetsManager;
+	private final AssetsService assetsService;
 	private final ApplicationProperties applicationProperties;
 
-	public PropertyHelper(ApplicationProperties applicationProperties, AssetsManager assetsManager) {
-		this.assetsManager = assetsManager;
+	public PropertyHelper(ApplicationProperties applicationProperties, AssetsService assetsService) {
+		this.assetsService = assetsService;
 		this.applicationProperties = applicationProperties;
 	}
 
@@ -57,9 +60,9 @@ public class PropertyHelper {
 	 */
 	public String representativeImageUrl(Property property) {
 		if (property.getRepresentativeImage() == null) {
-			return assetsManager.getPublicUrl(applicationProperties.getDefaultRepresentativeImage()).orElse("");
+			return assetsService.getPublicUrl(applicationProperties.getDefaultRepresentativeImage()).orElse("");
 		} else {
-			return assetsManager.getPublicUrl(property.getRepresentativeImage(), ImageSize.MEDIUM).orElse("");
+			return assetsService.getPublicUrl(property.getRepresentativeImage(), ImageSize.MEDIUM).orElse("");
 		}
 	}
 

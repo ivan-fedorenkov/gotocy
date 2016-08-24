@@ -27,6 +27,11 @@ public class PdfFile extends Asset {
 		return "application/pdf";
 	}
 
+	@Override
+	public String getFileExtension() {
+		return "pdf";
+	}
+
 	/**
 	 * Special getter method that returns user friendly file name.
 	 * Unit test: PdfFileTest#getDisplayName

@@ -76,6 +76,17 @@ public class PropertyServiceImpl implements PropertyService {
 		return propertyRepository.save(property);
 	}
 
+	/**
+	 * TODO: don't forget about representative image.
+	 */
+	@Override
+	@Transactional
+	public Property detachImages(Property property, Collection<Image> images) throws ServiceMethodExecutionException {
+		assetsService.deleteAssets(images);
+		property.getImages().removeAll(images);
+		return propertyRepository.save(property);
+	}
+
 	@Override
 	public SecretKey generateRegistrationSecret() {
 		SecretKey key = new SecretKey();

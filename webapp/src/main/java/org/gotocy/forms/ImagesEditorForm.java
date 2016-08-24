@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * @author ifedorenkov
@@ -27,12 +28,18 @@ public class ImagesEditorForm {
 		imagesState = new ArrayList<>();
 	}
 
-	public void mergeWithCollection(Collection<Image> images) {
+	/**
+	 * Returns removed images that are in the existing images collection.
+	 */
+	public Collection<Image> getRemoved(Collection<Image> existing) {
 		Set<Long> toRemove = imagesState.stream()
-			.filter(state -> state.removed == Boolean.TRUE)
+			.filter(state -> state.removed)
 			.map(state -> state.getImage().getId())
-			.collect(Collectors.toSet());
-		images.removeIf(image -> toRemove.contains(image.getId()));
+			.collect(toSet());
+
+		return existing.stream()
+			.filter(image -> toRemove.contains(image.getId()))
+			.collect(toList());
 	}
 
 	@Getter

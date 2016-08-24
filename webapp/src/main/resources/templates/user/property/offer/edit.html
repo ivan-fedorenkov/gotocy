@@ -56,7 +56,7 @@
                                 <li><a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, property)}"><i class="fa fa-arrow-left fa-fw"></i><span th:text="${i18n.t('dictionary.back-to-property')}">Back to Property</span></a></li>
                                 <li><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, property)}"><i class="fa fa-pencil fa-fw"></i><span th:text="${i18n.t('dictionary.edit-property')}">Edit Property</span></a></li>
                                 <li class="active"><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, property, '/offers')}"><i class="fa fa-eur fa-fw"></i><span th:text="${i18n.t('dictionary.manage-offers')}">Manage Offers</span></a></li>
-                                <li><a href="#"><i class="fa fa-picture-o fa-fw"></i><span th:text="${i18n.t('dictionary.manage-gallery')}">Manage Gallery</span></a></li>
+                                <li><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, property, '/images')}"><i class="fa fa-picture-o fa-fw"></i><span th:text="${i18n.t('dictionary.manage-gallery')}">Manage Gallery</span></a></li>
                             </ul>
                         </aside>
                     </section><!-- /#sidebar -->

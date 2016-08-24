@@ -17,18 +17,12 @@ import java.util.function.Supplier;
 public interface AssetsManager {
 
 	/**
+	 * Returns public url of the given asset.
+	 *
 	 * @param asset which url is to be returned
 	 * @return public url of the given asset
 	 */
 	Optional<String> getPublicUrl(Asset asset);
-
-	/**
-	 * @param image which url is to be returned
-	 * @param size image size hint, note that it is just a hint and it is not guarantied that the returned
-	 *             url is referencing the image of the specific size
-	 * @return public url of the given image
-	 */
-	Optional<String> getPublicUrl(Image image, ImageSize size);
 
 	/**
 	 * Returns the new asset instance with loaded underlying object.

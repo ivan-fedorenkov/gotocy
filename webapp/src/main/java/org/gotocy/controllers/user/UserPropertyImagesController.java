@@ -4,8 +4,10 @@ import org.gotocy.config.Paths;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.controllers.exceptions.AccessDeniedException;
 import org.gotocy.domain.GtcUser;
+import org.gotocy.domain.Image;
 import org.gotocy.domain.Property;
 import org.gotocy.forms.ImagesEditorForm;
+import org.gotocy.forms.user.ImagesForm;
 import org.gotocy.helpers.Helper;
 import org.gotocy.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.util.Collection;
 import java.util.Locale;
 
 /**
@@ -43,8 +47,22 @@ public class UserPropertyImagesController {
 
 		property.initLocalizedFields(locale);
 		model.addAttribute(property);
+		model.addAttribute(new ImagesForm());
 		model.addAttribute(new ImagesEditorForm(property.getImages()));
 		return "user/property/image/edit";
+	}
+
+	@RequestMapping(value = "/user/properties/{id}/images", method = RequestMethod.POST)
+	public String create(Model model, @RequiredDomainObject @PathVariable("id") Property property,
+		@AuthenticationPrincipal GtcUser user, @Valid @ModelAttribute ImagesForm form, BindingResult formErrors)
+		throws IOException
+	{
+		if (!property.isEditableBy(user))
+			throw new AccessDeniedException();
+
+		Collection<Image> attached = form.mapFilesToImages();
+		propertyService.attachImages(property, attached);
+		return "redirect:" + Helper.path(Paths.USER, property);
 	}
 
 	@RequestMapping(value = "/user/properties/{id}/images", method = RequestMethod.PUT)
@@ -54,8 +72,8 @@ public class UserPropertyImagesController {
 		if (!property.isEditableBy(user))
 			throw new AccessDeniedException();
 
-		form.mergeWithCollection(property.getImages());
-		propertyService.update(property);
+		Collection<Image> removed = form.getRemoved(property.getImages());
+		propertyService.detachImages(property, removed);
 		return "redirect:" + Helper.path(Paths.USER, property);
 	}
 

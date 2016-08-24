@@ -25,6 +25,11 @@ public class Image extends Asset {
 		return "image/jpeg";
 	}
 
+	@Override
+	public String getFileExtension() {
+		return "jpg";
+	}
+
 	/**
 	 * Returns an image asset instance sized to the given {@link ImageSize}.
 	 */

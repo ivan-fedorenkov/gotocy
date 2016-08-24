@@ -12,7 +12,7 @@ import org.gotocy.helpers.Helper;
 import org.gotocy.i18n.I18n;
 import org.gotocy.interceptors.HelpersInterceptor;
 import org.gotocy.repository.PageRepository;
-import org.gotocy.service.AssetsManager;
+import org.gotocy.service.AssetsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +35,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	private I18n i18n;
 	private ApplicationProperties applicationProperties;
-	private AssetsManager assetsManager;
+	private AssetsService assetsService;
 	private PageRepository pageRepository;
 
 	@Autowired
@@ -49,8 +49,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Autowired
-	public void setAssetsManager(AssetsManager assetsManager) {
-		this.assetsManager = assetsManager;
+	public void setAssetsService(AssetsService assetsService) {
+		this.assetsService = assetsService;
 	}
 
 	@Autowired
@@ -62,7 +62,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public Helper helper() {
-		return new Helper(applicationProperties, assetsManager, pageRepository);
+		return new Helper(applicationProperties, assetsService, pageRepository);
 	}
 
 	@Bean

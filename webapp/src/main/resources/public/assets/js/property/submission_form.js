@@ -17,6 +17,7 @@ PropertySubmissionForm.init = function(maxFileCount, maxFileSize, language, brow
         showUpload: false,
         showCaption: false,
         showRemove: false,
+        showClose: false,
         browseClass: 'btn btn-default',
         browseLabel: browseLabel
     });

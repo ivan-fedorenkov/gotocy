@@ -25,6 +25,11 @@ public class PanoXml extends Asset {
 		return "application/xml";
 	}
 
+	@Override
+	public String getFileExtension() {
+		return "xml";
+	}
+
 	/**
 	 * Decodes the underlying asset bytes into an xml {@link String}.
 	 */

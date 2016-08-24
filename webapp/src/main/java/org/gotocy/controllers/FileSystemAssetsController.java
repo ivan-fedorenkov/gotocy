@@ -45,6 +45,11 @@ public class FileSystemAssetsController {
 		public String getContentType() {
 			throw new UnsupportedOperationException();
 		}
+
+		@Override
+		public String getFileExtension() {
+			throw new UnsupportedOperationException();
+		}
 	}
 
 }

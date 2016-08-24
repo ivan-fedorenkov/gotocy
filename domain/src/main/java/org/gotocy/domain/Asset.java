@@ -45,6 +45,8 @@ public abstract class Asset extends BaseEntity {
 		return bytes == null ? 0 : bytes.length;
 	}
 
+	public abstract String getFileExtension();
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

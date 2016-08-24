@@ -13,6 +13,8 @@ import com.amazonaws.services.s3.model.StorageClass;
 import org.gotocy.config.S3Properties;
 import org.gotocy.domain.Asset;
 import org.gotocy.domain.Image;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.StreamUtils;
@@ -28,7 +30,8 @@ import java.util.function.Supplier;
  *
  * @author ifedorenkov
  */
-public class AmazonAssetsManager extends AbstractAssetsManager {
+public class AmazonAssetsManager implements AssetsManager {
+	private static final Logger logger = LoggerFactory.getLogger(AmazonAssetsManager.class);
 
 	private AmazonS3Client s3Client;
 	private final S3Properties s3Properties;
@@ -58,7 +61,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 			asset.setBytes(StreamUtils.copyToByteArray(in));
 			result = Optional.of(asset);
 		} catch (AmazonClientException | IOException e) {
-			getLogger().error("Failed to load underlying object for asset key '{}'", assetKey, e);
+			logger.error("Failed to load underlying object for asset key '{}'", assetKey, e);
 		}
 		return result;
 	}
@@ -73,7 +76,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 			PutObjectRequest putObjectRequest = new PutObjectRequest(s3Properties.getBucket(), asset.getKey(), in, metadata);
 			s3Client.putObject(putObjectRequest.withStorageClass(getStorageClass(asset)));
 		} catch (AmazonClientException e) {
-			getLogger().error("Failed to save underlying object of {}", asset, e);
+			logger.error("Failed to save underlying object of {}", asset, e);
 			throw new IOException(e);
 		}
 	}
@@ -84,7 +87,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 		try {
 			s3Client.deleteObject(s3Properties.getBucket(), asset.getKey());
 		} catch (AmazonClientException e) {
-			getLogger().error("Failed to delete underlying object of {}", asset, e);
+			logger.error("Failed to delete underlying object of {}", asset, e);
 			throw new IOException(e);
 		}
 	}
@@ -107,7 +110,7 @@ public class AmazonAssetsManager extends AbstractAssetsManager {
 			url = Optional.of(s3Client.generatePresignedUrl(s3Properties.getBucket(), asset.getKey(),
 				s3Properties.getExpirationDate(), HttpMethod.GET).toString());
 		} catch (AmazonClientException e) {
-			getLogger().error("Failed to generate presigned url for asset key '{}'", asset.getKey(), e);
+			logger.error("Failed to generate presigned url for asset key '{}'", asset.getKey(), e);
 		}
 		return url;
 	}

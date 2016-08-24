@@ -46,12 +46,23 @@ public interface PropertyService {
 	/**
 	 * Attaches provided images to the given property.
 	 *
-	 * @param property whose assets should be attached
+	 * @param property whose images should be attached
 	 * @param images to be attached
 	 * @return instance with attached images
 	 * @throws ServiceMethodExecutionException if anything goes wrong
 	 */
 	Property attachImages(Property property, Collection<Image> images)
+		throws ServiceMethodExecutionException;
+
+	/**
+	 * Detaches provided images from the given property.
+	 *
+	 * @param property whose images should be detached
+	 * @param images to be detached
+	 * @return instance with detached images
+	 * @throws ServiceMethodExecutionException if anything goes wrong
+	 */
+	Property detachImages(Property property, Collection<Image> images)
 		throws ServiceMethodExecutionException;
 
 	/**

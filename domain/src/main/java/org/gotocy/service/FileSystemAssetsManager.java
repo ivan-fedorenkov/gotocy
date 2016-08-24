@@ -1,6 +1,8 @@
 package org.gotocy.service;
 
 import org.gotocy.domain.Asset;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -13,7 +15,8 @@ import java.util.function.Supplier;
 /**
  * @author ifedorenkov
  */
-public class FileSystemAssetsManager extends AbstractAssetsManager {
+public class FileSystemAssetsManager implements AssetsManager {
+	private static final Logger logger = LoggerFactory.getLogger(FileSystemAssetsManager.class);
 
 	private static final int BUFFER_SIZE = 2048;
 
@@ -30,7 +33,7 @@ public class FileSystemAssetsManager extends AbstractAssetsManager {
 		if (exists(asset)) {
 			return getUrl(asset.getKey());
 		} else {
-			getLogger().error("Failed to generate public url for {}. Underlying object not found.", asset);
+			logger.error("Failed to generate public url for {}. Underlying object not found.", asset);
 			return Optional.empty();
 		}
 	}
@@ -46,7 +49,7 @@ public class FileSystemAssetsManager extends AbstractAssetsManager {
 					asset.setBytes(Files.readAllBytes(assetPath));
 					result = Optional.of(asset);
 				} catch (IOException e) {
-					getLogger().error("Failed to load underlying object for asset key '{}'", assetKey, e);
+					logger.error("Failed to load underlying object for asset key '{}'", assetKey, e);
 				}
 			} else {
 				try (BufferedInputStream bis =
@@ -63,7 +66,7 @@ public class FileSystemAssetsManager extends AbstractAssetsManager {
 				}
 			}
 		} catch (IOException ioe) {
-			getLogger().error("Failed to load underlying object for asset key '{}'", assetKey, ioe);
+			logger.error("Failed to load underlying object for asset key '{}'", assetKey, ioe);
 		}
 		return result;
 	}
@@ -78,7 +81,7 @@ public class FileSystemAssetsManager extends AbstractAssetsManager {
 
 	@Override
 	public void deleteAsset(Asset asset) throws IOException {
-		Path assetPath = Paths.get(assetsClassPathRoot, asset.getKey());
+		Path assetPath = Paths.get(assetsDirPath, asset.getKey());
 		Files.delete(assetPath);
 	}
 

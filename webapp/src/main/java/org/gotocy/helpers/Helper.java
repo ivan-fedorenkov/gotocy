@@ -11,6 +11,7 @@ import org.gotocy.helpers.property.PropertyHelper;
 import org.gotocy.helpers.propertysearch.PropertySearchFormHelper;
 import org.gotocy.repository.PageRepository;
 import org.gotocy.service.AssetsManager;
+import org.gotocy.service.AssetsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,16 +35,16 @@ public class Helper {
 
 	private static final Logger logger = LoggerFactory.getLogger(Helper.class);
 
-	private final AssetsManager assetsManager;
+	private final AssetsService assetsService;
 	private final PropertyHelper propertyHelper;
 	private final PageHelper pageHelper;
 
 	@Autowired
-	public Helper(ApplicationProperties applicationProperties, AssetsManager assetsManager,
+	public Helper(ApplicationProperties applicationProperties, AssetsService assetsService,
 		PageRepository pageRepository)
 	{
-		this.assetsManager = assetsManager;
-		propertyHelper = new PropertyHelper(applicationProperties, assetsManager);
+		this.assetsService = assetsService;
+		propertyHelper = new PropertyHelper(applicationProperties, assetsService);
 		pageHelper = new PageHelper(pageRepository);
 	}
 
@@ -62,7 +63,7 @@ public class Helper {
 	 * Generates url for a given asset, using the configured {@link AssetsManager} instance.
 	 */
 	public String url(Asset asset) {
-		return assetsManager.getPublicUrl(asset).orElse("");
+		return assetsService.getPublicUrl(asset).orElse("");
 	}
 
 	/**
@@ -70,7 +71,7 @@ public class Helper {
 	 * size.
 	 */
 	public String imageUrl(Image image, ImageSize size) {
-		return assetsManager.getPublicUrl(image, size).orElse("");
+		return assetsService.getPublicUrl(image, size).orElse("");
 	}
 
 	/**

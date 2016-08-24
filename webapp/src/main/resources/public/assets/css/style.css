@@ -3431,31 +3431,29 @@ form label.error {
 form.form-labeled button[type='submit'] {
   margin-top: 20px; }
 
-.form-submit .file-input {
+.file-input {
   border: 2px solid #f3f3f3;
   padding: 15px;
   position: relative;
   width: 100%; }
-  .form-submit .file-input .file-preview {
+  .file-input .file-preview {
     -moz-border-radius: 0px;
     -webkit-border-radius: 0px;
     border-radius: 0px;
     border: none;
     padding: 0;
     margin-bottom: 20px; }
-    .form-submit .file-input .file-preview .close {
+    .file-input .file-preview .close {
       position: absolute;
       right: 10px;
       top: 5px; }
-      .form-submit .file-input .file-preview .close.kv-error-close {
-        display: none; }
-    .form-submit .file-input .file-preview .file-preview-frame {
+    .file-input .file-preview .file-preview-frame {
       -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
       -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
       box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
       border: none;
       height: inherit; }
-      .form-submit .file-input .file-preview .file-preview-frame .file-preview-image {
+      .file-input .file-preview .file-preview-frame .file-preview-image {
         height: 100px; }
 
 .bootstrap-select {

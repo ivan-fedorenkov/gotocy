@@ -69,6 +69,17 @@
                         <header><h1 th:text="${i18n.t('dictionary.gallery-of-property-title', property.title)}">Gallery of Property Title</h1></header>
 
                         <section class="block">
+                            <div class="center">
+                                <div class="form-group">
+                                    <form role="form" id="form-user-property-images-attach" th:object="${imagesForm}" th:method="post" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property, '/images')}" enctype="multipart/form-data">
+                                        <input id="images-upload" type="file" name="images" multiple="true" class="file" accept="image/jpeg">
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="block">
+                            <h2 th:text="${i18n.t('dictionary.manage-existing-images')}">Manage existing images</h2>
                             <form role="form" id="form-user-property-images-edit" class="form-submit" th:object="${imagesEditorForm}" th:method="put" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property, '/images')}">
                                 <section id="images-editor" class="row">
                                     <div th:id="image[__${stat.index}__]" class="image col-md-4 col-sm-6 col-xs-12" th:each="state, stat : *{imagesState}">
@@ -77,9 +88,9 @@
 
                                         <a class="image-popup" th:href="${helper.imageUrl(state.image, T(org.gotocy.domain.ImageSize).BIG)}"><img class="img-responsive" alt="" th:src="${helper.imageUrl(state.image, T(org.gotocy.domain.ImageSize).MEDIUM)}"></a>
 
-                                        <figure class="image-select">
+                                        <!--<figure class="image-select">
                                             <button class="btn btn-xs"><i class="fa fa-check-circle-o"></i></button>
-                                        </figure>
+                                        </figure>-->
 
                                         <figure class="image-remove">
                                             <a th:href="@{${helper.path(T(org.gotocy.config.Paths).USER, property, state.image)}(_method=${'DELETE'})}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
@@ -129,41 +140,33 @@
 <![endif]-->
 
 <script type="text/javascript">
+
+    $('#images-upload').fileinput({
+        language: 'en',
+        maxFileCount: 10,
+        maxFileSize: 3000,
+        showUpload: true,
+        showCaption: false,
+        showRemove: true,
+        showClose: false,
+        browseClass: 'btn btn-default',
+        browseLabel: 'Browse...',
+        previewTemplates: {
+            image: '<div class="file-preview-frame" id="{previewId}" data-fileindex="{fileindex}">\n' +
+                    '       <img src="{data}" class="file-preview-image" title="{caption}" alt="{caption}">\n' +
+                    '   </div>\n'
+        }
+    });
+
     $(document).ready(function() {
+        ImagesEditor.init();
+
         /*$("#images-editor").sortable();
         $("#images-editor").disableSelection();*/
-
-        $(".image-remove a").click(function(e) {
-            var $image = $(this).parent(".image-remove").parent(".image");
-            $image.toggleClass("removed");
-            $image.removeClass("selected");
-            $image.children(".image-select").children("button").removeClass("btn-success");
-
-            var imageId = $image.attr("id");
-            var imageIdVal = imageId.substring(6, imageId.length - 1);
-            var $inputRemove = $image.children("#imagesState" + imageIdVal + "\\.removed");
-            $inputRemove.val($inputRemove.val() == "false" ? "true" : "false");
-
-            e.preventDefault();
-        });
-
-        $(".image-select button").click(function(e) {
-            $(this).toggleClass("btn-success");
-            $(this).parent(".image-select").parent(".image").toggleClass("selected");
-            e.preventDefault();
-        });
-
-        $("#images-editor").magnificPopup({
-            delegate: 'a.image-popup',
-            type: 'image',
-            gallery: {
-                enabled: true,
-                navigateByImgClick: true,
-                preload: [0,1]
-            },
-            overflowY: 'scroll'
-        });
     });
+
+
+
 </script>
 
 </body>
