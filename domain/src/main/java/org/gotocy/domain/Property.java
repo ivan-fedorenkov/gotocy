@@ -140,6 +140,9 @@ public class Property extends BaseEntity {
 	}
 
 	public Image getImage(int index) {
+		if (images.isEmpty())
+			return null;
+
 		// Ensure that the index is in the images list bounds
 		if (index >= images.size())
 			index = index % images.size();

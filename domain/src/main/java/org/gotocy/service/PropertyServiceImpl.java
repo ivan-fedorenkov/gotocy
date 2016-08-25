@@ -6,8 +6,6 @@ import org.gotocy.domain.Property;
 import org.gotocy.domain.SecretKey;
 import org.gotocy.repository.PropertyRepository;
 import org.gotocy.utils.StringKeyGeneratorImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,8 +25,6 @@ import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
  */
 @Component
 public class PropertyServiceImpl implements PropertyService {
-
-	private static final Logger logger = LoggerFactory.getLogger(PropertyService.class);
 
 	private static final int REGISTRATION_KEY_LENGTH = 28;
 
@@ -63,6 +59,10 @@ public class PropertyServiceImpl implements PropertyService {
 		return propertyRepository.save(property);
 	}
 
+
+	/**
+	 * Unit test: PropertyServiceTest#testAttachingImagesWithRepresentative
+	 */
 	@Override
 	@Transactional
 	public Property attachImages(Property property, Collection<Image> images)
@@ -77,13 +77,15 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	/**
-	 * TODO: don't forget about representative image.
+	 * Unit test: PropertyServiceTest#testDetachingImagesWithRepresentative
 	 */
 	@Override
 	@Transactional
 	public Property detachImages(Property property, Collection<Image> images) throws ServiceMethodExecutionException {
 		assetsService.deleteAssets(images);
 		property.getImages().removeAll(images);
+		if (images.contains(property.getRepresentativeImage()))
+			property.setRepresentativeImage(property.getImage(0));
 		return propertyRepository.save(property);
 	}
 

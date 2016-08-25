@@ -315,8 +315,8 @@ $(document).ready(function($) {
     }
 
     if ($('ul.language-switch-list').length > 0) {
-        $('ul.language-switch-list a').click(function() {
-            e.preventDefault();
+        $('ul.language-switch-list a').click(function(event) {
+            event.preventDefault();
             $(this).tab('show');
         });
     }
