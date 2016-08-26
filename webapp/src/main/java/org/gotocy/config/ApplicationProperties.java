@@ -40,8 +40,8 @@ public class ApplicationProperties {
 	private Environment environment;
 
 	@NestedConfigurationProperty
-	private final PropertySubmissionFormProperties propertySubmissionFormProperties =
-		new PropertySubmissionFormProperties();
+	private final PropertyImagesConstraintsForUser propertyImagesConstraintsForUser =
+		new PropertyImagesConstraintsForUser();
 
 	/**
 	 * @return the first spring active profile or an empty string if there are no active profiles.
@@ -53,12 +53,12 @@ public class ApplicationProperties {
 
 	@Getter
 	@Setter
-	public static class PropertySubmissionFormProperties {
+	public static class PropertyImagesConstraintsForUser {
 
 		/**
 		 * Max file size in Kb.
 		 */
-		private int maxFileSize = 3072;
+		private int maxFileSizeKb = 3072;
 
 		/**
 		 * Max file count.
@@ -69,7 +69,7 @@ public class ApplicationProperties {
 		 * Returns max file size in Mb.
 		 */
 		public int getMaxFileSizeMb() {
-			return maxFileSize / 1024;
+			return maxFileSizeKb / 1024;
 		}
 
 	}

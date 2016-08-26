@@ -1,4 +1,4 @@
-package org.gotocy.forms;
+package org.gotocy.forms.user;
 
 import lombok.Getter;
 import lombok.Setter;

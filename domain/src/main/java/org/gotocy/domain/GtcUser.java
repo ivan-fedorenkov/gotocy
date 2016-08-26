@@ -2,6 +2,7 @@ package org.gotocy.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.gotocy.config.Roles;
 import org.gotocy.utils.CollectionUtils;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,6 +34,10 @@ public class GtcUser extends BaseEntity implements UserDetails, CredentialsConta
 
 	@OneToMany(mappedBy = "gtcUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<GtcUserRole> roles = new HashSet<>();
+
+	public boolean isMaster() {
+		return roles.stream().anyMatch(role -> Roles.ROLE_MASTER.equals(role.getRole()));
+	}
 
 	public void setRoles(Set<GtcUserRole> roles) {
 		roles.forEach(role -> role.setGtcUser(this));

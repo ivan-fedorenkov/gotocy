@@ -8,7 +8,7 @@ import org.gotocy.domain.Image;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
 import org.gotocy.forms.PropertySubmissionForm;
-import org.gotocy.forms.user.PropertyForm;
+import org.gotocy.forms.user.property.PropertyForm;
 import org.gotocy.forms.validation.PropertySubmissionFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.service.PropertyService;

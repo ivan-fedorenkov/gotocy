@@ -3,19 +3,15 @@ package org.gotocy.forms.validation;
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.validation.PropertyValidator;
-import org.gotocy.domain.validation.ValidationConstraints;
 import org.gotocy.forms.PropertySubmissionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 /**
  * Validator of the user property form. Basically it just delegates all the validation logic
- * to the {@link org.gotocy.domain.validation.PropertyValidator}.
+ * to the {@link org.gotocy.domain.validation.PropertyValidator} and to the {@link ImagesSubmissionValidator}.
  *
  * TODO: unit test
  *
@@ -24,18 +20,13 @@ import java.util.List;
 @Component
 public class PropertySubmissionFormValidator implements Validator {
 
-	public static final String ALLOWED_IMAGE_CONTENT_TYPE = "image/jpeg";
-	public static final String ALLOWED_IMAGE_CONTENT_TYPE_USER_FRIENDLY = "jpeg";
-
-	private final int maxAllowedImages;
-	private final int maxAllowedFileSize;
-	private final int maxAllowedFileSizeMb;
+	private final ImagesSubmissionValidator imagesSubmissionValidator;
 
 	@Autowired
 	public PropertySubmissionFormValidator(ApplicationProperties applicationProperties) {
-		maxAllowedImages = applicationProperties.getPropertySubmissionFormProperties().getMaxFileCount();
-		maxAllowedFileSize = applicationProperties.getPropertySubmissionFormProperties().getMaxFileSize() * 1024; // bytes
-		maxAllowedFileSizeMb = applicationProperties.getPropertySubmissionFormProperties().getMaxFileSize() / 1024; // mbytes
+		imagesSubmissionValidator = new ImagesSubmissionValidator(
+			applicationProperties.getPropertyImagesConstraintsForUser().getMaxFileCount(),
+			applicationProperties.getPropertyImagesConstraintsForUser().getMaxFileSizeKb());
 	}
 
 	@Override
@@ -47,26 +38,7 @@ public class PropertySubmissionFormValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		PropertySubmissionForm form = (PropertySubmissionForm) target;
 		PropertyValidator.INSTANCE.validate(form.mergeWithProperty(new Property()), errors);
-
-		List<MultipartFile> images = form.getImages();
-		if (!images.isEmpty()) {
-			if (images.size() > maxAllowedImages)
-				errors.rejectValue("images", ValidationConstraints.MAX_SIZE, new Object[]{maxAllowedImages}, null);
-			for (MultipartFile image : images) {
-				if (!ALLOWED_IMAGE_CONTENT_TYPE.equalsIgnoreCase(image.getContentType())) {
-					// if any of images violates the supported content type then reject all of them
-					errors.rejectValue("images", ValidationConstraints.CONTENT_TYPE,
-						new Object[]{ALLOWED_IMAGE_CONTENT_TYPE_USER_FRIENDLY}, null);
-					break;
-				}
-
-				if (image.getSize() > maxAllowedFileSize) {
-					// if any of images exceeds the maximum size then reject all of them
-					errors.rejectValue("images", ValidationConstraints.MAX, new Object[]{maxAllowedFileSizeMb}, null);
-					break;
-				}
-			}
-		}
+		imagesSubmissionValidator.validate(form.getImages(), errors);
 	}
 
 }

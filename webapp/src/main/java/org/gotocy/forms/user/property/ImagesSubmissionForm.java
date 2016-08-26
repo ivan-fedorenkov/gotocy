@@ -1,4 +1,4 @@
-package org.gotocy.forms.user;
+package org.gotocy.forms.user.property;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,11 +11,13 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Form to submit new property images.
+ *
  * @author ifedorenkov
  */
 @Getter
 @Setter
-public class ImagesForm {
+public class ImagesSubmissionForm {
 
 	private List<MultipartFile> images = new ArrayList<>();
 

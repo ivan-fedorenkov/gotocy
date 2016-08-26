@@ -226,7 +226,7 @@ public class Property extends BaseEntity {
 	 * Determines if this property can be edited by user.
 	 */
 	public boolean isEditableBy(GtcUser user) {
-		return Objects.equals(owner.getUsername(), user.getUsername());
+		return user.isMaster() || Objects.equals(owner.getUsername(), user.getUsername());
 	}
 
 }

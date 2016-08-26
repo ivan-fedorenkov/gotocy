@@ -5,7 +5,7 @@ import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.controllers.exceptions.AccessDeniedException;
 import org.gotocy.domain.GtcUser;
 import org.gotocy.domain.Property;
-import org.gotocy.forms.user.OffersForm;
+import org.gotocy.forms.user.property.OffersForm;
 import org.gotocy.helpers.Helper;
 import org.gotocy.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
