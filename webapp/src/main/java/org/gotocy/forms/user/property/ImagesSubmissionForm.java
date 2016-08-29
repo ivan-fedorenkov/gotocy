@@ -19,6 +19,10 @@ import java.util.List;
 @Setter
 public class ImagesSubmissionForm {
 
+	/**
+	 * Related property identifier
+	 */
+	private Long id;
 	private List<MultipartFile> images = new ArrayList<>();
 
 	/**

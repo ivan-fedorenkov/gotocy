@@ -1,6 +1,5 @@
 package org.gotocy.controllers.user;
 
-import org.gotocy.config.ApplicationProperties;
 import org.gotocy.config.Paths;
 import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.controllers.exceptions.AccessDeniedException;
@@ -17,15 +16,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.method.annotation.ServletRequestDataBinderFactory;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Collection;
@@ -37,13 +30,21 @@ import java.util.Locale;
 @Controller
 public class UserPropertyImagesController {
 
-	private final ApplicationProperties applicationProperties;
 	private final PropertyService propertyService;
+	private final ImagesSubmissionFormValidator imagesSubmissionFormValidator;
 
 	@Autowired
-	public UserPropertyImagesController(ApplicationProperties applicationProperties, PropertyService propertyService) {
-		this.applicationProperties = applicationProperties;
+	public UserPropertyImagesController(PropertyService propertyService,
+		ImagesSubmissionFormValidator imagesSubmissionFormValidator)
+	{
 		this.propertyService = propertyService;
+		this.imagesSubmissionFormValidator = imagesSubmissionFormValidator;
+	}
+
+	@InitBinder("imagesSubmissionForm")
+	public void initBinder(WebDataBinder binder) {
+		if (binder.getTarget() != null && imagesSubmissionFormValidator.supports(binder.getTarget().getClass()))
+			binder.addValidators(imagesSubmissionFormValidator);
 	}
 
 	@RequestMapping(value = "/user/properties/{id}/images/edit", method = RequestMethod.GET)
@@ -67,9 +68,6 @@ public class UserPropertyImagesController {
 		if (!property.isEditableBy(user))
 			throw new AccessDeniedException();
 
-		ImagesSubmissionFormValidator validator =
-			new ImagesSubmissionFormValidator(user, property, applicationProperties);
-		validator.validate(form, formErrors);
 		if (formErrors.hasErrors()) {
 			model.addAttribute(property);
 			model.addAttribute(new ImagesEditorForm(property.getImages()));

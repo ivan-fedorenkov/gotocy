@@ -19,13 +19,13 @@ public class ImagesSubmissionValidator implements Validator {
 	private static final String FIELD_NAME = "images";
 
 	private final int maxAllowedImages;
-	private final long maxAllowedFileSize;
-	private final long maxAllowedFileSizeMb;
+	private final int maxAllowedFileSize;
+	private final int maxAllowedFileSizeMb;
 
 	public ImagesSubmissionValidator(int maxAllowedImages, int maxAllowedFileSizeKb) {
 		this.maxAllowedImages = maxAllowedImages;
-		maxAllowedFileSize = maxAllowedFileSizeKb * 1024L; // bytes
-		maxAllowedFileSizeMb = maxAllowedFileSizeKb / 1024L; // mbytes
+		maxAllowedFileSize = maxAllowedFileSizeKb * 1024; // bytes
+		maxAllowedFileSizeMb = maxAllowedFileSizeKb / 1024; // mbytes
 	}
 
 	@Override
