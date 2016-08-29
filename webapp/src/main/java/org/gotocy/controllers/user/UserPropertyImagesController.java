@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -81,14 +82,16 @@ public class UserPropertyImagesController {
 
 	@RequestMapping(value = "/user/properties/{id}/images", method = RequestMethod.PUT)
 	public String update(Model model, @RequiredDomainObject @PathVariable("id") Property property,
-		@AuthenticationPrincipal GtcUser user, @Valid @ModelAttribute ImagesEditorForm form, BindingResult formErrors)
+		@AuthenticationPrincipal GtcUser user, @Valid @ModelAttribute ImagesEditorForm form, BindingResult formErrors,
+		RedirectAttributes redirectAttributes)
 	{
 		if (!property.isEditableBy(user))
 			throw new AccessDeniedException();
 
 		Collection<Image> removed = form.getRemoved(property.getImages());
 		propertyService.detachImages(property, removed);
-		return "redirect:" + Helper.path(Paths.USER, property);
+		redirectAttributes.addFlashAttribute("successfullySubmitted", true);
+		return "redirect:" + Helper.editPath(Paths.USER, property, "/images") + "#submit-buttons";
 	}
 
 }

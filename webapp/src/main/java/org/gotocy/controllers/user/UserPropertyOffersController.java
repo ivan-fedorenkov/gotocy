@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.Locale;
@@ -50,7 +51,8 @@ public class UserPropertyOffersController {
 	@RequestMapping(value = "/user/properties/{id}/offers", method = RequestMethod.PUT)
 	public String update(Model model, @Valid @ModelAttribute OffersForm form, BindingResult formErrors,
 		@RequiredDomainObject @PathVariable("id") Property property,
-		@AuthenticationPrincipal GtcUser user, Locale locale)
+		@AuthenticationPrincipal GtcUser user, Locale locale,
+		RedirectAttributes redirectAttributes)
 	{
 		if (!property.isEditableBy(user))
 			throw new AccessDeniedException();
@@ -62,7 +64,8 @@ public class UserPropertyOffersController {
 			return "user/property/offer/edit";
 
 		propertyService.update(form.mergeWithProperty(property));
-		return "redirect:" + Helper.path(Paths.USER, property);
+		redirectAttributes.addFlashAttribute("successfullySubmitted", true);
+		return "redirect:" + Helper.editPath(Paths.USER, property, "/offers") + "#submit-buttons";
 	}
 
 }

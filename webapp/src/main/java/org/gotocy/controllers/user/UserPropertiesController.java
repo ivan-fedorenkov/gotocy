@@ -21,6 +21,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 
@@ -112,7 +114,8 @@ public class UserPropertiesController {
 	@RequestMapping(value = "/user/properties/{id}", method = RequestMethod.PUT)
 	public String update(Model model, @Valid @ModelAttribute PropertyForm form, BindingResult formErrors,
 		@RequiredDomainObject @PathVariable("id") Property property,
-		@AuthenticationPrincipal GtcUser user, Locale locale)
+		@AuthenticationPrincipal GtcUser user, Locale locale,
+		RedirectAttributes redirectAttributes)
 	{
 		if (!property.isEditableBy(user))
 			throw new AccessDeniedException();
@@ -124,7 +127,8 @@ public class UserPropertiesController {
 			return "user/property/edit";
 		
 		propertyService.update(form.mergeWithProperty(property));
-		return "redirect:" + Helper.path(Paths.USER, property);
+		redirectAttributes.addFlashAttribute("successfullySubmitted", true);
+		return "redirect:" + Helper.editPath(Paths.USER, property) + "#submit-buttons";
 	}
 
 }

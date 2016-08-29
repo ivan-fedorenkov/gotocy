@@ -314,11 +314,22 @@ $(document).ready(function($) {
         );
     }
 
+// Language switcher
+
     if ($('ul.language-switch-list').length > 0) {
         $('ul.language-switch-list a').click(function(event) {
             event.preventDefault();
             $(this).tab('show');
         });
+    }
+
+// Submitted form
+
+    if ($('form.form-submitted').length > 0) {
+        setTimeout(function() {
+            $('#submit-success-btn').css('display', 'none');
+            $('#submit-btn').css('display', 'initial');
+        }, 4000)
     }
 
 });

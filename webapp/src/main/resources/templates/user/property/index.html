@@ -76,11 +76,11 @@
                                     <tbody>
                                         <tr th:each="p : ${properties}">
                                             <td class="image">
-                                                <a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, p)}"><img alt="" th:src="@{${helper.property.representativeImageUrl(p)}}"></a>
+                                                <a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, p)}" target="_blank"><img alt="" th:src="@{${helper.property.representativeImageUrl(p)}}"></a>
                                             </td>
                                             <td>
                                                 <div class="inner">
-                                                    <a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, p)}"><h2 th:text="${p.title}">Property title</h2></a>
+                                                    <a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, p)}" target="_blank"><h2 th:text="${p.title}">Property title</h2></a>
                                                     <figure th:text="${p.shortAddress}">Larnaca, Cyprus</figure>
                                                     <div class="tag price" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:text="${helper.property.price(p)}">$ 38,000</div>
                                                 </div>
@@ -89,7 +89,7 @@
                                                 TBD (Date)
                                             </td>
                                             <td class="actions">
-                                                <a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, p)}" class="edit"><i class="fa fa-pencil"></i><!--/*/ <th:block th:text="${i18n.t('dictionary.edit')}"> /*/-->Edit<!--/*/ </th:block> /*/--></a>
+                                                <a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, p)}" class="edit" target="_blank"><i class="fa fa-pencil"></i><!--/*/ <th:block th:text="${i18n.t('dictionary.edit')}"> /*/-->Edit<!--/*/ </th:block> /*/--></a>
                                             </td>
                                         </tr>
                                     </tbody>

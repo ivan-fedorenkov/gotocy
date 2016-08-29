@@ -68,7 +68,7 @@
                 <div class="col-md-6 col-sm-10">
                     <section id="user-property-edit">
                         <header><h1 th:text="${i18n.t('dictionary.edit-property-title', property.title)}">Edit Property Title</h1></header>
-                        <form role="form" id="form-user-property-edit" class="form-submit" th:method="put" th:object="${propertyForm}" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property)}">
+                        <form role="form" id="form-user-property-edit" class="form-submit" th:classappend="${successfullySubmitted}? 'form-submitted'" th:method="put" th:object="${propertyForm}" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property)}">
                             <!--Errors-->
                             <ul class="error-messages" th:if="${#fields.hasAnyErrors()}">
                                 <li th:each="error : ${#fields.detailedErrors()}" th:text="${error.message}">Some error</li>
@@ -162,22 +162,17 @@
 
                                 <div class="form-group">
                                     <label th:text="${i18n.t('dictionary.description')}">Description</label>
-                                    <ul class="language-switch-list" role="tablist">
+
+                                    <!--<ul class="language-switch-list" role="tablist">
                                         <li role="presentation" class="active"><a role="tab" data-target="#enDescriptionTab" data-toggle="tab"><img alt="English" src="http://assets.gotocy.com/static/img/flags/gb.png"></a></li>
                                         <li role="presentation"><a role="tab" data-target="#ruDescriptionTab" data-toggle="tab"><img alt="Russian" src="http://assets.gotocy.com/static/img/flags/ru.png"></a></li>
                                         <li role="presentation"><a role="tab" data-target="#elDescriptionTab" data-toggle="tab"><img alt="Greek" src="http://assets.gotocy.com/static/img/flags/gr.png"></a></li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane active" id="enDescriptionTab">
-                                            <textarea class="form-control" id="enDescription" rows="16" th:field="*{enDescription}"></textarea>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane" id="ruDescriptionTab">
-                                            <textarea class="form-control" id="ruDescription" rows="16" th:field="*{ruDescription}"></textarea>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane" id="elDescriptionTab">
-                                            <textarea class="form-control" id="elDescription" rows="16" th:field="*{elDescription}"></textarea>
-                                        </div>
-                                    </div>
+                                    </ul>-->
+
+                                    <div id="descriptionEditor" style="padding: 25px 15px; box-shadow: 0 1px 1px rgba(0,0,0,0.2) inset; background-color: #f3f3f3"></div>
+                                    <input type="hidden" th:field="*{enDescription}">
+                                    <input type="hidden" th:field="*{ruDescription}">
+                                    <input type="hidden" th:field="*{elDescription}">
                                 </div>
                             </section><!-- /#basic-information -->
 
@@ -198,8 +193,10 @@
 
                             <section class="block">
                                 <div class="center">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-default large" th:text="${i18n.t('dictionary.save-updates')}">Save Updates</button>
+                                    <div id="submit-buttons" class="form-group">
+                                        <button id="submit-btn" th:styleappend="${#bools.isTrue(successfullySubmitted)}? 'display:none;'" type="submit" class="btn btn-default large" th:text="${i18n.t('dictionary.save-updates')}">Save Updates</button>
+                                        <button id="submit-success-btn" th:styleappend="${#bools.isFalse(successfullySubmitted)}? 'display:none;'" type="submit" class="btn btn-success large" th:text="${i18n.t('dictionary.saved-ep')}">Saved!</button>
+                                        <a th:if="${successfullySubmitted}" th:href="${helper.path(T(org.gotocy.config.Paths).USER, property)}" class="btn btn-primary large" th:text="${i18n.t('dictionary.view-changes')}" target="_blank">View Changes</a>
                                     </div><!-- /.form-group -->
                                 </div>
                             </section>
@@ -257,10 +254,59 @@
     google.maps.event.addDomListener(window, 'load', initPropertySubmitMap(_latitude, _longitude, 8));
 
     $(document).ready(function() {
-        applicationProperties = {toolbar: {"fa": true, "font-styles": false, "link":false, "image": false, "blockquote": false}};
-        $('#enDescription').wysihtml5(applicationProperties);
-        $('#elDescription').wysihtml5(applicationProperties);
-        $('#ruDescription').wysihtml5(applicationProperties);
+        var templates = {
+            emphasis: function(context) {
+                var locale = context.locale;
+                return '<li><div class="btn-group">' +
+                            '<a class="btn btn-primary" data-wysihtml5-command="bold" title="CTRL+B" tabindex="-1">' + locale.emphasis.bold + '</a>' +
+                            '<a class="btn btn-primary" data-wysihtml5-command="italic" title="CTRL+I" tabindex="-1">' + locale.emphasis.italic + '</a>' +
+                            '<a class="btn btn-primary" data-wysihtml5-command="underline" title="CTRL+U" tabindex="-1">' + locale.emphasis.underline + '</a>' +
+                        '</div></li>'
+            },
+
+            lists: function(context) {
+                var locale = context.locale;
+                return '<li><div class="btn-group">' +
+                            '<a class="btn btn-primary" data-wysihtml5-command="insertUnorderedList" title="' + locale.lists.unordered + '" tabindex="-1"><span class="fa fa-list-ul"></span></a>' +
+                            '<a class="btn btn-primary" data-wysihtml5-command="insertOrderedList" title="' + locale.lists.ordered + '" tabindex="-1"><span class="fa fa-list-ol"></span></a>' +
+                            '<a class="btn btn-primary" data-wysihtml5-command="Outdent" title="' + locale.lists.outdent + '" tabindex="-1"><span class="fa fa-outdent"></span></a>' +
+                            '<a class="btn btn-primary" data-wysihtml5-command="Indent" title="' + locale.lists.indent + '" tabindex="-1"><span class="fa fa-indent"></span></a>' +
+                        '</div></li>'
+            },
+
+            languages: function(context) {
+                return '<li id="languages-commands"><div class="btn-group">' +
+                            '<a data-target="#enDescription" class="btn btn-primary"><img alt="English" src="http://assets.gotocy.com/static/img/flags/gb.png"></a>' +
+                            '<a data-target="#ruDescription" class="btn btn-primary"><img alt="Russian" src="http://assets.gotocy.com/static/img/flags/ru.png"></a>' +
+                            '<a data-target="#elDescription" class="btn btn-primary"><img alt="Greek" src="http://assets.gotocy.com/static/img/flags/gr.png"></a>' +
+                        '</div></li>'
+            }
+        };
+
+        var $editor = $('#descriptionEditor');
+
+        var getTranslatedDescription = function(languageButton) {
+            return $(languageButton.data('target')).val();
+        }
+
+        $editor.wysihtml5({
+            toolbar: {"fa": true, "font-styles": false, "link":false, "image": false, "blockquote": false, "languages": true},
+            customTemplates: templates
+        });
+
+        $('#languages-commands a').click(function() {
+            var $current = $('#languages-commands a.wysihtml5-command-active');
+            if ($current.length > 0) {
+                $($current.data('target')).val($editor.html());
+                $current.removeClass('wysihtml5-command-active');
+            }
+            $(this).addClass('wysihtml5-command-active');
+            $editor.html(getTranslatedDescription($(this)));
+        });
+
+        var $activeLanguageButton = $('#languages-commands a:first');
+        $activeLanguageButton.addClass('wysihtml5-command-active');
+        $editor.html(getTranslatedDescription($activeLanguageButton));
     });
 
 </script>

@@ -67,7 +67,7 @@
                 <div class="col-md-6 col-sm-10">
                     <section id="user-property-offers-edit">
                         <header><h1 th:text="${i18n.t('dictionary.offers-of-property-title', property.title)}">Offers of Property Title</h1></header>
-                        <form role="form" id="form-user-property-offers-edit" class="form-submit" th:method="put" th:object="${offersForm}" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property, '/offers')}">
+                        <form role="form" id="form-user-property-offers-edit" class="form-submit" th:classappend="${successfullySubmitted}? 'form-submitted'" th:method="put" th:object="${offersForm}" th:action="${helper.path(T(org.gotocy.config.Paths).USER, property, '/offers')}">
                             <!--Errors-->
                             <ul class="error-messages" th:if="${#fields.hasAnyErrors()}">
                                 <li th:each="error : ${#fields.detailedErrors()}" th:text="${error.message}">Some error</li>
@@ -111,8 +111,10 @@
 
                             <section class="block">
                                 <div class="center">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-default large" th:text="${i18n.t('dictionary.save-updates')}">Save Updates</button>
+                                    <div id="submit-buttons" class="form-group">
+                                        <button id="submit-btn" th:styleappend="${#bools.isTrue(successfullySubmitted)}? 'display:none;'" type="submit" class="btn btn-default large" th:text="${i18n.t('dictionary.save-updates')}">Save Updates</button>
+                                        <button id="submit-success-btn" th:styleappend="${#bools.isFalse(successfullySubmitted)}? 'display:none;'" type="submit" class="btn btn-success large" th:text="${i18n.t('dictionary.saved-ep')}">Saved!</button>
+                                        <a th:if="${successfullySubmitted}" th:href="${helper.path(T(org.gotocy.config.Paths).USER, property)}" class="btn btn-primary large" th:text="${i18n.t('dictionary.view-changes')}" target="_blank">View Changes</a>
                                     </div><!-- /.form-group -->
                                 </div>
                             </section>
