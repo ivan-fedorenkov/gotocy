@@ -168,7 +168,7 @@
                     <div class="center">
                         <div class="form-group">
                             <input id="images-upload" type="file" name="images" class="file" multiple="true" accept="image/jpeg">
-                            <figure class="note" th:utext="${i18n.t('templates.property.new.upload-hint', gotocy.propertySubmissionFormProperties.maxFileCount, gotocy.propertySubmissionFormProperties.maxFileSizeMb)}"><strong>Hint:</strong> You can upload all images at once!</figure>
+                            <figure class="note" th:utext="${i18n.t('templates.property.new.upload-hint', gotocy.propertyImagesConstraintsForUser.maxFileCount, gotocy.propertyImagesConstraintsForUser.maxFileSizeMb)}"><strong>Hint:</strong> You can upload all images at once!</figure>
                         </div>
                     </div>
                 </section>
