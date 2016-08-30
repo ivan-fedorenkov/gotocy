@@ -253,6 +253,9 @@
     google.maps.event.addDomListener(window, 'load', initPropertySubmitMap(_latitude, _longitude, 8));
 
     $(document).ready(function() {
+        var Wysiwyg = {};
+        Wysiwyg.currentLanguage = 'en';
+
         var templates = {
             emphasis: function(context) {
                 var locale = context.locale;
@@ -275,9 +278,9 @@
 
             languages: function(context) {
                 return '<li id="languages-commands"><div class="btn-group">' +
-                            '<a data-target="#enDescription" class="btn btn-primary"><img alt="English" src="http://assets.gotocy.com/static/img/flags/gb.png"></a>' +
-                            '<a data-target="#ruDescription" class="btn btn-primary"><img alt="Russian" src="http://assets.gotocy.com/static/img/flags/ru.png"></a>' +
-                            '<a data-target="#elDescription" class="btn btn-primary"><img alt="Greek" src="http://assets.gotocy.com/static/img/flags/gr.png"></a>' +
+                            '<a data-target="#enDescription" data-language="en" class="btn btn-primary"><img alt="English" src="http://assets.gotocy.com/static/img/flags/gb.png"></a>' +
+                            '<a data-target="#ruDescription" data-language="ru" class="btn btn-primary"><img alt="Russian" src="http://assets.gotocy.com/static/img/flags/ru.png"></a>' +
+                            '<a data-target="#elDescription" data-language="el" class="btn btn-primary"><img alt="Greek" src="http://assets.gotocy.com/static/img/flags/gr.png"></a>' +
                         '</div></li>'
             }
         };
@@ -294,18 +297,24 @@
         });
 
         $('#languages-commands a').click(function() {
-            var $current = $('#languages-commands a.wysihtml5-command-active');
+            var $current = $('#languages-commands a[data-language="' + Wysiwyg.currentLanguage + '"]');
             if ($current.length > 0) {
                 $($current.data('target')).val($editor.html());
                 $current.removeClass('wysihtml5-command-active');
             }
+            Wysiwyg.currentLanguage = $(this).data('language');
             $(this).addClass('wysihtml5-command-active');
             $editor.html(getTranslatedDescription($(this)));
         });
 
-        var $activeLanguageButton = $('#languages-commands a:first');
+        var $activeLanguageButton = $('#languages-commands a[data-language="' + Wysiwyg.currentLanguage + '"]');
         $activeLanguageButton.addClass('wysihtml5-command-active');
         $editor.html(getTranslatedDescription($activeLanguageButton));
+
+        $('#form-user-property-edit').submit(function() {
+            var $current = $('#languages-commands a[data-language="' + Wysiwyg.currentLanguage + '"]');
+            $($current.data('target')).val($editor.html());
+        });
     });
 
 </script>
