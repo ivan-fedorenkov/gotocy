@@ -7,7 +7,7 @@ input[type="text"],input[type="email"], input[type="search"], input[type="passwo
 
 .btn, select { @include box-shadow(none); @include border-radius(0px); @include transition(.3s); @include box-shadow(0px 1px 1px rgba(0,0,0,.2)); background-color: $color-grey-light; border: none; color: $color-grey-medium; font-size: 14px; outline: none !important; padding: 10px 9px 9px 9px; width: auto;
   &:hover { background-color: darken($color-grey-light, 3%); color: $color-grey-medium; }
-  &:active, &:focus { @include box-shadow(0px 1px 2px rgba(0,0,0,0), inset 0px 2px 2px rgba(0,0,0,.2)); background-color: darken($color-grey-light, 3%); color: $color-grey-medium;  }
+  &:active, &:focus, &.wysihtml5-command-active { @include box-shadow(0px 1px 2px rgba(0,0,0,0), inset 0px 2px 2px rgba(0,0,0,.2)); background-color: darken($color-grey-light, 3%); color: $color-grey-medium;  }
 
   &.btn-default { @include box-shadow(0px 1px 1px rgba(0,0,0,.2)); @include transition(.2s); background-color: $color-default; color: #fff;
     &:hover { background-color: darken($color-default, 3%); }
@@ -74,9 +74,42 @@ input[type="text"],input[type="email"], input[type="search"], input[type="passwo
 
 .form-group { position: relative; }
 
+// Wysiwyg
+
 .wysihtml5-editor {
     padding: 25px 15px;
     min-height: 200px;
+}
+
+ul.wysihtml5-toolbar {
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+
+ul.wysihtml5-toolbar::after {
+	clear: both;
+	display: table;
+	content: "";
+}
+
+ul.wysihtml5-toolbar > li {
+	float: left;
+	display: list-item;
+	list-style: none;
+	margin: 0 5px 10px 0;
+}
+
+ul.wysihtml5-toolbar a[data-wysihtml5-command=bold] {
+	font-weight: bold;
+}
+
+ul.wysihtml5-toolbar a[data-wysihtml5-command=italic] {
+	font-style: italic;
+}
+
+ul.wysihtml5-toolbar a[data-wysihtml5-command=underline] {
+	text-decoration: underline;
 }
 
 form {

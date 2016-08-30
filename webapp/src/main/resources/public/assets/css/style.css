@@ -3171,7 +3171,7 @@ input[type="text"], input[type="email"], input[type="search"], input[type="passw
   .btn:hover, select:hover {
     background-color: #ebebeb;
     color: #5a5a5a; }
-  .btn:active, .btn:focus, select:active, select:focus {
+  .btn:active, .btn:focus, .btn.wysihtml5-command-active, select:active, select:focus, select.wysihtml5-command-active {
     -moz-box-shadow: 0px 1px 2px transparent, inset 0px 2px 2px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 0px 1px 2px transparent, inset 0px 2px 2px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 1px 2px transparent, inset 0px 2px 2px rgba(0, 0, 0, 0.2);
@@ -3397,6 +3397,31 @@ input[type="text"], input[type="email"], input[type="search"], input[type="passw
 .wysihtml5-editor {
   padding: 25px 15px;
   min-height: 200px; }
+
+ul.wysihtml5-toolbar {
+  margin: 0;
+  padding: 0;
+  display: block; }
+
+ul.wysihtml5-toolbar::after {
+  clear: both;
+  display: table;
+  content: ""; }
+
+ul.wysihtml5-toolbar > li {
+  float: left;
+  display: list-item;
+  list-style: none;
+  margin: 0 5px 10px 0; }
+
+ul.wysihtml5-toolbar a[data-wysihtml5-command=bold] {
+  font-weight: bold; }
+
+ul.wysihtml5-toolbar a[data-wysihtml5-command=italic] {
+  font-style: italic; }
+
+ul.wysihtml5-toolbar a[data-wysihtml5-command=underline] {
+  text-decoration: underline; }
 
 form #form-status {
   line-height: 1;
