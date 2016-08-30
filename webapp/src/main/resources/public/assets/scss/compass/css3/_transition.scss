@@ -64,8 +64,8 @@ $transitionable-prefixed-values: transform, transform-origin !default;
 @mixin transition-property($properties...) {
   $properties: set-arglist-default($properties, $default-transition-property);
   @include with-each-prefix(css-transitions, $transition-support-threshold) {
-    $props: if($current-prefix, prefixed-for-transition($current-prefix, $properties), $properties);
-    @include prefix-prop(transition-property, $props);
+    $applicationProperties: if($current-prefix, prefixed-for-transition($current-prefix, $properties), $properties);
+    @include prefix-prop(transition-property, $applicationProperties);
   }
 }
 

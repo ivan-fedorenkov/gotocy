@@ -1,6 +1,6 @@
 .form-group { margin-bottom: 10px; }
 
-input[type="text"],input[type="email"], input[type="search"], input[type="password"], input[type="number"], input[type="tel"], textarea.form-control { @include box-shadow(none); @include border-radius(0px); @include transition(.3s); @include box-shadow(0px 1px 1px rgba(0,0,0,.2) inset); -webkit-appearance: none; background-color: $color-grey-light; border: none; font-size: 14px; outline: none !important; padding: 10px 9px 11px 9px; width: 100%; height: inherit;
+input[type="text"],input[type="email"], input[type="search"], input[type="password"], input[type="number"], input[type="tel"], textarea.form-control, .wysihtml5-editor { @include box-shadow(none); @include border-radius(0px); @include transition(.3s); @include box-shadow(0px 1px 1px rgba(0,0,0,.2) inset); -webkit-appearance: none; background-color: $color-grey-light; border: none; font-size: 14px; outline: none !important; padding: 10px 9px 11px 9px; width: 100%; height: inherit;
   &:active, &:focus { @include box-shadow(inset 0px 1px 1px rgba(0,0,0,.2)); }
   &:hover { background-color: rgba(0,0,0,.02); }
 }
@@ -73,6 +73,11 @@ input[type="text"],input[type="email"], input[type="search"], input[type="passwo
 }
 
 .form-group { position: relative; }
+
+.wysihtml5-editor {
+    padding: 25px 15px;
+    min-height: 200px;
+}
 
 form {
   #form-status { line-height: 1; position: relative; top: -28px;

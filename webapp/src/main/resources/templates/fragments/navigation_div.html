@@ -29,7 +29,6 @@
             <div class="actions" th:fragment="user_area_actions" th:with="authenticated=${#authorization.expression('hasRole(''ROLE_USER'')')}">
                 <a th:unless="${authenticated}" th:href="@{${helper.path('/users/new')}}" class="promoted"><strong th:text="${i18n.t('dictionary.sign-up')}">Sign Up</strong></a>
                 <a th:unless="${authenticated}" th:href="@{${helper.path('/session/new')}}" th:text="${i18n.t('dictionary.sign-in')}">Sign In</a>
-                <span th:if="${authenticated}" th:text="${#authentication.name}">support@gotocy.com</span>
                 <a th:if="${authenticated}" th:href="@{${helper.path('/user/profile')}}" class="promoted"><strong th:text="${i18n.t('dictionary.my-profile')}">My Profile</strong></a>
             </div>
             <div class="language-bar" th:unless="${#lists.size(locales) == 1}">

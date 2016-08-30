@@ -3118,7 +3118,7 @@ ul.language-switch-list {
 .form-group {
   margin-bottom: 10px; }
 
-input[type="text"], input[type="email"], input[type="search"], input[type="password"], input[type="number"], input[type="tel"], textarea.form-control {
+input[type="text"], input[type="email"], input[type="search"], input[type="password"], input[type="number"], input[type="tel"], textarea.form-control, .wysihtml5-editor {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -3140,11 +3140,11 @@ input[type="text"], input[type="email"], input[type="search"], input[type="passw
   padding: 10px 9px 11px 9px;
   width: 100%;
   height: inherit; }
-  input[type="text"]:active, input[type="text"]:focus, input[type="email"]:active, input[type="email"]:focus, input[type="search"]:active, input[type="search"]:focus, input[type="password"]:active, input[type="password"]:focus, input[type="number"]:active, input[type="number"]:focus, input[type="tel"]:active, input[type="tel"]:focus, textarea.form-control:active, textarea.form-control:focus {
+  input[type="text"]:active, input[type="text"]:focus, input[type="email"]:active, input[type="email"]:focus, input[type="search"]:active, input[type="search"]:focus, input[type="password"]:active, input[type="password"]:focus, input[type="number"]:active, input[type="number"]:focus, input[type="tel"]:active, input[type="tel"]:focus, textarea.form-control:active, textarea.form-control:focus, .wysihtml5-editor:active, .wysihtml5-editor:focus {
     -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.2);
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.2); }
-  input[type="text"]:hover, input[type="email"]:hover, input[type="search"]:hover, input[type="password"]:hover, input[type="number"]:hover, input[type="tel"]:hover, textarea.form-control:hover {
+  input[type="text"]:hover, input[type="email"]:hover, input[type="search"]:hover, input[type="password"]:hover, input[type="number"]:hover, input[type="tel"]:hover, textarea.form-control:hover, .wysihtml5-editor:hover {
     background-color: rgba(0, 0, 0, 0.02); }
 
 .btn, select {
@@ -3393,6 +3393,10 @@ input[type="text"], input[type="email"], input[type="search"], input[type="passw
 
 .form-group {
   position: relative; }
+
+.wysihtml5-editor {
+  padding: 25px 15px;
+  min-height: 200px; }
 
 form #form-status {
   line-height: 1;
