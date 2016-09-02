@@ -31,7 +31,12 @@
             <header><h1 th:text="${i18n.t('dictionary.sign-in')}">Sign In</h1></header>
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                    <form role="form" id="form-create-account" class="form-labeled" th:action="@{/session}" method="post" >
+                    <form role="form" id="form-create-account" class="form-labeled" th:action="@{${helper.path('/session')}}" th:method="post" >
+                        <!--Errors-->
+                        <ul class="error-messages" th:if="${session['SPRING_SECURITY_LAST_EXCEPTION'] != null}">
+                            <li th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">Some error</li>
+                        </ul>
+
                         <div class="form-group">
                             <label for="username" th:text="${i18n.t('dictionary.email')}">Email</label>
                             <input type="text" class="form-control" id="username" name="username" required>
