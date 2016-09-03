@@ -13,18 +13,24 @@ import org.gotocy.i18n.I18n;
 import org.gotocy.interceptors.HelpersInterceptor;
 import org.gotocy.repository.PageRepository;
 import org.gotocy.service.AssetsService;
+import org.gotocy.service.MailNotificationService;
+import org.gotocy.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.ui.freemarker.FreeMarkerConfigurationFactory;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import javax.servlet.Filter;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author ifedorenkov
@@ -37,10 +43,16 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	private ApplicationProperties applicationProperties;
 	private AssetsService assetsService;
 	private PageRepository pageRepository;
+	private JavaMailSender javaMailSender;
 
 	@Autowired
 	public void setApplicationProperties(ApplicationProperties applicationProperties) {
 		this.applicationProperties = applicationProperties;
+	}
+
+	@Autowired
+	public void setJavaMailSender(JavaMailSender javaMailSender) {
+		this.javaMailSender = javaMailSender;
 	}
 
 	@Autowired
@@ -59,6 +71,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	}
 
 	// Beans
+
+	@Bean
+	public ExecutorService executorService() {
+		return Executors.newSingleThreadExecutor();
+	}
 
 	@Bean
 	public Helper helper() {
@@ -80,6 +97,19 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public RequiredDomainObjectAspect requiredDomainObjectAspect() {
 		return new RequiredDomainObjectAspect();
+	}
+
+	@Bean
+	public NotificationService notificationService() throws Exception {
+		return new MailNotificationService(applicationProperties, getFreemarkerConfiguration(), javaMailSender,
+			executorService());
+	}
+
+	@Bean
+	public freemarker.template.Configuration getFreemarkerConfiguration() throws Exception {
+		FreeMarkerConfigurationFactory factory = new FreeMarkerConfigurationFactory();
+		factory.setTemplateLoaderPath("/mail/");
+		return factory.createConfiguration();
 	}
 
 	// Filters (order is important!)

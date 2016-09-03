@@ -1,0 +1,4 @@
+New user has been registered in our system!
+
+Name: ${name}
+Email: ${email}
