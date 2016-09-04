@@ -1,4 +1,4 @@
-<div class="navigation" th:fragment="navigation_for_master(pathObject)">
+<div class="navigation" th:fragment="navigation_for_master(pathObject)" xmlns:th="http://www.w3.org/1999/xhtml">
     <div th:replace="fragments/navigation_div :: secondary_navigation(${T(org.gotocy.config.Locales).EN}, ${pathObject})"></div>
     <div class="container">
         <div th:replace="fragments/navigation_div :: navbar(${false})"></div>
@@ -28,8 +28,9 @@
         <div class="user-area">
             <div class="actions" th:fragment="user_area_actions" th:with="authenticated=${#authorization.expression('hasRole(''ROLE_USER'')')}">
                 <a th:unless="${authenticated}" th:href="@{${helper.path('/users/new')}}" class="promoted"><strong th:text="${i18n.t('dictionary.sign-up')}">Sign Up</strong></a>
-                <a th:unless="${authenticated}" th:href="@{${helper.path('/session/new')}}" th:text="${i18n.t('dictionary.sign-in')}">Sign In</a>
+                <a th:unless="${authenticated}" th:href="@{${helper.path('/login')}}" th:text="${i18n.t('dictionary.sign-in')}">Sign In</a>
                 <a th:if="${authenticated}" th:href="@{${helper.path('/user/profile')}}" class="promoted"><strong th:text="${i18n.t('dictionary.my-profile')}">My Profile</strong></a>
+                <a th:if="${authenticated}" th:href="@{${helper.path('/logout')}}" th:text="${i18n.t('dictionary.logout')}">Logout</a>
             </div>
             <div class="language-bar" th:unless="${#lists.size(locales) == 1}">
                 <a th:each="locale : ${locales}" th:href="@{${helper.path(pathObject, locale)}}" th:class="${#locale == locale}? 'active'"><img th:src="${helper.flagUrlForLocale(locale)}" th:alt="${i18n.t('__${'dictionary.' + locale.language}__')}"></a>

@@ -1,6 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}" th:with="curPath='/session/new'">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}" th:with="curPath='/login'">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
 <body class="page-sub-page page-sign-in page-account" id="page-top">
 <div class="wrapper">
     <!-- Navigation -->
-    <div class="navigation" th:include="fragments/navigation_div :: navigation('/session/new', ${false})"></div>
+    <div class="navigation" th:include="fragments/navigation_div :: navigation('/login', ${false})"></div>
     <!-- end Navigation -->
 
     <!-- Page Content -->
@@ -31,7 +31,7 @@
             <header><h1 th:text="${i18n.t('dictionary.sign-in')}">Sign In</h1></header>
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                    <form role="form" id="form-create-account" class="form-labeled" th:action="@{${helper.path('/session')}}" th:method="post" >
+                    <form role="form" id="form-create-account" class="form-labeled" th:action="@{${helper.path('/login')}}" th:method="post" >
                         <!--Errors-->
                         <ul class="error-messages" th:if="${session['SPRING_SECURITY_LAST_EXCEPTION'] != null}">
                             <li th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">Some error</li>

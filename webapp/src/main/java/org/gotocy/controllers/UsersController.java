@@ -7,6 +7,8 @@ import org.gotocy.forms.validation.UserRegistrationFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -57,8 +59,13 @@ public class UsersController {
 		form.setRoles(Collections.singleton(Roles.ROLE_USER));
 		GtcUser registeredUser = userService.register(form.toUser(), form.getRelPropertyId(),
 			form.getRelPropertySecret());
-		model.addAttribute(registeredUser);
-		return "redirect:" + Helper.path("/");
+
+		// Authenticate the user manually
+		PreAuthenticatedAuthenticationToken authenticationToken = new PreAuthenticatedAuthenticationToken(
+			registeredUser, registeredUser.getPassword(), registeredUser.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+
+		return "redirect:" + Helper.path("/user/welcome");
 	}
 
 }

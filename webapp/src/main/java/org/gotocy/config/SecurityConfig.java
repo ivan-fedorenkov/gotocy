@@ -17,9 +17,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
@@ -62,14 +64,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Mess
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		RedirectStrategy redirectStrategy = new LocaleAwareRedirectStrategy();
+
+		SimpleUrlAuthenticationSuccessHandler authenticationSuccessHandler =
+			new SavedRequestAwareAuthenticationSuccessHandler();
+		authenticationSuccessHandler.setDefaultTargetUrl("/user/profile");
+		authenticationSuccessHandler.setRedirectStrategy(redirectStrategy);
+
+		SimpleUrlAuthenticationFailureHandler authenticationFailureHandler =
+			new SimpleUrlAuthenticationFailureHandler("/login?error");
+		authenticationFailureHandler.setRedirectStrategy(redirectStrategy);
+
 		http
 			.authorizeRequests()
 			.antMatchers(anyLocale("/master/**")).hasRole(Roles.MASTER)
 			.antMatchers(anyLocale("/user/**")).hasRole(Roles.USER)
 			.antMatchers("/**").permitAll()
-			.and().formLogin().failureHandler(new FailureHandler())
-			.loginPage("/session/new")
-			.loginProcessingUrl("/session");
+			.and().formLogin()
+				.loginPage("/login")
+				.successHandler(authenticationSuccessHandler)
+				.failureHandler(authenticationFailureHandler)
+			.and().logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"));
+
 	}
 
 	@Override
@@ -84,26 +101,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Mess
 			.toArray(new String[Locales.SUPPORTED.size()]);
 	}
 
-	public static class FailureHandler extends SimpleUrlAuthenticationFailureHandler {
-		public FailureHandler() {
-			super("/session/new");
+	/**
+	 * Spring Security messes up LocaleContextHolder for some reason so we have to extract the
+	 * current locale manually.
+	 */
+	private static class LocaleAwareRedirectStrategy implements RedirectStrategy {
+		private static final Logger logger = LoggerFactory.getLogger(LocaleAwareRedirectStrategy.class);
 
-			setRedirectStrategy((request, response, url) -> {
-				// Somehow Spring messes up LocaleContextHolder value so we have to extract the
-				// current locale manually
-				Locale locale = Optional.ofNullable((Locale) request.getSession().getAttribute(
-					SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME)).orElse(Locales.DEFAULT);
-				String redirectUrl = Helper.path(url, locale);
-
-				if (logger.isDebugEnabled()) {
-					logger.debug("Redirecting to '" + redirectUrl + "'");
-				}
-
-				response.sendRedirect(redirectUrl);
-			});
+		@Override
+		public void sendRedirect(HttpServletRequest request, HttpServletResponse response, String url)
+			throws IOException
+		{
+			Locale currentLocale = Optional.ofNullable((Locale) request.getSession().getAttribute(
+				SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME)).orElse(Locales.DEFAULT);
+			String redirectUrl = Helper.path(url, currentLocale);
+			logger.debug("Redirecting to '{}'", redirectUrl);
+			response.sendRedirect(redirectUrl);
 		}
-
-
 	}
 
 }

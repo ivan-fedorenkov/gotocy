@@ -3,7 +3,7 @@ package org.gotocy.integration;
 import org.gotocy.config.Roles;
 import org.gotocy.domain.*;
 import org.gotocy.repository.GtcUserRepository;
-import org.gotocy.service.PropertyService;
+import org.gotocy.repository.PropertyRepository;
 import org.gotocy.test.factory.ContactsFactory;
 import org.gotocy.test.factory.GtcUserFactory;
 import org.gotocy.test.factory.PropertyFactory;
@@ -18,7 +18,7 @@ import java.util.Collections;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 /**
  * @author ifedorenkov
@@ -29,7 +29,7 @@ public class UserRegistrationIntegrationTest extends IntegrationTestBase {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	@Autowired
-	private PropertyService propertyService;
+	private PropertyRepository propertyRepository;
 
 	private GtcUser registeringUser;
 
@@ -54,7 +54,7 @@ public class UserRegistrationIntegrationTest extends IntegrationTestBase {
 			.param("email", registeringUser.getContacts().getEmail())
 			.param("password", registeringUser.getPassword())
 			.param("confirmPassword", registeringUser.getPassword()))
-			.andExpect(status().is3xxRedirection());
+			.andExpect(redirectedUrl("/user/welcome"));
 
 		GtcUser registeredUser = userRepository.findByUsername(registeringUser.getUsername());
 
@@ -67,12 +67,14 @@ public class UserRegistrationIntegrationTest extends IntegrationTestBase {
 
 	@Test
 	public void registrationThroughPromo() throws Exception {
-		SecretKey registrationKey = propertyService.generateRegistrationSecret();
+		SecretKey registrationKey = new SecretKey();
+		registrationKey.setKey("any-secret-key");
+		registrationKey.setEol(LocalDate.now().plusDays(1));
 		Property promo = PropertyFactory.INSTANCE.get(p -> {
 			p.setOfferStatus(OfferStatus.PROMO);
 			p.setRegistrationKey(registrationKey);
 		});
-		promo = propertyService.create(promo);
+		promo = propertyRepository.save(promo);
 
 		mvc.perform(post("/users").with(csrf())
 			.param("name", registeringUser.getContacts().getName())
@@ -81,7 +83,7 @@ public class UserRegistrationIntegrationTest extends IntegrationTestBase {
 			.param("confirmPassword", registeringUser.getPassword())
 			.param("relPropertyId", Long.toString(promo.getId()))
 			.param("relPropertySecret", registrationKey.getKey()))
-			.andExpect(status().is3xxRedirection());
+			.andExpect(redirectedUrl("/user/welcome"));
 
 		GtcUser registeredUser = userRepository.findByUsername(registeringUser.getUsername());
 		Assert.assertEquals(LocalDate.now(), registeredUser.getRegistrationDate());
@@ -90,7 +92,7 @@ public class UserRegistrationIntegrationTest extends IntegrationTestBase {
 		Assert.assertEquals(registeringUser.getContacts(), registeredUser.getContacts());
 		Assert.assertEquals(registeringUser.getRoles(), registeredUser.getRoles());
 
-		Property exPromo = propertyService.findOne(promo.getId());
+		Property exPromo = propertyRepository.findOne(promo.getId());
 		Assert.assertEquals(OfferStatus.INACTIVE, exPromo.getOfferStatus());
 		Assert.assertEquals(exPromo.getOwner(), registeredUser);
 	}

@@ -21,7 +21,7 @@ public class AuthenticationTest extends IntegrationTestBase {
 	@Test
 	public void deniedAccessToSecuredPath() throws Exception {
 		mvc.perform(get(SECURED_RESOURCE_URL))
-			.andExpect(redirectedUrlPattern("**/session/new"));
+			.andExpect(redirectedUrlPattern("**/login"));
 	}
 
 	@Test
