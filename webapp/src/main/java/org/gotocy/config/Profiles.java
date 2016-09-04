@@ -8,8 +8,7 @@ package org.gotocy.config;
 public interface Profiles {
 
 	String TEST = "test";
-	String LOCAL_DEV = "local-dev";
-	String HEROKU_DEV = "heroku-dev";
+	String DEV = "dev";
 	String PROD = "prod";
 
 }

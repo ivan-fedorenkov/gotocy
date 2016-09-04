@@ -28,6 +28,10 @@
 
         <div class="container">
             <header><h1>Edit Property</h1></header>
+            <section id="registration-link" class="block">
+                <a th:href="@{${helper.path(T(org.gotocy.config.Paths).MASTER, property, '/registration-link')}}" target="_blank">Generate registration link</a>
+                <span class="text-danger" th:unless="${property.owner == null}">[This property is already owned by some user. Registration of a new user will override the property owner!]</span>
+            </section>
             <form th:replace="master/property/form :: form('propertyForm', '/master/properties/' + ${property.id}, 'put')"></form>
         </div>
     </div>

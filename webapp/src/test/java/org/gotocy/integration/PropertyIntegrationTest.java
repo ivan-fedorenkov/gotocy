@@ -70,43 +70,4 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 		Assert.assertNotNull(createdProperty.getRegistrationKey());
 	}
 
-
-	@Test
-	@WithMockUser(roles = Roles.MASTER)
-	public void propertyCreationByAdmin() throws Exception {
-		// A property with overridden contacts
-		Property property = PropertyFactory.INSTANCE.get(p -> {
-			p.setContactsDisplayOption(PropertyContactsDisplayOption.OVERRIDDEN);
-			p.setOverriddenContacts(ContactsFactory.INSTANCE.get());
-		});
-
-		mvc.perform(post("/master/properties").with(csrf())
-			.param("title", property.getTitle())
-			.param("propertyType", property.getPropertyType().name())
-			.param("offerType", property.getOfferType().name())
-			.param("offerStatus", property.getOfferStatus().name())
-			.param("address", property.getAddress())
-			.param("shortAddress", property.getShortAddress())
-			.param("price", String.valueOf(property.getPrice()))
-			.param("latitude", String.valueOf(property.getLatitude()))
-			.param("longitude", String.valueOf(property.getLongitude()))
-			.param("bedrooms", String.valueOf(property.getBedrooms()))
-			.param("furnishing", property.getFurnishing().name())
-			.param("readyToMoveIn", String.valueOf(property.isReadyToMoveIn()))
-			.param("airConditioner", String.valueOf(property.hasAirConditioner()))
-			.param("heatingSystem", String.valueOf(property.hasHeatingSystem()))
-			.param("vatIncluded", String.valueOf(property.isVatIncluded()))
-			.param("contactsDisplayOption", PropertyContactsDisplayOption.OVERRIDDEN.name())
-			.param("contactName", property.getOverriddenContacts().getName())
-			.param("contactEmail", property.getOverriddenContacts().getEmail())
-			.param("contactPhone", property.getOverriddenContacts().getPhone())
-			.param("contactSpokenLanguages", property.getOverriddenContacts().getSpokenLanguages()))
-			.andExpect(status().isOk());
-
-		List<Property> properties = propertyRepository.findAll();
-		Assert.assertEquals(1, properties.size());
-		Property createdProperty = properties.get(0);
-		assertPropertiesEquals(property, createdProperty);
-	}
-
 }

@@ -20,7 +20,7 @@ import java.util.List;
  * @author ifedorenkov
  */
 @Controller
-@Profile(Profiles.LOCAL_DEV)
+@Profile(Profiles.DEV)
 public class FileSystemAssetsController {
 
 	@Autowired

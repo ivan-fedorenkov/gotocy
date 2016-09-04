@@ -14,6 +14,7 @@ import org.gotocy.helpers.Helper;
 import org.gotocy.repository.ComplexRepository;
 import org.gotocy.repository.DeveloperRepository;
 import org.gotocy.repository.PropertyRepository;
+import org.gotocy.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -39,17 +42,20 @@ public class MasterPropertiesController {
 	private final DeveloperRepository developerRepository;
 	private final ComplexRepository complexRepository;
 	private final PropertyDtoFactory propertyDtoFactory;
+	private final PropertyService propertyService;
 
 	@Autowired
 	public MasterPropertiesController(ApplicationProperties applicationProperties,
 		PropertyRepository propertyRepository, DeveloperRepository developerRepository,
-		ComplexRepository complexRepository, PropertyDtoFactory propertyDtoFactory)
+		ComplexRepository complexRepository, PropertyDtoFactory propertyDtoFactory,
+		PropertyService propertyService)
 	{
 		this.applicationProperties = applicationProperties;
 		this.propertyRepository = propertyRepository;
 		this.developerRepository = developerRepository;
 		this.complexRepository = complexRepository;
 		this.propertyDtoFactory = propertyDtoFactory;
+		this.propertyService = propertyService;
 	}
 
 	@RequestMapping(value = "/master/properties.json", method = RequestMethod.GET, produces = "application/json")
@@ -103,6 +109,22 @@ public class MasterPropertiesController {
 		property.setDeveloper(getDeveloper(propertyForm.getDeveloperId()));
 		property = propertyRepository.save(property);
 		return "redirect:" + Helper.editPath(Paths.MASTER, property);
+	}
+
+	@RequestMapping(value = "/master/properties/{id}/registration-link", method = RequestMethod.GET, produces = "text/plain")
+	@ResponseBody
+	public String generateRegistrationLink(@RequiredDomainObject @PathVariable("id") Property property,
+		HttpServletRequest request)
+	{
+		property.setRegistrationKey(propertyService.generateRegistrationSecret());
+		property = propertyService.update(property);
+		return UriComponentsBuilder.fromPath("/users/new")
+			.scheme(request.getScheme())
+			.host(request.getServerName())
+			.port(request.getServerPort())
+			.queryParam("relPropertyId", property.getId())
+			.queryParam("relPropertySecret", property.getRegistrationKey().getKey())
+			.build().toString();
 	}
 
 	private Complex getComplex(long complexId) {

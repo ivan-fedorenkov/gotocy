@@ -14,19 +14,19 @@ import org.springframework.context.annotation.Profile;
 public class AssetsManagerConfig {
 
 	@Bean
-	@Profile({Profiles.PROD, Profiles.HEROKU_DEV})
+	@Profile(Profiles.PROD)
 	public S3Properties s3Properties() {
 		return new S3Properties();
 	}
 
 	@Bean
-	@Profile({Profiles.PROD, Profiles.HEROKU_DEV})
+	@Profile(Profiles.PROD)
 	public AssetsManager prodAssetsManager() {
 		return new AmazonAssetsManager(s3Properties());
 	}
 
 	@Bean
-	@Profile(Profiles.LOCAL_DEV)
+	@Profile(Profiles.DEV)
 	public AssetsManager devAssetsManager() {
 		return new FileSystemAssetsManager("/storage/", "/tmp/gtc_assets");
 	}
