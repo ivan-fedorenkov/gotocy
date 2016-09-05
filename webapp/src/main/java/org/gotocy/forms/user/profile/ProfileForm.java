@@ -1,4 +1,4 @@
-package org.gotocy.forms.user;
+package org.gotocy.forms.user.profile;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,24 +8,23 @@ import org.gotocy.domain.GtcUser;
 import java.util.List;
 
 /**
- * Form that allows a user to change their contact details.
- * TODO: validation
+ * Form that allows a user to change their profile.
  *
  * @author ifedorenkov
  */
 @Getter
 @Setter
-public class ContactsForm {
+public class ProfileForm {
 
 	private String name;
 	private String email;
 	private String phone;
 	private List<String> spokenLanguages;
 
-	public ContactsForm() {
+	public ProfileForm() {
 	}
 
-	public ContactsForm(GtcUser user) {
+	public ProfileForm(GtcUser user) {
 		if (user.getContacts() != null) {
 			Contacts userContacts = user.getContacts();
 			name = userContacts.getName();

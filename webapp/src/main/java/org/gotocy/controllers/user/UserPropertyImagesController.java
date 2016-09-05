@@ -6,7 +6,7 @@ import org.gotocy.controllers.exceptions.AccessDeniedException;
 import org.gotocy.domain.GtcUser;
 import org.gotocy.domain.Image;
 import org.gotocy.domain.Property;
-import org.gotocy.forms.user.ImagesEditorForm;
+import org.gotocy.forms.user.property.ImagesEditorForm;
 import org.gotocy.forms.user.property.ImagesSubmissionForm;
 import org.gotocy.forms.validation.user.property.ImagesSubmissionFormValidator;
 import org.gotocy.helpers.Helper;

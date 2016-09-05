@@ -15,20 +15,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * @author ifedorenkov
  */
-public class UpdateContactsIntegrationTest extends IntegrationTestBase {
+public class ProfileUpdateIntegrationTest extends IntegrationTestBase {
 
 	@Autowired
 	private UserService userService;
 
 	@Test
 	@WithGtcUser(username = "user")
-	public void testChangeContacts() throws Exception {
+	public void testChangeProfile() throws Exception {
 		String updatedName = "updated name";
-		String updatedEmail = "updated email";
+		String updatedEmail = "support@gotocy.com";
 		String updatedPhone = "updated phone";
 		String updatedSpokenLanguages = "en;ru";
 
-		mvc.perform(put("/user/contacts").with(csrf())
+		mvc.perform(put("/user/profile").with(csrf())
 			.param("name", updatedName)
 			.param("email", updatedEmail)
 			.param("phone", updatedPhone)

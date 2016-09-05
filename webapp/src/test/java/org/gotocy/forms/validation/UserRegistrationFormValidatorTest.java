@@ -57,8 +57,7 @@ public class UserRegistrationFormValidatorTest {
 		errors = new BeanPropertyBindingResult(form, FORM_OBJECT_NAME);
 		formValidator.validate(form, errors);
 		Assert.assertEquals(1, errors.getFieldErrorCount("email"));
-		Assert.assertEquals(UserRegistrationFormValidator.INVALID_EMAIL,
-			errors.getFieldError("email").getCode());
+		Assert.assertEquals(ValidationConstraints.INVALID_EMAIL, errors.getFieldError("email").getCode());
 		Assert.assertEquals(1, errors.getFieldErrorCount("password"));
 		Assert.assertEquals(UserRegistrationFormValidator.PASSWORD_TOO_SHORT,
 			errors.getFieldError("password").getCode());

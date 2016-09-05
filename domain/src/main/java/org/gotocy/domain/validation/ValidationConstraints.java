@@ -12,6 +12,7 @@ public interface ValidationConstraints {
 	String MAX_SIZE = "org.gotocy.validation.constraints.MaxSize.message";
 	String CONTENT_TYPE = "org.gotocy.validation.constraints.ContentType.message";
 	String NON_UNIQUE = "org.gotocy.validation.constraints.NonUnique.message";
+	String INVALID_EMAIL = "org.gotocy.validation.constraints.InvalidEmail.message";
 	/**
 	 * For example already uploaded maximum number of images.
 	 */
