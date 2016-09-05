@@ -63,7 +63,8 @@ public class UserPropertyImagesController {
 
 	@RequestMapping(value = "/user/properties/{id}/images", method = RequestMethod.POST)
 	public String create(Model model, @RequiredDomainObject @PathVariable("id") Property property,
-		@AuthenticationPrincipal GtcUser user, @Valid @ModelAttribute ImagesSubmissionForm form, BindingResult formErrors)
+		@AuthenticationPrincipal GtcUser user, @Valid @ModelAttribute ImagesSubmissionForm form, BindingResult formErrors,
+		RedirectAttributes redirectAttributes)
 		throws IOException
 	{
 		if (!property.isEditableBy(user))
@@ -77,7 +78,8 @@ public class UserPropertyImagesController {
 
 		Collection<Image> attached = form.mapFilesToImages();
 		propertyService.attachImages(property, attached);
-		return "redirect:" + Helper.path(Paths.USER, property);
+		redirectAttributes.addFlashAttribute("successfullySubmitted", true);
+		return "redirect:" + Helper.editPath(Paths.USER, property, "/images") + "#submit-buttons";
 	}
 
 	@RequestMapping(value = "/user/properties/{id}/images", method = RequestMethod.PUT)
