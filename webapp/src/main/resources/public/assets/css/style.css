@@ -1105,11 +1105,6 @@ ul.list-links {
     right: 0;
     z-index: 0; }
 
-ul.error-messages {
-  background-color: #f2dede;
-  padding: 20px 0 20px 20px;
-  list-style: none; }
-
 /****
   F
 ****/
@@ -3115,6 +3110,11 @@ ul.language-switch-list {
   .marker-cluster:hover {
     background-color: #073855; }
 
+.submit-form-group {
+  margin-top: 20px;
+  overflow: hidden;
+  *zoom: 1; }
+
 .form-group {
   margin-bottom: 10px; }
 
@@ -3394,6 +3394,21 @@ input[type="text"], input[type="email"], input[type="search"], input[type="passw
 .form-group {
   position: relative; }
 
+ul.error-messages {
+  background-color: #a94442;
+  padding: 20px;
+  margin-bottom: 20px;
+  list-style: none;
+  color: #fff; }
+
+.form-group.has-error label {
+  color: #a94442; }
+.form-group.has-error .form-control {
+  border: 1px solid #a94442; }
+.form-group.has-error .input-group-addon {
+  background-color: #a94442;
+  color: #fff; }
+
 .wysihtml5-editor {
   padding: 25px 15px;
   min-height: 200px; }
@@ -3422,43 +3437,6 @@ ul.wysihtml5-toolbar a[data-wysihtml5-command=italic] {
 
 ul.wysihtml5-toolbar a[data-wysihtml5-command=underline] {
   text-decoration: underline; }
-
-form #form-status {
-  line-height: 1;
-  position: relative;
-  top: -28px; }
-  form #form-status #valid {
-    position: relative;
-    top: -10px; }
-    form #form-status #valid .icon {
-      font-size: 24px;
-      margin-right: 10px;
-      vertical-align: middle; }
-  form #form-status #invalid {
-    color: red;
-    position: relative;
-    top: -10px; }
-form label.error {
-  background-color: red;
-  bottom: -30px;
-  color: #fff;
-  font-size: 12px;
-  left: 0;
-  padding: 5px;
-  position: absolute;
-  z-index: 2; }
-  form label.error:before {
-    border-style: solid;
-    border-width: 0 3.5px 5px 3.5px;
-    border-color: transparent transparent red transparent;
-    content: "";
-    height: 0px;
-    left: 5px;
-    position: absolute;
-    top: -5px;
-    width: 0px; }
-form.form-labeled button[type='submit'] {
-  margin-top: 20px; }
 
 .file-input {
   border: 2px solid #f3f3f3;

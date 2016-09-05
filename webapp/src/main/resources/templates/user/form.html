@@ -11,31 +11,33 @@
     <div class="row">
         <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
             <!--/*/ <th:block th:fragment="formFields"> /*/-->
-            <div class="form-group">
+            <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
                 <label for="name" th:text="${i18n.t('dictionary.your-name')}">Your Name</label>
                 <input type="text" class="form-control" id="name" name="name" th:field="*{name}" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" th:classappend="${#fields.hasErrors('email')}? has-error">
                 <label for="email" th:text="${i18n.t('dictionary.your-email')}">Your Email</label>
                 <input type="text" class="form-control" id="email" name="email" th:field="*{email}" required>
             </div>
             
-            <div class="form-group">
+            <div class="form-group" th:classappend="${#fields.hasErrors('password')}? has-error">
                 <label for="password" th:text="${i18n.t('dictionary.password')}">Password</label>
                 <input type="password" class="form-control" id="password" th:field="*{password}" required>
             </div>
-            <div class="form-group">
+
+            <div class="form-group" th:classappend="${#fields.hasErrors('password')}? has-error">
                 <label for="confirmPassword" th:text="${i18n.t('dictionary.confirm-password')}">Confirm Password</label>
                 <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}" required>
             </div>
-            <div class="form-group clearfix">
-                <input type="hidden" th:field="*{relPropertyId}"/>
-                <input type="hidden" th:field="*{relPropertySecret}"/>
 
+            <div class="form-group submit-form-group">
                 <button type="submit" class="btn btn-default pull-right" th:text="${i18n.t('dictionary.register-now')}">Sign Up</button>
             </div>
             <!--/*/ <th:block> /*/-->
         </div>
     </div>
+
+    <input type="hidden" th:field="*{relPropertyId}"/>
+    <input type="hidden" th:field="*{relPropertySecret}"/>
 </form>

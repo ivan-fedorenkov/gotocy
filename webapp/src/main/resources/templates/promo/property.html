@@ -160,7 +160,7 @@
                         </aside>
                         <aside id="registration-form">
                             <header><h3 th:text="${i18n.t('templates.promo.property.registration-form-header')}">Register Now</h3></header>
-                            <form role="form" class="form-labeled" th:object="${userRegistrationForm}" th:action="@{${helper.path('/users')}}" th:method="post">
+                            <form role="form" th:object="${userRegistrationForm}" th:action="@{${helper.path('/users')}}" th:method="post">
                                 <!--/*/ <th:block th:replace="user/form :: formFields"> /*/-->
                                 <div class="form-group">
                                     <label class="control-label" for="name">Your Name</label>
@@ -192,7 +192,7 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group submit-form-group">
                                     <button type="submit" id="register-button" class="btn btn-default">Register Now</button>
                                 </div>
                                 <!--/*/ </th:block> /*/-->

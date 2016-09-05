@@ -31,21 +31,21 @@
             <header><h1 th:text="${i18n.t('dictionary.sign-in')}">Sign In</h1></header>
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                    <form role="form" id="form-create-account" class="form-labeled" th:action="@{${helper.path('/login')}}" th:method="post" >
+                    <form role="form" id="form-create-account" th:action="@{${helper.path('/login')}}" th:method="post" th:with="hasError=${session['SPRING_SECURITY_LAST_EXCEPTION'] != null}">
                         <!--Errors-->
-                        <ul class="error-messages" th:if="${session['SPRING_SECURITY_LAST_EXCEPTION'] != null}">
+                        <ul class="error-messages" th:if="${hasError}">
                             <li th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">Some error</li>
                         </ul>
 
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${hasError}? has-error">
                             <label for="username" th:text="${i18n.t('dictionary.email')}">Email</label>
                             <input type="text" class="form-control" id="username" name="username" required>
                         </div><!-- /.form-group -->
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${hasError}? has-error">
                             <label for="password" th:text="${i18n.t('dictionary.password')}">Password</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div><!-- /.form-group -->
-                        <div class="form-group clearfix">
+                        <div class="form-group submit-form-group">
                             <button type="submit" class="btn pull-right btn-default" th:text="${i18n.t('dictionary.sign-in')}">Sign to My Account</button>
                         </div><!-- /.form-group -->
                     </form>

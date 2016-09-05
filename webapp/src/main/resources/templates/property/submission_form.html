@@ -15,7 +15,7 @@
                 <section id="basic-information">
                     <header><h2 th:text="${i18n.t('dictionary.property-details')}">Property Details</h2></header>
 
-                    <div class="form-group">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('title')}? has-error">
                         <label for="title" th:text="${i18n.t('dictionary.title')}">Title</label>
                         <input type="text" class="form-control" id="title" th:field="*{title}" required>
                     </div>
@@ -41,7 +41,7 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('plotSize')}? has-error">
                         <label for="plotSize" th:text="${i18n.t('dictionary.plot-size')}">Plot Size</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="plotSize" th:field="*{plotSize}" pattern="\d+">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('coveredArea')}? has-error">
                         <label for="coveredArea" class="control-label" th:text="${i18n.t('dictionary.covered-area')}">Covered Area</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="coveredArea" th:field="*{coveredArea}" pattern="\d+">
@@ -57,23 +57,23 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('levels')}? has-error">
                         <label for="levels" th:text="${i18n.t('dictionary.levels')}">Level(s)</label>
                         <input type="text" class="form-control" id="levels" th:field="*{levels}" pattern="\d+">
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('bedrooms')}? has-error">
                         <label for="bedrooms" th:text="${i18n.t('dictionary.bedrooms.plural')}">Bedrooms</label>
                         <input type="text" class="form-control" id="bedrooms" th:field="*{bedrooms}" pattern="\d+">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('guests')}? has-error">
                         <label for="guests" th:text="${i18n.t('dictionary.guests')}">Guests</label>
                         <input type="text" class="form-control" id="guests" th:field="*{guests}" pattern="\d+">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('distanceToSea')}? has-error">
                         <label for="distanceToSea" th:text="${i18n.t('dictionary.distance-to-sea')}">To Sea</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="distanceToSea" th:field="*{distanceToSea}" pattern="\d+">
