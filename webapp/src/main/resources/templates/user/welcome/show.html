@@ -52,7 +52,44 @@
                 <div class="col-md-9 col-sm-10">
                     <section id="welcome">
                         <header><h1 th:text="${i18n.t('dictionary.welcome')}">Welcome</h1></header>
-                        <p th:utext="${helper.page.get('user-welcome', #locale)}">Welcome!</p>
+                        <article class="blog-post">
+                            <p>
+                                Dear [[USER]]! Welcome to GoToCy website!
+                            </p>
+                            <p>
+                                As a registered user you now have a privilege to control all of your properties as well as your personal contact details.
+                                Let me briefly describe a couple of important actions you need to perform as your first steps in our system.
+                            </p>
+                            <h3>Step #1 - Specify your contact details</h3>
+                            <p>
+                                The first step is to specify contact details that visitors of your property's pages will be using to send their requests. The form will ask you to provide the following details:
+                            </p>
+                            <ul>
+                                <li>Your name (mandatory field)</li>
+                                <li>Contact email (mandatory field)</li>
+                                <li>Contact phone</li>
+                                <li>Languages that you are able to use</li>
+                            </ul>
+                            <p>
+                                Type in whatever you think is reasonable. Note that the form is also available under the "My Profile" section of the "Navigation" bar.
+                            </p>
+                            <div class="text-center">
+                                <a href="#" class="btn btn-default text-center" target="_blank">Specify Contacts</a>
+                            </div>
+                            <h3>Step #2 - Add your first property object</h3>
+                            <p>
+                                Feel free to skip this step if have registered by using the special registration link.
+                            </p>
+                            <p>
+                                Click on the "My Properties" link in the "Navigation" section at the left side of this page. You will see a table that contains all of your properties.
+                                Most likely it is empty right now! So click on the "Add New Property" link in the "Actions" section at the left side of the page.
+                            </p>
+                            <h3>Getting help</h3>
+                            <p>
+                                The detailed description is available for you under the "Help" link in the "Navigation" section at the left side of this page.
+                            </p>
+                        </article>
+                        <p th:utext="${helper.page.get('user-welcome', #locale)}"></p>
                     </section><!-- /#welcome -->
                 </div><!-- /.col-md-9 -->
                 <!-- end My Profile -->
