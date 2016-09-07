@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -34,6 +35,14 @@ public class PropertyServiceTest {
 		when(propertyRepository.save(any(Property.class))).then(returnsFirstArg());
 
 		propertyService = new PropertyServiceImpl(assetsService, propertyRepository);
+	}
+
+	@Test
+	public void testCreate() {
+		Property property = PropertyFactory.INSTANCE.get();
+		Assert.assertNull(property.getCreationDate());
+		propertyService.create(property);
+		Assert.assertEquals(LocalDate.now(), property.getCreationDate());
 	}
 
 	/**

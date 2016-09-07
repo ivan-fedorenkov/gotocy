@@ -7,6 +7,7 @@ import org.gotocy.domain.i18n.PropertyLocalizedFieldsManager;
 import org.gotocy.utils.CollectionUtils;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -55,6 +56,8 @@ public class Property extends BaseEntity {
 
 	@Enumerated(EnumType.STRING)
 	private PropertyContactsDisplayOption contactsDisplayOption;
+
+	private LocalDate creationDate;
 
 	@Enumerated(EnumType.STRING)
 	private Location location;

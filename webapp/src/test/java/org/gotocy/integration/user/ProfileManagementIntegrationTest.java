@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * @author ifedorenkov
  */
-public class ProfileUpdateIntegrationTest extends IntegrationTestBase {
+public class ProfileManagementIntegrationTest extends IntegrationTestBase {
 
 	@Autowired
 	private UserService userService;

@@ -72,6 +72,8 @@ public interface PropertyService {
 
 	Property findOne(Long id);
 
+	Property findOne(Predicate predicate);
+
 	Iterable<Property> find(Predicate predicate, Sort sort);
 
 	Page<Property> findPubliclyVisible(Predicate predicate, Pageable pageable);

@@ -65,7 +65,7 @@ public class UserPropertyOffersController {
 
 		propertyService.update(form.mergeWithProperty(property));
 		redirectAttributes.addFlashAttribute("successfullySubmitted", true);
-		return "redirect:" + Helper.editPath(Paths.USER, property, "/offers") + "#submit-buttons";
+		return "redirect:" + Helper.editPath(Paths.USER, property, Paths.OFFERS) + "#submit-buttons";
 	}
 
 }

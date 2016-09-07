@@ -84,8 +84,8 @@
                                                     <div class="tag price" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:text="${helper.property.price(p)}">$ 38,000</div>
                                                 </div>
                                             </td>
-                                            <td>
-                                                TBD (Date)
+                                            <td th:text="${helper.formatDate(p.creationDate)}">
+                                                01.01.1970
                                             </td>
                                             <td class="actions">
                                                 <a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, p)}" class="edit" target="_blank"><i class="fa fa-pencil"></i><!--/*/ <th:block th:text="${i18n.t('dictionary.edit')}"> /*/-->Edit<!--/*/ </th:block> /*/--></a>

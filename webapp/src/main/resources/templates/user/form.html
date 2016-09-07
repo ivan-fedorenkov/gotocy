@@ -34,10 +34,10 @@
             <div class="form-group submit-form-group">
                 <button type="submit" class="btn btn-default pull-right" th:text="${i18n.t('dictionary.register-now')}">Sign Up</button>
             </div>
+
+            <input type="hidden" th:field="*{relPropertyId}"/>
+            <input type="hidden" th:field="*{relPropertySecret}"/>
             <!--/*/ <th:block> /*/-->
         </div>
     </div>
-
-    <input type="hidden" th:field="*{relPropertyId}"/>
-    <input type="hidden" th:field="*{relPropertySecret}"/>
 </form>

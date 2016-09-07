@@ -77,3 +77,9 @@ DROP TABLE `registration`;
 -- Property offer type
 
 ALTER TABLE `property` CHANGE COLUMN `property_status` `offer_type` VARCHAR(16) NOT NULL;
+
+-- Property creation date
+
+ALTER TABLE `property` ADD COLUMN `creation_date` BIGINT;
+UPDATE `property` SET `creation_date` = 16000 + `id`;
+ALTER TABLE `property` MODIFY COLUMN `creation_date` BIGINT NOT NULL;

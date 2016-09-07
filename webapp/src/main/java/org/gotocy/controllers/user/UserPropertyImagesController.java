@@ -79,7 +79,7 @@ public class UserPropertyImagesController {
 		Collection<Image> attached = form.mapFilesToImages();
 		propertyService.attachImages(property, attached);
 		redirectAttributes.addFlashAttribute("successfullySubmitted", true);
-		return "redirect:" + Helper.editPath(Paths.USER, property, "/images") + "#submit-buttons";
+		return "redirect:" + Helper.editPath(Paths.USER, property, Paths.IMAGES) + "#submit-buttons";
 	}
 
 	@RequestMapping(value = "/user/properties/{id}/images", method = RequestMethod.PUT)
@@ -93,7 +93,7 @@ public class UserPropertyImagesController {
 		Collection<Image> removed = form.getRemoved(property.getImages());
 		propertyService.detachImages(property, removed);
 		redirectAttributes.addFlashAttribute("successfullySubmitted", true);
-		return "redirect:" + Helper.editPath(Paths.USER, property, "/images") + "#submit-buttons";
+		return "redirect:" + Helper.editPath(Paths.USER, property, Paths.IMAGES) + "#submit-buttons";
 	}
 
 }

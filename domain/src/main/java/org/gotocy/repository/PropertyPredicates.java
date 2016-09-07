@@ -20,6 +20,10 @@ public class PropertyPredicates {
 		return property.offerType.eq(offerType);
 	}
 
+	public static BooleanExpression withOfferInStatus(OfferStatus offerStatus) {
+		return property.offerStatus.eq(offerStatus);
+	}
+
 	public static BooleanExpression publiclyVisible() {
 		return property.offerStatus.ne(OfferStatus.PROMO)
 			.and(property.offerStatus.ne(OfferStatus.INACTIVE));

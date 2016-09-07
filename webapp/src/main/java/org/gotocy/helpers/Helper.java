@@ -18,6 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -131,8 +134,26 @@ public class Helper {
 	 * TODO: javadoc
 	 * TODO: unit test
 	 */
+	public static String newPath(Object... objects) {
+		return newPath(objects, LocaleContextHolder.getLocale());
+	}
+
+	/**
+	 * TODO: javadoc
+	 * TODO: unit test
+	 */
 	public static String editPath(Object... objects) {
 		return editPath(objects, LocaleContextHolder.getLocale());
+	}
+
+	/**
+	 * TODO: javadoc
+	 * TODO: unit test
+	 */
+	public static String newPath(Object[] objects, Locale locale) {
+		objects = Arrays.copyOf(objects, objects.length + 1);
+		objects[objects.length - 1] = Paths.NEW;
+		return path(objects);
 	}
 
 	/**
@@ -278,6 +299,15 @@ public class Helper {
 			logger.error("Requested flag url for unsupported language {}" + locale.getLanguage());
 		}
 		return "http://assets.gotocy.com/static/img/flags/" + flagCode + ".png";
+	}
+
+	/**
+	 * Formats the given date using the appropriate formatter in the current locale.
+	 */
+	public String formatDate(LocalDate date) {
+		return DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
+			.withLocale(LocaleContextHolder.getLocale())
+			.format(date);
 	}
 
 	/**

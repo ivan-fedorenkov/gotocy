@@ -1,9 +1,7 @@
 package org.gotocy.service;
 
 import com.mysema.query.types.Predicate;
-import org.gotocy.domain.Image;
-import org.gotocy.domain.Property;
-import org.gotocy.domain.SecretKey;
+import org.gotocy.domain.*;
 import org.gotocy.repository.PropertyRepository;
 import org.gotocy.utils.StringKeyGeneratorImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.Collection;
 
-import static org.gotocy.repository.PropertyPredicates.featured;
-import static org.gotocy.repository.PropertyPredicates.publiclyVisible;
+import static org.gotocy.repository.PropertyPredicates.*;
 
 /**
  * @author ifedorenkov
@@ -42,6 +39,7 @@ public class PropertyServiceImpl implements PropertyService {
 	@Override
 	@Transactional
 	public Property create(Property property) {
+		property.setCreationDate(LocalDate.now());
 		return propertyRepository.save(property);
 	}
 
@@ -102,6 +100,12 @@ public class PropertyServiceImpl implements PropertyService {
 	@Transactional(readOnly = true)
 	public Property findOne(Long id) {
 		return propertyRepository.findOne(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Property findOne(Predicate predicate) {
+		return propertyRepository.findOne(predicate);
 	}
 
 	@Override
