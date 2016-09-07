@@ -17,4 +17,7 @@ public interface Paths {
 	String IMAGES = "/images";
 	String OFFERS = "/offers";
 
+	String USER_PROFILE = "/user/profile";
+	String USER_PROPERTIES = "/user/properties";
+
 }

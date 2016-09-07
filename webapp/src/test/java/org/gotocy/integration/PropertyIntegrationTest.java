@@ -46,6 +46,7 @@ public class PropertyIntegrationTest extends IntegrationTestBase {
 	public void propertyCreation() throws Exception {
 		// Prepare property that should be created
 		Property property = PropertyFactory.INSTANCE.get(p -> {
+			p.setOfferType(null);
 			p.setOfferStatus(OfferStatus.PROMO);
 			// By default, property should have the OWNER contacts display option
 			p.setContactsDisplayOption(PropertyContactsDisplayOption.OWNER);

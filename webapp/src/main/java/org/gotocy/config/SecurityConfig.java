@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Mess
 
 		SimpleUrlAuthenticationSuccessHandler authenticationSuccessHandler =
 			new SavedRequestAwareAuthenticationSuccessHandler();
-		authenticationSuccessHandler.setDefaultTargetUrl("/user/profile");
+		authenticationSuccessHandler.setDefaultTargetUrl("/user/properties");
 		authenticationSuccessHandler.setRedirectStrategy(redirectStrategy);
 
 		SimpleUrlAuthenticationFailureHandler authenticationFailureHandler =

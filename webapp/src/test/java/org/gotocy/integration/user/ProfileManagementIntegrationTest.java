@@ -33,7 +33,7 @@ public class ProfileManagementIntegrationTest extends IntegrationTestBase {
 			.param("email", updatedEmail)
 			.param("phone", updatedPhone)
 			.param("spokenLanguages", updatedSpokenLanguages))
-			.andExpect(redirectedUrl("/user/profile"));
+			.andExpect(redirectedUrl("/user/profile/edit"));
 
 		GtcUser updated = userService.findByUsername("user");
 		Assert.assertEquals(updatedName, updated.getContacts().getName());

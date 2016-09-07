@@ -24,8 +24,6 @@ public class PropertySubmissionForm {
 	private String address;
 	private Location location;
 	private PropertyType propertyType;
-	private OfferType offerType;
-	private OfferStatus offerStatus;
 	private String description;
 	private int price;
 	private int coveredArea;
@@ -47,8 +45,6 @@ public class PropertySubmissionForm {
 	public PropertySubmissionForm() {
 		location = Location.FAMAGUSTA;
 		propertyType = PropertyType.APARTMENT;
-		offerType = OfferType.SALE;
-		offerStatus = OfferStatus.PROMO;
 		furnishing = Furnishing.NONE;
 	}
 
@@ -57,8 +53,6 @@ public class PropertySubmissionForm {
 		address = property.getAddress();
 		location = property.getLocation();
 		propertyType = property.getPropertyType();
-		offerType = property.getOfferType();
-		offerStatus = property.getOfferStatus();
 		description = property.getDescription();
 		price = property.getPrice();
 		coveredArea = property.getCoveredArea();
@@ -81,8 +75,6 @@ public class PropertySubmissionForm {
 		property.setAddress(address);
 		property.setLocation(location);
 		property.setPropertyType(propertyType);
-		property.setOfferType(offerType);
-		property.setOfferStatus(offerStatus);
 		property.setDescription(description);
 		property.setPrice(price);
 		property.setCoveredArea(coveredArea);

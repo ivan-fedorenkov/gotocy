@@ -3,6 +3,8 @@ package org.gotocy.helpers.property;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 /**
@@ -109,6 +111,9 @@ class QuickSummaryFieldsProvider implements FieldsProvider {
 	};
 
 	public FieldFormat[] getFields(Property property) {
+		if (property.getOfferType() == null)
+			return getFieldsDisregardingOffer(property);
+
 		switch (property.getOfferType()) {
 		case LONG_TERM:
 			return INACTIVE_OFFER.test(property) ? RENTED_LONG_TERM : LONG_TERM;
@@ -125,6 +130,26 @@ class QuickSummaryFieldsProvider implements FieldsProvider {
 			}
 		}
 		return new FieldFormat[0];
+	}
+
+	private static FieldFormat[] getFieldsDisregardingOffer(Property property) {
+		List<FieldFormat> fieldsToDisplay = new ArrayList<>();
+		fieldsToDisplay.add(FieldFormat.LOCATION);
+		fieldsToDisplay.add(FieldFormat.PROPERTY_TYPE);
+		if (property.getPlotSize() != 0)
+			fieldsToDisplay.add(FieldFormat.PLOT_SIZE);
+		if (property.getCoveredArea() != 0)
+			fieldsToDisplay.add(FieldFormat.COVERED_AREA);
+		if (property.getLevels() != 0)
+			fieldsToDisplay.add(FieldFormat.LEVELS);
+		if (property.getBedrooms() != 0)
+			fieldsToDisplay.add(FieldFormat.BEDROOMS);
+		if (property.getGuests() != 0)
+			fieldsToDisplay.add(FieldFormat.GUESTS);
+		if (property.getDistanceToSea() != 0)
+			fieldsToDisplay.add(FieldFormat.DISTANCE_TO_SEA);
+		fieldsToDisplay.add(FieldFormat.FURNISHING);
+		return fieldsToDisplay.toArray(new FieldFormat[fieldsToDisplay.size()]);
 	}
 
 }

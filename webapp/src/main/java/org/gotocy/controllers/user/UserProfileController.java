@@ -1,5 +1,6 @@
 package org.gotocy.controllers.user;
 
+import org.gotocy.config.Paths;
 import org.gotocy.domain.GtcUser;
 import org.gotocy.forms.user.profile.ProfileForm;
 import org.gotocy.forms.validation.user.profile.ProfileFormValidator;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -39,21 +41,23 @@ public class UserProfileController {
 			binder.addValidators(formValidator);
 	}
 
-	@RequestMapping(value = "/user/profile", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/profile/edit", method = RequestMethod.GET)
 	public String show(Model model, @AuthenticationPrincipal GtcUser user) {
 		model.addAttribute(new ProfileForm(user));
-		return "user/profile/show";
+		return "user/profile/edit";
 	}
 
 	@RequestMapping(value = "/user/profile", method = RequestMethod.PUT)
 	public String update(Model model, @AuthenticationPrincipal GtcUser user,
-		@Valid @ModelAttribute ProfileForm profileForm, BindingResult formErrors)
+		@Valid @ModelAttribute ProfileForm profileForm, BindingResult formErrors,
+		RedirectAttributes redirectAttributes)
 	{
 		if (formErrors.hasErrors())
 			return "user/profile/show";
 		profileForm.mergeWithGtcUser(user);
 		userService.update(user);
-		return "redirect:" + Helper.path("/user/profile");
+		redirectAttributes.addFlashAttribute("successfullySubmitted", true);
+		return "redirect:" + Helper.editPath(Paths.USER_PROFILE) + "#submit-buttons";
 	}
 
 }

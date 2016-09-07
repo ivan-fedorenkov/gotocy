@@ -40,7 +40,7 @@
                         <aside>
                             <header><h3 th:text="${i18n.t('dictionary.navigation')}">Navigation</h3></header>
                             <ul class="sidebar-navigation">
-                                <li><a href="#" th:href="${helper.path('/user/profile')}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
+                                <li><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER_PROFILE)}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
                                 <li><a href="#" th:href="${helper.path('/user/properties')}"><i class="fa fa-home fa-fw"></i><span th:text="${i18n.t('dictionary.my-properties')}">My Properties</span></a></li>
                             </ul>
                         </aside>
@@ -53,41 +53,82 @@
                     <section id="welcome">
                         <header><h1 th:text="${i18n.t('dictionary.welcome')}">Welcome</h1></header>
                         <article class="blog-post">
-                            <p>
-                                Dear [[USER]]! Welcome to GoToCy website!
-                            </p>
-                            <p>
-                                As a registered user you now have a privilege to control all of your properties as well as your personal contact details.
-                                Let me briefly describe a couple of important actions you need to perform as your first steps in our system.
-                            </p>
-                            <h3>Step #1 - Specify your contact details</h3>
-                            <p>
-                                The first step is to specify contact details that visitors of your property's pages will be using to send their requests. The form will ask you to provide the following details:
-                            </p>
-                            <ul>
-                                <li>Your name (mandatory field)</li>
-                                <li>Contact email (mandatory field)</li>
-                                <li>Contact phone</li>
-                                <li>Languages that you are able to use</li>
-                            </ul>
-                            <p>
-                                Type in whatever you think is reasonable. Note that the form is also available under the "My Profile" section of the "Navigation" bar.
-                            </p>
-                            <div class="text-center">
-                                <a href="#" class="btn btn-default text-center" target="_blank">Specify Contacts</a>
-                            </div>
-                            <h3>Step #2 - Add your first property object</h3>
-                            <p>
-                                Feel free to skip this step if have registered by using the special registration link.
-                            </p>
-                            <p>
-                                Click on the "My Properties" link in the "Navigation" section at the left side of this page. You will see a table that contains all of your properties.
-                                Most likely it is empty right now! So click on the "Add New Property" link in the "Actions" section at the left side of the page.
-                            </p>
-                            <h3>Getting help</h3>
-                            <p>
-                                The detailed description is available for you under the "Help" link in the "Navigation" section at the left side of this page.
-                            </p>
+                            <section class="block">
+                                <p th:text="|${#authentication.principal.contacts.name}, welcome to GoToCy website!|">
+                                    Denis, welcome to GoToCy website!
+                                </p>
+                                <p>
+                                    As a registered user you now have a privilege to control all of your properties as well as your personal contact details.
+                                    Let me briefly describe a couple of important actions you need to perform as your first steps in our system.
+                                </p>
+                            </section>
+
+                            <section class="block">
+                                <h3>Step #1 - Specify your contact details</h3>
+                                <p>
+                                    The first step is to specify contact details that visitors of your property's pages will be using to send their requests. The form will ask you to provide the following details:
+                                </p>
+                                <ul>
+                                    <li>Your name (mandatory field)</li>
+                                    <li>Contact email (mandatory field)</li>
+                                    <li>Contact phone</li>
+                                    <li>Languages that you are able to use</li>
+                                </ul>
+                                <p>
+                                    Type in whatever you think is reasonable. Note that you can access the form at any time by clicking on the "My Profile" link of the "Navigation" bar.
+                                </p>
+                                <div class="text-center">
+                                    <a th:href="${helper.editPath(T(org.gotocy.config.Paths).USER_PROFILE)}" class="btn btn-default text-center" target="_blank" style="width: 150px;">Specify Contacts</a>
+                                </div>
+                            </section>
+
+                            <section class="block">
+                                <h3>Step #2 - Add your first property object</h3>
+                                <p>
+                                    The next step is to add your property object. Feel free to skip this step if have registered by using the special registration link. The form will ask you to provide the following details about your property:
+                                </p>
+                                <ul>
+                                    <li>Title</li>
+                                    <li>Property type</li>
+                                    <li>Plot size (if applicable)</li>
+                                    <li>Covered area</li>
+                                    <li>Floor(s)</li>
+                                    <li>Number of bedrooms</li>
+                                    <li>Number of guests</li>
+                                    <li>Distance to sea</li>
+                                    <li>Text description of your property</li>
+                                    <li>Position on a map</li>
+                                    <li>Pictures of your property</li>
+                                </ul>
+                                <p>
+                                    Be patient and carefully fill all of the required fields!
+                                </p>
+                                <p>
+                                    You can add as many properties as you wish later.
+                                    Just click on the "My Properties" link of the "Navigation" bar. You will be redirected to the properties management page.
+                                    From there you will be able to access the form by clicking on the "Add New Property" link of the "Actions" bar.
+                                </p>
+                                <div class="text-center">
+                                    <a th:href="${helper.newPath('/user/properties')}" class="btn btn-default text-center" target="_blank" style="width: 150px;">Add Property</a>
+                                </div>
+                            </section>
+
+                            <section class="block">
+                                <h3>Step #3 - Start offering your property</h3>
+                                <p>
+                                    And the last but not least important step is to start offering your property to visitors of our website by specifying offer conditions.
+                                </p>
+                                <div class="text-center">
+                                    <a th:href="${helper.path('/user/welcome/redirect-to-first-inactive-offer')}" class="btn btn-default text-center" target="_blank" style="width: 150px;">Start Offering</a>
+                                </div>
+                            </section>
+
+                            <section class="block">
+                                <h3>Getting help</h3>
+                                <p>
+                                    The detailed description is available for you under the "Help" link in the "Navigation" section at the left side of this page.
+                                </p>
+                            </section>
                         </article>
                         <p th:utext="${helper.page.get('user-welcome', #locale)}"></p>
                     </section><!-- /#welcome -->

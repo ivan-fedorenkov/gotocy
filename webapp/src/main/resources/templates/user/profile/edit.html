@@ -1,11 +1,11 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}" th:with="curPath='/user/profile'">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US" th:lang="${#locale.language}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path('/user/profile', locale)}}" hreflang="en"  href="#" />
+    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="${helper.path(T(org.gotocy.config.Paths).USER_PROFILE, locale)}" hreflang="en"  href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
@@ -18,7 +18,7 @@
 <!-- Wrapper -->
 <div class="wrapper">
     <!-- Navigation -->
-    <div class="navigation" th:include="fragments/navigation_div :: navigation('/user/profile', ${false})"></div>
+    <div class="navigation" th:include="fragments/navigation_div :: navigation('/user/profile/edit', ${false})"></div>
     <!-- end Navigation -->
 
     <!-- Page Content -->
@@ -40,7 +40,7 @@
                         <aside>
                             <header><h3 th:text="${i18n.t('dictionary.navigation')}">Navigation</h3></header>
                             <ul class="sidebar-navigation">
-                                <li class="active"><a href="#" th:href="${helper.path('/user/profile')}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
+                                <li class="active"><a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER_PROFILE)}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
                                 <li><a href="#" th:href="${helper.path('/user/properties')}"><i class="fa fa-home fa-fw"></i><span th:text="${i18n.t('dictionary.my-properties')}">My Properties</span></a></li>
                             </ul>
                         </aside>
@@ -55,7 +55,7 @@
 
                         <div class="row">
                             <div class="col-md-6 col-md-offset-3 col-sm-12">
-                                <form role="form" id="form-account-profile" th:object="${profileForm}" th:action="@{${helper.path('/user/profile')}}" th:method="put">
+                                <form role="form" id="form-account-profile" th:object="${profileForm}" th:action="${helper.path('/user/profile')}" th:method="put">
                                     <section id="contact">
                                         <!--<h2 th:text="${i18n.t('dictionary.contacts')}">Contacts</h2>-->
 

@@ -19,7 +19,6 @@ public class PropertyTestUtils {
 		return request -> {
 			request.setParameter("title", property.getTitle());
 			request.setParameter("propertyType", property.getPropertyType().name());
-			request.setParameter("offerType", property.getOfferType().name());
 			request.setParameter("location", property.getLocation().name());
 			request.setParameter("address", property.getAddress());
 			request.setParameter("shortAddress", property.getShortAddress());

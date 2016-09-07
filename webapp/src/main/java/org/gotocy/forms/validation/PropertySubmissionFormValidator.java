@@ -10,8 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 /**
- * Validator of the user property form. Basically it just delegates all the validation logic
- * to the {@link org.gotocy.domain.validation.PropertyValidator} and to the {@link ImagesSubmissionValidator}.
+ * Validator of the user property form.
  *
  * TODO: unit test
  *
@@ -37,7 +36,7 @@ public class PropertySubmissionFormValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		PropertySubmissionForm form = (PropertySubmissionForm) target;
-		PropertyValidator.INSTANCE.validate(form.mergeWithProperty(new Property()), errors);
+//		PropertyValidator.INSTANCE.validate(form.mergeWithProperty(new Property()), errors);
 		imagesSubmissionValidator.validate(form.getImages(), errors);
 	}
 

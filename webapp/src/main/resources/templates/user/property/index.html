@@ -40,7 +40,7 @@
                         <aside>
                             <header><h3 th:text="${i18n.t('dictionary.navigation')}">Navigation</h3></header>
                             <ul class="sidebar-navigation">
-                                <li><a href="#" th:href="${helper.path('/user/profile')}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
+                                <li><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER_PROFILE)}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
                                 <li class="active"><a href="#" th:href="${helper.path('/user/properties')}"><i class="fa fa-home fa-fw"></i><span th:text="${i18n.t('dictionary.my-properties')}">My Properties</span></a></li>
                             </ul>
                         </aside>
@@ -48,7 +48,7 @@
                         <aside>
                             <header><h3 th:text="${i18n.t('dictionary.actions')}">Actions</h3></header>
                             <ul class="sidebar-navigation">
-                                <li><a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, '/properties/new')}"><i class="fa fa-plus fa-fw"></i><span th:text="${i18n.t('dictionary.add-new-property')}">Add New Property</span></a></li>
+                                <li><a href="#" th:href="${helper.path('/user', '/properties/new')}"><i class="fa fa-plus fa-fw"></i><span th:text="${i18n.t('dictionary.add-new-property')}">Add New Property</span></a></li>
                             </ul>
                         </aside>
                     </section><!-- /#sidebar -->
@@ -75,11 +75,11 @@
                                     <tbody>
                                         <tr th:each="p : ${properties}">
                                             <td class="image">
-                                                <a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, p)}" target="_blank"><img alt="" th:src="@{${helper.property.representativeImageUrl(p)}}"></a>
+                                                <a href="#" th:href="${helper.path('/user', p)}" target="_blank"><img alt="" th:src="@{${helper.property.representativeImageUrl(p)}}"></a>
                                             </td>
                                             <td>
                                                 <div class="inner">
-                                                    <a href="#" th:href="${helper.path(T(org.gotocy.config.Paths).USER, p)}" target="_blank"><h2 th:text="${p.title}">Property title</h2></a>
+                                                    <a href="#" th:href="${helper.path('/user', p)}" target="_blank"><h2 th:text="${p.title}">Property title</h2></a>
                                                     <figure th:text="${p.shortAddress}">Larnaca, Cyprus</figure>
                                                     <div class="tag price" th:if="${p.offerStatus == T(org.gotocy.domain.OfferStatus).ACTIVE}" th:text="${helper.property.price(p)}">$ 38,000</div>
                                                 </div>
@@ -88,7 +88,7 @@
                                                 01.01.1970
                                             </td>
                                             <td class="actions">
-                                                <a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, p)}" class="edit" target="_blank"><i class="fa fa-pencil"></i><!--/*/ <th:block th:text="${i18n.t('dictionary.edit')}"> /*/-->Edit<!--/*/ </th:block> /*/--></a>
+                                                <a href="#" th:href="${helper.editPath('/user', p)}" class="edit" target="_blank"><i class="fa fa-pencil"></i><!--/*/ <th:block th:text="${i18n.t('dictionary.edit')}"> /*/-->Edit<!--/*/ </th:block> /*/--></a>
                                             </td>
                                         </tr>
                                     </tbody>

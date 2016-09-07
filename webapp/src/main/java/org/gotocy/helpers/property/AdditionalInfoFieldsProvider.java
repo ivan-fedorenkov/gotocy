@@ -8,6 +8,7 @@ import org.gotocy.domain.Property;
  * @author ifedorenkov
  */
 class AdditionalInfoFieldsProvider implements FieldsProvider {
+	private static final FieldFormat[] NO_FIELDS = new FieldFormat[0];
 
 	private static final FieldFormat[] LONG_TERM = new FieldFormat[]{
 		FieldFormat.BEDROOMS,
@@ -39,6 +40,9 @@ class AdditionalInfoFieldsProvider implements FieldsProvider {
 
 	@Override
 	public FieldFormat[] getFields(Property property) {
+		if (property.getOfferType() == null)
+			return NO_FIELDS;
+
 		switch (property.getOfferType()) {
 		case LONG_TERM:
 			return LONG_TERM;
@@ -54,7 +58,7 @@ class AdditionalInfoFieldsProvider implements FieldsProvider {
 				return SALE_LAND;
 			}
 		}
-		return new FieldFormat[0];
+		return NO_FIELDS;
 	}
 
 }

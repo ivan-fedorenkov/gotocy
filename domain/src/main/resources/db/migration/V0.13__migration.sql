@@ -83,3 +83,4 @@ ALTER TABLE `property` CHANGE COLUMN `property_status` `offer_type` VARCHAR(16) 
 ALTER TABLE `property` ADD COLUMN `creation_date` BIGINT;
 UPDATE `property` SET `creation_date` = 16000 + `id`;
 ALTER TABLE `property` MODIFY COLUMN `creation_date` BIGINT NOT NULL;
+ALTER TABLE `property` MODIFY COLUMN `offer_type` VARCHAR(16) NULL;

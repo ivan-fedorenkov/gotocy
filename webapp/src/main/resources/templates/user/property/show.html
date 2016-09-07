@@ -7,7 +7,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path(helper.toArray(T(org.gotocy.config.Paths).USER, property), locale)}}" hreflang="en" href="#" />
+    <link th:each="locale : ${T(org.gotocy.config.Locales).SUPPORTED}" rel="alternate" th:hreflang="${locale.language}" th:href="@{${helper.path(helper.toArray('/user', property), locale)}}" hreflang="en" href="#" />
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     <link th:href="@{/assets/css/application.min.css}" href="/parent/webapp/public/assets/css/application.min.css" rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
 <!-- Wrapper -->
 <div class="wrapper">
     <!-- Navigation -->
-    <div class="navigation" th:include="fragments/navigation_div :: navigation(${helper.toArray(T(org.gotocy.config.Paths).USER, property)}, ${false})"></div>
+    <div class="navigation" th:include="fragments/navigation_div :: navigation(${helper.toArray('/user', property)}, ${false})"></div>
     <!-- end Navigation -->
 
     <!-- Page Content -->
@@ -44,7 +44,7 @@
                         <aside>
                             <header><h3 th:text="${i18n.t('dictionary.navigation')}">Navigation</h3></header>
                             <ul class="sidebar-navigation">
-                                <li><a href="#" th:href="${helper.path('/user/profile')}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
+                                <li><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER_PROFILE)}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
                                 <li><a href="#" th:href="${helper.path('/user/properties')}"><i class="fa fa-home fa-fw"></i><span th:text="${i18n.t('dictionary.my-properties')}">My Properties</span></a></li>
                             </ul>
                         </aside>
@@ -52,9 +52,9 @@
                         <aside>
                             <header><h3 th:text="${i18n.t('dictionary.actions')}">Actions</h3></header>
                             <ul class="sidebar-navigation">
-                                <li><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, property)}"><i class="fa fa-pencil fa-fw"></i><span th:text="${i18n.t('dictionary.edit-property')}">Edit Property</span></a></li>
-                                <li><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, property, '/offers')}"><i class="fa fa-eur fa-fw"></i><span th:text="${i18n.t('dictionary.manage-offers')}">Manage Offers</span></a></li>
-                                <li><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER, property, '/images')}"><i class="fa fa-picture-o fa-fw"></i><span th:text="${i18n.t('dictionary.manage-gallery')}">Manage Gallery</span></a></li>
+                                <li><a href="#" th:href="${helper.editPath('/user', property)}"><i class="fa fa-pencil fa-fw"></i><span th:text="${i18n.t('dictionary.edit-property')}">Edit Property</span></a></li>
+                                <li><a href="#" th:href="${helper.editPath('/user', property, '/offers')}"><i class="fa fa-eur fa-fw"></i><span th:text="${i18n.t('dictionary.manage-offers')}">Manage Offers</span></a></li>
+                                <li><a href="#" th:href="${helper.editPath('/user', property, '/images')}"><i class="fa fa-picture-o fa-fw"></i><span th:text="${i18n.t('dictionary.manage-gallery')}">Manage Gallery</span></a></li>
                             </ul>
                         </aside>
                     </section><!-- /#sidebar -->

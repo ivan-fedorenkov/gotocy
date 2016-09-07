@@ -58,7 +58,7 @@ public class UserWelcomeController {
 			return "redirect:" + Helper.editPath(Paths.USER, lastCreatedProperty.get(), Paths.OFFERS);
 
 		// There is no single property that belongs to current user so redirect to property creation form
-		return "redirect:" + Helper.newPath(Paths.USER, Paths.PROPERTIES);
+		return "redirect:" + Helper.newPath(Paths.USER_PROPERTIES);
 	}
 
 }
