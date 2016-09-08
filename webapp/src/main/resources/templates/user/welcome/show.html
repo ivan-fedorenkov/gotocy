@@ -54,7 +54,7 @@
                         <header><h1 th:text="${i18n.t('dictionary.welcome')}">Welcome</h1></header>
                         <article class="blog-post">
                             <section class="block">
-                                <p th:text="|<strong>${#authentication.principal.contacts.name}</strong>, welcome to GoToCy website!|">
+                                <p th:utext="|<strong>${#authentication.principal.contacts.name}</strong>, welcome to GoToCy website!|">
                                     <strong>Denis</strong>, welcome to GoToCy website!
                                 </p>
                                 <p>
