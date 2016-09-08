@@ -1,7 +1,7 @@
 package org.gotocy.forms.validation.user.profile;
 
 import org.gotocy.domain.validation.ValidationConstraints;
-import org.gotocy.forms.user.profile.ProfileForm;
+import org.gotocy.forms.user.profile.ContactsForm;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -11,7 +11,7 @@ import org.springframework.validation.Errors;
 /**
  * @author ifedorenkov
  */
-public class ProfileFormValidatorTest {
+public class ContactsFormValidatorTest {
 
 	private static final String FORM_OBJECT_NAME = "contactsForm";
 	private static final String EMPTY_STRING = "";
@@ -20,16 +20,16 @@ public class ProfileFormValidatorTest {
 	private static final String VALID_NAME = ANY_STRING;
 	private static final String VALID_EMAIL = "support@gotocy.com";
 
-	private static ProfileFormValidator validator;
+	private static ContactsFormValidator validator;
 
 	@BeforeClass
 	public static void init() {
-		validator = new ProfileFormValidator();
+		validator = new ContactsFormValidator();
 	}
 
 	@Test
 	public void testRejections() {
-		ProfileForm form = new ProfileForm();
+		ContactsForm form = new ContactsForm();
 		Errors errors = new BeanPropertyBindingResult(form, FORM_OBJECT_NAME);
 		validator.validate(form, errors);
 		Assert.assertEquals(ValidationConstraints.NOT_EMPTY, errors.getFieldError("name").getCode());
@@ -51,7 +51,7 @@ public class ProfileFormValidatorTest {
 
 	@Test
 	public void acceptValidForm() {
-		ProfileForm form = new ProfileForm();
+		ContactsForm form = new ContactsForm();
 		form.setName(VALID_NAME);
 		form.setEmail(VALID_EMAIL);
 		Errors errors = new BeanPropertyBindingResult(form, FORM_OBJECT_NAME);

@@ -45,7 +45,7 @@
                         <aside>
                             <header><h3 th:text="${i18n.t('dictionary.navigation')}">Navigation</h3></header>
                             <ul class="sidebar-navigation">
-                                <li><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER_PROFILE)}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
+                                <li><a href="#" th:href="${helper.path('/user/profile')}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
                                 <li><a href="#" th:href="${helper.path('/user/properties')}"><i class="fa fa-home fa-fw"></i><span th:text="${i18n.t('dictionary.my-properties')}">My Properties</span></a></li>
                             </ul>
                         </aside>

@@ -28,12 +28,12 @@ public class ProfileManagementIntegrationTest extends IntegrationTestBase {
 		String updatedPhone = "updated phone";
 		String updatedSpokenLanguages = "en;ru";
 
-		mvc.perform(put("/user/profile").with(csrf())
+		mvc.perform(put("/user/contacts").with(csrf())
 			.param("name", updatedName)
 			.param("email", updatedEmail)
 			.param("phone", updatedPhone)
 			.param("spokenLanguages", updatedSpokenLanguages))
-			.andExpect(redirectedUrl("/user/profile/edit"));
+			.andExpect(redirectedUrl("/user/profile"));
 
 		GtcUser updated = userService.findByUsername("user");
 		Assert.assertEquals(updatedName, updated.getContacts().getName());

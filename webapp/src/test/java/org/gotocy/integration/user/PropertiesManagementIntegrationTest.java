@@ -43,6 +43,8 @@ public class PropertiesManagementIntegrationTest extends IntegrationTestBase {
 		Property property = PropertyFactory.INSTANCE.get(p -> {
 			// Property's offer should be inactive
 			p.setOfferStatus(OfferStatus.INACTIVE);
+			// Property's offer type should not be defined
+			p.setOfferType(null);
 			// By default, property should have the OWNER contacts display option
 			p.setContactsDisplayOption(PropertyContactsDisplayOption.OWNER);
 			p.setOwner(user);

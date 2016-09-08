@@ -2,8 +2,8 @@ package org.gotocy.controllers.user;
 
 import org.gotocy.config.Paths;
 import org.gotocy.domain.GtcUser;
-import org.gotocy.forms.user.profile.ProfileForm;
-import org.gotocy.forms.validation.user.profile.ProfileFormValidator;
+import org.gotocy.forms.user.profile.ContactsForm;
+import org.gotocy.forms.validation.user.profile.ContactsFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -27,10 +26,10 @@ import javax.validation.Valid;
 public class UserProfileController {
 
 	private final UserService userService;
-	private final ProfileFormValidator formValidator;
+	private final ContactsFormValidator formValidator;
 
 	@Autowired
-	public UserProfileController(UserService userService, ProfileFormValidator formValidator) {
+	public UserProfileController(UserService userService, ContactsFormValidator formValidator) {
 		this.userService = userService;
 		this.formValidator = formValidator;
 	}
@@ -41,23 +40,21 @@ public class UserProfileController {
 			binder.addValidators(formValidator);
 	}
 
-	@RequestMapping(value = "/user/profile/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/profile", method = RequestMethod.GET)
 	public String show(Model model, @AuthenticationPrincipal GtcUser user) {
-		model.addAttribute(new ProfileForm(user));
-		return "user/profile/edit";
+		model.addAttribute(new ContactsForm(user));
+		return "user/profile/show";
 	}
 
-	@RequestMapping(value = "/user/profile", method = RequestMethod.PUT)
+	@RequestMapping(value = "/user/contacts", method = RequestMethod.PUT)
 	public String update(Model model, @AuthenticationPrincipal GtcUser user,
-		@Valid @ModelAttribute ProfileForm profileForm, BindingResult formErrors,
-		RedirectAttributes redirectAttributes)
+		@Valid @ModelAttribute ContactsForm contactsForm, BindingResult formErrors)
 	{
 		if (formErrors.hasErrors())
 			return "user/profile/show";
-		profileForm.mergeWithGtcUser(user);
+		contactsForm.mergeWithGtcUser(user);
 		userService.update(user);
-		redirectAttributes.addFlashAttribute("successfullySubmitted", true);
-		return "redirect:" + Helper.editPath(Paths.USER_PROFILE) + "#submit-buttons";
+		return "redirect:" + Helper.path(Paths.USER_PROFILE);
 	}
 
 }

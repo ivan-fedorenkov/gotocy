@@ -40,7 +40,7 @@
                         <aside>
                             <header><h3 th:text="${i18n.t('dictionary.navigation')}">Navigation</h3></header>
                             <ul class="sidebar-navigation">
-                                <li><a href="#" th:href="${helper.editPath(T(org.gotocy.config.Paths).USER_PROFILE)}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
+                                <li><a href="#" th:href="${helper.path('/user/profile')}"><i class="fa fa-user fa-fw"></i><span th:text="${i18n.t('dictionary.my-profile')}">My Profile</span></a></li>
                                 <li><a href="#" th:href="${helper.path('/user/properties')}"><i class="fa fa-home fa-fw"></i><span th:text="${i18n.t('dictionary.my-properties')}">My Properties</span></a></li>
                             </ul>
                         </aside>
@@ -54,8 +54,8 @@
                         <header><h1 th:text="${i18n.t('dictionary.welcome')}">Welcome</h1></header>
                         <article class="blog-post">
                             <section class="block">
-                                <p th:text="|${#authentication.principal.contacts.name}, welcome to GoToCy website!|">
-                                    Denis, welcome to GoToCy website!
+                                <p th:text="|<strong>${#authentication.principal.contacts.name}</strong>, welcome to GoToCy website!|">
+                                    <strong>Denis</strong>, welcome to GoToCy website!
                                 </p>
                                 <p>
                                     As a registered user you now have a privilege to control all of your properties as well as your personal contact details.
@@ -78,14 +78,14 @@
                                     Type in whatever you think is reasonable. Note that you can access the form at any time by clicking on the "My Profile" link of the "Navigation" bar.
                                 </p>
                                 <div class="text-center">
-                                    <a th:href="${helper.editPath(T(org.gotocy.config.Paths).USER_PROFILE)}" class="btn btn-default text-center" target="_blank" style="width: 150px;">Specify Contacts</a>
+                                    <a th:href="${helper.path('/user/profile')}" class="btn btn-default text-center" target="_blank" style="width: 150px;">Specify Contacts</a>
                                 </div>
                             </section>
 
                             <section class="block">
                                 <h3>Step #2 - Add your first property object</h3>
                                 <p>
-                                    The next step is to add your property object. Feel free to skip this step if have registered by using the special registration link. The form will ask you to provide the following details about your property:
+                                    The next step is to add your property object. Feel free to skip this step if you already have one (you can verify it <a href="#" th:href="${helper.path('/user/properties')}" target="_blank">here</a>). The form will ask you to provide the following details about your property:
                                 </p>
                                 <ul>
                                     <li>Title</li>
@@ -124,9 +124,9 @@
                             </section>
 
                             <section class="block">
-                                <h3>Getting help</h3>
+                                <h3><i class="fa fa-life-ring"></i> Getting help</h3>
                                 <p>
-                                    The detailed description is available for you under the "Help" link in the "Navigation" section at the left side of this page.
+                                    If you have any questions please <a href="mailto:support@gotocy.com">write to us</a> and we will help you!
                                 </p>
                             </section>
                         </article>
