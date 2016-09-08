@@ -34,7 +34,7 @@ public class UserProfileController {
 		this.formValidator = formValidator;
 	}
 
-	@InitBinder("profileForm")
+	@InitBinder("contactsForm")
 	public void initBinder(WebDataBinder binder) {
 		if (binder.getTarget() != null && formValidator.supports(binder.getTarget().getClass()))
 			binder.addValidators(formValidator);
