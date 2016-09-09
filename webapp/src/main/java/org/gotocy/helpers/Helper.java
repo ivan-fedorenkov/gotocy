@@ -6,8 +6,6 @@ import org.gotocy.config.Paths;
 import org.gotocy.domain.*;
 import org.gotocy.domain.i18n.LocalizedPage;
 import org.gotocy.forms.PropertiesSearchForm;
-import org.gotocy.helpers.page.PageHelper;
-import org.gotocy.helpers.property.PropertyHelper;
 import org.gotocy.helpers.propertysearch.PropertySearchFormHelper;
 import org.gotocy.repository.PageRepository;
 import org.gotocy.service.AssetsManager;
@@ -106,9 +104,10 @@ public class Helper {
 	 */
 	public static String path(Object[] objects, Locale locale) {
 		StringBuilder path = new StringBuilder(getPrefixForLocale(locale));
+		boolean isSecuredPath = false;
 		for (Object object : objects) {
 			if (object instanceof Property) {
-				path.append(PropertyHelper.path((Property) object, locale));
+				path.append(PropertyHelper.path((Property) object, !isSecuredPath));
 			} else if (object instanceof Complex) {
 				path.append("/complexes/").append(((Complex) object).getId());
 			} else if (object instanceof Developer) {
@@ -122,6 +121,7 @@ public class Helper {
 			} else if (object instanceof Image) {
 				path.append("/images/").append(((Image) object).getId());
 			} else if (object instanceof String) {
+				isSecuredPath |= (Paths.USER.equals(object) || Paths.MASTER.equals(object));
 				path.append((String) object);
 			} else {
 				throw new IllegalArgumentException("Unsupported object type: " + object.getClass());

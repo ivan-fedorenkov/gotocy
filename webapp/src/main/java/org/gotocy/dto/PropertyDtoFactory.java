@@ -2,7 +2,7 @@ package org.gotocy.dto;
 
 import org.gotocy.domain.Property;
 import org.gotocy.helpers.Helper;
-import org.gotocy.helpers.property.PropertyHelper;
+import org.gotocy.helpers.PropertyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

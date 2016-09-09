@@ -1,7 +1,6 @@
 package org.gotocy.helpers;
 
 import org.gotocy.domain.PropertyType;
-import org.gotocy.helpers.property.PropertyHelper;
 import org.junit.Assert;
 import org.junit.Test;
 

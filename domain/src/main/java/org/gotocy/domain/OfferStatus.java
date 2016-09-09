@@ -8,7 +8,7 @@ import org.springframework.context.MessageSourceResolvable;
  * @author ifedorenkov
  */
 public enum OfferStatus implements MessageSourceResolvable {
-	ACTIVE, BOOKED, SOLD, RENTED, PROMO, INACTIVE;
+	INACTIVE, ACTIVE, BOOKED, SOLD, RENTED, PROMO;
 
 	@Override
 	public String[] getCodes() {
@@ -24,4 +24,21 @@ public enum OfferStatus implements MessageSourceResolvable {
 	public String getDefaultMessage() {
 		return name();
 	}
+
+	/**
+	 * Returns an array of statuses that a user can apply to one of their offers.
+	 * Unit test: OfferStatusTest#testGetAvailableForUser
+	 */
+	public static OfferStatus[] getAvailableForUser(GtcUser user, Property property) {
+		if (user.isMaster())
+			return Constants.AVAILABLE_FOR_MASTER;
+		return property.isPromo() ? Constants.PROMO : Constants.AVAILABLE_FOR_USER;
+	}
+
+	private static class Constants {
+		private static final OfferStatus[] PROMO = { OfferStatus.PROMO };
+		private static final OfferStatus[] AVAILABLE_FOR_USER = { INACTIVE, ACTIVE, BOOKED, SOLD, RENTED };
+		private static final OfferStatus[] AVAILABLE_FOR_MASTER = OfferStatus.values();
+	}
+
 }

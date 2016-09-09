@@ -1,10 +1,12 @@
 package org.gotocy.helpers;
 
 import org.gotocy.config.Locales;
+import org.gotocy.config.Paths;
 import org.gotocy.domain.Complex;
 import org.gotocy.domain.Developer;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
+import org.gotocy.test.factory.PropertyFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -65,6 +67,21 @@ public class HelperTest {
 		Assert.assertEquals("/ru/developers/3", Helper.path(developer, Locales.RU));
 		Assert.assertEquals("/ru/promo/properties/4", Helper.path(promoProperty, Locales.RU));
 		Assert.assertEquals("/ru/any/string/path", Helper.path(anyStringPath, Locales.RU));
+	}
+
+	/**
+	 * Secured path to promo properties should not contain the '/promo' path segment.
+	 */
+	@Test
+	public void securedPathToPromoProperties() {
+		Property promo = PropertyFactory.INSTANCE.get(p -> {
+			p.setId(1L);
+			p.setOfferStatus(OfferStatus.PROMO);
+		});
+		LocaleContextHolder.setLocale(Locales.DEFAULT);
+
+		Assert.assertEquals("/user/properties/1", Helper.path(Paths.USER, promo));
+		Assert.assertEquals("/master/properties/1", Helper.path(Paths.MASTER, promo));
 	}
 
 	@Test

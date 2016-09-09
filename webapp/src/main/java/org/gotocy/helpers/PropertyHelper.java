@@ -1,4 +1,4 @@
-package org.gotocy.helpers.property;
+package org.gotocy.helpers;
 
 import org.gotocy.config.ApplicationProperties;
 import org.gotocy.domain.ImageSize;
@@ -7,6 +7,8 @@ import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyType;
 import org.gotocy.format.CurrencyFormatter;
 import org.gotocy.format.DistanceFormatter;
+import org.gotocy.helpers.property.FieldsStrategy;
+import org.gotocy.helpers.property.FormattedField;
 import org.gotocy.i18n.I18n;
 import org.gotocy.service.AssetsService;
 import org.slf4j.Logger;
@@ -67,14 +69,6 @@ public class PropertyHelper {
 	}
 
 	/**
-	 * Returns the appropriate path for the given {@link Property} object in the given {@link Locale}.
-	 * TODO: unit test
-	 */
-	public static String path(Property property, Locale locale) {
-		return (property.isPromo() ? "/promo" : "") + "/properties/" + property.getId();
-	}
-
-	/**
 	 * Prints a given price in a locale specific manner.
 	 */
 	public static String price(int price) {
@@ -123,6 +117,18 @@ public class PropertyHelper {
 			logger.error("Failed to determine type icon for property type {}", type);
 			return "";
 		}
+	}
+
+	/**
+	 * Returns the appropriate path for the given {@link Property} object.
+	 * For internal use by the {@link org.gotocy.helpers.Helper} only!
+	 *
+	 * @param property whose path is to be returned
+	 * @param appendPromoPrefix determines if the /promo path segment is applicable
+	 * @return path
+	 */
+	static String path(Property property, boolean appendPromoPrefix) {
+		return (appendPromoPrefix && property.isPromo() ? "/promo" : "") + "/properties/" + property.getId();
 	}
 
 }

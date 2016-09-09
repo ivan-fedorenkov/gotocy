@@ -1,4 +1,4 @@
-package org.gotocy.helpers.page;
+package org.gotocy.helpers;
 
 import org.gotocy.config.Locales;
 import org.gotocy.domain.Page;

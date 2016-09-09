@@ -2,6 +2,7 @@ package org.gotocy.helpers.property;
 
 import org.gotocy.domain.Property;
 import org.gotocy.helpers.Helper;
+import org.gotocy.helpers.PropertyHelper;
 import org.gotocy.i18n.I18n;
 import org.springframework.context.MessageSource;
 

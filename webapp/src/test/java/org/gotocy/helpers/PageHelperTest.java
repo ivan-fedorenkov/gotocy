@@ -3,7 +3,6 @@ package org.gotocy.helpers;
 import org.gotocy.config.Locales;
 import org.gotocy.domain.Page;
 import org.gotocy.domain.i18n.LocalizedPage;
-import org.gotocy.helpers.page.PageHelper;
 import org.gotocy.repository.PageRepository;
 import org.gotocy.test.factory.PageFactory;
 import org.junit.Assert;

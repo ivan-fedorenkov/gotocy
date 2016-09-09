@@ -17,4 +17,8 @@ public interface ValidationConstraints {
 	 * For example already uploaded maximum number of images.
 	 */
 	String REACHED_LIMIT = "org.gotocy.validation.constraints.ReachedLimit.message";
+	/**
+	 * When something is not allowed
+	 */
+	String INSUFFICIENT_RIGHTS = "org.gotocy.validation.constraints.InsufficientRights.message";
 }

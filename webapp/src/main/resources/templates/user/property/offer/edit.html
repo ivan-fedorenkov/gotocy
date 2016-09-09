@@ -90,7 +90,7 @@
                                         <div class="form-group">
                                             <label for="offerStatus" th:text="${i18n.t('dictionary.offer-status')}">Offer Status</label>
                                             <select id="offerStatus" th:field="*{offerStatus}" th:remove="all-but-first" required>
-                                                <option value="1" th:each="status : ${T(org.gotocy.domain.OfferStatus).values()}" th:value="${status}" th:text="${{status}}">Active</option>
+                                                <option value="1" th:each="status : ${T(org.gotocy.domain.OfferStatus).getAvailableForUser(#authentication.principal, property)}" th:value="${status}" th:text="${{status}}">Active</option>
                                                 <option value="2">Sold</option>
                                                 <option value="3">Booked</option>
                                             </select>

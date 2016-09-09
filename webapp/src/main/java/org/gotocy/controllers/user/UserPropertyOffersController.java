@@ -6,6 +6,7 @@ import org.gotocy.controllers.exceptions.AccessDeniedException;
 import org.gotocy.domain.GtcUser;
 import org.gotocy.domain.Property;
 import org.gotocy.forms.user.property.OffersForm;
+import org.gotocy.forms.validation.user.property.OffersFormValidator;
 import org.gotocy.helpers.Helper;
 import org.gotocy.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -33,6 +32,13 @@ public class UserPropertyOffersController {
 	@Autowired
 	public UserPropertyOffersController(PropertyService propertyService) {
 		this.propertyService = propertyService;
+	}
+
+	@InitBinder("offersForm")
+	public void initBinder(WebDataBinder binder, @AuthenticationPrincipal GtcUser user,
+		@RequiredDomainObject @PathVariable("id") Property property)
+	{
+		binder.setValidator(new OffersFormValidator(user, property));
 	}
 
 	@RequestMapping(value = "/user/properties/{id}/offers/edit", method = RequestMethod.GET)
