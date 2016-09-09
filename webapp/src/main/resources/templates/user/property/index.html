@@ -88,7 +88,11 @@
                                                 01.01.1970
                                             </td>
                                             <td class="actions">
-                                                <a href="#" th:href="${helper.editPath('/user', p)}" class="edit" target="_blank"><i class="fa fa-pencil"></i><!--/*/ <th:block th:text="${i18n.t('dictionary.edit')}"> /*/-->Edit<!--/*/ </th:block> /*/--></a>
+                                                <ul class="list-unstyled">
+                                                    <li><a href="#" th:href="${helper.editPath('/user', p)}" target="_blank"><i class="fa fa-pencil fa-fw"></i> <span th:text="${i18n.t('dictionary.edit-property')}">Edit Property</span></a></li>
+                                                    <li><a href="#" th:href="${helper.editPath('/user', p, '/offers')}" target="_blank"><i class="fa fa-eur fa-fw"></i> <span th:text="${i18n.t('dictionary.manage-offers')}">Manage Offers</span></a></li>
+                                                    <li><a href="#" th:href="${helper.editPath('/user', p, '/images')}" target="_blank"><i class="fa fa-picture-o fa-fw"></i> <span th:text="${i18n.t('dictionary.manage-gallery')}">Manage Gallery</span></a></li>
+                                                </ul>
                                             </td>
                                         </tr>
                                     </tbody>
