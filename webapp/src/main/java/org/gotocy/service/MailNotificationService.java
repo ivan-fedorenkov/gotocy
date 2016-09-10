@@ -1,8 +1,13 @@
 package org.gotocy.service;
 
 import freemarker.template.Configuration;
+import freemarker.template.Template;
 import org.gotocy.config.ApplicationProperties;
+import org.gotocy.config.Locales;
 import org.gotocy.domain.Notification;
+import org.gotocy.domain.i18n.LocalizedPage;
+import org.owasp.html.HtmlPolicyBuilder;
+import org.owasp.html.PolicyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,7 +15,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import javax.mail.internet.MimeMessage;
+import java.io.StringReader;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -23,26 +30,29 @@ public class MailNotificationService implements NotificationService {
 	private final Configuration freemarkerConfig;
 	private final JavaMailSender sender;
 	private final ExecutorService executorService;
+	private final PageService pageService;
 
 	public MailNotificationService(ApplicationProperties applicationProperties, Configuration freemarkerConfig,
-		JavaMailSender sender, ExecutorService executorService)
+		JavaMailSender sender, PageService pageService, ExecutorService executorService)
 	{
 		this.applicationProperties = applicationProperties;
 		this.freemarkerConfig = freemarkerConfig;
 		this.sender = sender;
+		this.pageService = pageService;
 		this.executorService = executorService;
 	}
 
 	@Override
-	public void sendNotification(Notification notification) throws ServiceMethodExecutionException {
+	public void sendNotification(Notification notification) {
 		executorService.execute(() -> {
 			try {
+				LocalizedPage emailPageTemplate = getLocalizedPage(notification);
 				MimeMessage mimeMessage = sender.createMimeMessage();
 				MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
 				mimeMessageHelper.setFrom(applicationProperties.getEmail());
 				mimeMessageHelper.setTo(notification.getTo());
-				mimeMessageHelper.setSubject(notification.getSubject());
-				mimeMessageHelper.setText(getCompiledTemplate(notification.getViewName(), notification.getModel()));
+				mimeMessageHelper.setSubject(emailPageTemplate.getTitle());
+				mimeMessageHelper.setText(compileTemplate(emailPageTemplate, notification.getModel()));
 				sender.send(mimeMessage);
 			} catch (Exception e) {
 				logger.error("Failed to send notification {}", notification, e);
@@ -50,8 +60,38 @@ public class MailNotificationService implements NotificationService {
 		});
 	}
 
-	private String getCompiledTemplate(String templateName, Map<String, Object> model) throws Exception {
-		return FreeMarkerTemplateUtils.processTemplateIntoString(freemarkerConfig.getTemplate(templateName), model);
+	private LocalizedPage getLocalizedPage(Notification notification) {
+		Optional<LocalizedPage> localizedPage = pageService.findByUrl(notification.getTemplatePageUrl(),
+			notification.getLocale());
+
+		if (!localizedPage.isPresent()) {
+			logger.info("Failed to load email template page '{}' in the required locale '{}'. " +
+				"Will try to load in the default locale", notification.getTemplatePageUrl(), notification.getLocale());
+			localizedPage = pageService.findByUrl(notification.getTemplatePageUrl(), Locales.DEFAULT);
+		}
+
+		if (!localizedPage.isPresent()) {
+			logger.error("Failed to load email template page '{}'", notification.getTemplatePageUrl());
+			throw new ServiceMethodExecutionException("Email template not found.");
+		}
+
+		return localizedPage.get();
+	}
+
+	/**
+	 * TODO: cache templates
+	 */
+	private String compileTemplate(LocalizedPage localizedPage, Map<String, Object> model) throws Exception {
+		return FreeMarkerTemplateUtils.processTemplateIntoString(
+			new Template(localizedPage.getTitle(), new StringReader(sanitizeHtml(localizedPage.getHtml())),
+				freemarkerConfig), model);
+	}
+
+	private static String sanitizeHtml(String html) {
+		PolicyFactory sanitizer = new HtmlPolicyBuilder()
+			.withPreprocessor(AppendLinkUrl::new)
+			.toFactory();
+		return sanitizer.sanitize(html);
 	}
 
 }

@@ -94,4 +94,12 @@ public class GtcUser extends BaseEntity implements UserDetails, CredentialsConta
 		return Objects.hash(username, password, roles, contacts);
 	}
 
+	@Override
+	public String toString() {
+		return "GtcUser{" +
+			"username='" + username + '\'' +
+			", registrationDate=" + registrationDate +
+			", roles=" + roles +
+			'}';
+	}
 }

@@ -27,10 +27,10 @@ gotocy:
     defaultLatitude: "34.97351552254917"
     defaultLongitude: "33.133228140624965"
     defaultContact:
-      name: Anna
-      email: "anna@gotocy.com"
-      phone: "+357 99 166265"
-      spokenLanguages: "Greek, Eng, Rus"
+      name: "Denis"
+      email: "denis@gotocy.com"
+      phone: "+357 96 698624"
+      spokenLanguages: "Eng, Rus"
     defaultRepresentativeImage:
       key: "static/img/no-image.jpg"
 
@@ -51,14 +51,3 @@ gotocy:
       test-on-borrow: true
       test-on-return: true
       logAbandoned: true
-
----
-
-spring:
-  profiles: "local-dev"
-
-gotocy:
-  webapp:
-    security:
-      login: "admin"
-      password: "password"

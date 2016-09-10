@@ -8,8 +8,10 @@ import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
 import org.gotocy.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -20,6 +22,8 @@ import java.util.Map;
 @Aspect
 @Component
 public class PromoPropertyCreatedNotificationAspect {
+
+	private static final String TEMPLATE_URL = "promo-property-created-for-admins";
 
 	private final ApplicationProperties applicationProperties;
 	private final NotificationService notificationService;
@@ -38,8 +42,11 @@ public class PromoPropertyCreatedNotificationAspect {
 	)
 	public void sendNotification(Property createdProperty) {
 		if (createdProperty.getOfferStatus() == OfferStatus.PROMO) {
+			Map<String, Object> model = new HashMap<>();
+			model.put("property", createdProperty);
+
 			notificationService.sendNotification(new Notification(applicationProperties.getEmail(),
-				"New promo property has been created.", "Property id: " + createdProperty.getId(), null, null));
+				TEMPLATE_URL, LocaleContextHolder.getLocale(), model));
 		}
 	}
 

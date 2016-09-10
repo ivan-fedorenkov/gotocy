@@ -21,6 +21,7 @@
 		<edu.uci.ics.crawler4j.version>4.2</edu.uci.ics.crawler4j.version>
 		<net.sourceforge.htmlcleaner.htmlcleaner.version>2.16</net.sourceforge.htmlcleaner.htmlcleaner.version>
 		<org.freemarker.version>2.3.25-incubating</org.freemarker.version>
+		<html-sanitizer.version>20160628.1</html-sanitizer.version>
 	</properties>
 
 	<parent>

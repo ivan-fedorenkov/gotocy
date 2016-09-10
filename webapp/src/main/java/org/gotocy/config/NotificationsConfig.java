@@ -3,6 +3,7 @@ package org.gotocy.config;
 import org.gotocy.service.LoggingNotificationService;
 import org.gotocy.service.MailNotificationService;
 import org.gotocy.service.NotificationService;
+import org.gotocy.service.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,20 +32,21 @@ public class NotificationsConfig {
 		@Autowired
 		private ExecutorService executorService;
 
+		@Autowired
+		private PageService pageService;
+
 		@Bean
-		@Profile(Profiles.PROD)
 		public NotificationService mailNotificationService() throws Exception {
 			return new MailNotificationService(applicationProperties,
-				getFreemarkerConfiguration(), javaMailSender, executorService);
+				getFreemarkerConfiguration(), javaMailSender, pageService, executorService);
 		}
 
 		@Bean
-		@Profile(Profiles.PROD)
 		public freemarker.template.Configuration getFreemarkerConfiguration() throws Exception {
 			FreeMarkerConfigurationFactory factory = new FreeMarkerConfigurationFactory();
-			factory.setTemplateLoaderPath("/mail/");
 			return factory.createConfiguration();
 		}
+
 	}
 
 	@Configuration

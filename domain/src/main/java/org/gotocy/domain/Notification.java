@@ -2,6 +2,7 @@ package org.gotocy.domain;
 
 import lombok.Getter;
 
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -13,16 +14,14 @@ import java.util.Map;
 public class Notification {
 
 	private final String to;
-	private final String subject;
-	private final String message;
-	private final String viewName;
+	private final String templatePageUrl;
+	private final Locale locale;
 	private final Map<String, Object> model;
 
-	public Notification(String to, String subject, String message, String viewName, Map<String, Object> model) {
+	public Notification(String to, String templatePageUrl, Locale locale, Map<String, Object> model) {
 		this.to = to;
-		this.subject = subject;
-		this.message = message;
-		this.viewName = viewName;
+		this.templatePageUrl = templatePageUrl;
+		this.locale = locale;
 		this.model = model;
 	}
 
@@ -30,9 +29,8 @@ public class Notification {
 	public String toString() {
 		return "Notification{" +
 			"to='" + to + '\'' +
-			", subject='" + subject + '\'' +
-			", message='" + message + '\'' +
-			", viewName='" + viewName + '\'' +
+			", templatePageUrl='" + templatePageUrl + '\'' +
+			", locale='" + locale + '\'' +
 			", model=" + model +
 			'}';
 	}

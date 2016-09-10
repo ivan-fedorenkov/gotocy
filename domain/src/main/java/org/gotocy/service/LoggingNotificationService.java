@@ -13,8 +13,8 @@ public class LoggingNotificationService implements NotificationService {
 
 	@Override
 	public void sendNotification(Notification notification) {
-		logger.info("Sending notification to: {}, subject: {}, message: {}",
-			notification.getTo(), notification.getSubject(), notification.getMessage());
+		logger.info("Sending notification to: {}, templatePageUrl: {}, locale: {}",
+			notification.getTo(), notification.getTemplatePageUrl(), notification.getLocale());
 	}
 
 }
