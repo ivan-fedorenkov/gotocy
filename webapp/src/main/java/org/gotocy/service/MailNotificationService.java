@@ -19,6 +19,7 @@ import java.io.StringReader;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ExecutorService;
+import java.util.regex.Pattern;
 
 /**
  * @author ifedorenkov
@@ -87,11 +88,20 @@ public class MailNotificationService implements NotificationService {
 				freemarkerConfig), model);
 	}
 
+	private static final Pattern DOG_PATTERN = Pattern.compile("&#64;", Pattern.LITERAL);
+	private static final Pattern DOUBLE_QUOTE_PATTERN = Pattern.compile("&#34;", Pattern.LITERAL);
+	private static final Pattern SINGLE_QUOTE_PATTERN = Pattern.compile("&#39;", Pattern.LITERAL);
+
 	private static String sanitizeHtml(String html) {
 		PolicyFactory sanitizer = new HtmlPolicyBuilder()
 			.withPreprocessor(AppendLinkUrl::new)
 			.toFactory();
-		return sanitizer.sanitize(html);
+		String sanitized = sanitizer.sanitize(html);
+		// Unescape
+		sanitized = DOG_PATTERN.matcher(sanitized).replaceAll("@");
+		sanitized = DOUBLE_QUOTE_PATTERN.matcher(sanitized).replaceAll("\"");
+		sanitized = SINGLE_QUOTE_PATTERN.matcher(sanitized).replaceAll("\'");
+		return sanitized;
 	}
 
 }
