@@ -18,8 +18,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.ui.freemarker.FreeMarkerConfigurationFactory;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -66,6 +66,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public ExecutorService executorService() {
 		return Executors.newSingleThreadExecutor();
+	}
+
+	@Bean
+	public freemarker.template.Configuration getFreemarkerConfiguration() throws Exception {
+		FreeMarkerConfigurationFactory factory = new FreeMarkerConfigurationFactory();
+		return factory.createConfiguration();
 	}
 
 	@Bean
