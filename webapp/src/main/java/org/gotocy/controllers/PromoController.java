@@ -4,6 +4,8 @@ import org.gotocy.controllers.aop.RequiredDomainObject;
 import org.gotocy.domain.*;
 import org.gotocy.forms.UserRegistrationForm;
 import org.gotocy.helpers.Helper;
+import org.gotocy.service.PropertyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,13 @@ import java.util.Locale;
 @RequestMapping("/promo")
 public class PromoController {
 
+	private final PropertyService propertyService;
+
+	@Autowired
+	public PromoController(PropertyService propertyService) {
+		this.propertyService = propertyService;
+	}
+
 	@RequestMapping(value = "/properties/{id}", method = RequestMethod.GET)
 	public String show(@RequiredDomainObject @PathVariable("id") Property property, Model model, Locale locale) {
 		if (!property.isPromo())
@@ -28,10 +37,14 @@ public class PromoController {
 
 		property.initLocalizedFields(locale);
 		model.addAttribute(property);
-		model.addAttribute(new UserRegistrationForm(property));
-		model.addAttribute("shouldShowRegistrationStuff", property.getOfferStatus() == OfferStatus.PROMO);
 
-		return "promo/property";
+		if (property.getOfferStatus() == OfferStatus.PROMO) {
+			model.addAttribute(new UserRegistrationForm(property));
+			return "promo/property";
+		} else {
+			model.addAttribute("featuredProperties", propertyService.getFeatured());
+			return "property/show";
+		}
 	}
 
 	@RequestMapping(value = "/property-1", method = RequestMethod.GET)
