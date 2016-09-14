@@ -51,8 +51,8 @@
                 <!-- My Profile -->
                 <div class="col-md-9 col-sm-10">
                     <section id="welcome">
-                        <header><h1 th:text="${i18n.t('dictionary.welcome')}">Welcome</h1></header>
-                        <article class="blog-post">
+                        <header><h1 th:text="${welcomePage.title}">Welcome</h1></header>
+                        <article class="blog-post" th:utext="${welcomePage.html}">
                             <section class="block">
                                 <p th:utext="|<strong>${#authentication.principal.contacts.name}</strong>, welcome to GoToCy website!|">
                                     <strong>Denis</strong>, welcome to GoToCy website!
@@ -131,7 +131,6 @@
                                 </p>
                             </section>
                         </article>
-                        <p th:utext="${helper.page.get('user-welcome', #locale)}"></p>
                     </section><!-- /#welcome -->
                 </div><!-- /.col-md-9 -->
                 <!-- end My Profile -->

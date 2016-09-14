@@ -1,8 +1,12 @@
 package org.gotocy.service;
 
+import org.gotocy.domain.Page;
+import org.gotocy.domain.i18n.Localized;
 import org.gotocy.domain.i18n.LocalizedPage;
 
+import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author ifedorenkov
@@ -10,8 +14,8 @@ import java.util.Map;
 public interface TemplatesService {
 
 	/**
-	 * Builds a template from the given page.
+	 * TODO: javadoc, unit test
 	 */
-	String processTemplateIntoString(LocalizedPage templatePage, Map<String, Object> model);
+	LocalizedPage getProcessedTemplate(String templatePageUrl, Map<String, Object> model, Locale locale);
 
 }

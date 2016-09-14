@@ -2,6 +2,8 @@ package org.gotocy.test.factory;
 
 import org.gotocy.domain.*;
 
+import java.time.LocalDate;
+
 /**
  * A factory class of the {@link org.gotocy.domain.Property} entity.
  *
@@ -37,6 +39,7 @@ public class PropertyFactory extends BaseFactory<Property> {
 		property.setDistanceToSea(ANY_INT);
 		property.setHeatingSystem(ANY_BOOLEAN);
 		property.setContactsDisplayOption(PropertyContactsDisplayOption.OVERRIDDEN);
+		property.setCreationDate(LocalDate.now());
 		return property;
 	}
 

@@ -87,7 +87,7 @@ public class MasterPropertiesController {
 		Property property = propertyForm.mergeWithProperty(new Property());
 		property.setComplex(getComplex(propertyForm.getComplexId()));
 		property.setDeveloper(getDeveloper(propertyForm.getDeveloperId()));
-		property = propertyRepository.save(property);
+		property = propertyService.create(property);
 		return "redirect:" + Helper.editPath(Paths.MASTER, property);
 	}
 

@@ -4,6 +4,7 @@ import com.mysema.query.types.Predicate;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
 import org.gotocy.service.PropertyService;
+import org.gotocy.service.TemplatesService;
 import org.gotocy.test.factory.PropertyFactory;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,8 +32,9 @@ public class UserWelcomeControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
+		TemplatesService templatesService = mock(TemplatesService.class);
 		propertyService = mock(PropertyService.class);
-		mvc = MockMvcBuilders.standaloneSetup(new UserWelcomeController(propertyService)).build();
+		mvc = MockMvcBuilders.standaloneSetup(new UserWelcomeController(templatesService, propertyService)).build();
 	}
 
 	@Test

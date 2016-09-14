@@ -39,7 +39,7 @@ public class PropertyServiceTest {
 
 	@Test
 	public void testCreate() {
-		Property property = PropertyFactory.INSTANCE.get();
+		Property property = PropertyFactory.INSTANCE.get(p -> p.setCreationDate(null));
 		Assert.assertNull(property.getCreationDate());
 		propertyService.create(property);
 		Assert.assertEquals(LocalDate.now(), property.getCreationDate());

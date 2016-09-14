@@ -26,7 +26,7 @@ public class ComplexIntegrationTest extends IntegrationTestBase {
 			.param("title", complex.getTitle())
 			.param("address", complex.getAddress())
 			.param("coordinates", complex.getCoordinates()))
-			.andExpect(status().isOk());
+			.andExpect(status().is3xxRedirection());
 	}
 
 }

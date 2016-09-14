@@ -4,22 +4,27 @@ import org.gotocy.config.Paths;
 import org.gotocy.domain.GtcUser;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
+import org.gotocy.domain.i18n.LocalizedPage;
 import org.gotocy.helpers.Helper;
-import org.gotocy.repository.PropertyPredicates;
 import org.gotocy.service.PropertyService;
+import org.gotocy.service.TemplatesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Collections;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
-import static java.util.Comparator.comparingInt;
 import static java.util.Comparator.comparingLong;
 import static org.gotocy.repository.PropertyPredicates.ofUser;
 import static org.gotocy.repository.PropertyPredicates.withOfferInStatus;
@@ -30,15 +35,22 @@ import static org.gotocy.repository.PropertyPredicates.withOfferInStatus;
 @Controller
 public class UserWelcomeController {
 
+	private static final String WELCOME_PAGE_TEMPLATE_URL = "welcome-page";
+
+	private final TemplatesService templatesService;
 	private final PropertyService propertyService;
 
 	@Autowired
-	public UserWelcomeController(PropertyService propertyService) {
+	public UserWelcomeController(TemplatesService templatesService, PropertyService propertyService) {
+		this.templatesService = templatesService;
 		this.propertyService = propertyService;
 	}
 
 	@RequestMapping(value = "/user/welcome", method = RequestMethod.GET)
-	public String show() {
+	public String show(Model model, @AuthenticationPrincipal GtcUser user, Locale locale) {
+		LocalizedPage welcomePage = templatesService.getProcessedTemplate(WELCOME_PAGE_TEMPLATE_URL,
+			Collections.singletonMap("user", user), locale);
+		model.addAttribute("welcomePage", welcomePage);
 		return "user/welcome/show";
 	}
 

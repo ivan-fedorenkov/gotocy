@@ -23,7 +23,7 @@ public class DeveloperIntegrationTest extends IntegrationTestBase {
 
 		mvc.perform(post("/master/developers").with(csrf())
 			.param("name", developer.getName()))
-			.andExpect(status().isOk());
+			.andExpect(status().is3xxRedirection());
 	}
 
 }

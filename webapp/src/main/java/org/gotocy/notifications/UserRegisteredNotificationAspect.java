@@ -3,10 +3,12 @@ package org.gotocy.notifications;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.gotocy.config.ApplicationProperties;
+import org.gotocy.config.Profiles;
 import org.gotocy.domain.GtcUser;
 import org.gotocy.domain.Notification;
 import org.gotocy.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +22,7 @@ import java.util.Map;
  */
 @Aspect
 @Component
+@Profile(Profiles.DEV)
 public class UserRegisteredNotificationAspect {
 	private static final String ADMINS_NOTIFICATION_TEMPLATE_URL = "user-registered-for-admins";
 	private static final String USER_NOTIFICATION_TEMPLATE_URL = "user-registered-for-user";

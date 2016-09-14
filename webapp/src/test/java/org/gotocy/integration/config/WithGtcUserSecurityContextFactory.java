@@ -30,7 +30,7 @@ public class WithGtcUserSecurityContextFactory implements WithSecurityContextFac
 
 	@Override
 	public SecurityContext createSecurityContext(WithGtcUser withGtcUser) {
-		String username = withGtcUser.value() == null ? withGtcUser.username() : withGtcUser.value();
+		String username = !withGtcUser.username().isEmpty() ? withGtcUser.username() : withGtcUser.value();
 		Assert.hasLength(username, "value() must be non empty String");
 		GtcUser principal = userService.findByUsername(withGtcUser.username());
 		if (principal == null) {

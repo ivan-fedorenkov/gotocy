@@ -46,7 +46,7 @@ UPDATE `property` SET `contacts_display_option` = 'SYSTEM_DEFAULT' WHERE
     `overridden_contacts_phone` IS NULL AND
     `overridden_contacts_spoken_languages` IS NULL;
 
-ALTER TABLE `property` DROP CONSTRAINT `fk_property_primary_contact_id`;
+ALTER TABLE `property` DROP FOREIGN KEY `fk_property_primary_contact_id`;
 ALTER TABLE `property` DROP COLUMN `primary_contact_id`;
 
 -- Update complex contacts
@@ -62,7 +62,7 @@ UPDATE `complex` cplx SET
     cplx.`contacts_phone` = (SELECT c.phone FROM `contact` c WHERE c.id = cplx.primary_contact_id),
     cplx.`contacts_spoken_languages` = (SELECT c.spoken_languages FROM `contact` c WHERE c.id = cplx.primary_contact_id);
 
-ALTER TABLE `complex` DROP CONSTRAINT `fk_complex_primary_contact_id`;
+ALTER TABLE `complex` DROP FOREIGN KEY `fk_complex_primary_contact_id`;
 ALTER TABLE `complex` DROP COLUMN `primary_contact_id`;
 
 -- Property registration secret

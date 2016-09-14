@@ -26,18 +26,15 @@ public class NotificationsConfig {
 		private JavaMailSender javaMailSender;
 
 		@Autowired
-		private ExecutorService executorService;
-
-		@Autowired
 		private TemplatesService templatesService;
 
 		@Autowired
-		private PageService pageService;
+		private ExecutorService executorService;
 
 		@Bean
 		public NotificationService mailNotificationService() throws Exception {
 			return new MailNotificationService(applicationProperties,
-				javaMailSender, pageService, templatesService, executorService);
+				javaMailSender, templatesService, executorService);
 		}
 
 	}
@@ -46,9 +43,12 @@ public class NotificationsConfig {
 	@Profile({Profiles.DEV, Profiles.TEST})
 	public static class DevConfig {
 
+		@Autowired
+		private TemplatesService templatesService;
+
 		@Bean
 		public NotificationService loggingNotificationService() {
-			return new LoggingNotificationService();
+			return new LoggingNotificationService(templatesService);
 		}
 
 	}
