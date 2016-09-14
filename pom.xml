@@ -5,7 +5,7 @@
 	<groupId>org.gotocy</groupId>
 	<artifactId>parent</artifactId>
 	<packaging>pom</packaging>
-	<version>0.22-SNAPSHOT</version>
+	<version>0.22</version>
 	<name>GoToCy parent project</name>
 
 	<properties>
