@@ -44,13 +44,13 @@ public class TemplatesServiceImpl implements TemplatesService {
 
 		LocalizedPage localizedTemplatePage = templatePage.localize(locale);
 		if (!localizedTemplatePage.isFullyTranslated()) {
-			logger.info("Failed to load template '{}' in the required locale '{}'." +
-				"Will try to load in the default locale");
-			localizedTemplatePage = templatePage.localize(locale);
+			logger.info("Failed to load template '{}' in the required locale '{}'. " +
+				"Will try to load in the default locale", templatePageUrl, locale);
+			localizedTemplatePage = templatePage.localize(Locales.DEFAULT);
 		}
 
 		if (!localizedTemplatePage.isFullyTranslated()) {
-			logger.warn("Failed to load template '{}' even in the default locale.");
+			logger.warn("Failed to load template '{}' even in the default locale.", templatePageUrl);
 			return missingTemplate(templatePageUrl);
 		}
 
