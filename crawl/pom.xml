@@ -4,13 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>crawl</artifactId>
 	<packaging>jar</packaging>
-	<version>0.23.SNAPSHOT</version>
+	<version>0.23-SNAPSHOT</version>
 	<name>GoToCy crawl module</name>
 
 	<parent>
 		<groupId>org.gotocy</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.23.SNAPSHOT</version>
+		<version>0.23-SNAPSHOT</version>
 	</parent>
 
 	<dependencies>
@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>org.gotocy</groupId>
 			<artifactId>domain</artifactId>
-			<version>0.23.SNAPSHOT</version>
+			<version>0.23-SNAPSHOT</version>
 		</dependency>
 
 	</dependencies>
