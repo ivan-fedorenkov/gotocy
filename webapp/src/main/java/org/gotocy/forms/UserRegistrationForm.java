@@ -2,10 +2,12 @@ package org.gotocy.forms;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.gotocy.domain.*;
+import org.gotocy.domain.Contacts;
+import org.gotocy.domain.GtcUser;
+import org.gotocy.domain.GtcUserRole;
+import org.gotocy.domain.Property;
 import org.gotocy.forms.validation.UserRegistrationFormValidator;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;

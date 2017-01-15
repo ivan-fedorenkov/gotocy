@@ -1,8 +1,8 @@
 package org.gotocy.domain.validation;
 
 import org.gotocy.domain.OfferStatus;
-import org.gotocy.domain.Property;
 import org.gotocy.domain.OfferType;
+import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyType;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

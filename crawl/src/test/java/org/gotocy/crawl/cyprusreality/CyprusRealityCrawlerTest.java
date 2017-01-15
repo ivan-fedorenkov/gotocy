@@ -9,7 +9,6 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 import edu.uci.ics.crawler4j.url.WebURL;
 import org.gotocy.crawl.CookieAwarePageFetcher;
 import org.gotocy.crawl.CrawlProperties;
-import org.gotocy.domain.*;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

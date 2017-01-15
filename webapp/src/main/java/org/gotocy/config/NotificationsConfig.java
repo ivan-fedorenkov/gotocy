@@ -1,6 +1,9 @@
 package org.gotocy.config;
 
-import org.gotocy.service.*;
+import org.gotocy.service.LoggingNotificationService;
+import org.gotocy.service.MailNotificationService;
+import org.gotocy.service.NotificationService;
+import org.gotocy.service.TemplatesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

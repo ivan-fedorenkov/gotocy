@@ -3,7 +3,6 @@ package org.gotocy.crawl.cyprusreality;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.crawl.CrawledProperty;
-import org.gotocy.domain.*;
 
 import java.util.Arrays;
 import java.util.List;

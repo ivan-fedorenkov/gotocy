@@ -1,8 +1,6 @@
 package org.gotocy.service;
 
 import org.gotocy.domain.Asset;
-import org.gotocy.domain.Image;
-import org.gotocy.domain.ImageSize;
 
 import java.io.IOException;
 import java.util.Optional;

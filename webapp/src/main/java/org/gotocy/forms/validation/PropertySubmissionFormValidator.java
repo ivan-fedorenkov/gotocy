@@ -1,8 +1,6 @@
 package org.gotocy.forms.validation;
 
 import org.gotocy.config.ApplicationProperties;
-import org.gotocy.domain.Property;
-import org.gotocy.domain.validation.PropertyValidator;
 import org.gotocy.forms.PropertySubmissionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

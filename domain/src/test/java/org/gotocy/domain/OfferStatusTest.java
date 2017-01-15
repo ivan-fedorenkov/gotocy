@@ -1,14 +1,9 @@
 package org.gotocy.domain;
 
-import org.gotocy.config.Roles;
 import org.gotocy.test.factory.PropertyFactory;
 import org.gotocy.test.factory.UserFactory;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
 
 import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
 

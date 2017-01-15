@@ -1,7 +1,6 @@
 package org.gotocy.service;
 
 import org.gotocy.config.ApplicationProperties;
-import org.gotocy.controllers.exceptions.DomainObjectNotFoundException;
 import org.gotocy.domain.Notification;
 import org.gotocy.domain.i18n.LocalizedPage;
 import org.slf4j.Logger;

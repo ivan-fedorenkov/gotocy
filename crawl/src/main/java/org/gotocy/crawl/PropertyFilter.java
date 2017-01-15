@@ -2,8 +2,8 @@ package org.gotocy.crawl;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.gotocy.domain.Property;
 import org.gotocy.domain.OfferType;
+import org.gotocy.domain.Property;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Min;

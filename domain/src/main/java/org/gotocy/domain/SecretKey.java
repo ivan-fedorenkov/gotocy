@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.Embeddable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 /**
  * An embeddable secret key.

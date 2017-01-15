@@ -1,7 +1,5 @@
 package org.gotocy.test.factory;
 
-import org.gotocy.domain.BaseEntity;
-
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 

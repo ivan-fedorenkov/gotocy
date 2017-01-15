@@ -3,10 +3,11 @@ package org.gotocy.forms.user.property;
 import lombok.Getter;
 import lombok.Setter;
 import org.gotocy.domain.Image;
-import org.gotocy.utils.CollectionUtils;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;

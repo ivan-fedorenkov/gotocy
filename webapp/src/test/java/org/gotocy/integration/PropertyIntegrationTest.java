@@ -1,24 +1,22 @@
 package org.gotocy.integration;
 
-import org.gotocy.config.Roles;
 import org.gotocy.domain.OfferStatus;
 import org.gotocy.domain.Property;
 import org.gotocy.domain.PropertyContactsDisplayOption;
 import org.gotocy.repository.PropertyRepository;
-import org.gotocy.test.factory.ContactsFactory;
 import org.gotocy.test.factory.PropertyFactory;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.test.context.support.WithMockUser;
 
 import java.util.List;
 
 import static org.gotocy.integration.utils.PropertyTestUtils.assertPropertiesEquals;
 import static org.gotocy.integration.utils.PropertyTestUtils.populatedPropertySubmissionForm;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 

@@ -16,9 +16,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
-import static org.gotocy.format.seo.SeoLocationFormatter.LOCATIONS;
-import static org.gotocy.format.seo.SeoLocationFormatter.RU_LOCATIONS;
-import static org.gotocy.format.seo.SeoLocationFormatter.RU_NO_LOCATION;
+import static org.gotocy.format.seo.SeoLocationFormatter.*;
 import static org.gotocy.format.seo.SeoOfferTypeFormatter.*;
 import static org.gotocy.format.seo.SeoPropertyTypeFormatter.RU_TYPES;
 import static org.gotocy.format.seo.SeoPropertyTypeFormatter.TYPES;

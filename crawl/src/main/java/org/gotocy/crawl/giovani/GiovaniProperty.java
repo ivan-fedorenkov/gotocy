@@ -1,7 +1,6 @@
 package org.gotocy.crawl.giovani;
 
 import org.gotocy.crawl.CrawledProperty;
-import org.gotocy.domain.*;
 
 import java.util.*;
 import java.util.regex.Matcher;
