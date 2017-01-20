@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    max-active: 4
+    max-idle: 4
+    min-idle: 2
+    initial-size: 4
+    validation-query: "SELECT 1 as pool_test"
+    test-while-idle: true
+    test-on-borrow: true
+    test-on-return: true
+    log-abandoned: true
